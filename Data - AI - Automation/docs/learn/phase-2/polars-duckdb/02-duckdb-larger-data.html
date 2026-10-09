@@ -25,7 +25,7 @@ document.documentElement.classList.add('no-anim')})();</script>
 <a class="skip" href="#main">Skip to content</a>
 <header class="topbar">
   <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Open curriculum menu" title="Curriculum menu (press M)" aria-controls="sidebar" aria-expanded="false"><span class="ico-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span class="ico-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></button>
-  <a class="brand" href="../../../index.html"><span class="brand-badge">AI</span><span class="brand-text"><span class="brand-name">Data, AI &amp; Automation Path</span><span class="brand-version">v0.7</span></span></a>
+  <a class="brand" href="../../../index.html"><span class="brand-badge">AI</span><span class="brand-text"><span class="brand-name">Data, AI &amp; Automation Path</span><span class="brand-version">v0.8</span></span></a>
   <nav class="top-links" aria-label="Main">
     <a href="../../../index.html" class="">Home</a><a href="../../../curriculum.html" class="">Curriculum</a><a href="../../../practice-files.html" class="">Practice files</a><a href="../../../glossary.html" class="">Glossary</a><a href="../../../how-to-learn.html" class="">How to learn</a><a href="../../../about.html" class="">About</a>
   </nav>
@@ -41,7 +41,7 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="layout wide">
   <nav class="sidebar" id="sidebar" aria-label="Curriculum">
     <div class="side-title">Curriculum</div>
-    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="64"><i></i></div><span class="bar-label" data-progress-label></span></div>
+    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="77"><i></i></div><span class="bar-label" data-progress-label></span></div>
 <div class="nav-phase"><a href="../../../learn/phase-0/index.html"><span class="nav-num">0</span>Foundations</a>
 </div>
 <div class="nav-phase"><a href="../../../learn/phase-1/index.html"><span class="nav-num">1</span>Analytics &amp; BI</a>
@@ -387,7 +387,7 @@ shape: (5, 3)
 <p><strong>Strong answer:</strong> "I'd convert it to Parquet once, partitioned by year if it's very large, then query it with DuckDB or Polars lazy so only the needed columns and filtered rows are read. I aggregate there and bring the small result into pandas for charts or modelling. If it keeps growing or several people need it, it belongs in a warehouse."</p>
 <p><strong>Mini project:</strong> Run <code>make_big_data.py</code> with 5,000,000 rows. Time the region summary in DuckDB, Polars and pandas, three runs each, and write a short table of median timings and file sizes with your machine's specs.</p>
 </div>
-<div class="terms-box"><div class="files-head"><b>Key terms in this lesson</b><a href="../../../glossary.html">Glossary →</a></div><div class="term-chips"><a class="term-chip" href="../../../glossary.html#duckdb" title="A free, in-process analytical database: run SQL directly on CSV and Parquet files from Python, with no server to install.">DuckDB</a><a class="term-chip" href="../../../glossary.html#parquet" title="A compressed, column-based file format for analytics. Smaller and much faster to query than CSV, and it keeps column types.">Parquet</a><a class="term-chip" href="../../../glossary.html#window-function" title="A calculation across related rows that keeps every row, such as ranking or running totals, written with OVER (...).">Window function</a></div></div>
+<div class="terms-box"><div class="files-head"><b>Key terms in this lesson</b><a href="../../../glossary.html">Glossary →</a></div><div class="term-chips"><a class="term-chip" href="../../../glossary.html#duckdb" title="A free, in-process analytical database: run SQL directly on CSV and Parquet files from Python, with no server to install.">DuckDB</a><a class="term-chip" href="../../../glossary.html#oltp" title="OLTP systems run the business (many small reads and writes, normalised tables). OLAP systems analyse it (large scans and aggregations, dimensional models).">OLTP</a><a class="term-chip" href="../../../glossary.html#parquet" title="A compressed, column-based file format for analytics. Smaller and much faster to query than CSV, and it keeps column types.">Parquet</a><a class="term-chip" href="../../../glossary.html#window-function" title="A calculation across related rows that keeps every row, such as ranking or running totals, written with OVER (...).">Window function</a></div></div>
 <h2 id="free-resources">Free resources to go deeper</h2><ul class="resources"><li><a href="https://duckdb.org/docs/stable/clients/python/overview">DuckDB Python API — overview</a><span class="r-meta">DuckDB official docs · duckdb.sql, querying DataFrames and files, converting results.</span></li><li><a href="https://duckdb.org/docs/stable/data/parquet/overview">Reading and writing Parquet files</a><span class="r-meta">DuckDB official docs · Querying Parquet directly and COPY ... TO for exporting.</span></li><li><a href="https://pandas.pydata.org/docs/user_guide/scale.html">Scaling to large datasets</a><span class="r-meta">pandas official docs · Load fewer columns, use efficient types, use Parquet, chunk.</span></li></ul>
 <div class="complete-bar"><span>Finished reading and did the exercise?</span>
 <button class="btn" id="completeBtn" type="button" data-id="phase-2/polars-duckdb/02-duckdb-larger-data">Mark lesson as complete</button></div>
@@ -397,7 +397,7 @@ shape: (5, 3)
   </div></main>
   <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#example-1-sql-directly-on-a-csv-file">Example 1: SQL directly on a CSV file</a><a href="#example-2-sql-on-a-pandas-dataframe">Example 2: SQL on a pandas DataFrame</a><a href="#example-3-window-functions">Example 3: window functions</a><a href="#example-4-larger-data-the-file-format-matters">Example 4: larger data — the file format matters</a><a href="#example-5-one-question-three-engines-2-million-rows">Example 5: one question, three engines, 2 million rows</a><a href="#a-practical-playbook-for-too-slow-data">A practical playbook for &quot;too slow&quot; data</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#free-resources">Free resources</a></aside>
 </div>
-<footer class="site">Data, AI &amp; Automation Path v0.7 · Applied AI, Data &amp; Automation Lab · Updated October 2026<br>
+<footer class="site">Data, AI &amp; Automation Path v0.8 · Applied AI, Data &amp; Automation Lab · Updated October 2026<br>
 Lesson text: <a href="../../../license.html">CC BY-NC-SA 4.0</a> · Code: <a href="../../../license.html#code-mit-license">MIT</a> · Free external resources belong to their respective owners.</footer>
 <script src="../../../search-index.js"></script>
 <script src="../../../assets/app.js"></script>

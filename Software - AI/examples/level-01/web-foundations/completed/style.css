@@ -1,0 +1,21 @@
+:root { color-scheme: light dark; --accent:#0b9cf4; --surface:#f3f8fc; --ink:#071426; }
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin:0; font-family:system-ui,sans-serif; line-height:1.65; background:var(--surface); color:var(--ink); }
+a { color:inherit; }
+.site-header { display:flex; justify-content:space-between; align-items:center; gap:1rem; padding:1rem 4vw; border-bottom:1px solid #cbd9e5; background:white; }
+.brand { font-weight:800; text-decoration:none; }
+nav { display:flex; flex-wrap:wrap; gap:1rem; }
+main { width:min(900px,92%); margin:0 auto 4rem; }
+section { padding:3rem 0; }
+.hero { padding-top:5rem; }
+.eyebrow { color:#0878bd; font-weight:800; text-transform:uppercase; letter-spacing:.08em; }
+h1 { font-size:clamp(2.3rem,7vw,4.5rem); line-height:1; max-width:10ch; }
+.button { display:inline-block; padding:.75rem 1rem; background:var(--accent); color:white; border-radius:.7rem; text-decoration:none; font-weight:700; }
+.cards { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; }
+.card, form { background:white; border:1px solid #d5e2ec; border-radius:1rem; padding:1.25rem; }
+form { display:grid; gap:.65rem; max-width:600px; }
+input, textarea, button { font:inherit; padding:.75rem; border:1px solid #aebfce; border-radius:.55rem; }
+button { background:var(--accent); color:white; font-weight:700; cursor:pointer; }
+@media (max-width:650px) { .site-header{align-items:flex-start;flex-direction:column}.cards{grid-template-columns:1fr} }
+@media (prefers-color-scheme:dark) { :root{--surface:#020a18;--ink:#eaf9ff}.site-header,.card,form{background:#06152b;border-color:#183956}input,textarea{background:#07182d;color:#eaf9ff;border-color:#2a4c66} }

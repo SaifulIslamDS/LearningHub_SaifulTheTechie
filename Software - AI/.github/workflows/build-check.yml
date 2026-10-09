@@ -1,0 +1,36 @@
+name: Build check
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: pip install -r requirements.txt
+      - name: Verify browser JavaScript syntax
+        run: node --check assets/app.js
+      - name: Run Level 01 JavaScript examples
+        run: |
+          for f in examples/level-01/javascript/*.js; do
+            echo "Running $f"
+            node "$f"
+          done
+      - name: Build site and check internal links
+        run: python build.py
+      - name: Check generated docs are current
+        run: |
+          if [ -n "$(git status --porcelain docs)" ]; then
+            echo "docs/ is out of date. Run 'python build.py' locally and commit the result."
+            git status --porcelain docs
+            exit 1
+          fi

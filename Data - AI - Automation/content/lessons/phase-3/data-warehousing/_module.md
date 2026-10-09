@@ -1,0 +1,5 @@
+A **data warehouse** is a database designed for **analysis**, not for running the business day to day. It collects cleaned history from many sources and organises it, usually as **star schemas**, so that questions like "revenue by quarter, segment and channel" are simple and fast. This module builds a small warehouse in PostgreSQL from the 2025 orders, handles customers whose details change over time, and shows how the same SQL runs in **BigQuery**, a cloud warehouse.
+
+The scripts are `09_star_schema.sql`, `10_scd.sql` and `11_bigquery_sql.py` in [data-engineering-scripts.zip](../../../downloads/phase-3/data-engineering-scripts.zip). They need the `shop` schema from `03_load_postgres.py` (setup on the [Advanced SQL module page](../advanced-sql/index.html)).
+
+**By the end of this module you can:** explain OLTP vs OLAP, design facts and dimensions at a stated grain, build a star schema with surrogate keys, keep history with SCD type 2, and translate warehouse SQL to BigQuery while understanding its cost model.

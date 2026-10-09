@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A small profile page built during the Saiful The Techie HTML and CSS foundations tutorial.">
+  <title>Saiful's Learning Profile</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#top">Learning Profile</a>
+    <nav aria-label="Primary navigation">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <p class="eyebrow">Software & AI learner</p>
+      <h1 id="hero-title">Hello, I’m Saiful.</h1>
+      <p>I am building strong web foundations before moving into JavaScript, React, backend engineering and AI systems.</p>
+      <a class="button" href="#skills">See my learning path</a>
+    </section>
+
+    <section id="about">
+      <h2>About</h2>
+      <p>This page demonstrates semantic HTML, reusable CSS classes, the box model and simple responsive layout.</p>
+    </section>
+
+    <section id="skills">
+      <h2>Skills in progress</h2>
+      <div class="cards">
+        <article class="card"><h3>HTML</h3><p>Structure and meaning.</p></article>
+        <article class="card"><h3>CSS</h3><p>Presentation and layout.</p></article>
+        <article class="card"><h3>Git</h3><p>Version control and collaboration.</p></article>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <form>
+        <label for="name">Name</label>
+        <input id="name" name="name" autocomplete="name" required>
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" autocomplete="email" required>
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="5"></textarea>
+        <button type="submit">Send</button>
+      </form>
+    </section>
+  </main>
+</body>
+</html>

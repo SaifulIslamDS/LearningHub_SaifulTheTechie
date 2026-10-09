@@ -12,10 +12,12 @@ Open an issue and use the **Content error** or **Lesson request** template.
 2. Copy `content/_templates/lesson-template.md` into `content/lessons/<phase-id>/<module-id>/` with a name like `03-case-expressions.md`.
 3. Fill in the front matter (title, order, summary, level, time, `topics`).
    - `topics` must use the exact topic text from `curriculum.yml`.
-4. Write the lesson. Follow the **Definition of done** in [ROADMAP.md](ROADMAP.md).
-   - **Quiz:** each question is a `<div class="quiz-q" markdown="1">` with a numbered option list and an answer that starts with the bold letter, e.g. `**B.**` or `**B — because…**`. The build reads that letter to score the quiz, and warns if it can't.
+4. Write the tutorial using **Template v2**. Follow the **Definition of done** in [ROADMAP.md](ROADMAP.md).
+   - Start with the learner's mental model, then move into verified code/data/config and a practical build.
+   - **Quiz / mistakes / summary / job-ready blocks are optional.** If you include a scored quiz, preserve the existing `<div class="quiz-q" markdown="1">` format and bold answer letter.
    - **Key terms:** words in your `keywords` that match a glossary term (or one of its `aka` names) appear automatically under "Key terms". To force a term, add `terms: [Star schema]` to the front matter.
-   - **Practice files:** list them in `files:` and catalogue new ones in `content/downloads/files.yml`.
+   - **Practice files:** list them in `files:` and catalogue new ones in `content/downloads/files.yml`. Prefer synchronized `starter/` and `completed/` packages for substantial builds.
+   - **Optional video companion:** use the `youtube:` front-matter object only for one verified, strongly relevant video; the written tutorial must stand alone.
 5. Run `python build.py` and fix any warnings or broken links.
 6. Open `docs/index.html` and check the page in light and dark mode.
 7. Commit **both** your Markdown file **and** the rebuilt `docs/` folder, then open a pull request.

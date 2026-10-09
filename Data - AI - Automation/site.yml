@@ -1,11 +1,14 @@
 # Site settings — change these and run `python build.py` again.
 name: "Data, AI & Automation Path"
-short_name: "DAA Path"
-badge: "AI"
-version: "v0.7"           # shown under the site name in the top bar; bump on every release
-tagline: "Learn Data Analytics, Data Engineering, AI Engineering and Automation — from first steps to job-ready."
-author: "Applied AI, Data & Automation Lab"
-copyright_holder: "Applied AI, Data & Automation Lab contributors"   # change to your name if you prefer
+brand: "Saiful The Techie"
+brand_line: "AI · Data · Web · SaaS · Automation"
+short_name: "ST · DAA Path"
+badge: ""
+logo_asset: ""          # exact approved circular logo when available; empty = text wordmark fallback
+version: "v0.8"           # shown under the site name in the top bar; bump on every release
+tagline: "Hands-on Data, AI & Automation learning — from analytics foundations to production AI systems."
+author: "Saiful The Techie"
+copyright_holder: "Saiful Islam"   # change to your name if you prefer
 language: "en"
 # Set this once the site is live (e.g. https://username.github.io/data-ai-automation-path/). Leave empty for offline use.
 site_url: ""

@@ -8,7 +8,7 @@ How this site grows from a skeleton to a complete, job-ready tutorial site.
 
 Status key: ✅ done · 🔄 in progress · ⏳ planned
 
-**Current version: v0.7** · Next: **M7 → v0.8**
+**Current version: v0.8** · Next: **M8 → v0.9**
 
 **Release rule:**
 
@@ -29,19 +29,45 @@ Status key: ✅ done · 🔄 in progress · ⏳ planned
 | M4 | Phase 0: Foundations | v0.5 | Dev environment, Git, Linux, Python refresher, testing, AI-assisted dev (16 lessons), Gate project, practice-file library | ✅ |
 | M5 | Platform upgrade 1 | v0.6 | Glossary (139 terms), scored quizzes, sitemap/robots, Open Graph share cards, link-check issues | ✅ |
 | M6 | Phase 2: Data Science | v0.7 | NumPy → research thinking (21 lessons), Phase 2 project, 2025 practice data | ✅ |
-| M7 | Phase 3: Data Engineering | v0.8 | 13 modules, split into 3A (SQL/DB/warehouse) and 3B (pipelines/cloud/AI-ready data) | 🔄 next |
-| M8 | Phase 5: LLM & RAG | v0.9 | NLP → RAG evaluation, Phase 5 project | ⏳ |
-| M9 | Phase 6: Agents & Automation | v1.0 | Agents, n8n, MCP, frameworks, Phase 6 project | ⏳ |
-| M10 | Phase 4: ML Engineering | v1.1 | Regression → MLOps | ⏳ |
-| M11 | Phase 7: LLMOps & Governance | v1.2 | Deployment → AI governance | ⏳ |
-| M12 | Phases 8–9: Capstone + Career | v1.3 | Capstone build guide, portfolio, interviews, freelancing | ⏳ |
-| M13 | Platform upgrade 2 | v2.0 | Runnable SQL in the browser, installable offline app (PWA), optional Bangla | ⏳ |
+| M7 | Phase 3A: Data Engineering — storing & serving | v0.8 | Ingestion, advanced SQL, database engineering, warehousing, lakehouse, Docker (13 lessons) | ✅ |
+| M8 | Phase 3B: Data Engineering — moving & trusting | v0.9 | ETL/ELT, data quality, orchestration, dbt, cloud & IaC, AI-ready data, Spark & Kafka, Phase 3 project | 🔄 in progress |
+| M9 | Phase 5: LLM & RAG | v1.0 | NLP → RAG evaluation, Phase 5 project | ⏳ |
+| M10 | Phase 6: Agents & Automation | v1.1 | Agents, n8n, MCP, frameworks, Phase 6 project | ⏳ |
+| M11 | Phase 4: ML Engineering | v1.2 | Regression → MLOps | ⏳ |
+| M12 | Phase 7: LLMOps & Governance | v1.3 | Deployment → AI governance | ⏳ |
+| M13 | Phases 8–9: Capstone + Career | v1.4 | Capstone build guide, portfolio, interviews, freelancing | ⏳ |
+| M14 | Platform upgrade 2 | v2.0 | Runnable SQL in the browser, installable offline app (PWA), optional Bangla | ⏳ |
 
 **Why this order:**
 
 - **Phase 1 first:** it is the strongest existing skill base, the fastest to verify, and the most common entry-level job target.
 - **Phase 0 next:** every later phase depends on it.
 - **Phases 5–6 before Phase 4:** LLM, RAG and agent skills currently carry the highest market demand. They also need only basic ML concepts, which Phase 2 already covers.
+
+## Progress by phase (M8 working checkpoint)
+
+| Phase | Topics written | Lessons | Project page | Milestone |
+|---|---|---|---|---|
+| 0 Engineering Foundations | 26 / 26 | 16 | ✅ | M4 ✅ |
+| 1 Analytics & BI | 43 / 43 | 27 | ✅ | M2–M3 ✅ |
+| 2 Python, Statistics & Data Science | 41 / 41 | 21 | ✅ | M6 ✅ |
+| 3 Data Engineering | 40 / 55 | 21 | ⏳ (in M8) | M7 ✅ · M8 🔄 |
+| 4 ML & Deep Learning | 0 / 34 | — | ⏳ | M11 |
+| 5 NLP, LLM & RAG | 0 / 38 | — | ⏳ | M9 |
+| 6 Agents & Automation | 0 / 47 | — | ⏳ | M10 |
+| 7 LLMOps & Governance | 0 / 30 | — | ⏳ | M12 |
+| 8 Integrated Capstone | 0 / 27 | — | ⏳ | M13 |
+| 9 Career & Commercialisation | 0 / 30 | — | ⏳ | M13 |
+| **Total** | **150 / 371 (40%)** | **85** | 3 of 10 | |
+
+Remaining: 221 topics, roughly 120–125 more lessons (estimate).
+
+## Open items (outside the milestones)
+
+- [ ] **Go live (owner step):** create the GitHub repository, push, turn on Pages (`main` / `docs`), then set `site_url` and `github_repo` in `site.yml` and rebuild. This switches on the sitemap, canonical links and "Suggest an edit" links.
+- [ ] Submit `sitemap.xml` in Google Search Console, and run the link-check workflow once.
+- [ ] A learner test of one full project (Phase 2 or Phase 3) before v1.0.
+- [ ] Work can continue in another AI assistant: give it `handover/HANDOVER.md` and the prompt in `handover/CHATGPT-PROMPT.md` together with the latest release zip.
 
 ---
 
@@ -115,15 +141,111 @@ Status key: ✅ done · 🔄 in progress · ⏳ planned
 - [x] Every output pasted from a real run (numpy 2.5, pandas 3.0, scipy 1.18, statsmodels 0.15, scikit-learn 1.9, polars 2.0, duckdb 1.5, matplotlib 3.11, seaborn 0.13, plotly 7.1).
 - [x] **Phase 2 complete: 41 of 41 topics.** Overall: 110 of 371.
 
-## M7–M12: Remaining phases
+## M7: Phase 3A — Data Engineering: storing & serving data (v0.8) ✅
 
-For each module: write a lesson for every planned topic, run every example and paste the real result, add 3–4 checked free resources, add a `_module.md` intro, and list the module's practice files in `content/downloads/files.yml`. Follow the same pattern as M2–M4. Each phase also gets a milestone project page in `content/projects/<phase-id>.md`. For fast-changing tools (LangGraph, agent SDKs, MCP, Fabric, Langfuse):
+Phase 3 (13 modules, 55 topics) is split into two releases. 3A covers 6 modules and 25 topics.
+
+- [x] Data ingestion (2): REST APIs with tokens, pagination, retries and incremental loads; responsible scraping; CSV vs JSON vs Parquet.
+- [x] Advanced SQL (2): CTEs and recursive CTEs (date spines, hierarchies); window functions (running totals, RANK, LAG/LEAD, top-N per group).
+- [x] Database engineering (3): PostgreSQL loading with COPY and normalisation with constraints; indexing and EXPLAIN ANALYZE on 2 million rows; transactions, ACID and lost updates.
+- [x] Data warehousing (2): OLTP vs OLAP and a star schema; SCD type 2 (idempotent loads, as-was vs as-is) and BigQuery (dialects, bytes scanned, partitioning).
+- [x] Lakehouse (2): Delta Lake medallion layers (bronze/silver/gold, MERGE, time travel); Apache Iceberg and the Fabric / Databricks / Snowflake comparison.
+- [x] Docker (2): images and containers; Docker Compose and reproducible environments.
+- [x] A local **practice API and website** (`mock_api.py`) with tokens, pagination and rate limits, so learners can practise real HTTP offline.
+- [x] Every output from a real run: PostgreSQL 16.15, Docker Engine 29.8 / Compose 5.5, deltalake 1.6, PyIceberg 0.12, sqlglot 30, DuckDB 1.5. BigQuery-only commands are shown for reference and marked as not executed.
+- [x] Glossary: 182 terms (14 new). Phase 3A: 25 of 25 topics. Overall: 135 of 371.
+
+## M8: Phase 3B — Data Engineering: moving & trusting data (v0.9) 🔄 in progress
+
+Finishes Phase 3: 7 modules, 30 topics, about **18 lessons**, plus the **Phase 3 milestone project page**.
+
+**Current working checkpoint:** ETL/ELT ✅ · Data Quality ✅ · dbt ✅. Phase 3 is **40/55 topics** with **21 lessons**. **Next approved module: AI-Ready Data.**
+
+**Planned lessons** (topics in brackets must match `curriculum.yml` exactly):
+
+| Module | Lesson | Topics covered |
+|---|---|---|
+| etl-elt | 01 Modular, idempotent pipelines with incremental loads | Modular pipelines · Idempotency · Incremental loads |
+| etl-elt | 02 Replayable pipelines and change data capture | Replayability · CDC |
+| data-quality | 01 Validation rules and pytest for data | Validation · pytest for data |
+| data-quality | 02 Great Expectations | Great Expectations |
+| data-quality | 03 Data contracts, freshness and alerting | Data contracts · Freshness & alerting |
+| orchestration | 01 Airflow DAGs for the orders pipeline | Airflow DAGs |
+| orchestration | 02 Retries, backfills, Dagster and Prefect | Retries & backfills · Dagster & Prefect alternatives |
+| dbt | 01 dbt models and tests | Models · Tests |
+| dbt | 02 Snapshots and macros | Snapshots · Macros |
+| dbt | 03 Documentation and marts | Documentation & marts |
+| cloud-iac | 01 IAM and object storage (S3/GCS) | IAM · S3/GCS |
+| cloud-iac | 02 BigQuery in practice | BigQuery |
+| cloud-iac | 03 Terraform basics and cost control | Terraform basics · Cost control |
+| ai-ready-data | 01 Document pipelines: parsing and chunking | Unstructured document pipelines · Parsing & chunking |
+| ai-ready-data | 02 Embedding refresh, metadata and lineage for RAG | Embedding refresh · Metadata & lineage for RAG |
+| big-data-streaming | 01 PySpark basics on the orders data | PySpark |
+| big-data-streaming | 02 Partitions, shuffle and caching | Partitions, shuffle & caching |
+| big-data-streaming | 03 Kafka producers and consumers | Kafka producers/consumers |
+
+**Build on what exists:**
+
+- Reuse the 2025 data, the practice API (`mock_api.py`), the PostgreSQL `shop` schema and the Delta/Iceberg tables from Phase 3A.
+- New scripts go in `examples/phase-3/` (numbered 14 onwards), and are added to `phase-3/data-engineering-scripts.zip`.
+- Point the glossary entries for ETL/ELT, CDC, idempotency, data contract, Airflow/DAG, dbt, Terraform, IAM, chunking, Spark and Kafka to the new lessons; add any missing terms.
+
+**Verification plan (decide per tool, and say so in the lesson):**
+
+| Tool | Preferred way to verify | If it can't run in the build environment |
+|---|---|---|
+| dbt | `dbt-duckdb` or `dbt-postgres`, real `dbt build` output | Run on the learner's machine; mark output "not executed" |
+| Great Expectations | Real run on the 2025 data | Fall back to pandera/pytest, and say why |
+| Airflow | `airflow dags test` with a local install | Show the DAG; test the task functions with pytest |
+| Terraform | `terraform validate` / `plan` with a local provider | Show code; mark "not executed" |
+| Cloud (S3/GCS, IAM, BigQuery) | Free tiers / sandbox, or a local mock (e.g. moto for S3) | Mark commands "not executed" |
+| Spark / Kafka | Local PySpark; Kafka via Docker Compose | Mark broker output "not executed" |
+
+**Phase 3 project page:** *Production Analytics Platform*: API ingestion → PostgreSQL/lakehouse → dbt marts with tests → orchestrated daily run → BI-ready gold tables → a document pipeline feeding a vector store. Known answers come from the Phase 3A numbers (4,246 orders; 5,478,357.79 net revenue).
+
+**Done when:** Phase 3 shows 55 of 55 topics; the project page is live; the build has no warnings; every output is either real or clearly marked "not executed".
+
+## M9: Phase 5 — NLP, LLM & RAG Engineering (v1.0) ⏳
+
+- 10 modules, 38 topics, about **22 lessons**: NLP foundations, transformers, LLM application engineering, prompt and context engineering, open and small models (Ollama), fine-tuning basics, frameworks (LangChain, LlamaIndex), vector databases (FAISS, Chroma, Qdrant, pgvector), advanced RAG, RAG evaluation.
+- **Project:** Enterprise Knowledge Assistant: hybrid retrieval, citations, fallback handling, an eval dataset and traces.
+- **Practice data:** a small document set about the textile wholesaler (policies, product sheets, FAQs) with a golden Q&A set, so retrieval scores can be checked.
+- **Verification:** prefer local models and local embeddings so outputs are reproducible. Hosted API calls are shown with the exact model name and date, and with the note that answers vary between runs.
+- **Why v1.0:** with Phases 0–3 and 5 done, the site covers the full Data → AI Engineer path for the first time.
+
+## M10: Phase 6 — AI Agents & Intelligent Automation (v1.1) ⏳
+
+- 13 modules, 47 topics, about **27 lessons**: agent architecture, workflow vs agent, APIs and webhooks, n8n, Make/Zapier, code-first frameworks (LangGraph, OpenAI Agents SDK, Claude Agent SDK), MCP and A2A, human-in-the-loop, agent memory, Langflow, multi-agent systems, voice AI, browser agents.
+- **Project:** AI Operations Agent that retrieves information, performs approved actions, escalates to humans and logs every step.
+- **Note:** these tools change monthly. Check the official docs on the day of writing, record the version, and set `reviewed:`.
+
+## M11: Phase 4 — ML & Deep Learning Engineering (v1.2) ⏳
+
+- 8 modules, 34 topics, about **20 lessons**: regression, classification (incl. gradient boosting), unsupervised ML, forecasting, neural networks (PyTorch), computer vision, applied CV (YOLO, ONNX), MLOps (FastAPI, Docker, MLflow, drift).
+- **Project:** Production ML API with `/predict`, `/health` and `/info`, containerised, versioned in MLflow and monitored.
+- **Reuse:** the Phase 2 cancellation model and sales data for forecasting and the ML API.
+
+## M12: Phase 7 — Production AI, LLMOps & Governance (v1.3) ⏳
+
+- 8 modules, 30 topics, about **17 lessons**: deployment, reliability, security (OWASP LLM Top 10, prompt injection), LLM observability (Langfuse/LangSmith, OpenTelemetry), evaluation, model routing, AI FinOps, AI governance (EU AI Act, NIST AI RMF).
+- **Project:** deploy one AI system publicly with traces, an eval suite, health checks, a cost dashboard and security controls.
+- **Note:** for regulation, cite the official text and give the date checked; no legal advice.
+
+## M13: Phases 8–9 — Capstone, Career & Commercialisation (v1.4) ⏳
+
+- **Phase 8** (8 layers, 27 topics, about **10 guide pages**): a build guide for the Intelligent Business Operations Platform that ties every earlier project together, layer by layer.
+- **Phase 9** (9 modules, 30 topics, about **15 lessons**): GitHub portfolio, LinkedIn, CV and job search, interview prep, certifications, freelancing, case studies, productisation, Ilmento Digital.
+- **After M13:** all 371 topics are written; the site is "complete v1".
+
+## Rules for every remaining milestone
+
+For each module: write a lesson for every planned topic, run every example and paste the real result, add 3–4 checked free resources, add a `_module.md` intro, and list the module's practice files in `content/downloads/files.yml`. Each phase also gets a milestone project page in `content/projects/<phase-id>.md`. For fast-changing tools (LangGraph, agent SDKs, MCP, Fabric, Langfuse):
 
 - [ ] Check the official docs on the day you write the lesson.
 - [ ] Put the tool version in the lesson.
 - [ ] Re-review after 6 months, using the `reviewed:` date in each lesson.
 
-## M13: Platform upgrade 2 (v2.0)
+## M14: Platform upgrade 2 (v2.0)
 
 - [ ] **Runnable SQL** in the browser (sql.js), so learners can try queries without installing anything.
 - [ ] **Installable offline app (PWA).**

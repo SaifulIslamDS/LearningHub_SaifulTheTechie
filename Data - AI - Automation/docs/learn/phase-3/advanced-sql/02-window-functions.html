@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en" data-root="../../../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Window Functions: Running Totals, Rankings, LAG &amp; LEAD — Data, AI &amp; Automation Path</title>
+<meta name="description" content="Calculate across related rows without losing detail: shares of a group, running totals and moving averages, ROW_NUMBER vs RANK vs DENSE_RANK, top-N per group, and period-over-period growth with LAG and LEAD.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data, AI &amp; Automation Path">
+<meta property="og:title" content="Window Functions: Running Totals, Rankings, LAG &amp; LEAD">
+<meta property="og:description" content="Calculate across related rows without losing detail: shares of a group, running totals and moving averages, ROW_NUMBER vs RANK vs DENSE_RANK, top-N per group, and period-over-period growth with LAG and LEAD.">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+
+<script>(function(){var t=null;try{t=localStorage.getItem('daa-theme')}catch(e){}
+if(!t)t=(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';
+document.documentElement.setAttribute('data-theme',t);
+var n=null;try{n=localStorage.getItem('daa-nav')}catch(e){}
+if(n==='open'&&window.matchMedia&&matchMedia('(min-width: 961px)').matches)document.documentElement.setAttribute('data-nav','open');
+document.documentElement.classList.add('no-anim')})();</script>
+<link rel="stylesheet" href="../../../assets/style.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233f7d6a'/%3E%3Ctext x='16' y='21' font-family='sans-serif' font-size='13' font-weight='700' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Open curriculum menu" title="Curriculum menu (press M)" aria-controls="sidebar" aria-expanded="false"><span class="ico-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span class="ico-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></button>
+  <a class="brand" href="../../../index.html"><span class="brand-badge">AI</span><span class="brand-text"><span class="brand-name">Data, AI &amp; Automation Path</span><span class="brand-version">v0.8</span></span></a>
+  <nav class="top-links" aria-label="Main">
+    <a href="../../../index.html" class="">Home</a><a href="../../../curriculum.html" class="">Curriculum</a><a href="../../../practice-files.html" class="">Practice files</a><a href="../../../glossary.html" class="">Glossary</a><a href="../../../how-to-learn.html" class="">How to learn</a><a href="../../../about.html" class="">About</a>
+  </nav>
+  <div class="top-spacer"></div>
+  <div class="search" role="search">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input id="searchInput" type="search" placeholder="Search lessons, tools, topics" aria-label="Search" autocomplete="off">
+    <kbd>/</kbd>
+    <div class="search-results" id="searchResults" role="listbox"></div>
+  </div>
+  <button class="icon-btn theme-toggle" id="themeBtn" aria-label="Toggle light or dark mode" title="Light / dark"><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
+</header>
+<div class="layout wide">
+  <nav class="sidebar" id="sidebar" aria-label="Curriculum">
+    <div class="side-title">Curriculum</div>
+    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="77"><i></i></div><span class="bar-label" data-progress-label></span></div>
+<div class="nav-phase"><a href="../../../learn/phase-0/index.html"><span class="nav-num">0</span>Foundations</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-1/index.html"><span class="nav-num">1</span>Analytics &amp; BI</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-2/index.html"><span class="nav-num">2</span>Data Science</a>
+</div>
+<div class="nav-phase current open"><a href="../../../learn/phase-3/index.html"><span class="nav-num">3</span>Data Engineering</a>
+<ul class="nav-modules">
+<li><a class="" href="../../../learn/phase-3/data-ingestion/index.html">Data Ingestion</a>
+</li>
+<li><a class="current" href="../../../learn/phase-3/advanced-sql/index.html">Advanced SQL</a>
+<ul class="nav-lessons">
+<li><a class="" data-lesson="phase-3/advanced-sql/01-ctes-recursive" href="../../../learn/phase-3/advanced-sql/01-ctes-recursive.html">CTEs and Recursive CTEs: Readable Multi-Step SQL</a></li>
+<li><a class="current" data-lesson="phase-3/advanced-sql/02-window-functions" href="../../../learn/phase-3/advanced-sql/02-window-functions.html">Window Functions: Running Totals, Rankings, LAG &amp; LEAD</a></li>
+</ul>
+</li>
+<li><a class="" href="../../../learn/phase-3/database-engineering/index.html">Database Engineering</a>
+</li>
+<li><a class="" href="../../../learn/phase-3/data-warehousing/index.html">Data Warehousing</a>
+</li>
+<li><a class="" href="../../../learn/phase-3/lakehouse/index.html">Lakehouse &amp; Open Table Formats</a>
+</li>
+<li><a class="" href="../../../learn/phase-3/etl-elt/index.html">ETL / ELT</a>
+</li>
+<li><a class="" href="../../../learn/phase-3/data-quality/index.html">Data Quality &amp; Contracts</a>
+</li>
+<li><a class="" href="../../../learn/phase-3/docker/index.html">Docker</a>
+</li>
+<li><a class="" href="../../../learn/phase-3/orchestration/index.html">Orchestration</a>
+</li>
+<li><a class="" href="../../../learn/phase-3/dbt/index.html">dbt</a>
+</li>
+<li><a class="" href="../../../learn/phase-3/cloud-iac/index.html">Cloud &amp; Infrastructure as Code</a>
+</li>
+<li><a class="" href="../../../learn/phase-3/ai-ready-data/index.html">AI-Ready Data</a>
+</li>
+<li><a class="" href="../../../learn/phase-3/big-data-streaming/index.html">Big Data &amp; Streaming</a>
+</li>
+</ul>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-4/index.html"><span class="nav-num">4</span>ML Engineering</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-5/index.html"><span class="nav-num">5</span>LLM &amp; RAG</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-6/index.html"><span class="nav-num">6</span>Agents &amp; Automation</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-7/index.html"><span class="nav-num">7</span>LLMOps &amp; Governance</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-8/index.html"><span class="nav-num">8</span>Capstone</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-9/index.html"><span class="nav-num">9</span>Career</a>
+</div>
+<div class="side-extra"><a href="../../../index.html">Home</a><a href="../../../curriculum.html">Full curriculum map</a><a href="../../../practice-files.html">Practice files</a><a href="../../../glossary.html">Glossary</a><a href="../../../how-to-learn.html">How to learn here</a><a href="../../../about.html">About &amp; contributing</a></div></nav>
+  <main class="main" id="main"><div class="content">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../../index.html">Home</a><span class="sep">/</span><a href="../../../learn/phase-3/index.html">Phase 3</a><span class="sep">/</span><a href="../../../learn/phase-3/advanced-sql/index.html">Advanced SQL</a><span class="sep">/</span><span>Window Functions: Running Totals, Rankings, LAG &amp; LEAD</span></nav>
+<h1>Window Functions: Running Totals, Rankings, LAG &amp; LEAD</h1>
+<p class="lead">Calculate across related rows without losing detail: shares of a group, running totals and moving averages, ROW_NUMBER vs RANK vs DENSE_RANK, top-N per group, and period-over-period growth with LAG and LEAD.</p>
+<div class="meta"><span class="pill">Phase <b>3</b> · Data Engineering</span><span class="pill">Level <b>Intermediate</b></span><span class="pill">Time <b>55 min</b></span></div>
+<div class="admonition note"><p class="admonition-title">Before you start</p><p><a href="../../../learn/phase-3/advanced-sql/01-ctes-recursive.html">CTEs and Recursive CTEs: Readable Multi-Step SQL</a></p></div>
+<div class="files-box"><div class="files-head"><b>Practice files for this page</b><a href="../../../practice-files.html">All practice files →</a></div><ul><li><a href="../../../downloads/phase-3/data-engineering-scripts.zip" download>data-engineering-scripts.zip</a><span class="f-desc">Phase 3A scripts: practice API + website, ingestion, PostgreSQL loader, advanced SQL, indexing, transactions, star schema, SCD, BigQuery dialect, Delta Lake, Iceberg, Dockerfiles and compose.yaml · 270 KB</span></li></ul></div>
+<h2 id="what-is-it">What is it?</h2>
+<p>A <strong>window function</strong> calculates over a set of rows <em>related to the current row</em> (its "window"), but, unlike <code>GROUP BY</code>, it <strong>keeps every row</strong>.</p>
+<div class="codehilite"><pre><span></span><code><span class="k">function</span><span class="p">(...)</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="p">(</span><span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="o">&lt;</span><span class="n">groups</span><span class="o">&gt;</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="o">&lt;</span><span class="k">order</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="n">frame</span><span class="o">&gt;</span><span class="p">)</span>
+</code></pre></div>
+
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>Meaning</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>PARTITION BY</code></td>
+<td>Restart the calculation for each group</td>
+<td>Per segment, per customer</td>
+</tr>
+<tr>
+<td><code>ORDER BY</code></td>
+<td>Order rows inside the window</td>
+<td>By month, by revenue</td>
+</tr>
+<tr>
+<td>Frame (<code>ROWS BETWEEN …</code>)</td>
+<td>Which rows around the current one to include</td>
+<td>The last 3 months</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition job">
+<p class="admonition-title">Why it matters at work</p>
+<p>Running totals, rankings, "top 3 per region", month-on-month growth, first and last purchases, gaps between events: all window functions. They're among the most-asked SQL topics in data analyst and data engineer interviews, and they replace pages of self-joins.</p>
+</div>
+<p>The script is <code>05_window_functions.sql</code>. It first creates a view, <code>shop.net_orders</code>: non-cancelled orders with segment, region, product and revenue.</p>
+<h2 id="example-1-keep-the-detail-add-the-group-total">Example 1: keep the detail, add the group total</h2>
+<div class="codehilite"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">order_id</span><span class="p">,</span><span class="w"> </span><span class="n">segment</span><span class="p">,</span><span class="w"> </span><span class="n">revenue</span><span class="p">,</span>
+<span class="w">       </span><span class="n">round</span><span class="p">(</span><span class="k">sum</span><span class="p">(</span><span class="n">revenue</span><span class="p">)</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="p">(</span><span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">segment</span><span class="p">),</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w">                    </span><span class="k">AS</span><span class="w"> </span><span class="n">segment_total</span><span class="p">,</span>
+<span class="w">       </span><span class="n">round</span><span class="p">(</span><span class="mi">100</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">revenue</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="k">sum</span><span class="p">(</span><span class="n">revenue</span><span class="p">)</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="p">(</span><span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">segment</span><span class="p">),</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w">    </span><span class="k">AS</span><span class="w"> </span><span class="n">pct_of_segment</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">shop</span><span class="p">.</span><span class="n">net_orders</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">order_id</span>
+<span class="k">LIMIT</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code> order_id |    segment    | revenue | segment_total | pct_of_segment
+----------+---------------+---------+---------------+----------------
+    10001 | Knitting Mill |  189.26 |        806868 |          0.023
+    10003 | Trader        |  248.11 |        353758 |          0.070
+    10004 | Knitting Mill | 1988.18 |        806868 |          0.246
+    10005 | Trader        | 2921.21 |        353758 |          0.826
+</code></pre></div>
+
+<p>Each order keeps its own row <strong>and</strong> knows its segment's total. With <code>GROUP BY</code> you'd get one row per segment and lose the orders.</p>
+<h2 id="example-2-running-total-and-moving-average">Example 2: running total and moving average</h2>
+<div class="codehilite"><pre><span></span><code><span class="k">WITH</span><span class="w"> </span><span class="n">monthly</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="n">date_trunc</span><span class="p">(</span><span class="s1">'month'</span><span class="p">,</span><span class="w"> </span><span class="n">order_date</span><span class="p">)::</span><span class="nb">date</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="k">month</span><span class="p">,</span><span class="w"> </span><span class="n">round</span><span class="p">(</span><span class="k">sum</span><span class="p">(</span><span class="n">revenue</span><span class="p">),</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">revenue</span>
+<span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">shop</span><span class="p">.</span><span class="n">net_orders</span><span class="w"> </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="mi">1</span>
+<span class="p">)</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">to_char</span><span class="p">(</span><span class="k">month</span><span class="p">,</span><span class="w"> </span><span class="s1">'Mon'</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">mon</span><span class="p">,</span><span class="w"> </span><span class="n">revenue</span><span class="p">,</span>
+<span class="w">       </span><span class="k">sum</span><span class="p">(</span><span class="n">revenue</span><span class="p">)</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="p">(</span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="k">month</span><span class="p">)</span><span class="w">                                         </span><span class="k">AS</span><span class="w"> </span><span class="n">running_total</span><span class="p">,</span>
+<span class="w">       </span><span class="n">round</span><span class="p">(</span><span class="k">avg</span><span class="p">(</span><span class="n">revenue</span><span class="p">)</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="p">(</span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="k">month</span><span class="w"> </span><span class="k">ROWS</span><span class="w"> </span><span class="k">BETWEEN</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="n">PRECEDING</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="k">CURRENT</span><span class="w"> </span><span class="k">ROW</span><span class="p">),</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">moving_avg_3m</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">monthly</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="k">month</span><span class="p">;</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code> mon | revenue | running_total | moving_avg_3m
+-----+---------+---------------+---------------
+ Jan |  330192 |        330192 |        330192
+ Feb |  335736 |        665928 |        332964
+ Mar |  324249 |        990177 |        330059
+ Apr |  336682 |       1326859 |        332222
+ May |  444538 |       1771397 |        368490
+ Jun |  324326 |       2095723 |        368515
+ Jul |  547579 |       2643302 |        438814
+ Aug |  499337 |       3142639 |        457081
+ Sep |  606667 |       3749306 |        551194
+ Oct |  637897 |       4387203 |        581300
+ Nov |  614879 |       5002082 |        619814
+ Dec |  476278 |       5478360 |        576351
+</code></pre></div>
+
+<ul>
+<li><code>ORDER BY</code> inside <code>OVER</code> makes <code>sum</code> <strong>cumulative</strong>: each month adds itself to all earlier months.</li>
+<li><code>ROWS BETWEEN 2 PRECEDING AND CURRENT ROW</code> = this month and the two before: a <strong>3-month moving average</strong> that smooths the June Eid dip.</li>
+<li>The year ends at 5,478,360 (monthly totals were rounded; the exact total is 5,478,357.79).</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Name your output columns carefully</p>
+<p>If the output column were called <code>month</code> (the same name as the date column), <code>ORDER BY month</code> would sort the <strong>text</strong> alphabetically: Apr, Aug, Dec… That's why the label is <code>mon</code>. It's a real bug that's easy to miss.</p>
+</div>
+<h2 id="example-3-row_number-vs-rank-vs-dense_rank">Example 3: ROW_NUMBER vs RANK vs DENSE_RANK</h2>
+<div class="codehilite"><pre><span></span><code><span class="k">WITH</span><span class="w"> </span><span class="n">product_orders</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="n">category</span><span class="p">,</span><span class="w"> </span><span class="n">product</span><span class="p">,</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">orders</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">shop</span><span class="p">.</span><span class="n">net_orders</span><span class="w"> </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">category</span><span class="p">,</span><span class="w"> </span><span class="n">product</span>
+<span class="p">)</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">category</span><span class="p">,</span><span class="w"> </span><span class="n">product</span><span class="p">,</span><span class="w"> </span><span class="n">orders</span><span class="p">,</span>
+<span class="w">       </span><span class="n">row_number</span><span class="p">()</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="p">(</span><span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">category</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">orders</span><span class="w"> </span><span class="k">DESC</span><span class="p">,</span><span class="w"> </span><span class="n">product</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">row_number</span><span class="p">,</span><span class="w">   </span><span class="c1">-- tie-breaker</span>
+<span class="w">       </span><span class="n">rank</span><span class="p">()</span><span class="w">       </span><span class="n">OVER</span><span class="w"> </span><span class="n">w</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">rank</span><span class="p">,</span>
+<span class="w">       </span><span class="n">dense_rank</span><span class="p">()</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="n">w</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">dense_rank</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">product_orders</span>
+<span class="n">WINDOW</span><span class="w"> </span><span class="n">w</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span><span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">category</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">orders</span><span class="w"> </span><span class="k">DESC</span><span class="p">)</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">category</span><span class="p">,</span><span class="w"> </span><span class="n">orders</span><span class="w"> </span><span class="k">DESC</span><span class="p">,</span><span class="w"> </span><span class="n">product</span><span class="p">;</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code> category |     product     | orders | row_number | rank | dense_rank
+----------+-----------------+--------+------------+------+------------
+ Fabric   | Cotton Twill    |    348 |          1 |    1 |          1
+ Fabric   | Jersey Knit     |    348 |          2 |    1 |          1
+ Fabric   | Denim 12oz      |    335 |          3 |    3 |          2
+ Fabric   | Poplin White    |    314 |          4 |    4 |          3
+ Trims    | Zippers         |    345 |          1 |    1 |          1
+ …
+</code></pre></div>
+
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Ties (348, 348)</th>
+<th>Next value</th>
+<th>Use it for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>row_number()</code></td>
+<td>1, 2 (arbitrary unless you add a tie-breaker)</td>
+<td>3</td>
+<td>Exactly one row per group ("latest order")</td>
+</tr>
+<tr>
+<td><code>rank()</code></td>
+<td>1, 1</td>
+<td><strong>3</strong> (skips)</td>
+<td>Competition-style ranking</td>
+</tr>
+<tr>
+<td><code>dense_rank()</code></td>
+<td>1, 1</td>
+<td><strong>2</strong> (no gap)</td>
+<td>"Top 3 distinct values"</td>
+</tr>
+</tbody>
+</table>
+<p>Always give <code>row_number()</code> a <strong>tie-breaker</strong> (here <code>product</code>), or the result can change between runs. <code>WINDOW w AS (...)</code> names a window you use more than once.</p>
+<h2 id="example-4-top-n-per-group">Example 4: top N per group</h2>
+<div class="codehilite"><pre><span></span><code><span class="k">WITH</span><span class="w"> </span><span class="n">customer_rev</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="n">region</span><span class="p">,</span><span class="w"> </span><span class="n">customer_id</span><span class="p">,</span><span class="w"> </span><span class="n">round</span><span class="p">(</span><span class="k">sum</span><span class="p">(</span><span class="n">revenue</span><span class="p">),</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">revenue</span><span class="p">,</span>
+<span class="w">           </span><span class="n">rank</span><span class="p">()</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="p">(</span><span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">region</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="k">sum</span><span class="p">(</span><span class="n">revenue</span><span class="p">)</span><span class="w"> </span><span class="k">DESC</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">rnk</span>
+<span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">shop</span><span class="p">.</span><span class="n">net_orders</span><span class="w"> </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">region</span><span class="p">,</span><span class="w"> </span><span class="n">customer_id</span>
+<span class="p">)</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">region</span><span class="p">,</span><span class="w"> </span><span class="n">rnk</span><span class="p">,</span><span class="w"> </span><span class="n">customer_id</span><span class="p">,</span><span class="w"> </span><span class="n">revenue</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">customer_rev</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">rnk</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">region</span><span class="p">,</span><span class="w"> </span><span class="n">rnk</span><span class="p">;</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>   region    | rnk | customer_id | revenue
+-------------+-----+-------------+---------
+ Chattogram  |   1 | C014        |  223499
+ Chattogram  |   2 | C017        |  223207
+ Dhaka       |   1 | C010        |  295414
+ Dhaka       |   2 | C044        |  255781
+ Gazipur     |   1 | C020        |  158376
+ Gazipur     |   2 | C012        |  139817
+ Khulna      |   1 | C037        |  225647
+ Khulna      |   2 | C041        |  103458
+ Narayanganj |   1 | C019        |  212038
+ Narayanganj |   2 | C051        |  210604
+</code></pre></div>
+
+<p>You can't filter on a window function in <code>WHERE</code> (it's calculated after <code>WHERE</code>), so rank in a CTE, then filter outside. Window functions can also wrap aggregates (<code>ORDER BY sum(revenue)</code>) in a grouped query.</p>
+<h2 id="example-5-lag-and-lead-for-growth">Example 5: LAG and LEAD for growth</h2>
+<div class="codehilite"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">to_char</span><span class="p">(</span><span class="k">month</span><span class="p">,</span><span class="w"> </span><span class="s1">'Mon'</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">mon</span><span class="p">,</span><span class="w"> </span><span class="n">revenue</span><span class="p">,</span>
+<span class="w">       </span><span class="n">lag</span><span class="p">(</span><span class="n">revenue</span><span class="p">)</span><span class="w">  </span><span class="n">OVER</span><span class="w"> </span><span class="p">(</span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="k">month</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">prev_month</span><span class="p">,</span>
+<span class="w">       </span><span class="n">lead</span><span class="p">(</span><span class="n">revenue</span><span class="p">)</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="p">(</span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="k">month</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">next_month</span><span class="p">,</span>
+<span class="w">       </span><span class="n">round</span><span class="p">(</span><span class="mi">100</span><span class="p">.</span><span class="mi">0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">revenue</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">lag</span><span class="p">(</span><span class="n">revenue</span><span class="p">)</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="p">(</span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="k">month</span><span class="p">))</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">lag</span><span class="p">(</span><span class="n">revenue</span><span class="p">)</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="p">(</span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="k">month</span><span class="p">),</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">mom_pct</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">monthly</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="k">month</span><span class="w"> </span><span class="k">LIMIT</span><span class="w"> </span><span class="mi">6</span><span class="p">;</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code> mon | revenue | prev_month | next_month | mom_pct
+-----+---------+------------+------------+---------
+ Jan |  330192 |            |     335736 |
+ Feb |  335736 |     330192 |     324249 |     1.7
+ Mar |  324249 |     335736 |     336682 |    -3.4
+ Apr |  336682 |     324249 |     444538 |     3.8
+ May |  444538 |     336682 |     324326 |    32.0
+ Jun |  324326 |     444538 |     547579 |   -27.0
+</code></pre></div>
+
+<p><code>lag()</code> looks back one row; <code>lead()</code> looks forward. January has no previous month, so its growth is NULL (not 0). This is the SQL version of the DAX month-on-month measure from Phase 1.</p>
+<h2 id="example-6-lag-per-customer-gaps-between-orders">Example 6: LAG per customer — gaps between orders</h2>
+<div class="codehilite"><pre><span></span><code><span class="k">WITH</span><span class="w"> </span><span class="n">gaps</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="n">customer_id</span><span class="p">,</span><span class="w"> </span><span class="n">order_date</span><span class="p">,</span>
+<span class="w">           </span><span class="n">order_date</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">lag</span><span class="p">(</span><span class="n">order_date</span><span class="p">)</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="p">(</span><span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">customer_id</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">order_date</span><span class="p">,</span><span class="w"> </span><span class="n">order_id</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">days_since_prev</span>
+<span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">shop</span><span class="p">.</span><span class="n">net_orders</span>
+<span class="p">)</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">customer_id</span><span class="p">,</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">orders</span><span class="p">,</span><span class="w"> </span><span class="n">round</span><span class="p">(</span><span class="k">avg</span><span class="p">(</span><span class="n">days_since_prev</span><span class="p">),</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">avg_gap_days</span><span class="p">,</span><span class="w"> </span><span class="k">max</span><span class="p">(</span><span class="n">days_since_prev</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">longest_gap</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">gaps</span><span class="w"> </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">customer_id</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">longest_gap</span><span class="w"> </span><span class="k">DESC</span><span class="w"> </span><span class="n">NULLS</span><span class="w"> </span><span class="k">LAST</span><span class="w"> </span><span class="k">LIMIT</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code> customer_id | orders | avg_gap_days | longest_gap
+-------------+--------+--------------+-------------
+ C006        |     21 |         17.8 |         102
+ C016        |     14 |         27.4 |          85
+ C057        |      9 |         36.4 |          81
+</code></pre></div>
+
+<p>C006 usually orders every 2–3 weeks but once went <strong>102 days</strong> without ordering: a churn-risk signal worth a call from the account manager.</p>
+<h2 id="common-mistakes">Common mistakes</h2>
+<table>
+<thead>
+<tr>
+<th>Mistake</th>
+<th>What happens</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Filtering on a window result in <code>WHERE</code></td>
+<td>Error: window functions aren't allowed in WHERE</td>
+<td>Compute in a CTE, filter outside</td>
+</tr>
+<tr>
+<td><code>row_number()</code> without a tie-breaker</td>
+<td>Different rows on different runs</td>
+<td>Add a unique column to <code>ORDER BY</code></td>
+</tr>
+<tr>
+<td>Forgetting <code>PARTITION BY</code></td>
+<td>One ranking across everything</td>
+<td>Partition by the group</td>
+</tr>
+<tr>
+<td>Default frame with <code>ORDER BY</code></td>
+<td><code>RANGE</code> frame groups equal values; surprising running totals on ties</td>
+<td>Use <code>ROWS BETWEEN …</code> explicitly</td>
+</tr>
+<tr>
+<td>Output alias shadows the sort column</td>
+<td>Months sorted alphabetically</td>
+<td>Use distinct alias names</td>
+</tr>
+</tbody>
+</table>
+<h2 id="try-it-yourself">Try it yourself</h2>
+<p><strong>Task:</strong> For each segment, find its <strong>best month</strong> and what share of the segment's yearly revenue that month represents.</p>
+<details>
+<summary>Show a hint</summary>
+<p>Two windows in one CTE: <code>row_number()</code> partitioned by segment and ordered by revenue, and <code>sum(revenue) OVER (PARTITION BY segment)</code> for the year total.</p>
+</details>
+<details>
+<summary>Show the solution</summary>
+<div class="codehilite"><pre><span></span><code><span class="k">WITH</span><span class="w"> </span><span class="n">seg_month</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="n">segment</span><span class="p">,</span><span class="w"> </span><span class="n">date_trunc</span><span class="p">(</span><span class="s1">'month'</span><span class="p">,</span><span class="w"> </span><span class="n">order_date</span><span class="p">)::</span><span class="nb">date</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="k">month</span><span class="p">,</span><span class="w"> </span><span class="k">sum</span><span class="p">(</span><span class="n">revenue</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">revenue</span>
+<span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">shop</span><span class="p">.</span><span class="n">net_orders</span><span class="w"> </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span>
+<span class="p">),</span><span class="w"> </span><span class="n">ranked</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="n">segment</span><span class="p">,</span><span class="w"> </span><span class="k">month</span><span class="p">,</span><span class="w"> </span><span class="n">revenue</span><span class="p">,</span>
+<span class="w">           </span><span class="n">row_number</span><span class="p">()</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="p">(</span><span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">segment</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">revenue</span><span class="w"> </span><span class="k">DESC</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">rn</span><span class="p">,</span>
+<span class="w">           </span><span class="n">revenue</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="k">sum</span><span class="p">(</span><span class="n">revenue</span><span class="p">)</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="p">(</span><span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">segment</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="k">share</span>
+<span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">seg_month</span>
+<span class="p">)</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">segment</span><span class="p">,</span><span class="w"> </span><span class="n">to_char</span><span class="p">(</span><span class="k">month</span><span class="p">,</span><span class="w"> </span><span class="s1">'Mon'</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">best_month</span><span class="p">,</span><span class="w"> </span><span class="n">round</span><span class="p">(</span><span class="n">revenue</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">revenue</span><span class="p">,</span><span class="w"> </span><span class="n">round</span><span class="p">(</span><span class="mi">100</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">share</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">pct_of_year</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">ranked</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">rn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">segment</span><span class="p">;</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>     segment     | best_month | revenue | pct_of_year
+-----------------+------------+---------+-------------
+ Garment Factory | Oct        |  510834 |        12.1
+ Knitting Mill   | Aug        |   96769 |        12.0
+ Retailer        | Oct        |   12039 |        14.5
+ Trader          | Sep        |   52365 |        14.8
+</code></pre></div>
+
+<p>Every segment's best month is in the August–October export season, and no single month exceeds 15% of a segment's year (an even spread would be 8.3%).</p>
+</details>
+<h2 id="quick-quiz">Quick quiz</h2>
+<div class="quiz-q" data-answer="1">
+<p>1. What's the key difference between a window function and GROUP BY?</p>
+<ol>
+<li>Window functions are faster</li>
+<li>A window function keeps every row; GROUP BY collapses rows into groups</li>
+<li>GROUP BY can't use SUM</li>
+</ol>
+<details>
+<summary>Show answer</summary>
+<p><strong>B.</strong></p>
+</details>
+</div>
+<div class="quiz-q" data-answer="1">
+<p>2. Two products tie for first place. What does <code>dense_rank()</code> give the next product?</p>
+<ol>
+<li>3</li>
+<li>2</li>
+<li>1</li>
+</ol>
+<details>
+<summary>Show answer</summary>
+<p><strong>B.</strong> <code>rank()</code> would give 3.</p>
+</details>
+</div>
+<div class="quiz-q" data-answer="1">
+<p>3. Which function returns the previous row's value?</p>
+<ol>
+<li><code>lead()</code></li>
+<li><code>lag()</code></li>
+<li><code>first_value()</code></li>
+</ol>
+<details>
+<summary>Show answer</summary>
+<p><strong>B.</strong></p>
+</details>
+</div>
+<h2 id="summary">Summary</h2>
+<ul>
+<li><code>function() OVER (PARTITION BY … ORDER BY … frame)</code> calculates across related rows and <strong>keeps every row</strong>.</li>
+<li><code>sum() OVER (ORDER BY …)</code> = running total; <code>ROWS BETWEEN n PRECEDING AND CURRENT ROW</code> = moving window.</li>
+<li><code>row_number</code> (unique, needs a tie-breaker), <code>rank</code> (gaps), <code>dense_rank</code> (no gaps); filter ranks in an outer query for <strong>top N per group</strong>.</li>
+<li><code>lag</code>/<code>lead</code> compare with previous/next rows: growth rates, gaps between events.</li>
+</ul>
+<div class="admonition job">
+<p class="admonition-title">Job-ready check</p>
+<p><strong>Interview question:</strong> <em>"Return each customer's most recent order."</em></p>
+<p><strong>Strong answer:</strong> "A CTE with <code>row_number() OVER (PARTITION BY customer_id ORDER BY order_date DESC, order_id DESC) AS rn</code>, then select where <code>rn = 1</code>. I add order_id as a tie-breaker so customers with two orders on the same day get a deterministic answer. <code>rank()</code> would return both tied rows if that's what the business wants instead."</p>
+<p><strong>Mini project:</strong> Build a "customer health" query: for each customer, last order date, days since last order (as of 31 Dec 2025), average gap and longest gap, and a status of Active, At risk or Lapsed based on rules you define.</p>
+</div>
+<div class="terms-box"><div class="files-head"><b>Key terms in this lesson</b><a href="../../../glossary.html">Glossary →</a></div><div class="term-chips"><a class="term-chip" href="../../../glossary.html#month-on-month-growth" title="How much a value changed compared with the previous month, as a percentage: (this month − last month) ÷ last month.">Month-on-month growth</a><a class="term-chip" href="../../../glossary.html#postgresql" title="A free, open-source relational database known for reliability and standards support; psql is its command-line client and psycopg its Python driver.">PostgreSQL</a><a class="term-chip" href="../../../glossary.html#window-function" title="A calculation across related rows that keeps every row, such as ranking or running totals, written with OVER (...).">Window function</a></div></div>
+<h2 id="free-resources">Free resources to go deeper</h2><ul class="resources"><li><a href="https://www.postgresql.org/docs/current/tutorial-window.html">Tutorial: Window Functions</a><span class="r-meta">PostgreSQL official docs · A gentle introduction to OVER and PARTITION BY.</span></li><li><a href="https://www.postgresql.org/docs/current/functions-window.html">Window Functions (reference)</a><span class="r-meta">PostgreSQL official docs · Every window function: row_number, rank, lag, lead, ntile …</span></li><li><a href="https://pgexercises.com/">PostgreSQL Exercises</a><span class="r-meta">pgexercises.com (free) · Includes an aggregation section with window-function exercises.</span></li></ul>
+<div class="complete-bar"><span>Finished reading and did the exercise?</span>
+<button class="btn" id="completeBtn" type="button" data-id="phase-3/advanced-sql/02-window-functions">Mark lesson as complete</button></div>
+<nav class="pager"><a class="prev" href="../../../learn/phase-3/advanced-sql/01-ctes-recursive.html"><small>← Previous</small>CTEs and Recursive CTEs: Readable Multi-Step SQL</a><a class="next" href="../../../learn/phase-3/database-engineering/01-postgresql-normalization.html"><small>Next →</small>PostgreSQL &amp; Normalisation: One Fact in One Place</a></nav>
+<p class="reviewed">Last reviewed: 2026-10-09</p>
+
+  </div></main>
+  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#example-1-keep-the-detail-add-the-group-total">Example 1: keep the detail, add the group total</a><a href="#example-2-running-total-and-moving-average">Example 2: running total and moving average</a><a href="#example-3-row_number-vs-rank-vs-dense_rank">Example 3: ROW_NUMBER vs RANK vs DENSE_RANK</a><a href="#example-4-top-n-per-group">Example 4: top N per group</a><a href="#example-5-lag-and-lead-for-growth">Example 5: LAG and LEAD for growth</a><a href="#example-6-lag-per-customer-gaps-between-orders">Example 6: LAG per customer — gaps between orders</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#free-resources">Free resources</a></aside>
+</div>
+<footer class="site">Data, AI &amp; Automation Path v0.8 · Applied AI, Data &amp; Automation Lab · Updated October 2026<br>
+Lesson text: <a href="../../../license.html">CC BY-NC-SA 4.0</a> · Code: <a href="../../../license.html#code-mit-license">MIT</a> · Free external resources belong to their respective owners.</footer>
+<script src="../../../search-index.js"></script>
+<script src="../../../assets/app.js"></script>
+</body>
+</html>

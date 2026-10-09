@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en" data-root="../../../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Build Your First HTML &amp; CSS Page — Software &amp; AI Engineering Learning Hub</title>
+<meta name="description" content="Build a correct first page, connect CSS, understand selectors and the box model.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Software &amp; AI Engineering Learning Hub">
+<meta property="og:title" content="Build Your First HTML &amp; CSS Page">
+<meta property="og:description" content="Build a correct first page, connect CSS, understand selectors and the box model.">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+
+<script>(function(){var t=null;try{t=localStorage.getItem('stse-theme')}catch(e){}
+if(!t)t=(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';
+document.documentElement.setAttribute('data-theme',t);
+var n=null;try{n=localStorage.getItem('stse-nav')}catch(e){}
+if(n==='open'&&window.matchMedia&&matchMedia('(min-width: 961px)').matches)document.documentElement.setAttribute('data-nav','open');
+document.documentElement.classList.add('no-anim')})();</script>
+<link rel="stylesheet" href="../../../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Open curriculum menu" title="Curriculum menu (press M)" aria-controls="sidebar" aria-expanded="false"><span class="ico-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span class="ico-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></button>
+  <a class="brand" href="../../../index.html"><span class="brand-text"><span class="brand-ecosystem">Saiful The Techie</span><span class="brand-name">Software &amp; AI Engineering Learning Hub</span><span class="brand-version">v0.5.0</span></span></a>
+  <nav class="top-links" aria-label="Main">
+    <a href="../../../index.html" class="">Home</a><a href="../../../curriculum.html" class="">Curriculum</a><a href="../../../practice-files.html" class="">Practice files</a><a href="../../../glossary.html" class="">Glossary</a><a href="../../../how-to-learn.html" class="">How to learn</a><a href="../../../about.html" class="">About</a>
+  </nav>
+  <div class="top-spacer"></div>
+  <div class="search" role="search">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input id="searchInput" type="search" placeholder="Search lessons, tools, topics" aria-label="Search" autocomplete="off">
+    <kbd>/</kbd>
+    <div class="search-results" id="searchResults" role="listbox"></div>
+  </div>
+  <button class="icon-btn theme-toggle" id="themeBtn" aria-label="Toggle light or dark mode" title="Light / dark"><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
+</header>
+<div class="layout wide">
+  <nav class="sidebar" id="sidebar" aria-label="Curriculum">
+    <div class="side-title">Curriculum</div>
+    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="66"><i></i></div><span class="bar-label" data-progress-label></span></div>
+<div class="nav-phase current open"><a href="../../../learn/level-01/index.html"><span class="nav-num">01</span>Level 01</a>
+<ul class="nav-modules">
+<li><a class="" href="../../../learn/level-01/l1-0-welcome-to-the-course/index.html">Welcome to the Course</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-0-orientation-install-necessary-tools/index.html">Orientation - Install Necessary Tools</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-0-5-1-understanding-ai-reality-risks-and-mindset/index.html">Understanding AI: Reality, Risks, and Mindset</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-0-5-2-beyond-the-hype-how-to-actually-use-ai/index.html">Beyond the Hype: How to Actually Use AI</a>
+</li>
+<li><a class="current" href="../../../learn/level-01/l1-1-frontend-basics-html-and-css/index.html">Frontend Basics: HTML &amp; CSS</a>
+<ul class="nav-lessons">
+<li><a class="current" data-lesson="level-01/l1-1-frontend-basics-html-and-css/01-main" href="../../../learn/level-01/l1-1-frontend-basics-html-and-css/01-main.html">Build Your First HTML &amp; CSS Page</a></li>
+</ul>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-2-version-control-with-git-and-github/index.html">Version Control with Git and GitHub</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-3-semantic-html-and-advanced-elements/index.html">Semantic HTML &amp; Advanced Elements</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-4-css-layouts-and-advanced-styling/index.html">CSS Layouts &amp; Advanced Styling</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-5-build-a-beautiful-portfolio-website/index.html">Build a beautiful portfolio website</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-6-assignment-1/index.html">Assignment 1</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-7-introduction-to-javascript/index.html">Introduction to JavaScript</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-8-fundamental-concepts-of-conditionals/index.html">Fundamental Concepts of Conditionals</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-9-fundamental-concepts-of-array-part-1/index.html">Fundamental Concepts of Array[Part 1]</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-10-fundamental-concepts-of-loops/index.html">Fundamental Concepts of Loops</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-11-fundamental-concepts-of-array-part-2/index.html">Fundamental Concepts of Array[Part 2]</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-12-fundamentals-of-strings-and-objects/index.html">Fundamentals of Strings &amp; Objects</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-13-fundamentals-of-functions/index.html">Fundamentals of Functions</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-14-basic-problem-solving-with-javascript/index.html">Basic Problem Solving with JavaScript</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-15-assignment-2-problem-solving/index.html">Assignment 2 (Problem solving)</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-16-es6-fundamentals/index.html">ES6 Fundamentals</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-17-more-es6/index.html">More ES6</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-18-problem-solving-with-javascript-es6-part-1/index.html">Problem Solving with JavaScript + ES6 [Part 1]</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-19-problem-solving-with-javascript-es6-part-2/index.html">Problem Solving with JavaScript + ES6 [Part 2]</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-20-assignment-3-problem-solving/index.html">Assignment 3 (Problem solving)</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-21-typescript-fundamentals/index.html">Typescript Fundamentals</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-22-more-typescript/index.html">More Typescript</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-22-5-optional-advanced-oop-in-typescript/index.html">(Optional Advanced) OOP in TypeScript</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-23-problem-solving-with-typescript/index.html">Problem Solving with Typescript</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-24-assignment-4-problem-solving/index.html">Assignment 4(Problem solving)</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-25-react-core-components-jsx-props-and-rendering/index.html">React Core — Components, JSX, Props &amp; Rendering</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-26-state-management-in-react-events-and-data-fetchi/index.html">State Management in React, Events &amp; Data Fetching</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-27-react-project-countries-explorer/index.html">React Project — Countries Explorer</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-28-javascript-dom-and-bom-deep-dive-react-bridge/index.html">JavaScript DOM &amp; BOM Deep Dive (React Bridge)</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-29-simple-react-spa-with-bpl-dream/index.html">Simple React SPA with BPL-DREAM</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-30-assignment-5/index.html">Assignment 5</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-31-next-js-foundation-and-routing/index.html">Next.js Foundation and Routing</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-32-next-js-rendering-basics/index.html">Next.js Rendering Basics</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-33-advanced-data-fetching-and-ui-integration/index.html">Advanced Data Fetching &amp; UI Integration</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-34-assignment-6/index.html">Assignment 6</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-35-security-and-authentication-in-next-js-with-bett/index.html">Security &amp; Authentication in Next.js with BetterAuth</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-36-authentication-advanced-profile-password-and-ema/index.html">Authentication Advanced — Profile, Password &amp; Email</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-37-next-js-project-with-authentication-part-1/index.html">Next.js Project with Authentication—Part 1</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-38-next-js-project-with-authentication-part-2/index.html">Next.js Project with Authentication — Part 2</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-39-assignment-7/index.html">Assignment 7</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-40-node-js-and-express-from-setup-to-first-api/index.html">Node.js &amp; Express — From Setup to First API</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-41-rest-api-and-crud-operations-with-express-and-mo/index.html">REST API &amp; CRUD Operations with Express and MongoDB</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-42-deep-dive-into-mongodb-operators-and-queries/index.html">Deep Dive into MongoDB Operators and Queries</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-43-project-setup-and-destination-crud/index.html">Project Setup &amp; Destination CRUD</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-44-booking-system-and-authentication/index.html">Booking System &amp; Authentication</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-45-jwt-security-and-deployment/index.html">JWT, Security &amp; Deployment</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-46-assignment-8/index.html">Assignment 8</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-47-requirement-analysis-and-planning/index.html">Requirement Analysis &amp; Planning</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-48-project-setup-and-architecture/index.html">Project Setup &amp; Architecture</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-49-core-implementation/index.html">Core Implementation</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-50-stripe-payment-and-webhooks-integration/index.html">Stripe Payment &amp; Webhooks Integration</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-51-review-ui-ux-check-and-deployment/index.html">Review, UI/UX check and Deployment</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-52-assignment-9/index.html">Assignment 9</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-53-requirement-analysis-prompt-and-prototyping/index.html">Requirement Analysis, Prompt &amp; Prototyping</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-54-project-setup-modular-architecture/index.html">Project Setup, Modular Architecture</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-55-core-implementation-backend-with-modular-archite/index.html">Core Implementation — Backend with Modular Architecture</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-56-core-implementation-frontend/index.html">Core Implementation — Frontend</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-57-sslcommerz-payment-integration/index.html">SSLCommerz Payment Integration</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-58-ai-integration-code-review-and-refactoring/index.html">AI Integration, Code Review &amp; Refactoring</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-59-finalization-checking-and-deployment/index.html">Finalization, Checking and Deployment</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-60-assignment-10/index.html">Assignment 10</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-61-ai-assisted-coding-foundations-and-mindset/index.html">AI Assisted Coding Foundations &amp; Mindset</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-62-design-to-code-figma-mcp-lovable-and-ai-builders/index.html">Design-to-Code — Figma MCP, Lovable &amp; AI Builders</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-63-cursor-ai-fullstack-agentic-development-mastery/index.html">Cursor AI — Fullstack Agentic Development Mastery</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-64-terminal-based-agentic-development-with-claude-c/index.html">Terminal-Based Agentic Development with Claude Code</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-65-code-quality-testing-review-refactoring-and-secu/index.html">Code Quality — Testing, Review, Refactoring &amp; Security</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-66-ai-ecosystem-deployment-and-final-project-showca/index.html">AI Ecosystem, Deployment &amp; Final Project Showcase</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-67-assignment-11/index.html">Assignment 11</a>
+</li>
+<li><a class="nav-project " href="../../../learn/level-01/project.html">★ Level project</a></li>
+</ul>
+</div>
+<div class="nav-phase"><a href="../../../learn/level-02/index.html"><span class="nav-num">02</span>Level 02</a>
+</div>
+<div class="side-extra"><a href="../../../index.html">Home</a><a href="../../../curriculum.html">Full curriculum map</a><a href="../../../practice-files.html">Practice files</a><a href="../../../glossary.html">Glossary</a><a href="../../../how-to-learn.html">How to learn here</a><a href="../../../about.html">About &amp; contributing</a></div></nav>
+  <main class="main" id="main"><div class="content">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../../index.html">Home</a><span class="sep">/</span><a href="../../../learn/level-01/index.html">Level 01</a><span class="sep">/</span><a href="../../../learn/level-01/l1-1-frontend-basics-html-and-css/index.html">Frontend Basics: HTML &amp; CSS</a><span class="sep">/</span><span>Build Your First HTML &amp; CSS Page</span></nav>
+<h1>Build Your First HTML &amp; CSS Page</h1>
+<p class="lead">Build a correct first page, connect CSS, understand selectors and the box model.</p>
+<div class="meta"><span class="source-pill source-curriculum">Source curriculum</span><span class="pill">Path <b>Level 01</b></span><span class="pill">Difficulty <b>Beginner</b></span><span class="pill">Time <b>45–60 min</b></span></div>
+
+<h2 id="start-here">Start here</h2>
+<p>Every website eventually becomes <strong>HTML, CSS and JavaScript inside a browser</strong>. In this first tutorial we deliberately start with only HTML and CSS so that you can see the two jobs clearly:</p>
+<ul>
+<li><strong>HTML</strong> describes the structure and meaning of the page.</li>
+<li><strong>CSS</strong> controls how that structure looks and how it is laid out.</li>
+</ul>
+<p>If you later work with React, Next.js or another framework, you will still produce the same kinds of HTML elements and CSS rules. Strong foundations here make later debugging much easier.</p>
+<div class="admonition note"><p class="admonition-title">Build goal</p><p>Turn the starter files into a small profile page with a heading, introduction, skill list, links, image, contact form and a styled card layout.</p></div>
+
+<h2 id="what-you-will-learn">What you will learn</h2>
+<p>By the end of this chapter you should be able to:</p>
+<ul>
+<li>create a valid HTML document in VS Code;</li>
+<li>use headings, paragraphs, lists, links, images and buttons;</li>
+<li>build a basic form with useful input types;</li>
+<li>connect an external stylesheet correctly;</li>
+<li>select elements with tag, class and ID selectors;</li>
+<li>reason about the CSS box model;</li>
+<li>apply fonts, backgrounds, spacing and simple positioning;</li>
+<li>understand the difference between <code>display</code>, <code>visibility</code> and visual effects such as <code>box-shadow</code>.</li>
+</ul>
+<h2 id="1-create-the-project-folder">1. Create the project folder</h2>
+<p>Create a folder named <code>profile-site</code> and place two files inside it:</p>
+<pre><code class="language-text">profile-site/
+├── index.html
+└── style.css
+</code></pre>
+<p>The downloadable Web Foundations package contains the same basic structure. Use the <strong>starter</strong> copy while following this tutorial and compare it with the <strong>completed</strong> copy only after you have tried the steps yourself.</p>
+<p>A browser does not care whether you use VS Code, another editor or even Notepad. VS Code is useful because it gives you syntax highlighting, file navigation and extensions, but the browser ultimately reads ordinary text files.</p>
+<h2 id="2-understand-the-html-document">2. Understand the HTML document</h2>
+<p>Start with this complete document:</p>
+<pre><code class="language-html">&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;utf-8&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+  &lt;title&gt;Saiful Islam — Profile&lt;/title&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;main class=&quot;profile&quot;&gt;
+    &lt;h1&gt;Saiful Islam&lt;/h1&gt;
+    &lt;p&gt;Software &amp; AI Engineering learner.&lt;/p&gt;
+  &lt;/main&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>Read it from the outside inward:</p>
+<h3 id="doctype-html"><code>&lt;!doctype html&gt;</code></h3>
+<p>This tells the browser to use modern HTML standards mode. It is not an HTML element and it does not create anything visible on the page.</p>
+<h3 id="html-lang-en"><code>&lt;html lang=&quot;en&quot;&gt;</code></h3>
+<p><code>&lt;html&gt;</code> is the root element. The <code>lang</code> attribute tells browsers and assistive technologies which language the document primarily uses. It also helps search engines and translation tools.</p>
+<h3 id="head-and-body"><code>&lt;head&gt;</code> and <code>&lt;body&gt;</code></h3>
+<p>The <strong>head</strong> contains information <em>about</em> the document: character encoding, viewport rules, page title, linked stylesheets and other metadata. The <strong>body</strong> contains the content that becomes the visible page.</p>
+<h3 id="character-encoding">Character encoding</h3>
+<pre><code class="language-html">&lt;meta charset=&quot;utf-8&quot;&gt;
+</code></pre>
+<p>UTF-8 lets your page represent a very large range of characters consistently. Put this metadata near the beginning of the <code>&lt;head&gt;</code>.</p>
+<h3 id="responsive-viewport">Responsive viewport</h3>
+<pre><code class="language-html">&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+</code></pre>
+<p>Without this setting, a phone browser may render the page as if it were a much wider desktop page and then scale it down. The viewport declaration gives responsive CSS the dimensions you expect.</p>
+<h3 id="connecting-css">Connecting CSS</h3>
+<pre><code class="language-html">&lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot;&gt;
+</code></pre>
+<p><code>href=&quot;style.css&quot;</code> is a <strong>relative path</strong>. It means: “find <code>style.css</code> in the same folder as this HTML file.” If your CSS appears to do nothing, checking this path should be one of your first debugging steps.</p>
+<h2 id="3-build-a-meaningful-content-hierarchy">3. Build a meaningful content hierarchy</h2>
+<p>Headings are not just large text. They create a hierarchy.</p>
+<pre><code class="language-html">&lt;h1&gt;Saiful Islam&lt;/h1&gt;
+&lt;h2&gt;About me&lt;/h2&gt;
+&lt;h2&gt;Skills&lt;/h2&gt;
+&lt;h2&gt;Projects&lt;/h2&gt;
+</code></pre>
+<p>Use one clear page-level heading, then nest sections logically. Do not choose <code>&lt;h3&gt;</code> merely because you want smaller text; choose the heading level for meaning, then use CSS for size.</p>
+<p>Add paragraphs and emphasis:</p>
+<pre><code class="language-html">&lt;p&gt;
+  I am learning &lt;strong&gt;software engineering&lt;/strong&gt; and
+  &lt;em&gt;AI application development&lt;/em&gt;.
+&lt;/p&gt;
+</code></pre>
+<p><code>&lt;strong&gt;</code> communicates importance. <code>&lt;em&gt;</code> communicates emphasis. Browsers usually render them in bold and italics, but their main value is semantic meaning.</p>
+<h2 id="4-lists-links-images-and-buttons">4. Lists, links, images and buttons</h2>
+<p>A skill list is a natural use of an unordered list:</p>
+<pre><code class="language-html">&lt;section&gt;
+  &lt;h2&gt;Skills&lt;/h2&gt;
+  &lt;ul&gt;
+    &lt;li&gt;HTML and CSS&lt;/li&gt;
+    &lt;li&gt;JavaScript&lt;/li&gt;
+    &lt;li&gt;Git and GitHub&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/section&gt;
+</code></pre>
+<p>Use links for navigation:</p>
+<pre><code class="language-html">&lt;a href=&quot;https://saifulshuvo.com/&quot;&gt;Visit my website&lt;/a&gt;
+</code></pre>
+<p>For a link that opens in a new tab, also consider the relationship between the two browsing contexts:</p>
+<pre><code class="language-html">&lt;a href=&quot;https://github.com/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
+  GitHub
+&lt;/a&gt;
+</code></pre>
+<p>Images need a source and useful alternative text when the image communicates content:</p>
+<pre><code class="language-html">&lt;img
+  src=&quot;images/profile.jpg&quot;
+  alt=&quot;Portrait of Saiful Islam&quot;
+  width=&quot;320&quot;
+  height=&quot;320&quot;
+&gt;
+</code></pre>
+<p>A <strong>button</strong> is for an action; a <strong>link</strong> is for navigation. This distinction becomes important later when you add JavaScript and accessibility behavior.</p>
+<pre><code class="language-html">&lt;button type=&quot;button&quot;&gt;Show projects&lt;/button&gt;
+</code></pre>
+<h2 id="5-build-a-real-form">5. Build a real form</h2>
+<p>Forms collect structured input from a user. Labels matter because they explain what each control is for and make the form easier to use with assistive technology.</p>
+<pre><code class="language-html">&lt;form class=&quot;contact-form&quot;&gt;
+  &lt;div&gt;
+    &lt;label for=&quot;name&quot;&gt;Name&lt;/label&gt;
+    &lt;input id=&quot;name&quot; name=&quot;name&quot; type=&quot;text&quot; autocomplete=&quot;name&quot; required&gt;
+  &lt;/div&gt;
+
+  &lt;div&gt;
+    &lt;label for=&quot;email&quot;&gt;Email&lt;/label&gt;
+    &lt;input id=&quot;email&quot; name=&quot;email&quot; type=&quot;email&quot; autocomplete=&quot;email&quot; required&gt;
+  &lt;/div&gt;
+
+  &lt;div&gt;
+    &lt;label for=&quot;topic&quot;&gt;Topic&lt;/label&gt;
+    &lt;select id=&quot;topic&quot; name=&quot;topic&quot;&gt;
+      &lt;option value=&quot;project&quot;&gt;Project&lt;/option&gt;
+      &lt;option value=&quot;job&quot;&gt;Job opportunity&lt;/option&gt;
+      &lt;option value=&quot;other&quot;&gt;Other&lt;/option&gt;
+    &lt;/select&gt;
+  &lt;/div&gt;
+
+  &lt;button type=&quot;submit&quot;&gt;Send message&lt;/button&gt;
+&lt;/form&gt;
+</code></pre>
+<p>Notice how the <code>for</code> value on each label matches the input's <code>id</code>. The <code>name</code> attribute is the key that would be sent when a real form is submitted to a server.</p>
+<p>At this stage the form does not send email. That requires backend logic or a form service later. The purpose here is to build correct interface structure.</p>
+<h2 id="6-add-the-external-stylesheet">6. Add the external stylesheet</h2>
+<p>Open <code>style.css</code> and begin with a small reset:</p>
+<pre><code class="language-css">* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  background: #f4f8fc;
+  color: #071426;
+  line-height: 1.6;
+}
+</code></pre>
+<p><code>box-sizing: border-box</code> changes how width and height calculations work. With it, declared width includes the element's padding and border. This usually makes layouts easier to reason about.</p>
+<h2 id="7-understand-css-selectors">7. Understand CSS selectors</h2>
+<p>CSS rules have a selector and a declaration block:</p>
+<pre><code class="language-css">.profile {
+  max-width: 48rem;
+  margin: 4rem auto;
+  padding: 2rem;
+}
+</code></pre>
+<p><code>.profile</code> is a <strong>class selector</strong>. It matches any element whose <code>class</code> list contains <code>profile</code>.</p>
+<p>Compare common selector types:</p>
+<pre><code class="language-css">p { color: #334155; }        /* tag selector */
+.profile { padding: 2rem; }  /* class selector */
+#contact { scroll-margin-top: 5rem; } /* ID selector */
+* { box-sizing: border-box; } /* universal selector */
+.profile h2 { margin-top: 2rem; } /* combined/descendant selector */
+</code></pre>
+<p>For reusable styling, classes are usually the most flexible default. IDs are useful for unique document targets, form labels and fragment links, but relying on them heavily for styling can make CSS harder to reuse.</p>
+<h2 id="8-the-box-model-is-the-foundation-of-layout">8. The box model is the foundation of layout</h2>
+<p>Every normal HTML element is treated like a rectangular box:</p>
+<pre><code class="language-text">margin
+┌──────────────────────────────────┐
+│ border                           │
+│  ┌────────────────────────────┐  │
+│  │ padding                    │  │
+│  │  ┌──────────────────────┐  │  │
+│  │  │ content              │  │  │
+│  │  └──────────────────────┘  │  │
+│  └────────────────────────────┘  │
+└──────────────────────────────────┘
+</code></pre>
+<ul>
+<li><strong>content</strong> is the text, image or child elements;</li>
+<li><strong>padding</strong> creates space inside the box;</li>
+<li><strong>border</strong> draws around that padded box;</li>
+<li><strong>margin</strong> creates space outside the border.</li>
+</ul>
+<p>Style the profile card:</p>
+<pre><code class="language-css">.profile {
+  width: min(48rem, calc(100% - 2rem));
+  margin: 4rem auto;
+  padding: 2rem;
+  background: #ffffff;
+  border: 1px solid #dbe7f1;
+  border-radius: 1rem;
+  box-shadow: 0 18px 45px rgba(5, 35, 70, 0.08);
+}
+</code></pre>
+<p><code>margin: 4rem auto</code> gives vertical space and automatically divides the remaining horizontal space equally, centering a block that has a constrained width.</p>
+<h2 id="9-fonts-backgrounds-and-visual-hierarchy">9. Fonts, backgrounds and visual hierarchy</h2>
+<p>A page becomes easier to scan when spacing, type weight and color communicate hierarchy.</p>
+<pre><code class="language-css">h1,
+h2 {
+  line-height: 1.15;
+  color: #04152f;
+}
+
+h1 {
+  font-size: clamp(2rem, 6vw, 3.4rem);
+  margin: 0;
+}
+
+h2 {
+  margin-top: 2.5rem;
+}
+
+a {
+  color: #087fc4;
+}
+</code></pre>
+<p><code>clamp()</code> lets a value stay between a minimum and maximum while changing with the viewport. You do not have to master responsive typography now; just notice that CSS values can be fluid rather than fixed.</p>
+<h2 id="10-display-visibility-and-positioning">10. <code>display</code>, visibility and positioning</h2>
+<p>The <code>display</code> property controls how an element participates in layout. You will study Flexbox and Grid in later modules, but three ideas are useful now:</p>
+<pre><code class="language-css">.skills {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+</code></pre>
+<p><code>visibility: hidden</code> hides an element visually while preserving its layout space. <code>display: none</code> removes it from normal layout entirely. These are different behaviors and can have different accessibility implications.</p>
+<p>Positioning changes how an element is placed:</p>
+<pre><code class="language-css">.badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+</code></pre>
+<p>An absolutely positioned element is positioned relative to an appropriate positioned ancestor. Do not reach for absolute positioning for ordinary page layout; Flexbox and Grid are usually better tools.</p>
+<h2 id="11-build-the-profile-page-step-by-step">11. Build the profile page step by step</h2>
+<p>Now combine the ideas into one page.</p>
+<h3 id="step-1-add-page-landmarks">Step 1 — Add page landmarks</h3>
+<pre><code class="language-html">&lt;body&gt;
+  &lt;header class=&quot;site-header&quot;&gt;
+    &lt;a href=&quot;#main&quot;&gt;Saiful&lt;/a&gt;
+  &lt;/header&gt;
+
+  &lt;main id=&quot;main&quot; class=&quot;profile&quot;&gt;
+    &lt;!-- profile content --&gt;
+  &lt;/main&gt;
+
+  &lt;footer class=&quot;site-footer&quot;&gt;
+    &lt;p&gt;Built while learning Software &amp; AI Engineering.&lt;/p&gt;
+  &lt;/footer&gt;
+&lt;/body&gt;
+</code></pre>
+<h3 id="step-2-add-profile-content">Step 2 — Add profile content</h3>
+<p>Add an introduction, About section, Skills list, Projects section and Contact section. Keep headings in a logical order.</p>
+<h3 id="step-3-add-reusable-classes">Step 3 — Add reusable classes</h3>
+<p>Instead of styling every element independently, create reusable classes such as <code>.section</code>, <code>.skills</code>, <code>.project-card</code> and <code>.contact-form</code>.</p>
+<h3 id="step-4-open-the-page-in-a-browser">Step 4 — Open the page in a browser</h3>
+<p>Save both files, then open <code>index.html</code>. Resize the browser window. Use DevTools' Elements panel to select an element and inspect which CSS rule is applied.</p>
+<h3 id="step-5-make-one-change-at-a-time">Step 5 — Make one change at a time</h3>
+<p>Change the background, spacing or font size and observe the effect. Small changes make cause and effect easier to understand than changing twenty declarations at once.</p>
+<h2 id="12-how-html-and-css-travel-through-the-browser">12. How HTML and CSS travel through the browser</h2>
+<p>A useful mental model is:</p>
+<pre><code class="language-text">index.html ──► browser parses HTML ──► DOM tree
+     │
+     └─► style.css ──► browser parses CSS ──► style rules
+                                      │
+                         DOM + styles ─┴─► layout ─► paint ─► pixels
+</code></pre>
+<p>You do not need to memorize browser-engine internals yet. The important idea is that HTML creates structure and CSS participates in calculating the visual presentation. When you later add JavaScript, JavaScript can inspect or change that document structure.</p>
+<h2 id="13-use-the-practice-package-as-a-code-trail">13. Use the practice package as a code trail</h2>
+<p>The downloadable <code>web-foundations-starter.zip</code> is designed to mirror this chapter. Work in this order:</p>
+<ol>
+<li>open the <code>starter/</code> folder;</li>
+<li>run <code>index.html</code> in a browser;</li>
+<li>add the HTML sections described above;</li>
+<li>add CSS incrementally rather than pasting everything at once;</li>
+<li>compare your files with <code>completed/</code> after your own attempt;</li>
+<li>read the package <code>README.md</code> to understand the final folder structure.</li>
+</ol>
+<p>The goal is not to produce the same colors as the reference. The goal is to understand why every element and CSS rule exists.</p>
+<h2 id="where-this-is-used-professionally">Where this is used professionally</h2>
+<p>The same fundamentals appear in every frontend stack. A React component ultimately produces elements; a Next.js page still renders HTML; a design system still depends on CSS layout, spacing and visual states. When a framework abstraction fails, developers frequently debug the resulting HTML and CSS directly in browser DevTools.</p>
+
+<div class="files-box"><div class="files-head"><b>Downloadable code & practice files</b><a href="../../../practice-files.html">All practice files →</a></div><ul><li><a href="../../../downloads/level-01/web-foundations-starter.zip" download>web-foundations-starter.zip</a><span class="f-desc">Tutorial-aligned starter and completed HTML/CSS project files for Modules 1–4. · 4 KB</span></li></ul></div>
+
+<div class="terms-box"><div class="files-head"><b>Key terms in this lesson</b><a href="../../../glossary.html">Glossary →</a></div><div class="term-chips"><a class="term-chip" href="../../../glossary.html#css" title="The language used to style and lay out HTML documents.">CSS</a><a class="term-chip" href="../../../glossary.html#git" title="A distributed version-control system.">Git</a><a class="term-chip" href="../../../glossary.html#html" title="The language used to structure web-page content.">HTML</a></div></div>
+<h2 id="free-resources">Free resources to go deeper</h2><ul class="resources"><li><div class="resource-top"><a href="https://developer.mozilla.org/en-US/docs/Web/HTML">MDN HTML</a></div><span class="r-meta">MDN</span><span class="r-note">Official HTML reference.</span></li><li><div class="resource-top"><a href="https://developer.mozilla.org/en-US/docs/Web/CSS">MDN CSS</a></div><span class="r-meta">MDN</span><span class="r-note">Official CSS reference.</span></li><li><div class="resource-top"><a href="https://developer.chrome.com/docs/devtools/">Chrome DevTools</a></div><span class="r-meta">Chrome for Developers</span><span class="r-note">Official browser debugging documentation.</span></li></ul>
+<div class="complete-bar"><span>Finished reading and did the exercise?</span>
+<button class="btn" id="completeBtn" type="button" data-id="level-01/l1-1-frontend-basics-html-and-css/01-main">Mark lesson as complete</button></div>
+<nav class="pager"><a class="next" href="../../../learn/level-01/l1-2-version-control-with-git-and-github/01-main.html"><small>Next →</small>Track Your Code with Git &amp; GitHub</a></nav>
+<p class="reviewed">Last reviewed: 2026-10-09</p>
+
+  </div></main>
+  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#start-here">Start here</a><a href="#what-you-will-learn">What you will learn</a><a href="#1-create-the-project-folder">1. Create the project folder</a><a href="#2-understand-the-html-document">2. Understand the HTML document</a><a href="#doctype-html">&lt;!doctype html&gt;</a><a href="#html-lang-en">&lt;html lang=&quot;en&quot;&gt;</a><a href="#head-and-body">&lt;head&gt; and &lt;body&gt;</a><a href="#character-encoding">Character encoding</a><a href="#responsive-viewport">Responsive viewport</a><a href="#connecting-css">Connecting CSS</a><a href="#3-build-a-meaningful-content-hierarchy">3. Build a meaningful content hierarchy</a><a href="#4-lists-links-images-and-buttons">4. Lists, links, images and buttons</a><a href="#5-build-a-real-form">5. Build a real form</a><a href="#6-add-the-external-stylesheet">6. Add the external stylesheet</a><a href="#7-understand-css-selectors">7. Understand CSS selectors</a><a href="#8-the-box-model-is-the-foundation-of-layout">8. The box model is the foundation of layout</a><a href="#9-fonts-backgrounds-and-visual-hierarchy">9. Fonts, backgrounds and visual hierarchy</a><a href="#10-display-visibility-and-positioning">10. display, visibility and positioning</a><a href="#11-build-the-profile-page-step-by-step">11. Build the profile page step by step</a><a href="#step-1-add-page-landmarks">Step 1 — Add page landmarks</a><a href="#step-2-add-profile-content">Step 2 — Add profile content</a><a href="#step-3-add-reusable-classes">Step 3 — Add reusable classes</a><a href="#step-4-open-the-page-in-a-browser">Step 4 — Open the page in a browser</a><a href="#step-5-make-one-change-at-a-time">Step 5 — Make one change at a time</a><a href="#12-how-html-and-css-travel-through-the-browser">12. How HTML and CSS travel through the browser</a><a href="#13-use-the-practice-package-as-a-code-trail">13. Use the practice package as a code trail</a><a href="#where-this-is-used-professionally">Where this is used professionally</a><a href="#free-resources">Free resources</a></aside>
+</div>
+<footer class="site"><b>Saiful The Techie</b> · Software &amp; AI Engineering Learning Hub v0.5.0 · Compiled &amp; Expanded by Saiful Islam · <a href="https://saifulshuvo.com">saifulshuvo.com</a> · Updated October 2026<br>
+Original learning content: <a href="../../../license.html">CC BY-NC-SA 4.0</a> · Code: <a href="../../../license.html#code-mit-license">MIT</a> · Free external resources belong to their respective owners.</footer>
+<script src="../../../search-index.js"></script>
+<script src="../../../assets/app.js"></script>
+</body>
+</html>

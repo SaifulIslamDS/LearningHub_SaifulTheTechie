@@ -1,0 +1,9 @@
+version: 2
+
+macros:
+  - name: discount_band
+    description: "Convert a numeric discount expression into none, low or high."
+    arguments:
+      - name: discount_column
+        type: string
+        description: "A SQL expression or column name containing a decimal discount."

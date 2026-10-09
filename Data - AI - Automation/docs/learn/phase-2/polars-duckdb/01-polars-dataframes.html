@@ -25,7 +25,7 @@ document.documentElement.classList.add('no-anim')})();</script>
 <a class="skip" href="#main">Skip to content</a>
 <header class="topbar">
   <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Open curriculum menu" title="Curriculum menu (press M)" aria-controls="sidebar" aria-expanded="false"><span class="ico-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span class="ico-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></button>
-  <a class="brand" href="../../../index.html"><span class="brand-badge">AI</span><span class="brand-text"><span class="brand-name">Data, AI &amp; Automation Path</span><span class="brand-version">v0.7</span></span></a>
+  <a class="brand" href="../../../index.html"><span class="brand-badge">AI</span><span class="brand-text"><span class="brand-name">Data, AI &amp; Automation Path</span><span class="brand-version">v0.8</span></span></a>
   <nav class="top-links" aria-label="Main">
     <a href="../../../index.html" class="">Home</a><a href="../../../curriculum.html" class="">Curriculum</a><a href="../../../practice-files.html" class="">Practice files</a><a href="../../../glossary.html" class="">Glossary</a><a href="../../../how-to-learn.html" class="">How to learn</a><a href="../../../about.html" class="">About</a>
   </nav>
@@ -41,7 +41,7 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="layout wide">
   <nav class="sidebar" id="sidebar" aria-label="Curriculum">
     <div class="side-title">Curriculum</div>
-    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="64"><i></i></div><span class="bar-label" data-progress-label></span></div>
+    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="77"><i></i></div><span class="bar-label" data-progress-label></span></div>
 <div class="nav-phase"><a href="../../../learn/phase-0/index.html"><span class="nav-num">0</span>Foundations</a>
 </div>
 <div class="nav-phase"><a href="../../../learn/phase-1/index.html"><span class="nav-num">1</span>Analytics &amp; BI</a>
@@ -433,7 +433,7 @@ shape: (4, 2)
 <p><strong>Strong answer:</strong> "When data is large enough that pandas is slow or memory-hungry, or for a pipeline where performance matters. Polars' lazy engine pushes filters and column selection into the file scan and uses all cores. For small exploratory work or when a library expects pandas, I stay with pandas and convert at the boundary."</p>
 <p><strong>Mini project:</strong> Rewrite the segment summary from the merge &amp; groupby lesson (orders, revenue, average order, distinct customers, share) in Polars, and check that every number matches pandas.</p>
 </div>
-<div class="terms-box"><div class="files-head"><b>Key terms in this lesson</b><a href="../../../glossary.html">Glossary →</a></div><div class="term-chips"><a class="term-chip" href="../../../glossary.html#join" title="Combines rows from two tables using a matching key. INNER JOIN keeps only matches; LEFT JOIN keeps every row from the left table; an anti-join finds rows with no match.">JOIN</a><a class="term-chip" href="../../../glossary.html#pandas" title="The standard Python library for working with tables (DataFrames): load, clean, join, group and summarise data.">pandas</a><a class="term-chip" href="../../../glossary.html#polars" title="A fast DataFrame library written in Rust, with an expression syntax and lazy queries that are optimised before they run.">Polars</a></div></div>
+<div class="terms-box"><div class="files-head"><b>Key terms in this lesson</b><a href="../../../glossary.html">Glossary →</a></div><div class="term-chips"><a class="term-chip" href="../../../glossary.html#explain-analyze" title="Runs a query and shows the plan the database actually used (scans, joins, rows, timings), the starting point for any performance fix.">EXPLAIN ANALYZE</a><a class="term-chip" href="../../../glossary.html#join" title="Combines rows from two tables using a matching key. INNER JOIN keeps only matches; LEFT JOIN keeps every row from the left table; an anti-join finds rows with no match.">JOIN</a><a class="term-chip" href="../../../glossary.html#pandas" title="The standard Python library for working with tables (DataFrames): load, clean, join, group and summarise data.">pandas</a><a class="term-chip" href="../../../glossary.html#polars" title="A fast DataFrame library written in Rust, with an expression syntax and lazy queries that are optimised before they run.">Polars</a></div></div>
 <h2 id="free-resources">Free resources to go deeper</h2><ul class="resources"><li><a href="https://docs.pola.rs/user-guide/getting-started/">Polars user guide — Getting started</a><span class="r-meta">Polars official docs · Reading data, expressions, contexts and joins.</span></li><li><a href="https://docs.pola.rs/user-guide/lazy/">Lazy API</a><span class="r-meta">Polars official docs · Why lazy queries are faster, and how to read a query plan.</span></li><li><a href="https://docs.pola.rs/user-guide/migration/pandas/">Coming from pandas</a><span class="r-meta">Polars official docs · Key differences for pandas users.</span></li></ul>
 <div class="complete-bar"><span>Finished reading and did the exercise?</span>
 <button class="btn" id="completeBtn" type="button" data-id="phase-2/polars-duckdb/01-polars-dataframes">Mark lesson as complete</button></div>
@@ -443,7 +443,7 @@ shape: (4, 2)
   </div></main>
   <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#example-1-read-and-inspect">Example 1: read and inspect</a><a href="#example-2-expressions">Example 2: expressions</a><a href="#example-3-group_by-and-agg">Example 3: group_by and agg</a><a href="#example-4-join">Example 4: join</a><a href="#example-5-lazy-mode-and-the-query-plan">Example 5: lazy mode and the query plan</a><a href="#example-6-same-answer-as-pandas">Example 6: same answer as pandas?</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#free-resources">Free resources</a></aside>
 </div>
-<footer class="site">Data, AI &amp; Automation Path v0.7 · Applied AI, Data &amp; Automation Lab · Updated October 2026<br>
+<footer class="site">Data, AI &amp; Automation Path v0.8 · Applied AI, Data &amp; Automation Lab · Updated October 2026<br>
 Lesson text: <a href="../../../license.html">CC BY-NC-SA 4.0</a> · Code: <a href="../../../license.html#code-mit-license">MIT</a> · Free external resources belong to their respective owners.</footer>
 <script src="../../../search-index.js"></script>
 <script src="../../../assets/app.js"></script>

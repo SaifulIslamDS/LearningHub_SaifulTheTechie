@@ -1,0 +1,12 @@
+# Image for the practice API (standard library only, no pip install needed)
+FROM python:3.14-slim
+WORKDIR /app
+# print logs immediately, so `docker logs` shows them
+ENV PYTHONUNBUFFERED=1
+COPY mock_api.py .
+COPY data/ data/
+ENV MOCK_API_HOST=0.0.0.0
+EXPOSE 8765
+# Python running as PID 1 ignores the default stop signal; Ctrl+C (SIGINT) stops it cleanly
+STOPSIGNAL SIGINT
+CMD ["python", "mock_api.py"]

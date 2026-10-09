@@ -1,0 +1,15 @@
+version: 2
+
+models:
+  - name: int_orders_enriched
+    description: "Orders joined to customer/product attributes with reusable revenue and discount logic."
+    columns:
+      - name: order_id
+        data_tests: [not_null, unique]
+      - name: customer_name
+        data_tests: [not_null]
+      - name: discount_band
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['none', 'low', 'high']

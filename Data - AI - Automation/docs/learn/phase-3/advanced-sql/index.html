@@ -25,7 +25,7 @@ document.documentElement.classList.add('no-anim')})();</script>
 <a class="skip" href="#main">Skip to content</a>
 <header class="topbar">
   <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Open curriculum menu" title="Curriculum menu (press M)" aria-controls="sidebar" aria-expanded="false"><span class="ico-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span class="ico-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></button>
-  <a class="brand" href="../../../index.html"><span class="brand-badge">AI</span><span class="brand-text"><span class="brand-name">Data, AI &amp; Automation Path</span><span class="brand-version">v0.7</span></span></a>
+  <a class="brand" href="../../../index.html"><span class="brand-badge">AI</span><span class="brand-text"><span class="brand-name">Data, AI &amp; Automation Path</span><span class="brand-version">v0.8</span></span></a>
   <nav class="top-links" aria-label="Main">
     <a href="../../../index.html" class="">Home</a><a href="../../../curriculum.html" class="">Curriculum</a><a href="../../../practice-files.html" class="">Practice files</a><a href="../../../glossary.html" class="">Glossary</a><a href="../../../how-to-learn.html" class="">How to learn</a><a href="../../../about.html" class="">About</a>
   </nav>
@@ -41,7 +41,7 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="layout">
   <nav class="sidebar" id="sidebar" aria-label="Curriculum">
     <div class="side-title">Curriculum</div>
-    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="64"><i></i></div><span class="bar-label" data-progress-label></span></div>
+    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="77"><i></i></div><span class="bar-label" data-progress-label></span></div>
 <div class="nav-phase"><a href="../../../learn/phase-0/index.html"><span class="nav-num">0</span>Foundations</a>
 </div>
 <div class="nav-phase"><a href="../../../learn/phase-1/index.html"><span class="nav-num">1</span>Analytics &amp; BI</a>
@@ -53,6 +53,10 @@ document.documentElement.classList.add('no-anim')})();</script>
 <li><a class="" href="../../../learn/phase-3/data-ingestion/index.html">Data Ingestion</a>
 </li>
 <li><a class="current" href="../../../learn/phase-3/advanced-sql/index.html">Advanced SQL</a>
+<ul class="nav-lessons">
+<li><a class="" data-lesson="phase-3/advanced-sql/01-ctes-recursive" href="../../../learn/phase-3/advanced-sql/01-ctes-recursive.html">CTEs and Recursive CTEs: Readable Multi-Step SQL</a></li>
+<li><a class="" data-lesson="phase-3/advanced-sql/02-window-functions" href="../../../learn/phase-3/advanced-sql/02-window-functions.html">Window Functions: Running Totals, Rankings, LAG &amp; LEAD</a></li>
+</ul>
 </li>
 <li><a class="" href="../../../learn/phase-3/database-engineering/index.html">Database Engineering</a>
 </li>
@@ -95,16 +99,30 @@ document.documentElement.classList.add('no-anim')})();</script>
 <nav class="crumbs" aria-label="Breadcrumb"><a href="../../../index.html">Home</a><span class="sep">/</span><a href="../../../learn/phase-3/index.html">Phase 3</a><span class="sep">/</span><span>Advanced SQL</span></nav>
 <h1>Advanced SQL</h1>
 <p class="lead">Part of Phase 3 — Data Engineering (AI-ready). Topics: CTEs, Recursive CTEs, Window functions, RANK, LAG &amp; LEAD.</p>
-
-
-<div class="section-head"><h2>Lessons</h2><p>0 written · 4 planned</p></div>
-<ul class="lesson-list"><li class="lesson-row planned"><span class="n">1</span><span>CTEs<span class="desc">Planned lesson</span></span><span class="lesson-state"><span class="tag soon">Coming soon</span></span></li><li class="lesson-row planned"><span class="n">2</span><span>Recursive CTEs<span class="desc">Planned lesson</span></span><span class="lesson-state"><span class="tag soon">Coming soon</span></span></li><li class="lesson-row planned"><span class="n">3</span><span>Window functions<span class="desc">Planned lesson</span></span><span class="lesson-state"><span class="tag soon">Coming soon</span></span></li><li class="lesson-row planned"><span class="n">4</span><span>RANK, LAG &amp; LEAD<span class="desc">Planned lesson</span></span><span class="lesson-state"><span class="tag soon">Coming soon</span></span></li></ul>
+<p>Phase 1 taught SQL for answering business questions. <strong>Advanced SQL</strong> is the SQL data engineers and analytics engineers write every day: multi-step queries with <strong>CTEs</strong>, <strong>recursive</strong> queries for calendars and hierarchies, and <strong>window functions</strong> for running totals, rankings and period-over-period growth, all without leaving the database.</p>
+<div class="admonition tip">
+<p class="admonition-title">Setup: PostgreSQL + the practice data</p>
+<p>From this module on, examples run on <strong>PostgreSQL</strong>, the most popular open-source database. The easiest way to get it is Docker (see the Docker module):</p>
+<p><code>bash
+docker run --name pg -e POSTGRES_PASSWORD=practice -p 5432:5432 -d postgres:18</code></p>
+<p>Or install it from <a href="https://www.postgresql.org/download/">https://www.postgresql.org/download/</a> (Windows/Mac installers include pgAdmin). Then, in the unzipped <a href="../../../downloads/phase-3/data-engineering-scripts.zip">data-engineering-scripts.zip</a> folder:</p>
+<p><code>bash
+uv add "psycopg[binary]"
+export DATABASE_URL=postgresql://postgres:practice@localhost:5432/postgres   # PowerShell: $env:DATABASE_URL="..."
+uv run 03_load_postgres.py                     # loads the 2025 orders into the shop schema
+psql "$DATABASE_URL" -f 04_ctes.sql             # or open the .sql file in DBeaver, pgAdmin or VS Code</code></p>
+<p><em>The outputs in these lessons come from PostgreSQL 16; everything shown works the same on 16, 17 and 18.</em></p>
+</div>
+<p><strong>By the end of this module you can:</strong> structure long queries with CTEs, generate calendars and walk hierarchies with recursive CTEs, and use window functions (<code>OVER</code>, <code>PARTITION BY</code>, <code>RANK</code>, <code>LAG</code>, <code>LEAD</code>, frames) for rankings, running totals and growth rates.</p>
+<div class="files-box"><div class="files-head"><b>Practice files for this page</b><a href="../../../practice-files.html">All practice files →</a></div><ul><li><a href="../../../downloads/phase-3/data-engineering-scripts.zip" download>data-engineering-scripts.zip</a><span class="f-desc">Phase 3A scripts: practice API + website, ingestion, PostgreSQL loader, advanced SQL, indexing, transactions, star schema, SCD, BigQuery dialect, Delta Lake, Iceberg, Dockerfiles and compose.yaml · 270 KB</span></li></ul></div>
+<div class="section-head"><h2>Lessons</h2><p>2 written · 0 planned</p></div>
+<ul class="lesson-list"><li class="lesson-row" data-lesson="phase-3/advanced-sql/01-ctes-recursive"><span class="n">1</span><span><a href="../../../learn/phase-3/advanced-sql/01-ctes-recursive.html">CTEs and Recursive CTEs: Readable Multi-Step SQL</a><span class="desc">Break complex SQL into named steps with WITH, then use recursive CTEs to generate calendars that keep empty months and to walk hierarchies like an org chart — in PostgreSQL.</span></span><span class="lesson-state">45 min</span></li><li class="lesson-row" data-lesson="phase-3/advanced-sql/02-window-functions"><span class="n">2</span><span><a href="../../../learn/phase-3/advanced-sql/02-window-functions.html">Window Functions: Running Totals, Rankings, LAG &amp; LEAD</a><span class="desc">Calculate across related rows without losing detail: shares of a group, running totals and moving averages, ROW_NUMBER vs RANK vs DENSE_RANK, top-N per group, and period-over-period growth with LAG and LEAD.</span></span><span class="lesson-state">55 min</span></li></ul>
 <nav class="pager"><a class="prev" href="../../../learn/phase-3/data-ingestion/index.html"><small>← Previous module</small>Data Ingestion</a><a class="next" href="../../../learn/phase-3/database-engineering/index.html"><small>Next module →</small>Database Engineering</a></nav>
 
   </div></main>
   
 </div>
-<footer class="site">Data, AI &amp; Automation Path v0.7 · Applied AI, Data &amp; Automation Lab · Updated October 2026<br>
+<footer class="site">Data, AI &amp; Automation Path v0.8 · Applied AI, Data &amp; Automation Lab · Updated October 2026<br>
 Lesson text: <a href="../../../license.html">CC BY-NC-SA 4.0</a> · Code: <a href="../../../license.html#code-mit-license">MIT</a> · Free external resources belong to their respective owners.</footer>
 <script src="../../../search-index.js"></script>
 <script src="../../../assets/app.js"></script>

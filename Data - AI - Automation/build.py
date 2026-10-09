@@ -239,6 +239,28 @@ def terms_box(r: str, terms: list) -> str:
             f'<a href="{r}glossary.html">Glossary →</a></div><div class="term-chips">{chips}</div></div>')
 
 
+def youtube_box(meta: dict) -> str:
+    """Optional, curated YouTube companion from lesson front matter."""
+    y = meta.get("youtube") or {}
+    if not isinstance(y, dict) or not y.get("url"):
+        return ""
+    title = esc(str(y.get("title") or "Video companion"))
+    creator = esc(str(y.get("creator") or ""))
+    why = esc(str(y.get("why_recommended") or ""))
+    duration = esc(str(y.get("duration") or ""))
+    level = esc(str(y.get("level") or ""))
+    url = esc(str(y["url"]))
+    vid = str(y.get("video_id") or "").strip()
+    meta_bits = " · ".join(x for x in [creator, duration, level] if x)
+    player = (f'<div class="video-frame"><iframe src="https://www.youtube-nocookie.com/embed/{esc(vid)}" '
+              f'title="{title}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" '
+              f'allowfullscreen></iframe></div>') if vid else ""
+    why_html = f'<p>{why}</p>' if why else ""
+    meta_html = f'<p class="video-meta">{meta_bits}</p>' if meta_bits else ""
+    return (f'<section class="video-companion"><h2 id="video-companion">Video companion</h2>'
+            f'{player}<h3>{title}</h3>{why_html}{meta_html}<p><a href="{url}">Watch on YouTube ↗</a></p></section>')
+
+
 # ------------------------------------------------------------------ quizzes
 QUIZ_RE = re.compile(r'<div class="quiz-q">(.*?)</div>', re.S)
 LETTERS = "ABCDEFGH"
@@ -336,6 +358,9 @@ def page(*, title: str, depth: int, body: str, side: str | None, toc: list | Non
         toc_html = f'<aside class="toc" aria-label="On this page"><h4>On this page</h4>{links}</aside>'
     layout_cls = "layout wide" if toc_html else "layout"
     nav = lambda key, href, label: f'<a href="{r}{href}" class="{"active" if active == key else ""}">{label}</a>'
+    logo_asset = str(SITE.get("logo_asset") or "").strip()
+    logo_html = f'<img class="brand-logo" src="{r}{esc(logo_asset)}" alt="">' if logo_asset else ""
+    favicon_html = f'<link rel="icon" href="{r}{esc(logo_asset)}">' if logo_asset else ""
     return f"""<!DOCTYPE html>
 <html lang="{SITE.get('language', 'en')}" data-root="{r}"{extra_attrs}>
 <head>
@@ -344,7 +369,7 @@ def page(*, title: str, depth: int, body: str, side: str | None, toc: list | Non
 <title>{esc(full_title)}</title>
 <meta name="description" content="{esc(description or SITE['tagline'])}">
 <meta property="og:type" content="{'article' if og_type == 'article' else 'website'}">
-<meta property="og:site_name" content="{esc(SITE['name'])}">
+<meta property="og:site_name" content="{esc(SITE.get('brand', SITE['name']))}">
 <meta property="og:title" content="{esc(title)}">
 <meta property="og:description" content="{esc(description or SITE['tagline'])}">
 <meta property="og:locale" content="en_US">
@@ -352,13 +377,13 @@ def page(*, title: str, depth: int, body: str, side: str | None, toc: list | Non
 <!--PAGE-URL-->
 {THEME_BOOT}
 <link rel="stylesheet" href="{r}assets/style.css">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233f7d6a'/%3E%3Ctext x='16' y='21' font-family='sans-serif' font-size='13' font-weight='700' fill='white' text-anchor='middle'%3E{esc(SITE['badge'])}%3C/text%3E%3C/svg%3E">
+{favicon_html}
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="topbar">
   <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Open curriculum menu" title="Curriculum menu (press M)" aria-controls="sidebar" aria-expanded="false"><span class="ico-menu">{ICON_MENU}</span><span class="ico-close">{ICON_CLOSE}</span></button>
-  <a class="brand" href="{r}index.html"><span class="brand-badge">{esc(SITE['badge'])}</span><span class="brand-text"><span class="brand-name">{esc(SITE['name'])}</span><span class="brand-version">{esc(SITE.get('version', ''))}</span></span></a>
+  <a class="brand" href="{r}index.html">{logo_html}<span class="brand-text"><span class="brand-name">{esc(SITE.get('brand', SITE['name']))}</span><span class="brand-version">{esc(SITE['name'])} · {esc(SITE.get('version', ''))}</span></span></a>
   <nav class="top-links" aria-label="Main">
     {nav('home', 'index.html', 'Home')}{nav('map', 'curriculum.html', 'Curriculum')}{nav('files', 'practice-files.html', 'Practice files')}{nav('glossary', 'glossary.html', 'Glossary')}{nav('how', 'how-to-learn.html', 'How to learn')}{nav('about', 'about.html', 'About')}
   </nav>
@@ -380,7 +405,7 @@ def page(*, title: str, depth: int, body: str, side: str | None, toc: list | Non
   </div></main>
   {toc_html}
 </div>
-<footer class="site">{esc(SITE['name'])} {esc(SITE.get('version', ''))} · {esc(SITE['author'])} · Updated {esc(SITE['updated'])}<br>
+<footer class="site"><b>{esc(SITE.get('brand', SITE['name']))}</b> · {esc(SITE['name'])} {esc(SITE.get('version', ''))} · Updated {esc(SITE['updated'])}<br>
 Lesson text: <a href="{r}license.html">CC BY-NC-SA 4.0</a> · Code: <a href="{r}license.html#code-mit-license">MIT</a> · Free external resources belong to their respective owners.</footer>
 <script src="{r}search-index.js"></script>
 <script src="{r}assets/app.js"></script>
@@ -445,15 +470,16 @@ def build_home():
         f'{esc(l["meta"].get("summary", ""))}</span></span><span class="lesson-state"></span></li>' for l in LESSONS)
     body = f"""
 <section class="card hero">
-  <span class="eyebrow">Free · Text-first · Offline-ready</span>
+  <span class="eyebrow">{esc(SITE.get('brand', ''))} · Learn · Build · Explain · Share</span>
   <h1>{esc(SITE['name'])}</h1>
-  <p>{esc(SITE['tagline'])} Every lesson explains what a skill is, why employers want it, and how to do it — with examples, exercises, quizzes and hand-picked free resources.</p>
+  <p class="brand-line">{esc(SITE.get('brand_line', ''))}</p>
+  <p>{esc(SITE['tagline'])} Every tutorial builds a mental model, demonstrates real code or data, explains verified output, and connects the skill to a practical build and curated resources.</p>
   <div class="hero-actions">{start_btn}<a class="btn ghost" href="{r}curriculum.html">See the full curriculum</a><a class="btn ghost" href="{r}how-to-learn.html">How to learn here</a></div>
 </section>
 
 <div class="grid cols-3">
   <div class="card how"><b>Learn in order, or skip</b><span>Ten phases from foundations to career. Skip what you already know.</span></div>
-  <div class="card how"><b>Every lesson is practical</b><span>Real business examples, a “try it” exercise, a quiz and a job-ready check.</span></div>
+  <div class="card how"><b>Every lesson is practical</b><span>Deep explanations, verified examples, step-by-step builds and synchronized practice files.</span></div>
   <div class="card how"><b>Progress saved in your browser</b><span>Mark lessons complete. Nothing is sent anywhere.</span></div>
 </div>
 
@@ -550,12 +576,15 @@ def build_module(ph, m):
         for fpath in (l["meta"].get("files") or []):
             if fpath not in module_files:
                 module_files.append(fpath)
+    topic_chips = "".join(f'<span class="term-chip">{esc(t)}</span>' for t in m["topics"])
     body = f"""{crumbs(r, [('Home', 'index.html'), (f"Phase {ph['num']}", u_phase(ph)), (m['title'], None)])}
+<span class="eyebrow">Phase {ph['num']} · {esc(ph['short'])}</span>
 <h1>{esc(m['title'])}{tag_html(m.get('tag'))}</h1>
-<p class="lead">Part of Phase {ph['num']} — {esc(ph['title'])}. Topics: {esc(', '.join(m['topics']))}.</p>
+<p class="lead">{esc(ph['summary'])}</p>
 {intro}
+<div class="module-topics"><b>Curriculum coverage</b><div class="term-chips">{topic_chips}</div></div>
 {files_box(r, module_files, key)}
-<div class="section-head"><h2>Lessons</h2><p>{len(lessons)} written · {len(planned)} planned</p></div>
+<div class="section-head"><h2>Tutorials</h2><p>{len(lessons)} ready · {len(planned)} planned</p></div>
 <ul class="lesson-list">{''.join(rows)}</ul>
 {pager}
 """
@@ -574,6 +603,9 @@ def build_lesson(l):
     l["terms"] = terms
 
     # free resources from front matter
+    if (meta.get("youtube") or {}).get("url"):
+        toc_tokens = list(toc_tokens) + [{"id": "video-companion", "name": "Video companion"}]
+
     res = meta.get("resources") or []
     res_html = ""
     if res:
@@ -625,6 +657,7 @@ def build_lesson(l):
 {pre_html}
 {files_box(r, meta.get('files') or [], l['id'])}
 {body_html}
+{youtube_box(meta)}
 {terms_box(r, terms)}
 {res_html}
 <div class="complete-bar"><span>Finished reading and did the exercise?</span>

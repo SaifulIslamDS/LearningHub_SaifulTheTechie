@@ -1,0 +1,64 @@
+customer_id,customer_name,segment,region,signup_date,credit_days
+C001,Ocean Tailors,Retailer,Khulna,2023-07-23,30
+C002,Bengal Apparel,Garment Factory,Dhaka,2024-09-04,30
+C003,Asian Garments,Garment Factory,Chattogram,2022-05-23,0
+C004,Ocean Knitwear,Knitting Mill,Dhaka,2022-02-25,0
+C005,Jamuna Trading,Trader,Dhaka,2022-04-16,0
+C006,Padma Boutique,Retailer,Narayanganj,2024-09-14,30
+C007,Nova Knitting,Knitting Mill,Narayanganj,2022-02-19,30
+C008,Jamuna Knitwear,Knitting Mill,Narayanganj,2022-10-30,15
+C009,Silver Enterprise,Trader,Chattogram,2022-02-25,15
+C010,Ocean Apparel,Garment Factory,Dhaka,2024-08-07,15
+C011,Golden Trading,Trader,Gazipur,2024-01-11,60
+C012,Silver Apparel,Garment Factory,Gazipur,2022-07-19,15
+C013,Blue Apparel,Garment Factory,Dhaka,2023-07-24,30
+C014,Prime Apparel,Garment Factory,Chattogram,2024-04-19,60
+C015,Nova Cloth Store,Retailer,Chattogram,2021-10-25,30
+C016,Royal Boutique,Retailer,Dhaka,2021-10-06,60
+C017,Delta Garments,Garment Factory,Chattogram,2023-06-27,0
+C018,Prime Cloth Store,Retailer,Chattogram,2022-04-06,30
+C019,Rahim Garments,Garment Factory,Narayanganj,2024-07-22,0
+C020,Golden Apparel,Garment Factory,Gazipur,2023-08-14,30
+C021,Sun Apparel,Garment Factory,Chattogram,2022-05-01,30
+C022,Jamuna Knitting,Knitting Mill,Dhaka,2023-01-23,30
+C023,Unique Garments,Garment Factory,Chattogram,2023-05-09,30
+C024,Star Knitting,Knitting Mill,Dhaka,2023-06-17,30
+C025,Rahim Knit,Knitting Mill,Khulna,2024-05-18,15
+C026,Sun Trading,Trader,Narayanganj,2022-08-19,0
+C027,Jamuna Knit,Knitting Mill,Khulna,2021-05-08,30
+C028,Ocean Enterprise,Trader,Gazipur,2024-03-28,15
+C029,Bengal Fashion,Garment Factory,Chattogram,2023-03-06,15
+C030,Unique Enterprise,Trader,Dhaka,2021-09-29,0
+C031,Silver Traders,Trader,Narayanganj,2021-11-13,15
+C032,Unique Apparel,Garment Factory,Chattogram,2022-07-13,0
+C033,Padma Wear,Garment Factory,Chattogram,2022-02-25,30
+C034,Meghna Apparel,Garment Factory,Gazipur,2023-10-07,60
+C035,Padma Garments,Garment Factory,Dhaka,2021-09-01,0
+C036,Royal Tailors,Retailer,Dhaka,2021-06-09,0
+C037,Silver Fashion,Garment Factory,Khulna,2021-06-09,0
+C038,Bengal Traders,Trader,Gazipur,2024-08-11,0
+C039,Green Wear,Garment Factory,Dhaka,2024-03-03,15
+C040,Delta Tailors,Retailer,Dhaka,2023-12-19,30
+C041,Golden Garments,Garment Factory,Khulna,2021-07-16,30
+C042,Padma Knitting,Knitting Mill,Chattogram,2023-09-15,15
+C043,Asian Fashion,Garment Factory,Chattogram,2024-04-05,30
+C044,Prime Garments,Garment Factory,Dhaka,2021-03-21,60
+C045,Green Knit,Knitting Mill,Chattogram,2022-08-11,0
+C046,Golden Knitting,Knitting Mill,Dhaka,2022-11-20,30
+C047,Crescent Knit,Knitting Mill,Chattogram,2023-06-20,30
+C048,Padma Trading,Trader,Gazipur,2023-01-19,60
+C049,Asian Boutique,Retailer,Chattogram,2024-02-12,30
+C050,Meghna Cloth Store,Retailer,Dhaka,2022-03-27,30
+C051,Blue Garments,Garment Factory,Narayanganj,2021-08-05,0
+C052,Padma Fashion,Garment Factory,Chattogram,2021-01-10,0
+C053,Sun Tailors,Retailer,Chattogram,2023-08-13,30
+C054,Blue Enterprise,Trader,Chattogram,2023-12-26,0
+C055,Crescent Enterprise,Trader,Chattogram,2021-08-27,15
+C056,Padma Tailors,Retailer,Dhaka,2022-09-18,30
+C057,Padma Cloth Store,Retailer,Narayanganj,2021-02-13,0
+C058,Sun Cloth Store,Retailer,Gazipur,2023-08-23,30
+C059,Crescent Wear,Garment Factory,Dhaka,2021-07-23,0
+C060,Golden Fashion,Garment Factory,Dhaka,2021-06-06,60
+C061,Lotus Knitwear,Knitting Mill,Gazipur,2025-12-08,30
+C062,Padma Boutique,Retailer,Khulna,2025-12-15,0
+C063,Harbor Trading,Trader,Chattogram,2025-12-21,15

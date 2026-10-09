@@ -1,0 +1,29 @@
+# Two services: the practice API and the ingestion job that reads from it.
+#   docker compose up --build      start everything (Ctrl+C to stop)
+#   docker compose down            remove the containers
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    environment:
+      ORDERS_API_TOKEN: ${ORDERS_API_TOKEN:-practice-token-123}
+    ports:
+      - "8765:8765"                     # host:container, so you can open it from your browser too
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8765/robots.txt')"]
+      interval: 2s
+      timeout: 2s
+      retries: 10
+
+  ingest:
+    build: .
+    depends_on:
+      api:
+        condition: service_healthy      # wait until the API answers
+    environment:
+      ORDERS_API_URL: http://api:8765   # service name = host name on the compose network
+      ORDERS_API_TOKEN: ${ORDERS_API_TOKEN:-practice-token-123}
+      OUTPUT_DIR: /out
+    volumes:
+      - ./output:/out                   # the Parquet file appears in ./output on your machine

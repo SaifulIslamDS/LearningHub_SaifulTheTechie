@@ -25,7 +25,7 @@ document.documentElement.classList.add('no-anim')})();</script>
 <a class="skip" href="#main">Skip to content</a>
 <header class="topbar">
   <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Open curriculum menu" title="Curriculum menu (press M)" aria-controls="sidebar" aria-expanded="false"><span class="ico-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span class="ico-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></button>
-  <a class="brand" href="../../../index.html"><span class="brand-badge">AI</span><span class="brand-text"><span class="brand-name">Data, AI &amp; Automation Path</span><span class="brand-version">v0.7</span></span></a>
+  <a class="brand" href="../../../index.html"><span class="brand-badge">AI</span><span class="brand-text"><span class="brand-name">Data, AI &amp; Automation Path</span><span class="brand-version">v0.8</span></span></a>
   <nav class="top-links" aria-label="Main">
     <a href="../../../index.html" class="">Home</a><a href="../../../curriculum.html" class="">Curriculum</a><a href="../../../practice-files.html" class="">Practice files</a><a href="../../../glossary.html" class="">Glossary</a><a href="../../../how-to-learn.html" class="">How to learn</a><a href="../../../about.html" class="">About</a>
   </nav>
@@ -41,7 +41,7 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="layout">
   <nav class="sidebar" id="sidebar" aria-label="Curriculum">
     <div class="side-title">Curriculum</div>
-    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="64"><i></i></div><span class="bar-label" data-progress-label></span></div>
+    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="77"><i></i></div><span class="bar-label" data-progress-label></span></div>
 <div class="nav-phase"><a href="../../../learn/phase-0/index.html"><span class="nav-num">0</span>Foundations</a>
 </div>
 <div class="nav-phase"><a href="../../../learn/phase-1/index.html"><span class="nav-num">1</span>Analytics &amp; BI</a>
@@ -55,6 +55,11 @@ document.documentElement.classList.add('no-anim')})();</script>
 <li><a class="" href="../../../learn/phase-3/advanced-sql/index.html">Advanced SQL</a>
 </li>
 <li><a class="current" href="../../../learn/phase-3/database-engineering/index.html">Database Engineering</a>
+<ul class="nav-lessons">
+<li><a class="" data-lesson="phase-3/database-engineering/01-postgresql-normalization" href="../../../learn/phase-3/database-engineering/01-postgresql-normalization.html">PostgreSQL &amp; Normalisation: One Fact in One Place</a></li>
+<li><a class="" data-lesson="phase-3/database-engineering/02-indexing-explain-analyze" href="../../../learn/phase-3/database-engineering/02-indexing-explain-analyze.html">Indexing &amp; EXPLAIN ANALYZE: Make the Right Queries Fast</a></li>
+<li><a class="" data-lesson="phase-3/database-engineering/03-transactions" href="../../../learn/phase-3/database-engineering/03-transactions.html">Transactions: All or Nothing, Even When Things Go Wrong</a></li>
+</ul>
 </li>
 <li><a class="" href="../../../learn/phase-3/data-warehousing/index.html">Data Warehousing</a>
 </li>
@@ -95,16 +100,18 @@ document.documentElement.classList.add('no-anim')})();</script>
 <nav class="crumbs" aria-label="Breadcrumb"><a href="../../../index.html">Home</a><span class="sep">/</span><a href="../../../learn/phase-3/index.html">Phase 3</a><span class="sep">/</span><span>Database Engineering</span></nav>
 <h1>Database Engineering</h1>
 <p class="lead">Part of Phase 3 — Data Engineering (AI-ready). Topics: PostgreSQL, Normalization, Indexing, Transactions, EXPLAIN ANALYZE.</p>
-
-
-<div class="section-head"><h2>Lessons</h2><p>0 written · 5 planned</p></div>
-<ul class="lesson-list"><li class="lesson-row planned"><span class="n">1</span><span>PostgreSQL<span class="desc">Planned lesson</span></span><span class="lesson-state"><span class="tag soon">Coming soon</span></span></li><li class="lesson-row planned"><span class="n">2</span><span>Normalization<span class="desc">Planned lesson</span></span><span class="lesson-state"><span class="tag soon">Coming soon</span></span></li><li class="lesson-row planned"><span class="n">3</span><span>Indexing<span class="desc">Planned lesson</span></span><span class="lesson-state"><span class="tag soon">Coming soon</span></span></li><li class="lesson-row planned"><span class="n">4</span><span>Transactions<span class="desc">Planned lesson</span></span><span class="lesson-state"><span class="tag soon">Coming soon</span></span></li><li class="lesson-row planned"><span class="n">5</span><span>EXPLAIN ANALYZE<span class="desc">Planned lesson</span></span><span class="lesson-state"><span class="tag soon">Coming soon</span></span></li></ul>
+<p><strong>Database engineering</strong> is designing and running databases that stay correct and fast as data grows: a schema where every fact lives in one place, constraints that reject bad data, indexes that make the important queries quick, and transactions that never leave data half-written. The examples use <strong>PostgreSQL</strong>, the open-source database behind a huge share of applications and a common choice for analytics workloads.</p>
+<p>The scripts are <code>03_load_postgres.py</code>, <code>06_normalization.sql</code>, <code>07_indexing_explain.sql</code> and <code>08_transactions.py</code> in <a href="../../../downloads/phase-3/data-engineering-scripts.zip">data-engineering-scripts.zip</a>. Setup (PostgreSQL with Docker or an installer) is on the <a href="../advanced-sql/index.html">Advanced SQL module page</a>.</p>
+<p><strong>By the end of this module you can:</strong> load data into PostgreSQL efficiently, normalise a flat export into related tables with keys and constraints, read an <code>EXPLAIN ANALYZE</code> plan and choose the right index, and use transactions and row locks to keep data correct when things fail or run concurrently.</p>
+<div class="files-box"><div class="files-head"><b>Practice files for this page</b><a href="../../../practice-files.html">All practice files →</a></div><ul><li><a href="../../../downloads/phase-3/data-engineering-scripts.zip" download>data-engineering-scripts.zip</a><span class="f-desc">Phase 3A scripts: practice API + website, ingestion, PostgreSQL loader, advanced SQL, indexing, transactions, star schema, SCD, BigQuery dialect, Delta Lake, Iceberg, Dockerfiles and compose.yaml · 270 KB</span></li></ul></div>
+<div class="section-head"><h2>Lessons</h2><p>3 written · 0 planned</p></div>
+<ul class="lesson-list"><li class="lesson-row" data-lesson="phase-3/database-engineering/01-postgresql-normalization"><span class="n">1</span><span><a href="../../../learn/phase-3/database-engineering/01-postgresql-normalization.html">PostgreSQL &amp; Normalisation: One Fact in One Place</a><span class="desc">Load data into PostgreSQL with COPY, see why a flat export causes update anomalies, normalise it into customers, products and orders with keys and constraints, and store money as NUMERIC — not floats.</span></span><span class="lesson-state">55 min</span></li><li class="lesson-row" data-lesson="phase-3/database-engineering/02-indexing-explain-analyze"><span class="n">2</span><span><a href="../../../learn/phase-3/database-engineering/02-indexing-explain-analyze.html">Indexing &amp; EXPLAIN ANALYZE: Make the Right Queries Fast</a><span class="desc">Read PostgreSQL query plans, see a sequential scan become an index scan (145 ms → 7 ms on 2 million rows), design composite indexes, and learn when an index can&#x27;t or shouldn&#x27;t help.</span></span><span class="lesson-state">50 min</span></li><li class="lesson-row" data-lesson="phase-3/database-engineering/03-transactions"><span class="n">3</span><span><a href="../../../learn/phase-3/database-engineering/03-transactions.html">Transactions: All or Nothing, Even When Things Go Wrong</a><span class="desc">Use transactions so multi-step changes either fully happen or not at all, let constraints stop impossible updates, and prevent lost updates when two sessions change the same row — with BEGIN, COMMIT, ROLLBACK and SELECT … FOR UPDATE.</span></span><span class="lesson-state">45 min</span></li></ul>
 <nav class="pager"><a class="prev" href="../../../learn/phase-3/advanced-sql/index.html"><small>← Previous module</small>Advanced SQL</a><a class="next" href="../../../learn/phase-3/data-warehousing/index.html"><small>Next module →</small>Data Warehousing</a></nav>
 
   </div></main>
   
 </div>
-<footer class="site">Data, AI &amp; Automation Path v0.7 · Applied AI, Data &amp; Automation Lab · Updated October 2026<br>
+<footer class="site">Data, AI &amp; Automation Path v0.8 · Applied AI, Data &amp; Automation Lab · Updated October 2026<br>
 Lesson text: <a href="../../../license.html">CC BY-NC-SA 4.0</a> · Code: <a href="../../../license.html#code-mit-license">MIT</a> · Free external resources belong to their respective owners.</footer>
 <script src="../../../search-index.js"></script>
 <script src="../../../assets/app.js"></script>

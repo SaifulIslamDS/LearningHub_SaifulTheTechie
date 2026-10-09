@@ -1,0 +1,16 @@
+{
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "next": "use a current supported release",
+    "react": "match Next.js requirements",
+    "react-dom": "match Next.js requirements",
+    "better-auth": "follow current official docs",
+    "@better-auth/mongo-adapter": "follow current official docs",
+    "mongodb": "follow current official docs"
+  }
+}

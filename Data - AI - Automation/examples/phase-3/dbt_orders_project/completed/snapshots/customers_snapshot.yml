@@ -1,0 +1,11 @@
+version: 2
+
+snapshots:
+  - name: customers_snapshot
+    description: "History of customer segment, region and credit-term changes."
+    relation: source('shop', 'customers_2025')
+    config:
+      schema: snapshots
+      unique_key: customer_id
+      strategy: check
+      check_cols: ['segment', 'region', 'credit_days']

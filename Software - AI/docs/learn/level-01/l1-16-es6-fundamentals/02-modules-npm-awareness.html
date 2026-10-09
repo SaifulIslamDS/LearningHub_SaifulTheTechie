@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en" data-root="../../../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Modules &amp; npm Awareness — Software &amp; AI Engineering Learning Hub</title>
+<meta name="description" content="Understand code modules and where package management fits.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Software &amp; AI Engineering Learning Hub">
+<meta property="og:title" content="Modules &amp; npm Awareness">
+<meta property="og:description" content="Understand code modules and where package management fits.">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+
+<script>(function(){var t=null;try{t=localStorage.getItem('stse-theme')}catch(e){}
+if(!t)t=(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';
+document.documentElement.setAttribute('data-theme',t);
+var n=null;try{n=localStorage.getItem('stse-nav')}catch(e){}
+if(n==='open'&&window.matchMedia&&matchMedia('(min-width: 961px)').matches)document.documentElement.setAttribute('data-nav','open');
+document.documentElement.classList.add('no-anim')})();</script>
+<link rel="stylesheet" href="../../../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Open curriculum menu" title="Curriculum menu (press M)" aria-controls="sidebar" aria-expanded="false"><span class="ico-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span class="ico-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></button>
+  <a class="brand" href="../../../index.html"><span class="brand-text"><span class="brand-ecosystem">Saiful The Techie</span><span class="brand-name">Software &amp; AI Engineering Learning Hub</span><span class="brand-version">v0.5.0</span></span></a>
+  <nav class="top-links" aria-label="Main">
+    <a href="../../../index.html" class="">Home</a><a href="../../../curriculum.html" class="">Curriculum</a><a href="../../../practice-files.html" class="">Practice files</a><a href="../../../glossary.html" class="">Glossary</a><a href="../../../how-to-learn.html" class="">How to learn</a><a href="../../../about.html" class="">About</a>
+  </nav>
+  <div class="top-spacer"></div>
+  <div class="search" role="search">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input id="searchInput" type="search" placeholder="Search lessons, tools, topics" aria-label="Search" autocomplete="off">
+    <kbd>/</kbd>
+    <div class="search-results" id="searchResults" role="listbox"></div>
+  </div>
+  <button class="icon-btn theme-toggle" id="themeBtn" aria-label="Toggle light or dark mode" title="Light / dark"><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
+</header>
+<div class="layout wide">
+  <nav class="sidebar" id="sidebar" aria-label="Curriculum">
+    <div class="side-title">Curriculum</div>
+    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="66"><i></i></div><span class="bar-label" data-progress-label></span></div>
+<div class="nav-phase current open"><a href="../../../learn/level-01/index.html"><span class="nav-num">01</span>Level 01</a>
+<ul class="nav-modules">
+<li><a class="" href="../../../learn/level-01/l1-0-welcome-to-the-course/index.html">Welcome to the Course</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-0-orientation-install-necessary-tools/index.html">Orientation - Install Necessary Tools</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-0-5-1-understanding-ai-reality-risks-and-mindset/index.html">Understanding AI: Reality, Risks, and Mindset</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-0-5-2-beyond-the-hype-how-to-actually-use-ai/index.html">Beyond the Hype: How to Actually Use AI</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-1-frontend-basics-html-and-css/index.html">Frontend Basics: HTML &amp; CSS</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-2-version-control-with-git-and-github/index.html">Version Control with Git and GitHub</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-3-semantic-html-and-advanced-elements/index.html">Semantic HTML &amp; Advanced Elements</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-4-css-layouts-and-advanced-styling/index.html">CSS Layouts &amp; Advanced Styling</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-5-build-a-beautiful-portfolio-website/index.html">Build a beautiful portfolio website</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-6-assignment-1/index.html">Assignment 1</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-7-introduction-to-javascript/index.html">Introduction to JavaScript</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-8-fundamental-concepts-of-conditionals/index.html">Fundamental Concepts of Conditionals</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-9-fundamental-concepts-of-array-part-1/index.html">Fundamental Concepts of Array[Part 1]</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-10-fundamental-concepts-of-loops/index.html">Fundamental Concepts of Loops</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-11-fundamental-concepts-of-array-part-2/index.html">Fundamental Concepts of Array[Part 2]</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-12-fundamentals-of-strings-and-objects/index.html">Fundamentals of Strings &amp; Objects</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-13-fundamentals-of-functions/index.html">Fundamentals of Functions</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-14-basic-problem-solving-with-javascript/index.html">Basic Problem Solving with JavaScript</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-15-assignment-2-problem-solving/index.html">Assignment 2 (Problem solving)</a>
+</li>
+<li><a class="current" href="../../../learn/level-01/l1-16-es6-fundamentals/index.html">ES6 Fundamentals</a>
+<ul class="nav-lessons">
+<li><a class="" data-lesson="level-01/l1-16-es6-fundamentals/01-main" href="../../../learn/level-01/l1-16-es6-fundamentals/01-main.html">Write Cleaner JavaScript with Modern ES6</a></li>
+<li><a class="current" data-lesson="level-01/l1-16-es6-fundamentals/02-modules-npm-awareness" href="../../../learn/level-01/l1-16-es6-fundamentals/02-modules-npm-awareness.html">Modules &amp; npm Awareness</a></li>
+</ul>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-17-more-es6/index.html">More ES6</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-18-problem-solving-with-javascript-es6-part-1/index.html">Problem Solving with JavaScript + ES6 [Part 1]</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-19-problem-solving-with-javascript-es6-part-2/index.html">Problem Solving with JavaScript + ES6 [Part 2]</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-20-assignment-3-problem-solving/index.html">Assignment 3 (Problem solving)</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-21-typescript-fundamentals/index.html">Typescript Fundamentals</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-22-more-typescript/index.html">More Typescript</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-22-5-optional-advanced-oop-in-typescript/index.html">(Optional Advanced) OOP in TypeScript</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-23-problem-solving-with-typescript/index.html">Problem Solving with Typescript</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-24-assignment-4-problem-solving/index.html">Assignment 4(Problem solving)</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-25-react-core-components-jsx-props-and-rendering/index.html">React Core — Components, JSX, Props &amp; Rendering</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-26-state-management-in-react-events-and-data-fetchi/index.html">State Management in React, Events &amp; Data Fetching</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-27-react-project-countries-explorer/index.html">React Project — Countries Explorer</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-28-javascript-dom-and-bom-deep-dive-react-bridge/index.html">JavaScript DOM &amp; BOM Deep Dive (React Bridge)</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-29-simple-react-spa-with-bpl-dream/index.html">Simple React SPA with BPL-DREAM</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-30-assignment-5/index.html">Assignment 5</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-31-next-js-foundation-and-routing/index.html">Next.js Foundation and Routing</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-32-next-js-rendering-basics/index.html">Next.js Rendering Basics</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-33-advanced-data-fetching-and-ui-integration/index.html">Advanced Data Fetching &amp; UI Integration</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-34-assignment-6/index.html">Assignment 6</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-35-security-and-authentication-in-next-js-with-bett/index.html">Security &amp; Authentication in Next.js with BetterAuth</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-36-authentication-advanced-profile-password-and-ema/index.html">Authentication Advanced — Profile, Password &amp; Email</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-37-next-js-project-with-authentication-part-1/index.html">Next.js Project with Authentication—Part 1</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-38-next-js-project-with-authentication-part-2/index.html">Next.js Project with Authentication — Part 2</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-39-assignment-7/index.html">Assignment 7</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-40-node-js-and-express-from-setup-to-first-api/index.html">Node.js &amp; Express — From Setup to First API</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-41-rest-api-and-crud-operations-with-express-and-mo/index.html">REST API &amp; CRUD Operations with Express and MongoDB</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-42-deep-dive-into-mongodb-operators-and-queries/index.html">Deep Dive into MongoDB Operators and Queries</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-43-project-setup-and-destination-crud/index.html">Project Setup &amp; Destination CRUD</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-44-booking-system-and-authentication/index.html">Booking System &amp; Authentication</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-45-jwt-security-and-deployment/index.html">JWT, Security &amp; Deployment</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-46-assignment-8/index.html">Assignment 8</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-47-requirement-analysis-and-planning/index.html">Requirement Analysis &amp; Planning</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-48-project-setup-and-architecture/index.html">Project Setup &amp; Architecture</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-49-core-implementation/index.html">Core Implementation</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-50-stripe-payment-and-webhooks-integration/index.html">Stripe Payment &amp; Webhooks Integration</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-51-review-ui-ux-check-and-deployment/index.html">Review, UI/UX check and Deployment</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-52-assignment-9/index.html">Assignment 9</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-53-requirement-analysis-prompt-and-prototyping/index.html">Requirement Analysis, Prompt &amp; Prototyping</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-54-project-setup-modular-architecture/index.html">Project Setup, Modular Architecture</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-55-core-implementation-backend-with-modular-archite/index.html">Core Implementation — Backend with Modular Architecture</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-56-core-implementation-frontend/index.html">Core Implementation — Frontend</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-57-sslcommerz-payment-integration/index.html">SSLCommerz Payment Integration</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-58-ai-integration-code-review-and-refactoring/index.html">AI Integration, Code Review &amp; Refactoring</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-59-finalization-checking-and-deployment/index.html">Finalization, Checking and Deployment</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-60-assignment-10/index.html">Assignment 10</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-61-ai-assisted-coding-foundations-and-mindset/index.html">AI Assisted Coding Foundations &amp; Mindset</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-62-design-to-code-figma-mcp-lovable-and-ai-builders/index.html">Design-to-Code — Figma MCP, Lovable &amp; AI Builders</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-63-cursor-ai-fullstack-agentic-development-mastery/index.html">Cursor AI — Fullstack Agentic Development Mastery</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-64-terminal-based-agentic-development-with-claude-c/index.html">Terminal-Based Agentic Development with Claude Code</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-65-code-quality-testing-review-refactoring-and-secu/index.html">Code Quality — Testing, Review, Refactoring &amp; Security</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-66-ai-ecosystem-deployment-and-final-project-showca/index.html">AI Ecosystem, Deployment &amp; Final Project Showcase</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-67-assignment-11/index.html">Assignment 11</a>
+</li>
+<li><a class="nav-project " href="../../../learn/level-01/project.html">★ Level project</a></li>
+</ul>
+</div>
+<div class="nav-phase"><a href="../../../learn/level-02/index.html"><span class="nav-num">02</span>Level 02</a>
+</div>
+<div class="side-extra"><a href="../../../index.html">Home</a><a href="../../../curriculum.html">Full curriculum map</a><a href="../../../practice-files.html">Practice files</a><a href="../../../glossary.html">Glossary</a><a href="../../../how-to-learn.html">How to learn here</a><a href="../../../about.html">About &amp; contributing</a></div></nav>
+  <main class="main" id="main"><div class="content">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../../index.html">Home</a><span class="sep">/</span><a href="../../../learn/level-01/index.html">Level 01</a><span class="sep">/</span><a href="../../../learn/level-01/l1-16-es6-fundamentals/index.html">ES6 Fundamentals</a><span class="sep">/</span><span>Modules &amp; npm Awareness</span></nav>
+<h1>Modules &amp; npm Awareness</h1>
+<p class="lead">Understand code modules and where package management fits.</p>
+<div class="meta"><span class="source-pill st-recommended">ST Recommended</span><span class="pill">Path <b>Level 01</b></span><span class="pill">Difficulty <b>Beginner</b></span><span class="pill">Time <b>45–60 min</b></span></div>
+
+<h2 id="start-here">Start here</h2>
+<p>Modules split larger programs into explicit files with imports and exports. npm manages scripts and packages in Node projects.</p>
+<div class="admonition job"><p class="admonition-title">Why it matters at work</p><p>This bridge topic prevents common gaps that appear when tutorial code is moved into real projects.</p></div>
+
+<h2 id="core-idea">Core idea</h2>
+<p>Use ESM <code>export</code> / <code>import</code> for clear module boundaries. <code>package.json</code> stores project metadata, scripts and dependency declarations. Avoid unnecessary dependencies.</p>
+
+
+
+<div class="terms-box"><div class="files-head"><b>Key terms in this lesson</b><a href="../../../glossary.html">Glossary →</a></div><div class="term-chips"><a class="term-chip" href="../../../glossary.html#npm" title="The package ecosystem and command-line tool commonly used with Node.js.">npm</a></div></div>
+<h2 id="free-resources">Free resources to go deeper</h2><ul class="resources"><li><div class="resource-top"><a href="https://nodejs.org/docs/latest/api/">Node.js documentation</a></div><span class="r-meta">Node.js</span><span class="r-note">Official runtime documentation.</span></li><li><div class="resource-top"><a href="https://docs.npmjs.com/">npm documentation</a></div><span class="r-meta">npm</span><span class="r-note">Official npm documentation.</span></li></ul>
+<div class="complete-bar"><span>Finished reading and did the exercise?</span>
+<button class="btn" id="completeBtn" type="button" data-id="level-01/l1-16-es6-fundamentals/02-modules-npm-awareness">Mark lesson as complete</button></div>
+<nav class="pager"><a class="prev" href="../../../learn/level-01/l1-16-es6-fundamentals/01-main.html"><small>← Previous</small>Write Cleaner JavaScript with Modern ES6</a><a class="next" href="../../../learn/level-01/l1-17-more-es6/01-main.html"><small>Next →</small>More ES6 &amp; JavaScript Semantics</a></nav>
+<p class="reviewed">Last reviewed: 2026-10-09</p>
+
+  </div></main>
+  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#start-here">Start here</a><a href="#core-idea">Core idea</a><a href="#free-resources">Free resources</a></aside>
+</div>
+<footer class="site"><b>Saiful The Techie</b> · Software &amp; AI Engineering Learning Hub v0.5.0 · Compiled &amp; Expanded by Saiful Islam · <a href="https://saifulshuvo.com">saifulshuvo.com</a> · Updated October 2026<br>
+Original learning content: <a href="../../../license.html">CC BY-NC-SA 4.0</a> · Code: <a href="../../../license.html#code-mit-license">MIT</a> · Free external resources belong to their respective owners.</footer>
+<script src="../../../search-index.js"></script>
+<script src="../../../assets/app.js"></script>
+</body>
+</html>

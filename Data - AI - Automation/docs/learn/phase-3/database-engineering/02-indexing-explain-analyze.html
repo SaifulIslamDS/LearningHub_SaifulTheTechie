@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en" data-root="../../../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Indexing &amp; EXPLAIN ANALYZE: Make the Right Queries Fast — Data, AI &amp; Automation Path</title>
+<meta name="description" content="Read PostgreSQL query plans, see a sequential scan become an index scan (145 ms → 7 ms on 2 million rows), design composite indexes, and learn when an index can&#x27;t or shouldn&#x27;t help.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data, AI &amp; Automation Path">
+<meta property="og:title" content="Indexing &amp; EXPLAIN ANALYZE: Make the Right Queries Fast">
+<meta property="og:description" content="Read PostgreSQL query plans, see a sequential scan become an index scan (145 ms → 7 ms on 2 million rows), design composite indexes, and learn when an index can&#x27;t or shouldn&#x27;t help.">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+
+<script>(function(){var t=null;try{t=localStorage.getItem('daa-theme')}catch(e){}
+if(!t)t=(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';
+document.documentElement.setAttribute('data-theme',t);
+var n=null;try{n=localStorage.getItem('daa-nav')}catch(e){}
+if(n==='open'&&window.matchMedia&&matchMedia('(min-width: 961px)').matches)document.documentElement.setAttribute('data-nav','open');
+document.documentElement.classList.add('no-anim')})();</script>
+<link rel="stylesheet" href="../../../assets/style.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233f7d6a'/%3E%3Ctext x='16' y='21' font-family='sans-serif' font-size='13' font-weight='700' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Open curriculum menu" title="Curriculum menu (press M)" aria-controls="sidebar" aria-expanded="false"><span class="ico-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span class="ico-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></button>
+  <a class="brand" href="../../../index.html"><span class="brand-badge">AI</span><span class="brand-text"><span class="brand-name">Data, AI &amp; Automation Path</span><span class="brand-version">v0.8</span></span></a>
+  <nav class="top-links" aria-label="Main">
+    <a href="../../../index.html" class="">Home</a><a href="../../../curriculum.html" class="">Curriculum</a><a href="../../../practice-files.html" class="">Practice files</a><a href="../../../glossary.html" class="">Glossary</a><a href="../../../how-to-learn.html" class="">How to learn</a><a href="../../../about.html" class="">About</a>
+  </nav>
+  <div class="top-spacer"></div>
+  <div class="search" role="search">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input id="searchInput" type="search" placeholder="Search lessons, tools, topics" aria-label="Search" autocomplete="off">
+    <kbd>/</kbd>
+    <div class="search-results" id="searchResults" role="listbox"></div>
+  </div>
+  <button class="icon-btn theme-toggle" id="themeBtn" aria-label="Toggle light or dark mode" title="Light / dark"><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
+</header>
+<div class="layout wide">
+  <nav class="sidebar" id="sidebar" aria-label="Curriculum">
+    <div class="side-title">Curriculum</div>
+    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="77"><i></i></div><span class="bar-label" data-progress-label></span></div>
+<div class="nav-phase"><a href="../../../learn/phase-0/index.html"><span class="nav-num">0</span>Foundations</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-1/index.html"><span class="nav-num">1</span>Analytics &amp; BI</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-2/index.html"><span class="nav-num">2</span>Data Science</a>
+</div>
+<div class="nav-phase current open"><a href="../../../learn/phase-3/index.html"><span class="nav-num">3</span>Data Engineering</a>
+<ul class="nav-modules">
+<li><a class="" href="../../../learn/phase-3/data-ingestion/index.html">Data Ingestion</a>
+</li>
+<li><a class="" href="../../../learn/phase-3/advanced-sql/index.html">Advanced SQL</a>
+</li>
+<li><a class="current" href="../../../learn/phase-3/database-engineering/index.html">Database Engineering</a>
+<ul class="nav-lessons">
+<li><a class="" data-lesson="phase-3/database-engineering/01-postgresql-normalization" href="../../../learn/phase-3/database-engineering/01-postgresql-normalization.html">PostgreSQL &amp; Normalisation: One Fact in One Place</a></li>
+<li><a class="current" data-lesson="phase-3/database-engineering/02-indexing-explain-analyze" href="../../../learn/phase-3/database-engineering/02-indexing-explain-analyze.html">Indexing &amp; EXPLAIN ANALYZE: Make the Right Queries Fast</a></li>
+<li><a class="" data-lesson="phase-3/database-engineering/03-transactions" href="../../../learn/phase-3/database-engineering/03-transactions.html">Transactions: All or Nothing, Even When Things Go Wrong</a></li>
+</ul>
+</li>
+<li><a class="" href="../../../learn/phase-3/data-warehousing/index.html">Data Warehousing</a>
+</li>
+<li><a class="" href="../../../learn/phase-3/lakehouse/index.html">Lakehouse &amp; Open Table Formats</a>
+</li>
+<li><a class="" href="../../../learn/phase-3/etl-elt/index.html">ETL / ELT</a>
+</li>
+<li><a class="" href="../../../learn/phase-3/data-quality/index.html">Data Quality &amp; Contracts</a>
+</li>
+<li><a class="" href="../../../learn/phase-3/docker/index.html">Docker</a>
+</li>
+<li><a class="" href="../../../learn/phase-3/orchestration/index.html">Orchestration</a>
+</li>
+<li><a class="" href="../../../learn/phase-3/dbt/index.html">dbt</a>
+</li>
+<li><a class="" href="../../../learn/phase-3/cloud-iac/index.html">Cloud &amp; Infrastructure as Code</a>
+</li>
+<li><a class="" href="../../../learn/phase-3/ai-ready-data/index.html">AI-Ready Data</a>
+</li>
+<li><a class="" href="../../../learn/phase-3/big-data-streaming/index.html">Big Data &amp; Streaming</a>
+</li>
+</ul>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-4/index.html"><span class="nav-num">4</span>ML Engineering</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-5/index.html"><span class="nav-num">5</span>LLM &amp; RAG</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-6/index.html"><span class="nav-num">6</span>Agents &amp; Automation</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-7/index.html"><span class="nav-num">7</span>LLMOps &amp; Governance</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-8/index.html"><span class="nav-num">8</span>Capstone</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-9/index.html"><span class="nav-num">9</span>Career</a>
+</div>
+<div class="side-extra"><a href="../../../index.html">Home</a><a href="../../../curriculum.html">Full curriculum map</a><a href="../../../practice-files.html">Practice files</a><a href="../../../glossary.html">Glossary</a><a href="../../../how-to-learn.html">How to learn here</a><a href="../../../about.html">About &amp; contributing</a></div></nav>
+  <main class="main" id="main"><div class="content">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../../index.html">Home</a><span class="sep">/</span><a href="../../../learn/phase-3/index.html">Phase 3</a><span class="sep">/</span><a href="../../../learn/phase-3/database-engineering/index.html">Database Engineering</a><span class="sep">/</span><span>Indexing &amp; EXPLAIN ANALYZE: Make the Right Queries Fast</span></nav>
+<h1>Indexing &amp; EXPLAIN ANALYZE: Make the Right Queries Fast</h1>
+<p class="lead">Read PostgreSQL query plans, see a sequential scan become an index scan (145 ms → 7 ms on 2 million rows), design composite indexes, and learn when an index can&#x27;t or shouldn&#x27;t help.</p>
+<div class="meta"><span class="pill">Phase <b>3</b> · Data Engineering</span><span class="pill">Level <b>Intermediate</b></span><span class="pill">Time <b>50 min</b></span></div>
+<div class="admonition note"><p class="admonition-title">Before you start</p><p><a href="../../../learn/phase-3/database-engineering/01-postgresql-normalization.html">PostgreSQL &amp; Normalisation: One Fact in One Place</a></p></div>
+<div class="files-box"><div class="files-head"><b>Practice files for this page</b><a href="../../../practice-files.html">All practice files →</a></div><ul><li><a href="../../../downloads/phase-3/data-engineering-scripts.zip" download>data-engineering-scripts.zip</a><span class="f-desc">Phase 3A scripts: practice API + website, ingestion, PostgreSQL loader, advanced SQL, indexing, transactions, star schema, SCD, BigQuery dialect, Delta Lake, Iceberg, Dockerfiles and compose.yaml · 270 KB</span></li></ul></div>
+<h2 id="what-is-it">What is it?</h2>
+<ul>
+<li>An <strong>index</strong> is a separate, sorted structure (usually a <strong>B-tree</strong>) that lets the database jump to matching rows instead of reading the whole table, like the index at the back of a book.</li>
+<li><strong><code>EXPLAIN</code></strong> shows the <strong>plan</strong> the database will use; <strong><code>EXPLAIN ANALYZE</code></strong> runs the query and shows what actually happened: which scan, how many rows, how long.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Plan node</th>
+<th>Means</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Seq Scan</strong></td>
+<td>Read every row of the table</td>
+</tr>
+<tr>
+<td><strong>Index Scan</strong> / <strong>Bitmap Index Scan</strong></td>
+<td>Use an index to find matching rows</td>
+</tr>
+<tr>
+<td><strong>Parallel …</strong>, <strong>Gather</strong></td>
+<td>Several workers share the work</td>
+</tr>
+<tr>
+<td><code>rows=</code></td>
+<td>Rows produced by that step</td>
+</tr>
+<tr>
+<td><code>actual time=a..b</code></td>
+<td>Milliseconds to first row .. to last row</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition job">
+<p class="admonition-title">Why it matters at work</p>
+<p>"This dashboard is slow" usually ends in a query plan. Data engineers add indexes to support pipeline lookups, joins and incremental loads, and must also know when an index won't help (or slows down writes). Reading <code>EXPLAIN ANALYZE</code> is a standard skill for database, analytics-engineering and backend roles.</p>
+</div>
+<p>The script is <code>07_indexing_explain.sql</code>. It first builds <code>shop.orders_big</code>: <strong>2 million synthetic orders</strong> (5 years, 2,000 customers), because indexes only matter at scale:</p>
+<div class="codehilite"><pre><span></span><code> table_size |  count
+------------+---------
+ 139 MB     | 2000000
+</code></pre></div>
+
+<p><em>Timings below are from our test machine; yours will differ. Compare the </em><em>ratios</em><em> and the plan shapes.</em></p>
+<h2 id="step-1-without-an-index">Step 1: without an index</h2>
+<div class="codehilite"><pre><span></span><code><span class="k">EXPLAIN</span><span class="w"> </span><span class="p">(</span><span class="k">ANALYZE</span><span class="p">,</span><span class="w"> </span><span class="n">COSTS</span><span class="w"> </span><span class="k">OFF</span><span class="p">,</span><span class="w"> </span><span class="n">TIMING</span><span class="w"> </span><span class="k">ON</span><span class="p">,</span><span class="w"> </span><span class="n">SUMMARY</span><span class="w"> </span><span class="k">ON</span><span class="p">)</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">shop</span><span class="p">.</span><span class="n">orders_big</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">customer_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'C0042'</span><span class="p">;</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code> Gather (actual time=0.322..145.544 rows=979 loops=1)
+   Workers Planned: 2
+   Workers Launched: 2
+   -&gt;  Parallel Seq Scan on orders_big (actual time=0.119..104.160 rows=326 loops=3)
+         Filter: (customer_id = 'C0042'::text)
+         Rows Removed by Filter: 666340
+ Planning Time: 0.246 ms
+ Execution Time: 145.643 ms
+</code></pre></div>
+
+<p>Read plans <strong>from the innermost line outwards</strong>: three workers each scanned a third of the table, threw away 666,340 rows each, and kept 326 (979 in total). <strong>2 million rows read to return 979.</strong></p>
+<h2 id="step-2-with-an-index">Step 2: with an index</h2>
+<div class="codehilite"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">idx_orders_big_customer</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">shop</span><span class="p">.</span><span class="n">orders_big</span><span class="w"> </span><span class="p">(</span><span class="n">customer_id</span><span class="p">);</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code> Bitmap Heap Scan on orders_big (actual time=0.277..6.609 rows=979 loops=1)
+   Recheck Cond: (customer_id = 'C0042'::text)
+   Heap Blocks: exact=950
+   -&gt;  Bitmap Index Scan on idx_orders_big_customer (actual time=0.148..0.148 rows=979 loops=1)
+         Index Cond: (customer_id = 'C0042'::text)
+ Planning Time: 0.336 ms
+ Execution Time: 6.680 ms
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code> index_size
+------------
+ 14 MB
+</code></pre></div>
+
+<p><strong>145 ms → 6.7 ms (about 20× faster).</strong> The index found the 979 rows' locations, then PostgreSQL read just the 950 table blocks that contain them. The price: 14 MB of extra storage, plus a little extra work on every insert and update.</p>
+<h2 id="step-3-composite-indexes-for-combined-filters">Step 3: composite indexes for combined filters</h2>
+<div class="codehilite"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">idx_orders_big_cust_date</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">shop</span><span class="p">.</span><span class="n">orders_big</span><span class="w"> </span><span class="p">(</span><span class="n">customer_id</span><span class="p">,</span><span class="w"> </span><span class="n">order_date</span><span class="p">);</span>
+<span class="k">EXPLAIN</span><span class="w"> </span><span class="p">(</span><span class="k">ANALYZE</span><span class="p">,</span><span class="w"> </span><span class="n">COSTS</span><span class="w"> </span><span class="k">OFF</span><span class="p">,</span><span class="w"> </span><span class="n">SUMMARY</span><span class="w"> </span><span class="k">ON</span><span class="p">)</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">order_date</span><span class="p">,</span><span class="w"> </span><span class="n">revenue</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">shop</span><span class="p">.</span><span class="n">orders_big</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">customer_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'C0042'</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">order_date</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="s1">'2025-01-01'</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">order_date</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="s1">'2025-04-01'</span><span class="p">;</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code> Bitmap Heap Scan on orders_big (actual time=0.068..0.152 rows=43 loops=1)
+   ...
+   -&gt;  Bitmap Index Scan on idx_orders_big_cust_date (actual time=0.052..0.052 rows=43 loops=1)
+         Index Cond: ((customer_id = 'C0042'::text) AND (order_date &gt;= '2025-01-01'::date) AND (order_date &lt; '2025-04-01'::date))
+ Execution Time: 0.200 ms
+</code></pre></div>
+
+<p><strong>0.2 ms.</strong> Both conditions are answered inside the index. Column <strong>order</strong> matters: <code>(customer_id, order_date)</code> serves "this customer" and "this customer in this date range", but not "all customers in this date range" (for that, <code>order_date</code> must come first or have its own index). Rule of thumb: <strong>equality columns first, then range columns.</strong></p>
+<h2 id="step-4-when-the-planner-ignores-an-index">Step 4: when the planner ignores an index</h2>
+<div class="codehilite"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">idx_orders_big_status</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">shop</span><span class="p">.</span><span class="n">orders_big</span><span class="w"> </span><span class="p">(</span><span class="n">status</span><span class="p">);</span>
+<span class="k">EXPLAIN</span><span class="w"> </span><span class="p">(</span><span class="n">COSTS</span><span class="w"> </span><span class="k">OFF</span><span class="p">)</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">shop</span><span class="p">.</span><span class="n">orders_big</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'Delivered'</span><span class="p">;</span>
+<span class="k">EXPLAIN</span><span class="w"> </span><span class="p">(</span><span class="n">COSTS</span><span class="w"> </span><span class="k">OFF</span><span class="p">)</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">shop</span><span class="p">.</span><span class="n">orders_big</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'Shipped'</span><span class="p">;</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code> Finalize Aggregate
+   -&gt;  Gather
+         -&gt;  Partial Aggregate
+               -&gt;  Parallel Seq Scan on orders_big
+                     Filter: (status = 'Delivered'::text)
+
+ Aggregate
+   -&gt;  Bitmap Heap Scan on orders_big
+         Recheck Cond: (status = 'Shipped'::text)
+         -&gt;  Bitmap Index Scan on idx_orders_big_status
+               Index Cond: (status = 'Shipped'::text)
+</code></pre></div>
+
+<p>Same index, two decisions. About 90% of orders are Delivered: jumping through an index to read 90% of the table is slower than reading it straight through, so the planner chooses a <strong>Seq Scan</strong>. Shipped is rare (about 4%), so the index wins. The planner decides using <strong>statistics</strong> that <code>ANALYZE</code> collects. Indexes help <strong>selective</strong> filters: ones that keep a small fraction of rows.</p>
+<h2 id="step-5-dont-hide-the-column-inside-a-function">Step 5: don't hide the column inside a function</h2>
+<div class="codehilite"><pre><span></span><code><span class="c1">-- function on the column: the date index can't be used</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">shop</span><span class="p">.</span><span class="n">orders_big</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">date_trunc</span><span class="p">(</span><span class="s1">'month'</span><span class="p">,</span><span class="w"> </span><span class="n">order_date</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'2025-03-01'</span><span class="p">;</span>
+<span class="c1">-- the same question as a range: the index is used</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">shop</span><span class="p">.</span><span class="n">orders_big</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">order_date</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="s1">'2025-03-01'</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">order_date</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="s1">'2025-04-01'</span><span class="p">;</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code> -&gt;  Parallel Seq Scan on orders_big (actual time=0.111..298.431 rows=11322 loops=3)
+       Filter: (date_trunc('month'::text, (order_date)::timestamp with time zone) = …)
+ Execution Time: 350.435 ms
+
+ -&gt;  Bitmap Index Scan on idx_orders_big_date (actual time=3.743..3.744 rows=33967 loops=1)
+       Index Cond: ((order_date &gt;= '2025-03-01'::date) AND (order_date &lt; '2025-04-01'::date))
+ Execution Time: 188.526 ms
+</code></pre></div>
+
+<p>The index is on <code>order_date</code>, not on <code>date_trunc('month', order_date)</code>, so wrapping the column in a function forces a full scan. Rewriting it as a <strong>range</strong> lets the index work. The gain here is smaller (350 → 189 ms) because the 34,000 matching rows are <strong>scattered</strong> over 15,180 table blocks (our synthetic dates are random). In real tables loaded in date order, matching rows sit together and the gain is much bigger.</p>
+<h2 id="step-6-indexes-cost-space-and-write-time">Step 6: indexes cost space (and write time)</h2>
+<div class="codehilite"><pre><span></span><code> table_only | all_indexes
+------------+-------------
+ 139 MB     | 95 MB
+</code></pre></div>
+
+<p>Four indexes already take <strong>two-thirds of the table's size</strong>. Every <code>INSERT</code>/<code>UPDATE</code> must update every index. Index what the important queries need, check with <code>EXPLAIN ANALYZE</code>, and drop indexes nothing uses.</p>
+<h2 id="indexing-checklist">Indexing checklist</h2>
+<table>
+<thead>
+<tr>
+<th>Index these</th>
+<th>Usually skip</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Primary keys (automatic) and foreign keys used in joins</td>
+<td>Low-selectivity columns on their own (status, true/false)</td>
+</tr>
+<tr>
+<td>Columns in frequent, selective <code>WHERE</code> filters</td>
+<td>Small tables (a few thousand rows)</td>
+</tr>
+<tr>
+<td>Combined filters → composite index (equality columns first)</td>
+<td>Columns you only ever wrap in functions (or use an expression index)</td>
+</tr>
+<tr>
+<td>Columns used for incremental loads (<code>updated_at</code>)</td>
+<td>Write-heavy staging tables during bulk loads</td>
+</tr>
+</tbody>
+</table>
+<h2 id="common-mistakes">Common mistakes</h2>
+<table>
+<thead>
+<tr>
+<th>Mistake</th>
+<th>What happens</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Guessing instead of measuring</td>
+<td>Indexes that are never used</td>
+<td><code>EXPLAIN ANALYZE</code> before and after</td>
+</tr>
+<tr>
+<td>Functions or casts on indexed columns</td>
+<td>Silent full scans</td>
+<td>Rewrite as ranges; or an expression index</td>
+</tr>
+<tr>
+<td>Wrong column order in composite indexes</td>
+<td>Index unused for some queries</td>
+<td>Equality first; match common query patterns</td>
+</tr>
+<tr>
+<td>Indexing everything</td>
+<td>Slow writes, wasted storage</td>
+<td>Index for real queries; monitor usage</td>
+</tr>
+<tr>
+<td>Stale statistics after big loads</td>
+<td>Bad plans</td>
+<td><code>ANALYZE</code> (autovacuum usually does this)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="try-it-yourself">Try it yourself</h2>
+<p><strong>Task:</strong> Run <code>EXPLAIN ANALYZE</code> on "total revenue per region for 2024". Which index (if any) does the planner use, and why isn't the query as fast as the single-customer lookup?</p>
+<details>
+<summary>Show the solution</summary>
+<div class="codehilite"><pre><span></span><code><span class="k">EXPLAIN</span><span class="w"> </span><span class="p">(</span><span class="k">ANALYZE</span><span class="p">,</span><span class="w"> </span><span class="n">COSTS</span><span class="w"> </span><span class="k">OFF</span><span class="p">,</span><span class="w"> </span><span class="n">SUMMARY</span><span class="w"> </span><span class="k">ON</span><span class="p">)</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">region</span><span class="p">,</span><span class="w"> </span><span class="n">round</span><span class="p">(</span><span class="k">sum</span><span class="p">(</span><span class="n">revenue</span><span class="p">),</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">shop</span><span class="p">.</span><span class="n">orders_big</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">order_date</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="s1">'2024-01-01'</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">order_date</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="s1">'2025-01-01'</span><span class="w"> </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">region</span><span class="p">;</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code> Finalize GroupAggregate (actual time=171.029..179.892 rows=5 loops=1)
+   ...
+   -&gt;  Parallel Bitmap Heap Scan on orders_big (actual time=9.124..90.499 rows=133284 loops=3)
+         Recheck Cond: ((order_date &gt;= '2024-01-01'::date) AND (order_date &lt; '2025-01-01'::date))
+         -&gt;  Bitmap Index Scan on idx_orders_big_date (actual time=34.253..34.254 rows=399851 loops=1)
+</code></pre></div>
+
+<p>It uses the <strong>date index</strong>, but a year is about 400,000 rows (20% of the table) that still have to be read and summed. Indexes make <em>finding</em> rows fast; they don't make <em>reading lots of rows</em> free. Large aggregations like this are what analytical (columnar) databases and pre-aggregated warehouse tables are for: the next module.</p>
+</details>
+<h2 id="quick-quiz">Quick quiz</h2>
+<div class="quiz-q" data-answer="1">
+<p>1. What does "Rows Removed by Filter: 666340" in a Seq Scan tell you?</p>
+<ol>
+<li>Rows were deleted</li>
+<li>The database read many rows only to throw them away, so an index might help</li>
+<li>The query failed</li>
+</ol>
+<details>
+<summary>Show answer</summary>
+<p><strong>B.</strong></p>
+</details>
+</div>
+<div class="quiz-q" data-answer="1">
+<p>2. Why might PostgreSQL ignore an index on <code>status</code> for <code>WHERE status = 'Delivered'</code>?</p>
+<ol>
+<li>The index is broken</li>
+<li>90% of rows match, so reading the whole table is cheaper</li>
+<li>Text columns can't be indexed</li>
+</ol>
+<details>
+<summary>Show answer</summary>
+<p><strong>B.</strong></p>
+</details>
+</div>
+<div class="quiz-q" data-answer="1">
+<p>3. Which WHERE clause can use an index on <code>order_date</code>?</p>
+<ol>
+<li><code>WHERE date_trunc('month', order_date) = '2025-03-01'</code></li>
+<li><code>WHERE order_date &gt;= '2025-03-01' AND order_date &lt; '2025-04-01'</code></li>
+<li>Both equally</li>
+</ol>
+<details>
+<summary>Show answer</summary>
+<p><strong>B.</strong></p>
+</details>
+</div>
+<h2 id="summary">Summary</h2>
+<ul>
+<li><code>EXPLAIN ANALYZE</code> shows the real plan: read from the inside out, and look at scan types, rows and times.</li>
+<li>Indexes make <strong>selective</strong> lookups fast (145 → 7 ms); composite indexes serve combined filters (equality columns first).</li>
+<li>The planner skips indexes for low-selectivity filters, and can't use them through functions: write ranges.</li>
+<li>Indexes cost storage and write time; measure before and after, and index for real queries.</li>
+</ul>
+<div class="admonition job">
+<p class="admonition-title">Job-ready check</p>
+<p><strong>Interview question:</strong> <em>"A query on a large table is slow. How do you investigate?"</em></p>
+<p><strong>Strong answer:</strong> "I run EXPLAIN ANALYZE to see the actual plan: whether it's a sequential scan discarding most rows, a bad join order, or a misestimate between planned and actual rows. Then I check the WHERE and JOIN columns for missing or unusable indexes, such as functions on indexed columns or the wrong composite order, add or fix an index, refresh statistics, and compare the plan and timing again. If it's a big aggregation, I consider a summary table or a columnar warehouse instead."</p>
+<p><strong>Mini project:</strong> On <code>shop.orders_big</code>, find the three queries your pipeline would run most (by customer, by date range, by customer and date). Index for them, record before/after execution times in a table, and check the total index size.</p>
+</div>
+<div class="terms-box"><div class="files-head"><b>Key terms in this lesson</b><a href="../../../glossary.html">Glossary →</a></div><div class="term-chips"><a class="term-chip" href="../../../glossary.html#explain-analyze" title="Runs a query and shows the plan the database actually used (scans, joins, rows, timings), the starting point for any performance fix.">EXPLAIN ANALYZE</a><a class="term-chip" href="../../../glossary.html#index" title="A structure that lets a database find rows quickly without reading the whole table, at the cost of extra storage and slower writes.">Index</a><a class="term-chip" href="../../../glossary.html#postgresql" title="A free, open-source relational database known for reliability and standards support; psql is its command-line client and psycopg its Python driver.">PostgreSQL</a></div></div>
+<h2 id="free-resources">Free resources to go deeper</h2><ul class="resources"><li><a href="https://www.postgresql.org/docs/current/using-explain.html">Using EXPLAIN</a><span class="r-meta">PostgreSQL official docs · How to read plans, costs and actual times.</span></li><li><a href="https://www.postgresql.org/docs/current/indexes.html">Indexes</a><span class="r-meta">PostgreSQL official docs · B-tree, multicolumn, expression and partial indexes.</span></li><li><a href="https://use-the-index-luke.com/">Use The Index, Luke</a><span class="r-meta">Markus Winand (free online book) · The classic guide to SQL indexing for developers.</span></li></ul>
+<div class="complete-bar"><span>Finished reading and did the exercise?</span>
+<button class="btn" id="completeBtn" type="button" data-id="phase-3/database-engineering/02-indexing-explain-analyze">Mark lesson as complete</button></div>
+<nav class="pager"><a class="prev" href="../../../learn/phase-3/database-engineering/01-postgresql-normalization.html"><small>← Previous</small>PostgreSQL &amp; Normalisation: One Fact in One Place</a><a class="next" href="../../../learn/phase-3/database-engineering/03-transactions.html"><small>Next →</small>Transactions: All or Nothing, Even When Things Go Wrong</a></nav>
+<p class="reviewed">Last reviewed: 2026-10-09</p>
+
+  </div></main>
+  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#step-1-without-an-index">Step 1: without an index</a><a href="#step-2-with-an-index">Step 2: with an index</a><a href="#step-3-composite-indexes-for-combined-filters">Step 3: composite indexes for combined filters</a><a href="#step-4-when-the-planner-ignores-an-index">Step 4: when the planner ignores an index</a><a href="#step-5-dont-hide-the-column-inside-a-function">Step 5: don&#x27;t hide the column inside a function</a><a href="#step-6-indexes-cost-space-and-write-time">Step 6: indexes cost space (and write time)</a><a href="#indexing-checklist">Indexing checklist</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#free-resources">Free resources</a></aside>
+</div>
+<footer class="site">Data, AI &amp; Automation Path v0.8 · Applied AI, Data &amp; Automation Lab · Updated October 2026<br>
+Lesson text: <a href="../../../license.html">CC BY-NC-SA 4.0</a> · Code: <a href="../../../license.html#code-mit-license">MIT</a> · Free external resources belong to their respective owners.</footer>
+<script src="../../../search-index.js"></script>
+<script src="../../../assets/app.js"></script>
+</body>
+</html>

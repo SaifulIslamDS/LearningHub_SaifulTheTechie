@@ -1,0 +1,13 @@
+version: 2
+
+sources:
+  - name: shop
+    description: "Deterministic 2025 Phase 3 practice data loaded by dbt seed."
+    schema: main_raw
+    tables:
+      - name: orders_2025
+        description: "4,246 synthetic order rows for 2025."
+      - name: customers_2025
+        description: "63 synthetic customers."
+      - name: products_2025
+        description: "12 synthetic products."

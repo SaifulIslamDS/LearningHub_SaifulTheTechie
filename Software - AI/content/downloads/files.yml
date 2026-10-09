@@ -1,0 +1,33 @@
+groups:
+- Level 01 · Web Foundations
+- Level 01 · JavaScript
+- Level 01 · TypeScript
+- Level 01 · React
+- Level 01 · Next.js & Authentication
+- Level 01 · Backend & MongoDB
+- Level 01 · Full-Stack Project 1
+files:
+- path: level-01/web-foundations-starter.zip
+  group: Level 01 · Web Foundations
+  description: Tutorial-aligned starter and completed HTML/CSS project files for Modules 1–4.
+- path: level-01/javascript-foundations.zip
+  group: Level 01 · JavaScript
+  description: Verified example scripts for Level 01 Modules 7–20.
+- path: level-01/broken-javascript-challenges.js
+  group: Level 01 · JavaScript
+  description: Deliberately broken JavaScript for debugging practice.
+- path: level-01/typescript-react-foundations.zip
+  group: Level 01 · TypeScript
+  description: Verified TypeScript examples and React state/data logic for Level 01 Modules 21–30.
+- path: level-01/react-vite-starter-reference.zip
+  group: Level 01 · React
+  description: Source-only React/Vite starter reference with an offline sample dataset; npm packages were not installed in the build environment.
+- path: level-01/nextjs-fullstack-reference.zip
+  group: Level 01 · Next.js & Authentication
+  description: Reference App Router, routing, sample data and Better Auth/MongoDB source files for Modules 31–39.
+- path: level-01/backend-mongodb-practice.zip
+  group: Level 01 · Backend & MongoDB
+  description: Verified framework-independent Node/CRUD/RBAC/payment examples plus reference Express, MongoDB, Better Auth and Stripe snippets for Modules 40–46.
+- path: level-01/fullstack-project-1-blueprint.zip
+  group: Level 01 · Full-Stack Project 1
+  description: PRD, architecture, environment and repository blueprint for Modules 47–52; intentionally not a finished solution.

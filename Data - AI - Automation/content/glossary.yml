@@ -195,15 +195,15 @@ terms:
     def: "A query inside another query, used in WHERE (with IN or EXISTS) or FROM, so one answer can feed the next."
     see: phase-1/analytical-sql/05-subqueries
   - term: CTE
-    aka: [common table expression, WITH clause]
+    aka: [common table expression, WITH clause, recursive cte, with recursive, recursive ctes]
     cat: SQL & databases
     def: "A named, temporary result defined with WITH at the start of a query. It makes multi-step SQL readable."
-    see: phase-1/analytical-sql/05-subqueries
+    see: phase-3/advanced-sql/01-ctes-recursive
   - term: Window function
-    aka: [window functions, OVER, ROW_NUMBER, running total]
+    aka: [window functions, OVER, ROW_NUMBER, running total, rank, dense_rank, lag, lead, partition by]
     cat: SQL & databases
     def: "A calculation across related rows that keeps every row, such as ranking or running totals, written with OVER (...)."
-    see: phase-3/advanced-sql
+    see: phase-3/advanced-sql/02-window-functions
   - term: Primary key
     aka: [PK]
     cat: SQL & databases
@@ -220,15 +220,15 @@ terms:
     def: "\"No value\" in a database. It is not zero or empty text, and comparisons with NULL need IS NULL / IS NOT NULL."
     see: phase-1/analytical-sql/04-joins
   - term: Index
-    aka: [database index]
+    aka: [database index, b-tree, composite index, create index]
     cat: SQL & databases
     def: "A structure that lets a database find rows quickly without reading the whole table, at the cost of extra storage and slower writes."
-    see: phase-3/database-engineering
+    see: phase-3/database-engineering/02-indexing-explain-analyze
   - term: Normalisation
     aka: [normalization, normal form]
     cat: SQL & databases
     def: "Designing tables so each fact is stored once (customers in one table, orders in another), which avoids contradictions when data changes."
-    see: phase-3/database-engineering
+    see: phase-3/database-engineering/01-postgresql-normalization
 
   # ---------------------------------------------------------------- Excel
   - term: SUMIFS
@@ -501,7 +501,7 @@ terms:
     def: "A fast DataFrame library written in Rust, with an expression syntax and lazy queries that are optimised before they run."
     see: phase-2/polars-duckdb/01-polars-dataframes
   - term: DuckDB
-    aka: [duckdb, in-process sql, olap]
+    aka: [duckdb, in-process sql]
     cat: Python & tools
     def: "A free, in-process analytical database: run SQL directly on CSV and Parquet files from Python, with no server to install."
     see: phase-2/polars-duckdb/02-duckdb-larger-data
@@ -638,10 +638,10 @@ terms:
     def: "A human-readable settings format based on indentation, used for CI workflows, configs and this site's curriculum."
     see: phase-0/testing-ci/02-github-actions
   - term: Docker
-    aka: [container, containers, docker image, dockerfile]
+    aka: [container, containers, docker image, dockerfile, image]
     cat: Git & DevOps
     def: "A tool that packages an application with everything it needs into a container image, so it runs the same on any machine."
-    see: phase-3/docker
+    see: phase-3/docker/01-images-containers
   - term: Infrastructure as code
     aka: [IaC, terraform]
     cat: Git & DevOps
@@ -653,27 +653,68 @@ terms:
     aka: [ETL, ELT, extract transform load]
     cat: Data engineering
     def: "Ways to move data: extract from sources, transform (clean, join) and load into a target. ELT loads first and transforms inside the warehouse."
-    see: phase-3/etl-elt
+    see: phase-3/etl-elt/01-modular-idempotent-incremental
   - term: Data pipeline
-    aka: [pipeline, data pipelines]
+    aka: [data pipelines]
     cat: Data engineering
     def: "A repeatable, automated series of steps that moves and transforms data from sources to where it is used."
-    see: phase-3
+    see: phase-3/etl-elt/01-modular-idempotent-incremental
   - term: Data warehouse
     aka: [warehouse, dwh]
     cat: Data engineering
     def: "A database designed for analysis, holding cleaned, modelled history from many sources (often in star schemas)."
-    see: phase-3/data-warehousing
+    see: phase-3/data-warehousing/01-oltp-olap-star-schema
   - term: Lakehouse
-    aka: [data lake, delta lake, iceberg]
+    aka: [data lake]
     cat: Data engineering
     def: "A data platform that stores files cheaply like a data lake but adds tables, transactions and SQL like a warehouse."
-    see: phase-3/lakehouse
+    see: phase-3/lakehouse/01-delta-lake-medallion
   - term: dbt
     aka: [data build tool]
     cat: Data engineering
     def: "A tool that turns SQL SELECT statements into tested, documented and version-controlled transformation models in the warehouse."
-    see: phase-3/dbt
+    see: phase-3/dbt/01-models-tests
+
+  - term: dbt model
+    aka: [model in dbt, dbt models]
+    cat: Data engineering
+    def: "A SQL select statement that dbt compiles and materializes as part of a dependency graph."
+    see: phase-3/dbt/01-models-tests
+  - term: Data test
+    aka: [dbt data test, generic test, singular test]
+    cat: Data engineering
+    def: "An executable assertion about a dbt resource; it passes when the test query finds no failing rows."
+    see: phase-3/dbt/01-models-tests
+  - term: Materialization
+    aka: [dbt materialization, view materialization, table materialization]
+    cat: Data engineering
+    def: "The strategy dbt uses to persist a model, such as a view, table, incremental model or ephemeral relation."
+    see: phase-3/dbt/01-models-tests
+  - term: dbt snapshot
+    aka: [snapshot, SCD2 snapshot]
+    cat: Data engineering
+    def: "A dbt resource that records versions of changing source rows over time so overwritten business attributes can be reconstructed historically."
+    see: phase-3/dbt/02-snapshots-macros
+  - term: Jinja macro
+    aka: [dbt macro, macro, Jinja]
+    cat: Data engineering
+    def: "Reusable templating logic that generates SQL during dbt compilation, similar to a function that writes SQL."
+    see: phase-3/dbt/02-snapshots-macros
+  - term: Data mart
+    aka: [mart, dbt mart]
+    cat: Data engineering
+    def: "A business-facing analytical model shaped for a specific entity, metric set or reporting use case."
+    see: phase-3/dbt/03-documentation-marts
+  - term: Data lineage
+    aka: [lineage, DAG lineage]
+    cat: Data engineering
+    def: "The dependency path showing which sources and models feed a downstream dataset, report or data product."
+    see: phase-3/dbt/03-documentation-marts
+  - term: Staging model
+    aka: [stg model, staging layer]
+    cat: Data engineering
+    def: "A source-oriented dbt model that creates a clean, typed and consistently named entry point for downstream transformations."
+    see: phase-3/dbt/01-models-tests
   - term: Orchestration
     aka: [orchestrator, airflow, dagster, DAG]
     cat: Data engineering
@@ -683,12 +724,57 @@ terms:
     aka: [data validation, data tests]
     cat: Data engineering
     def: "How fit data is for use: complete, valid, unique, consistent and on time. Checked with automated tests in pipelines."
-    see: phase-3/data-quality
+    see: phase-3/data-quality/01-validation-rules-pytest
+  - term: Great Expectations
+    aka: [GX Core, expectation suite]
+    cat: Data engineering
+    def: "A data-quality framework that expresses verifiable assertions as Expectations, groups them in Suites, and returns structured validation results."
+    see: phase-3/data-quality/02-great-expectations
+  - term: Data contract
+    aka: [data contracts]
+    cat: Data engineering
+    def: "An explicit producer-consumer agreement covering the structure, meaning, ownership, versioning and delivery expectations of a dataset."
+    see: phase-3/data-quality/03-data-contracts-freshness-alerting
+  - term: Data freshness
+    aka: [freshness check, freshness threshold]
+    cat: Data engineering
+    def: "How recent the newest trustworthy data is compared with when consumers expect it to arrive; thresholds can warn or block stale outputs."
+    see: phase-3/data-quality/03-data-contracts-freshness-alerting
+  - term: JSON Schema
+    aka: [JSON Schema Draft 2020-12]
+    cat: Data engineering
+    def: "A machine-readable language for describing and validating JSON structure, required properties, types and other constraints."
+    see: phase-3/data-quality/03-data-contracts-freshness-alerting
   - term: Idempotent
     aka: [idempotency]
     cat: Data engineering
     def: "A job is idempotent if running it twice gives the same result as running it once, which makes retries safe."
-    see: phase-3/etl-elt
+    see: phase-3/etl-elt/01-modular-idempotent-incremental
+  - term: Watermark
+    aka: [high watermark, incremental watermark]
+    cat: Data engineering
+    def: "A saved value such as the latest update timestamp or sequence number that marks how far a successful incremental load has processed."
+    see: phase-3/etl-elt/01-modular-idempotent-incremental
+  - term: Incremental load
+    aka: [incremental loading, delta load]
+    cat: Data engineering
+    def: "A load that processes only rows or files that are new or changed since the previous successful point instead of rebuilding all history."
+    see: phase-3/etl-elt/01-modular-idempotent-incremental
+  - term: Upsert
+    aka: [merge upsert]
+    cat: Data engineering
+    def: "A write that updates a target row when its key already exists and inserts it when the key is new, making incremental retries easier to keep idempotent."
+    see: phase-3/etl-elt/01-modular-idempotent-incremental
+  - term: Change data capture
+    aka: [CDC]
+    cat: Data engineering
+    def: "Capturing row-level inserts, updates and deletes from a source so downstream systems can process changes without repeatedly scanning the whole table."
+    see: phase-3/etl-elt/02-replayable-pipelines-cdc
+  - term: Replayable pipeline
+    aka: [replayability]
+    cat: Data engineering
+    def: "A pipeline that can rebuild the same state from a known starting snapshot and the same ordered inputs or change events."
+    see: phase-3/etl-elt/02-replayable-pipelines-cdc
   - term: Streaming
     aka: [kafka, event streaming, real-time]
     cat: Data engineering
@@ -698,12 +784,84 @@ terms:
     aka: [REST API, api, endpoint]
     cat: Data engineering
     def: "Application programming interface: a defined way for programs to request data or actions from another system, usually over HTTP with JSON."
-    see: phase-6/apis-webhooks
+    see: phase-3/data-ingestion/01-rest-apis-auth-pagination
   - term: Webhook
     aka: [webhooks]
     cat: Data engineering
     def: "A URL that another system calls automatically when an event happens (an order is created), pushing data instead of you polling for it."
     see: phase-6/apis-webhooks
+
+  # ---------------------------------------------------------------- Phase 3A: storing and serving data
+  - term: Pagination
+    aka: [paging, cursor pagination, next link, page size]
+    cat: Data engineering
+    def: "Splitting large API results into pages. A client must follow the next page (or cursor) until there are none left, and check the total it received."
+    see: phase-3/data-ingestion/01-rest-apis-auth-pagination
+  - term: Rate limit
+    aka: [rate limiting, "429", retry-after, backoff, exponential backoff]
+    cat: Data engineering
+    def: "A cap on how many requests a client may send. APIs answer 429 Too Many Requests; well-behaved clients wait (Retry-After or exponential back-off) and retry."
+    see: phase-3/data-ingestion/01-rest-apis-auth-pagination
+  - term: Web scraping
+    aka: [scraping, beautifulsoup, beautiful soup, robots.txt]
+    cat: Data engineering
+    def: "Extracting data from web pages' HTML when there's no API, while respecting robots.txt, terms of service and polite request rates."
+    see: phase-3/data-ingestion/02-scraping-file-formats
+  - term: OLTP
+    aka: [OLAP, oltp vs olap, online transaction processing, online analytical processing]
+    cat: SQL & databases
+    def: "OLTP systems run the business (many small reads and writes, normalised tables). OLAP systems analyse it (large scans and aggregations, dimensional models)."
+    see: phase-3/data-warehousing/01-oltp-olap-star-schema
+  - term: Surrogate key
+    aka: [surrogate keys, business key, natural key]
+    cat: SQL & databases
+    def: "A meaningless integer key owned by the warehouse (customer_key), as opposed to the source system's business key (C010). It makes history (SCD type 2) possible."
+    see: phase-3/data-warehousing/01-oltp-olap-star-schema
+  - term: Slowly changing dimension
+    aka: [SCD, scd type 1, scd type 2, slowly changing dimensions]
+    cat: SQL & databases
+    def: "A dimension whose attributes change over time. Type 1 overwrites the old value; type 2 adds a new version row with valid-from and valid-to dates, keeping history."
+    see: phase-3/data-warehousing/02-scd-bigquery
+  - term: BigQuery
+    aka: [google bigquery, cloud data warehouse]
+    cat: Data engineering
+    def: "Google Cloud's serverless, columnar data warehouse. On-demand queries are billed by bytes scanned, so selecting fewer columns and partitioning tables saves money."
+    see: phase-3/data-warehousing/02-scd-bigquery
+  - term: Transaction
+    aka: [ACID, transactions, rollback, begin]
+    cat: SQL & databases
+    def: "A group of database changes that succeed or fail together. ACID: atomicity, consistency, isolation, durability."
+    see: phase-3/database-engineering/03-transactions
+  - term: EXPLAIN ANALYZE
+    aka: [explain, query plan, execution plan, seq scan]
+    cat: SQL & databases
+    def: "Runs a query and shows the plan the database actually used (scans, joins, rows, timings), the starting point for any performance fix."
+    see: phase-3/database-engineering/02-indexing-explain-analyze
+  - term: PostgreSQL
+    aka: [postgres, psql, psycopg]
+    cat: SQL & databases
+    def: "A free, open-source relational database known for reliability and standards support; psql is its command-line client and psycopg its Python driver."
+    see: phase-3/database-engineering/01-postgresql-normalization
+  - term: Medallion architecture
+    aka: [medallion, bronze silver gold, bronze, silver, gold layer, medallion layers]
+    cat: Data engineering
+    def: "Organising a lakehouse in layers: bronze (raw, as received), silver (cleaned, conformed), gold (business-ready aggregates and models)."
+    see: phase-3/lakehouse/01-delta-lake-medallion
+  - term: Delta Lake
+    aka: [delta, delta table, deltalake, delta-rs, time travel]
+    cat: Data engineering
+    def: "An open table format: Parquet files plus a transaction log that adds ACID writes, schema enforcement, MERGE and time travel. Native to Databricks and Microsoft Fabric."
+    see: phase-3/lakehouse/01-delta-lake-medallion
+  - term: Apache Iceberg
+    aka: [iceberg, pyiceberg, iceberg table, open table format]
+    cat: Data engineering
+    def: "An open table format with a catalog, snapshots, schema evolution and file-level statistics, readable by many engines (Spark, Trino, Snowflake, DuckDB…)."
+    see: phase-3/lakehouse/02-iceberg-lakehouse-platforms
+  - term: Docker Compose
+    aka: [compose, compose.yaml, docker-compose]
+    cat: Git & DevOps
+    def: "A tool and YAML file for running several containers together (services, networks, volumes, health checks) with one command: docker compose up."
+    see: phase-3/docker/02-compose-reproducible
 
   # ---------------------------------------------------------------- Machine learning
   - term: Machine learning

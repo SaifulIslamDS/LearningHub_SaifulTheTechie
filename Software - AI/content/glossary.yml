@@ -1,0 +1,417 @@
+categories:
+- Web
+- JavaScript
+- Engineering
+- TypeScript
+- React
+- Next.js
+- Backend
+- Database
+- Authentication
+- Payments
+- Architecture
+- HTTP & APIs
+- Operations
+terms:
+- term: HTML
+  aka: []
+  cat: Web
+  def: The language used to structure web-page content.
+  see: level-01/l1-1-frontend-basics-html-and-css/01-main
+- term: CSS
+  aka: []
+  cat: Web
+  def: The language used to style and lay out HTML documents.
+  see: level-01/l1-4-css-layouts-and-advanced-styling/01-main
+- term: Git
+  aka: []
+  cat: Engineering
+  def: A distributed version-control system.
+  see: level-01/l1-2-version-control-with-git-and-github/01-main
+- term: JavaScript
+  aka:
+  - JS
+  cat: JavaScript
+  def: A programming language used in browsers, servers and tools.
+  see: level-01/l1-7-introduction-to-javascript/01-main
+- term: Variable
+  aka: []
+  cat: JavaScript
+  def: A named binding used to refer to a value.
+  see: level-01/l1-7-introduction-to-javascript/01-main
+- term: Strict equality
+  aka:
+  - ===
+  cat: JavaScript
+  def: Equality comparison without equality coercion.
+  see: level-01/l1-8-fundamental-concepts-of-conditionals/01-main
+- term: Array
+  aka: []
+  cat: JavaScript
+  def: An ordered zero-indexed collection.
+  see: level-01/l1-9-fundamental-concepts-of-array-part-1/01-main
+- term: Loop
+  aka: []
+  cat: JavaScript
+  def: A control structure that repeats work.
+  see: level-01/l1-10-fundamental-concepts-of-loops/01-main
+- term: Object
+  aka: []
+  cat: JavaScript
+  def: A value that groups named properties.
+  see: level-01/l1-12-fundamentals-of-strings-and-objects/01-main
+- term: Function
+  aka: []
+  cat: JavaScript
+  def: A reusable unit of behavior.
+  see: level-01/l1-13-fundamentals-of-functions/01-main
+- term: ES6
+  aka:
+  - ECMAScript 2015
+  cat: JavaScript
+  def: The 2015 ECMAScript edition introducing many modern JS features.
+  see: level-01/l1-16-es6-fundamentals/01-main
+- term: Closure
+  aka: []
+  cat: JavaScript
+  def: A function retaining lexical access to bindings from its creation scope.
+  see: level-01/l1-17-more-es6/01-main
+- term: map
+  aka: []
+  cat: JavaScript
+  def: An array method that transforms every element.
+  see: level-01/l1-17-more-es6/01-main
+- term: filter
+  aka: []
+  cat: JavaScript
+  def: An array method that keeps elements matching a callback decision.
+  see: level-01/l1-17-more-es6/01-main
+- term: reduce
+  aka: []
+  cat: JavaScript
+  def: An array method that accumulates items into a result.
+  see: level-01/l1-19-problem-solving-with-javascript-es6-part-2/01-main
+- term: Debugging
+  aka: []
+  cat: Engineering
+  def: The process of finding why actual behavior differs from expected behavior.
+  see: level-01/l1-7-introduction-to-javascript/02-debugging-console-devtools
+- term: npm
+  aka: []
+  cat: Engineering
+  def: The package ecosystem and command-line tool commonly used with Node.js.
+  see: level-01/l1-16-es6-fundamentals/02-modules-npm-awareness
+- term: Accessibility
+  aka:
+  - a11y
+  cat: Web
+  def: Design and implementation that let people use an interface across abilities and input methods.
+  see: level-01/l1-3-semantic-html-and-advanced-elements/02-accessibility-foundations
+- term: Responsive design
+  aka:
+  - RWD
+  cat: Web
+  def: An approach where one interface adapts to different viewport sizes and user settings.
+  see: level-01/l1-4-css-layouts-and-advanced-styling/02-responsive-web-design
+- term: TypeScript
+  aka:
+  - TS
+  cat: TypeScript
+  def: A statically typed superset of JavaScript that adds compile-time type checking and type-system features.
+  see: level-01/l1-21-typescript-fundamentals/01-main
+- term: Type inference
+  aka: []
+  cat: TypeScript
+  def: The compiler’s ability to determine a value’s type from the code without an explicit annotation.
+  see: level-01/l1-21-typescript-fundamentals/01-main
+- term: Union type
+  aka: []
+  cat: TypeScript
+  def: A type that allows a value to be one of several specified types.
+  see: level-01/l1-21-typescript-fundamentals/01-main
+- term: Intersection type
+  aka: []
+  cat: TypeScript
+  def: A type combining multiple types so the resulting value must satisfy all combined requirements.
+  see: level-01/l1-21-typescript-fundamentals/01-main
+- term: Interface
+  aka: []
+  cat: TypeScript
+  def: A named TypeScript contract commonly used to describe the shape of objects and class implementations.
+  see: level-01/l1-22-more-typescript/01-main
+- term: Generic
+  aka:
+  - Generics
+  cat: TypeScript
+  def: A type-system feature that lets code work with reusable type parameters while preserving type information.
+  see: level-01/l1-22-more-typescript/01-main
+- term: Utility type
+  aka:
+  - Utility types
+  cat: TypeScript
+  def: Built-in TypeScript helpers such as Partial, Pick, Omit and Record that transform existing types.
+  see: level-01/l1-22-more-typescript/01-main
+- term: Type narrowing
+  aka: []
+  cat: TypeScript
+  def: Using runtime checks or control flow so TypeScript can treat a value as a more specific type.
+  see: level-01/l1-22-5-optional-advanced-oop-in-typescript/01-main
+- term: Class
+  aka: []
+  cat: TypeScript
+  def: A blueprint for constructing objects with shared state and behavior.
+  see: level-01/l1-22-5-optional-advanced-oop-in-typescript/01-main
+- term: Inheritance
+  aka: []
+  cat: TypeScript
+  def: An object-oriented mechanism where one class extends behavior and structure from another class.
+  see: level-01/l1-22-5-optional-advanced-oop-in-typescript/01-main
+- term: Polymorphism
+  aka: []
+  cat: TypeScript
+  def: The ability to use different implementations through a shared interface or base abstraction.
+  see: level-01/l1-22-5-optional-advanced-oop-in-typescript/01-main
+- term: Encapsulation
+  aka: []
+  cat: TypeScript
+  def: Keeping internal state and implementation details behind a controlled public interface.
+  see: level-01/l1-22-5-optional-advanced-oop-in-typescript/01-main
+- term: React
+  aka: []
+  cat: React
+  def: A library for building user interfaces from declarative, reusable components.
+  see: level-01/l1-25-react-core-components-jsx-props-and-rendering/01-main
+- term: Component
+  aka:
+  - React component
+  cat: React
+  def: A reusable unit of React UI that receives inputs and describes what should render.
+  see: level-01/l1-25-react-core-components-jsx-props-and-rendering/01-main
+- term: JSX
+  aka: []
+  cat: React
+  def: A JavaScript syntax extension commonly used in React to describe UI element trees.
+  see: level-01/l1-25-react-core-components-jsx-props-and-rendering/01-main
+- term: Props
+  aka:
+  - Properties
+  cat: React
+  def: Read-only inputs passed from a parent component to a child component.
+  see: level-01/l1-25-react-core-components-jsx-props-and-rendering/01-main
+- term: State
+  aka:
+  - React state
+  cat: React
+  def: Data a React component remembers between renders and can update to drive interactive UI.
+  see: level-01/l1-26-state-management-in-react-events-and-data-fetchi/01-main
+- term: useState
+  aka: []
+  cat: React
+  def: A React Hook for declaring local component state.
+  see: level-01/l1-26-state-management-in-react-events-and-data-fetchi/01-main
+- term: useEffect
+  aka: []
+  cat: React
+  def: A React Hook for synchronizing a component with systems outside React.
+  see: level-01/l1-26-state-management-in-react-events-and-data-fetchi/01-main
+- term: Immutable update
+  aka:
+  - Immutability
+  cat: React
+  def: Updating state by creating a new value instead of mutating the existing object or array in place.
+  see: level-01/l1-26-state-management-in-react-events-and-data-fetchi/01-main
+- term: DOM
+  aka:
+  - Document Object Model
+  cat: Web
+  def: The browser’s in-memory object tree representing an HTML document and its nodes.
+  see: level-01/l1-28-javascript-dom-and-bom-deep-dive-react-bridge/01-main
+- term: BOM
+  aka:
+  - Browser Object Model
+  cat: Web
+  def: Browser-provided objects such as window, location and history that expose browser capabilities beyond the document.
+  see: level-01/l1-28-javascript-dom-and-bom-deep-dive-react-bridge/01-main
+- term: Event delegation
+  aka: []
+  cat: JavaScript
+  def: Handling events on an ancestor and determining which descendant triggered them, often using event bubbling.
+  see: level-01/l1-28-javascript-dom-and-bom-deep-dive-react-bridge/01-main
+- term: Virtual DOM
+  aka: []
+  cat: React
+  def: A conceptual representation React uses to compare UI descriptions and coordinate efficient updates to the real DOM.
+  see: level-01/l1-28-javascript-dom-and-bom-deep-dive-react-bridge/01-main
+- term: Vite
+  aka: []
+  cat: Engineering
+  def: A modern development server and build tool commonly used to scaffold and build frontend applications.
+  see: level-01/l1-26-state-management-in-react-events-and-data-fetchi/01-main
+- term: Next.js
+  aka: []
+  cat: Next.js
+  def: A React framework that provides routing, server/client rendering boundaries, data conventions and production tooling.
+  see: level-01/l1-31-next-js-foundation-and-routing/01-main
+- term: App Router
+  aka: []
+  cat: Next.js
+  def: The Next.js file-system router based on the app directory and React Server Component model.
+  see: level-01/l1-31-next-js-foundation-and-routing/01-main
+- term: Dynamic route
+  aka: []
+  cat: Next.js
+  def: A route whose path contains a variable segment such as [id] or [slug].
+  see: level-01/l1-31-next-js-foundation-and-routing/01-main
+- term: Server Component
+  aka:
+  - React Server Component
+  cat: Next.js
+  def: A React component rendered in the server environment by default in Next.js App Router routes and layouts.
+  see: level-01/l1-32-next-js-rendering-basics/01-main
+- term: Client Component
+  aka: []
+  cat: Next.js
+  def: A component inside a use-client boundary that can use browser interactivity such as state, events and effects.
+  see: level-01/l1-32-next-js-rendering-basics/01-main
+- term: Hydration
+  aka: []
+  cat: Next.js
+  def: The React process that attaches client-side behavior and event handlers to server-rendered HTML.
+  see: level-01/l1-32-next-js-rendering-basics/01-main
+- term: Revalidation
+  aka: []
+  cat: Next.js
+  def: Refreshing cached or prerendered data so a route can become current without discarding every caching benefit.
+  see: level-01/l1-33-advanced-data-fetching-and-ui-integration/01-main
+- term: ISR
+  aka:
+  - Incremental Static Regeneration
+  cat: Next.js
+  def: A pattern for serving prerendered content that can be regenerated after a configured freshness interval or invalidation.
+  see: level-01/l1-33-advanced-data-fetching-and-ui-integration/01-main
+- term: Authentication
+  aka: []
+  cat: Authentication
+  def: The process of establishing who a user or caller is.
+  see: level-01/l1-35-security-and-authentication-in-next-js-with-bett/01-main
+- term: Authorization
+  aka: []
+  cat: Authentication
+  def: The process of deciding what an authenticated user or caller is allowed to do.
+  see: level-01/l1-45-jwt-security-and-deployment/01-main
+- term: Session
+  aka: []
+  cat: Authentication
+  def: Server-trusted continuity that associates requests with an authenticated identity.
+  see: level-01/l1-35-security-and-authentication-in-next-js-with-bett/01-main
+- term: OAuth
+  aka: []
+  cat: Authentication
+  def: A protocol family used to delegate authorization and commonly support social sign-in without sharing the provider password with the application.
+  see: level-01/l1-35-security-and-authentication-in-next-js-with-bett/01-main
+- term: JWT
+  aka:
+  - JSON Web Token
+  cat: Authentication
+  def: A compact signed token format commonly used to carry claims between parties.
+  see: level-01/l1-45-jwt-security-and-deployment/01-main
+- term: HTTPOnly cookie
+  aka: []
+  cat: Authentication
+  def: A cookie marked so ordinary browser JavaScript cannot read it, reducing exposure of sensitive cookie values to script access.
+  see: level-01/l1-45-jwt-security-and-deployment/01-main
+- term: RBAC
+  aka:
+  - Role-based access control
+  cat: Authentication
+  def: An authorization model that grants permissions according to a user role such as admin, moderator or user.
+  see: level-01/l1-49-core-implementation/01-main
+- term: Node.js
+  aka: []
+  cat: Backend
+  def: A JavaScript runtime used for servers, command-line tools and other non-browser programs.
+  see: level-01/l1-40-node-js-and-express-from-setup-to-first-api/01-main
+- term: Express
+  aka: []
+  cat: Backend
+  def: A Node.js web framework centered on routing and middleware through the request-response cycle.
+  see: level-01/l1-40-node-js-and-express-from-setup-to-first-api/01-main
+- term: REST API
+  aka: []
+  cat: Backend
+  def: An HTTP API organized around resources, methods and representations using REST-style constraints and conventions.
+  see: level-01/l1-41-rest-api-and-crud-operations-with-express-and-mo/01-main
+- term: CRUD
+  aka: []
+  cat: Backend
+  def: 'Create, Read, Update and Delete: four fundamental data operations.'
+  see: level-01/l1-41-rest-api-and-crud-operations-with-express-and-mo/01-main
+- term: CORS
+  aka:
+  - Cross-Origin Resource Sharing
+  cat: Backend
+  def: An HTTP-header mechanism browsers use to determine whether a cross-origin frontend request is permitted.
+  see: level-01/l1-40-node-js-and-express-from-setup-to-first-api/01-main
+- term: MongoDB
+  aka: []
+  cat: Database
+  def: A document database that stores BSON documents and supports queries, updates, indexes and aggregation pipelines.
+  see: level-01/l1-41-rest-api-and-crud-operations-with-express-and-mo/01-main
+- term: ObjectId
+  aka: []
+  cat: Database
+  def: A BSON identifier type used by MongoDB as the default value for _id in many collections.
+  see: level-01/l1-41-rest-api-and-crud-operations-with-express-and-mo/01-main
+- term: Aggregation pipeline
+  aka: []
+  cat: Database
+  def: An ordered sequence of MongoDB stages that filter, group, reshape or combine documents into computed results.
+  see: level-01/l1-42-deep-dive-into-mongodb-operators-and-queries/01-main
+- term: PRD
+  aka:
+  - Product Requirements Document
+  cat: Architecture
+  def: A document that defines a product problem, users, goals, scope, requirements and acceptance criteria before implementation.
+  see: level-01/l1-47-requirement-analysis-and-planning/01-main
+- term: Webhook
+  aka: []
+  cat: Payments
+  def: A server-to-server HTTP notification sent when an external service event occurs.
+  see: level-01/l1-50-stripe-payment-and-webhooks-integration/01-main
+- term: Idempotency
+  aka: []
+  cat: Payments
+  def: The property that repeating the same operation or event does not create unintended duplicate effects.
+  see: level-01/l1-50-stripe-payment-and-webhooks-integration/01-main
+- term: Stripe Checkout
+  aka: []
+  cat: Payments
+  def: Stripe’s Checkout flow for creating a payment session and presenting a hosted or embedded checkout experience.
+  see: level-01/l1-50-stripe-payment-and-webhooks-integration/01-main
+- term: API contract
+  aka: []
+  cat: HTTP & APIs
+  def: The agreed shape and behavior of an API request and response, including methods, paths, inputs, status codes and response data.
+  see: level-01/l1-40-node-js-and-express-from-setup-to-first-api/02-api-testing-http-contracts
+- term: Environment variable
+  aka:
+  - env var
+  cat: Operations
+  def: A named value supplied by the process environment so configuration can vary without hard-coding it into application source.
+  see: level-01/l1-45-jwt-security-and-deployment/02-environment-variables-secrets-config
+- term: Secret
+  aka: []
+  cat: Operations
+  def: Sensitive configuration such as a private key, password or API credential that requires restricted access and must not be exposed in client code or public repositories.
+  see: level-01/l1-45-jwt-security-and-deployment/02-environment-variables-secrets-config
+- term: Request ID
+  aka:
+  - correlation id
+  cat: Operations
+  def: An identifier attached to a request so related logs and errors can be traced through a system.
+  see: level-01/l1-51-review-ui-ux-check-and-deployment/02-production-errors-observability
+- term: Observability
+  aka: []
+  cat: Operations
+  def: The ability to understand system behavior from signals such as logs, metrics and traces.
+  see: level-01/l1-51-review-ui-ux-check-and-deployment/02-production-errors-observability

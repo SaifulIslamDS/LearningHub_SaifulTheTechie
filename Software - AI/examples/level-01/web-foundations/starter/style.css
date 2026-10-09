@@ -1,0 +1,5 @@
+* { box-sizing: border-box; }
+body { margin: 0; font-family: system-ui, sans-serif; line-height: 1.6; }
+.site-header { display: flex; justify-content: space-between; gap: 1rem; padding: 1rem; }
+nav { display: flex; gap: 1rem; }
+main { width: min(900px, 92%); margin: 3rem auto; }

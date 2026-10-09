@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" data-root="./">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to Learn Here — Software &amp; AI Engineering Learning Hub</title>
+<meta name="description" content="Use each tutorial as a guided build: understand the idea, type the code, run it, change it, and connect it to a larger system.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Software &amp; AI Engineering Learning Hub">
+<meta property="og:title" content="How to Learn Here">
+<meta property="og:description" content="Use each tutorial as a guided build: understand the idea, type the code, run it, change it, and connect it to a larger system.">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+
+<script>(function(){var t=null;try{t=localStorage.getItem('stse-theme')}catch(e){}
+if(!t)t=(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';
+document.documentElement.setAttribute('data-theme',t);
+var n=null;try{n=localStorage.getItem('stse-nav')}catch(e){}
+if(n==='open'&&window.matchMedia&&matchMedia('(min-width: 961px)').matches)document.documentElement.setAttribute('data-nav','open');
+document.documentElement.classList.add('no-anim')})();</script>
+<link rel="stylesheet" href="./assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Open curriculum menu" title="Curriculum menu (press M)" aria-controls="sidebar" aria-expanded="false"><span class="ico-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span class="ico-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></button>
+  <a class="brand" href="./index.html"><span class="brand-text"><span class="brand-ecosystem">Saiful The Techie</span><span class="brand-name">Software &amp; AI Engineering Learning Hub</span><span class="brand-version">v0.5.0</span></span></a>
+  <nav class="top-links" aria-label="Main">
+    <a href="./index.html" class="">Home</a><a href="./curriculum.html" class="">Curriculum</a><a href="./practice-files.html" class="">Practice files</a><a href="./glossary.html" class="">Glossary</a><a href="./how-to-learn.html" class="active">How to learn</a><a href="./about.html" class="">About</a>
+  </nav>
+  <div class="top-spacer"></div>
+  <div class="search" role="search">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input id="searchInput" type="search" placeholder="Search lessons, tools, topics" aria-label="Search" autocomplete="off">
+    <kbd>/</kbd>
+    <div class="search-results" id="searchResults" role="listbox"></div>
+  </div>
+  <button class="icon-btn theme-toggle" id="themeBtn" aria-label="Toggle light or dark mode" title="Light / dark"><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
+</header>
+<div class="layout wide">
+  <nav class="sidebar" id="sidebar" aria-label="Curriculum">
+    <div class="side-title">Curriculum</div>
+    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="66"><i></i></div><span class="bar-label" data-progress-label></span></div>
+<div class="nav-phase"><a href="./learn/level-01/index.html"><span class="nav-num">01</span>Level 01</a>
+</div>
+<div class="nav-phase"><a href="./learn/level-02/index.html"><span class="nav-num">02</span>Level 02</a>
+</div>
+<div class="side-extra"><a href="./index.html">Home</a><a href="./curriculum.html">Full curriculum map</a><a href="./practice-files.html">Practice files</a><a href="./glossary.html">Glossary</a><a href="./how-to-learn.html">How to learn here</a><a href="./about.html">About &amp; contributing</a></div></nav>
+  <main class="main" id="main"><div class="content">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="./index.html">Home</a><span class="sep">/</span><span>How to Learn Here</span></nav>
+<h1>How to Learn Here</h1>
+<p class="lead">Use each tutorial as a guided build: understand the idea, type the code, run it, change it, and connect it to a larger system.</p>
+<h2 id="the-learning-loop">The learning loop</h2>
+<p><strong>Understand → See → Code → Run → Observe → Modify → Build → Integrate → Explain</strong></p>
+<p>This hub is designed for career-focused self-study. The written tutorial is the primary learning material; downloads, videos and external resources support it rather than replace it.</p>
+<h2 id="for-each-tutorial">For each tutorial</h2>
+<ol>
+<li>Read the mental model before copying syntax.</li>
+<li>Open the linked starter/reference package when the tutorial asks for it.</li>
+<li>Type the important code yourself.</li>
+<li>Run executable examples and compare with verified output where provided.</li>
+<li>Change one input, route, component, query or configuration value and predict what will happen.</li>
+<li>Follow the <strong>Build with the practice package</strong> section until your files match the tutorial's completed state.</li>
+<li>Use the optional video companion when another visual explanation would help.</li>
+<li>Read the linked official documentation for details that change across framework versions.</li>
+<li>Mark the tutorial complete only after you can explain the main idea in your own words.</li>
+</ol>
+<h2 id="tutorials-practice-and-projects-are-different">Tutorials, practice and projects are different</h2>
+<ul>
+<li><strong>Tutorials</strong> teach concepts through explanation and connected code.</li>
+<li><strong>Practice</strong> gives repetition, debugging and focused exercises.</li>
+<li><strong>Projects</strong> combine multiple concepts into a portfolio-quality build.</li>
+<li><strong>Curriculum</strong> is the roadmap and source-topic map, not the tutorial itself.</li>
+</ul>
+<h2 id="using-ai-responsibly">Using AI responsibly</h2>
+<p>Use an AI assistant as an explainer, reviewer and debugger after you have attempted the step. Ask it to explain the error or compare two approaches before asking it to replace your whole solution. Keep Git history so AI-assisted changes remain inspectable.</p>
+<h2 id="verification-labels">Verification labels</h2>
+<ul>
+<li><strong>RUN-HERE</strong> — executed during release verification; shown output is real.</li>
+<li><strong>RUN-BY-OWNER</strong> — requires an environment/account the release builder could not use; a verification command is provided.</li>
+<li><strong>REFERENCE-ONLY</strong> — code is shown for learning but is not claimed as executed.</li>
+</ul>
+
+  </div></main>
+  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#the-learning-loop">The learning loop</a><a href="#for-each-tutorial">For each tutorial</a><a href="#tutorials-practice-and-projects-are-different">Tutorials, practice and projects are different</a><a href="#using-ai-responsibly">Using AI responsibly</a><a href="#verification-labels">Verification labels</a></aside>
+</div>
+<footer class="site"><b>Saiful The Techie</b> · Software &amp; AI Engineering Learning Hub v0.5.0 · Compiled &amp; Expanded by Saiful Islam · <a href="https://saifulshuvo.com">saifulshuvo.com</a> · Updated October 2026<br>
+Original learning content: <a href="./license.html">CC BY-NC-SA 4.0</a> · Code: <a href="./license.html#code-mit-license">MIT</a> · Free external resources belong to their respective owners.</footer>
+<script src="./search-index.js"></script>
+<script src="./assets/app.js"></script>
+</body>
+</html>

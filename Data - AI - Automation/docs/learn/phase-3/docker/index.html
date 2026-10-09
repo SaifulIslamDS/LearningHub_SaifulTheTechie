@@ -25,7 +25,7 @@ document.documentElement.classList.add('no-anim')})();</script>
 <a class="skip" href="#main">Skip to content</a>
 <header class="topbar">
   <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Open curriculum menu" title="Curriculum menu (press M)" aria-controls="sidebar" aria-expanded="false"><span class="ico-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span class="ico-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></button>
-  <a class="brand" href="../../../index.html"><span class="brand-badge">AI</span><span class="brand-text"><span class="brand-name">Data, AI &amp; Automation Path</span><span class="brand-version">v0.7</span></span></a>
+  <a class="brand" href="../../../index.html"><span class="brand-badge">AI</span><span class="brand-text"><span class="brand-name">Data, AI &amp; Automation Path</span><span class="brand-version">v0.8</span></span></a>
   <nav class="top-links" aria-label="Main">
     <a href="../../../index.html" class="">Home</a><a href="../../../curriculum.html" class="">Curriculum</a><a href="../../../practice-files.html" class="">Practice files</a><a href="../../../glossary.html" class="">Glossary</a><a href="../../../how-to-learn.html" class="">How to learn</a><a href="../../../about.html" class="">About</a>
   </nav>
@@ -41,7 +41,7 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="layout">
   <nav class="sidebar" id="sidebar" aria-label="Curriculum">
     <div class="side-title">Curriculum</div>
-    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="64"><i></i></div><span class="bar-label" data-progress-label></span></div>
+    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="77"><i></i></div><span class="bar-label" data-progress-label></span></div>
 <div class="nav-phase"><a href="../../../learn/phase-0/index.html"><span class="nav-num">0</span>Foundations</a>
 </div>
 <div class="nav-phase"><a href="../../../learn/phase-1/index.html"><span class="nav-num">1</span>Analytics &amp; BI</a>
@@ -65,6 +65,10 @@ document.documentElement.classList.add('no-anim')})();</script>
 <li><a class="" href="../../../learn/phase-3/data-quality/index.html">Data Quality &amp; Contracts</a>
 </li>
 <li><a class="current" href="../../../learn/phase-3/docker/index.html">Docker</a>
+<ul class="nav-lessons">
+<li><a class="" data-lesson="phase-3/docker/01-images-containers" href="../../../learn/phase-3/docker/01-images-containers.html">Docker Images &amp; Containers: Package a Pipeline Once, Run It Anywhere</a></li>
+<li><a class="" data-lesson="phase-3/docker/02-compose-reproducible" href="../../../learn/phase-3/docker/02-compose-reproducible.html">Docker Compose &amp; Reproducible Environments: Run the Whole Pipeline With One Command</a></li>
+</ul>
 </li>
 <li><a class="" href="../../../learn/phase-3/orchestration/index.html">Orchestration</a>
 </li>
@@ -95,16 +99,29 @@ document.documentElement.classList.add('no-anim')})();</script>
 <nav class="crumbs" aria-label="Breadcrumb"><a href="../../../index.html">Home</a><span class="sep">/</span><a href="../../../learn/phase-3/index.html">Phase 3</a><span class="sep">/</span><span>Docker</span></nav>
 <h1>Docker</h1>
 <p class="lead">Part of Phase 3 — Data Engineering (AI-ready). Topics: Images, Containers, Compose, Reproducible environments.</p>
-
-
-<div class="section-head"><h2>Lessons</h2><p>0 written · 4 planned</p></div>
-<ul class="lesson-list"><li class="lesson-row planned"><span class="n">1</span><span>Images<span class="desc">Planned lesson</span></span><span class="lesson-state"><span class="tag soon">Coming soon</span></span></li><li class="lesson-row planned"><span class="n">2</span><span>Containers<span class="desc">Planned lesson</span></span><span class="lesson-state"><span class="tag soon">Coming soon</span></span></li><li class="lesson-row planned"><span class="n">3</span><span>Compose<span class="desc">Planned lesson</span></span><span class="lesson-state"><span class="tag soon">Coming soon</span></span></li><li class="lesson-row planned"><span class="n">4</span><span>Reproducible environments<span class="desc">Planned lesson</span></span><span class="lesson-state"><span class="tag soon">Coming soon</span></span></li></ul>
+<p><strong>Docker</strong> packages an application together with everything it needs (operating system libraries, Python, packages, code, settings) into an <strong>image</strong> that runs the same way on any machine as a <strong>container</strong>. It ends "works on my machine" problems, and it's how pipelines, databases and APIs are run in development, CI and production. <strong>Docker Compose</strong> starts several containers that work together with one command.</p>
+<div class="admonition tip">
+<p class="admonition-title">Setup</p>
+<ul>
+<li><strong>Windows / Mac:</strong> install <strong>Docker Desktop</strong> from <a href="https://www.docker.com/products/docker-desktop/">https://www.docker.com/products/docker-desktop/</a> (on Windows it uses WSL 2, from Phase 0). <strong>Linux:</strong> install Docker Engine for your distribution.</li>
+<li>Check it works: <code>docker run hello-world</code>.</li>
+<li>The files for this module are in the <code>docker/</code> folder of <a href="../../../downloads/phase-3/data-engineering-scripts.zip">data-engineering-scripts.zip</a>.</li>
+</ul>
+</div>
+<div class="admonition note">
+<p class="admonition-title">How the outputs in this module were made</p>
+<p>Our build machine couldn't download images from Docker Hub, so we built a local stand-in for <code>python:3.14-slim</code> (Ubuntu 24.04 with CPython 3.14.6) and ran <strong>the same Dockerfiles and compose file</strong> on Docker Engine 29 and Compose 5. Commands, logs and behaviour are real; image IDs, digests and sizes on your machine will differ.</p>
+</div>
+<p><strong>By the end of this module you can:</strong> write a Dockerfile, build and tag images, run containers with environment variables, ports, networks and volumes, debug them, run a multi-service pipeline with Docker Compose, and make environments reproducible.</p>
+<div class="files-box"><div class="files-head"><b>Practice files for this page</b><a href="../../../practice-files.html">All practice files →</a></div><ul><li><a href="../../../downloads/phase-3/data-engineering-scripts.zip" download>data-engineering-scripts.zip</a><span class="f-desc">Phase 3A scripts: practice API + website, ingestion, PostgreSQL loader, advanced SQL, indexing, transactions, star schema, SCD, BigQuery dialect, Delta Lake, Iceberg, Dockerfiles and compose.yaml · 270 KB</span></li></ul></div>
+<div class="section-head"><h2>Lessons</h2><p>2 written · 0 planned</p></div>
+<ul class="lesson-list"><li class="lesson-row" data-lesson="phase-3/docker/01-images-containers"><span class="n">1</span><span><a href="../../../learn/phase-3/docker/01-images-containers.html">Docker Images &amp; Containers: Package a Pipeline Once, Run It Anywhere</a><span class="desc">Write a Dockerfile for a Python ingestion job, build an image with cached layers, run containers with environment variables, networks and volumes, and debug them with logs and exit codes.</span></span><span class="lesson-state">55 min</span></li><li class="lesson-row" data-lesson="phase-3/docker/02-compose-reproducible"><span class="n">2</span><span><a href="../../../learn/phase-3/docker/02-compose-reproducible.html">Docker Compose &amp; Reproducible Environments: Run the Whole Pipeline With One Command</a><span class="desc">Describe a multi-container pipeline (API + ingestion job) in compose.yaml with health checks, dependencies, environment variables and volumes, run it with one command, and make builds reproducible with pinned versions, lock files and digests.</span></span><span class="lesson-state">50 min</span></li></ul>
 <nav class="pager"><a class="prev" href="../../../learn/phase-3/data-quality/index.html"><small>← Previous module</small>Data Quality &amp; Contracts</a><a class="next" href="../../../learn/phase-3/orchestration/index.html"><small>Next module →</small>Orchestration</a></nav>
 
   </div></main>
   
 </div>
-<footer class="site">Data, AI &amp; Automation Path v0.7 · Applied AI, Data &amp; Automation Lab · Updated October 2026<br>
+<footer class="site">Data, AI &amp; Automation Path v0.8 · Applied AI, Data &amp; Automation Lab · Updated October 2026<br>
 Lesson text: <a href="../../../license.html">CC BY-NC-SA 4.0</a> · Code: <a href="../../../license.html#code-mit-license">MIT</a> · Free external resources belong to their respective owners.</footer>
 <script src="../../../search-index.js"></script>
 <script src="../../../assets/app.js"></script>

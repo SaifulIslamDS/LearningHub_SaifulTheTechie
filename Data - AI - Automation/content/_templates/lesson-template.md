@@ -1,91 +1,83 @@
 ---
-# Lesson Template v1 (locked in v0.2). Keep this section order for every lesson.
-# Change the template only with a new release and a CHANGELOG note.
-title: "Topic Name: What the Learner Will Be Able to Do"
-order: 3                      # position inside the module
-summary: "One sentence: the skill and why it is useful."
-level: Beginner               # Beginner | Intermediate | Advanced
-time: "30 min"
-topics: ["Exact topic text from curriculum.yml"]   # marks those planned topics as written
-prerequisites: []             # e.g. ["phase-1/analytical-sql/01-select-where"]
-keywords: []                  # extra search words
-reviewed: 2026-10-08          # update whenever you re-check the facts
-draft: false                  # true = not published
+# Tutorial Template v2 — approved post-v0.8 deep-learning architecture.
+title: "Topic: outcome-oriented tutorial title"
+order: 1
+summary: "One sentence describing the practical skill and why it matters."
+level: Intermediate
+time: "60 min"
+topics: ["Exact topic text from curriculum.yml"]
+prerequisites: []
+keywords: []
+reviewed: 2026-10-09
+draft: false
+files: []
+# Optional curated companion; written tutorial must stand on its own.
+# youtube:
+#   title: "..."
+#   creator: "..."
+#   url: "https://www.youtube.com/watch?v=..."
+#   video_id: "..."
+#   duration: "..."
+#   language: "English"
+#   level: "Beginner"
+#   reviewed: "YYYY-MM-DD"
+#   why_recommended: "..."
 resources:
-  - title: "Resource title"
+  - title: "Official resource"
     url: "https://..."
-    source: "Who publishes it"
-    note: "Why it is worth the learner's time"
+    source: "Publisher"
+    note: "Why this specific resource is useful."
 ---
 
-## What is it?
+## Introduction
 
-Plain-language definition + an everyday comparison.
+Explain the practical problem this tutorial solves.
 
-!!! job "Why it matters at work"
-    The real job use case, and how it shows up in interviews.
+## What you will learn
 
-## The syntax
+- Outcome 1
+- Outcome 2
+- Outcome 3
 
-```sql
--- minimum pattern to remember
+## Mental model
+
+Explain the concept gradually before assuming tool familiarity.
+
+## Step 1 — build the smallest useful piece
+
+Show real code / SQL / config.
+
+```text
+example
 ```
 
-## Example 1: a real business question
+Where executable, include only real output and label verification honestly.
 
-*Question: ...*
+## How it works
 
-```sql
--- query
-```
+Explain the important lines and data flow.
 
-| result | table |
-|---|---|
-| copied from an actual run | not guessed |
+## Build with me
 
-## Common mistakes
+1. Start from the supplied starter files.
+2. Add the implementation in logical steps.
+3. Run / observe / verify.
+4. Extend it.
 
-| Mistake | What happens | Fix |
-|---|---|---|
-| | | |
+## Complete implementation
 
-## Try it yourself
+Connect to the synchronized completed practice package.
 
-**Task:** ...
+## Practice files
 
-<details markdown="1">
-<summary>Show a hint</summary>
+Explain what to download, where to start, and what the completed version contains.
 
-...
-</details>
+## Professional context
 
-<details markdown="1">
-<summary>Show the solution</summary>
+Explain where this appears in real engineering work, architecture or interviews when useful.
 
-...
-</details>
+## Next tutorial
 
-## Quick quiz
+Connect explicitly to the next concept.
 
-<div class="quiz-q" markdown="1">
-1\. Question?
-
-1. Option A
-2. Option B
-3. Option C
-
-<details markdown="1"><summary>Show answer</summary>
-**B.** Why.
-</details>
-</div>
-
-## Summary
-
-- Four or five bullets to revise from.
-
-!!! job "Job-ready check"
-    **Interview question:** ...
-
-    **Strong answer:** ...
-
-    **Mini project:** ...
+<!-- Optional sections such as Common mistakes, Try it yourself, Quick quiz, Summary and Job-ready check may be added only when they improve this topic. -->

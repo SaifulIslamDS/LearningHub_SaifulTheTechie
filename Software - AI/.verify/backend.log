@@ -1,0 +1,20 @@
+## v0.5 backend/domain examples
+--- examples/level-01/backend-mongodb-practice/run/01_http_baseline.mjs
+GET /api/health -> ok=true
+--- examples/level-01/backend-mongodb-practice/run/02_crud_core.mjs
+[{"id":"2","name":"Sundarbans Mangrove"}]
+--- examples/level-01/backend-mongodb-practice/run/03_query_objects.mjs
+{"price":{"$gte":2000,"$lte":5000},"tags":{"$in":["featured","popular"]}}
+[{"$match":{"status":"confirmed"}},{"$group":{"_id":"$destination","bookings":{"$sum":1}}},{"$sort":{"bookings":-1}}]
+--- examples/level-01/backend-mongodb-practice/run/04_rbac.mjs
+admin: delete=true
+moderator: delete=false
+user: delete=false
+--- examples/level-01/backend-mongodb-practice/run/05_payment_record.mjs
+stored
+duplicate ignored
+records=1
+--- examples/level-01/backend-mongodb-practice/run/06_error_contract.mjs
+valid-errors=0
+{"error":{"code":"VALIDATION_FAILED","message":"destinationId is required; date is required; travellers must be a positive integer","requestId":"req_demo_001"}}
+BACKEND_RUN_FILES=6

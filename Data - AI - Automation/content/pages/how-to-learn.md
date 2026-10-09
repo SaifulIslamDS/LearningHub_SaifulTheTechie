@@ -6,13 +6,15 @@ nav: how
 
 ## The learning loop
 
-Each lesson follows the same five steps. Do all five. Reading alone won't make you job-ready.
+Use this learning loop. Reading alone will not make you job-ready.
 
-1. **Read** the lesson once from top to bottom. Don't take notes yet.
-2. **Type** every example yourself in your own tool. Don't copy and paste.
-3. **Try it yourself:** solve the exercise *before* opening the solution.
-4. **Quiz:** click an answer to check it. You get a score out of 3, and your best score shows next to the lesson on its module page. If you miss one, re-read that section and press **Try again**.
-5. **Job-ready check:** answer the interview question out loud, then do the mini project.
+1. **Understand the mental model** before memorising syntax.
+2. **Type and run** the examples yourself rather than only copying them.
+3. **Follow the build** from the starter practice files when a tutorial provides them.
+4. **Compare real output** with the verified output shown in the lesson.
+5. **Extend the implementation** or answer the professional-context question.
+
+Some tutorials also include exercises, quizzes or interview checks when those genuinely improve the topic.
 
 Then click **Mark lesson as complete**. Your progress is saved in this browser only; nothing is sent anywhere.
 
@@ -26,7 +28,7 @@ Then click **Mark lesson as complete**. Your progress is saved in this browser o
 ## Which path should I follow?
 
 - **New to data?** Start at Phase 0, then Phase 1. Don't skip ahead.
-- **Already use Excel or SQL at work?** Skim the lesson summaries and quizzes. If you pass a quiz easily, move on.
+- **Already use Excel or SQL at work?** Skim the tutorial outcomes and verified examples. If you can reproduce the result and explain the mental model, move on.
 - **Targeting a specific job?** Pick a role track on the [home page](index.html) and follow its phases first.
 
 !!! tip "The skip rule"
@@ -54,4 +56,4 @@ Every lesson ends with hand-picked free resources: official documentation, inter
 
 ## Working offline
 
-You can use this whole site without internet: download the repository and open `docs/index.html` in your browser. Search, the glossary, quiz scores, light/dark mode and progress tracking all work offline (scores and progress are saved in your browser only). Only the external resource links need internet.
+You can use this whole site without internet: download the repository and open `docs/index.html` in your browser. Search, the glossary, light/dark mode and progress tracking work offline; quiz scores also work on tutorials that include quizzes (scores and progress are saved in your browser only). Only the external resource links need internet.

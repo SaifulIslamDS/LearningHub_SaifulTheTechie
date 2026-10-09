@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en" data-root="../../../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Build a Stateful React SPA with BPL-DREAM — Software &amp; AI Engineering Learning Hub</title>
+<meta name="description" content="Build a responsive stateful React SPA with player selection, validation, removal and user feedback.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Software &amp; AI Engineering Learning Hub">
+<meta property="og:title" content="Build a Stateful React SPA with BPL-DREAM">
+<meta property="og:description" content="Build a responsive stateful React SPA with player selection, validation, removal and user feedback.">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+
+<script>(function(){var t=null;try{t=localStorage.getItem('stse-theme')}catch(e){}
+if(!t)t=(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';
+document.documentElement.setAttribute('data-theme',t);
+var n=null;try{n=localStorage.getItem('stse-nav')}catch(e){}
+if(n==='open'&&window.matchMedia&&matchMedia('(min-width: 961px)').matches)document.documentElement.setAttribute('data-nav','open');
+document.documentElement.classList.add('no-anim')})();</script>
+<link rel="stylesheet" href="../../../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Open curriculum menu" title="Curriculum menu (press M)" aria-controls="sidebar" aria-expanded="false"><span class="ico-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span class="ico-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></button>
+  <a class="brand" href="../../../index.html"><span class="brand-text"><span class="brand-ecosystem">Saiful The Techie</span><span class="brand-name">Software &amp; AI Engineering Learning Hub</span><span class="brand-version">v0.5.0</span></span></a>
+  <nav class="top-links" aria-label="Main">
+    <a href="../../../index.html" class="">Home</a><a href="../../../curriculum.html" class="">Curriculum</a><a href="../../../practice-files.html" class="">Practice files</a><a href="../../../glossary.html" class="">Glossary</a><a href="../../../how-to-learn.html" class="">How to learn</a><a href="../../../about.html" class="">About</a>
+  </nav>
+  <div class="top-spacer"></div>
+  <div class="search" role="search">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input id="searchInput" type="search" placeholder="Search lessons, tools, topics" aria-label="Search" autocomplete="off">
+    <kbd>/</kbd>
+    <div class="search-results" id="searchResults" role="listbox"></div>
+  </div>
+  <button class="icon-btn theme-toggle" id="themeBtn" aria-label="Toggle light or dark mode" title="Light / dark"><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
+</header>
+<div class="layout wide">
+  <nav class="sidebar" id="sidebar" aria-label="Curriculum">
+    <div class="side-title">Curriculum</div>
+    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="66"><i></i></div><span class="bar-label" data-progress-label></span></div>
+<div class="nav-phase current open"><a href="../../../learn/level-01/index.html"><span class="nav-num">01</span>Level 01</a>
+<ul class="nav-modules">
+<li><a class="" href="../../../learn/level-01/l1-0-welcome-to-the-course/index.html">Welcome to the Course</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-0-orientation-install-necessary-tools/index.html">Orientation - Install Necessary Tools</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-0-5-1-understanding-ai-reality-risks-and-mindset/index.html">Understanding AI: Reality, Risks, and Mindset</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-0-5-2-beyond-the-hype-how-to-actually-use-ai/index.html">Beyond the Hype: How to Actually Use AI</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-1-frontend-basics-html-and-css/index.html">Frontend Basics: HTML &amp; CSS</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-2-version-control-with-git-and-github/index.html">Version Control with Git and GitHub</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-3-semantic-html-and-advanced-elements/index.html">Semantic HTML &amp; Advanced Elements</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-4-css-layouts-and-advanced-styling/index.html">CSS Layouts &amp; Advanced Styling</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-5-build-a-beautiful-portfolio-website/index.html">Build a beautiful portfolio website</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-6-assignment-1/index.html">Assignment 1</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-7-introduction-to-javascript/index.html">Introduction to JavaScript</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-8-fundamental-concepts-of-conditionals/index.html">Fundamental Concepts of Conditionals</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-9-fundamental-concepts-of-array-part-1/index.html">Fundamental Concepts of Array[Part 1]</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-10-fundamental-concepts-of-loops/index.html">Fundamental Concepts of Loops</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-11-fundamental-concepts-of-array-part-2/index.html">Fundamental Concepts of Array[Part 2]</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-12-fundamentals-of-strings-and-objects/index.html">Fundamentals of Strings &amp; Objects</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-13-fundamentals-of-functions/index.html">Fundamentals of Functions</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-14-basic-problem-solving-with-javascript/index.html">Basic Problem Solving with JavaScript</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-15-assignment-2-problem-solving/index.html">Assignment 2 (Problem solving)</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-16-es6-fundamentals/index.html">ES6 Fundamentals</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-17-more-es6/index.html">More ES6</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-18-problem-solving-with-javascript-es6-part-1/index.html">Problem Solving with JavaScript + ES6 [Part 1]</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-19-problem-solving-with-javascript-es6-part-2/index.html">Problem Solving with JavaScript + ES6 [Part 2]</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-20-assignment-3-problem-solving/index.html">Assignment 3 (Problem solving)</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-21-typescript-fundamentals/index.html">Typescript Fundamentals</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-22-more-typescript/index.html">More Typescript</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-22-5-optional-advanced-oop-in-typescript/index.html">(Optional Advanced) OOP in TypeScript</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-23-problem-solving-with-typescript/index.html">Problem Solving with Typescript</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-24-assignment-4-problem-solving/index.html">Assignment 4(Problem solving)</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-25-react-core-components-jsx-props-and-rendering/index.html">React Core — Components, JSX, Props &amp; Rendering</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-26-state-management-in-react-events-and-data-fetchi/index.html">State Management in React, Events &amp; Data Fetching</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-27-react-project-countries-explorer/index.html">React Project — Countries Explorer</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-28-javascript-dom-and-bom-deep-dive-react-bridge/index.html">JavaScript DOM &amp; BOM Deep Dive (React Bridge)</a>
+</li>
+<li><a class="current" href="../../../learn/level-01/l1-29-simple-react-spa-with-bpl-dream/index.html">Simple React SPA with BPL-DREAM</a>
+<ul class="nav-lessons">
+<li><a class="current" data-lesson="level-01/l1-29-simple-react-spa-with-bpl-dream/01-main" href="../../../learn/level-01/l1-29-simple-react-spa-with-bpl-dream/01-main.html">Build a Stateful React SPA with BPL-DREAM</a></li>
+</ul>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-30-assignment-5/index.html">Assignment 5</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-31-next-js-foundation-and-routing/index.html">Next.js Foundation and Routing</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-32-next-js-rendering-basics/index.html">Next.js Rendering Basics</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-33-advanced-data-fetching-and-ui-integration/index.html">Advanced Data Fetching &amp; UI Integration</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-34-assignment-6/index.html">Assignment 6</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-35-security-and-authentication-in-next-js-with-bett/index.html">Security &amp; Authentication in Next.js with BetterAuth</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-36-authentication-advanced-profile-password-and-ema/index.html">Authentication Advanced — Profile, Password &amp; Email</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-37-next-js-project-with-authentication-part-1/index.html">Next.js Project with Authentication—Part 1</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-38-next-js-project-with-authentication-part-2/index.html">Next.js Project with Authentication — Part 2</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-39-assignment-7/index.html">Assignment 7</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-40-node-js-and-express-from-setup-to-first-api/index.html">Node.js &amp; Express — From Setup to First API</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-41-rest-api-and-crud-operations-with-express-and-mo/index.html">REST API &amp; CRUD Operations with Express and MongoDB</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-42-deep-dive-into-mongodb-operators-and-queries/index.html">Deep Dive into MongoDB Operators and Queries</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-43-project-setup-and-destination-crud/index.html">Project Setup &amp; Destination CRUD</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-44-booking-system-and-authentication/index.html">Booking System &amp; Authentication</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-45-jwt-security-and-deployment/index.html">JWT, Security &amp; Deployment</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-46-assignment-8/index.html">Assignment 8</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-47-requirement-analysis-and-planning/index.html">Requirement Analysis &amp; Planning</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-48-project-setup-and-architecture/index.html">Project Setup &amp; Architecture</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-49-core-implementation/index.html">Core Implementation</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-50-stripe-payment-and-webhooks-integration/index.html">Stripe Payment &amp; Webhooks Integration</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-51-review-ui-ux-check-and-deployment/index.html">Review, UI/UX check and Deployment</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-52-assignment-9/index.html">Assignment 9</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-53-requirement-analysis-prompt-and-prototyping/index.html">Requirement Analysis, Prompt &amp; Prototyping</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-54-project-setup-modular-architecture/index.html">Project Setup, Modular Architecture</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-55-core-implementation-backend-with-modular-archite/index.html">Core Implementation — Backend with Modular Architecture</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-56-core-implementation-frontend/index.html">Core Implementation — Frontend</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-57-sslcommerz-payment-integration/index.html">SSLCommerz Payment Integration</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-58-ai-integration-code-review-and-refactoring/index.html">AI Integration, Code Review &amp; Refactoring</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-59-finalization-checking-and-deployment/index.html">Finalization, Checking and Deployment</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-60-assignment-10/index.html">Assignment 10</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-61-ai-assisted-coding-foundations-and-mindset/index.html">AI Assisted Coding Foundations &amp; Mindset</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-62-design-to-code-figma-mcp-lovable-and-ai-builders/index.html">Design-to-Code — Figma MCP, Lovable &amp; AI Builders</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-63-cursor-ai-fullstack-agentic-development-mastery/index.html">Cursor AI — Fullstack Agentic Development Mastery</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-64-terminal-based-agentic-development-with-claude-c/index.html">Terminal-Based Agentic Development with Claude Code</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-65-code-quality-testing-review-refactoring-and-secu/index.html">Code Quality — Testing, Review, Refactoring &amp; Security</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-66-ai-ecosystem-deployment-and-final-project-showca/index.html">AI Ecosystem, Deployment &amp; Final Project Showcase</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-67-assignment-11/index.html">Assignment 11</a>
+</li>
+<li><a class="nav-project " href="../../../learn/level-01/project.html">★ Level project</a></li>
+</ul>
+</div>
+<div class="nav-phase"><a href="../../../learn/level-02/index.html"><span class="nav-num">02</span>Level 02</a>
+</div>
+<div class="side-extra"><a href="../../../index.html">Home</a><a href="../../../curriculum.html">Full curriculum map</a><a href="../../../practice-files.html">Practice files</a><a href="../../../glossary.html">Glossary</a><a href="../../../how-to-learn.html">How to learn here</a><a href="../../../about.html">About &amp; contributing</a></div></nav>
+  <main class="main" id="main"><div class="content">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../../index.html">Home</a><span class="sep">/</span><a href="../../../learn/level-01/index.html">Level 01</a><span class="sep">/</span><a href="../../../learn/level-01/l1-29-simple-react-spa-with-bpl-dream/index.html">Simple React SPA with BPL-DREAM</a><span class="sep">/</span><span>Build a Stateful React SPA with BPL-DREAM</span></nav>
+<h1>Build a Stateful React SPA with BPL-DREAM</h1>
+<p class="lead">Build a responsive stateful React SPA with player selection, validation, removal and user feedback.</p>
+<div class="meta"><span class="source-pill source-curriculum">Source curriculum</span><span class="pill">Path <b>Level 01</b></span><span class="pill">Difficulty <b>Intermediate</b></span><span class="pill">Time <b>4–7 hours</b></span></div>
+<div class="admonition note"><p class="admonition-title">Before you start</p><p><a href="../../../learn/level-01/l1-28-javascript-dom-and-bom-deep-dive-react-bridge/01-main.html">JavaScript DOM &amp; BOM Deep Dive — React Bridge</a></p></div>
+<h2 id="project-goal">Project goal</h2>
+<p>Build a small single-page application that lets a user browse players, select a limited squad, remove selections and receive clear feedback. The original project theme is BPL-DREAM; the engineering lessons transfer to carts, wishlists, booking selections and many other interfaces.</p>
+<h2 id="1-define-the-state-before-the-ui">1. Define the state before the UI</h2>
+<p>A useful first model:</p>
+<pre><code class="language-text">players          source data
+selectedPlayers  user selection
+view             available | selected
+credits          optional domain value
+</code></pre>
+<p>Avoid storing values that can be derived from those sources.</p>
+<h2 id="2-shape-the-player-data">2. Shape the player data</h2>
+<pre><code class="language-javascript">const players = [
+  {
+    id: &quot;p-01&quot;,
+    name: &quot;Player One&quot;,
+    role: &quot;All-rounder&quot;,
+    country: &quot;Bangladesh&quot;,
+    price: 850000,
+  },
+];
+</code></pre>
+<p>Stable IDs are essential for both React keys and selection logic.</p>
+<h2 id="3-component-tree">3. Component tree</h2>
+<pre><code class="language-text">App
+├── Navbar
+├── Hero
+├── ViewToggle
+├── AvailablePlayers
+│   └── PlayerCard × N
+└── SelectedPlayers
+    └── SelectedPlayer × N
+</code></pre>
+<p><code>App</code> owns the shared selection because both available and selected views need it.</p>
+<h2 id="4-select-with-validation">4. Select with validation</h2>
+<pre><code class="language-javascript">function addPlayer(player) {
+  setSelected(current =&gt; {
+    if (current.some(item =&gt; item.id === player.id)) {
+      return current;
+    }
+
+    if (current.length &gt;= 6) {
+      return current;
+    }
+
+    return [...current, player];
+  });
+}
+</code></pre>
+<p>The core logic is independent of the toast library. UI feedback should explain <strong>why</strong> an action was rejected, but the domain rule should still protect state.</p>
+<h2 id="5-remove-immutably">5. Remove immutably</h2>
+<pre><code class="language-javascript">function removePlayer(id) {
+  setSelected(current =&gt; current.filter(player =&gt; player.id !== id));
+}
+</code></pre>
+<p>This returns a new array and fits React's state model.</p>
+<h2 id="6-toggle-views">6. Toggle views</h2>
+<pre><code class="language-jsx">&lt;button onClick={() =&gt; setView(&quot;available&quot;)}&gt;Available&lt;/button&gt;
+&lt;button onClick={() =&gt; setView(&quot;selected&quot;)}&gt;Selected ({selected.length})&lt;/button&gt;
+</code></pre>
+<p>Render one panel based on the state:</p>
+<pre><code class="language-jsx">{view === &quot;available&quot; ? (
+  &lt;AvailablePlayers players={players} onSelect={addPlayer} /&gt;
+) : (
+  &lt;SelectedPlayers players={selected} onRemove={removePlayer} /&gt;
+)}
+</code></pre>
+<h2 id="7-responsive-cards">7. Responsive cards</h2>
+<p>Build the card grid with Tailwind/DaisyUI if following the source stack, but keep the layout intention clear: readable cards, consistent action placement and no horizontal overflow at narrow widths.</p>
+<h2 id="8-toast-notifications-are-feedback-not-business-logic">8. Toast notifications are feedback, not business logic</h2>
+<p>React Toastify can show messages such as “Already selected” or “Squad limit reached.” Keep the rule in the state-update path and call the notification from a deliberate result/handler. Do not rely on the toast itself to prevent invalid state.</p>
+<h2 id="9-deployment-checklist">9. Deployment checklist</h2>
+<ul>
+<li>production build succeeds;</li>
+<li>every image has a stable source/fallback;</li>
+<li>duplicate selection is blocked;</li>
+<li>remove works after several add/remove cycles;</li>
+<li>selected count always matches array length;</li>
+<li>mobile layout remains usable;</li>
+<li>README explains run/deploy steps;</li>
+<li>live URL and repository are both accessible.</li>
+</ul>
+<h2 id="verified-logic-package">Verified logic package</h2>
+<p>The release includes a framework-independent BPL selection script that executes the selection rules without React. Use that to understand and test the state transition, then wire the same logic into your React components locally.</p>
+<h2 id="career-build-extension">Career build extension</h2>
+<h2 id="treat-bpl-dream-as-a-state-design-exercise">Treat BPL-DREAM as a state-design exercise</h2>
+<p>The important project challenge is not the cricket theme. It is coordinating shared data and user actions.</p>
+<p>Model players:</p>
+<pre><code class="language-js">{
+  id: &quot;p1&quot;,
+  name: &quot;Player A&quot;,
+  price: 25,
+  role: &quot;All-rounder&quot;
+}
+</code></pre>
+<p>Keep available players and selected player IDs conceptually separate. Derive selected objects rather than duplicating full data when possible.</p>
+<h3 id="selection-rule">Selection rule</h3>
+<pre><code class="language-text">click Select
+  ↓
+already selected? → show feedback
+budget enough?    → otherwise reject
+selection limit?  → otherwise reject
+  ↓
+update state immutably
+</code></pre>
+<h3 id="removal">Removal</h3>
+<p>Filter by stable ID:</p>
+<pre><code class="language-js">setSelected(ids =&gt; ids.filter(id =&gt; id !== playerId));
+</code></pre>
+<h3 id="responsive-cards">Responsive cards</h3>
+<p>Use your UI framework to implement the visual system, but test narrow screens with long names/prices and empty states.</p>
+<h3 id="toast-feedback">Toast feedback</h3>
+<p>Notifications should report meaningful results (“Already selected”, “Not enough balance”), not replace visible application state. A user should still be able to understand the selected list after the toast disappears.</p>
+<p>When deploying, verify refresh/deep-link behavior and asset paths on the actual host rather than assuming the local dev server proves production behavior.</p>
+
+<div class="files-box"><div class="files-head"><b>Downloadable code & practice files</b><a href="../../../practice-files.html">All practice files →</a></div><ul><li><a href="../../../downloads/level-01/react-vite-starter-reference.zip" download>react-vite-starter-reference.zip</a><span class="f-desc">Source-only React/Vite starter reference with an offline sample dataset; npm packages were not installed in the build environment. · 3 KB</span></li></ul></div>
+
+<div class="terms-box"><div class="files-head"><b>Key terms in this lesson</b><a href="../../../glossary.html">Glossary →</a></div><div class="term-chips"><a class="term-chip" href="../../../glossary.html#react" title="A library for building user interfaces from declarative, reusable components.">React</a><a class="term-chip" href="../../../glossary.html#state" title="Data a React component remembers between renders and can update to drive interactive UI.">State</a></div></div>
+<h2 id="free-resources">Free resources to go deeper</h2><ul class="resources"><li><div class="resource-top"><a href="https://react.dev/">React documentation</a></div><span class="r-meta">React</span><span class="r-note">Official React documentation. Reviewed against React 19.3.</span></li><li><div class="resource-top"><a href="https://react.dev/learn/describing-the-ui">Describing the UI</a></div><span class="r-meta">React</span><span class="r-note">Components, JSX, props and list rendering.</span></li><li><div class="resource-top"><a href="https://react.dev/learn/adding-interactivity">Adding Interactivity</a></div><span class="r-meta">React</span><span class="r-note">Events and state from the official learning path.</span></li><li><div class="resource-top"><a href="https://vite.dev/guide/">Vite Getting Started</a></div><span class="r-meta">Vite</span><span class="r-note">Official Vite setup guide. Current site showed Vite 8.3.x during review.</span></li><li><div class="resource-top"><a href="https://fkhadra.github.io/react-toastify/introduction/">React Toastify</a></div><span class="r-meta">React Toastify</span><span class="r-note">Official toast library documentation.</span></li></ul>
+<div class="complete-bar"><span>Finished reading and did the exercise?</span>
+<button class="btn" id="completeBtn" type="button" data-id="level-01/l1-29-simple-react-spa-with-bpl-dream/01-main">Mark lesson as complete</button></div>
+<nav class="pager"><a class="prev" href="../../../learn/level-01/l1-28-javascript-dom-and-bom-deep-dive-react-bridge/01-main.html"><small>← Previous</small>JavaScript DOM &amp; BOM Deep Dive — React Bridge</a><a class="next" href="../../../learn/level-01/l1-30-assignment-5/01-main.html"><small>Next →</small>Assignment 5 — React Application</a></nav>
+<p class="reviewed">Last reviewed: 2026-10-09</p>
+
+  </div></main>
+  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#project-goal">Project goal</a><a href="#1-define-the-state-before-the-ui">1. Define the state before the UI</a><a href="#2-shape-the-player-data">2. Shape the player data</a><a href="#3-component-tree">3. Component tree</a><a href="#4-select-with-validation">4. Select with validation</a><a href="#5-remove-immutably">5. Remove immutably</a><a href="#6-toggle-views">6. Toggle views</a><a href="#7-responsive-cards">7. Responsive cards</a><a href="#8-toast-notifications-are-feedback-not-business-logic">8. Toast notifications are feedback, not business logic</a><a href="#9-deployment-checklist">9. Deployment checklist</a><a href="#verified-logic-package">Verified logic package</a><a href="#career-build-extension">Career build extension</a><a href="#treat-bpl-dream-as-a-state-design-exercise">Treat BPL-DREAM as a state-design exercise</a><a href="#selection-rule">Selection rule</a><a href="#removal">Removal</a><a href="#responsive-cards">Responsive cards</a><a href="#toast-feedback">Toast feedback</a><a href="#free-resources">Free resources</a></aside>
+</div>
+<footer class="site"><b>Saiful The Techie</b> · Software &amp; AI Engineering Learning Hub v0.5.0 · Compiled &amp; Expanded by Saiful Islam · <a href="https://saifulshuvo.com">saifulshuvo.com</a> · Updated October 2026<br>
+Original learning content: <a href="../../../license.html">CC BY-NC-SA 4.0</a> · Code: <a href="../../../license.html#code-mit-license">MIT</a> · Free external resources belong to their respective owners.</footer>
+<script src="../../../search-index.js"></script>
+<script src="../../../assets/app.js"></script>
+</body>
+</html>

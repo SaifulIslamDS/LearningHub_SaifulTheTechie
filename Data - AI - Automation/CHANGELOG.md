@@ -2,6 +2,37 @@
 
 Each release is packaged as `data-ai-automation-path-vX.Y.zip`, and its version shows under the site name in the top bar.
 
+## v0.9 — M8 working checkpoint: ETL/ELT + Data Quality + dbt (in progress)
+
+This is a **working source checkpoint**, not the final v0.9 release. Phase 3 now covers **40 of 55 topics** with **21 lessons**; the whole site source contains **85 lessons**.
+
+- **ETL/ELT:** modular pipelines, idempotency, incremental loads, replayability and CDC.
+- **Data Quality:** validation + pytest, Great Expectations, data contracts, freshness and alerting.
+- **dbt (3 deep tutorials):** Models & Tests; Snapshots & Macros; Documentation & Marts. The synchronized `dbt-orders-project.zip` contains `starter/` and `completed/` local DuckDB projects.
+- **dbt verification:** transformation logic and project structure run here; dbt CLI itself is **RUN-BY-OWNER** because dbt/duckdb are unavailable in this sandbox. Known answers still reconcile to 4,246 orders and 5,478,357.79 net revenue.
+- **Tutorial architecture upgrade:** Template v2 makes old quiz/mistakes/summary/job-ready blocks optional, prioritizes mental models, verified output, step-by-step builds and synchronized practice files, and adds optional YouTube companion rendering.
+- **Saiful The Techie UI:** navy/cyan documentation-oriented system retained. The exact approved circular logo is used only when its real binary is available; otherwise the header uses a text wordmark fallback.
+- **Glossary:** 199 terms after adding dbt model, data test, materialization, dbt snapshot, Jinja macro, data mart, data lineage and staging model.
+- **Next approved M8 module:** AI-Ready Data.
+
+
+## v0.8 — Phase 3A: Data Engineering, storing & serving data (2026-10-09)
+
+Milestone **M7**. Phase 3 (13 modules, 55 topics) is split into two releases; this one adds **13 lessons** in 6 modules (25 topics). Written so far: 135 of 371 topics, 77 lessons.
+
+- **Data ingestion (2):** REST APIs with a Bearer token, `requests.Session`, timeouts, retries with back-off on 429/5xx, following pagination to the end, landing raw JSON and reconciling totals, incremental loads; responsible scraping (robots.txt, crawl delay, User-Agent) with Beautiful Soup; CSV vs JSON vs JSON Lines vs Parquet (size, types, column reads) and `json_normalize`.
+- **Advanced SQL (2):** CTEs as named steps, a cohort count, recursive CTEs for a date spine and an org-chart hierarchy; window functions: group shares, running totals, moving averages, ROW_NUMBER/RANK/DENSE_RANK with ties, top-N per group, LAG/LEAD growth and gaps between orders.
+- **Database engineering (3):** loading PostgreSQL with COPY into staging, normalising into `shop` with keys and constraints, update anomalies, NUMERIC vs float money (a real 1.31 difference explained); indexes and EXPLAIN ANALYZE on 2 million rows (145 ms → 7 ms), composite indexes, selectivity and functions on columns; transactions, ACID, rollback on failure, CHECK constraints and the lost-update race fixed with `SELECT … FOR UPDATE`.
+- **Data warehousing (2):** OLTP vs OLAP, grain, facts, dimensions and surrogate keys in a PostgreSQL star schema; SCD type 2 with idempotent loads and as-was vs as-is reporting; BigQuery dialect translation (sqlglot), DuckDB as a local columnar stand-in, bytes-scanned cost and partitioning/clustering.
+- **Lakehouse (2):** a local Delta Lake lakehouse with bronze/silver/gold layers, partitioning, schema enforcement, MERGE and time travel; Apache Iceberg with PyIceberg (snapshots, schema evolution, file pruning) and a Fabric / Databricks / Snowflake comparison.
+- **Docker (2):** Dockerfile, layer caching, non-root user, containers on a network with environment variables and bind mounts, debugging; Docker Compose with health checks, `depends_on`, `.env`, exit codes, a real PID-1 stop-signal fix (`STOPSIGNAL`), and reproducible environments (pins, lock files, digests).
+- **Practice API:** `mock_api.py`, a local API (token auth, pagination, rate limiting) and catalogue website serving the 2025 data, used by the ingestion and Docker lessons.
+- **Files:** `data-engineering-scripts.zip` with 13 scripts/SQL files, the practice API and a `docker/` folder (Dockerfiles, compose.yaml, ingest job).
+- **Glossary:** 182 terms (14 new: pagination, rate limit, web scraping, OLTP/OLAP, surrogate key, SCD, BigQuery, transaction, EXPLAIN ANALYZE, PostgreSQL, medallion, Delta Lake, Apache Iceberg, Docker Compose); CTE, window function, index, normalisation, Docker, data warehouse, lakehouse and API now link to their new lessons.
+- **Roadmap:** Phase 3 split into M7 (v0.8, done) and M8 (v0.9, next); later milestones move one version later (Phase 5 → v1.0 … Platform upgrade 2 stays v2.0).
+- **Roadmap and handover (docs update, same day):** `ROADMAP.md` now has a progress-by-phase table, open items, a lesson-by-lesson plan and verification plan for M8 (Phase 3B), and the scope of M9–M13. New `handover/` folder with `HANDOVER.md` and a ready-to-paste prompt (`CHATGPT-PROMPT.md`) for continuing the work in another AI assistant.
+- **Verification:** all outputs come from real runs: PostgreSQL 16.15 (the SQL works on 16–18), Docker Engine 29.8 and Compose 5.5, Python 3.13, requests 2.34, Beautiful Soup 4.15, pandas 3.0, psycopg 3.3, DuckDB 1.5, sqlglot 30, deltalake 1.6, PyIceberg 0.12. Docker Hub wasn't reachable from the build machine, so the Docker outputs used a local stand-in for `python:3.14-slim` (stated in the lessons). BigQuery commands, the uv-in-Docker variant and the Postgres compose service are shown for reference and marked as not executed.
+
 ## v0.7 — Phase 2: Python, Statistics & Data Science (2026-10-09)
 
 Milestone **M6**. 21 new lessons; **Phase 2 is complete** (41 of 41 topics). Written so far: 110 of 371 topics, 64 lessons.

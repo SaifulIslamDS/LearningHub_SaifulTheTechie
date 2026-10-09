@@ -1,0 +1,32 @@
+version: 2
+
+models:
+  - name: stg_orders
+    description: "Typed, one-row-per-order staging model for the 2025 source orders."
+    columns:
+      - name: order_id
+        description: "Business key for one order."
+        data_tests: [not_null, unique]
+      - name: customer_id
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_customers')
+                field: customer_id
+      - name: status
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['Delivered', 'Cancelled', 'Shipped', 'Pending']
+  - name: stg_customers
+    description: "Typed customer source with one row per customer."
+    columns:
+      - name: customer_id
+        data_tests: [not_null, unique]
+  - name: stg_products
+    description: "Typed product source with one row per product."
+    columns:
+      - name: product
+        data_tests: [not_null, unique]

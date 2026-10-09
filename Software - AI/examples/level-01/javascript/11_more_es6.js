@@ -1,0 +1,10 @@
+const values = [3, 8, 11, 14, 20];
+const doubled = values.map(n => n * 2);
+const even = values.filter(n => n % 2 === 0);
+const firstLarge = values.find(n => n > 10);
+const total = values.reduce((sum, n) => sum + n, 0);
+console.log(`Doubled: ${doubled.join(", ")}`);
+console.log(`Even: ${even.join(", ")}`);
+console.log(`First > 10: ${firstLarge}`);
+console.log(`Total: ${total}`);
+console.log(`0 === false: ${0 === false}`);

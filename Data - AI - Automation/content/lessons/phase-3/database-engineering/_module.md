@@ -1,0 +1,5 @@
+**Database engineering** is designing and running databases that stay correct and fast as data grows: a schema where every fact lives in one place, constraints that reject bad data, indexes that make the important queries quick, and transactions that never leave data half-written. The examples use **PostgreSQL**, the open-source database behind a huge share of applications and a common choice for analytics workloads.
+
+The scripts are `03_load_postgres.py`, `06_normalization.sql`, `07_indexing_explain.sql` and `08_transactions.py` in [data-engineering-scripts.zip](../../../downloads/phase-3/data-engineering-scripts.zip). Setup (PostgreSQL with Docker or an installer) is on the [Advanced SQL module page](../advanced-sql/index.html).
+
+**By the end of this module you can:** load data into PostgreSQL efficiently, normalise a flat export into related tables with keys and constraints, read an `EXPLAIN ANALYZE` plan and choose the right index, and use transactions and row locks to keep data correct when things fail or run concurrently.

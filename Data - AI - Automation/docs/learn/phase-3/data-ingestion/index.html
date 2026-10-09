@@ -25,7 +25,7 @@ document.documentElement.classList.add('no-anim')})();</script>
 <a class="skip" href="#main">Skip to content</a>
 <header class="topbar">
   <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Open curriculum menu" title="Curriculum menu (press M)" aria-controls="sidebar" aria-expanded="false"><span class="ico-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span class="ico-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></button>
-  <a class="brand" href="../../../index.html"><span class="brand-badge">AI</span><span class="brand-text"><span class="brand-name">Data, AI &amp; Automation Path</span><span class="brand-version">v0.7</span></span></a>
+  <a class="brand" href="../../../index.html"><span class="brand-badge">AI</span><span class="brand-text"><span class="brand-name">Data, AI &amp; Automation Path</span><span class="brand-version">v0.8</span></span></a>
   <nav class="top-links" aria-label="Main">
     <a href="../../../index.html" class="">Home</a><a href="../../../curriculum.html" class="">Curriculum</a><a href="../../../practice-files.html" class="">Practice files</a><a href="../../../glossary.html" class="">Glossary</a><a href="../../../how-to-learn.html" class="">How to learn</a><a href="../../../about.html" class="">About</a>
   </nav>
@@ -41,7 +41,7 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="layout">
   <nav class="sidebar" id="sidebar" aria-label="Curriculum">
     <div class="side-title">Curriculum</div>
-    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="64"><i></i></div><span class="bar-label" data-progress-label></span></div>
+    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="77"><i></i></div><span class="bar-label" data-progress-label></span></div>
 <div class="nav-phase"><a href="../../../learn/phase-0/index.html"><span class="nav-num">0</span>Foundations</a>
 </div>
 <div class="nav-phase"><a href="../../../learn/phase-1/index.html"><span class="nav-num">1</span>Analytics &amp; BI</a>
@@ -51,6 +51,10 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="nav-phase current open"><a href="../../../learn/phase-3/index.html"><span class="nav-num">3</span>Data Engineering</a>
 <ul class="nav-modules">
 <li><a class="current" href="../../../learn/phase-3/data-ingestion/index.html">Data Ingestion</a>
+<ul class="nav-lessons">
+<li><a class="" data-lesson="phase-3/data-ingestion/01-rest-apis-auth-pagination" href="../../../learn/phase-3/data-ingestion/01-rest-apis-auth-pagination.html">REST APIs, Authentication &amp; Pagination: Pull Data Like a Pro</a></li>
+<li><a class="" data-lesson="phase-3/data-ingestion/02-scraping-file-formats" href="../../../learn/phase-3/data-ingestion/02-scraping-file-formats.html">Web Scraping and File Formats: HTML, CSV, JSON &amp; Parquet</a></li>
+</ul>
 </li>
 <li><a class="" href="../../../learn/phase-3/advanced-sql/index.html">Advanced SQL</a>
 </li>
@@ -95,16 +99,25 @@ document.documentElement.classList.add('no-anim')})();</script>
 <nav class="crumbs" aria-label="Breadcrumb"><a href="../../../index.html">Home</a><span class="sep">/</span><a href="../../../learn/phase-3/index.html">Phase 3</a><span class="sep">/</span><span>Data Ingestion</span></nav>
 <h1>Data Ingestion</h1>
 <p class="lead">Part of Phase 3 — Data Engineering (AI-ready). Topics: REST APIs, Auth &amp; pagination, Scraping, CSV, JSON &amp; Parquet.</p>
-
-
-<div class="section-head"><h2>Lessons</h2><p>0 written · 4 planned</p></div>
-<ul class="lesson-list"><li class="lesson-row planned"><span class="n">1</span><span>REST APIs<span class="desc">Planned lesson</span></span><span class="lesson-state"><span class="tag soon">Coming soon</span></span></li><li class="lesson-row planned"><span class="n">2</span><span>Auth &amp; pagination<span class="desc">Planned lesson</span></span><span class="lesson-state"><span class="tag soon">Coming soon</span></span></li><li class="lesson-row planned"><span class="n">3</span><span>Scraping<span class="desc">Planned lesson</span></span><span class="lesson-state"><span class="tag soon">Coming soon</span></span></li><li class="lesson-row planned"><span class="n">4</span><span>CSV, JSON &amp; Parquet<span class="desc">Planned lesson</span></span><span class="lesson-state"><span class="tag soon">Coming soon</span></span></li></ul>
+<p><strong>Data ingestion</strong> is the first step of every pipeline: getting data out of other systems (APIs, websites, files, databases) and into yours, completely, repeatably and politely. Most real ingestion bugs are about the edges: tokens, pages, rate limits, changing formats and silently missing rows.</p>
+<div class="admonition tip">
+<p class="admonition-title">Setup for all of Phase 3A</p>
+<ul>
+<li>Download <a href="../../../downloads/phase-3/data-engineering-scripts.zip">data-engineering-scripts.zip</a> and unzip it. It contains every lesson script, a <code>data/</code> folder (the 2025 data from Phase 2) and <code>mock_api.py</code>, a <strong>practice API and website that runs on your own computer</strong>, so you can practise real HTTP without accounts or keys.</li>
+<li>In that folder, once: <code>uv init --bare</code> then <code>uv add requests beautifulsoup4 pandas pyarrow</code>.</li>
+<li>Start the practice API in one terminal: <code>uv run mock_api.py</code>, and leave it running. Run the lesson scripts in a second terminal.</li>
+</ul>
+</div>
+<p><strong>By the end of this module you can:</strong> call a REST API with a token, follow pagination, retry politely on rate limits, scrape a web page responsibly, and choose between CSV, JSON and Parquet for storing what you collect.</p>
+<div class="files-box"><div class="files-head"><b>Practice files for this page</b><a href="../../../practice-files.html">All practice files →</a></div><ul><li><a href="../../../downloads/phase-3/data-engineering-scripts.zip" download>data-engineering-scripts.zip</a><span class="f-desc">Phase 3A scripts: practice API + website, ingestion, PostgreSQL loader, advanced SQL, indexing, transactions, star schema, SCD, BigQuery dialect, Delta Lake, Iceberg, Dockerfiles and compose.yaml · 270 KB</span></li></ul></div>
+<div class="section-head"><h2>Lessons</h2><p>2 written · 0 planned</p></div>
+<ul class="lesson-list"><li class="lesson-row" data-lesson="phase-3/data-ingestion/01-rest-apis-auth-pagination"><span class="n">1</span><span><a href="../../../learn/phase-3/data-ingestion/01-rest-apis-auth-pagination.html">REST APIs, Authentication &amp; Pagination: Pull Data Like a Pro</a><span class="desc">Call a REST API from Python with a token, follow pagination to the last page, retry politely on rate limits, save the raw responses, and load only what changed — against a practice API on your own machine.</span></span><span class="lesson-state">55 min</span></li><li class="lesson-row" data-lesson="phase-3/data-ingestion/02-scraping-file-formats"><span class="n">2</span><span><a href="../../../learn/phase-3/data-ingestion/02-scraping-file-formats.html">Web Scraping and File Formats: HTML, CSV, JSON &amp; Parquet</a><span class="desc">Scrape a web page responsibly with Beautiful Soup (robots.txt, delays, a real User-Agent), flatten nested JSON, and choose between CSV, JSON and Parquet by size, speed and type safety.</span></span><span class="lesson-state">50 min</span></li></ul>
 <nav class="pager"><a class="next" href="../../../learn/phase-3/advanced-sql/index.html"><small>Next module →</small>Advanced SQL</a></nav>
 
   </div></main>
   
 </div>
-<footer class="site">Data, AI &amp; Automation Path v0.7 · Applied AI, Data &amp; Automation Lab · Updated October 2026<br>
+<footer class="site">Data, AI &amp; Automation Path v0.8 · Applied AI, Data &amp; Automation Lab · Updated October 2026<br>
 Lesson text: <a href="../../../license.html">CC BY-NC-SA 4.0</a> · Code: <a href="../../../license.html#code-mit-license">MIT</a> · Free external resources belong to their respective owners.</footer>
 <script src="../../../search-index.js"></script>
 <script src="../../../assets/app.js"></script>

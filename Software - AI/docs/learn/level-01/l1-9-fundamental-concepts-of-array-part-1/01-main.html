@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en" data-root="../../../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fundamental Concepts of Array — Part 1 — Software &amp; AI Engineering Learning Hub</title>
+<meta name="description" content="Store ordered collections, read by index and add/remove elements with core methods.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Software &amp; AI Engineering Learning Hub">
+<meta property="og:title" content="Fundamental Concepts of Array — Part 1">
+<meta property="og:description" content="Store ordered collections, read by index and add/remove elements with core methods.">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+
+<script>(function(){var t=null;try{t=localStorage.getItem('stse-theme')}catch(e){}
+if(!t)t=(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';
+document.documentElement.setAttribute('data-theme',t);
+var n=null;try{n=localStorage.getItem('stse-nav')}catch(e){}
+if(n==='open'&&window.matchMedia&&matchMedia('(min-width: 961px)').matches)document.documentElement.setAttribute('data-nav','open');
+document.documentElement.classList.add('no-anim')})();</script>
+<link rel="stylesheet" href="../../../assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Open curriculum menu" title="Curriculum menu (press M)" aria-controls="sidebar" aria-expanded="false"><span class="ico-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span class="ico-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></button>
+  <a class="brand" href="../../../index.html"><span class="brand-text"><span class="brand-ecosystem">Saiful The Techie</span><span class="brand-name">Software &amp; AI Engineering Learning Hub</span><span class="brand-version">v0.5.0</span></span></a>
+  <nav class="top-links" aria-label="Main">
+    <a href="../../../index.html" class="">Home</a><a href="../../../curriculum.html" class="">Curriculum</a><a href="../../../practice-files.html" class="">Practice files</a><a href="../../../glossary.html" class="">Glossary</a><a href="../../../how-to-learn.html" class="">How to learn</a><a href="../../../about.html" class="">About</a>
+  </nav>
+  <div class="top-spacer"></div>
+  <div class="search" role="search">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input id="searchInput" type="search" placeholder="Search lessons, tools, topics" aria-label="Search" autocomplete="off">
+    <kbd>/</kbd>
+    <div class="search-results" id="searchResults" role="listbox"></div>
+  </div>
+  <button class="icon-btn theme-toggle" id="themeBtn" aria-label="Toggle light or dark mode" title="Light / dark"><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
+</header>
+<div class="layout wide">
+  <nav class="sidebar" id="sidebar" aria-label="Curriculum">
+    <div class="side-title">Curriculum</div>
+    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="66"><i></i></div><span class="bar-label" data-progress-label></span></div>
+<div class="nav-phase current open"><a href="../../../learn/level-01/index.html"><span class="nav-num">01</span>Level 01</a>
+<ul class="nav-modules">
+<li><a class="" href="../../../learn/level-01/l1-0-welcome-to-the-course/index.html">Welcome to the Course</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-0-orientation-install-necessary-tools/index.html">Orientation - Install Necessary Tools</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-0-5-1-understanding-ai-reality-risks-and-mindset/index.html">Understanding AI: Reality, Risks, and Mindset</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-0-5-2-beyond-the-hype-how-to-actually-use-ai/index.html">Beyond the Hype: How to Actually Use AI</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-1-frontend-basics-html-and-css/index.html">Frontend Basics: HTML &amp; CSS</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-2-version-control-with-git-and-github/index.html">Version Control with Git and GitHub</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-3-semantic-html-and-advanced-elements/index.html">Semantic HTML &amp; Advanced Elements</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-4-css-layouts-and-advanced-styling/index.html">CSS Layouts &amp; Advanced Styling</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-5-build-a-beautiful-portfolio-website/index.html">Build a beautiful portfolio website</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-6-assignment-1/index.html">Assignment 1</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-7-introduction-to-javascript/index.html">Introduction to JavaScript</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-8-fundamental-concepts-of-conditionals/index.html">Fundamental Concepts of Conditionals</a>
+</li>
+<li><a class="current" href="../../../learn/level-01/l1-9-fundamental-concepts-of-array-part-1/index.html">Fundamental Concepts of Array[Part 1]</a>
+<ul class="nav-lessons">
+<li><a class="current" data-lesson="level-01/l1-9-fundamental-concepts-of-array-part-1/01-main" href="../../../learn/level-01/l1-9-fundamental-concepts-of-array-part-1/01-main.html">Fundamental Concepts of Array — Part 1</a></li>
+</ul>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-10-fundamental-concepts-of-loops/index.html">Fundamental Concepts of Loops</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-11-fundamental-concepts-of-array-part-2/index.html">Fundamental Concepts of Array[Part 2]</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-12-fundamentals-of-strings-and-objects/index.html">Fundamentals of Strings &amp; Objects</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-13-fundamentals-of-functions/index.html">Fundamentals of Functions</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-14-basic-problem-solving-with-javascript/index.html">Basic Problem Solving with JavaScript</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-15-assignment-2-problem-solving/index.html">Assignment 2 (Problem solving)</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-16-es6-fundamentals/index.html">ES6 Fundamentals</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-17-more-es6/index.html">More ES6</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-18-problem-solving-with-javascript-es6-part-1/index.html">Problem Solving with JavaScript + ES6 [Part 1]</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-19-problem-solving-with-javascript-es6-part-2/index.html">Problem Solving with JavaScript + ES6 [Part 2]</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-20-assignment-3-problem-solving/index.html">Assignment 3 (Problem solving)</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-21-typescript-fundamentals/index.html">Typescript Fundamentals</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-22-more-typescript/index.html">More Typescript</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-22-5-optional-advanced-oop-in-typescript/index.html">(Optional Advanced) OOP in TypeScript</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-23-problem-solving-with-typescript/index.html">Problem Solving with Typescript</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-24-assignment-4-problem-solving/index.html">Assignment 4(Problem solving)</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-25-react-core-components-jsx-props-and-rendering/index.html">React Core — Components, JSX, Props &amp; Rendering</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-26-state-management-in-react-events-and-data-fetchi/index.html">State Management in React, Events &amp; Data Fetching</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-27-react-project-countries-explorer/index.html">React Project — Countries Explorer</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-28-javascript-dom-and-bom-deep-dive-react-bridge/index.html">JavaScript DOM &amp; BOM Deep Dive (React Bridge)</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-29-simple-react-spa-with-bpl-dream/index.html">Simple React SPA with BPL-DREAM</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-30-assignment-5/index.html">Assignment 5</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-31-next-js-foundation-and-routing/index.html">Next.js Foundation and Routing</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-32-next-js-rendering-basics/index.html">Next.js Rendering Basics</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-33-advanced-data-fetching-and-ui-integration/index.html">Advanced Data Fetching &amp; UI Integration</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-34-assignment-6/index.html">Assignment 6</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-35-security-and-authentication-in-next-js-with-bett/index.html">Security &amp; Authentication in Next.js with BetterAuth</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-36-authentication-advanced-profile-password-and-ema/index.html">Authentication Advanced — Profile, Password &amp; Email</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-37-next-js-project-with-authentication-part-1/index.html">Next.js Project with Authentication—Part 1</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-38-next-js-project-with-authentication-part-2/index.html">Next.js Project with Authentication — Part 2</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-39-assignment-7/index.html">Assignment 7</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-40-node-js-and-express-from-setup-to-first-api/index.html">Node.js &amp; Express — From Setup to First API</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-41-rest-api-and-crud-operations-with-express-and-mo/index.html">REST API &amp; CRUD Operations with Express and MongoDB</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-42-deep-dive-into-mongodb-operators-and-queries/index.html">Deep Dive into MongoDB Operators and Queries</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-43-project-setup-and-destination-crud/index.html">Project Setup &amp; Destination CRUD</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-44-booking-system-and-authentication/index.html">Booking System &amp; Authentication</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-45-jwt-security-and-deployment/index.html">JWT, Security &amp; Deployment</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-46-assignment-8/index.html">Assignment 8</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-47-requirement-analysis-and-planning/index.html">Requirement Analysis &amp; Planning</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-48-project-setup-and-architecture/index.html">Project Setup &amp; Architecture</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-49-core-implementation/index.html">Core Implementation</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-50-stripe-payment-and-webhooks-integration/index.html">Stripe Payment &amp; Webhooks Integration</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-51-review-ui-ux-check-and-deployment/index.html">Review, UI/UX check and Deployment</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-52-assignment-9/index.html">Assignment 9</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-53-requirement-analysis-prompt-and-prototyping/index.html">Requirement Analysis, Prompt &amp; Prototyping</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-54-project-setup-modular-architecture/index.html">Project Setup, Modular Architecture</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-55-core-implementation-backend-with-modular-archite/index.html">Core Implementation — Backend with Modular Architecture</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-56-core-implementation-frontend/index.html">Core Implementation — Frontend</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-57-sslcommerz-payment-integration/index.html">SSLCommerz Payment Integration</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-58-ai-integration-code-review-and-refactoring/index.html">AI Integration, Code Review &amp; Refactoring</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-59-finalization-checking-and-deployment/index.html">Finalization, Checking and Deployment</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-60-assignment-10/index.html">Assignment 10</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-61-ai-assisted-coding-foundations-and-mindset/index.html">AI Assisted Coding Foundations &amp; Mindset</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-62-design-to-code-figma-mcp-lovable-and-ai-builders/index.html">Design-to-Code — Figma MCP, Lovable &amp; AI Builders</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-63-cursor-ai-fullstack-agentic-development-mastery/index.html">Cursor AI — Fullstack Agentic Development Mastery</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-64-terminal-based-agentic-development-with-claude-c/index.html">Terminal-Based Agentic Development with Claude Code</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-65-code-quality-testing-review-refactoring-and-secu/index.html">Code Quality — Testing, Review, Refactoring &amp; Security</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-66-ai-ecosystem-deployment-and-final-project-showca/index.html">AI Ecosystem, Deployment &amp; Final Project Showcase</a>
+</li>
+<li><a class="" href="../../../learn/level-01/l1-67-assignment-11/index.html">Assignment 11</a>
+</li>
+<li><a class="nav-project " href="../../../learn/level-01/project.html">★ Level project</a></li>
+</ul>
+</div>
+<div class="nav-phase"><a href="../../../learn/level-02/index.html"><span class="nav-num">02</span>Level 02</a>
+</div>
+<div class="side-extra"><a href="../../../index.html">Home</a><a href="../../../curriculum.html">Full curriculum map</a><a href="../../../practice-files.html">Practice files</a><a href="../../../glossary.html">Glossary</a><a href="../../../how-to-learn.html">How to learn here</a><a href="../../../about.html">About &amp; contributing</a></div></nav>
+  <main class="main" id="main"><div class="content">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../../index.html">Home</a><span class="sep">/</span><a href="../../../learn/level-01/index.html">Level 01</a><span class="sep">/</span><a href="../../../learn/level-01/l1-9-fundamental-concepts-of-array-part-1/index.html">Fundamental Concepts of Array[Part 1]</a><span class="sep">/</span><span>Fundamental Concepts of Array — Part 1</span></nav>
+<h1>Fundamental Concepts of Array — Part 1</h1>
+<p class="lead">Store ordered collections, read by index and add/remove elements with core methods.</p>
+<div class="meta"><span class="source-pill source-curriculum">Source curriculum</span><span class="pill">Path <b>Level 01</b></span><span class="pill">Difficulty <b>Beginner</b></span><span class="pill">Time <b>45–60 min</b></span></div>
+
+<h2 id="start-here">Start here</h2>
+<p>An array stores an ordered collection of values under one variable name. Instead of creating <code>product1</code>, <code>product2</code>, <code>product3</code>, you can model the collection directly.</p>
+<h2 id="what-you-will-learn">What you will learn</h2>
+<ul>
+<li>array literals;</li>
+<li>length and zero-based indexes;</li>
+<li>reading and replacing items;</li>
+<li><code>push</code>, <code>pop</code>, <code>shift</code> and <code>unshift</code>;</li>
+<li>checking arrays with <code>Array.isArray()</code>;</li>
+<li>how mutation changes the same array object.</li>
+</ul>
+<h2 id="1-create-an-array">1. Create an array</h2>
+<pre><code class="language-javascript">const skills = [&quot;HTML&quot;, &quot;CSS&quot;, &quot;JavaScript&quot;];
+</code></pre>
+<p>The first item is at index <code>0</code>, not <code>1</code>:</p>
+<pre><code class="language-javascript">console.log(skills[0]);
+console.log(skills[2]);
+</code></pre>
+<pre><code class="language-text">HTML
+JavaScript
+</code></pre>
+<h2 id="2-length-and-last-index">2. Length and last index</h2>
+<pre><code class="language-javascript">console.log(skills.length);
+</code></pre>
+<pre><code class="language-text">3
+</code></pre>
+<p>Because indexing starts at zero, the last valid index is usually <code>length - 1</code>:</p>
+<pre><code class="language-javascript">const lastSkill = skills[skills.length - 1];
+</code></pre>
+<h2 id="3-read-and-update-by-index">3. Read and update by index</h2>
+<pre><code class="language-javascript">const tools = [&quot;VS Code&quot;, &quot;Git&quot;, &quot;Chrome&quot;];
+tools[1] = &quot;GitHub&quot;;
+console.log(tools);
+</code></pre>
+<pre><code class="language-text">[ 'VS Code', 'GitHub', 'Chrome' ]
+</code></pre>
+<p>Even though <code>tools</code> was declared with <code>const</code>, the array's contents can change. <code>const</code> prevents <code>tools = anotherArray</code>, not mutation of the existing array.</p>
+<h2 id="4-add-and-remove-from-the-end">4. Add and remove from the end</h2>
+<pre><code class="language-javascript">const modules = [&quot;HTML&quot;, &quot;CSS&quot;];
+modules.push(&quot;JavaScript&quot;);
+const removed = modules.pop();
+</code></pre>
+<p><code>push()</code> adds to the end. <code>pop()</code> removes and returns the last item.</p>
+<h2 id="5-add-and-remove-from-the-beginning">5. Add and remove from the beginning</h2>
+<pre><code class="language-javascript">const queue = [&quot;B&quot;, &quot;C&quot;];
+queue.unshift(&quot;A&quot;);
+const first = queue.shift();
+</code></pre>
+<p><code>unshift()</code> and <code>shift()</code> work at the beginning. For very large collections, changing the beginning can require more internal movement than changing the end, but correctness and readability matter more than micro-optimization at this stage.</p>
+<h2 id="6-check-whether-a-value-is-an-array">6. Check whether a value is an array</h2>
+<pre><code class="language-javascript">console.log(Array.isArray(skills));
+console.log(Array.isArray(&quot;HTML&quot;));
+</code></pre>
+<pre><code class="language-text">true
+false
+</code></pre>
+<p><code>typeof []</code> returns <code>&quot;object&quot;</code>, so <code>Array.isArray()</code> is the reliable built-in check.</p>
+<h2 id="7-model-real-collections">7. Model real collections</h2>
+<p>Arrays become especially useful when items share a shape:</p>
+<pre><code class="language-javascript">const courses = [
+  { id: 1, title: &quot;HTML&quot;, complete: true },
+  { id: 2, title: &quot;JavaScript&quot;, complete: false },
+];
+</code></pre>
+<p>Now the array models an ordered collection and each object models one course. Later you will traverse, filter, transform and render collections like this constantly.</p>
+<h2 id="practice-with-the-verified-script">Practice with the verified script</h2>
+<p>Open <code>03_arrays.js</code>. Add items, remove items, replace one item by index and print the array after each operation. The important skill is to predict which indexes still exist after every mutation.</p>
+<h2 id="career-build-extension">Career build extension</h2>
+<p>Arrays become useful when the program has <strong>many records of the same kind</strong>. Instead of creating <code>product1</code>, <code>product2</code>, <code>product3</code>, store products in one collection:</p>
+<pre><code class="language-js">const products = [
+  { id: 1, name: &quot;Keyboard&quot;, price: 4500 },
+  { id: 2, name: &quot;Mouse&quot;, price: 1800 },
+  { id: 3, name: &quot;Stand&quot;, price: 2200 },
+];
+</code></pre>
+<p>The array has a length of <code>3</code>. Index <code>0</code> is the first product. Index <code>2</code> is the third. Reading an index outside the array returns <code>undefined</code>, which is an important signal to check boundaries.</p>
+<h3 id="add-and-remove-intentionally">Add and remove intentionally</h3>
+<pre><code class="language-js">products.push({ id: 4, name: &quot;Webcam&quot;, price: 3200 });
+const last = products.pop();
+</code></pre>
+<p><code>push</code>/<code>pop</code> work at the end. <code>unshift</code>/<code>shift</code> work at the beginning. These methods mutate the original array, so later in React you will often prefer creating a new array with spread, <code>map</code> or <code>filter</code> instead.</p>
+<h3 id="test-the-shape">Test the shape</h3>
+<pre><code class="language-js">console.log(Array.isArray(products)); // true
+</code></pre>
+<p>Do not use <code>typeof products === &quot;array&quot;</code>; JavaScript reports arrays as objects through <code>typeof</code>.</p>
+<h3 id="read-before-you-transform">Read before you transform</h3>
+<p>Before learning advanced array methods, become comfortable with this sequence:</p>
+<pre><code class="language-text">collection → length → index → value → add/remove → verify result
+</code></pre>
+<p>Use DevTools or Node to inspect the array after every mutation. This builds the state-awareness you need for loops and later immutable React updates.</p>
+
+<div class="files-box"><div class="files-head"><b>Downloadable code & practice files</b><a href="../../../practice-files.html">All practice files →</a></div><ul><li><a href="../../../downloads/level-01/javascript-foundations.zip" download>javascript-foundations.zip</a><span class="f-desc">Verified example scripts for Level 01 Modules 7–20. · 5 KB</span></li></ul></div>
+
+<div class="terms-box"><div class="files-head"><b>Key terms in this lesson</b><a href="../../../glossary.html">Glossary →</a></div><div class="term-chips"><a class="term-chip" href="../../../glossary.html#array" title="An ordered zero-indexed collection.">Array</a><a class="term-chip" href="../../../glossary.html#javascript" title="A programming language used in browsers, servers and tools.">JavaScript</a></div></div>
+<h2 id="free-resources">Free resources to go deeper</h2><ul class="resources"><li><div class="resource-top"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide">MDN JavaScript Guide</a></div><span class="r-meta">MDN</span><span class="r-note">Official browser-oriented JavaScript guide.</span></li><li><div class="resource-top"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference">MDN JavaScript Reference</a></div><span class="r-meta">MDN</span><span class="r-note">Reference for language syntax and built-ins.</span></li><li><div class="resource-top"><a href="https://nodejs.org/docs/latest/api/">Node.js documentation</a></div><span class="r-meta">Node.js</span><span class="r-note">Official runtime documentation.</span></li></ul>
+<div class="complete-bar"><span>Finished reading and did the exercise?</span>
+<button class="btn" id="completeBtn" type="button" data-id="level-01/l1-9-fundamental-concepts-of-array-part-1/01-main">Mark lesson as complete</button></div>
+<nav class="pager"><a class="prev" href="../../../learn/level-01/l1-8-fundamental-concepts-of-conditionals/01-main.html"><small>← Previous</small>Make Decisions with JavaScript Conditionals</a><a class="next" href="../../../learn/level-01/l1-10-fundamental-concepts-of-loops/01-main.html"><small>Next →</small>Repeat Work with JavaScript Loops</a></nav>
+<p class="reviewed">Last reviewed: 2026-10-09</p>
+
+  </div></main>
+  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#start-here">Start here</a><a href="#what-you-will-learn">What you will learn</a><a href="#1-create-an-array">1. Create an array</a><a href="#2-length-and-last-index">2. Length and last index</a><a href="#3-read-and-update-by-index">3. Read and update by index</a><a href="#4-add-and-remove-from-the-end">4. Add and remove from the end</a><a href="#5-add-and-remove-from-the-beginning">5. Add and remove from the beginning</a><a href="#6-check-whether-a-value-is-an-array">6. Check whether a value is an array</a><a href="#7-model-real-collections">7. Model real collections</a><a href="#practice-with-the-verified-script">Practice with the verified script</a><a href="#career-build-extension">Career build extension</a><a href="#add-and-remove-intentionally">Add and remove intentionally</a><a href="#test-the-shape">Test the shape</a><a href="#read-before-you-transform">Read before you transform</a><a href="#free-resources">Free resources</a></aside>
+</div>
+<footer class="site"><b>Saiful The Techie</b> · Software &amp; AI Engineering Learning Hub v0.5.0 · Compiled &amp; Expanded by Saiful Islam · <a href="https://saifulshuvo.com">saifulshuvo.com</a> · Updated October 2026<br>
+Original learning content: <a href="../../../license.html">CC BY-NC-SA 4.0</a> · Code: <a href="../../../license.html#code-mit-license">MIT</a> · Free external resources belong to their respective owners.</footer>
+<script src="../../../search-index.js"></script>
+<script src="../../../assets/app.js"></script>
+</body>
+</html>

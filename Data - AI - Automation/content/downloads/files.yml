@@ -10,6 +10,7 @@ groups:
   - "Power Query"
   - "Power Pivot, DAX & Power BI"
   - "Phase 2 — Data Science"
+  - "Phase 3 — Data Engineering"
   - "Answer keys & templates"
 
 files:
@@ -119,3 +120,18 @@ files:
   - path: phase-2/ab_test_checkout.csv
     group: "Phase 2 — Data Science"
     description: "10,836 portal sessions from a November A/B test of a one-page checkout (variant, device, converted, order value)"
+
+  # ---------------------------------------------------------- Phase 3
+  - path: phase-3/data-engineering-scripts.zip
+    group: "Phase 3 — Data Engineering"
+    description: "Phase 3 scripts: ingestion, PostgreSQL, advanced SQL, warehousing, lakehouse, Docker, ETL/CDC, data quality, plus the dbt mini-project and verification scripts"
+  - path: phase-3/orders_cdc_events.jsonl
+    group: "Phase 3 — Data Engineering"
+    description: "Six deterministic practice CDC events (create/update/delete) derived from the 2025 orders for replay and recovery exercises"
+  - path: phase-3/orders_contract.schema.json
+    group: "Phase 3 — Data Engineering"
+    description: "JSON Schema Draft 2020-12 row contract for the 2025 orders: required fields, types, accepted values and numeric bounds"
+
+  - path: phase-3/dbt-orders-project.zip
+    group: "Phase 3 — Data Engineering"
+    description: "Starter + completed local dbt Core/DuckDB project: sources, staging models, tests, snapshot, macro, docs and BI-ready marts"

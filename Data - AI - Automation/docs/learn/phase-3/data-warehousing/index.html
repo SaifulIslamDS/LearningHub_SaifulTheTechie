@@ -25,7 +25,7 @@ document.documentElement.classList.add('no-anim')})();</script>
 <a class="skip" href="#main">Skip to content</a>
 <header class="topbar">
   <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Open curriculum menu" title="Curriculum menu (press M)" aria-controls="sidebar" aria-expanded="false"><span class="ico-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span class="ico-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></button>
-  <a class="brand" href="../../../index.html"><span class="brand-badge">AI</span><span class="brand-text"><span class="brand-name">Data, AI &amp; Automation Path</span><span class="brand-version">v0.7</span></span></a>
+  <a class="brand" href="../../../index.html"><span class="brand-badge">AI</span><span class="brand-text"><span class="brand-name">Data, AI &amp; Automation Path</span><span class="brand-version">v0.8</span></span></a>
   <nav class="top-links" aria-label="Main">
     <a href="../../../index.html" class="">Home</a><a href="../../../curriculum.html" class="">Curriculum</a><a href="../../../practice-files.html" class="">Practice files</a><a href="../../../glossary.html" class="">Glossary</a><a href="../../../how-to-learn.html" class="">How to learn</a><a href="../../../about.html" class="">About</a>
   </nav>
@@ -41,7 +41,7 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="layout">
   <nav class="sidebar" id="sidebar" aria-label="Curriculum">
     <div class="side-title">Curriculum</div>
-    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="64"><i></i></div><span class="bar-label" data-progress-label></span></div>
+    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="77"><i></i></div><span class="bar-label" data-progress-label></span></div>
 <div class="nav-phase"><a href="../../../learn/phase-0/index.html"><span class="nav-num">0</span>Foundations</a>
 </div>
 <div class="nav-phase"><a href="../../../learn/phase-1/index.html"><span class="nav-num">1</span>Analytics &amp; BI</a>
@@ -57,6 +57,10 @@ document.documentElement.classList.add('no-anim')})();</script>
 <li><a class="" href="../../../learn/phase-3/database-engineering/index.html">Database Engineering</a>
 </li>
 <li><a class="current" href="../../../learn/phase-3/data-warehousing/index.html">Data Warehousing</a>
+<ul class="nav-lessons">
+<li><a class="" data-lesson="phase-3/data-warehousing/01-oltp-olap-star-schema" href="../../../learn/phase-3/data-warehousing/01-oltp-olap-star-schema.html">OLTP vs OLAP, Facts &amp; Dimensions: Build a Star Schema in SQL</a></li>
+<li><a class="" data-lesson="phase-3/data-warehousing/02-scd-bigquery" href="../../../learn/phase-3/data-warehousing/02-scd-bigquery.html">Slowly Changing Dimensions &amp; BigQuery: History and the Cloud Warehouse</a></li>
+</ul>
 </li>
 <li><a class="" href="../../../learn/phase-3/lakehouse/index.html">Lakehouse &amp; Open Table Formats</a>
 </li>
@@ -95,16 +99,18 @@ document.documentElement.classList.add('no-anim')})();</script>
 <nav class="crumbs" aria-label="Breadcrumb"><a href="../../../index.html">Home</a><span class="sep">/</span><a href="../../../learn/phase-3/index.html">Phase 3</a><span class="sep">/</span><span>Data Warehousing</span></nav>
 <h1>Data Warehousing</h1>
 <p class="lead">Part of Phase 3 — Data Engineering (AI-ready). Topics: OLTP vs OLAP, Facts &amp; dimensions, Star schema, SCD, BigQuery.</p>
-
-
-<div class="section-head"><h2>Lessons</h2><p>0 written · 5 planned</p></div>
-<ul class="lesson-list"><li class="lesson-row planned"><span class="n">1</span><span>OLTP vs OLAP<span class="desc">Planned lesson</span></span><span class="lesson-state"><span class="tag soon">Coming soon</span></span></li><li class="lesson-row planned"><span class="n">2</span><span>Facts &amp; dimensions<span class="desc">Planned lesson</span></span><span class="lesson-state"><span class="tag soon">Coming soon</span></span></li><li class="lesson-row planned"><span class="n">3</span><span>Star schema<span class="desc">Planned lesson</span></span><span class="lesson-state"><span class="tag soon">Coming soon</span></span></li><li class="lesson-row planned"><span class="n">4</span><span>SCD<span class="desc">Planned lesson</span></span><span class="lesson-state"><span class="tag soon">Coming soon</span></span></li><li class="lesson-row planned"><span class="n">5</span><span>BigQuery<span class="desc">Planned lesson</span></span><span class="lesson-state"><span class="tag soon">Coming soon</span></span></li></ul>
+<p>A <strong>data warehouse</strong> is a database designed for <strong>analysis</strong>, not for running the business day to day. It collects cleaned history from many sources and organises it, usually as <strong>star schemas</strong>, so that questions like "revenue by quarter, segment and channel" are simple and fast. This module builds a small warehouse in PostgreSQL from the 2025 orders, handles customers whose details change over time, and shows how the same SQL runs in <strong>BigQuery</strong>, a cloud warehouse.</p>
+<p>The scripts are <code>09_star_schema.sql</code>, <code>10_scd.sql</code> and <code>11_bigquery_sql.py</code> in <a href="../../../downloads/phase-3/data-engineering-scripts.zip">data-engineering-scripts.zip</a>. They need the <code>shop</code> schema from <code>03_load_postgres.py</code> (setup on the <a href="../advanced-sql/index.html">Advanced SQL module page</a>).</p>
+<p><strong>By the end of this module you can:</strong> explain OLTP vs OLAP, design facts and dimensions at a stated grain, build a star schema with surrogate keys, keep history with SCD type 2, and translate warehouse SQL to BigQuery while understanding its cost model.</p>
+<div class="files-box"><div class="files-head"><b>Practice files for this page</b><a href="../../../practice-files.html">All practice files →</a></div><ul><li><a href="../../../downloads/phase-3/data-engineering-scripts.zip" download>data-engineering-scripts.zip</a><span class="f-desc">Phase 3A scripts: practice API + website, ingestion, PostgreSQL loader, advanced SQL, indexing, transactions, star schema, SCD, BigQuery dialect, Delta Lake, Iceberg, Dockerfiles and compose.yaml · 270 KB</span></li></ul></div>
+<div class="section-head"><h2>Lessons</h2><p>2 written · 0 planned</p></div>
+<ul class="lesson-list"><li class="lesson-row" data-lesson="phase-3/data-warehousing/01-oltp-olap-star-schema"><span class="n">1</span><span><a href="../../../learn/phase-3/data-warehousing/01-oltp-olap-star-schema.html">OLTP vs OLAP, Facts &amp; Dimensions: Build a Star Schema in SQL</a><span class="desc">Understand why analytics needs a different design from operational databases, define the grain, and build a star schema — a fact table with date, customer, product and channel dimensions — in PostgreSQL.</span></span><span class="lesson-state">55 min</span></li><li class="lesson-row" data-lesson="phase-3/data-warehousing/02-scd-bigquery"><span class="n">2</span><span><a href="../../../learn/phase-3/data-warehousing/02-scd-bigquery.html">Slowly Changing Dimensions &amp; BigQuery: History and the Cloud Warehouse</a><span class="desc">Keep dimension history with SCD type 2 (valid-from/valid-to rows, idempotent loads, as-was vs as-is reports), then take warehouse SQL to BigQuery: dialect differences, partitioning, clustering and paying by bytes scanned.</span></span><span class="lesson-state">55 min</span></li></ul>
 <nav class="pager"><a class="prev" href="../../../learn/phase-3/database-engineering/index.html"><small>← Previous module</small>Database Engineering</a><a class="next" href="../../../learn/phase-3/lakehouse/index.html"><small>Next module →</small>Lakehouse &amp; Open Table Formats</a></nav>
 
   </div></main>
   
 </div>
-<footer class="site">Data, AI &amp; Automation Path v0.7 · Applied AI, Data &amp; Automation Lab · Updated October 2026<br>
+<footer class="site">Data, AI &amp; Automation Path v0.8 · Applied AI, Data &amp; Automation Lab · Updated October 2026<br>
 Lesson text: <a href="../../../license.html">CC BY-NC-SA 4.0</a> · Code: <a href="../../../license.html#code-mit-license">MIT</a> · Free external resources belong to their respective owners.</footer>
 <script src="../../../search-index.js"></script>
 <script src="../../../assets/app.js"></script>
