@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en" data-root="./">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About &amp; Contributing — Data, AI &amp; Automation Path</title>
+<meta name="description" content="What this site is, how lessons are built, and how to add a new lesson.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Data, AI &amp; Automation Path">
+<meta property="og:title" content="About &amp; Contributing">
+<meta property="og:description" content="What this site is, how lessons are built, and how to add a new lesson.">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+
+<script>(function(){var t=null;try{t=localStorage.getItem('daa-theme')}catch(e){}
+if(!t)t=(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';
+document.documentElement.setAttribute('data-theme',t);
+var n=null;try{n=localStorage.getItem('daa-nav')}catch(e){}
+if(n==='open'&&window.matchMedia&&matchMedia('(min-width: 961px)').matches)document.documentElement.setAttribute('data-nav','open');
+document.documentElement.classList.add('no-anim')})();</script>
+<link rel="stylesheet" href="./assets/style.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233f7d6a'/%3E%3Ctext x='16' y='21' font-family='sans-serif' font-size='13' font-weight='700' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Open curriculum menu" title="Curriculum menu (press M)" aria-controls="sidebar" aria-expanded="false"><span class="ico-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span class="ico-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></button>
+  <a class="brand" href="./index.html"><span class="brand-badge">AI</span><span class="brand-text"><span class="brand-name">Data, AI &amp; Automation Path</span><span class="brand-version">v0.7</span></span></a>
+  <nav class="top-links" aria-label="Main">
+    <a href="./index.html" class="">Home</a><a href="./curriculum.html" class="">Curriculum</a><a href="./practice-files.html" class="">Practice files</a><a href="./glossary.html" class="">Glossary</a><a href="./how-to-learn.html" class="">How to learn</a><a href="./about.html" class="active">About</a>
+  </nav>
+  <div class="top-spacer"></div>
+  <div class="search" role="search">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input id="searchInput" type="search" placeholder="Search lessons, tools, topics" aria-label="Search" autocomplete="off">
+    <kbd>/</kbd>
+    <div class="search-results" id="searchResults" role="listbox"></div>
+  </div>
+  <button class="icon-btn theme-toggle" id="themeBtn" aria-label="Toggle light or dark mode" title="Light / dark"><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
+</header>
+<div class="layout wide">
+  <nav class="sidebar" id="sidebar" aria-label="Curriculum">
+    <div class="side-title">Curriculum</div>
+    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="64"><i></i></div><span class="bar-label" data-progress-label></span></div>
+<div class="nav-phase"><a href="./learn/phase-0/index.html"><span class="nav-num">0</span>Foundations</a>
+</div>
+<div class="nav-phase"><a href="./learn/phase-1/index.html"><span class="nav-num">1</span>Analytics &amp; BI</a>
+</div>
+<div class="nav-phase"><a href="./learn/phase-2/index.html"><span class="nav-num">2</span>Data Science</a>
+</div>
+<div class="nav-phase"><a href="./learn/phase-3/index.html"><span class="nav-num">3</span>Data Engineering</a>
+</div>
+<div class="nav-phase"><a href="./learn/phase-4/index.html"><span class="nav-num">4</span>ML Engineering</a>
+</div>
+<div class="nav-phase"><a href="./learn/phase-5/index.html"><span class="nav-num">5</span>LLM &amp; RAG</a>
+</div>
+<div class="nav-phase"><a href="./learn/phase-6/index.html"><span class="nav-num">6</span>Agents &amp; Automation</a>
+</div>
+<div class="nav-phase"><a href="./learn/phase-7/index.html"><span class="nav-num">7</span>LLMOps &amp; Governance</a>
+</div>
+<div class="nav-phase"><a href="./learn/phase-8/index.html"><span class="nav-num">8</span>Capstone</a>
+</div>
+<div class="nav-phase"><a href="./learn/phase-9/index.html"><span class="nav-num">9</span>Career</a>
+</div>
+<div class="side-extra"><a href="./index.html">Home</a><a href="./curriculum.html">Full curriculum map</a><a href="./practice-files.html">Practice files</a><a href="./glossary.html">Glossary</a><a href="./how-to-learn.html">How to learn here</a><a href="./about.html">About &amp; contributing</a></div></nav>
+  <main class="main" id="main"><div class="content">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="./index.html">Home</a><span class="sep">/</span><span>About &amp; Contributing</span></nav>
+<h1>About &amp; Contributing</h1>
+<p class="lead">What this site is, how lessons are built, and how to add a new lesson.</p>
+<h2 id="what-this-site-is">What this site is</h2>
+<p>A free, text-first tutorial site for one integrated curriculum: Data Analytics, Data Science, Data Engineering, Machine Learning, LLMs and RAG, AI Agents, Automation, and Production AI. It is built to take a motivated learner from basics to job-ready skills.</p>
+<ul>
+<li><strong>Text-first:</strong> short explanations, runnable examples and real business questions.</li>
+<li><strong>Practical:</strong> every lesson has an exercise, a quiz and a job-ready check.</li>
+<li><strong>Open:</strong> a plain static website. It works offline and is hosted on GitHub Pages.</li>
+</ul>
+<h2 id="how-every-lesson-is-structured">How every lesson is structured</h2>
+<p>Every lesson follows <strong>Template v1</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Section</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>What is it?</td>
+<td>A plain-language definition with an everyday comparison</td>
+</tr>
+<tr>
+<td>Why it matters at work</td>
+<td>The job use case and how it appears in interviews</td>
+</tr>
+<tr>
+<td>Syntax / core idea</td>
+<td>The minimum pattern to remember</td>
+</tr>
+<tr>
+<td>Examples</td>
+<td>Real business questions, with checked results</td>
+</tr>
+<tr>
+<td>Common mistakes</td>
+<td>The errors beginners actually make</td>
+</tr>
+<tr>
+<td>Try it yourself</td>
+<td>An exercise with a hint and a hidden solution</td>
+</tr>
+<tr>
+<td>Quick quiz</td>
+<td>Three questions with explained answers</td>
+</tr>
+<tr>
+<td>Summary</td>
+<td>Four or five bullets to revise from</td>
+</tr>
+<tr>
+<td>Job-ready check</td>
+<td>An interview question, a strong answer and a mini project</td>
+</tr>
+<tr>
+<td>Free resources</td>
+<td>Official docs, interactive practice and free courses</td>
+</tr>
+</tbody>
+</table>
+<p>Each lesson also shows a <strong>Last reviewed</strong> date. Tools change quickly, so older pages are re-checked first.</p>
+<h2 id="quality-rules">Quality rules</h2>
+<ul>
+<li><strong>Original writing only.</strong> We learn from other sites' formats but never copy their text.</li>
+<li><strong>Every example result is run, not guessed.</strong> Example outputs come from actually running the code on the practice files.</li>
+<li><strong>Facts are checked against official documentation</strong> before a lesson is published.</li>
+<li><strong>External links are free resources</strong> that don't require payment to be useful.</li>
+</ul>
+<h2 id="add-or-edit-a-lesson">Add or edit a lesson</h2>
+<ol>
+<li>Copy <code>content/_templates/lesson-template.md</code> into <code>content/lessons/&lt;phase-id&gt;/&lt;module-id&gt;/</code>. Name it like <code>03-case-expressions.md</code>.</li>
+<li>Fill in the front matter: title, order, summary, level, time, and which <code>topics</code> from <code>curriculum.yml</code> it covers.</li>
+<li>Write the lesson using the section structure above.</li>
+<li>Run <code>python build.py</code>. It rebuilds the <code>docs/</code> folder and reports any broken internal links.</li>
+<li>Open <code>docs/index.html</code> to check the result, then commit.</li>
+</ol>
+<p>A topic listed in <code>curriculum.yml</code> shows as <strong>Coming soon</strong> until a lesson file lists it under <code>topics</code>.</p>
+<h2 id="licence">Licence</h2>
+<ul>
+<li><strong>Lesson content:</strong> CC BY-NC-SA 4.0. You may share and adapt it with credit, for non-commercial use, under the same licence.</li>
+<li><strong>Site code:</strong> MIT.</li>
+</ul>
+<p>Details are on the <a href="license.html">licence page</a>.</p>
+<h2 id="status">Status</h2>
+<p>The site skeleton covers all 10 phases and every module. Lessons are being written phase by phase. <strong>Phases 0, 1 and 2 are complete</strong>: 64 lessons, from Python, Git and testing, through SQL, Excel and Power BI, to pandas, statistics, A/B testing and machine learning foundations, plus three milestone projects and a library of practice files. The site also has a 168-term glossary linked from every lesson, scored quizzes, and share previews for LinkedIn. Next: Phase 3 (Data Engineering). The milestone plan is in <code>ROADMAP.md</code> in the repository.</p>
+  </div></main>
+  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-this-site-is">What this site is</a><a href="#how-every-lesson-is-structured">How every lesson is structured</a><a href="#quality-rules">Quality rules</a><a href="#add-or-edit-a-lesson">Add or edit a lesson</a><a href="#licence">Licence</a><a href="#status">Status</a></aside>
+</div>
+<footer class="site">Data, AI &amp; Automation Path v0.7 · Applied AI, Data &amp; Automation Lab · Updated October 2026<br>
+Lesson text: <a href="./license.html">CC BY-NC-SA 4.0</a> · Code: <a href="./license.html#code-mit-license">MIT</a> · Free external resources belong to their respective owners.</footer>
+<script src="./search-index.js"></script>
+<script src="./assets/app.js"></script>
+</body>
+</html>

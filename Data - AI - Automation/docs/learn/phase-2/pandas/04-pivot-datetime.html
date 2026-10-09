@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en" data-root="../../../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>pandas Pivot &amp; Datetime: Analyse Data Over Time — Data, AI &amp; Automation Path</title>
+<meta name="description" content="Parse dates, extract months and weekdays, resample to monthly totals with month-on-month growth, build pivot tables, smooth with rolling averages and do date arithmetic.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data, AI &amp; Automation Path">
+<meta property="og:title" content="pandas Pivot &amp; Datetime: Analyse Data Over Time">
+<meta property="og:description" content="Parse dates, extract months and weekdays, resample to monthly totals with month-on-month growth, build pivot tables, smooth with rolling averages and do date arithmetic.">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+
+<script>(function(){var t=null;try{t=localStorage.getItem('daa-theme')}catch(e){}
+if(!t)t=(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';
+document.documentElement.setAttribute('data-theme',t);
+var n=null;try{n=localStorage.getItem('daa-nav')}catch(e){}
+if(n==='open'&&window.matchMedia&&matchMedia('(min-width: 961px)').matches)document.documentElement.setAttribute('data-nav','open');
+document.documentElement.classList.add('no-anim')})();</script>
+<link rel="stylesheet" href="../../../assets/style.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233f7d6a'/%3E%3Ctext x='16' y='21' font-family='sans-serif' font-size='13' font-weight='700' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Open curriculum menu" title="Curriculum menu (press M)" aria-controls="sidebar" aria-expanded="false"><span class="ico-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span class="ico-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></button>
+  <a class="brand" href="../../../index.html"><span class="brand-badge">AI</span><span class="brand-text"><span class="brand-name">Data, AI &amp; Automation Path</span><span class="brand-version">v0.7</span></span></a>
+  <nav class="top-links" aria-label="Main">
+    <a href="../../../index.html" class="">Home</a><a href="../../../curriculum.html" class="">Curriculum</a><a href="../../../practice-files.html" class="">Practice files</a><a href="../../../glossary.html" class="">Glossary</a><a href="../../../how-to-learn.html" class="">How to learn</a><a href="../../../about.html" class="">About</a>
+  </nav>
+  <div class="top-spacer"></div>
+  <div class="search" role="search">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input id="searchInput" type="search" placeholder="Search lessons, tools, topics" aria-label="Search" autocomplete="off">
+    <kbd>/</kbd>
+    <div class="search-results" id="searchResults" role="listbox"></div>
+  </div>
+  <button class="icon-btn theme-toggle" id="themeBtn" aria-label="Toggle light or dark mode" title="Light / dark"><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
+</header>
+<div class="layout wide">
+  <nav class="sidebar" id="sidebar" aria-label="Curriculum">
+    <div class="side-title">Curriculum</div>
+    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="64"><i></i></div><span class="bar-label" data-progress-label></span></div>
+<div class="nav-phase"><a href="../../../learn/phase-0/index.html"><span class="nav-num">0</span>Foundations</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-1/index.html"><span class="nav-num">1</span>Analytics &amp; BI</a>
+</div>
+<div class="nav-phase current open"><a href="../../../learn/phase-2/index.html"><span class="nav-num">2</span>Data Science</a>
+<ul class="nav-modules">
+<li><a class="" href="../../../learn/phase-2/numpy/index.html">NumPy</a>
+</li>
+<li><a class="current" href="../../../learn/phase-2/pandas/index.html">Pandas</a>
+<ul class="nav-lessons">
+<li><a class="" data-lesson="phase-2/pandas/01-dataframe-basics" href="../../../learn/phase-2/pandas/01-dataframe-basics.html">pandas DataFrame Basics: Load, Explore, Select and Filter</a></li>
+<li><a class="" data-lesson="phase-2/pandas/02-cleaning" href="../../../learn/phase-2/pandas/02-cleaning.html">Cleaning Data with pandas: From Messy Export to Trusted Table</a></li>
+<li><a class="" data-lesson="phase-2/pandas/03-merge-groupby" href="../../../learn/phase-2/pandas/03-merge-groupby.html">pandas Merge &amp; groupby: Join Tables and Summarise Like SQL</a></li>
+<li><a class="current" data-lesson="phase-2/pandas/04-pivot-datetime" href="../../../learn/phase-2/pandas/04-pivot-datetime.html">pandas Pivot &amp; Datetime: Analyse Data Over Time</a></li>
+</ul>
+</li>
+<li><a class="" href="../../../learn/phase-2/polars-duckdb/index.html">Polars &amp; DuckDB</a>
+</li>
+<li><a class="" href="../../../learn/phase-2/eda/index.html">EDA</a>
+</li>
+<li><a class="" href="../../../learn/phase-2/statistics/index.html">Statistics</a>
+</li>
+<li><a class="" href="../../../learn/phase-2/ab-testing/index.html">Experimentation &amp; A/B Testing</a>
+</li>
+<li><a class="" href="../../../learn/phase-2/visualization/index.html">Visualization</a>
+</li>
+<li><a class="" href="../../../learn/phase-2/ml-foundations/index.html">ML Foundations</a>
+</li>
+<li><a class="" href="../../../learn/phase-2/research-thinking/index.html">Research Thinking</a>
+</li>
+<li><a class="nav-project " href="../../../learn/phase-2/project.html">★ Milestone project</a></li>
+</ul>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-3/index.html"><span class="nav-num">3</span>Data Engineering</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-4/index.html"><span class="nav-num">4</span>ML Engineering</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-5/index.html"><span class="nav-num">5</span>LLM &amp; RAG</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-6/index.html"><span class="nav-num">6</span>Agents &amp; Automation</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-7/index.html"><span class="nav-num">7</span>LLMOps &amp; Governance</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-8/index.html"><span class="nav-num">8</span>Capstone</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-9/index.html"><span class="nav-num">9</span>Career</a>
+</div>
+<div class="side-extra"><a href="../../../index.html">Home</a><a href="../../../curriculum.html">Full curriculum map</a><a href="../../../practice-files.html">Practice files</a><a href="../../../glossary.html">Glossary</a><a href="../../../how-to-learn.html">How to learn here</a><a href="../../../about.html">About &amp; contributing</a></div></nav>
+  <main class="main" id="main"><div class="content">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../../index.html">Home</a><span class="sep">/</span><a href="../../../learn/phase-2/index.html">Phase 2</a><span class="sep">/</span><a href="../../../learn/phase-2/pandas/index.html">Pandas</a><span class="sep">/</span><span>pandas Pivot &amp; Datetime: Analyse Data Over Time</span></nav>
+<h1>pandas Pivot &amp; Datetime: Analyse Data Over Time</h1>
+<p class="lead">Parse dates, extract months and weekdays, resample to monthly totals with month-on-month growth, build pivot tables, smooth with rolling averages and do date arithmetic.</p>
+<div class="meta"><span class="pill">Phase <b>2</b> · Data Science</span><span class="pill">Level <b>Beginner</b></span><span class="pill">Time <b>50 min</b></span></div>
+<div class="admonition note"><p class="admonition-title">Before you start</p><p><a href="../../../learn/phase-2/pandas/03-merge-groupby.html">pandas Merge &amp; groupby: Join Tables and Summarise Like SQL</a></p></div>
+<div class="files-box"><div class="files-head"><b>Practice files for this page</b><a href="../../../practice-files.html">All practice files →</a></div><ul><li><a href="../../../downloads/phase-2/data-science-scripts.zip" download>data-science-scripts.zip</a><span class="f-desc">All 21 Phase 2 lesson scripts (NumPy to research thinking), shared chart style, data folder and solutions · 230 KB</span></li><li><a href="../../../downloads/phase-2/orders_2025.csv" download>orders_2025.csv</a><span class="f-desc">4,246 clean orders for 2025 (synthetic, fixed seed): region, segment, channel, product, price, discount, status, delivery days, revenue · 472 KB</span></li></ul></div>
+<h2 id="what-is-it">What is it?</h2>
+<ul>
+<li><strong>Datetime</strong> tools turn text like <code>"2025-01-01"</code> into real dates, so you can extract parts (month, weekday), add days, and group by time.</li>
+<li><strong><code>resample</code></strong> groups a time-indexed series into periods (days, weeks, month ends).</li>
+<li><strong><code>pivot_table</code></strong> is Excel's PivotTable in code: rows × columns × an aggregate. <strong><code>melt</code></strong> does the reverse (wide → long), like Power Query's <em>Unpivot</em>.</li>
+</ul>
+<div class="admonition job">
+<p class="admonition-title">Why it matters at work</p>
+<p>Almost every business question has a time dimension: "how did we do this month?", "is this a seasonal dip?", "are deliveries getting slower?". Forecasting (Phase 4) and dashboards (Phase 1) both start from clean monthly and daily series built exactly like this.</p>
+</div>
+<p>The script is <code>06_pandas_pivot_datetime.py</code>.</p>
+<h2 id="example-1-parse-dates-and-extract-parts">Example 1: parse dates and extract parts</h2>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="n">orders</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">"data/orders_2025.csv"</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="s2">"order_date"</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">orders</span><span class="p">[</span><span class="s2">"order_date"</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">orders</span><span class="p">[</span><span class="s2">"order_date"</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="o">.</span><span class="n">date</span><span class="p">(),</span> <span class="n">orders</span><span class="p">[</span><span class="s2">"order_date"</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">.</span><span class="n">date</span><span class="p">())</span>
+<span class="n">net</span> <span class="o">=</span> <span class="n">orders</span><span class="p">[</span><span class="n">orders</span><span class="p">[</span><span class="s2">"status"</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">"Cancelled"</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">net</span><span class="p">[</span><span class="s2">"month"</span><span class="p">]</span> <span class="o">=</span> <span class="n">net</span><span class="p">[</span><span class="s2">"order_date"</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">month</span>
+<span class="n">net</span><span class="p">[</span><span class="s2">"weekday"</span><span class="p">]</span> <span class="o">=</span> <span class="n">net</span><span class="p">[</span><span class="s2">"order_date"</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">day_name</span><span class="p">()</span>
+<span class="n">net</span><span class="p">[</span><span class="s2">"quarter"</span><span class="p">]</span> <span class="o">=</span> <span class="n">net</span><span class="p">[</span><span class="s2">"order_date"</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">quarter</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">net</span><span class="p">[[</span><span class="s2">"order_date"</span><span class="p">,</span> <span class="s2">"month"</span><span class="p">,</span> <span class="s2">"weekday"</span><span class="p">,</span> <span class="s2">"quarter"</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>datetime64[us] 2025-01-01 2025-12-31
+  order_date  month    weekday  quarter
+0 2025-01-01      1  Wednesday        1
+2 2025-01-01      1  Wednesday        1
+3 2025-01-01      1  Wednesday        1
+</code></pre></div>
+
+<p><code>parse_dates</code> converts while reading (<code>datetime64</code>); <code>.dt</code> gives access to date parts. (Row 1 is missing because it was a cancelled order.)</p>
+<h2 id="example-2-a-weekly-pattern">Example 2: a weekly pattern</h2>
+<div class="codehilite"><pre><span></span><code><span class="n">days</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Saturday"</span><span class="p">,</span> <span class="s2">"Sunday"</span><span class="p">,</span> <span class="s2">"Monday"</span><span class="p">,</span> <span class="s2">"Tuesday"</span><span class="p">,</span> <span class="s2">"Wednesday"</span><span class="p">,</span> <span class="s2">"Thursday"</span><span class="p">,</span> <span class="s2">"Friday"</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">net</span><span class="p">[</span><span class="s2">"weekday"</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">days</span><span class="p">))</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>weekday
+Saturday     399
+Sunday       707
+Monday       712
+Tuesday      700
+Wednesday    732
+Thursday     673
+Friday        40
+Name: count, dtype: int64
+</code></pre></div>
+
+<p>Friday is the weekend in Bangladesh and Saturday is a half day. <code>reindex(days)</code> puts the days in business order instead of by count.</p>
+<h2 id="example-3-monthly-revenue-and-month-on-month-growth">Example 3: monthly revenue and month-on-month growth</h2>
+<div class="codehilite"><pre><span></span><code><span class="n">monthly</span> <span class="o">=</span> <span class="n">net</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">"order_date"</span><span class="p">)[</span><span class="s2">"revenue"</span><span class="p">]</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s2">"ME"</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="n">mom</span> <span class="o">=</span> <span class="n">monthly</span><span class="o">.</span><span class="n">pct_change</span><span class="p">()</span> <span class="o">*</span> <span class="mi">100</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"revenue"</span><span class="p">:</span> <span class="n">monthly</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="s2">"mom_pct"</span><span class="p">:</span> <span class="n">mom</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">1</span><span class="p">)})</span><span class="o">.</span><span class="n">to_string</span><span class="p">())</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>             revenue  mom_pct
+order_date
+2025-01-31  330192.0      NaN
+2025-02-28  335736.0      1.7
+2025-03-31  324249.0     -3.4
+2025-04-30  336682.0      3.8
+2025-05-31  444538.0     32.0
+2025-06-30  324326.0    -27.0
+2025-07-31  547579.0     68.8
+2025-08-31  499336.0     -8.8
+2025-09-30  606666.0     21.5
+2025-10-31  637897.0      5.1
+2025-11-30  614879.0     -3.6
+2025-12-31  476277.0    -22.5
+</code></pre></div>
+
+<ul>
+<li><code>"ME"</code> = month end (each row is labelled with the last day of its month).</li>
+<li><code>pct_change()</code> compares each month with the previous one: the same MoM measure you built in DAX.</li>
+<li>The story: a slow first half, dips in <strong>April and June</strong> (Eid holidays), and a <strong>September–November peak</strong> (export season).</li>
+</ul>
+<h2 id="example-4-pivot-table">Example 4: pivot table</h2>
+<div class="codehilite"><pre><span></span><code><span class="n">pt</span> <span class="o">=</span> <span class="n">net</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s2">"region"</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s2">"quarter"</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s2">"revenue"</span><span class="p">,</span> <span class="n">aggfunc</span><span class="o">=</span><span class="s2">"sum"</span><span class="p">,</span>
+                     <span class="n">margins</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">margins_name</span><span class="o">=</span><span class="s2">"Total"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">((</span><span class="n">pt</span> <span class="o">/</span> <span class="mi">1000</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>quarter          1       2       3       4   Total
+region
+Chattogram   359.0   409.0   618.0   671.0  2057.0
+Dhaka        313.0   382.0   562.0   579.0  1835.0
+Gazipur      111.0   121.0   157.0   183.0   572.0
+Khulna       118.0    80.0   125.0   107.0   430.0
+Narayanganj   90.0   113.0   192.0   189.0   584.0
+Total        990.0  1106.0  1654.0  1729.0  5478.0
+</code></pre></div>
+
+<p>Revenue in thousands. <code>margins=True</code> adds totals (5,478 thousand = the known 5,478,357.79). Khulna is the only region that doesn't grow in the second half.</p>
+<h2 id="example-5-rolling-averages-smooth-the-noise">Example 5: rolling averages smooth the noise</h2>
+<p>Daily orders around Eid al-Fitr 2025 (about 31 March):</p>
+<div class="codehilite"><pre><span></span><code><span class="n">daily</span> <span class="o">=</span> <span class="n">net</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">"order_date"</span><span class="p">)</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s2">"D"</span><span class="p">)[</span><span class="s2">"order_id"</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+<span class="n">roll</span> <span class="o">=</span> <span class="n">daily</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">daily</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">"2025-03-27"</span><span class="p">:</span><span class="s2">"2025-04-09"</span><span class="p">]</span><span class="o">.</span><span class="n">to_string</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">roll</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">"2025-04-05"</span><span class="p">:</span><span class="s2">"2025-04-09"</span><span class="p">]</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">to_string</span><span class="p">())</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>order_date
+2025-03-27    13
+2025-03-28     1
+2025-03-29     0
+2025-03-30     1
+2025-03-31     2
+2025-04-01     1
+2025-04-02     0
+2025-04-03     2
+2025-04-04     0
+2025-04-05     1
+2025-04-06     2
+2025-04-07    16
+2025-04-08    16
+2025-04-09     5
+Freq: D
+order_date
+2025-04-05    1.0
+2025-04-06    1.1
+2025-04-07    3.1
+2025-04-08    5.3
+2025-04-09    6.0
+Freq: D
+</code></pre></div>
+
+<p>A 7-day rolling mean averages each day with the 6 before it, so the holiday shows as a smooth dip and recovery rather than a jagged line. Days with no orders appear as 0 because <code>resample("D")</code> creates every calendar day.</p>
+<h2 id="example-6-date-arithmetic">Example 6: date arithmetic</h2>
+<div class="codehilite"><pre><span></span><code><span class="n">delivered</span> <span class="o">=</span> <span class="n">net</span><span class="p">[</span><span class="n">net</span><span class="p">[</span><span class="s2">"status"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"Delivered"</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">delivered</span><span class="p">[</span><span class="s2">"delivered_on"</span><span class="p">]</span> <span class="o">=</span> <span class="n">delivered</span><span class="p">[</span><span class="s2">"order_date"</span><span class="p">]</span> <span class="o">+</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_timedelta</span><span class="p">(</span><span class="n">delivered</span><span class="p">[</span><span class="s2">"delivery_days"</span><span class="p">],</span> <span class="n">unit</span><span class="o">=</span><span class="s2">"D"</span><span class="p">)</span>
+<span class="n">delivered</span><span class="p">[</span><span class="s2">"late"</span><span class="p">]</span> <span class="o">=</span> <span class="n">delivered</span><span class="p">[</span><span class="s2">"delivery_days"</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">delivered</span><span class="p">[</span><span class="s2">"promised_days"</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">delivered</span><span class="p">[[</span><span class="s2">"order_date"</span><span class="p">,</span> <span class="s2">"delivery_days"</span><span class="p">,</span> <span class="s2">"delivered_on"</span><span class="p">,</span> <span class="s2">"promised_days"</span><span class="p">,</span> <span class="s2">"late"</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">delivered</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">delivered</span><span class="p">[</span><span class="s2">"order_date"</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">month</span><span class="p">)[</span><span class="s2">"late"</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">mul</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">to_dict</span><span class="p">())</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>  order_date  delivery_days delivered_on  promised_days   late
+0 2025-01-01            3.0   2025-01-04              5  False
+2 2025-01-01            2.0   2025-01-03              3  False
+3 2025-01-01            6.0   2025-01-07              6  False
+{1: 13.3, 2: 13.7, 3: 15.4, 4: 19.1, 5: 16.7, 6: 18.2, 7: 18.6, 8: 13.0, 9: 16.7, 10: 50.5, 11: 48.4, 12: 14.2}
+</code></pre></div>
+
+<p>About <strong>half of all deliveries were late in October and November</strong>, compared with 13–19% in other months. The peak season strains logistics: a finding worth more than any chart of revenue.</p>
+<h2 id="example-7-melt-wide-long">Example 7: melt (wide → long)</h2>
+<div class="codehilite"><pre><span></span><code><span class="n">wide</span> <span class="o">=</span> <span class="n">pt</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s2">"Total"</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s2">"Total"</span><span class="p">)</span>
+<span class="n">long</span> <span class="o">=</span> <span class="n">wide</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span><span class="n">id_vars</span><span class="o">=</span><span class="s2">"region"</span><span class="p">,</span> <span class="n">var_name</span><span class="o">=</span><span class="s2">"quarter"</span><span class="p">,</span> <span class="n">value_name</span><span class="o">=</span><span class="s2">"revenue"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">long</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>       region quarter    revenue
+0  Chattogram       1  359125.38
+1       Dhaka       1  312600.21
+2     Gazipur       1  111065.46
+3      Khulna       1  117816.62
+</code></pre></div>
+
+<p>Long format (one row per region–quarter) is what plotting libraries, databases and models prefer.</p>
+<h2 id="common-mistakes">Common mistakes</h2>
+<table>
+<thead>
+<tr>
+<th>Mistake</th>
+<th>What happens</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Dates left as text</td>
+<td><code>.dt</code> fails; months sort as text</td>
+<td><code>parse_dates=</code> or <code>pd.to_datetime</code></td>
+</tr>
+<tr>
+<td>Day-first dates read as month-first</td>
+<td>05/01 becomes 1 May</td>
+<td><code>pd.to_datetime(s, format="%d/%m/%Y")</code></td>
+</tr>
+<tr>
+<td><code>groupby(month)</code> across several years</td>
+<td>January 2024 and 2025 merged</td>
+<td>Group by <code>dt.to_period("M")</code>, or resample</td>
+</tr>
+<tr>
+<td>Rolling over missing days</td>
+<td>A "7-day" window covers 9 calendar days</td>
+<td><code>resample("D")</code> first, so every day exists</td>
+</tr>
+<tr>
+<td>Reading a pivot's <code>NaN</code> as zero</td>
+<td>Wrong conclusions</td>
+<td><code>fill_value=0</code> only when "none" really means zero</td>
+</tr>
+</tbody>
+</table>
+<h2 id="try-it-yourself">Try it yourself</h2>
+<p><strong>Task:</strong> Build a pivot of the <strong>late-delivery rate (%)</strong> by region (rows) and quarter (columns). Which region–quarter is worst, and which region is most reliable?</p>
+<details>
+<summary>Show a hint</summary>
+<p><code>late</code> is True/False; the mean of True/False is the share of True. Use <code>aggfunc="mean"</code> and multiply by 100.</p>
+</details>
+<details>
+<summary>Show the solution</summary>
+<div class="codehilite"><pre><span></span><code><span class="n">late_pt</span> <span class="o">=</span> <span class="n">delivered</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s2">"region"</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s2">"quarter"</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s2">"late"</span><span class="p">,</span> <span class="n">aggfunc</span><span class="o">=</span><span class="s2">"mean"</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">late_pt</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>quarter         1     2     3     4
+region
+Chattogram   15.7  23.3  22.9  39.5
+Dhaka         7.2   9.7   7.7  36.5
+Gazipur      19.4  17.2  17.2  49.7
+Khulna       28.8  18.3  19.2  39.7
+Narayanganj  11.0  25.3  16.2  51.6
+</code></pre></div>
+
+<p>Narayanganj in Q4 is worst (51.6% late), followed by Gazipur Q4. Dhaka is the most reliable for most of the year, but even Dhaka jumps to 36.5% in Q4: the peak-season problem affects every region.</p>
+</details>
+<h2 id="quick-quiz">Quick quiz</h2>
+<div class="quiz-q" data-answer="1">
+<p>1. What does <code>series.resample("ME").sum()</code> do?</p>
+<ol>
+<li>Sorts the series by month</li>
+<li>Totals the values for each calendar month, labelled by month end</li>
+<li>Calculates a rolling sum</li>
+</ol>
+<details>
+<summary>Show answer</summary>
+<p><strong>B.</strong> The series needs a datetime index first.</p>
+</details>
+</div>
+<div class="quiz-q" data-answer="1">
+<p>2. <code>monthly.pct_change()</code> for October shows 5.1. What does it mean?</p>
+<ol>
+<li>October revenue was 5.1% of the year</li>
+<li>October revenue was 5.1% higher than September</li>
+<li>October had 5.1% more orders than average</li>
+</ol>
+<details>
+<summary>Show answer</summary>
+<p><strong>B.</strong> Month-on-month growth.</p>
+</details>
+</div>
+<div class="quiz-q" data-answer="1">
+<p>3. Which function turns a wide table (one column per quarter) into a long table?</p>
+<ol>
+<li><code>pivot_table</code></li>
+<li><code>melt</code></li>
+<li><code>resample</code></li>
+</ol>
+<details>
+<summary>Show answer</summary>
+<p><strong>B.</strong></p>
+</details>
+</div>
+<h2 id="summary">Summary</h2>
+<ul>
+<li>Convert dates on load (<code>parse_dates</code>), then use <code>.dt</code> for month, weekday and quarter.</li>
+<li><code>resample("ME")</code> + <code>pct_change()</code> gives monthly totals and MoM growth; <code>rolling(7)</code> smooths daily noise.</li>
+<li><code>pivot_table(index, columns, values, aggfunc, margins=True)</code> = an Excel pivot; <code>melt</code> reverses it.</li>
+<li>Date arithmetic with <code>to_timedelta</code> answers operational questions such as late deliveries.</li>
+</ul>
+<div class="admonition job">
+<p class="admonition-title">Job-ready check</p>
+<p><strong>Interview question:</strong> <em>"Monthly revenue dropped 27% in June. How would you investigate?"</em></p>
+<p><strong>Strong answer:</strong> "First check it's real: same data cut-off, no missing days, cancellations excluded. Then look at daily orders with a rolling average to see whether it's a short gap or a trend. Here the dip lines up with the Eid holiday week, so I'd compare with last year's Eid period and check whether the lost orders came back in July before calling it a problem."</p>
+<p><strong>Mini project:</strong> Produce a one-page "2025 time review": monthly revenue with MoM %, the Eid dips, the Q4 late-delivery problem by region, and one recommendation for logistics planning in next year's peak season.</p>
+</div>
+
+<h2 id="free-resources">Free resources to go deeper</h2><ul class="resources"><li><a href="https://pandas.pydata.org/docs/user_guide/timeseries.html">Time series / date functionality</a><span class="r-meta">pandas official docs · Parsing, resampling, offsets such as ME (month end) and rolling windows.</span></li><li><a href="https://pandas.pydata.org/docs/user_guide/reshaping.html">Reshaping and pivot tables</a><span class="r-meta">pandas official docs · pivot_table, melt, stack and unstack.</span></li><li><a href="https://pandas.pydata.org/docs/user_guide/window.html">Windowing operations</a><span class="r-meta">pandas official docs · Rolling and expanding calculations.</span></li></ul>
+<div class="complete-bar"><span>Finished reading and did the exercise?</span>
+<button class="btn" id="completeBtn" type="button" data-id="phase-2/pandas/04-pivot-datetime">Mark lesson as complete</button></div>
+<nav class="pager"><a class="prev" href="../../../learn/phase-2/pandas/03-merge-groupby.html"><small>← Previous</small>pandas Merge &amp; groupby: Join Tables and Summarise Like SQL</a><a class="next" href="../../../learn/phase-2/polars-duckdb/01-polars-dataframes.html"><small>Next →</small>Polars DataFrames: Fast Expressions and Lazy Queries</a></nav>
+<p class="reviewed">Last reviewed: 2026-10-09</p>
+
+  </div></main>
+  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#example-1-parse-dates-and-extract-parts">Example 1: parse dates and extract parts</a><a href="#example-2-a-weekly-pattern">Example 2: a weekly pattern</a><a href="#example-3-monthly-revenue-and-month-on-month-growth">Example 3: monthly revenue and month-on-month growth</a><a href="#example-4-pivot-table">Example 4: pivot table</a><a href="#example-5-rolling-averages-smooth-the-noise">Example 5: rolling averages smooth the noise</a><a href="#example-6-date-arithmetic">Example 6: date arithmetic</a><a href="#example-7-melt-wide-long">Example 7: melt (wide → long)</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#free-resources">Free resources</a></aside>
+</div>
+<footer class="site">Data, AI &amp; Automation Path v0.7 · Applied AI, Data &amp; Automation Lab · Updated October 2026<br>
+Lesson text: <a href="../../../license.html">CC BY-NC-SA 4.0</a> · Code: <a href="../../../license.html#code-mit-license">MIT</a> · Free external resources belong to their respective owners.</footer>
+<script src="../../../search-index.js"></script>
+<script src="../../../assets/app.js"></script>
+</body>
+</html>

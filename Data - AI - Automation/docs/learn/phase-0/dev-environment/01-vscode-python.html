@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en" data-root="../../../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Set Up Python and VS Code: Your Daily Workbench — Data, AI &amp; Automation Path</title>
+<meta name="description" content="Install Python and VS Code, choose the right interpreter, and run your first script from the editor and the terminal.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data, AI &amp; Automation Path">
+<meta property="og:title" content="Set Up Python and VS Code: Your Daily Workbench">
+<meta property="og:description" content="Install Python and VS Code, choose the right interpreter, and run your first script from the editor and the terminal.">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+
+<script>(function(){var t=null;try{t=localStorage.getItem('daa-theme')}catch(e){}
+if(!t)t=(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';
+document.documentElement.setAttribute('data-theme',t);
+var n=null;try{n=localStorage.getItem('daa-nav')}catch(e){}
+if(n==='open'&&window.matchMedia&&matchMedia('(min-width: 961px)').matches)document.documentElement.setAttribute('data-nav','open');
+document.documentElement.classList.add('no-anim')})();</script>
+<link rel="stylesheet" href="../../../assets/style.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233f7d6a'/%3E%3Ctext x='16' y='21' font-family='sans-serif' font-size='13' font-weight='700' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Open curriculum menu" title="Curriculum menu (press M)" aria-controls="sidebar" aria-expanded="false"><span class="ico-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span class="ico-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></button>
+  <a class="brand" href="../../../index.html"><span class="brand-badge">AI</span><span class="brand-text"><span class="brand-name">Data, AI &amp; Automation Path</span><span class="brand-version">v0.7</span></span></a>
+  <nav class="top-links" aria-label="Main">
+    <a href="../../../index.html" class="">Home</a><a href="../../../curriculum.html" class="">Curriculum</a><a href="../../../practice-files.html" class="">Practice files</a><a href="../../../glossary.html" class="">Glossary</a><a href="../../../how-to-learn.html" class="">How to learn</a><a href="../../../about.html" class="">About</a>
+  </nav>
+  <div class="top-spacer"></div>
+  <div class="search" role="search">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input id="searchInput" type="search" placeholder="Search lessons, tools, topics" aria-label="Search" autocomplete="off">
+    <kbd>/</kbd>
+    <div class="search-results" id="searchResults" role="listbox"></div>
+  </div>
+  <button class="icon-btn theme-toggle" id="themeBtn" aria-label="Toggle light or dark mode" title="Light / dark"><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
+</header>
+<div class="layout wide">
+  <nav class="sidebar" id="sidebar" aria-label="Curriculum">
+    <div class="side-title">Curriculum</div>
+    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="64"><i></i></div><span class="bar-label" data-progress-label></span></div>
+<div class="nav-phase current open"><a href="../../../learn/phase-0/index.html"><span class="nav-num">0</span>Foundations</a>
+<ul class="nav-modules">
+<li><a class="current" href="../../../learn/phase-0/dev-environment/index.html">Development Environment</a>
+<ul class="nav-lessons">
+<li><a class="current" data-lesson="phase-0/dev-environment/01-vscode-python" href="../../../learn/phase-0/dev-environment/01-vscode-python.html">Set Up Python and VS Code: Your Daily Workbench</a></li>
+<li><a class="" data-lesson="phase-0/dev-environment/02-uv-environments" href="../../../learn/phase-0/dev-environment/02-uv-environments.html">uv, Virtual Environments &amp; Packages: One Project, One Environment</a></li>
+<li><a class="" data-lesson="phase-0/dev-environment/03-debugging" href="../../../learn/phase-0/dev-environment/03-debugging.html">Debugging: Read Tracebacks and Use Breakpoints Instead of Guessing</a></li>
+</ul>
+</li>
+<li><a class="" href="../../../learn/phase-0/git-github/index.html">Git &amp; GitHub</a>
+</li>
+<li><a class="" href="../../../learn/phase-0/linux/index.html">Linux Essentials</a>
+</li>
+<li><a class="" href="../../../learn/phase-0/programming-refresher/index.html">Programming Refresher</a>
+</li>
+<li><a class="" href="../../../learn/phase-0/testing-ci/index.html">Testing &amp; CI Basics</a>
+</li>
+<li><a class="" href="../../../learn/phase-0/ai-assisted-dev/index.html">AI-Assisted Development</a>
+</li>
+<li><a class="nav-project " href="../../../learn/phase-0/project.html">★ Milestone project</a></li>
+</ul>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-1/index.html"><span class="nav-num">1</span>Analytics &amp; BI</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-2/index.html"><span class="nav-num">2</span>Data Science</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-3/index.html"><span class="nav-num">3</span>Data Engineering</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-4/index.html"><span class="nav-num">4</span>ML Engineering</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-5/index.html"><span class="nav-num">5</span>LLM &amp; RAG</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-6/index.html"><span class="nav-num">6</span>Agents &amp; Automation</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-7/index.html"><span class="nav-num">7</span>LLMOps &amp; Governance</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-8/index.html"><span class="nav-num">8</span>Capstone</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-9/index.html"><span class="nav-num">9</span>Career</a>
+</div>
+<div class="side-extra"><a href="../../../index.html">Home</a><a href="../../../curriculum.html">Full curriculum map</a><a href="../../../practice-files.html">Practice files</a><a href="../../../glossary.html">Glossary</a><a href="../../../how-to-learn.html">How to learn here</a><a href="../../../about.html">About &amp; contributing</a></div></nav>
+  <main class="main" id="main"><div class="content">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../../index.html">Home</a><span class="sep">/</span><a href="../../../learn/phase-0/index.html">Phase 0</a><span class="sep">/</span><a href="../../../learn/phase-0/dev-environment/index.html">Development Environment</a><span class="sep">/</span><span>Set Up Python and VS Code: Your Daily Workbench</span></nav>
+<h1>Set Up Python and VS Code: Your Daily Workbench</h1>
+<p class="lead">Install Python and VS Code, choose the right interpreter, and run your first script from the editor and the terminal.</p>
+<div class="meta"><span class="pill">Phase <b>0</b> · Foundations</span><span class="pill">Level <b>Beginner</b></span><span class="pill">Time <b>40 min</b></span></div>
+
+<div class="files-box"><div class="files-head"><b>Practice files for this page</b><a href="../../../practice-files.html">All practice files →</a></div><ul><li><a href="../../../downloads/phase-0/python-refresher.zip" download>python-refresher.zip</a><span class="f-desc">Python refresher scripts, debugging, pytest and ruff examples, an AI-written function to review, with solutions · 12 KB</span></li></ul></div>
+<h2 id="what-is-it">What is it?</h2>
+<ul>
+<li><strong>Python</strong> is the language of data and AI work. You install an <strong>interpreter</strong>: the program that runs <code>.py</code> files.</li>
+<li><strong>VS Code</strong> (Visual Studio Code) is a free code editor. With the <strong>Python extension</strong>, it understands Python: completion, error highlighting, running and debugging.</li>
+</ul>
+<p>Think of Python as the engine and VS Code as the dashboard you drive it from.</p>
+<div class="admonition job">
+<p class="admonition-title">Why it matters at work</p>
+<p>Every data engineering, data science and AI role assumes you can set up and run Python projects without help. VS Code is the most widely used editor for Python, and the same setup scales from a 10-line script to a production service.</p>
+</div>
+<h2 id="step-1-install-python">Step 1: install Python</h2>
+<p>Use <strong>Python 3.14</strong>, the current stable version. Python 3.15 is being released this month: wait until the libraries you need support it before switching.</p>
+<table>
+<thead>
+<tr>
+<th>Your computer</th>
+<th>Easiest way</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Windows</strong></td>
+<td>Download the installer from <a href="https://www.python.org/downloads/">https://www.python.org/downloads/</a>. <strong>Tick "Add python.exe to PATH"</strong> on the first screen</td>
+</tr>
+<tr>
+<td><strong>Mac</strong></td>
+<td>The python.org installer, or <code>brew install python@3.14</code></td>
+</tr>
+<tr>
+<td><strong>Linux / WSL</strong></td>
+<td>Use <strong>uv</strong> (next lesson): <code>uv python install 3.14</code></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="admonition-title">Already using uv?</p>
+<p>uv can download and manage Python versions for you, per project. Many teams now use uv instead of installing Python by hand. The next lesson shows how.</p>
+</div>
+<p>Check it worked. Open a terminal (<strong>Windows:</strong> PowerShell; <strong>Mac/Linux:</strong> Terminal):</p>
+<div class="codehilite"><pre><span></span><code>python<span class="w"> </span>--version
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>Python 3.14.6
+</code></pre></div>
+
+<p>(On Mac and Linux the command may be <code>python3</code>. Your patch number may differ.)</p>
+<h2 id="step-2-install-vs-code-and-the-python-extension">Step 2: install VS Code and the Python extension</h2>
+<ol>
+<li>Download VS Code from <a href="https://code.visualstudio.com">https://code.visualstudio.com</a> and install it.</li>
+<li>Open the <strong>Extensions</strong> view (<strong>Ctrl+Shift+X</strong>, Mac <strong>Cmd+Shift+X</strong>), search for <strong>Python</strong> (publisher: Microsoft), and click <strong>Install</strong>.</li>
+<li>It automatically adds <strong>Pylance</strong> (code intelligence), <strong>Python Debugger</strong> and <strong>Python Environments</strong>.</li>
+</ol>
+<h2 id="step-3-open-a-folder-and-run-a-script">Step 3: open a folder and run a script</h2>
+<ol>
+<li><strong>File → Open Folder…</strong>, then create or choose a folder such as <code>python-practice</code>.</li>
+<li>Create a file <code>hello.py</code>:</li>
+</ol>
+<div class="codehilite"><pre><span></span><code><span class="n">region</span> <span class="o">=</span> <span class="s2">"Dhaka"</span>
+<span class="n">revenue</span> <span class="o">=</span> <span class="mi">3170</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">region</span><span class="si">}</span><span class="s2"> net revenue: </span><span class="si">{</span><span class="n">revenue</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</code></pre></div>
+
+<ol start="3">
+<li>Click the <strong>▷ Run Python File</strong> button at the top right of the editor. The <strong>terminal</strong> panel opens and shows:</li>
+</ol>
+<div class="codehilite"><pre><span></span><code>Dhaka net revenue: 3,170
+</code></pre></div>
+
+<p>You can also run it yourself in the terminal (<strong>View → Terminal</strong>, or <strong>Ctrl+`</strong>):</p>
+<div class="codehilite"><pre><span></span><code>python<span class="w"> </span>hello.py
+</code></pre></div>
+
+<h2 id="step-4-pick-the-right-interpreter">Step 4: pick the right interpreter</h2>
+<p>VS Code needs to know <strong>which</strong> Python to use, because you may have several. Look at the <strong>status bar</strong> (bottom right), or run <strong>Python: Select Interpreter</strong> from the Command Palette (<strong>Ctrl+Shift+P</strong>). Choose 3.14, or the project's <code>.venv</code> interpreter once you've created one in the next lesson.</p>
+<div class="admonition mistake">
+<p class="admonition-title">\"It works in the terminal but not in VS Code\"</p>
+<p>That almost always means VS Code is using a different interpreter from your terminal. Select the right one (usually the project's <code>.venv</code>), and the import errors disappear.</p>
+</div>
+<h2 id="useful-vs-code-habits">Useful VS Code habits</h2>
+<table>
+<thead>
+<tr>
+<th>Shortcut</th>
+<th>Does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Ctrl+Shift+P</strong></td>
+<td>Command Palette: find any command by name</td>
+</tr>
+<tr>
+<td><strong>Ctrl+P</strong></td>
+<td>Open a file by name</td>
+</tr>
+<tr>
+<td><strong>Ctrl+`</strong></td>
+<td>Show or hide the terminal</td>
+</tr>
+<tr>
+<td><strong>Shift+Enter</strong></td>
+<td>Run the selected lines in the Python terminal</td>
+</tr>
+<tr>
+<td><strong>F12</strong></td>
+<td>Go to the definition of a function</td>
+</tr>
+<tr>
+<td><strong>Ctrl+/</strong></td>
+<td>Comment or uncomment lines</td>
+</tr>
+</tbody>
+</table>
+<p>(Mac: use <strong>Cmd</strong> instead of <strong>Ctrl</strong>.)</p>
+<h2 id="common-mistakes">Common mistakes</h2>
+<table>
+<thead>
+<tr>
+<th>Mistake</th>
+<th>What happens</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Not ticking "Add to PATH" on Windows</td>
+<td><code>python</code> isn't recognised in the terminal</td>
+<td>Re-run the installer → Modify → add to PATH, or use the <code>py</code> launcher</td>
+</tr>
+<tr>
+<td>Opening a single file instead of a folder</td>
+<td>No project settings, wrong interpreter</td>
+<td>Always <strong>File → Open Folder</strong></td>
+</tr>
+<tr>
+<td>Several Pythons, wrong one selected</td>
+<td><code>ModuleNotFoundError</code> in VS Code only</td>
+<td><strong>Python: Select Interpreter</strong></td>
+</tr>
+<tr>
+<td>Installing the newest Python on day one</td>
+<td>Some libraries aren't available yet</td>
+<td>Use the current stable version that your libraries support</td>
+</tr>
+</tbody>
+</table>
+<h2 id="try-it-yourself">Try it yourself</h2>
+<p><strong>Task:</strong> In <code>hello.py</code>, add two more variables, <code>target = 3600</code> and <code>achievement = revenue / target</code>, and print the achievement as a percentage with one decimal.</p>
+<details>
+<summary>Show a hint</summary>
+<p>An f-string with the <code>:.1%</code> format turns 0.8806 into <code>88.1%</code>.</p>
+</details>
+<details>
+<summary>Show the solution</summary>
+<div class="codehilite"><pre><span></span><code><span class="n">region</span> <span class="o">=</span> <span class="s2">"Dhaka"</span>
+<span class="n">revenue</span> <span class="o">=</span> <span class="mi">3170</span>
+<span class="n">target</span> <span class="o">=</span> <span class="mi">3600</span>
+<span class="n">achievement</span> <span class="o">=</span> <span class="n">revenue</span> <span class="o">/</span> <span class="n">target</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">region</span><span class="si">}</span><span class="s2"> net revenue: </span><span class="si">{</span><span class="n">revenue</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">region</span><span class="si">}</span><span class="s2"> achievement: </span><span class="si">{</span><span class="n">achievement</span><span class="si">:</span><span class="s2">.1%</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>Dhaka net revenue: 3,170
+Dhaka achievement: 88.1%
+</code></pre></div>
+
+<p>That's the same 88.1% as the Power BI lesson.</p>
+</details>
+<h2 id="quick-quiz">Quick quiz</h2>
+<div class="quiz-q" data-answer="1">
+<p>1. VS Code shows <code>ModuleNotFoundError</code>, but the same script works in your terminal. What's the most likely cause?</p>
+<ol>
+<li>VS Code can't run Python</li>
+<li>VS Code is using a different interpreter</li>
+<li>The file is too long</li>
+</ol>
+<details>
+<summary>Show answer</summary>
+<p><strong>B.</strong> Select the same interpreter with <strong>Python: Select Interpreter</strong>.</p>
+</details>
+</div>
+<div class="quiz-q" data-answer="0">
+<p>2. Which shortcut opens the Command Palette?</p>
+<ol>
+<li>Ctrl+Shift+P</li>
+<li>Ctrl+P</li>
+<li>Ctrl+`</li>
+</ol>
+<details>
+<summary>Show answer</summary>
+<p><strong>A.</strong> Ctrl+P opens files, and Ctrl+` toggles the terminal.</p>
+</details>
+</div>
+<div class="quiz-q" data-answer="1">
+<p>3. Why might you wait before moving to a brand-new Python release?</p>
+<ol>
+<li>New versions are slower</li>
+<li>Some libraries may not support it yet</li>
+<li>VS Code doesn't support it</li>
+</ol>
+<details>
+<summary>Show answer</summary>
+<p><strong>B.</strong> Libraries with compiled parts need time to publish builds for a new version.</p>
+</details>
+</div>
+<h2 id="summary">Summary</h2>
+<ul>
+<li>Install the current stable <strong>Python</strong> (3.14 now), and check it with <code>python --version</code>.</li>
+<li>Install <strong>VS Code</strong> and the Microsoft <strong>Python</strong> extension (with Pylance, Debugger and Environments).</li>
+<li>Always <strong>open a folder</strong>, select the right <strong>interpreter</strong>, and run with ▷ or <code>python file.py</code>.</li>
+<li>Learn a handful of shortcuts: they save hours each month.</li>
+</ul>
+<div class="admonition job">
+<p class="admonition-title">Job-ready check</p>
+<p><strong>Interview question:</strong> <em>"A colleague's script runs on their laptop but fails on yours with an import error. What do you check?"</em></p>
+<p><strong>Strong answer:</strong> "First, which Python interpreter and environment I'm using, versus theirs. Then whether the project's dependencies are installed in that environment. A project file like <code>pyproject.toml</code> with a lock file, used with uv, prevents this by giving everyone the same versions."</p>
+<p><strong>Mini project:</strong> Create a <code>python-practice</code> folder, open it in VS Code, and run <code>hello.py</code> both ways (▷ button and terminal). Take a screenshot showing the selected interpreter in the status bar.</p>
+</div>
+<div class="terms-box"><div class="files-head"><b>Key terms in this lesson</b><a href="../../../glossary.html">Glossary →</a></div><div class="term-chips"><a class="term-chip" href="../../../glossary.html#interpreter" title="The program that runs Python code. A computer can have several; your editor must use the right one (usually the project&#x27;s .venv).">Interpreter</a><a class="term-chip" href="../../../glossary.html#path" title="The address of a file or folder. Absolute paths start from the root (/home/learner/...); relative paths start from the current folder.">Path</a><a class="term-chip" href="../../../glossary.html#python" title="A general-purpose programming language and the standard language of data engineering, data science and AI.">Python</a><a class="term-chip" href="../../../glossary.html#terminal" title="A text window where you type commands to control the computer. On Linux the usual shell is bash.">Terminal</a></div></div>
+<h2 id="free-resources">Free resources to go deeper</h2><ul class="resources"><li><a href="https://code.visualstudio.com/docs/python/python-quick-start">Quick Start Guide for Python in VS Code</a><span class="r-meta">VS Code docs · Official setup, running and debugging in a few minutes.</span></li><li><a href="https://marketplace.visualstudio.com/items?itemName=ms-python.python">Python extension for VS Code</a><span class="r-meta">Visual Studio Marketplace · Lists the extensions it installs (Pylance, Python Debugger, Python Environments).</span></li><li><a href="https://docs.python.org/3/tutorial/">The Python Tutorial</a><span class="r-meta">Python official docs · The official, free Python tutorial.</span></li><li><a href="https://devguide.python.org/versions/">Status of Python versions</a><span class="r-meta">Python Developer&#x27;s Guide · Which versions are supported, and until when.</span></li></ul>
+<div class="complete-bar"><span>Finished reading and did the exercise?</span>
+<button class="btn" id="completeBtn" type="button" data-id="phase-0/dev-environment/01-vscode-python">Mark lesson as complete</button></div>
+<nav class="pager"><a class="next" href="../../../learn/phase-0/dev-environment/02-uv-environments.html"><small>Next →</small>uv, Virtual Environments &amp; Packages: One Project, One Environment</a></nav>
+<p class="reviewed">Last reviewed: 2026-10-09</p>
+
+  </div></main>
+  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#step-1-install-python">Step 1: install Python</a><a href="#step-2-install-vs-code-and-the-python-extension">Step 2: install VS Code and the Python extension</a><a href="#step-3-open-a-folder-and-run-a-script">Step 3: open a folder and run a script</a><a href="#step-4-pick-the-right-interpreter">Step 4: pick the right interpreter</a><a href="#useful-vs-code-habits">Useful VS Code habits</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#free-resources">Free resources</a></aside>
+</div>
+<footer class="site">Data, AI &amp; Automation Path v0.7 · Applied AI, Data &amp; Automation Lab · Updated October 2026<br>
+Lesson text: <a href="../../../license.html">CC BY-NC-SA 4.0</a> · Code: <a href="../../../license.html#code-mit-license">MIT</a> · Free external resources belong to their respective owners.</footer>
+<script src="../../../search-index.js"></script>
+<script src="../../../assets/app.js"></script>
+</body>
+</html>

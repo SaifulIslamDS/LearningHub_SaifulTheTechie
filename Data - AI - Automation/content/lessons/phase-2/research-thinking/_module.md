@@ -1,0 +1,5 @@
+**Research thinking** is what turns analysis into evidence. It's the discipline of asking a precise question, choosing a design that can actually answer it, making the work reproducible, and reporting results with their uncertainty and limits. It applies equally to a dashboard question, an A/B test, an ML model or an LLM evaluation, and it's what makes a portfolio project look professional.
+
+The scripts are `20_research_question_design.py` and `21_reproducibility_reporting.py` in [data-science-scripts.zip](../../../downloads/phase-2/data-science-scripts.zip). Two templates go with this module: `experiment_plan_template.md` and `analysis_report_template.md` (see the download box on each lesson).
+
+**By the end of this module you can:** turn a business worry into a testable research question, choose and size a design that can answer it (or say honestly that it can't), make an analysis reproducible from data to result, and write a report with estimates, intervals, baselines and limitations.

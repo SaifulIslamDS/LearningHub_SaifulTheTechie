@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en" data-root="../../../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Power Query Merge &amp; Append: Combine Tables Without Formulas — Data, AI &amp; Automation Path</title>
+<meta name="description" content="Add customer details to orders with Merge (like a SQL JOIN), and stack monthly tables with Append (like UNION).">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data, AI &amp; Automation Path">
+<meta property="og:title" content="Power Query Merge &amp; Append: Combine Tables Without Formulas">
+<meta property="og:description" content="Add customer details to orders with Merge (like a SQL JOIN), and stack monthly tables with Append (like UNION).">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+
+<script>(function(){var t=null;try{t=localStorage.getItem('daa-theme')}catch(e){}
+if(!t)t=(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';
+document.documentElement.setAttribute('data-theme',t);
+var n=null;try{n=localStorage.getItem('daa-nav')}catch(e){}
+if(n==='open'&&window.matchMedia&&matchMedia('(min-width: 961px)').matches)document.documentElement.setAttribute('data-nav','open');
+document.documentElement.classList.add('no-anim')})();</script>
+<link rel="stylesheet" href="../../../assets/style.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233f7d6a'/%3E%3Ctext x='16' y='21' font-family='sans-serif' font-size='13' font-weight='700' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Open curriculum menu" title="Curriculum menu (press M)" aria-controls="sidebar" aria-expanded="false"><span class="ico-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span class="ico-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></button>
+  <a class="brand" href="../../../index.html"><span class="brand-badge">AI</span><span class="brand-text"><span class="brand-name">Data, AI &amp; Automation Path</span><span class="brand-version">v0.7</span></span></a>
+  <nav class="top-links" aria-label="Main">
+    <a href="../../../index.html" class="">Home</a><a href="../../../curriculum.html" class="">Curriculum</a><a href="../../../practice-files.html" class="">Practice files</a><a href="../../../glossary.html" class="">Glossary</a><a href="../../../how-to-learn.html" class="">How to learn</a><a href="../../../about.html" class="">About</a>
+  </nav>
+  <div class="top-spacer"></div>
+  <div class="search" role="search">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input id="searchInput" type="search" placeholder="Search lessons, tools, topics" aria-label="Search" autocomplete="off">
+    <kbd>/</kbd>
+    <div class="search-results" id="searchResults" role="listbox"></div>
+  </div>
+  <button class="icon-btn theme-toggle" id="themeBtn" aria-label="Toggle light or dark mode" title="Light / dark"><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
+</header>
+<div class="layout wide">
+  <nav class="sidebar" id="sidebar" aria-label="Curriculum">
+    <div class="side-title">Curriculum</div>
+    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="64"><i></i></div><span class="bar-label" data-progress-label></span></div>
+<div class="nav-phase"><a href="../../../learn/phase-0/index.html"><span class="nav-num">0</span>Foundations</a>
+</div>
+<div class="nav-phase current open"><a href="../../../learn/phase-1/index.html"><span class="nav-num">1</span>Analytics &amp; BI</a>
+<ul class="nav-modules">
+<li><a class="" href="../../../learn/phase-1/excel-analysis/index.html">Excel for Analysis</a>
+</li>
+<li><a class="" href="../../../learn/phase-1/pivot-analysis/index.html">Pivot Analysis</a>
+</li>
+<li><a class="current" href="../../../learn/phase-1/power-query/index.html">Power Query</a>
+<ul class="nav-lessons">
+<li><a class="" data-lesson="phase-1/power-query/01-cleaning" href="../../../learn/phase-1/power-query/01-cleaning.html">Power Query Cleaning: From Messy Export to Tidy Table</a></li>
+<li><a class="current" data-lesson="phase-1/power-query/02-merge-append" href="../../../learn/phase-1/power-query/02-merge-append.html">Power Query Merge &amp; Append: Combine Tables Without Formulas</a></li>
+<li><a class="" data-lesson="phase-1/power-query/03-reshape-folder" href="../../../learn/phase-1/power-query/03-reshape-folder.html">Power Query Reshape &amp; Folder Workflows: Unpivot and Combine Files</a></li>
+</ul>
+</li>
+<li><a class="" href="../../../learn/phase-1/power-pivot-dax/index.html">Power Pivot &amp; DAX</a>
+</li>
+<li><a class="" href="../../../learn/phase-1/analytical-sql/index.html">Analytical SQL</a>
+</li>
+<li><a class="" href="../../../learn/phase-1/power-bi/index.html">Power BI</a>
+</li>
+<li><a class="" href="../../../learn/phase-1/semantic-models/index.html">Semantic Models &amp; Metrics Layer</a>
+</li>
+<li><a class="" href="../../../learn/phase-1/ai-assisted-analytics/index.html">AI-Assisted Analytics</a>
+</li>
+<li><a class="" href="../../../learn/phase-1/data-storytelling/index.html">Data Storytelling</a>
+</li>
+<li><a class="nav-project " href="../../../learn/phase-1/project.html">★ Milestone project</a></li>
+</ul>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-2/index.html"><span class="nav-num">2</span>Data Science</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-3/index.html"><span class="nav-num">3</span>Data Engineering</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-4/index.html"><span class="nav-num">4</span>ML Engineering</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-5/index.html"><span class="nav-num">5</span>LLM &amp; RAG</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-6/index.html"><span class="nav-num">6</span>Agents &amp; Automation</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-7/index.html"><span class="nav-num">7</span>LLMOps &amp; Governance</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-8/index.html"><span class="nav-num">8</span>Capstone</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-9/index.html"><span class="nav-num">9</span>Career</a>
+</div>
+<div class="side-extra"><a href="../../../index.html">Home</a><a href="../../../curriculum.html">Full curriculum map</a><a href="../../../practice-files.html">Practice files</a><a href="../../../glossary.html">Glossary</a><a href="../../../how-to-learn.html">How to learn here</a><a href="../../../about.html">About &amp; contributing</a></div></nav>
+  <main class="main" id="main"><div class="content">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../../index.html">Home</a><span class="sep">/</span><a href="../../../learn/phase-1/index.html">Phase 1</a><span class="sep">/</span><a href="../../../learn/phase-1/power-query/index.html">Power Query</a><span class="sep">/</span><span>Power Query Merge &amp; Append: Combine Tables Without Formulas</span></nav>
+<h1>Power Query Merge &amp; Append: Combine Tables Without Formulas</h1>
+<p class="lead">Add customer details to orders with Merge (like a SQL JOIN), and stack monthly tables with Append (like UNION).</p>
+<div class="meta"><span class="pill">Phase <b>1</b> · Analytics &amp; BI</span><span class="pill">Level <b>Beginner</b></span><span class="pill">Time <b>35 min</b></span></div>
+<div class="admonition note"><p class="admonition-title">Before you start</p><p><a href="../../../learn/phase-1/power-query/01-cleaning.html">Power Query Cleaning: From Messy Export to Tidy Table</a></p></div>
+<div class="files-box"><div class="files-head"><b>Practice files for this page</b><a href="../../../practice-files.html">All practice files →</a></div><ul><li><a href="../../../downloads/orders.csv" download>orders.csv</a><span class="f-desc">The 12 clean practice orders as CSV · 963 B</span></li><li><a href="../../../downloads/customers.csv" download>customers.csv</a><span class="f-desc">6 customers with segment, city and account manager · 319 B</span></li><li><a href="../../../downloads/products.csv" download>products.csv</a><span class="f-desc">6 products with category, list price and supplier · 259 B</span></li><li><a href="../../../downloads/monthly/orders_2026-01.csv" download>orders_2026-01.csv</a><span class="f-desc">January orders (5 rows), for append and folder lessons · 434 B</span></li><li><a href="../../../downloads/monthly/orders_2026-02.csv" download>orders_2026-02.csv</a><span class="f-desc">February orders (5 rows) · 441 B</span></li><li><a href="../../../downloads/monthly/orders_2026-03.csv" download>orders_2026-03.csv</a><span class="f-desc">March orders (2 rows) · 226 B</span></li></ul></div>
+<h2 id="what-is-it">What is it?</h2>
+<p>Power Query combines tables in two directions:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><strong>Merge</strong></th>
+<th><strong>Append</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Direction</td>
+<td>Side by side: adds <strong>columns</strong></td>
+<td>On top of each other: adds <strong>rows</strong></td>
+</tr>
+<tr>
+<td>Like</td>
+<td>SQL <code>JOIN</code> or XLOOKUP</td>
+<td>SQL <code>UNION ALL</code>, or pasting one list under another</td>
+</tr>
+<tr>
+<td>Example</td>
+<td>Orders + the customer's segment</td>
+<td>January + February + March orders</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition job">
+<p class="admonition-title">Why it matters at work</p>
+<p>Company data lives in separate exports: sales, the customer master, price lists, one file per month. Merging and appending in Power Query replaces fragile VLOOKUP sheets and manual copy-paste. And because the steps are recorded, next month's update is one click.</p>
+</div>
+<h2 id="setup">Setup</h2>
+<p>Load these as separate queries: <strong>Data → From Text/CSV → Transform Data</strong>, then <strong>Close &amp; Load To… → Only Create Connection</strong>.</p>
+<ul>
+<li><code>orders.csv</code> → query <strong>Orders</strong> (12 rows)</li>
+<li><code>customers.csv</code> → query <strong>Customers</strong> (6 rows)</li>
+<li>the three monthly files → queries <strong>Jan</strong>, <strong>Feb</strong>, <strong>Mar</strong> (5, 5 and 2 rows)</li>
+</ul>
+<h2 id="example-1-merge-add-the-customer-segment-to-each-order">Example 1: Merge — add the customer segment to each order</h2>
+<ol>
+<li>Select the <strong>Orders</strong> query → <strong>Home → Merge Queries → Merge Queries as New</strong>.</li>
+<li>Top table: <strong>Orders</strong>, click the <strong>customer</strong> column. Bottom table: <strong>Customers</strong>, click <strong>customer_name</strong>.</li>
+<li><strong>Join Kind: Left Outer</strong> (all orders, plus matching customer details). Power Query shows "The selection matches <strong>12 of 12</strong> rows". Click <strong>OK</strong>.</li>
+<li>The new column contains nested tables. Click its <strong>expand ⇄</strong> icon, tick only <strong>segment</strong>, untick "Use original column name as prefix", and click <strong>OK</strong>.</li>
+</ol>
+<div class="codehilite"><pre><span></span><code>Merged = Table.NestedJoin(Orders, {"customer"}, Customers, {"customer_name"},
+                          "Customers", JoinKind.LeftOuter),
+Expanded = Table.ExpandTableColumn(Merged, "Customers", {"segment"}, {"segment"})
+</code></pre></div>
+
+<p>Every order now has a segment: order 1 is <strong>Trader</strong>, order 3 is <strong>Garment Factory</strong>, order 5 is <strong>Knitting Mill</strong>. Group by segment (<strong>Transform → Group By</strong>, Sum of value, with Cancelled filtered out) and you get <strong>Garment Factory 5,265 · Knitting Mill 2,520 · Trader 1,290</strong>, the same as the SQL JOIN lesson.</p>
+<div class="admonition tip">
+<p class="admonition-title">Read the match count</p>
+<p>The "matches X of Y rows" message is your first data-quality check. If it says 10 of 12, two orders have customer names that don't exist in the customer list, usually because of typos or spaces.</p>
+</div>
+<h2 id="example-2-merge-with-an-anti-join-find-whats-missing">Example 2: Merge with an anti join — find what's missing</h2>
+<p><em>Which customers have never ordered?</em></p>
+<p><strong>Merge Queries as New</strong> → top <strong>Customers</strong> (customer_name), bottom <strong>Orders</strong> (customer), <strong>Join Kind: Left Anti</strong> (rows only in the first table).</p>
+<div class="codehilite"><pre><span></span><code>NoOrders = Table.NestedJoin(Customers, {"customer_name"}, Orders, {"customer"},
+                            "Orders", JoinKind.LeftAnti)
+</code></pre></div>
+
+<p>Result: <strong>1 row</strong>, Blue Thread Ltd. This is the same anti-join you wrote in SQL, without any code.</p>
+<table>
+<thead>
+<tr>
+<th>Join Kind</th>
+<th>Keeps</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Left Outer</td>
+<td>all rows from the first table + matches</td>
+</tr>
+<tr>
+<td>Right Outer</td>
+<td>all rows from the second table + matches</td>
+</tr>
+<tr>
+<td>Full Outer</td>
+<td>all rows from both</td>
+</tr>
+<tr>
+<td>Inner</td>
+<td>only matching rows</td>
+</tr>
+<tr>
+<td>Left Anti</td>
+<td>rows in the first table with <strong>no</strong> match</td>
+</tr>
+<tr>
+<td>Right Anti</td>
+<td>rows in the second table with <strong>no</strong> match</td>
+</tr>
+</tbody>
+</table>
+<h2 id="example-3-append-stack-the-monthly-files">Example 3: Append — stack the monthly files</h2>
+<ol>
+<li>Select <strong>Jan</strong> → <strong>Home → Append Queries → Append Queries as New</strong>.</li>
+<li>Choose <strong>Three or more tables</strong>, and add <strong>Jan, Feb, Mar</strong> to the right-hand list → <strong>OK</strong>.</li>
+</ol>
+<div class="codehilite"><pre><span></span><code>AllOrders = Table.Combine({Jan, Feb, Mar})
+</code></pre></div>
+
+<p>Result: <strong>12 rows</strong> (5 + 5 + 2). Append matches columns <strong>by name</strong>, not by position.</p>
+<div class="admonition mistake">
+<p class="admonition-title">Different column names break an append</p>
+<p>If March's file calls the column <code>Qty</code> instead of <code>quantity</code>, the appended table gets <strong>two</strong> columns, each half empty. Rename the columns to match in each query <strong>before</strong> appending.</p>
+</div>
+<h2 id="common-mistakes">Common mistakes</h2>
+<table>
+<thead>
+<tr>
+<th>Mistake</th>
+<th>What happens</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Inner join when you need every order</td>
+<td>Orders without a matching customer disappear</td>
+<td>Left Outer, and check the match count</td>
+</tr>
+<tr>
+<td>Merging on columns with different types (text vs number)</td>
+<td>No matches</td>
+<td>Set the same data type on both key columns</td>
+</tr>
+<tr>
+<td>Duplicate keys in the lookup table</td>
+<td>Orders multiply after the merge</td>
+<td>Make the lookup keys unique first</td>
+</tr>
+<tr>
+<td>Different column names before an append</td>
+<td>Half-empty extra columns</td>
+<td>Rename to identical names first</td>
+</tr>
+<tr>
+<td>Loading every helper query to a sheet</td>
+<td>A cluttered workbook</td>
+<td>Load helpers as <strong>Only Create Connection</strong></td>
+</tr>
+</tbody>
+</table>
+<h2 id="try-it-yourself">Try it yourself</h2>
+<p><strong>Task:</strong> Merge <strong>Orders</strong> with <strong>products</strong> information: create a small <em>Products</em> query (or use the <strong>Products</strong> sheet of <code>orders.xlsx</code>) and bring in <strong>supplier</strong>. How many orders are for <strong>Star Trims</strong> products?</p>
+<details>
+<summary>Show a hint</summary>
+<p>Merge Orders.product with Products.product, Left Outer, expand <strong>supplier</strong>. Then filter, or use Group By.</p>
+</details>
+<details>
+<summary>Show the solution</summary>
+<p><strong>4 orders</strong> (2, 4, 7 and 11): all the Metal Buttons and Zippers orders. That's the same answer as the XLOOKUP lesson, now produced by a refreshable query.</p>
+</details>
+<h2 id="quick-quiz">Quick quiz</h2>
+<div class="quiz-q" data-answer="1">
+<p>1. You want to add January's and February's orders into one list. Which tool?</p>
+<ol>
+<li>Merge</li>
+<li>Append</li>
+<li>Group By</li>
+</ol>
+<details>
+<summary>Show answer</summary>
+<p><strong>B — Append</strong> adds rows. Merge adds columns.</p>
+</details>
+</div>
+<div class="quiz-q" data-answer="2">
+<p>2. Which join kind returns customers with <strong>no</strong> orders?</p>
+<ol>
+<li>Inner</li>
+<li>Left Outer</li>
+<li>Left Anti</li>
+</ol>
+<details>
+<summary>Show answer</summary>
+<p><strong>C — Left Anti</strong>, when Customers is the first table.</p>
+</details>
+</div>
+<div class="quiz-q" data-answer="0">
+<p>3. Merge says "The selection matches 10 of 12 rows". What does that tell you?</p>
+<ol>
+<li>2 orders have no matching customer: check for typos or missing customers</li>
+<li>The merge failed</li>
+<li>2 customers have no orders</li>
+</ol>
+<details>
+<summary>Show answer</summary>
+<p><strong>A.</strong> Two rows in the first table found no match in the second. Investigate before you trust the totals.</p>
+</details>
+</div>
+<h2 id="summary">Summary</h2>
+<ul>
+<li><strong>Merge</strong> = side by side, like a JOIN. Pick the key columns and a join kind, then expand the columns you need.</li>
+<li><strong>Left Outer</strong> keeps every row. <strong>Left Anti</strong> finds missing matches.</li>
+<li><strong>Append</strong> = stack rows, like UNION ALL. Columns are matched by name.</li>
+<li>Use the match count and row counts as built-in data-quality checks.</li>
+</ul>
+<div class="admonition job">
+<p class="admonition-title">Job-ready check</p>
+<p><strong>Interview question:</strong> <em>"What's the difference between merge and append in Power Query?"</em></p>
+<p><strong>Strong answer:</strong> "Merge joins tables side by side on a key, like a SQL join: for example, adding customer segments to orders. Append stacks tables with the same columns, like UNION ALL: for example, monthly files. With a merge I check the match count and the join kind. With an append, I check that the column names line up."</p>
+<p><strong>Mini project:</strong> Build one query that appends the three monthly files and then merges in segment (from Customers) and supplier (from Products). Load it as the single, refreshable "sales" table for the next lessons.</p>
+</div>
+<div class="terms-box"><div class="files-head"><b>Key terms in this lesson</b><a href="../../../glossary.html">Glossary →</a></div><div class="term-chips"><a class="term-chip" href="../../../glossary.html#merge-and-append" title="Power Query&#x27;s two ways to combine tables: merge adds columns by matching keys (like a JOIN); append stacks rows (like UNION).">Merge and append</a><a class="term-chip" href="../../../glossary.html#xlookup" title="Finds a value in one column and returns the matching value from another. INDEX/MATCH does the same in older Excel versions.">XLOOKUP</a></div></div>
+<h2 id="free-resources">Free resources to go deeper</h2><ul class="resources"><li><a href="https://learn.microsoft.com/en-us/power-query/merge-queries-overview">Merge queries overview</a><span class="r-meta">Microsoft Learn · Every join kind, with diagrams.</span></li><li><a href="https://learn.microsoft.com/en-us/power-query/append-queries">Append queries</a><span class="r-meta">Microsoft Learn · Append two tables, or three or more.</span></li><li><a href="https://learn.microsoft.com/en-us/power-bi/connect-data/desktop-shape-and-combine-data">Shape and combine data in Power BI Desktop</a><span class="r-meta">Microsoft Learn · A full tutorial that uses merge and shaping steps.</span></li></ul>
+<div class="complete-bar"><span>Finished reading and did the exercise?</span>
+<button class="btn" id="completeBtn" type="button" data-id="phase-1/power-query/02-merge-append">Mark lesson as complete</button></div>
+<nav class="pager"><a class="prev" href="../../../learn/phase-1/power-query/01-cleaning.html"><small>← Previous</small>Power Query Cleaning: From Messy Export to Tidy Table</a><a class="next" href="../../../learn/phase-1/power-query/03-reshape-folder.html"><small>Next →</small>Power Query Reshape &amp; Folder Workflows: Unpivot and Combine Files</a></nav>
+<p class="reviewed">Last reviewed: 2026-10-09</p>
+
+  </div></main>
+  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#setup">Setup</a><a href="#example-1-merge-add-the-customer-segment-to-each-order">Example 1: Merge — add the customer segment to each order</a><a href="#example-2-merge-with-an-anti-join-find-whats-missing">Example 2: Merge with an anti join — find what&#x27;s missing</a><a href="#example-3-append-stack-the-monthly-files">Example 3: Append — stack the monthly files</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#free-resources">Free resources</a></aside>
+</div>
+<footer class="site">Data, AI &amp; Automation Path v0.7 · Applied AI, Data &amp; Automation Lab · Updated October 2026<br>
+Lesson text: <a href="../../../license.html">CC BY-NC-SA 4.0</a> · Code: <a href="../../../license.html#code-mit-license">MIT</a> · Free external resources belong to their respective owners.</footer>
+<script src="../../../search-index.js"></script>
+<script src="../../../assets/app.js"></script>
+</body>
+</html>

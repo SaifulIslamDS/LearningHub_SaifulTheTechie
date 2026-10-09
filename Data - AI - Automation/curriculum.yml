@@ -1,0 +1,196 @@
+# The curriculum map. Every phase and module page is generated from this file.
+# Module "topics" become the planned lesson list until a lesson file covers them.
+# tag: new | updated  (2026 market upgrade labels)
+
+tracks:
+  - title: "Data / BI Analyst"
+    phases: [0, 1, 2]
+    focus: "Excel, SQL, Power BI, KPI design, AI-assisted analysis."
+  - title: "Analytics Engineer"
+    phases: [1, 3]
+    focus: "Modeling, dbt, warehouse marts, semantic models."
+  - title: "Data Engineer (AI-ready)"
+    phases: [0, 3, 7]
+    focus: "Pipelines, lakehouse, quality, cloud, data for RAG."
+  - title: "AI / LLM Engineer"
+    phases: [4, 5, 6, 7]
+    focus: "LLM apps, RAG, agents, evals, observability."
+  - title: "AI Automation Engineer"
+    phases: [0, 5, 6, 9]
+    focus: "n8n, APIs, agents, human-in-the-loop, client delivery."
+
+phases:
+  - id: phase-0
+    num: 0
+    title: "Engineering Foundations"
+    short: "Foundations"
+    summary: "Build the technical base used by every later phase."
+    milestone: { label: "Gate", text: "A CSV Data Cleaning CLI with logging, exception handling, config, tests, CI and documentation." }
+    modules:
+      - { id: dev-environment, title: "Development Environment", tag: updated, topics: ["VS Code", "Python", "uv / virtual environments", "Package management", "Debugging"] }
+      - { id: git-github, title: "Git & GitHub", topics: ["Repositories & commits", "Branches & merge", "Pull requests", "README & project structure"] }
+      - { id: linux, title: "Linux Essentials", topics: ["Filesystem", "grep, sort & pipes", "Terminal workflow", "cron concepts"] }
+      - { id: programming-refresher, title: "Programming Refresher", topics: ["Variables & conditions", "Loops & functions", "Collections", "Files & exceptions", "OOP", "Type hints"] }
+      - { id: testing-ci, title: "Testing & CI Basics", tag: new, topics: ["pytest", "Linting with ruff", "GitHub Actions"] }
+      - { id: ai-assisted-dev, title: "AI-Assisted Development", tag: new, topics: ["Coding agents & copilots", "Prompting for code", "Reviewing AI-written code", "Testing AI-written code"] }
+
+  - id: phase-1
+    num: 1
+    title: "Data Analytics & Business Intelligence"
+    short: "Analytics & BI"
+    summary: "Turn raw business data into decisions and executive reporting."
+    milestone: { label: "Milestone", text: "Executive BI System using Excel/SQL/Power BI with KPI dictionary, semantic model and documented findings." }
+    cert: "Microsoft PL-300 (Power BI Data Analyst)"
+    modules:
+      - { id: excel-analysis, title: "Excel for Analysis", topics: ["IF & logical functions", "FILTER", "SUMIFS & COUNTIFS", "XLOOKUP & INDEX/MATCH", "LET", "Conditional formatting"] }
+      - { id: pivot-analysis, title: "Pivot Analysis", topics: ["PivotTables", "Slicers", "Grouping", "What-If Analysis", "Goal Seek"] }
+      - { id: power-query, title: "Power Query", topics: ["Cleaning", "Merge", "Append", "Reshape", "Multiple-file workflows"] }
+      - { id: power-pivot-dax, title: "Power Pivot & DAX", topics: ["Relationships", "Measures", "CALCULATE", "KPI logic", "Filter context"] }
+      - { id: analytical-sql, title: "Analytical SQL", topics: ["SELECT & WHERE", "ORDER BY & LIMIT", "GROUP BY & aggregation", "CASE expressions", "JOINs", "Subqueries"] }
+      - { id: power-bi, title: "Power BI", tag: updated, topics: ["Data modeling", "KPIs", "Drill-through", "Bookmarks", "Row-level security", "Service publishing", "Copilot in Power BI"] }
+      - { id: semantic-models, title: "Semantic Models & Metrics Layer", tag: new, topics: ["Why one KPI definition", "Building a semantic model", "Reusing metrics in reports and AI tools"] }
+      - { id: ai-assisted-analytics, title: "AI-Assisted Analytics", topics: ["AI for formulas", "AI for DAX & SQL", "Human validation"] }
+      - { id: data-storytelling, title: "Data Storytelling", tag: new, topics: ["Executive summaries", "Stakeholder communication", "Decision memos"] }
+
+  - id: phase-2
+    num: 2
+    title: "Python, Statistics & Data Science"
+    short: "Data Science"
+    summary: "Move from BI reporting into analytical programming and model thinking."
+    milestone: { label: "Milestone", text: "A documented business analytics study with EDA, statistics, an A/B or causal question, visuals and recommendations." }
+    modules:
+      - { id: numpy, title: "NumPy", topics: ["Arrays", "Vectorized operations", "Indexing", "Numerical computation"] }
+      - { id: pandas, title: "Pandas", topics: ["DataFrame basics", "Cleaning", "Merge", "groupby", "Pivot", "Datetime"] }
+      - { id: polars-duckdb, title: "Polars & DuckDB", tag: new, topics: ["Polars DataFrames", "DuckDB in-process SQL", "Working with larger local data"] }
+      - { id: eda, title: "EDA", topics: ["Patterns", "Distributions", "Relationships", "Anomalies", "Analytical questions"] }
+      - { id: statistics, title: "Statistics", topics: ["Central tendency", "Variance", "Distributions", "Correlation", "Confidence intervals"] }
+      - { id: ab-testing, title: "Experimentation & A/B Testing", tag: new, topics: ["Hypothesis tests", "Sample size", "Significance", "Causal pitfalls"] }
+      - { id: visualization, title: "Visualization", topics: ["Matplotlib", "Seaborn", "Plotly", "Analytical storytelling"] }
+      - { id: ml-foundations, title: "ML Foundations", tag: updated, topics: ["scikit-learn", "Train/test split", "Leakage", "Scaling", "Feature engineering", "Bias/variance"] }
+      - { id: research-thinking, title: "Research Thinking", topics: ["Research question", "Experiment design", "Reproducibility", "Evaluation & reporting"] }
+
+  - id: phase-3
+    num: 3
+    title: "Data Engineering (AI-ready)"
+    short: "Data Engineering"
+    summary: "Build the production data backbone for analytics and AI systems."
+    milestone: { label: "Milestone", text: "Production Analytics Platform with ingestion, orchestration, data quality, lakehouse/warehouse, BI layer and a document pipeline feeding a vector store." }
+    cert: "Microsoft DP-700 (Fabric Data Engineer) or DP-600 (Fabric Analytics Engineer), or a cloud data-engineer cert"
+    modules:
+      - { id: data-ingestion, title: "Data Ingestion", topics: ["REST APIs", "Auth & pagination", "Scraping", "CSV, JSON & Parquet"] }
+      - { id: advanced-sql, title: "Advanced SQL", topics: ["CTEs", "Recursive CTEs", "Window functions", "RANK, LAG & LEAD"] }
+      - { id: database-engineering, title: "Database Engineering", topics: ["PostgreSQL", "Normalization", "Indexing", "Transactions", "EXPLAIN ANALYZE"] }
+      - { id: data-warehousing, title: "Data Warehousing", topics: ["OLTP vs OLAP", "Facts & dimensions", "Star schema", "SCD", "BigQuery"] }
+      - { id: lakehouse, title: "Lakehouse & Open Table Formats", tag: new, topics: ["Delta Lake / Apache Iceberg", "Medallion layers", "Fabric, Databricks or Snowflake"] }
+      - { id: etl-elt, title: "ETL / ELT", topics: ["Modular pipelines", "Idempotency", "Replayability", "Incremental loads", "CDC"] }
+      - { id: data-quality, title: "Data Quality & Contracts", tag: updated, topics: ["Validation", "pytest for data", "Great Expectations", "Data contracts", "Freshness & alerting"] }
+      - { id: docker, title: "Docker", topics: ["Images", "Containers", "Compose", "Reproducible environments"] }
+      - { id: orchestration, title: "Orchestration", tag: updated, topics: ["Airflow DAGs", "Retries & backfills", "Dagster & Prefect alternatives"] }
+      - { id: dbt, title: "dbt", topics: ["Models", "Tests", "Snapshots", "Macros", "Documentation & marts"] }
+      - { id: cloud-iac, title: "Cloud & Infrastructure as Code", tag: updated, topics: ["IAM", "S3/GCS", "BigQuery", "Terraform basics", "Cost control"] }
+      - { id: ai-ready-data, title: "AI-Ready Data", tag: new, topics: ["Unstructured document pipelines", "Parsing & chunking", "Embedding refresh", "Metadata & lineage for RAG"] }
+      - { id: big-data-streaming, title: "Big Data & Streaming", topics: ["PySpark", "Partitions, shuffle & caching", "Kafka producers/consumers"] }
+
+  - id: phase-4
+    num: 4
+    title: "Machine Learning & Deep Learning Engineering"
+    short: "ML Engineering"
+    summary: "Move from analysis into deployable predictive systems."
+    milestone: { label: "Milestone", text: "Production ML API with /predict, /health and /info, containerized, deployed, versioned in MLflow and monitored." }
+    modules:
+      - { id: regression, title: "Regression", topics: ["Linear regression", "Ridge & Lasso", "MAE, RMSE & R²"] }
+      - { id: classification, title: "Classification", topics: ["Logistic regression", "Trees", "Gradient boosting (XGBoost/LightGBM)", "Precision, recall & F1", "ROC-AUC"] }
+      - { id: unsupervised, title: "Unsupervised ML", topics: ["K-Means", "PCA", "Hierarchical clustering", "DBSCAN", "Anomaly detection"] }
+      - { id: forecasting, title: "Time-Series Forecasting", tag: new, topics: ["Trend & seasonality", "Backtesting", "Demand & sales forecasts"] }
+      - { id: neural-networks, title: "Neural Networks", tag: updated, topics: ["Forward pass & loss", "Backpropagation", "PyTorch basics", "Keras (optional)"] }
+      - { id: computer-vision, title: "Computer Vision", topics: ["CNNs", "Convolution & pooling", "Preprocessing", "Augmentation"] }
+      - { id: applied-cv, title: "Applied CV", topics: ["YOLO", "Fine-tuning", "Roboflow", "Tracking", "ONNX & TensorRT concepts"] }
+      - { id: mlops, title: "MLOps", tag: updated, topics: ["FastAPI & Pydantic", "Docker for models", "MLflow registry", "CI/CD for models", "Drift monitoring"] }
+
+  - id: phase-5
+    num: 5
+    title: "NLP, LLM & RAG Engineering"
+    short: "LLM & RAG"
+    summary: "Build grounded language systems that use tools, context and private knowledge."
+    milestone: { label: "Milestone", text: "Enterprise Knowledge Assistant with hybrid retrieval, citations, fallback handling, an eval dataset and traces." }
+    modules:
+      - { id: nlp-foundations, title: "NLP Foundations", topics: ["Preprocessing", "TF-IDF", "Embeddings", "Word2Vec & GloVe (history)"] }
+      - { id: transformers, title: "Transformers", topics: ["Attention", "Encoder/decoder", "BERT, T5 & GPT", "Hugging Face"] }
+      - { id: llm-apps, title: "LLM Application Engineering", tag: updated, topics: ["LLM APIs", "Structured outputs (JSON schema)", "Function calling", "Streaming", "Cost awareness"] }
+      - { id: prompt-context, title: "Prompt & Context Engineering", topics: ["Instructions & examples", "Constraints", "Context windows", "Retrieved context & state"] }
+      - { id: open-small-models, title: "Open & Small Models", tag: new, topics: ["Running SLMs locally (Ollama)", "Open vs hosted models"] }
+      - { id: fine-tuning, title: "Fine-Tuning Basics", tag: new, topics: ["LoRA / QLoRA", "When fine-tuning beats prompting or RAG"] }
+      - { id: llm-frameworks, title: "Frameworks", tag: updated, topics: ["LangChain", "LlamaIndex", "Chains, retrievers & tools"] }
+      - { id: vector-databases, title: "Vector Databases", topics: ["Embeddings & similarity", "Chunking", "FAISS & Chroma", "Qdrant", "Supabase/pgvector"] }
+      - { id: advanced-rag, title: "Advanced RAG", tag: updated, topics: ["Hybrid search", "Reranking", "Document parsing (PDF/tables)", "Citations", "GraphRAG concepts"] }
+      - { id: rag-evaluation, title: "RAG Evaluation", tag: new, topics: ["Golden datasets", "Retrieval recall", "Faithfulness", "LLM-as-judge with human spot checks"] }
+
+  - id: phase-6
+    num: 6
+    title: "AI Agents & Intelligent Automation"
+    short: "Agents & Automation"
+    summary: "Combine LLM reasoning with tools, memory, workflows and real business actions."
+    milestone: { label: "Milestone", text: "AI Operations Agent that retrieves information, performs approved actions, updates systems, escalates to humans and logs every step." }
+    modules:
+      - { id: agent-architecture, title: "Agent Architecture", topics: ["Model & instructions", "Tools", "Memory & retrieval", "Control loop", "Guardrails"] }
+      - { id: workflow-vs-agent, title: "Workflow vs Agent Design", tag: new, topics: ["When a workflow beats an agent", "Agent skills as reusable procedures"] }
+      - { id: apis-webhooks, title: "APIs, Webhooks & JSON for Agents", topics: ["OAuth & bearer tokens", "Signatures", "Payloads", "Retries & rate limits"] }
+      - { id: n8n, title: "n8n Advanced", topics: ["Branching & expressions", "Code node", "Subflows", "Error handling", "Approval & logging"] }
+      - { id: make-zapier, title: "Make.com & Zapier", topics: ["Scenario automation", "SaaS connectivity", "Platform selection"] }
+      - { id: agent-frameworks, title: "Code-First Agent Frameworks", tag: new, topics: ["LangGraph state graphs", "OpenAI Agents SDK", "Claude Agent SDK"] }
+      - { id: mcp-a2a, title: "MCP & A2A", tag: updated, topics: ["MCP clients & servers", "Building an MCP server", "Agent-to-agent protocol concepts"] }
+      - { id: human-in-the-loop, title: "Human-in-the-Loop", topics: ["Approvals", "Escalation", "Confidence thresholds", "Fallback"] }
+      - { id: agent-memory, title: "Agent Memory & State", topics: ["Conversation history", "Durable memory", "State stores", "Retrieved knowledge"] }
+      - { id: langflow, title: "Langflow", topics: ["Visual agent design", "RAG flows", "Orchestration"] }
+      - { id: multi-agent, title: "Multi-Agent Systems", topics: ["CrewAI", "AutoGen", "Supervisor patterns", "Agent collaboration"] }
+      - { id: voice-ai, title: "Voice AI", topics: ["STT & TTS", "Telephony & call flow", "Backend tools", "Human handoff"] }
+      - { id: browser-agents, title: "Browser & Computer-Use Agents", tag: updated, topics: ["Playwright", "Navigation & extraction", "Agentic browser workflows"] }
+
+  - id: phase-7
+    num: 7
+    title: "Production AI, LLMOps & Governance"
+    short: "LLMOps & Governance"
+    summary: "Make systems secure, observable, reliable, compliant and deployable."
+    milestone: { label: "Gate", text: "Deploy one robust AI system publicly with traces, eval suite, health checks, cost dashboard and security controls." }
+    modules:
+      - { id: deployment, title: "Deployment", topics: ["Docker", "Render", "AWS EC2", "Domains & HTTPS", "Environment management"] }
+      - { id: reliability, title: "Reliability", topics: ["Retries & timeouts", "Queues", "Idempotency", "Graceful failure"] }
+      - { id: security, title: "Security", tag: updated, topics: ["Secrets & least privilege", "Prompt-injection defense", "Tool permissions & sandboxing", "OWASP LLM Top 10"] }
+      - { id: llm-observability, title: "LLM Observability", tag: new, topics: ["Traces, spans & sessions", "Langfuse or LangSmith", "OpenTelemetry basics"] }
+      - { id: evaluation, title: "Evaluation & Regression Testing", tag: updated, topics: ["Offline evals", "Online evals", "Tool success, latency & cost"] }
+      - { id: model-routing, title: "Model Routing & Gateways", tag: new, topics: ["LLM gateways (LiteLLM-style)", "Fallbacks & caching", "Cheap-model-first routing"] }
+      - { id: ai-finops, title: "AI FinOps", tag: new, topics: ["Token budgets", "Cost per task", "Usage dashboards"] }
+      - { id: ai-governance, title: "AI Governance & Responsible AI", tag: new, topics: ["EU AI Act risk tiers", "NIST AI RMF", "Data privacy", "Bias checks", "Audit logs"] }
+
+  - id: phase-8
+    num: 8
+    title: "Integrated Capstone"
+    short: "Capstone"
+    summary: "Combine all major capabilities into one end-to-end platform."
+    milestone: { label: "Capstone", text: "Intelligent Business Operations Platform integrating Data + BI + ML + RAG + Agents + Automation + LLMOps." }
+    modules:
+      - { id: data-layer, title: "Data Layer", topics: ["Excel/CSV", "APIs", "PostgreSQL", "Documents"] }
+      - { id: engineering-layer, title: "Engineering Layer", topics: ["Ingestion", "Airflow", "dbt", "Lakehouse/warehouse", "Quality controls"] }
+      - { id: analytics-layer, title: "Analytics Layer", topics: ["SQL", "Semantic model", "Power BI executive dashboard"] }
+      - { id: ml-layer, title: "ML Layer", topics: ["Forecasting, classification or anomaly detection"] }
+      - { id: knowledge-layer, title: "Knowledge Layer", topics: ["Embeddings", "Vector database", "Evaluated RAG"] }
+      - { id: agent-layer, title: "Agent Layer", topics: ["Tools & memory", "Retrieval", "Approval & action execution"] }
+      - { id: automation-layer, title: "Automation Layer", topics: ["n8n", "Messaging & CRM", "Notifications", "Scheduled workflows"] }
+      - { id: production-layer, title: "Production Layer", tag: updated, topics: ["Cloud deployment", "Observability & evals", "Cost tracking", "README & architecture diagram"] }
+
+  - id: phase-9
+    num: 9
+    title: "Career, Portfolio & Commercialization"
+    short: "Career"
+    summary: "Turn technical ability into evidence, opportunities and products."
+    milestone: { label: "Milestone", text: "A job-ready and client-ready portfolio with clear proof of capability across the full stack." }
+    modules:
+      - { id: github-portfolio, title: "GitHub Portfolio", topics: ["Polished repositories", "Architecture diagrams", "Demos & READMEs"] }
+      - { id: linkedin, title: "LinkedIn Positioning", topics: ["Expertise narrative", "Project-based credibility", "Visibility"] }
+      - { id: cv-job-search, title: "CV & Job Search", tag: updated, topics: ["Role-targeted CV", "Measurable outcomes", "ATS keywords", "Remote-job applications"] }
+      - { id: interview-prep, title: "Interview Preparation", tag: new, topics: ["SQL/Python live coding", "Data-system design", "AI-system design", "Take-home projects"] }
+      - { id: certifications, title: "Certification Strategy", tag: new, topics: ["One cert per track", "PL-300, DP-700 & cloud AI certs"] }
+      - { id: freelancing, title: "Freelancing", topics: ["Profile positioning", "Proposals & scoping", "Pricing", "Client handover"] }
+      - { id: case-studies, title: "Case Studies", topics: ["Problem & solution", "Implementation", "Outcomes & limitations", "Lessons learned"] }
+      - { id: productization, title: "Productization", topics: ["Templates", "Packaged services", "SaaS ideas", "Commercial solutions"] }
+      - { id: ilmento, title: "Ilmento Digital", topics: ["From capability to service", "From service to product"] }

@@ -1,0 +1,18 @@
+# Cleaning rules for orders_raw.csv. Change the rules here, not in the code.
+
+[input]
+encoding = "utf-8"
+required_columns = ["Order ID", "Order Date", "Customer", "Region", "Qty", "Unit Price", "Status"]
+
+[clean]
+trim = ["Customer", "Region", "Status"]          # remove spaces at the start/end
+title_case = ["Region", "Status"]               # "DHAKA" -> "Dhaka"
+integers = ["Order ID", "Qty"]                  # "5,000" -> 5000
+decimals = ["Unit Price"]
+date_column = "Order Date"
+date_format = "%d/%m/%Y"                         # 05/01/2026 = 5 January 2026
+drop_duplicates = true
+
+[output]
+# old name -> new name
+rename = { "Order ID" = "order_id", "Order Date" = "order_date", "Customer" = "customer", "Region" = "region", "Category" = "category", "Product" = "product", "Qty" = "quantity", "Unit Price" = "unit_price", "Status" = "status" }

@@ -1,0 +1,5 @@
+An **A/B test** (a randomised controlled experiment) is the most reliable way to learn whether a change *causes* a better result: randomly show version A to some users and version B to others, then compare. It's how product, marketing and operations teams decide what to ship, and the same logic sits behind clinical trials and policy pilots.
+
+The practice data is `ab_test_checkout.csv`: **10,836 web-portal sessions** from 1–28 November 2025, randomly split between the current checkout (**A**) and a new one-page checkout (**B**). The scripts are `13_ab_hypothesis_tests.py` and `14_ab_sample_size_pitfalls.py` in [data-science-scripts.zip](../../../downloads/phase-2/data-science-scripts.zip). They use **statsmodels** for proportion tests and power analysis.
+
+**By the end of this module you can:** check an experiment's health, run and explain a two-proportion test with a confidence interval, separate statistical from practical significance, size an experiment before it starts, and spot peeking, confounding and other causal traps.

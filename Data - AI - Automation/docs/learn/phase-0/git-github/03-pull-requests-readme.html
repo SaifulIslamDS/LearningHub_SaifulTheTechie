@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en" data-root="../../../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GitHub, Pull Requests &amp; READMEs: Collaborate and Show Your Work — Data, AI &amp; Automation Path</title>
+<meta name="description" content="Push a repository to GitHub, propose changes through a pull request, review others&#x27; code, and give every project a README and structure that employers understand in a minute.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data, AI &amp; Automation Path">
+<meta property="og:title" content="GitHub, Pull Requests &amp; READMEs: Collaborate and Show Your Work">
+<meta property="og:description" content="Push a repository to GitHub, propose changes through a pull request, review others&#x27; code, and give every project a README and structure that employers understand in a minute.">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+
+<script>(function(){var t=null;try{t=localStorage.getItem('daa-theme')}catch(e){}
+if(!t)t=(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';
+document.documentElement.setAttribute('data-theme',t);
+var n=null;try{n=localStorage.getItem('daa-nav')}catch(e){}
+if(n==='open'&&window.matchMedia&&matchMedia('(min-width: 961px)').matches)document.documentElement.setAttribute('data-nav','open');
+document.documentElement.classList.add('no-anim')})();</script>
+<link rel="stylesheet" href="../../../assets/style.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233f7d6a'/%3E%3Ctext x='16' y='21' font-family='sans-serif' font-size='13' font-weight='700' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Open curriculum menu" title="Curriculum menu (press M)" aria-controls="sidebar" aria-expanded="false"><span class="ico-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span class="ico-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></button>
+  <a class="brand" href="../../../index.html"><span class="brand-badge">AI</span><span class="brand-text"><span class="brand-name">Data, AI &amp; Automation Path</span><span class="brand-version">v0.7</span></span></a>
+  <nav class="top-links" aria-label="Main">
+    <a href="../../../index.html" class="">Home</a><a href="../../../curriculum.html" class="">Curriculum</a><a href="../../../practice-files.html" class="">Practice files</a><a href="../../../glossary.html" class="">Glossary</a><a href="../../../how-to-learn.html" class="">How to learn</a><a href="../../../about.html" class="">About</a>
+  </nav>
+  <div class="top-spacer"></div>
+  <div class="search" role="search">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input id="searchInput" type="search" placeholder="Search lessons, tools, topics" aria-label="Search" autocomplete="off">
+    <kbd>/</kbd>
+    <div class="search-results" id="searchResults" role="listbox"></div>
+  </div>
+  <button class="icon-btn theme-toggle" id="themeBtn" aria-label="Toggle light or dark mode" title="Light / dark"><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
+</header>
+<div class="layout wide">
+  <nav class="sidebar" id="sidebar" aria-label="Curriculum">
+    <div class="side-title">Curriculum</div>
+    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="64"><i></i></div><span class="bar-label" data-progress-label></span></div>
+<div class="nav-phase current open"><a href="../../../learn/phase-0/index.html"><span class="nav-num">0</span>Foundations</a>
+<ul class="nav-modules">
+<li><a class="" href="../../../learn/phase-0/dev-environment/index.html">Development Environment</a>
+</li>
+<li><a class="current" href="../../../learn/phase-0/git-github/index.html">Git &amp; GitHub</a>
+<ul class="nav-lessons">
+<li><a class="" data-lesson="phase-0/git-github/01-repos-commits" href="../../../learn/phase-0/git-github/01-repos-commits.html">Git Repositories &amp; Commits: Save Your Work in Safe Steps</a></li>
+<li><a class="" data-lesson="phase-0/git-github/02-branches-merge" href="../../../learn/phase-0/git-github/02-branches-merge.html">Branches &amp; Merge: Work on Changes Without Breaking Main</a></li>
+<li><a class="current" data-lesson="phase-0/git-github/03-pull-requests-readme" href="../../../learn/phase-0/git-github/03-pull-requests-readme.html">GitHub, Pull Requests &amp; READMEs: Collaborate and Show Your Work</a></li>
+</ul>
+</li>
+<li><a class="" href="../../../learn/phase-0/linux/index.html">Linux Essentials</a>
+</li>
+<li><a class="" href="../../../learn/phase-0/programming-refresher/index.html">Programming Refresher</a>
+</li>
+<li><a class="" href="../../../learn/phase-0/testing-ci/index.html">Testing &amp; CI Basics</a>
+</li>
+<li><a class="" href="../../../learn/phase-0/ai-assisted-dev/index.html">AI-Assisted Development</a>
+</li>
+<li><a class="nav-project " href="../../../learn/phase-0/project.html">★ Milestone project</a></li>
+</ul>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-1/index.html"><span class="nav-num">1</span>Analytics &amp; BI</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-2/index.html"><span class="nav-num">2</span>Data Science</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-3/index.html"><span class="nav-num">3</span>Data Engineering</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-4/index.html"><span class="nav-num">4</span>ML Engineering</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-5/index.html"><span class="nav-num">5</span>LLM &amp; RAG</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-6/index.html"><span class="nav-num">6</span>Agents &amp; Automation</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-7/index.html"><span class="nav-num">7</span>LLMOps &amp; Governance</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-8/index.html"><span class="nav-num">8</span>Capstone</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-9/index.html"><span class="nav-num">9</span>Career</a>
+</div>
+<div class="side-extra"><a href="../../../index.html">Home</a><a href="../../../curriculum.html">Full curriculum map</a><a href="../../../practice-files.html">Practice files</a><a href="../../../glossary.html">Glossary</a><a href="../../../how-to-learn.html">How to learn here</a><a href="../../../about.html">About &amp; contributing</a></div></nav>
+  <main class="main" id="main"><div class="content">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../../index.html">Home</a><span class="sep">/</span><a href="../../../learn/phase-0/index.html">Phase 0</a><span class="sep">/</span><a href="../../../learn/phase-0/git-github/index.html">Git &amp; GitHub</a><span class="sep">/</span><span>GitHub, Pull Requests &amp; READMEs: Collaborate and Show Your Work</span></nav>
+<h1>GitHub, Pull Requests &amp; READMEs: Collaborate and Show Your Work</h1>
+<p class="lead">Push a repository to GitHub, propose changes through a pull request, review others&#x27; code, and give every project a README and structure that employers understand in a minute.</p>
+<div class="meta"><span class="pill">Phase <b>0</b> · Foundations</span><span class="pill">Level <b>Beginner</b></span><span class="pill">Time <b>50 min</b></span></div>
+<div class="admonition note"><p class="admonition-title">Before you start</p><p><a href="../../../learn/phase-0/git-github/02-branches-merge.html">Branches &amp; Merge: Work on Changes Without Breaking Main</a></p></div>
+<div class="files-box"><div class="files-head"><b>Practice files for this page</b><a href="../../../practice-files.html">All practice files →</a></div><ul><li><a href="../../../downloads/phase-0/csv-cleaner-solution.zip" download>csv-cleaner-solution.zip</a><span class="f-desc">Phase 0 Gate project reference solution (17 passing tests, CI workflow) · 14 KB</span></li></ul></div>
+<h2 id="what-is-it">What is it?</h2>
+<ul>
+<li><strong>GitHub</strong> hosts your Git repositories online. Your local repo and the GitHub copy (called the <strong>remote</strong>, usually named <code>origin</code>) stay in sync with <code>push</code> and <code>pull</code>.</li>
+<li>A <strong>pull request (PR)</strong> says: <em>"Here is my branch. Please review it and merge it into <code>main</code>."</em> It shows the diff, lets people comment, and runs automated checks.</li>
+<li>A <strong>README</strong> is the front page of a repository: what it does, how to run it, and what the result looks like.</li>
+</ul>
+<div class="admonition job">
+<p class="admonition-title">Why it matters at work</p>
+<p>In most teams, <strong>every</strong> change reaches <code>main</code> through a reviewed PR with passing checks. For job seekers, your GitHub profile <em>is</em> your portfolio: a recruiter spends about a minute on a repo, and the README decides whether they look further.</p>
+</div>
+<h2 id="part-1-put-your-repo-on-github">Part 1: put your repo on GitHub</h2>
+<ol>
+<li>On GitHub, click <strong>New repository</strong> → name it <code>sales-report</code> → leave it <strong>empty</strong> (no README) → <strong>Create</strong>.</li>
+<li>Connect and push your local repo:</li>
+</ol>
+<div class="codehilite"><pre><span></span><code>git<span class="w"> </span>remote<span class="w"> </span>add<span class="w"> </span>origin<span class="w"> </span>https://github.com/&lt;your-username&gt;/sales-report.git
+git<span class="w"> </span>push<span class="w"> </span>-u<span class="w"> </span>origin<span class="w"> </span>main
+</code></pre></div>
+
+<p><code>-u</code> remembers the link, so afterwards a plain <code>git push</code> or <code>git pull</code> works.</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>git clone &lt;url&gt;</code></td>
+<td>Download a repo (with full history) to a new folder</td>
+</tr>
+<tr>
+<td><code>git push</code></td>
+<td>Send your new commits to GitHub</td>
+</tr>
+<tr>
+<td><code>git pull</code></td>
+<td>Fetch and merge others' commits from GitHub</td>
+</tr>
+<tr>
+<td><code>git remote -v</code></td>
+<td>Show where <code>origin</code> points</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="admonition-title">Authentication</p>
+<p>GitHub doesn't accept your account password for Git. The easiest route is <strong>GitHub CLI</strong> (<code>gh auth login</code>) or VS Code's built-in GitHub sign-in. Both store a token for you.</p>
+</div>
+<h2 id="part-2-the-pull-request-workflow">Part 2: the pull request workflow</h2>
+<div class="codehilite"><pre><span></span><code>1. git switch -c fix/exclude-cancelled     ← branch
+2. edit, commit, commit                    ← small commits
+3. git push -u origin fix/exclude-cancelled
+4. GitHub → "Compare &amp; pull request"       ← open PR
+5. Review: comments, suggestions, checks   ← discuss
+6. Merge → delete branch → git pull on main
+</code></pre></div>
+
+<p><strong>A good PR description:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="gu">## What</span>
+Exclude cancelled orders from the average order value.
+
+<span class="gu">## Why</span>
+The business rule says cancelled orders don't count. The report showed 447.50 instead of 516.67.
+
+<span class="gu">## How I tested</span>
+<span class="k">-</span><span class="w"> </span>Added test <span class="sb">`test_average_skips_cancelled`</span>
+<span class="k">-</span><span class="w"> </span><span class="sb">`uv run pytest`</span> → all passing
+
+Closes <span class="ni">#12</span>
+</code></pre></div>
+
+<p><code>Closes #12</code> automatically closes issue 12 when the PR is merged.</p>
+<h3 id="reviewing-a-pr">Reviewing a PR</h3>
+<table>
+<thead>
+<tr>
+<th>Do</th>
+<th>Don't</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ask questions: "What happens if <code>rows</code> is empty?"</td>
+<td>Write "this is wrong" with no reason</td>
+</tr>
+<tr>
+<td>Point to specific lines, and suggest code</td>
+<td>Rewrite the whole thing your way</td>
+</tr>
+<tr>
+<td>Check tests and the business rule</td>
+<td>Approve without reading the diff</td>
+</tr>
+<tr>
+<td>Separate must-fix from nice-to-have ("nit:")</td>
+<td>Block a PR on personal style (that's what ruff is for)</td>
+</tr>
+</tbody>
+</table>
+<p>Merge buttons: <strong>Create a merge commit</strong> (keeps every commit), <strong>Squash and merge</strong> (one tidy commit, common in teams), <strong>Rebase and merge</strong> (linear history).</p>
+<h2 id="part-3-readme-project-structure">Part 3: README &amp; project structure</h2>
+<p>Open the Phase 0 reference project, <a href="../../../downloads/phase-0/csv-cleaner-solution.zip">csv-cleaner-solution.zip</a>. Its layout is a modern Python standard:</p>
+<div class="codehilite"><pre><span></span><code>csv-cleaner/
+├── .github/workflows/ci.yml   ← automatic tests on every push/PR
+├── .gitignore
+├── .python-version            ← 3.14
+├── README.md                  ← start here
+├── config.toml                ← settings, not hard-coded
+├── data/orders_raw.csv        ← small sample input
+├── pyproject.toml             ← name, dependencies, tool settings
+├── src/csv_cleaner/           ← the code (a package)
+│   ├── __init__.py
+│   ├── cleaner.py             ← logic
+│   ├── cli.py                 ← command line
+│   └── config.py
+├── tests/                     ← pytest tests
+└── uv.lock                    ← exact versions
+</code></pre></div>
+
+<table>
+<thead>
+<tr>
+<th>Folder/file</th>
+<th>Why it's there</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>src/</code></td>
+<td>Code is separated from data, tests and docs, and it's importable as a package</td>
+</tr>
+<tr>
+<td><code>tests/</code></td>
+<td>Anyone can run <code>uv run pytest</code> and trust the result</td>
+</tr>
+<tr>
+<td><code>data/</code></td>
+<td>A <strong>small</strong> sample only, never confidential or large data</td>
+</tr>
+<tr>
+<td><code>pyproject.toml</code> + <code>uv.lock</code></td>
+<td>Reproducible install with one command</td>
+</tr>
+<tr>
+<td><code>.github/workflows/</code></td>
+<td>Checks run automatically (Testing &amp; CI module)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="a-readme-that-works-in-60-seconds">A README that works in 60 seconds</h3>
+<div class="codehilite"><pre><span></span><code><span class="gh"># csv-cleaner</span>
+Clean messy CSV exports with repeatable, configurable rules.
+
+<span class="gu">## Quick start</span>
+uv sync --dev
+uv run csv-clean data/orders_raw.csv
+uv run pytest
+
+<span class="gu">## Example output</span>
+Rows read: 14 | blank removed: 1 | duplicates removed: 1 | rejected: 0 | written: 12
+
+<span class="gu">## How it works</span>
+(one diagram or 3 bullets)
+
+<span class="gu">## Results / screenshots</span>
+<span class="gu">## What I learned / next steps</span>
+</code></pre></div>
+
+<p>The order matters: <strong>what it is → how to run it → proof it works → details.</strong></p>
+<h2 id="common-mistakes">Common mistakes</h2>
+<table>
+<thead>
+<tr>
+<th>Mistake</th>
+<th>What happens</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pushing directly to <code>main</code> in a team</td>
+<td>No review, broken builds</td>
+<td>Branch + PR; turn on branch protection</td>
+</tr>
+<tr>
+<td>Giant PRs (2,000 lines)</td>
+<td>Nobody reviews properly</td>
+<td>Small PRs, ideally under ~300 changed lines</td>
+</tr>
+<tr>
+<td>A README that says only the project name</td>
+<td>Visitors leave</td>
+<td>Purpose, quick start, example output, screenshot</td>
+</tr>
+<tr>
+<td>Everything in one folder (<code>final.py</code>, <code>test2.py</code>, <code>data.xlsx</code>)</td>
+<td>Looks like a scratchpad</td>
+<td><code>src/</code>, <code>tests/</code>, <code>data/</code>, <code>docs/</code></td>
+</tr>
+<tr>
+<td>Forgetting <code>git pull</code> before starting new work</td>
+<td>Conflicts with others' changes</td>
+<td>Pull <code>main</code>, then branch</td>
+</tr>
+</tbody>
+</table>
+<h2 id="try-it-yourself">Try it yourself</h2>
+<p><strong>Task:</strong> Use GitHub's <a href="https://docs.github.com/get-started/quickstart/hello-world">Hello World guide</a> to create a repo, open a PR from a branch that edits the README, and merge it. Then write a three-section PR description (<strong>What / Why / How I tested</strong>) for a change that adds <code>print("Achievement: 94.5%")</code> to <code>report.py</code>.</p>
+<details>
+<summary>Show a model description</summary>
+<div class="codehilite"><pre><span></span><code><span class="gu">## What</span>
+Print Q1 achievement % (net revenue ÷ target) in the report.
+
+<span class="gu">## Why</span>
+Managers asked for the headline achievement figure next to revenue and target.
+
+<span class="gu">## How I tested</span>
+Ran <span class="sb">`python report.py`</span>: shows 9,075 / 9,600 / 94.5%, matching the known answers file.
+</code></pre></div>
+
+</details>
+<h2 id="quick-quiz">Quick quiz</h2>
+<div class="quiz-q" data-answer="1">
+<p>1. What is a pull request?</p>
+<ol>
+<li>Downloading the latest code</li>
+<li>A request to review and merge a branch into another branch</li>
+<li>A GitHub backup</li>
+</ol>
+<details>
+<summary>Show answer</summary>
+<p><strong>B.</strong> (<code>git pull</code> is a different thing: it downloads and merges.)</p>
+</details>
+</div>
+<div class="quiz-q" data-answer="1">
+<p>2. What should come first in a README?</p>
+<ol>
+<li>The licence text</li>
+<li>What the project does and how to run it</li>
+<li>The full commit history</li>
+</ol>
+<details>
+<summary>Show answer</summary>
+<p><strong>B.</strong></p>
+</details>
+</div>
+<div class="quiz-q" data-answer="1">
+<p>3. Which is the better code review comment?</p>
+<ol>
+<li>"Wrong."</li>
+<li>"If <code>rows</code> is empty this divides by zero. Could we return 0 and add a test?"</li>
+<li>"I'd write it differently."</li>
+</ol>
+<details>
+<summary>Show answer</summary>
+<p><strong>B.</strong> Specific, explains the risk, suggests a fix.</p>
+</details>
+</div>
+<h2 id="summary">Summary</h2>
+<ul>
+<li><code>git remote add origin …</code> + <code>git push -u origin main</code> publishes your repo; <code>clone</code>, <code>pull</code> and <code>push</code> keep it in sync.</li>
+<li>Changes reach <code>main</code> through <strong>PRs</strong>: branch → push → describe (What/Why/How tested) → review → merge.</li>
+<li>Review kindly and specifically; let tools handle style.</li>
+<li>A clear <strong>structure</strong> (<code>src/</code>, <code>tests/</code>, <code>pyproject.toml</code>, CI) and a <strong>README</strong> with quick start and proof make a repo portfolio-ready.</li>
+</ul>
+<div class="admonition job">
+<p class="admonition-title">Job-ready check</p>
+<p><strong>Interview question:</strong> <em>"Walk me through how a change gets from your laptop to production in your team."</em></p>
+<p><strong>Strong answer:</strong> "I pull <code>main</code>, create a branch, make small commits and push. I open a PR describing what, why and how I tested it. CI runs linting and tests, and a teammate reviews. After approval and green checks, we squash-merge to <code>main</code>, which triggers deployment."</p>
+<p><strong>Mini project:</strong> Push your <code>sales-report</code> repo to GitHub with a README following the 60-second template, then make one change through a PR (even reviewing it yourself) and merge it.</p>
+</div>
+<div class="terms-box"><div class="files-head"><b>Key terms in this lesson</b><a href="../../../glossary.html">Glossary →</a></div><div class="term-chips"><a class="term-chip" href="../../../glossary.html#pull-request" title="A request on GitHub to review a branch&#x27;s changes and merge them. It shows the diff, comments and automated check results.">Pull request</a><a class="term-chip" href="../../../glossary.html#readme" title="The front page of a repository: what the project does, how to run it, and proof that it works.">README</a></div></div>
+<h2 id="free-resources">Free resources to go deeper</h2><ul class="resources"><li><a href="https://docs.github.com/get-started/quickstart/hello-world">Hello World (GitHub quickstart)</a><span class="r-meta">GitHub Docs · Create a repo, a branch, a pull request and merge it — all in the browser.</span></li><li><a href="https://docs.github.com/en/pull-requests/reference/pull-requests">Pull requests documentation</a><span class="r-meta">GitHub Docs · Reviews, merge methods and protected branches.</span></li><li><a href="https://github.com/skills/introduction-to-github">Introduction to GitHub (interactive course)</a><span class="r-meta">GitHub Skills · Free guided practice.</span></li></ul>
+<div class="complete-bar"><span>Finished reading and did the exercise?</span>
+<button class="btn" id="completeBtn" type="button" data-id="phase-0/git-github/03-pull-requests-readme">Mark lesson as complete</button></div>
+<nav class="pager"><a class="prev" href="../../../learn/phase-0/git-github/02-branches-merge.html"><small>← Previous</small>Branches &amp; Merge: Work on Changes Without Breaking Main</a><a class="next" href="../../../learn/phase-0/linux/01-filesystem-terminal.html"><small>Next →</small>Linux Filesystem &amp; Terminal Workflow: Move Around Like an Engineer</a></nav>
+<p class="reviewed">Last reviewed: 2026-10-09</p>
+
+  </div></main>
+  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#part-1-put-your-repo-on-github">Part 1: put your repo on GitHub</a><a href="#part-2-the-pull-request-workflow">Part 2: the pull request workflow</a><a href="#part-3-readme-project-structure">Part 3: README &amp;amp; project structure</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#free-resources">Free resources</a></aside>
+</div>
+<footer class="site">Data, AI &amp; Automation Path v0.7 · Applied AI, Data &amp; Automation Lab · Updated October 2026<br>
+Lesson text: <a href="../../../license.html">CC BY-NC-SA 4.0</a> · Code: <a href="../../../license.html#code-mit-license">MIT</a> · Free external resources belong to their respective owners.</footer>
+<script src="../../../search-index.js"></script>
+<script src="../../../assets/app.js"></script>
+</body>
+</html>

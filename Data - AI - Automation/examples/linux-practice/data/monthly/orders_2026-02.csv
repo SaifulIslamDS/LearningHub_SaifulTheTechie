@@ -1,0 +1,6 @@
+order_id,order_date,customer,region,category,product,quantity,unit_price,status
+6,2026-02-02,Karim Garments,Chattogram,Fabric,Cotton Twill,200,3.4,Delivered
+7,2026-02-06,Nova Apparel,Dhaka,Trims,Metal Buttons,8000,0.04,Shipped
+8,2026-02-11,Delta Knit,Gazipur,Yarn,Polyester Yarn,600,2.1,Delivered
+9,2026-02-18,Sun Fashion,Narayanganj,Fabric,Denim 12oz,150,5.4,Pending
+10,2026-02-25,Rahim Traders,Dhaka,Yarn,Cotton Yarn 30s,300,2.9,Delivered

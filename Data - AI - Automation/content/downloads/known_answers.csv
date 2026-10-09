@@ -1,0 +1,25 @@
+check,expected,where_it_appears
+Clean orders (rows),12,Power Query cleaning; all tools
+"Revenue, all statuses",9315,DAX [Revenue]; SUM of value
+Net Revenue (excl. Cancelled),9075,"SQL, SUMIFS, DAX [Net Revenue]"
+Net Orders,11,COUNTIFS / DAX
+Average order value (net),825,SQL AVG; LET; DAX [Avg Order Value]
+Average of all 12 order values,776.25,Excel 'Above Average' rule (includes cancelled)
+Dhaka net revenue,3170,SQL GROUP BY; SUMIFS; PivotTable
+Dhaka revenue incl. cancelled,3410,PivotTable without status filter
+Gazipur net revenue,2520,
+Chattogram net revenue,2155,
+Narayanganj net revenue,1230,
+Fabric / Yarn / Trims net revenue,4745 / 3390 / 940,SUMIFS; PivotTable
+Garment Factory / Knitting Mill / Trader net revenue,5265 / 2520 / 1290,SQL JOIN; Power Query merge; DAX
+Jan / Feb / Mar net revenue,3440 / 3940 / 1695,Grouping; DAX by month
+Delivered revenue,6670,SQL CASE; DAX CALCULATE
+Delivered %,73.5%,DAX
+Open value (Shipped + Pending),2405,Slicers; FILTER
+Q1 target,9600,Targets (unpivoted)
+Q1 achievement,94.5%,DAX [Achievement %]
+Gap to target,-525,DAX [Gap to Target]
+Dhaka / Gazipur / Chattogram / Narayanganj achievement,88.1% / 105.0% / 102.6% / 82.0%,DAX by region
+MoM growth Feb / Mar,+14.5% / -57.0%,DAX DATEADD
+Customers with no orders,1 (Blue Thread Ltd),LEFT JOIN / anti join
+Avg net revenue per customer,1815,SQL derived table / CTE

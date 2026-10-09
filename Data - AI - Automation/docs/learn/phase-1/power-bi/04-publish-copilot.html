@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en" data-root="../../../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Publish &amp; Share in the Power BI Service, and Use Copilot Wisely — Data, AI &amp; Automation Path</title>
+<meta name="description" content="Publish to a workspace, understand licences and refresh, share safely — and know what Copilot in Power BI needs and how to check its answers.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data, AI &amp; Automation Path">
+<meta property="og:title" content="Publish &amp; Share in the Power BI Service, and Use Copilot Wisely">
+<meta property="og:description" content="Publish to a workspace, understand licences and refresh, share safely — and know what Copilot in Power BI needs and how to check its answers.">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+
+<script>(function(){var t=null;try{t=localStorage.getItem('daa-theme')}catch(e){}
+if(!t)t=(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';
+document.documentElement.setAttribute('data-theme',t);
+var n=null;try{n=localStorage.getItem('daa-nav')}catch(e){}
+if(n==='open'&&window.matchMedia&&matchMedia('(min-width: 961px)').matches)document.documentElement.setAttribute('data-nav','open');
+document.documentElement.classList.add('no-anim')})();</script>
+<link rel="stylesheet" href="../../../assets/style.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233f7d6a'/%3E%3Ctext x='16' y='21' font-family='sans-serif' font-size='13' font-weight='700' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Open curriculum menu" title="Curriculum menu (press M)" aria-controls="sidebar" aria-expanded="false"><span class="ico-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span class="ico-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></button>
+  <a class="brand" href="../../../index.html"><span class="brand-badge">AI</span><span class="brand-text"><span class="brand-name">Data, AI &amp; Automation Path</span><span class="brand-version">v0.7</span></span></a>
+  <nav class="top-links" aria-label="Main">
+    <a href="../../../index.html" class="">Home</a><a href="../../../curriculum.html" class="">Curriculum</a><a href="../../../practice-files.html" class="">Practice files</a><a href="../../../glossary.html" class="">Glossary</a><a href="../../../how-to-learn.html" class="">How to learn</a><a href="../../../about.html" class="">About</a>
+  </nav>
+  <div class="top-spacer"></div>
+  <div class="search" role="search">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input id="searchInput" type="search" placeholder="Search lessons, tools, topics" aria-label="Search" autocomplete="off">
+    <kbd>/</kbd>
+    <div class="search-results" id="searchResults" role="listbox"></div>
+  </div>
+  <button class="icon-btn theme-toggle" id="themeBtn" aria-label="Toggle light or dark mode" title="Light / dark"><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
+</header>
+<div class="layout wide">
+  <nav class="sidebar" id="sidebar" aria-label="Curriculum">
+    <div class="side-title">Curriculum</div>
+    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="64"><i></i></div><span class="bar-label" data-progress-label></span></div>
+<div class="nav-phase"><a href="../../../learn/phase-0/index.html"><span class="nav-num">0</span>Foundations</a>
+</div>
+<div class="nav-phase current open"><a href="../../../learn/phase-1/index.html"><span class="nav-num">1</span>Analytics &amp; BI</a>
+<ul class="nav-modules">
+<li><a class="" href="../../../learn/phase-1/excel-analysis/index.html">Excel for Analysis</a>
+</li>
+<li><a class="" href="../../../learn/phase-1/pivot-analysis/index.html">Pivot Analysis</a>
+</li>
+<li><a class="" href="../../../learn/phase-1/power-query/index.html">Power Query</a>
+</li>
+<li><a class="" href="../../../learn/phase-1/power-pivot-dax/index.html">Power Pivot &amp; DAX</a>
+</li>
+<li><a class="" href="../../../learn/phase-1/analytical-sql/index.html">Analytical SQL</a>
+</li>
+<li><a class="current" href="../../../learn/phase-1/power-bi/index.html">Power BI</a>
+<ul class="nav-lessons">
+<li><a class="" data-lesson="phase-1/power-bi/01-model-kpis" href="../../../learn/phase-1/power-bi/01-model-kpis.html">Power BI Report Basics: Model Hygiene and a KPI Page</a></li>
+<li><a class="" data-lesson="phase-1/power-bi/02-drillthrough-bookmarks" href="../../../learn/phase-1/power-bi/02-drillthrough-bookmarks.html">Power BI Drill-through &amp; Bookmarks: Guided Detail and Saved Views</a></li>
+<li><a class="" data-lesson="phase-1/power-bi/03-row-level-security" href="../../../learn/phase-1/power-bi/03-row-level-security.html">Power BI Row-Level Security: Each Manager Sees Only Their Region</a></li>
+<li><a class="current" data-lesson="phase-1/power-bi/04-publish-copilot" href="../../../learn/phase-1/power-bi/04-publish-copilot.html">Publish &amp; Share in the Power BI Service, and Use Copilot Wisely</a></li>
+</ul>
+</li>
+<li><a class="" href="../../../learn/phase-1/semantic-models/index.html">Semantic Models &amp; Metrics Layer</a>
+</li>
+<li><a class="" href="../../../learn/phase-1/ai-assisted-analytics/index.html">AI-Assisted Analytics</a>
+</li>
+<li><a class="" href="../../../learn/phase-1/data-storytelling/index.html">Data Storytelling</a>
+</li>
+<li><a class="nav-project " href="../../../learn/phase-1/project.html">★ Milestone project</a></li>
+</ul>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-2/index.html"><span class="nav-num">2</span>Data Science</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-3/index.html"><span class="nav-num">3</span>Data Engineering</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-4/index.html"><span class="nav-num">4</span>ML Engineering</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-5/index.html"><span class="nav-num">5</span>LLM &amp; RAG</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-6/index.html"><span class="nav-num">6</span>Agents &amp; Automation</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-7/index.html"><span class="nav-num">7</span>LLMOps &amp; Governance</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-8/index.html"><span class="nav-num">8</span>Capstone</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-9/index.html"><span class="nav-num">9</span>Career</a>
+</div>
+<div class="side-extra"><a href="../../../index.html">Home</a><a href="../../../curriculum.html">Full curriculum map</a><a href="../../../practice-files.html">Practice files</a><a href="../../../glossary.html">Glossary</a><a href="../../../how-to-learn.html">How to learn here</a><a href="../../../about.html">About &amp; contributing</a></div></nav>
+  <main class="main" id="main"><div class="content">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../../index.html">Home</a><span class="sep">/</span><a href="../../../learn/phase-1/index.html">Phase 1</a><span class="sep">/</span><a href="../../../learn/phase-1/power-bi/index.html">Power BI</a><span class="sep">/</span><span>Publish &amp; Share in the Power BI Service, and Use Copilot Wisely</span></nav>
+<h1>Publish &amp; Share in the Power BI Service, and Use Copilot Wisely</h1>
+<p class="lead">Publish to a workspace, understand licences and refresh, share safely — and know what Copilot in Power BI needs and how to check its answers.</p>
+<div class="meta"><span class="pill">Phase <b>1</b> · Analytics &amp; BI</span><span class="pill">Level <b>Intermediate</b></span><span class="pill">Time <b>45 min</b></span></div>
+<div class="admonition note"><p class="admonition-title">Before you start</p><p><a href="../../../learn/phase-1/power-bi/03-row-level-security.html">Power BI Row-Level Security: Each Manager Sees Only Their Region</a></p></div>
+<div class="files-box"><div class="files-head"><b>Practice files for this page</b><a href="../../../practice-files.html">All practice files →</a></div><ul><li><a href="../../../downloads/sales_model.xlsx" download>sales_model.xlsx</a><span class="f-desc">Five Excel Tables (Orders, Customers, Products, Regions, Targets) for the data model · 12 KB</span></li><li><a href="../../../downloads/known_answers.csv" download>known_answers.csv</a><span class="f-desc">24 key numbers every tool should reproduce, for checking your work (and AI output) · 1 KB</span></li></ul></div>
+<h2 id="what-is-it">What is it?</h2>
+<ul>
+<li><strong>Publishing</strong> sends your <code>.pbix</code> file from Power BI Desktop to the <strong>Power BI service</strong> (app.powerbi.com). There it becomes a <strong>report</strong> plus a <strong>semantic model</strong> inside a <strong>workspace</strong>, ready to share, secure and refresh.</li>
+<li><strong>Copilot in Power BI</strong> is an AI assistant that can draft report pages, summarise reports and answer questions about your data, built on your semantic model.</li>
+</ul>
+<div class="admonition job">
+<p class="admonition-title">Why it matters at work</p>
+<p>A report on your laptop helps no one. Knowing how publishing, licences, refresh and sharing work is what lets you deliver BI to a team. And as companies roll out Copilot, analysts are expected to prepare models for AI <strong>and</strong> to check AI answers. That's a new, valuable skill.</p>
+</div>
+<h2 id="part-1-publish">Part 1: publish</h2>
+<ol>
+<li>In Power BI Desktop, <strong>save</strong> the file, then <strong>Home → Publish</strong>.</li>
+<li>Sign in with a <strong>work or school account</strong>, and choose a workspace: <strong>My workspace</strong> (personal) or a shared team workspace.</li>
+<li>Open the link to the report in the service.</li>
+</ol>
+<p>In the workspace you'll see two items: the <strong>report</strong> (pages and visuals) and the <strong>semantic model</strong> (tables, relationships, measures, RLS roles).</p>
+<h2 id="part-2-licences-who-can-share-with-whom">Part 2: licences — who can share with whom</h2>
+<table>
+<thead>
+<tr>
+<th>Licence</th>
+<th>What you can do</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Free</strong></td>
+<td>Create content for your own use. You can view others' content only if it's in a Premium or Fabric <strong>F64+</strong> capacity workspace</td>
+</tr>
+<tr>
+<td><strong>Pro</strong></td>
+<td>Publish to shared workspaces, and share with or collaborate with other Pro users</td>
+</tr>
+<tr>
+<td><strong>Premium Per User (PPU)</strong></td>
+<td>Pro features plus most Premium features. On its own, it shares only with other PPU users</td>
+</tr>
+<tr>
+<td><strong>Premium / Fabric F64+ capacity</strong> (organisation)</td>
+<td>Pro or PPU authors can distribute content to Free users</td>
+</tr>
+</tbody>
+</table>
+<p>For a portfolio, publish to <strong>My workspace</strong> and share <strong>screenshots or a video</strong>. For a team, your organisation decides the licensing.</p>
+<div class="admonition warning">
+<p class="admonition-title">Publish to web is public</p>
+<p><strong>File → Embed report → Publish to web</strong> creates a link <strong>anyone on the internet</strong> can open, with no sign-in. Never use it with company or customer data. Many organisations switch it off.</p>
+</div>
+<h2 id="part-3-share-safely-and-keep-data-fresh">Part 3: share safely and keep data fresh</h2>
+<p><strong>Share with consumers</strong> by giving them the workspace <strong>Viewer</strong> role, or better, by publishing an <strong>app</strong> (Workspace → <strong>Create app</strong>). Viewers and app users are restricted by RLS. Members are not.</p>
+<p><strong>Keep data fresh:</strong></p>
+<ul>
+<li><strong>Cloud sources</strong> (SharePoint, OneDrive, cloud databases): set up <strong>scheduled refresh</strong> on the semantic model's settings page.</li>
+<li><strong>Files on your PC or company network</strong>: the service can't see them. Either store the file in <strong>OneDrive / SharePoint</strong> and connect to it there, or install an <strong>on-premises data gateway</strong>.</li>
+</ul>
+<h2 id="part-4-copilot-in-power-bi-what-it-needs">Part 4: Copilot in Power BI — what it needs</h2>
+<p>Copilot isn't available everywhere. According to Microsoft's documentation (checked October 2026):</p>
+<ul>
+<li>The workspace must be on a <strong>paid Fabric capacity (F2 or higher)</strong> or <strong>Power BI Premium (P1 or higher)</strong>, or use a Fabric Copilot capacity. <strong>Trial capacities aren't supported.</strong></li>
+<li>Your admin must allow Copilot in the <strong>tenant settings</strong>, and the capacity must be in a supported region.</li>
+<li>To use Copilot <strong>in Desktop</strong>, you need Admin, Member or Contributor access to at least one such workspace.</li>
+</ul>
+<p>If you're learning on a personal setup, you probably won't have Copilot. That's fine: the skills below still apply to any AI assistant.</p>
+<h2 id="part-5-make-copilot-answers-better-and-safer">Part 5: make Copilot answers better and safer</h2>
+<p>Copilot reads your <strong>semantic model</strong>: names, measures, relationships and descriptions. Good modelling equals better AI answers. Power BI also has <strong>Prep data for AI</strong> (a preview feature, on the Home ribbon) with three tools:</p>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Use it to…</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>AI data schema</strong></td>
+<td>choose which tables, columns and measures Copilot should focus on</td>
+</tr>
+<tr>
+<td><strong>Verified answers</strong></td>
+<td>link common questions to a visual you've checked</td>
+</tr>
+<tr>
+<td><strong>AI instructions</strong></td>
+<td>explain business rules, e.g. <em>"Revenue means Net Revenue: all orders except Cancelled"</em></td>
+</tr>
+</tbody>
+</table>
+<p>Microsoft notes that these tools <strong>can't guarantee</strong> a specific answer, because AI output isn't fully predictable.</p>
+<p><strong>Check every Copilot answer against your measures.</strong> For example:</p>
+<table>
+<thead>
+<tr>
+<th>You ask</th>
+<th>Correct answer (from your measures)</th>
+<th>What to watch for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>"What was revenue in Q1?"</td>
+<td><strong>9,075</strong> (Net Revenue)</td>
+<td>An AI that sums <code>Orders[value]</code> gives <strong>9,315</strong>, which includes the cancelled order</td>
+</tr>
+<tr>
+<td>"Which region is furthest below target?"</td>
+<td><strong>Dhaka (−430)</strong></td>
+<td>The <em>percentage</em> view would say Narayanganj (82.0%), so be clear whether you mean amount or %</td>
+</tr>
+</tbody>
+</table>
+<h2 id="common-mistakes">Common mistakes</h2>
+<table>
+<thead>
+<tr>
+<th>Mistake</th>
+<th>What happens</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Publishing a file connected to <code>C:\</code></td>
+<td>Scheduled refresh fails</td>
+<td>OneDrive/SharePoint source, or a gateway</td>
+</tr>
+<tr>
+<td>Making consumers workspace Members</td>
+<td>They can edit, and bypass RLS</td>
+<td>Viewer role, or an app</td>
+</tr>
+<tr>
+<td>Using Publish to web with business data</td>
+<td>A public data leak</td>
+<td>Never. Share inside the organisation</td>
+</tr>
+<tr>
+<td>Trusting a Copilot number without checking</td>
+<td>Wrong figures in management decks</td>
+<td>Compare with a verified measure, and add AI instructions</td>
+</tr>
+<tr>
+<td>Ambiguous measure names (<code>Revenue</code> vs <code>Net Revenue</code>)</td>
+<td>Copilot and humans pick the wrong one</td>
+<td>Clear names, descriptions, hide raw columns</td>
+</tr>
+</tbody>
+</table>
+<h2 id="try-it-yourself">Try it yourself</h2>
+<p><strong>Task:</strong> Write the <strong>AI instructions</strong> you would give Copilot for this model. Write three or four short rules that would stop the most likely wrong answers.</p>
+<details>
+<summary>Show a hint</summary>
+<p>Think about cancelled orders, which revenue measure is "official", the grain of the targets, and what "below target" means.</p>
+</details>
+<details>
+<summary>Show a model answer</summary>
+<ul>
+<li>"Revenue" always means the <strong>Net Revenue</strong> measure (all orders except status Cancelled).</li>
+<li>Targets exist only by <strong>region and month</strong>. Don't compare targets by product, category or customer.</li>
+<li>"Below target" means <strong>Achievement %</strong> below 100%. Show both the gap amount and the %.</li>
+<li>Months are calendar months of 2026. March data may be incomplete. Mention this when discussing March.</li>
+</ul>
+</details>
+<h2 id="quick-quiz">Quick quiz</h2>
+<div class="quiz-q" data-answer="2">
+<p>1. Which workspace role should report consumers usually get, so RLS applies?</p>
+<ol>
+<li>Member</li>
+<li>Contributor</li>
+<li>Viewer</li>
+</ol>
+<details>
+<summary>Show answer</summary>
+<p><strong>C — Viewer</strong> (or access through an app).</p>
+</details>
+</div>
+<div class="quiz-q" data-answer="1">
+<p>2. Your published report uses a CSV on your laptop. How can scheduled refresh work?</p>
+<ol>
+<li>It works automatically</li>
+<li>Move the file to OneDrive/SharePoint, or use an on-premises data gateway</li>
+<li>Use Publish to web</li>
+</ol>
+<details>
+<summary>Show answer</summary>
+<p><strong>B.</strong> The cloud service can't reach your local files without a gateway.</p>
+</details>
+</div>
+<div class="quiz-q" data-answer="0">
+<p>3. Copilot says Q1 revenue was 9,315. Your Net Revenue measure says 9,075. What's the most likely reason?</p>
+<ol>
+<li>Copilot included the cancelled order</li>
+<li>The measure is wrong</li>
+<li>Rounding</li>
+</ol>
+<details>
+<summary>Show answer</summary>
+<p><strong>A.</strong> 9,315 − 9,075 = 240, which is exactly the cancelled order. Add an AI instruction and check names and descriptions.</p>
+</details>
+</div>
+<h2 id="summary">Summary</h2>
+<ul>
+<li><strong>Publish</strong> from Desktop to a workspace: you get a report plus a semantic model.</li>
+<li><strong>Licences:</strong> Pro (or PPU) to share. Free users can view only content in Premium or F64+ capacity.</li>
+<li>Share with <strong>Viewer</strong> access or <strong>apps</strong>. Refresh needs cloud sources or a <strong>gateway</strong>. Never use Publish to web for business data.</li>
+<li><strong>Copilot</strong> needs paid F2+/P1+ capacity (not trials) and admin enablement. Prepare the model (Prep data for AI) and <strong>verify every answer</strong>.</li>
+</ul>
+<div class="admonition job">
+<p class="admonition-title">Job-ready check</p>
+<p><strong>Interview question:</strong> <em>"Your company is enabling Copilot in Power BI. What would you do to the models first?"</em></p>
+<p><strong>Strong answer:</strong> "Make the semantic model AI-ready: a clean star schema, clear measure names with descriptions, technical columns hidden, and Prep data for AI to set the schema, verified answers for common questions, and instructions such as 'revenue means net revenue'. Then test typical questions against known measure values before rolling it out, and keep reminding users to check AI answers."</p>
+<p><strong>Mini project:</strong> Publish your report to My workspace (if you have access), or document the publishing plan: workspace, roles, refresh method and app audience. Add your Copilot AI-instruction rules to the README.</p>
+</div>
+<div class="terms-box"><div class="files-head"><b>Key terms in this lesson</b><a href="../../../glossary.html">Glossary →</a></div><div class="term-chips"><a class="term-chip" href="../../../glossary.html#power-bi-service" title="The online part of Power BI where reports are published, shared through workspaces and apps, and refreshed on a schedule.">Power BI Service</a></div></div>
+<h2 id="free-resources">Free resources to go deeper</h2><ul class="resources"><li><a href="https://learn.microsoft.com/en-us/power-bi/fundamentals/service-features-license-type">Power BI service features by license type</a><span class="r-meta">Microsoft Learn · What Free, Pro and PPU users can do.</span></li><li><a href="https://learn.microsoft.com/en-us/power-bi/connect-data/refresh-desktop-file-onedrive">Refresh a Power BI Desktop file from OneDrive or SharePoint Online</a><span class="r-meta">Microsoft Learn · Keeping published reports up to date without a gateway.</span></li><li><a href="https://learn.microsoft.com/en-us/power-bi/create-reports/copilot-introduction">Copilot for Power BI overview</a><span class="r-meta">Microsoft Learn · What Copilot can do in reports and models.</span></li><li><a href="https://learn.microsoft.com/en-us/power-bi/create-reports/copilot-enable-power-bi">Enable Fabric Copilot for Power BI</a><span class="r-meta">Microsoft Learn · Capacity, region and tenant requirements.</span></li></ul>
+<div class="complete-bar"><span>Finished reading and did the exercise?</span>
+<button class="btn" id="completeBtn" type="button" data-id="phase-1/power-bi/04-publish-copilot">Mark lesson as complete</button></div>
+<nav class="pager"><a class="prev" href="../../../learn/phase-1/power-bi/03-row-level-security.html"><small>← Previous</small>Power BI Row-Level Security: Each Manager Sees Only Their Region</a><a class="next" href="../../../learn/phase-1/semantic-models/01-semantic-models.html"><small>Next →</small>Semantic Models: One Trusted Definition for Every KPI</a></nav>
+<p class="reviewed">Last reviewed: 2026-10-09</p>
+
+  </div></main>
+  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#part-1-publish">Part 1: publish</a><a href="#part-2-licences-who-can-share-with-whom">Part 2: licences — who can share with whom</a><a href="#part-3-share-safely-and-keep-data-fresh">Part 3: share safely and keep data fresh</a><a href="#part-4-copilot-in-power-bi-what-it-needs">Part 4: Copilot in Power BI — what it needs</a><a href="#part-5-make-copilot-answers-better-and-safer">Part 5: make Copilot answers better and safer</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#free-resources">Free resources</a></aside>
+</div>
+<footer class="site">Data, AI &amp; Automation Path v0.7 · Applied AI, Data &amp; Automation Lab · Updated October 2026<br>
+Lesson text: <a href="../../../license.html">CC BY-NC-SA 4.0</a> · Code: <a href="../../../license.html#code-mit-license">MIT</a> · Free external resources belong to their respective owners.</footer>
+<script src="../../../search-index.js"></script>
+<script src="../../../assets/app.js"></script>
+</body>
+</html>

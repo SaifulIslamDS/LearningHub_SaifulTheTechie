@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en" data-root="../../../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Excel FILTER &amp; LET: Live Filtered Lists and Readable Formulas — Data, AI &amp; Automation Path</title>
+<meta name="description" content="Pull a live list of matching rows with FILTER, sort it, and make long formulas readable by naming their parts with LET.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data, AI &amp; Automation Path">
+<meta property="og:title" content="Excel FILTER &amp; LET: Live Filtered Lists and Readable Formulas">
+<meta property="og:description" content="Pull a live list of matching rows with FILTER, sort it, and make long formulas readable by naming their parts with LET.">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+
+<script>(function(){var t=null;try{t=localStorage.getItem('daa-theme')}catch(e){}
+if(!t)t=(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';
+document.documentElement.setAttribute('data-theme',t);
+var n=null;try{n=localStorage.getItem('daa-nav')}catch(e){}
+if(n==='open'&&window.matchMedia&&matchMedia('(min-width: 961px)').matches)document.documentElement.setAttribute('data-nav','open');
+document.documentElement.classList.add('no-anim')})();</script>
+<link rel="stylesheet" href="../../../assets/style.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233f7d6a'/%3E%3Ctext x='16' y='21' font-family='sans-serif' font-size='13' font-weight='700' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Open curriculum menu" title="Curriculum menu (press M)" aria-controls="sidebar" aria-expanded="false"><span class="ico-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span class="ico-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></button>
+  <a class="brand" href="../../../index.html"><span class="brand-badge">AI</span><span class="brand-text"><span class="brand-name">Data, AI &amp; Automation Path</span><span class="brand-version">v0.7</span></span></a>
+  <nav class="top-links" aria-label="Main">
+    <a href="../../../index.html" class="">Home</a><a href="../../../curriculum.html" class="">Curriculum</a><a href="../../../practice-files.html" class="">Practice files</a><a href="../../../glossary.html" class="">Glossary</a><a href="../../../how-to-learn.html" class="">How to learn</a><a href="../../../about.html" class="">About</a>
+  </nav>
+  <div class="top-spacer"></div>
+  <div class="search" role="search">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input id="searchInput" type="search" placeholder="Search lessons, tools, topics" aria-label="Search" autocomplete="off">
+    <kbd>/</kbd>
+    <div class="search-results" id="searchResults" role="listbox"></div>
+  </div>
+  <button class="icon-btn theme-toggle" id="themeBtn" aria-label="Toggle light or dark mode" title="Light / dark"><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
+</header>
+<div class="layout wide">
+  <nav class="sidebar" id="sidebar" aria-label="Curriculum">
+    <div class="side-title">Curriculum</div>
+    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="64"><i></i></div><span class="bar-label" data-progress-label></span></div>
+<div class="nav-phase"><a href="../../../learn/phase-0/index.html"><span class="nav-num">0</span>Foundations</a>
+</div>
+<div class="nav-phase current open"><a href="../../../learn/phase-1/index.html"><span class="nav-num">1</span>Analytics &amp; BI</a>
+<ul class="nav-modules">
+<li><a class="current" href="../../../learn/phase-1/excel-analysis/index.html">Excel for Analysis</a>
+<ul class="nav-lessons">
+<li><a class="" data-lesson="phase-1/excel-analysis/01-if-logical" href="../../../learn/phase-1/excel-analysis/01-if-logical.html">Excel IF, AND &amp; OR: Let Your Sheet Make Decisions</a></li>
+<li><a class="" data-lesson="phase-1/excel-analysis/02-sumifs-countifs" href="../../../learn/phase-1/excel-analysis/02-sumifs-countifs.html">Excel SUMIFS &amp; COUNTIFS: Build KPI Summaries</a></li>
+<li><a class="" data-lesson="phase-1/excel-analysis/03-xlookup-index-match" href="../../../learn/phase-1/excel-analysis/03-xlookup-index-match.html">Excel XLOOKUP &amp; INDEX/MATCH: Bring Data Together from Other Sheets</a></li>
+<li><a class="current" data-lesson="phase-1/excel-analysis/04-filter-let" href="../../../learn/phase-1/excel-analysis/04-filter-let.html">Excel FILTER &amp; LET: Live Filtered Lists and Readable Formulas</a></li>
+<li><a class="" data-lesson="phase-1/excel-analysis/05-conditional-formatting" href="../../../learn/phase-1/excel-analysis/05-conditional-formatting.html">Excel Conditional Formatting: Make Important Data Stand Out</a></li>
+</ul>
+</li>
+<li><a class="" href="../../../learn/phase-1/pivot-analysis/index.html">Pivot Analysis</a>
+</li>
+<li><a class="" href="../../../learn/phase-1/power-query/index.html">Power Query</a>
+</li>
+<li><a class="" href="../../../learn/phase-1/power-pivot-dax/index.html">Power Pivot &amp; DAX</a>
+</li>
+<li><a class="" href="../../../learn/phase-1/analytical-sql/index.html">Analytical SQL</a>
+</li>
+<li><a class="" href="../../../learn/phase-1/power-bi/index.html">Power BI</a>
+</li>
+<li><a class="" href="../../../learn/phase-1/semantic-models/index.html">Semantic Models &amp; Metrics Layer</a>
+</li>
+<li><a class="" href="../../../learn/phase-1/ai-assisted-analytics/index.html">AI-Assisted Analytics</a>
+</li>
+<li><a class="" href="../../../learn/phase-1/data-storytelling/index.html">Data Storytelling</a>
+</li>
+<li><a class="nav-project " href="../../../learn/phase-1/project.html">★ Milestone project</a></li>
+</ul>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-2/index.html"><span class="nav-num">2</span>Data Science</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-3/index.html"><span class="nav-num">3</span>Data Engineering</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-4/index.html"><span class="nav-num">4</span>ML Engineering</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-5/index.html"><span class="nav-num">5</span>LLM &amp; RAG</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-6/index.html"><span class="nav-num">6</span>Agents &amp; Automation</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-7/index.html"><span class="nav-num">7</span>LLMOps &amp; Governance</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-8/index.html"><span class="nav-num">8</span>Capstone</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-9/index.html"><span class="nav-num">9</span>Career</a>
+</div>
+<div class="side-extra"><a href="../../../index.html">Home</a><a href="../../../curriculum.html">Full curriculum map</a><a href="../../../practice-files.html">Practice files</a><a href="../../../glossary.html">Glossary</a><a href="../../../how-to-learn.html">How to learn here</a><a href="../../../about.html">About &amp; contributing</a></div></nav>
+  <main class="main" id="main"><div class="content">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../../index.html">Home</a><span class="sep">/</span><a href="../../../learn/phase-1/index.html">Phase 1</a><span class="sep">/</span><a href="../../../learn/phase-1/excel-analysis/index.html">Excel for Analysis</a><span class="sep">/</span><span>Excel FILTER &amp; LET: Live Filtered Lists and Readable Formulas</span></nav>
+<h1>Excel FILTER &amp; LET: Live Filtered Lists and Readable Formulas</h1>
+<p class="lead">Pull a live list of matching rows with FILTER, sort it, and make long formulas readable by naming their parts with LET.</p>
+<div class="meta"><span class="pill">Phase <b>1</b> · Analytics &amp; BI</span><span class="pill">Level <b>Intermediate</b></span><span class="pill">Time <b>35 min</b></span></div>
+<div class="admonition note"><p class="admonition-title">Before you start</p><p><a href="../../../learn/phase-1/excel-analysis/02-sumifs-countifs.html">Excel SUMIFS &amp; COUNTIFS: Build KPI Summaries</a></p></div>
+<div class="files-box"><div class="files-head"><b>Practice files for this page</b><a href="../../../practice-files.html">All practice files →</a></div><ul><li><a href="../../../downloads/orders.xlsx" download>orders.xlsx</a><span class="f-desc">Starting workbook: Orders (with value formula), Products, Customers sheets · 8 KB</span></li><li><a href="../../../downloads/excel-solutions.xlsx" download>excel-solutions.xlsx</a><span class="f-desc">Worked Excel answers: IF, SUMIFS, lookups, conditional formatting, FILTER/LET formulas, What-If model · 14 KB</span></li></ul></div>
+<h2 id="what-is-it">What is it?</h2>
+<ul>
+<li><strong>FILTER</strong> returns every row that matches your conditions, as a <strong>live list</strong>. When the data changes, the list updates by itself. It works like a SQL <code>SELECT ... WHERE</code> inside a cell.</li>
+<li><strong>LET</strong> lets you give names to parts of a formula, like variables. Long formulas become shorter, easier to read, and calculate each part only once.</li>
+</ul>
+<p>Both are <strong>dynamic array</strong> functions: one formula fills ("spills" into) as many cells as it needs. They need <strong>Microsoft 365 or Excel 2021 or newer</strong>.</p>
+<div class="admonition job">
+<p class="admonition-title">Why it matters at work</p>
+<p>FILTER replaces copy-pasting filtered data into report sheets, which is a common source of stale numbers. LET makes complex business formulas easy for colleagues to review. Modern Excel job descriptions mention "dynamic arrays" more and more.</p>
+</div>
+<h2 id="the-syntax">The syntax</h2>
+<div class="codehilite"><pre><span></span><code>=FILTER(array, include, [if_empty])
+=LET(name1, value1, [name2, value2, ...], calculation)
+</code></pre></div>
+
+<ul>
+<li><code>include</code> is a TRUE/FALSE test for each row, e.g. <code>D2:D13="Dhaka"</code>.</li>
+<li><strong>AND:</strong> multiply the tests: <code>(test1)*(test2)</code>. <strong>OR:</strong> add them: <code>(test1)+(test2)</code>.</li>
+<li>In LET, the <strong>last</strong> argument is the result. Everything before it is name/value pairs.</li>
+</ul>
+<h2 id="example-1-a-live-list-of-matching-rows">Example 1: a live list of matching rows</h2>
+<p><em>Question: list all non-cancelled Dhaka orders.</em> In an empty cell, e.g. <strong>L2</strong> (with room below and to the right):</p>
+<div class="codehilite"><pre><span></span><code>=FILTER(A2:J13,(D2:D13="Dhaka")*(I2:I13&lt;&gt;"Cancelled"),"No orders")
+</code></pre></div>
+
+<p>The result spills into 4 rows × 10 columns:</p>
+<table>
+<thead>
+<tr>
+<th>order_id</th>
+<th>customer</th>
+<th>product</th>
+<th>status</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Rahim Traders</td>
+<td>Cotton Twill</td>
+<td>Delivered</td>
+<td>420.00</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Nova Apparel</td>
+<td>Denim 12oz</td>
+<td>Delivered</td>
+<td>1,560.00</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Nova Apparel</td>
+<td>Metal Buttons</td>
+<td>Shipped</td>
+<td>320.00</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Rahim Traders</td>
+<td>Cotton Yarn 30s</td>
+<td>Delivered</td>
+<td>870.00</td>
+</tr>
+</tbody>
+</table>
+<p><em>(5 of the 10 columns shown.)</em> Change order 7's status to "Cancelled" and it disappears from the list immediately.</p>
+<p><strong>OR conditions</strong> (Shipped or Pending):</p>
+<div class="codehilite"><pre><span></span><code>=FILTER(A2:J13,(I2:I13="Shipped")+(I2:I13="Pending"),"None")
+</code></pre></div>
+
+<p>This returns orders <strong>7, 9 and 12</strong>.</p>
+<h2 id="example-2-filter-and-sort-in-one-formula">Example 2: filter and sort in one formula</h2>
+<p>Wrap FILTER in <strong>SORT</strong> to sort the result by column 10 (value), largest first (<code>-1</code>):</p>
+<div class="codehilite"><pre><span></span><code>=SORT(FILTER(A2:J13,(D2:D13="Dhaka")*(I2:I13&lt;&gt;"Cancelled"),"No orders"),10,-1)
+</code></pre></div>
+
+<p>Order of the result: <strong>3</strong> (1,560), <strong>10</strong> (870), <strong>1</strong> (420), <strong>7</strong> (320).</p>
+<h2 id="example-3-let-for-readable-calculations">Example 3: LET for readable calculations</h2>
+<p><em>Question: what is the average order value, excluding cancelled orders?</em></p>
+<p>Without LET, the meaning gets lost in the ranges:</p>
+<div class="codehilite"><pre><span></span><code>=SUMIFS(J2:J13,I2:I13,"&lt;&gt;Cancelled")/COUNTIFS(I2:I13,"&lt;&gt;Cancelled")
+</code></pre></div>
+
+<p>With LET, each part has a name:</p>
+<div class="codehilite"><pre><span></span><code>=LET(
+    revenue, SUMIFS(J2:J13, I2:I13, "&lt;&gt;Cancelled"),
+    orders,  COUNTIFS(I2:I13, "&lt;&gt;Cancelled"),
+    revenue / orders
+)
+</code></pre></div>
+
+<p>Both give <strong>825</strong>, the same as SQL's <code>AVG</code>. You can type line breaks inside a formula with <strong>Alt + Enter</strong> (Windows) or <strong>Option + Return</strong> (Mac).</p>
+<div class="admonition tip">
+<p class="admonition-title">When to reach for LET</p>
+<p>Use LET when a formula repeats the same piece more than once, or is longer than one line. Reviewers can read <code>revenue / orders</code> at a glance. They can't easily read three nested SUMIFS.</p>
+</div>
+<h2 id="common-mistakes">Common mistakes</h2>
+<table>
+<thead>
+<tr>
+<th>Mistake</th>
+<th>What happens</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cells below or right of the formula aren't empty</td>
+<td><code>#SPILL!</code></td>
+<td>Clear the space the result needs</td>
+</tr>
+<tr>
+<td>No <code>if_empty</code> and nothing matches</td>
+<td><code>#CALC!</code></td>
+<td>Add a 3rd argument like <code>"No orders"</code></td>
+</tr>
+<tr>
+<td><code>AND(D2:D13="Dhaka", ...)</code> inside FILTER</td>
+<td>Returns one TRUE/FALSE, not one per row</td>
+<td>Multiply the tests: <code>(...)*(...)</code></td>
+</tr>
+<tr>
+<td><code>include</code> range a different size from <code>array</code></td>
+<td><code>#VALUE!</code></td>
+<td>Use the same rows (2–13)</td>
+</tr>
+<tr>
+<td>Using FILTER in Excel 2019 or older</td>
+<td><code>#NAME?</code></td>
+<td>Use AutoFilter, or upgrade</td>
+</tr>
+</tbody>
+</table>
+<h2 id="try-it-yourself">Try it yourself</h2>
+<p><strong>Task:</strong> Use FILTER to list every <strong>Fabric</strong> order worth <strong>more than 700</strong> that is <strong>not cancelled</strong>. Sort it by value, highest first.</p>
+<details>
+<summary>Show a hint</summary>
+<p>Multiply three tests: category, value and status. Then wrap the FILTER in <code>SORT(..., 10, -1)</code>.</p>
+</details>
+<details>
+<summary>Show the solution</summary>
+<div class="codehilite"><pre><span></span><code>=SORT(FILTER(A2:J13,(E2:E13="Fabric")*(J2:J13&gt;700)*(I2:I13&lt;&gt;"Cancelled"),"None"),10,-1)
+</code></pre></div>
+
+<table>
+<thead>
+<tr>
+<th>order_id</th>
+<th>customer</th>
+<th>product</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>3</td>
+<td>Nova Apparel</td>
+<td>Denim 12oz</td>
+<td>1,560.00</td>
+</tr>
+<tr>
+<td>12</td>
+<td>Karim Garments</td>
+<td>Denim 12oz</td>
+<td>1,275.00</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Sun Fashion</td>
+<td>Denim 12oz</td>
+<td>810.00</td>
+</tr>
+</tbody>
+</table>
+<p>All three are Denim: the high-value fabric line.</p>
+</details>
+<h2 id="quick-quiz">Quick quiz</h2>
+<div class="quiz-q" data-answer="1">
+<p>1. In FILTER, how do you require <strong>both</strong> conditions to be true?</p>
+<ol>
+<li><code>(test1)+(test2)</code></li>
+<li><code>(test1)*(test2)</code></li>
+<li><code>AND(test1,test2)</code></li>
+</ol>
+<details>
+<summary>Show answer</summary>
+<p><strong>B — multiply.</strong> TRUE×TRUE = 1. Any FALSE gives 0. Adding the tests gives OR logic.</p>
+</details>
+</div>
+<div class="quiz-q" data-answer="1">
+<p>2. Your FILTER formula shows <code>#SPILL!</code>. What is the most likely cause?</p>
+<ol>
+<li>No rows match</li>
+<li>Something is in the cells where the result needs to go</li>
+<li>The ranges are absolute</li>
+</ol>
+<details>
+<summary>Show answer</summary>
+<p><strong>B.</strong> Clear the cells below and to the right. (No matches without <code>if_empty</code> gives <code>#CALC!</code>.)</p>
+</details>
+</div>
+<div class="quiz-q" data-answer="2">
+<p>3. In <code>=LET(a, 10, b, 5, a*b)</code>, which part is the result?</p>
+<ol>
+<li><code>a, 10</code></li>
+<li><code>b, 5</code></li>
+<li><code>a*b</code></li>
+</ol>
+<details>
+<summary>Show answer</summary>
+<p><strong>C.</strong> The last argument of LET is always the calculation that is returned. Here it gives 50.</p>
+</details>
+</div>
+<h2 id="summary">Summary</h2>
+<ul>
+<li><code>FILTER(array, include, if_empty)</code> returns a live list of matching rows that updates by itself.</li>
+<li>Multiply tests for AND, add them for OR, and always give an <code>if_empty</code> value.</li>
+<li>Wrap FILTER in <code>SORT(..., column, -1)</code> for a sorted list.</li>
+<li><code>LET(name, value, ..., result)</code> names the parts of a formula: clearer, and each part is calculated only once.</li>
+<li>Both need Microsoft 365 or Excel 2021 or newer, and enough empty space to spill.</li>
+</ul>
+<div class="admonition job">
+<p class="admonition-title">Job-ready check</p>
+<p><strong>Interview question:</strong> <em>"How would you give a manager a list of open orders that is always up to date?"</em></p>
+<p><strong>Strong answer:</strong> "A FILTER formula on the order table: status is Shipped or Pending, sorted by value with SORT. It updates as soon as the data changes, so nobody copies and pastes stale data. On older Excel I'd use a PivotTable or an AutoFilter view instead."</p>
+<p><strong>Mini project:</strong> Create a sheet <strong>Open Orders</strong> with one sorted FILTER formula. Above it, show the total open value using a LET formula. Change a status in the data and watch both update.</p>
+</div>
+<div class="terms-box"><div class="files-head"><b>Key terms in this lesson</b><a href="../../../glossary.html">Glossary →</a></div><div class="term-chips"><a class="term-chip" href="../../../glossary.html#dynamic-array" title="A formula that returns many values which &quot;spill&quot; into neighbouring cells, such as FILTER returning all Dhaka orders.">Dynamic array</a><a class="term-chip" href="../../../glossary.html#let" title="An Excel function that names parts of a formula, so long formulas become readable and calculate each part once.">LET</a></div></div>
+<h2 id="free-resources">Free resources to go deeper</h2><ul class="resources"><li><a href="https://support.microsoft.com/en-us/excel/functions/filter-function">FILTER function</a><span class="r-meta">Microsoft Support · Official syntax, including how to combine AND / OR conditions.</span></li><li><a href="https://support.microsoft.com/en-us/office/let-function-34842dd8-b92b-4d3f-b325-b8b8f9908999">LET function</a><span class="r-meta">Microsoft Support · Naming parts of a formula.</span></li><li><a href="https://support.microsoft.com/en-us/excel/how-to-correct-a-spill-error?ui=en-us&amp;rs=en-ie&amp;ad=ie">How to correct a #SPILL! error</a><span class="r-meta">Microsoft Support · The most common error with dynamic arrays.</span></li><li><a href="https://exceljet.net/functions/filter-function">Excel FILTER function</a><span class="r-meta">Exceljet (free) · Many FILTER patterns with clear examples.</span></li></ul>
+<div class="complete-bar"><span>Finished reading and did the exercise?</span>
+<button class="btn" id="completeBtn" type="button" data-id="phase-1/excel-analysis/04-filter-let">Mark lesson as complete</button></div>
+<nav class="pager"><a class="prev" href="../../../learn/phase-1/excel-analysis/03-xlookup-index-match.html"><small>← Previous</small>Excel XLOOKUP &amp; INDEX/MATCH: Bring Data Together from Other Sheets</a><a class="next" href="../../../learn/phase-1/excel-analysis/05-conditional-formatting.html"><small>Next →</small>Excel Conditional Formatting: Make Important Data Stand Out</a></nav>
+<p class="reviewed">Last reviewed: 2026-10-09</p>
+
+  </div></main>
+  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#the-syntax">The syntax</a><a href="#example-1-a-live-list-of-matching-rows">Example 1: a live list of matching rows</a><a href="#example-2-filter-and-sort-in-one-formula">Example 2: filter and sort in one formula</a><a href="#example-3-let-for-readable-calculations">Example 3: LET for readable calculations</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#free-resources">Free resources</a></aside>
+</div>
+<footer class="site">Data, AI &amp; Automation Path v0.7 · Applied AI, Data &amp; Automation Lab · Updated October 2026<br>
+Lesson text: <a href="../../../license.html">CC BY-NC-SA 4.0</a> · Code: <a href="../../../license.html#code-mit-license">MIT</a> · Free external resources belong to their respective owners.</footer>
+<script src="../../../search-index.js"></script>
+<script src="../../../assets/app.js"></script>
+</body>
+</html>

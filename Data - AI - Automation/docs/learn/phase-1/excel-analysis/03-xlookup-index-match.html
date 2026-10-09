@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en" data-root="../../../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Excel XLOOKUP &amp; INDEX/MATCH: Bring Data Together from Other Sheets — Data, AI &amp; Automation Path</title>
+<meta name="description" content="Look up prices, segments and suppliers from other sheets — with modern XLOOKUP and the classic INDEX/MATCH that works everywhere.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data, AI &amp; Automation Path">
+<meta property="og:title" content="Excel XLOOKUP &amp; INDEX/MATCH: Bring Data Together from Other Sheets">
+<meta property="og:description" content="Look up prices, segments and suppliers from other sheets — with modern XLOOKUP and the classic INDEX/MATCH that works everywhere.">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+
+<script>(function(){var t=null;try{t=localStorage.getItem('daa-theme')}catch(e){}
+if(!t)t=(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';
+document.documentElement.setAttribute('data-theme',t);
+var n=null;try{n=localStorage.getItem('daa-nav')}catch(e){}
+if(n==='open'&&window.matchMedia&&matchMedia('(min-width: 961px)').matches)document.documentElement.setAttribute('data-nav','open');
+document.documentElement.classList.add('no-anim')})();</script>
+<link rel="stylesheet" href="../../../assets/style.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233f7d6a'/%3E%3Ctext x='16' y='21' font-family='sans-serif' font-size='13' font-weight='700' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Open curriculum menu" title="Curriculum menu (press M)" aria-controls="sidebar" aria-expanded="false"><span class="ico-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span class="ico-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></button>
+  <a class="brand" href="../../../index.html"><span class="brand-badge">AI</span><span class="brand-text"><span class="brand-name">Data, AI &amp; Automation Path</span><span class="brand-version">v0.7</span></span></a>
+  <nav class="top-links" aria-label="Main">
+    <a href="../../../index.html" class="">Home</a><a href="../../../curriculum.html" class="">Curriculum</a><a href="../../../practice-files.html" class="">Practice files</a><a href="../../../glossary.html" class="">Glossary</a><a href="../../../how-to-learn.html" class="">How to learn</a><a href="../../../about.html" class="">About</a>
+  </nav>
+  <div class="top-spacer"></div>
+  <div class="search" role="search">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input id="searchInput" type="search" placeholder="Search lessons, tools, topics" aria-label="Search" autocomplete="off">
+    <kbd>/</kbd>
+    <div class="search-results" id="searchResults" role="listbox"></div>
+  </div>
+  <button class="icon-btn theme-toggle" id="themeBtn" aria-label="Toggle light or dark mode" title="Light / dark"><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
+</header>
+<div class="layout wide">
+  <nav class="sidebar" id="sidebar" aria-label="Curriculum">
+    <div class="side-title">Curriculum</div>
+    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="64"><i></i></div><span class="bar-label" data-progress-label></span></div>
+<div class="nav-phase"><a href="../../../learn/phase-0/index.html"><span class="nav-num">0</span>Foundations</a>
+</div>
+<div class="nav-phase current open"><a href="../../../learn/phase-1/index.html"><span class="nav-num">1</span>Analytics &amp; BI</a>
+<ul class="nav-modules">
+<li><a class="current" href="../../../learn/phase-1/excel-analysis/index.html">Excel for Analysis</a>
+<ul class="nav-lessons">
+<li><a class="" data-lesson="phase-1/excel-analysis/01-if-logical" href="../../../learn/phase-1/excel-analysis/01-if-logical.html">Excel IF, AND &amp; OR: Let Your Sheet Make Decisions</a></li>
+<li><a class="" data-lesson="phase-1/excel-analysis/02-sumifs-countifs" href="../../../learn/phase-1/excel-analysis/02-sumifs-countifs.html">Excel SUMIFS &amp; COUNTIFS: Build KPI Summaries</a></li>
+<li><a class="current" data-lesson="phase-1/excel-analysis/03-xlookup-index-match" href="../../../learn/phase-1/excel-analysis/03-xlookup-index-match.html">Excel XLOOKUP &amp; INDEX/MATCH: Bring Data Together from Other Sheets</a></li>
+<li><a class="" data-lesson="phase-1/excel-analysis/04-filter-let" href="../../../learn/phase-1/excel-analysis/04-filter-let.html">Excel FILTER &amp; LET: Live Filtered Lists and Readable Formulas</a></li>
+<li><a class="" data-lesson="phase-1/excel-analysis/05-conditional-formatting" href="../../../learn/phase-1/excel-analysis/05-conditional-formatting.html">Excel Conditional Formatting: Make Important Data Stand Out</a></li>
+</ul>
+</li>
+<li><a class="" href="../../../learn/phase-1/pivot-analysis/index.html">Pivot Analysis</a>
+</li>
+<li><a class="" href="../../../learn/phase-1/power-query/index.html">Power Query</a>
+</li>
+<li><a class="" href="../../../learn/phase-1/power-pivot-dax/index.html">Power Pivot &amp; DAX</a>
+</li>
+<li><a class="" href="../../../learn/phase-1/analytical-sql/index.html">Analytical SQL</a>
+</li>
+<li><a class="" href="../../../learn/phase-1/power-bi/index.html">Power BI</a>
+</li>
+<li><a class="" href="../../../learn/phase-1/semantic-models/index.html">Semantic Models &amp; Metrics Layer</a>
+</li>
+<li><a class="" href="../../../learn/phase-1/ai-assisted-analytics/index.html">AI-Assisted Analytics</a>
+</li>
+<li><a class="" href="../../../learn/phase-1/data-storytelling/index.html">Data Storytelling</a>
+</li>
+<li><a class="nav-project " href="../../../learn/phase-1/project.html">★ Milestone project</a></li>
+</ul>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-2/index.html"><span class="nav-num">2</span>Data Science</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-3/index.html"><span class="nav-num">3</span>Data Engineering</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-4/index.html"><span class="nav-num">4</span>ML Engineering</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-5/index.html"><span class="nav-num">5</span>LLM &amp; RAG</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-6/index.html"><span class="nav-num">6</span>Agents &amp; Automation</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-7/index.html"><span class="nav-num">7</span>LLMOps &amp; Governance</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-8/index.html"><span class="nav-num">8</span>Capstone</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-9/index.html"><span class="nav-num">9</span>Career</a>
+</div>
+<div class="side-extra"><a href="../../../index.html">Home</a><a href="../../../curriculum.html">Full curriculum map</a><a href="../../../practice-files.html">Practice files</a><a href="../../../glossary.html">Glossary</a><a href="../../../how-to-learn.html">How to learn here</a><a href="../../../about.html">About &amp; contributing</a></div></nav>
+  <main class="main" id="main"><div class="content">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../../index.html">Home</a><span class="sep">/</span><a href="../../../learn/phase-1/index.html">Phase 1</a><span class="sep">/</span><a href="../../../learn/phase-1/excel-analysis/index.html">Excel for Analysis</a><span class="sep">/</span><span>Excel XLOOKUP &amp; INDEX/MATCH: Bring Data Together from Other Sheets</span></nav>
+<h1>Excel XLOOKUP &amp; INDEX/MATCH: Bring Data Together from Other Sheets</h1>
+<p class="lead">Look up prices, segments and suppliers from other sheets — with modern XLOOKUP and the classic INDEX/MATCH that works everywhere.</p>
+<div class="meta"><span class="pill">Phase <b>1</b> · Analytics &amp; BI</span><span class="pill">Level <b>Beginner</b></span><span class="pill">Time <b>40 min</b></span></div>
+<div class="admonition note"><p class="admonition-title">Before you start</p><p><a href="../../../learn/phase-1/excel-analysis/02-sumifs-countifs.html">Excel SUMIFS &amp; COUNTIFS: Build KPI Summaries</a></p></div>
+<div class="files-box"><div class="files-head"><b>Practice files for this page</b><a href="../../../practice-files.html">All practice files →</a></div><ul><li><a href="../../../downloads/orders.xlsx" download>orders.xlsx</a><span class="f-desc">Starting workbook: Orders (with value formula), Products, Customers sheets · 8 KB</span></li><li><a href="../../../downloads/excel-solutions.xlsx" download>excel-solutions.xlsx</a><span class="f-desc">Worked Excel answers: IF, SUMIFS, lookups, conditional formatting, FILTER/LET formulas, What-If model · 14 KB</span></li></ul></div>
+<h2 id="what-is-it">What is it?</h2>
+<p>A lookup finds a value in one table and brings back related information from another column. Our <strong>Orders</strong> sheet has the product name. The <strong>Products</strong> sheet has each product's list price and supplier. A lookup connects them, the same way a SQL <code>JOIN</code> does.</p>
+<ul>
+<li><strong>XLOOKUP</strong>: the modern, simple lookup (Microsoft 365, Excel 2021 or newer).</li>
+<li><strong>INDEX/MATCH</strong>: the classic combination that works in <strong>every</strong> Excel version, and still appears in many company files.</li>
+</ul>
+<div class="admonition job">
+<p class="admonition-title">Why it matters at work</p>
+<p>Combining data from different sheets or exports is a daily task: price lists, customer details, targets. "Can you do a lookup?" is the most common Excel interview question. Knowing both XLOOKUP and INDEX/MATCH means you can work in any company's files.</p>
+</div>
+<h2 id="the-syntax">The syntax</h2>
+<div class="codehilite"><pre><span></span><code>=XLOOKUP(lookup_value, lookup_array, return_array, [if_not_found])
+
+=INDEX(return_range, MATCH(lookup_value, lookup_range, 0))
+</code></pre></div>
+
+<ul>
+<li><code>lookup_value</code>: what you're searching for (e.g. the product in F2).</li>
+<li><code>lookup_array</code>: where to search (the product names on the Products sheet).</li>
+<li><code>return_array</code>: what to bring back (the list price column).</li>
+<li><code>MATCH(..., 0)</code>: the <code>0</code> means <strong>exact match</strong>. Always use it for names and IDs.</li>
+</ul>
+<h2 id="example-1-bring-in-the-list-price">Example 1: bring in the list price</h2>
+<p>The <strong>Products</strong> sheet: names in A2:A7, list prices in C2:C7, suppliers in D2:D7. In <strong>Orders!K2</strong>:</p>
+<div class="codehilite"><pre><span></span><code>=XLOOKUP(F2,Products!$A$2:$A$7,Products!$C$2:$C$7,"Not found")
+</code></pre></div>
+
+<p>The same with INDEX/MATCH (works in every version):</p>
+<div class="codehilite"><pre><span></span><code>=INDEX(Products!$C$2:$C$7,MATCH(F2,Products!$A$2:$A$7,0))
+</code></pre></div>
+
+<p>Now calculate the <strong>discount</strong> given on each order in <strong>L2</strong>: <code>=1-H2/K2</code>, formatted as a percentage.</p>
+<table>
+<thead>
+<tr>
+<th>order_id</th>
+<th>product</th>
+<th>unit_price</th>
+<th>K: list_price</th>
+<th>L: discount</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Cotton Twill</td>
+<td>3.50</td>
+<td>3.60</td>
+<td>2.8%</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Metal Buttons</td>
+<td>0.04</td>
+<td>0.05</td>
+<td>20.0%</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Denim 12oz</td>
+<td>5.20</td>
+<td>5.50</td>
+<td>5.5%</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Zippers</td>
+<td>0.30</td>
+<td>0.32</td>
+<td>6.3%</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Cotton Yarn 30s</td>
+<td>2.80</td>
+<td>3.00</td>
+<td>6.7%</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Cotton Twill</td>
+<td>3.40</td>
+<td>3.60</td>
+<td>5.6%</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Metal Buttons</td>
+<td>0.04</td>
+<td>0.05</td>
+<td>20.0%</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Polyester Yarn</td>
+<td>2.10</td>
+<td>2.20</td>
+<td>4.5%</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Denim 12oz</td>
+<td>5.40</td>
+<td>5.50</td>
+<td>1.8%</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Cotton Yarn 30s</td>
+<td>2.90</td>
+<td>3.00</td>
+<td>3.3%</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Zippers</td>
+<td>0.28</td>
+<td>0.32</td>
+<td>12.5%</td>
+</tr>
+<tr>
+<td>12</td>
+<td>Denim 12oz</td>
+<td>5.10</td>
+<td>5.50</td>
+<td>7.3%</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Insight:</strong> Metal Buttons are sold at 20% below the list price, far more than any other product. That's a question for the sales team.</p>
+<h2 id="example-2-look-up-from-a-different-sheet-and-column">Example 2: look up from a different sheet and column</h2>
+<p><em>Question: what segment is each customer?</em> The <strong>Customers</strong> sheet has names in B2:B7 and segments in C2:C7. In <strong>M2</strong>:</p>
+<div class="codehilite"><pre><span></span><code>=XLOOKUP(C2,Customers!$B$2:$B$7,Customers!$C$2:$C$7,"Not found")
+</code></pre></div>
+
+<p>Order 1 → <strong>Trader</strong>. Order 3 → <strong>Garment Factory</strong>. Order 5 → <strong>Knitting Mill</strong>.</p>
+<p>With this column in place, you can use SUMIFS by segment, just like the SQL JOIN lesson.</p>
+<h2 id="example-3-handle-values-that-arent-found">Example 3: handle values that aren't found</h2>
+<p>If you look up a product that isn't in the list, for example <code>"Velcro"</code>:</p>
+<ul>
+<li>XLOOKUP with <code>"Not found"</code> as the 4th argument shows <strong>Not found</strong>.</li>
+<li>INDEX/MATCH shows <strong>#N/A</strong>. Wrap it in <code>IFERROR</code> for a friendly message:</li>
+</ul>
+<div class="codehilite"><pre><span></span><code>=IFERROR(INDEX(Products!$C$2:$C$7,MATCH("Velcro",Products!$A$2:$A$7,0)),"Not found")
+</code></pre></div>
+
+<div class="admonition warning">
+<p class="admonition-title">Don't hide real problems</p>
+<p><code>#N/A</code> often means the data has a typo or a trailing space (<code>"Zippers "</code> is not <code>"Zippers"</code>). Before hiding errors with IFERROR, count them, then fix the source data where you can.</p>
+</div>
+<h2 id="why-not-vlookup">Why not VLOOKUP?</h2>
+<p>You'll still see <code>VLOOKUP</code> in older files. It only searches the <strong>first</strong> column and returns by column <strong>number</strong>, so inserting a column silently breaks it. It also defaults to an <em>approximate</em> match unless you add <code>FALSE</code>. Prefer XLOOKUP, or INDEX/MATCH on older Excel.</p>
+<h2 id="common-mistakes">Common mistakes</h2>
+<table>
+<thead>
+<tr>
+<th>Mistake</th>
+<th>What happens</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MATCH(F2, range)</code> without <code>0</code></td>
+<td>Approximate match: wrong prices with no error</td>
+<td>Always <code>MATCH(..., 0)</code></td>
+</tr>
+<tr>
+<td>No <code>$</code> on the lookup ranges</td>
+<td>Ranges shift when copied, causing <code>#N/A</code> lower down</td>
+<td><code>Products!$A$2:$A$7</code></td>
+</tr>
+<tr>
+<td>Lookup and return ranges of different sizes</td>
+<td><code>#VALUE!</code> / wrong row</td>
+<td>Same start and end rows</td>
+</tr>
+<tr>
+<td>Extra spaces in names</td>
+<td><code>#N/A</code></td>
+<td>Clean with <code>TRIM</code>, or fix the source</td>
+</tr>
+<tr>
+<td>Duplicate keys in the lookup table</td>
+<td>Only the first match is returned</td>
+<td>Make the keys unique</td>
+</tr>
+</tbody>
+</table>
+<h2 id="try-it-yourself">Try it yourself</h2>
+<p><strong>Task:</strong> Add a <strong>Supplier</strong> column using a lookup on the Products sheet (column D). How many orders are for products supplied by <strong>Star Trims</strong>?</p>
+<details>
+<summary>Show a hint</summary>
+<p>Use XLOOKUP (or INDEX/MATCH) returning <code>Products!$D$2:$D$7</code>, then count the result with <code>COUNTIF</code>.</p>
+</details>
+<details>
+<summary>Show the solution</summary>
+<div class="codehilite"><pre><span></span><code>=XLOOKUP(F2,Products!$A$2:$A$7,Products!$D$2:$D$7,"Not found")
+=COUNTIF(N2:N13,"Star Trims")
+</code></pre></div>
+
+<p><strong>4 orders</strong> (2, 4, 7 and 11): all the Metal Buttons and Zippers orders.</p>
+</details>
+<h2 id="quick-quiz">Quick quiz</h2>
+<div class="quiz-q" data-answer="1">
+<p>1. What does the <code>0</code> in <code>MATCH(F2, A2:A7, 0)</code> mean?</p>
+<ol>
+<li>Start at row 0</li>
+<li>Exact match</li>
+<li>Return 0 if not found</li>
+</ol>
+<details>
+<summary>Show answer</summary>
+<p><strong>B — exact match.</strong> Without it, MATCH may return a nearby, wrong row.</p>
+</details>
+</div>
+<div class="quiz-q" data-answer="2">
+<p>2. What does XLOOKUP return when nothing matches and no <code>if_not_found</code> is given?</p>
+<ol>
+<li>0</li>
+<li>A blank</li>
+<li><code>#N/A</code></li>
+</ol>
+<details>
+<summary>Show answer</summary>
+<p><strong>C — <code>#N/A</code>.</strong> Add a 4th argument such as <code>"Not found"</code> to show a message instead.</p>
+</details>
+</div>
+<div class="quiz-q" data-answer="0">
+<p>3. Why does inserting a column often break VLOOKUP but not XLOOKUP?</p>
+<ol>
+<li>VLOOKUP returns by column number</li>
+<li>XLOOKUP is faster</li>
+<li>VLOOKUP can't look across sheets</li>
+</ol>
+<details>
+<summary>Show answer</summary>
+<p><strong>A.</strong> VLOOKUP's column number doesn't update when columns move. XLOOKUP points at the return range directly.</p>
+</details>
+</div>
+<h2 id="summary">Summary</h2>
+<ul>
+<li>Lookups combine data from different tables, like a SQL JOIN for one column.</li>
+<li><code>XLOOKUP(value, lookup_array, return_array, "Not found")</code> is the modern way.</li>
+<li><code>INDEX(return, MATCH(value, lookup, 0))</code> works in every Excel version. Always use <code>0</code>.</li>
+<li>Lock ranges with <code>$</code>, keep the keys unique and clean, and treat <code>#N/A</code> as a data-quality signal.</li>
+</ul>
+<div class="admonition job">
+<p class="admonition-title">Job-ready check</p>
+<p><strong>Interview question:</strong> <em>"You have a sales export and a separate price list. How do you find orders sold below list price?"</em></p>
+<p><strong>Strong answer:</strong> "Look up the list price for each order with XLOOKUP, or INDEX/MATCH on older Excel, using exact match. Then calculate the discount as <code>1 - price/list_price</code> and filter or conditionally format the big ones. First I'd check for <code>#N/A</code> results, because they usually mean mismatched product names."</p>
+<p><strong>Mini project:</strong> Add a list price, discount % and supplier to every order. Then build a small table: average discount by product with <code>AVERAGEIFS</code>. Write one sentence of insight.</p>
+</div>
+<div class="terms-box"><div class="files-head"><b>Key terms in this lesson</b><a href="../../../glossary.html">Glossary →</a></div><div class="term-chips"><a class="term-chip" href="../../../glossary.html#join" title="Combines rows from two tables using a matching key. INNER JOIN keeps only matches; LEFT JOIN keeps every row from the left table; an anti-join finds rows with no match.">JOIN</a><a class="term-chip" href="../../../glossary.html#xlookup" title="Finds a value in one column and returns the matching value from another. INDEX/MATCH does the same in older Excel versions.">XLOOKUP</a></div></div>
+<h2 id="free-resources">Free resources to go deeper</h2><ul class="resources"><li><a href="https://support.microsoft.com/en-us/excel/functions/xlookup-function">XLOOKUP function</a><span class="r-meta">Microsoft Support · The full syntax, including match and search modes.</span></li><li><a href="https://support.microsoft.com/en-us/office/look-up-values-with-vlookup-index-or-match-68297403-7c3c-4150-9e3c-4d348188976b">Look up values with VLOOKUP, INDEX, or MATCH</a><span class="r-meta">Microsoft Support · The classic lookup functions side by side.</span></li><li><a href="https://exceljet.net/functions/xlookup-function">Excel XLOOKUP function</a><span class="r-meta">Exceljet (free) · Many practical XLOOKUP patterns.</span></li></ul>
+<div class="complete-bar"><span>Finished reading and did the exercise?</span>
+<button class="btn" id="completeBtn" type="button" data-id="phase-1/excel-analysis/03-xlookup-index-match">Mark lesson as complete</button></div>
+<nav class="pager"><a class="prev" href="../../../learn/phase-1/excel-analysis/02-sumifs-countifs.html"><small>← Previous</small>Excel SUMIFS &amp; COUNTIFS: Build KPI Summaries</a><a class="next" href="../../../learn/phase-1/excel-analysis/04-filter-let.html"><small>Next →</small>Excel FILTER &amp; LET: Live Filtered Lists and Readable Formulas</a></nav>
+<p class="reviewed">Last reviewed: 2026-10-09</p>
+
+  </div></main>
+  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#the-syntax">The syntax</a><a href="#example-1-bring-in-the-list-price">Example 1: bring in the list price</a><a href="#example-2-look-up-from-a-different-sheet-and-column">Example 2: look up from a different sheet and column</a><a href="#example-3-handle-values-that-arent-found">Example 3: handle values that aren&#x27;t found</a><a href="#why-not-vlookup">Why not VLOOKUP?</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#free-resources">Free resources</a></aside>
+</div>
+<footer class="site">Data, AI &amp; Automation Path v0.7 · Applied AI, Data &amp; Automation Lab · Updated October 2026<br>
+Lesson text: <a href="../../../license.html">CC BY-NC-SA 4.0</a> · Code: <a href="../../../license.html#code-mit-license">MIT</a> · Free external resources belong to their respective owners.</footer>
+<script src="../../../search-index.js"></script>
+<script src="../../../assets/app.js"></script>
+</body>
+</html>

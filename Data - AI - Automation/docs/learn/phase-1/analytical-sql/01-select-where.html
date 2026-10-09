@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en" data-root="../../../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SQL SELECT &amp; WHERE: Get Exactly the Rows You Need — Data, AI &amp; Automation Path</title>
+<meta name="description" content="Pick the columns you want, filter the rows you need, and calculate new values — the base of every SQL query.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data, AI &amp; Automation Path">
+<meta property="og:title" content="SQL SELECT &amp; WHERE: Get Exactly the Rows You Need">
+<meta property="og:description" content="Pick the columns you want, filter the rows you need, and calculate new values — the base of every SQL query.">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+
+<script>(function(){var t=null;try{t=localStorage.getItem('daa-theme')}catch(e){}
+if(!t)t=(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';
+document.documentElement.setAttribute('data-theme',t);
+var n=null;try{n=localStorage.getItem('daa-nav')}catch(e){}
+if(n==='open'&&window.matchMedia&&matchMedia('(min-width: 961px)').matches)document.documentElement.setAttribute('data-nav','open');
+document.documentElement.classList.add('no-anim')})();</script>
+<link rel="stylesheet" href="../../../assets/style.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233f7d6a'/%3E%3Ctext x='16' y='21' font-family='sans-serif' font-size='13' font-weight='700' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Open curriculum menu" title="Curriculum menu (press M)" aria-controls="sidebar" aria-expanded="false"><span class="ico-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span class="ico-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></button>
+  <a class="brand" href="../../../index.html"><span class="brand-badge">AI</span><span class="brand-text"><span class="brand-name">Data, AI &amp; Automation Path</span><span class="brand-version">v0.7</span></span></a>
+  <nav class="top-links" aria-label="Main">
+    <a href="../../../index.html" class="">Home</a><a href="../../../curriculum.html" class="">Curriculum</a><a href="../../../practice-files.html" class="">Practice files</a><a href="../../../glossary.html" class="">Glossary</a><a href="../../../how-to-learn.html" class="">How to learn</a><a href="../../../about.html" class="">About</a>
+  </nav>
+  <div class="top-spacer"></div>
+  <div class="search" role="search">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input id="searchInput" type="search" placeholder="Search lessons, tools, topics" aria-label="Search" autocomplete="off">
+    <kbd>/</kbd>
+    <div class="search-results" id="searchResults" role="listbox"></div>
+  </div>
+  <button class="icon-btn theme-toggle" id="themeBtn" aria-label="Toggle light or dark mode" title="Light / dark"><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
+</header>
+<div class="layout wide">
+  <nav class="sidebar" id="sidebar" aria-label="Curriculum">
+    <div class="side-title">Curriculum</div>
+    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="64"><i></i></div><span class="bar-label" data-progress-label></span></div>
+<div class="nav-phase"><a href="../../../learn/phase-0/index.html"><span class="nav-num">0</span>Foundations</a>
+</div>
+<div class="nav-phase current open"><a href="../../../learn/phase-1/index.html"><span class="nav-num">1</span>Analytics &amp; BI</a>
+<ul class="nav-modules">
+<li><a class="" href="../../../learn/phase-1/excel-analysis/index.html">Excel for Analysis</a>
+</li>
+<li><a class="" href="../../../learn/phase-1/pivot-analysis/index.html">Pivot Analysis</a>
+</li>
+<li><a class="" href="../../../learn/phase-1/power-query/index.html">Power Query</a>
+</li>
+<li><a class="" href="../../../learn/phase-1/power-pivot-dax/index.html">Power Pivot &amp; DAX</a>
+</li>
+<li><a class="current" href="../../../learn/phase-1/analytical-sql/index.html">Analytical SQL</a>
+<ul class="nav-lessons">
+<li><a class="current" data-lesson="phase-1/analytical-sql/01-select-where" href="../../../learn/phase-1/analytical-sql/01-select-where.html">SQL SELECT &amp; WHERE: Get Exactly the Rows You Need</a></li>
+<li><a class="" data-lesson="phase-1/analytical-sql/02-order-group-by" href="../../../learn/phase-1/analytical-sql/02-order-group-by.html">Sort and Summarise: ORDER BY, GROUP BY &amp; HAVING</a></li>
+<li><a class="" data-lesson="phase-1/analytical-sql/03-case-expressions" href="../../../learn/phase-1/analytical-sql/03-case-expressions.html">SQL CASE: Add If-Then Logic to Your Queries</a></li>
+<li><a class="" data-lesson="phase-1/analytical-sql/04-joins" href="../../../learn/phase-1/analytical-sql/04-joins.html">SQL JOINs: Combine Data from Several Tables</a></li>
+<li><a class="" data-lesson="phase-1/analytical-sql/05-subqueries" href="../../../learn/phase-1/analytical-sql/05-subqueries.html">SQL Subqueries: Use One Query&#x27;s Answer Inside Another</a></li>
+</ul>
+</li>
+<li><a class="" href="../../../learn/phase-1/power-bi/index.html">Power BI</a>
+</li>
+<li><a class="" href="../../../learn/phase-1/semantic-models/index.html">Semantic Models &amp; Metrics Layer</a>
+</li>
+<li><a class="" href="../../../learn/phase-1/ai-assisted-analytics/index.html">AI-Assisted Analytics</a>
+</li>
+<li><a class="" href="../../../learn/phase-1/data-storytelling/index.html">Data Storytelling</a>
+</li>
+<li><a class="nav-project " href="../../../learn/phase-1/project.html">★ Milestone project</a></li>
+</ul>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-2/index.html"><span class="nav-num">2</span>Data Science</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-3/index.html"><span class="nav-num">3</span>Data Engineering</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-4/index.html"><span class="nav-num">4</span>ML Engineering</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-5/index.html"><span class="nav-num">5</span>LLM &amp; RAG</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-6/index.html"><span class="nav-num">6</span>Agents &amp; Automation</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-7/index.html"><span class="nav-num">7</span>LLMOps &amp; Governance</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-8/index.html"><span class="nav-num">8</span>Capstone</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-9/index.html"><span class="nav-num">9</span>Career</a>
+</div>
+<div class="side-extra"><a href="../../../index.html">Home</a><a href="../../../curriculum.html">Full curriculum map</a><a href="../../../practice-files.html">Practice files</a><a href="../../../glossary.html">Glossary</a><a href="../../../how-to-learn.html">How to learn here</a><a href="../../../about.html">About &amp; contributing</a></div></nav>
+  <main class="main" id="main"><div class="content">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../../index.html">Home</a><span class="sep">/</span><a href="../../../learn/phase-1/index.html">Phase 1</a><span class="sep">/</span><a href="../../../learn/phase-1/analytical-sql/index.html">Analytical SQL</a><span class="sep">/</span><span>SQL SELECT &amp; WHERE: Get Exactly the Rows You Need</span></nav>
+<h1>SQL SELECT &amp; WHERE: Get Exactly the Rows You Need</h1>
+<p class="lead">Pick the columns you want, filter the rows you need, and calculate new values — the base of every SQL query.</p>
+<div class="meta"><span class="pill">Phase <b>1</b> · Analytics &amp; BI</span><span class="pill">Level <b>Beginner</b></span><span class="pill">Time <b>30 min</b></span></div>
+
+<div class="files-box"><div class="files-head"><b>Practice files for this page</b><a href="../../../practice-files.html">All practice files →</a></div><ul><li><a href="../../../downloads/orders.sql" download>orders.sql</a><span class="f-desc">Creates the orders (12 rows) and customers (6 rows) tables. Run it once in your SQL tool · 3 KB</span></li><li><a href="../../../downloads/orders.csv" download>orders.csv</a><span class="f-desc">The 12 clean practice orders as CSV · 963 B</span></li><li><a href="../../../downloads/sql-solutions.sql" download>sql-solutions.sql</a><span class="f-desc">Solutions to every SQL exercise, tested in SQLite · 3 KB</span></li></ul></div>
+<h2 id="what-is-it">What is it?</h2>
+<p><code>SELECT</code> tells the database <strong>which columns</strong> you want to see. <code>WHERE</code> tells it <strong>which rows</strong> to keep. Together they answer the most common question at work: <em>"Show me only the data I care about."</em></p>
+<p>Think of a spreadsheet with a filter: <code>SELECT</code> hides the columns you don't need, and <code>WHERE</code> is the filter on the rows.</p>
+<div class="admonition job">
+<p class="admonition-title">Why it matters at work</p>
+<p>Almost every report, dashboard and data pipeline starts with a <code>SELECT ... WHERE</code> query. Data analyst and BI job interviews almost always open with questions like <em>"List all cancelled orders from last month."</em> If this feels easy, everything later in SQL gets easier.</p>
+</div>
+<h2 id="the-practice-table">The practice table</h2>
+<p>Every example uses the <code>orders</code> table — 12 orders from a wholesale supplier. Load it using the steps on the <a href="index.html">module page</a>, or download <a href="../../../downloads/orders.sql">orders.sql</a>.</p>
+<table>
+<thead>
+<tr>
+<th>order_id</th>
+<th>order_date</th>
+<th>customer</th>
+<th>region</th>
+<th>category</th>
+<th>product</th>
+<th>quantity</th>
+<th>unit_price</th>
+<th>status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>2026-01-05</td>
+<td>Rahim Traders</td>
+<td>Dhaka</td>
+<td>Fabric</td>
+<td>Cotton Twill</td>
+<td>120</td>
+<td>3.50</td>
+<td>Delivered</td>
+</tr>
+<tr>
+<td>2</td>
+<td>2026-01-08</td>
+<td>Karim Garments</td>
+<td>Chattogram</td>
+<td>Trims</td>
+<td>Metal Buttons</td>
+<td>5000</td>
+<td>0.04</td>
+<td>Delivered</td>
+</tr>
+<tr>
+<td>3</td>
+<td>2026-01-12</td>
+<td>Nova Apparel</td>
+<td>Dhaka</td>
+<td>Fabric</td>
+<td>Denim 12oz</td>
+<td>300</td>
+<td>5.20</td>
+<td>Delivered</td>
+</tr>
+<tr>
+<td>4</td>
+<td>2026-01-15</td>
+<td>Rahim Traders</td>
+<td>Dhaka</td>
+<td>Trims</td>
+<td>Zippers</td>
+<td>800</td>
+<td>0.30</td>
+<td>Cancelled</td>
+</tr>
+<tr>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+</tbody>
+</table>
+<p><em>(4 of 12 rows shown.)</em></p>
+<h2 id="the-syntax">The syntax</h2>
+<div class="codehilite"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">column1</span><span class="p">,</span><span class="w"> </span><span class="n">column2</span><span class="w">      </span><span class="c1">-- 1. which columns</span>
+<span class="k">FROM</span><span class="w">   </span><span class="k">table_name</span><span class="w">            </span><span class="c1">-- 2. which table</span>
+<span class="k">WHERE</span><span class="w">  </span><span class="n">condition</span><span class="p">;</span><span class="w">            </span><span class="c1">-- 3. which rows (optional)</span>
+</code></pre></div>
+
+<ul>
+<li>Write keywords like <code>SELECT</code> in capitals. SQL doesn't require this, but it makes queries easier to read.</li>
+<li>Text values go in <strong>single quotes</strong>: <code>'Dhaka'</code>. Numbers don't: <code>200</code>.</li>
+<li>End each query with a semicolon <code>;</code>.</li>
+</ul>
+<h2 id="example-1-choose-columns">Example 1: choose columns</h2>
+<div class="codehilite"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">customer</span><span class="p">,</span><span class="w"> </span><span class="n">product</span><span class="p">,</span><span class="w"> </span><span class="n">quantity</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">orders</span><span class="p">;</span>
+</code></pre></div>
+
+<p>This returns all 12 rows, but only 3 columns. The first rows look like this:</p>
+<table>
+<thead>
+<tr>
+<th>customer</th>
+<th>product</th>
+<th>quantity</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Rahim Traders</td>
+<td>Cotton Twill</td>
+<td>120</td>
+</tr>
+<tr>
+<td>Karim Garments</td>
+<td>Metal Buttons</td>
+<td>5000</td>
+</tr>
+<tr>
+<td>Nova Apparel</td>
+<td>Denim 12oz</td>
+<td>300</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">What about <code>SELECT *</code>?</p>
+<p><code>SELECT *</code> returns every column. It is fine for a quick look at a table, but in reports and pipelines always name the columns. Then your query won't break or slow down when someone adds new columns to the table.</p>
+</div>
+<h2 id="example-2-filter-rows-with-where">Example 2: filter rows with WHERE</h2>
+<p><em>Question: which orders came from Dhaka?</em></p>
+<div class="codehilite"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">order_id</span><span class="p">,</span><span class="w"> </span><span class="n">customer</span><span class="p">,</span><span class="w"> </span><span class="n">product</span><span class="p">,</span><span class="w"> </span><span class="n">status</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">orders</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">region</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'Dhaka'</span><span class="p">;</span>
+</code></pre></div>
+
+<table>
+<thead>
+<tr>
+<th>order_id</th>
+<th>customer</th>
+<th>product</th>
+<th>status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Rahim Traders</td>
+<td>Cotton Twill</td>
+<td>Delivered</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Nova Apparel</td>
+<td>Denim 12oz</td>
+<td>Delivered</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Rahim Traders</td>
+<td>Zippers</td>
+<td>Cancelled</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Nova Apparel</td>
+<td>Metal Buttons</td>
+<td>Shipped</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Rahim Traders</td>
+<td>Cotton Yarn 30s</td>
+<td>Delivered</td>
+</tr>
+</tbody>
+</table>
+<h3 id="comparison-operators">Comparison operators</h3>
+<table>
+<thead>
+<tr>
+<th>Operator</th>
+<th>Meaning</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>=</code></td>
+<td>equal to</td>
+<td><code>status = 'Shipped'</code></td>
+</tr>
+<tr>
+<td><code>&lt;&gt;</code> or <code>!=</code></td>
+<td>not equal to</td>
+<td><code>status &lt;&gt; 'Cancelled'</code></td>
+</tr>
+<tr>
+<td><code>&gt;</code> <code>&lt;</code></td>
+<td>greater / less than</td>
+<td><code>quantity &gt; 500</code></td>
+</tr>
+<tr>
+<td><code>&gt;=</code> <code>&lt;=</code></td>
+<td>greater / less than or equal</td>
+<td><code>unit_price &lt;= 3</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="example-3-combine-conditions-with-and-or">Example 3: combine conditions with AND / OR</h2>
+<p><em>Question: which Fabric orders had at least 200 units?</em></p>
+<div class="codehilite"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">order_id</span><span class="p">,</span><span class="w"> </span><span class="n">customer</span><span class="p">,</span><span class="w"> </span><span class="n">product</span><span class="p">,</span><span class="w"> </span><span class="n">quantity</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">orders</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'Fabric'</span>
+<span class="w">  </span><span class="k">AND</span><span class="w"> </span><span class="n">quantity</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">200</span><span class="p">;</span>
+</code></pre></div>
+
+<table>
+<thead>
+<tr>
+<th>order_id</th>
+<th>customer</th>
+<th>product</th>
+<th>quantity</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>3</td>
+<td>Nova Apparel</td>
+<td>Denim 12oz</td>
+<td>300</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Karim Garments</td>
+<td>Cotton Twill</td>
+<td>200</td>
+</tr>
+<tr>
+<td>12</td>
+<td>Karim Garments</td>
+<td>Denim 12oz</td>
+<td>250</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><code>AND</code>: <strong>both</strong> conditions must be true.</li>
+<li><code>OR</code>: <strong>at least one</strong> must be true.</li>
+</ul>
+<div class="admonition mistake">
+<p class="admonition-title">Common trap: mixing AND and OR without brackets</p>
+<p><em>Question: delivered orders from Dhaka or Gazipur.</em> This looks right but is <strong>wrong</strong>:</p>
+<p><code>sql
+WHERE region = 'Dhaka' OR region = 'Gazipur' AND status = 'Delivered'</code></p>
+<p>SQL evaluates <code>AND</code> before <code>OR</code>. So this returns <em>all</em> Dhaka orders (including the cancelled and shipped ones), plus delivered Gazipur orders: <strong>7 rows</strong>. Add brackets to say what you mean:</p>
+<p><code>sql
+WHERE (region = 'Dhaka' OR region = 'Gazipur')
+  AND status = 'Delivered'</code></p>
+<p>Now you get the correct <strong>5 rows</strong>: orders 1, 3, 5, 8 and 10.</p>
+</div>
+<h2 id="example-4-in-between-and-like">Example 4: IN, BETWEEN and LIKE</h2>
+<p>These shortcuts make filters shorter and easier to read.</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">-- IN: matches any value in a list</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">order_id</span><span class="p">,</span><span class="w"> </span><span class="n">customer</span><span class="p">,</span><span class="w"> </span><span class="n">status</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">orders</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">status</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="s1">'Shipped'</span><span class="p">,</span><span class="w"> </span><span class="s1">'Pending'</span><span class="p">);</span>
+<span class="c1">-- returns orders 7, 9, 12</span>
+
+<span class="c1">-- BETWEEN: a range, both ends included</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">order_id</span><span class="p">,</span><span class="w"> </span><span class="n">order_date</span><span class="p">,</span><span class="w"> </span><span class="n">customer</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">orders</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">order_date</span><span class="w"> </span><span class="k">BETWEEN</span><span class="w"> </span><span class="s1">'2026-02-01'</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="s1">'2026-02-28'</span><span class="p">;</span>
+<span class="c1">-- returns orders 6, 7, 8, 9, 10 (all of February)</span>
+
+<span class="c1">-- LIKE: text patterns. % means "any characters"</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">order_id</span><span class="p">,</span><span class="w"> </span><span class="n">product</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">orders</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">product</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">'Cotton%'</span><span class="p">;</span>
+<span class="c1">-- returns Cotton Twill and Cotton Yarn 30s (orders 1, 5, 6, 10)</span>
+</code></pre></div>
+
+<div class="admonition note">
+<p class="admonition-title">Empty values: use IS NULL</p>
+<p>A missing value in SQL is <code>NULL</code>. It is never equal to anything, not even another <code>NULL</code>. So <code>WHERE delivered_date = NULL</code> returns nothing. Write <code>WHERE delivered_date IS NULL</code> or <code>IS NOT NULL</code> instead. (Our practice table has no empty values, but real company data almost always does.)</p>
+</div>
+<h2 id="example-5-calculated-columns-with-as">Example 5: calculated columns with AS</h2>
+<p>You can calculate new values in the <code>SELECT</code> and name them with <code>AS</code> (an <em>alias</em>).</p>
+<p><em>Question: what is the value of each Fabric order?</em></p>
+<div class="codehilite"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">order_id</span><span class="p">,</span>
+<span class="w">       </span><span class="n">customer</span><span class="p">,</span>
+<span class="w">       </span><span class="n">quantity</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">unit_price</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">order_value</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">orders</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'Fabric'</span><span class="p">;</span>
+</code></pre></div>
+
+<table>
+<thead>
+<tr>
+<th>order_id</th>
+<th>customer</th>
+<th>order_value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Rahim Traders</td>
+<td>420.00</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Nova Apparel</td>
+<td>1560.00</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Karim Garments</td>
+<td>680.00</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Sun Fashion</td>
+<td>810.00</td>
+</tr>
+<tr>
+<td>12</td>
+<td>Karim Garments</td>
+<td>1275.00</td>
+</tr>
+</tbody>
+</table>
+<p>This <code>quantity * unit_price</code> pattern returns in the next lesson, where you add up revenue.</p>
+<h2 id="common-mistakes">Common mistakes</h2>
+<table>
+<thead>
+<tr>
+<th>Mistake</th>
+<th>What happens</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>WHERE region = Dhaka</code> (no quotes)</td>
+<td>Error: the database looks for a <em>column</em> named Dhaka</td>
+<td><code>'Dhaka'</code></td>
+</tr>
+<tr>
+<td><code>WHERE region = "Dhaka"</code></td>
+<td>Works in some databases, fails in others (e.g. PostgreSQL)</td>
+<td>Always use single quotes for text</td>
+</tr>
+<tr>
+<td><code>= NULL</code></td>
+<td>Returns no rows</td>
+<td><code>IS NULL</code></td>
+</tr>
+<tr>
+<td><code>AND</code> + <code>OR</code> without brackets</td>
+<td>Returns too many rows</td>
+<td>Add brackets</td>
+</tr>
+<tr>
+<td>Using an alias in <code>WHERE</code> (<code>WHERE order_value &gt; 500</code>)</td>
+<td>Error in most databases: <code>WHERE</code> runs before the <code>SELECT</code> names exist</td>
+<td>Repeat the formula: <code>WHERE quantity * unit_price &gt; 500</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="try-it-yourself">Try it yourself</h2>
+<p><strong>Task:</strong> The sales manager asks: <em>"Which Trims orders were </em><em>not</em><em> cancelled? Show the customer, the product and the order value."</em></p>
+<p>Write the query in your SQL tool, run it, and only then check the answer.</p>
+<details>
+<summary>Show a hint</summary>
+<p>You need two conditions joined with <code>AND</code>: one on <code>category</code> and one on <code>status</code> using <code>&lt;&gt;</code>.</p>
+</details>
+<details>
+<summary>Show the solution</summary>
+<div class="codehilite"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">customer</span><span class="p">,</span>
+<span class="w">       </span><span class="n">product</span><span class="p">,</span>
+<span class="w">       </span><span class="n">quantity</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">unit_price</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">order_value</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">orders</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'Trims'</span>
+<span class="w">  </span><span class="k">AND</span><span class="w"> </span><span class="n">status</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="s1">'Cancelled'</span><span class="p">;</span>
+</code></pre></div>
+
+<table>
+<thead>
+<tr>
+<th>customer</th>
+<th>product</th>
+<th>order_value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Karim Garments</td>
+<td>Metal Buttons</td>
+<td>200.00</td>
+</tr>
+<tr>
+<td>Nova Apparel</td>
+<td>Metal Buttons</td>
+<td>320.00</td>
+</tr>
+<tr>
+<td>Sun Fashion</td>
+<td>Zippers</td>
+<td>420.00</td>
+</tr>
+</tbody>
+</table>
+<p>Did you get 3 rows? Order 4 (cancelled zippers) must be missing.</p>
+</details>
+<h2 id="quick-quiz">Quick quiz</h2>
+<div class="quiz-q" data-answer="2">
+<p>1. Which clause decides <strong>which rows</strong> are returned?</p>
+<ol>
+<li><code>SELECT</code></li>
+<li><code>FROM</code></li>
+<li><code>WHERE</code></li>
+</ol>
+<details>
+<summary>Show answer</summary>
+<p><strong>C — <code>WHERE</code>.</strong> <code>SELECT</code> picks columns and <code>FROM</code> picks the table.</p>
+</details>
+</div>
+<div class="quiz-q" data-answer="1">
+<p>2. How many rows does <code>WHERE status IN ('Shipped', 'Pending')</code> return from the practice table?</p>
+<ol>
+<li>2</li>
+<li>3</li>
+<li>5</li>
+</ol>
+<details>
+<summary>Show answer</summary>
+<p><strong>B — 3 rows:</strong> orders 7 and 12 (Shipped) and order 9 (Pending).</p>
+</details>
+</div>
+<div class="quiz-q" data-answer="1">
+<p>3. Which filter correctly finds rows where <code>discount</code> has no value?</p>
+<ol>
+<li><code>WHERE discount = NULL</code></li>
+<li><code>WHERE discount IS NULL</code></li>
+<li><code>WHERE discount = ''</code></li>
+</ol>
+<details>
+<summary>Show answer</summary>
+<p><strong>B.</strong> <code>NULL</code> means "unknown", so it is never <em>equal</em> to anything. Use <code>IS NULL</code>. Option C checks for an empty text value, which is a different thing.</p>
+</details>
+</div>
+<h2 id="summary">Summary</h2>
+<ul>
+<li><code>SELECT</code> picks <strong>columns</strong>, <code>FROM</code> picks the <strong>table</strong>, <code>WHERE</code> picks <strong>rows</strong>.</li>
+<li>Combine conditions with <code>AND</code> / <code>OR</code>, and use <strong>brackets</strong> when you mix them.</li>
+<li><code>IN</code>, <code>BETWEEN</code> and <code>LIKE</code> make filters shorter. Use <code>IS NULL</code> for missing values.</li>
+<li><code>AS</code> names a calculated column, such as <code>quantity * unit_price AS order_value</code>.</li>
+</ul>
+<div class="admonition job">
+<p class="admonition-title">Job-ready check</p>
+<p><strong>Interview question:</strong> <em>"What is the difference between <code>WHERE status &lt;&gt; 'Cancelled'</code> and <code>WHERE status = 'Delivered'</code> on this table?"</em></p>
+<p><strong>Strong answer:</strong> The first keeps every order that isn't cancelled: Delivered, Shipped and Pending (11 rows). The second keeps only Delivered orders (8 rows). Which one is right depends on the business definition of a "sale", so ask the stakeholder before you build the report.</p>
+<p><strong>Mini project:</strong> Write three filters a sales manager would use every week, such as "this month's pending orders". Save them in a <code>.sql</code> file with a comment above each query explaining the business question.</p>
+</div>
+<div class="terms-box"><div class="files-head"><b>Key terms in this lesson</b><a href="../../../glossary.html">Glossary →</a></div><div class="term-chips"><a class="term-chip" href="../../../glossary.html#sql" title="The standard language for asking questions of relational databases: select columns, filter rows, join tables and summarise.">SQL</a><a class="term-chip" href="../../../glossary.html#where" title="The part of a SQL query that keeps only the rows matching a condition, before any grouping.">WHERE</a></div></div>
+<h2 id="free-resources">Free resources to go deeper</h2><ul class="resources"><li><a href="https://sqlbolt.com/">SQLBolt — Lessons 1–4 (SELECT and filtering)</a><span class="r-meta">SQLBolt · Short interactive exercises in the browser. Do lessons 1–4 after this page.</span></li><li><a href="https://www.postgresql.org/docs/current/tutorial-select.html">Querying a Table</a><span class="r-meta">PostgreSQL official docs · The official explanation of SELECT and WHERE, with examples.</span></li><li><a href="https://selectstarsql.com/">Select Star SQL</a><span class="r-meta">Free interactive book · Practise on a real dataset. Read chapter 1.</span></li><li><a href="https://www.kaggle.com/learn/intro-to-sql">Intro to SQL</a><span class="r-meta">Kaggle Learn (free course) · Uses Google BigQuery on public datasets — good for practising on bigger tables.</span></li></ul>
+<div class="complete-bar"><span>Finished reading and did the exercise?</span>
+<button class="btn" id="completeBtn" type="button" data-id="phase-1/analytical-sql/01-select-where">Mark lesson as complete</button></div>
+<nav class="pager"><a class="prev" href="../../../learn/phase-1/power-pivot-dax/03-calculate-filter-context.html"><small>← Previous</small>DAX CALCULATE &amp; Filter Context: Control What Each Number Includes</a><a class="next" href="../../../learn/phase-1/analytical-sql/02-order-group-by.html"><small>Next →</small>Sort and Summarise: ORDER BY, GROUP BY &amp; HAVING</a></nav>
+<p class="reviewed">Last reviewed: 2026-10-08</p>
+
+  </div></main>
+  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#the-practice-table">The practice table</a><a href="#the-syntax">The syntax</a><a href="#example-1-choose-columns">Example 1: choose columns</a><a href="#example-2-filter-rows-with-where">Example 2: filter rows with WHERE</a><a href="#example-3-combine-conditions-with-and-or">Example 3: combine conditions with AND / OR</a><a href="#example-4-in-between-and-like">Example 4: IN, BETWEEN and LIKE</a><a href="#example-5-calculated-columns-with-as">Example 5: calculated columns with AS</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#free-resources">Free resources</a></aside>
+</div>
+<footer class="site">Data, AI &amp; Automation Path v0.7 · Applied AI, Data &amp; Automation Lab · Updated October 2026<br>
+Lesson text: <a href="../../../license.html">CC BY-NC-SA 4.0</a> · Code: <a href="../../../license.html#code-mit-license">MIT</a> · Free external resources belong to their respective owners.</footer>
+<script src="../../../search-index.js"></script>
+<script src="../../../assets/app.js"></script>
+</body>
+</html>

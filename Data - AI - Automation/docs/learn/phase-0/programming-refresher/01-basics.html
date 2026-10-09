@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en" data-root="../../../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Python Basics: Variables, Conditions, Loops &amp; Functions — Data, AI &amp; Automation Path</title>
+<meta name="description" content="Store values in variables, make decisions with if/elif/else, repeat work with for and while loops, and package logic into reusable functions — using real order data.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data, AI &amp; Automation Path">
+<meta property="og:title" content="Python Basics: Variables, Conditions, Loops &amp; Functions">
+<meta property="og:description" content="Store values in variables, make decisions with if/elif/else, repeat work with for and while loops, and package logic into reusable functions — using real order data.">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+
+<script>(function(){var t=null;try{t=localStorage.getItem('daa-theme')}catch(e){}
+if(!t)t=(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';
+document.documentElement.setAttribute('data-theme',t);
+var n=null;try{n=localStorage.getItem('daa-nav')}catch(e){}
+if(n==='open'&&window.matchMedia&&matchMedia('(min-width: 961px)').matches)document.documentElement.setAttribute('data-nav','open');
+document.documentElement.classList.add('no-anim')})();</script>
+<link rel="stylesheet" href="../../../assets/style.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233f7d6a'/%3E%3Ctext x='16' y='21' font-family='sans-serif' font-size='13' font-weight='700' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Open curriculum menu" title="Curriculum menu (press M)" aria-controls="sidebar" aria-expanded="false"><span class="ico-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span class="ico-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></button>
+  <a class="brand" href="../../../index.html"><span class="brand-badge">AI</span><span class="brand-text"><span class="brand-name">Data, AI &amp; Automation Path</span><span class="brand-version">v0.7</span></span></a>
+  <nav class="top-links" aria-label="Main">
+    <a href="../../../index.html" class="">Home</a><a href="../../../curriculum.html" class="">Curriculum</a><a href="../../../practice-files.html" class="">Practice files</a><a href="../../../glossary.html" class="">Glossary</a><a href="../../../how-to-learn.html" class="">How to learn</a><a href="../../../about.html" class="">About</a>
+  </nav>
+  <div class="top-spacer"></div>
+  <div class="search" role="search">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input id="searchInput" type="search" placeholder="Search lessons, tools, topics" aria-label="Search" autocomplete="off">
+    <kbd>/</kbd>
+    <div class="search-results" id="searchResults" role="listbox"></div>
+  </div>
+  <button class="icon-btn theme-toggle" id="themeBtn" aria-label="Toggle light or dark mode" title="Light / dark"><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
+</header>
+<div class="layout wide">
+  <nav class="sidebar" id="sidebar" aria-label="Curriculum">
+    <div class="side-title">Curriculum</div>
+    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="64"><i></i></div><span class="bar-label" data-progress-label></span></div>
+<div class="nav-phase current open"><a href="../../../learn/phase-0/index.html"><span class="nav-num">0</span>Foundations</a>
+<ul class="nav-modules">
+<li><a class="" href="../../../learn/phase-0/dev-environment/index.html">Development Environment</a>
+</li>
+<li><a class="" href="../../../learn/phase-0/git-github/index.html">Git &amp; GitHub</a>
+</li>
+<li><a class="" href="../../../learn/phase-0/linux/index.html">Linux Essentials</a>
+</li>
+<li><a class="current" href="../../../learn/phase-0/programming-refresher/index.html">Programming Refresher</a>
+<ul class="nav-lessons">
+<li><a class="current" data-lesson="phase-0/programming-refresher/01-basics" href="../../../learn/phase-0/programming-refresher/01-basics.html">Python Basics: Variables, Conditions, Loops &amp; Functions</a></li>
+<li><a class="" data-lesson="phase-0/programming-refresher/02-collections" href="../../../learn/phase-0/programming-refresher/02-collections.html">Python Collections: Lists, Dictionaries, Sets &amp; Tuples</a></li>
+<li><a class="" data-lesson="phase-0/programming-refresher/03-files-exceptions" href="../../../learn/phase-0/programming-refresher/03-files-exceptions.html">Files &amp; Exceptions: Read and Write Data Safely</a></li>
+<li><a class="" data-lesson="phase-0/programming-refresher/04-oop-type-hints" href="../../../learn/phase-0/programming-refresher/04-oop-type-hints.html">OOP &amp; Type Hints: Classes, Dataclasses and Clear Contracts</a></li>
+</ul>
+</li>
+<li><a class="" href="../../../learn/phase-0/testing-ci/index.html">Testing &amp; CI Basics</a>
+</li>
+<li><a class="" href="../../../learn/phase-0/ai-assisted-dev/index.html">AI-Assisted Development</a>
+</li>
+<li><a class="nav-project " href="../../../learn/phase-0/project.html">★ Milestone project</a></li>
+</ul>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-1/index.html"><span class="nav-num">1</span>Analytics &amp; BI</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-2/index.html"><span class="nav-num">2</span>Data Science</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-3/index.html"><span class="nav-num">3</span>Data Engineering</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-4/index.html"><span class="nav-num">4</span>ML Engineering</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-5/index.html"><span class="nav-num">5</span>LLM &amp; RAG</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-6/index.html"><span class="nav-num">6</span>Agents &amp; Automation</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-7/index.html"><span class="nav-num">7</span>LLMOps &amp; Governance</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-8/index.html"><span class="nav-num">8</span>Capstone</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-9/index.html"><span class="nav-num">9</span>Career</a>
+</div>
+<div class="side-extra"><a href="../../../index.html">Home</a><a href="../../../curriculum.html">Full curriculum map</a><a href="../../../practice-files.html">Practice files</a><a href="../../../glossary.html">Glossary</a><a href="../../../how-to-learn.html">How to learn here</a><a href="../../../about.html">About &amp; contributing</a></div></nav>
+  <main class="main" id="main"><div class="content">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../../index.html">Home</a><span class="sep">/</span><a href="../../../learn/phase-0/index.html">Phase 0</a><span class="sep">/</span><a href="../../../learn/phase-0/programming-refresher/index.html">Programming Refresher</a><span class="sep">/</span><span>Python Basics: Variables, Conditions, Loops &amp; Functions</span></nav>
+<h1>Python Basics: Variables, Conditions, Loops &amp; Functions</h1>
+<p class="lead">Store values in variables, make decisions with if/elif/else, repeat work with for and while loops, and package logic into reusable functions — using real order data.</p>
+<div class="meta"><span class="pill">Phase <b>0</b> · Foundations</span><span class="pill">Level <b>Beginner</b></span><span class="pill">Time <b>45 min</b></span></div>
+<div class="admonition note"><p class="admonition-title">Before you start</p><p><a href="../../../learn/phase-0/dev-environment/01-vscode-python.html">Set Up Python and VS Code: Your Daily Workbench</a></p></div>
+<div class="files-box"><div class="files-head"><b>Practice files for this page</b><a href="../../../practice-files.html">All practice files →</a></div><ul><li><a href="../../../downloads/phase-0/python-refresher.zip" download>python-refresher.zip</a><span class="f-desc">Python refresher scripts, debugging, pytest and ruff examples, an AI-written function to review, with solutions · 12 KB</span></li></ul></div>
+<h2 id="what-is-it">What is it?</h2>
+<table>
+<thead>
+<tr>
+<th>Building block</th>
+<th>What it does</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Variable</strong></td>
+<td>A name pointing at a value</td>
+<td><code>region = "Dhaka"</code></td>
+</tr>
+<tr>
+<td><strong>Condition</strong></td>
+<td>Choose what to do</td>
+<td><code>if value &gt;= 1000:</code></td>
+</tr>
+<tr>
+<td><strong>Loop</strong></td>
+<td>Repeat for each item</td>
+<td><code>for v in values:</code></td>
+</tr>
+<tr>
+<td><strong>Function</strong></td>
+<td>Named, reusable logic</td>
+<td><code>def size_band(value):</code></td>
+</tr>
+</tbody>
+</table>
+<p>These four ideas are behind every data pipeline, API and AI agent you'll write.</p>
+<div class="admonition job">
+<p class="admonition-title">Why it matters at work</p>
+<p>Business rules ("cancelled orders don't count", "orders over 1,000 are Large") become conditions and functions. Interviews for data and AI roles almost always include a short coding task built from exactly these pieces, and you need them to review AI-written code confidently.</p>
+</div>
+<p>Open <code>01_basics.py</code> from <a href="../../../downloads/phase-0/python-refresher.zip">python-refresher.zip</a>.</p>
+<h2 id="example-1-variables-and-types">Example 1: variables and types</h2>
+<div class="codehilite"><pre><span></span><code><span class="n">region</span> <span class="o">=</span> <span class="s2">"Dhaka"</span>          <span class="c1"># str  (text)</span>
+<span class="n">quantity</span> <span class="o">=</span> <span class="mi">300</span>            <span class="c1"># int  (whole number)</span>
+<span class="n">unit_price</span> <span class="o">=</span> <span class="mf">5.20</span>         <span class="c1"># float (decimal)</span>
+<span class="n">value</span> <span class="o">=</span> <span class="n">quantity</span> <span class="o">*</span> <span class="n">unit_price</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">region</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">quantity</span><span class="si">}</span><span class="s2"> x </span><span class="si">{</span><span class="n">unit_price</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> = </span><span class="si">{</span><span class="n">value</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>Dhaka: 300 x 5.20 = 1560.00
+</code></pre></div>
+
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Examples</th>
+<th>Convert with</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>int</code></td>
+<td><code>300</code>, <code>-5</code></td>
+<td><code>int("300")</code></td>
+</tr>
+<tr>
+<td><code>float</code></td>
+<td><code>5.2</code>, <code>0.04</code></td>
+<td><code>float("5.20")</code></td>
+</tr>
+<tr>
+<td><code>str</code></td>
+<td><code>"Dhaka"</code></td>
+<td><code>str(300)</code></td>
+</tr>
+<tr>
+<td><code>bool</code></td>
+<td><code>True</code>, <code>False</code></td>
+<td><code>bool(...)</code></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="admonition-title">f-strings format numbers</p>
+<p><code>{value:.2f}</code> → 2 decimals; <code>{n:,}</code> → thousands separator (9,075); <code>{share:.1%}</code> → percentage (94.5%); <code>{v:&gt;6}</code> → right-align in 6 characters.</p>
+</div>
+<h2 id="example-2-conditions-inside-a-function">Example 2: conditions inside a function</h2>
+<p>The same rule as the SQL <code>CASE</code> lesson:</p>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">size_band</span><span class="p">(</span><span class="n">order_value</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">order_value</span> <span class="o">&gt;=</span> <span class="mi">1000</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">"Large"</span>
+    <span class="k">elif</span> <span class="n">order_value</span> <span class="o">&gt;=</span> <span class="mi">500</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">"Medium"</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">"Small"</span>
+
+
+<span class="nb">print</span><span class="p">(</span><span class="n">size_band</span><span class="p">(</span><span class="n">value</span><span class="p">),</span> <span class="n">size_band</span><span class="p">(</span><span class="mi">680</span><span class="p">),</span> <span class="n">size_band</span><span class="p">(</span><span class="mi">200</span><span class="p">))</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>Large Medium Small
+</code></pre></div>
+
+<ul>
+<li>Conditions are checked <strong>top to bottom</strong>, and the first true one wins. That's why <code>&gt;= 1000</code> comes before <code>&gt;= 500</code>.</li>
+<li><strong>Indentation</strong> (4 spaces) defines the block. There are no braces in Python.</li>
+<li>Combine tests with <code>and</code>, <code>or</code> and <code>not</code>: <code>if region == "Dhaka" and status != "Cancelled":</code>.</li>
+<li><code>return</code> sends the result back to the caller.</li>
+</ul>
+<h2 id="example-3-loops">Example 3: loops</h2>
+<div class="codehilite"><pre><span></span><code><span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="mi">420</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">1560</span><span class="p">,</span> <span class="mi">240</span><span class="p">,</span> <span class="mi">1260</span><span class="p">]</span>
+<span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">values</span><span class="p">:</span>
+    <span class="n">total</span> <span class="o">+=</span> <span class="n">v</span>                      <span class="c1"># same as total = total + v</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">v</span><span class="si">:</span><span class="s2">&gt;6</span><span class="si">}</span><span class="s2"> -&gt; </span><span class="si">{</span><span class="n">size_band</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Total:"</span><span class="p">,</span> <span class="n">total</span><span class="p">)</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>   420 -&gt; Small
+   200 -&gt; Small
+  1560 -&gt; Large
+   240 -&gt; Small
+  1260 -&gt; Large
+Total: 3680
+</code></pre></div>
+
+<p>A loop with a condition counts items:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">large</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">values</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">v</span> <span class="o">&gt;=</span> <span class="mi">1000</span><span class="p">:</span>
+        <span class="n">large</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Large orders:"</span><span class="p">,</span> <span class="n">large</span><span class="p">)</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>Large orders: 2
+</code></pre></div>
+
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>for x in items:</code></td>
+<td>Each item in a list, file, dict… (most common)</td>
+</tr>
+<tr>
+<td><code>for i in range(3):</code></td>
+<td>0, 1, 2</td>
+</tr>
+<tr>
+<td><code>while condition:</code></td>
+<td>Repeat until something changes (e.g. retry a download)</td>
+</tr>
+<tr>
+<td><code>break</code> / <code>continue</code></td>
+<td>Leave the loop / skip to the next item</td>
+</tr>
+</tbody>
+</table>
+<h2 id="functions-with-default-arguments">Functions with default arguments</h2>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">net_value</span><span class="p">(</span><span class="n">quantity</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">unit_price</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">discount</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">quantity</span> <span class="o">*</span> <span class="n">unit_price</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">discount</span><span class="p">)</span>
+
+<span class="n">net_value</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span> <span class="mf">5.20</span><span class="p">)</span>          <span class="c1"># 1560.0</span>
+<span class="n">net_value</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span> <span class="mf">5.20</span><span class="p">,</span> <span class="mf">0.10</span><span class="p">)</span>    <span class="c1"># 1404.0  (10% discount)</span>
+</code></pre></div>
+
+<p>One function, one job, a clear name. If you copy-paste code a third time, make it a function.</p>
+<h2 id="common-mistakes">Common mistakes</h2>
+<table>
+<thead>
+<tr>
+<th>Mistake</th>
+<th>What happens</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>=</code> instead of <code>==</code> in a condition</td>
+<td><code>SyntaxError</code></td>
+<td><code>=</code> assigns, <code>==</code> compares</td>
+</tr>
+<tr>
+<td>Wrong condition order (<code>&gt;= 500</code> first)</td>
+<td>1560 becomes "Medium"</td>
+<td>Most specific/biggest first</td>
+</tr>
+<tr>
+<td>Mixed or wrong indentation</td>
+<td><code>IndentationError</code>, or code in the wrong block</td>
+<td>4 spaces; let VS Code format</td>
+</tr>
+<tr>
+<td><code>print</code> instead of <code>return</code> in a function</td>
+<td>The caller gets <code>None</code></td>
+<td>Return values, print outside</td>
+</tr>
+<tr>
+<td>Comparing text to numbers (<code>"300" &gt; 200</code>)</td>
+<td><code>TypeError</code></td>
+<td>Convert with <code>int()</code> / <code>float()</code> first</td>
+</tr>
+</tbody>
+</table>
+<h2 id="try-it-yourself">Try it yourself</h2>
+<p><strong>Task:</strong> Write <code>status_group(status)</code> that returns <code>"Closed"</code> for Delivered or Cancelled and <code>"Open"</code> otherwise. Then loop over the 12 statuses below and count the open orders.</p>
+<div class="codehilite"><pre><span></span><code><span class="n">statuses</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Delivered"</span><span class="p">,</span> <span class="s2">"Delivered"</span><span class="p">,</span> <span class="s2">"Delivered"</span><span class="p">,</span> <span class="s2">"Cancelled"</span><span class="p">,</span> <span class="s2">"Delivered"</span><span class="p">,</span> <span class="s2">"Delivered"</span><span class="p">,</span>
+            <span class="s2">"Shipped"</span><span class="p">,</span> <span class="s2">"Delivered"</span><span class="p">,</span> <span class="s2">"Pending"</span><span class="p">,</span> <span class="s2">"Delivered"</span><span class="p">,</span> <span class="s2">"Delivered"</span><span class="p">,</span> <span class="s2">"Shipped"</span><span class="p">]</span>
+</code></pre></div>
+
+<details>
+<summary>Show a hint</summary>
+<p><code>if status in ("Delivered", "Cancelled"):</code> checks against several values at once.</p>
+</details>
+<details>
+<summary>Show the solution</summary>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">status_group</span><span class="p">(</span><span class="n">status</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">status</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">"Delivered"</span><span class="p">,</span> <span class="s2">"Cancelled"</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">"Closed"</span>
+    <span class="k">return</span> <span class="s2">"Open"</span>
+
+
+<span class="n">open_count</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">statuses</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">status_group</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">==</span> <span class="s2">"Open"</span><span class="p">:</span>
+        <span class="n">open_count</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Open orders:"</span><span class="p">,</span> <span class="n">open_count</span><span class="p">)</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>Open orders: 3
+</code></pre></div>
+
+<p>Orders 7, 9 and 12, the same open orders as in the Power BI bookmark lesson. (File: <code>solutions/ex01_status_group.py</code>.)</p>
+</details>
+<h2 id="quick-quiz">Quick quiz</h2>
+<div class="quiz-q" data-answer="1">
+<p>1. What does <code>size_band(1000)</code> return?</p>
+<ol>
+<li>"Medium"</li>
+<li>"Large"</li>
+<li>"Small"</li>
+</ol>
+<details>
+<summary>Show answer</summary>
+<p><strong>B.</strong> <code>1000 &gt;= 1000</code> is true, so the first branch wins.</p>
+</details>
+</div>
+<div class="quiz-q" data-answer="1">
+<p>2. What does <code>f"{0.945:.1%}"</code> produce?</p>
+<ol>
+<li><code>0.9%</code></li>
+<li><code>94.5%</code></li>
+<li><code>0.945%</code></li>
+</ol>
+<details>
+<summary>Show answer</summary>
+<p><strong>B.</strong></p>
+</details>
+</div>
+<div class="quiz-q" data-answer="1">
+<p>3. A function prints its result but has no <code>return</code>. What does <code>x = f()</code> store?</p>
+<ol>
+<li>The printed value</li>
+<li><code>None</code></li>
+<li>An error</li>
+</ol>
+<details>
+<summary>Show answer</summary>
+<p><strong>B.</strong></p>
+</details>
+</div>
+<h2 id="summary">Summary</h2>
+<ul>
+<li><strong>Variables</strong> hold values of a <strong>type</strong> (<code>int</code>, <code>float</code>, <code>str</code>, <code>bool</code>); convert with <code>int()</code>, <code>float()</code>, <code>str()</code>.</li>
+<li><strong>Conditions</strong> (<code>if/elif/else</code>) run top to bottom: put the most specific test first.</li>
+<li><strong>Loops</strong> (<code>for</code>, <code>while</code>) repeat work; combine them with conditions to count and total.</li>
+<li><strong>Functions</strong> (<code>def … return</code>) name your business rules so you can reuse and test them.</li>
+</ul>
+<div class="admonition job">
+<p class="admonition-title">Job-ready check</p>
+<p><strong>Interview question:</strong> <em>"Write a function that classifies an order value into Small, Medium or Large, and count how many are Large in a list."</em></p>
+<p><strong>Strong answer:</strong> Write <code>size_band()</code> as in Example 2 with the biggest threshold first, then a loop or <code>sum(1 for v in values if size_band(v) == "Large")</code>. Mention the edge case (exactly 1000) and how you'd test it.</p>
+<p><strong>Mini project:</strong> Extend <code>01_basics.py</code> with <code>net_value()</code> (with an optional discount), and print every order's value, band and discounted value in an aligned table.</p>
+</div>
+<div class="terms-box"><div class="files-head"><b>Key terms in this lesson</b><a href="../../../glossary.html">Glossary →</a></div><div class="term-chips"><a class="term-chip" href="../../../glossary.html#f-string" title="A Python string starting with f that inserts and formats values: f&quot;{revenue:,}&quot; shows 9,075.">f-string</a><a class="term-chip" href="../../../glossary.html#function" title="A named, reusable block of code that takes inputs (parameters) and returns a result.">Function</a><a class="term-chip" href="../../../glossary.html#if-function" title="Excel&#x27;s decision function: IF(test, value if true, value if false). IFS checks several conditions in order; AND and OR combine tests.">IF function</a><a class="term-chip" href="../../../glossary.html#python" title="A general-purpose programming language and the standard language of data engineering, data science and AI.">Python</a></div></div>
+<h2 id="free-resources">Free resources to go deeper</h2><ul class="resources"><li><a href="https://docs.python.org/3/tutorial/">The Python Tutorial — An Informal Introduction &amp; More Control Flow Tools</a><span class="r-meta">Python official docs · Sections 3 and 4 cover everything in this lesson.</span></li><li><a href="https://code.visualstudio.com/docs/python/python-quick-start">Quick Start Guide for Python in VS Code</a><span class="r-meta">VS Code docs · Run and debug the practice scripts.</span></li></ul>
+<div class="complete-bar"><span>Finished reading and did the exercise?</span>
+<button class="btn" id="completeBtn" type="button" data-id="phase-0/programming-refresher/01-basics">Mark lesson as complete</button></div>
+<nav class="pager"><a class="prev" href="../../../learn/phase-0/linux/02-grep-pipes-cron.html"><small>← Previous</small>grep, sort &amp; Pipes, then cron: Answer Questions and Automate Jobs</a><a class="next" href="../../../learn/phase-0/programming-refresher/02-collections.html"><small>Next →</small>Python Collections: Lists, Dictionaries, Sets &amp; Tuples</a></nav>
+<p class="reviewed">Last reviewed: 2026-10-09</p>
+
+  </div></main>
+  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#example-1-variables-and-types">Example 1: variables and types</a><a href="#example-2-conditions-inside-a-function">Example 2: conditions inside a function</a><a href="#example-3-loops">Example 3: loops</a><a href="#functions-with-default-arguments">Functions with default arguments</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#free-resources">Free resources</a></aside>
+</div>
+<footer class="site">Data, AI &amp; Automation Path v0.7 · Applied AI, Data &amp; Automation Lab · Updated October 2026<br>
+Lesson text: <a href="../../../license.html">CC BY-NC-SA 4.0</a> · Code: <a href="../../../license.html#code-mit-license">MIT</a> · Free external resources belong to their respective owners.</footer>
+<script src="../../../search-index.js"></script>
+<script src="../../../assets/app.js"></script>
+</body>
+</html>

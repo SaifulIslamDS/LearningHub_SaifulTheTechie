@@ -1,0 +1,15 @@
+Order ID,Order Date,Customer,Region,Category,Product,Qty,Unit Price,Status
+1,05/01/2026,  Rahim Traders,Dhaka,Fabric,Cotton Twill,120,3.50,Delivered
+2,08/01/2026,Karim Garments,chattogram,Trims,Metal Buttons,"5,000",0.04,delivered
+3,12/01/2026,Nova Apparel,DHAKA,Fabric,Denim 12oz,300,5.20,Delivered
+4,15/01/2026,Rahim Traders,Dhaka ,Trims,Zippers,800,0.30,CANCELLED
+,,,,,,,,
+5,20/01/2026,Delta Knit,Gazipur,Yarn,Cotton Yarn 30s,450,2.80,Delivered
+6,02/02/2026,Karim Garments,Chattogram,Fabric,Cotton Twill,200,3.40,Delivered
+6,02/02/2026,Karim Garments,Chattogram,Fabric,Cotton Twill,200,3.40,Delivered
+7,06/02/2026,Nova Apparel,Dhaka,Trims,Metal Buttons,"8,000",0.04,Shipped
+8,11/02/2026,Delta Knit,gazipur,Yarn,Polyester Yarn,600,2.10,Delivered
+9,18/02/2026,Sun Fashion,Narayanganj,Fabric,Denim 12oz,150,5.40,pending
+10,25/02/2026,Rahim Traders ,Dhaka,Yarn,Cotton Yarn 30s,300,2.90,Delivered
+11,03/03/2026,Sun Fashion,Narayanganj,Trims,Zippers,"1,500",0.28,Delivered
+12,09/03/2026,Karim Garments,Chattogram,Fabric,Denim 12oz,250,5.10,Shipped

@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en" data-root="../../../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Data Model Relationships: Build a Star Schema — Data, AI &amp; Automation Path</title>
+<meta name="description" content="Load fact and dimension tables, connect them with one-to-many relationships, and add a date table, so every visual filters correctly.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data, AI &amp; Automation Path">
+<meta property="og:title" content="Data Model Relationships: Build a Star Schema">
+<meta property="og:description" content="Load fact and dimension tables, connect them with one-to-many relationships, and add a date table, so every visual filters correctly.">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+
+<script>(function(){var t=null;try{t=localStorage.getItem('daa-theme')}catch(e){}
+if(!t)t=(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';
+document.documentElement.setAttribute('data-theme',t);
+var n=null;try{n=localStorage.getItem('daa-nav')}catch(e){}
+if(n==='open'&&window.matchMedia&&matchMedia('(min-width: 961px)').matches)document.documentElement.setAttribute('data-nav','open');
+document.documentElement.classList.add('no-anim')})();</script>
+<link rel="stylesheet" href="../../../assets/style.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233f7d6a'/%3E%3Ctext x='16' y='21' font-family='sans-serif' font-size='13' font-weight='700' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Open curriculum menu" title="Curriculum menu (press M)" aria-controls="sidebar" aria-expanded="false"><span class="ico-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span class="ico-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></button>
+  <a class="brand" href="../../../index.html"><span class="brand-badge">AI</span><span class="brand-text"><span class="brand-name">Data, AI &amp; Automation Path</span><span class="brand-version">v0.7</span></span></a>
+  <nav class="top-links" aria-label="Main">
+    <a href="../../../index.html" class="">Home</a><a href="../../../curriculum.html" class="">Curriculum</a><a href="../../../practice-files.html" class="">Practice files</a><a href="../../../glossary.html" class="">Glossary</a><a href="../../../how-to-learn.html" class="">How to learn</a><a href="../../../about.html" class="">About</a>
+  </nav>
+  <div class="top-spacer"></div>
+  <div class="search" role="search">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input id="searchInput" type="search" placeholder="Search lessons, tools, topics" aria-label="Search" autocomplete="off">
+    <kbd>/</kbd>
+    <div class="search-results" id="searchResults" role="listbox"></div>
+  </div>
+  <button class="icon-btn theme-toggle" id="themeBtn" aria-label="Toggle light or dark mode" title="Light / dark"><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
+</header>
+<div class="layout wide">
+  <nav class="sidebar" id="sidebar" aria-label="Curriculum">
+    <div class="side-title">Curriculum</div>
+    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="64"><i></i></div><span class="bar-label" data-progress-label></span></div>
+<div class="nav-phase"><a href="../../../learn/phase-0/index.html"><span class="nav-num">0</span>Foundations</a>
+</div>
+<div class="nav-phase current open"><a href="../../../learn/phase-1/index.html"><span class="nav-num">1</span>Analytics &amp; BI</a>
+<ul class="nav-modules">
+<li><a class="" href="../../../learn/phase-1/excel-analysis/index.html">Excel for Analysis</a>
+</li>
+<li><a class="" href="../../../learn/phase-1/pivot-analysis/index.html">Pivot Analysis</a>
+</li>
+<li><a class="" href="../../../learn/phase-1/power-query/index.html">Power Query</a>
+</li>
+<li><a class="current" href="../../../learn/phase-1/power-pivot-dax/index.html">Power Pivot &amp; DAX</a>
+<ul class="nav-lessons">
+<li><a class="current" data-lesson="phase-1/power-pivot-dax/01-relationships" href="../../../learn/phase-1/power-pivot-dax/01-relationships.html">Data Model Relationships: Build a Star Schema</a></li>
+<li><a class="" data-lesson="phase-1/power-pivot-dax/02-measures-kpi" href="../../../learn/phase-1/power-pivot-dax/02-measures-kpi.html">DAX Measures &amp; KPI Logic: Revenue, AOV and Target Achievement</a></li>
+<li><a class="" data-lesson="phase-1/power-pivot-dax/03-calculate-filter-context" href="../../../learn/phase-1/power-pivot-dax/03-calculate-filter-context.html">DAX CALCULATE &amp; Filter Context: Control What Each Number Includes</a></li>
+</ul>
+</li>
+<li><a class="" href="../../../learn/phase-1/analytical-sql/index.html">Analytical SQL</a>
+</li>
+<li><a class="" href="../../../learn/phase-1/power-bi/index.html">Power BI</a>
+</li>
+<li><a class="" href="../../../learn/phase-1/semantic-models/index.html">Semantic Models &amp; Metrics Layer</a>
+</li>
+<li><a class="" href="../../../learn/phase-1/ai-assisted-analytics/index.html">AI-Assisted Analytics</a>
+</li>
+<li><a class="" href="../../../learn/phase-1/data-storytelling/index.html">Data Storytelling</a>
+</li>
+<li><a class="nav-project " href="../../../learn/phase-1/project.html">★ Milestone project</a></li>
+</ul>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-2/index.html"><span class="nav-num">2</span>Data Science</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-3/index.html"><span class="nav-num">3</span>Data Engineering</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-4/index.html"><span class="nav-num">4</span>ML Engineering</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-5/index.html"><span class="nav-num">5</span>LLM &amp; RAG</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-6/index.html"><span class="nav-num">6</span>Agents &amp; Automation</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-7/index.html"><span class="nav-num">7</span>LLMOps &amp; Governance</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-8/index.html"><span class="nav-num">8</span>Capstone</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-9/index.html"><span class="nav-num">9</span>Career</a>
+</div>
+<div class="side-extra"><a href="../../../index.html">Home</a><a href="../../../curriculum.html">Full curriculum map</a><a href="../../../practice-files.html">Practice files</a><a href="../../../glossary.html">Glossary</a><a href="../../../how-to-learn.html">How to learn here</a><a href="../../../about.html">About &amp; contributing</a></div></nav>
+  <main class="main" id="main"><div class="content">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../../index.html">Home</a><span class="sep">/</span><a href="../../../learn/phase-1/index.html">Phase 1</a><span class="sep">/</span><a href="../../../learn/phase-1/power-pivot-dax/index.html">Power Pivot &amp; DAX</a><span class="sep">/</span><span>Data Model Relationships: Build a Star Schema</span></nav>
+<h1>Data Model Relationships: Build a Star Schema</h1>
+<p class="lead">Load fact and dimension tables, connect them with one-to-many relationships, and add a date table, so every visual filters correctly.</p>
+<div class="meta"><span class="pill">Phase <b>1</b> · Analytics &amp; BI</span><span class="pill">Level <b>Beginner</b></span><span class="pill">Time <b>40 min</b></span></div>
+<div class="admonition note"><p class="admonition-title">Before you start</p><p><a href="../../../learn/phase-1/power-query/02-merge-append.html">Power Query Merge &amp; Append: Combine Tables Without Formulas</a></p></div>
+<div class="files-box"><div class="files-head"><b>Practice files for this page</b><a href="../../../practice-files.html">All practice files →</a></div><ul><li><a href="../../../downloads/sales_model.xlsx" download>sales_model.xlsx</a><span class="f-desc">Five Excel Tables (Orders, Customers, Products, Regions, Targets) for the data model · 12 KB</span></li><li><a href="../../../downloads/regions.csv" download>regions.csv</a><span class="f-desc">4 regions with division and manager e-mail (for row-level security) · 249 B</span></li></ul></div>
+<h2 id="what-is-it">What is it?</h2>
+<p>A <strong>relationship</strong> links two tables through a shared column, for example <code>Orders[customer]</code> → <code>Customers[customer_name]</code>. Once linked, choosing a customer <em>segment</em> in a visual automatically filters the related orders. You don't need XLOOKUP or a merge.</p>
+<p>The recommended shape is a <strong>star schema</strong>:</p>
+<ul>
+<li><strong>Fact tables</strong> hold events and numbers (Orders, Targets). They have many rows.</li>
+<li><strong>Dimension tables</strong> describe things (Customers, Products, Regions, Date). They have one row per item.</li>
+<li>Each dimension connects to the facts with a <strong>one-to-many (1 → *)</strong> relationship.</li>
+</ul>
+<div class="codehilite"><pre><span></span><code>              Customers      Products
+                  1 \          / 1
+                     *        *
+     Regions 1 ──* ORDERS *── 1 Date
+          1 \                  / 1
+             *               *
+               ── TARGETS ──
+</code></pre></div>
+
+<div class="admonition job">
+<p class="admonition-title">Why it matters at work</p>
+<p>A clean star schema makes every report faster, simpler and correct. Wrong or missing relationships are the number-one cause of "the totals don't add up" in Power BI. Interviewers ask "What's a star schema?" and "Why do we need a date table?" in almost every BI role.</p>
+</div>
+<h2 id="step-1-load-the-tables">Step 1: load the tables</h2>
+<p><strong>Power BI Desktop:</strong> <strong>Home → Get data → Excel workbook</strong> → <code>sales_model.xlsx</code> → tick <strong>Orders, Customers, Products, Regions, Targets</strong> → <strong>Load</strong>.</p>
+<p><strong>Excel:</strong> open <code>sales_model.xlsx</code> → for each table, choose <strong>Power Pivot → Add to Data Model</strong>.</p>
+<h2 id="step-2-add-a-date-table">Step 2: add a date table</h2>
+<p>Time analysis (months, previous month, year-to-date) needs a table with <strong>one row for every day</strong>.</p>
+<p><strong>Power BI:</strong> <strong>Modeling → New table</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="nf">Date</span><span class="w"> </span><span class="o">=</span>
+<span class="nf">ADDCOLUMNS</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="nf">CALENDAR</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="nf">DATE</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="m">2026</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="p">),</span><span class="w"> </span><span class="nf">DATE</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="m">2026</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="m">31</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">),</span>
+<span class="w">    </span><span class="s">"Year"</span><span class="p">,</span><span class="w"> </span><span class="nf">YEAR</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="na">[Date]</span><span class="w"> </span><span class="p">),</span>
+<span class="w">    </span><span class="s">"Month Number"</span><span class="p">,</span><span class="w"> </span><span class="nf">MONTH</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="na">[Date]</span><span class="w"> </span><span class="p">),</span>
+<span class="w">    </span><span class="s">"Month"</span><span class="p">,</span><span class="w"> </span><span class="nf">FORMAT</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="na">[Date]</span><span class="p">,</span><span class="w"> </span><span class="s">"mmm yyyy"</span><span class="w"> </span><span class="p">)</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>Then <strong>Table tools → Mark as date table</strong> (date column: <code>Date</code>). Select the <code>Month</code> column → <strong>Sort by column → Month Number</strong>, so months sort Jan, Feb, Mar instead of alphabetically.</p>
+<p><strong>Excel Power Pivot:</strong> <strong>Power Pivot → Manage → Design → Date Table → New</strong>. Excel creates a <em>Calendar</em> table for you.</p>
+<p>The result is <strong>90 rows</strong> (1 January to 31 March 2026).</p>
+<h2 id="step-3-create-the-relationships">Step 3: create the relationships</h2>
+<p>Go to <strong>Model view</strong> (Power BI) or <strong>Diagram View</strong> (Power Pivot), and drag each key from the dimension onto the fact table:</p>
+<table>
+<thead>
+<tr>
+<th>From (one side, dimension)</th>
+<th>To (many side, fact)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Customers[customer_name]</code></td>
+<td><code>Orders[customer]</code></td>
+</tr>
+<tr>
+<td><code>Products[product]</code></td>
+<td><code>Orders[product]</code></td>
+</tr>
+<tr>
+<td><code>Regions[region]</code></td>
+<td><code>Orders[region]</code></td>
+</tr>
+<tr>
+<td><code>Date[Date]</code></td>
+<td><code>Orders[order_date]</code></td>
+</tr>
+<tr>
+<td><code>Regions[region]</code></td>
+<td><code>Targets[region]</code></td>
+</tr>
+<tr>
+<td><code>Date[Date]</code></td>
+<td><code>Targets[month]</code></td>
+</tr>
+</tbody>
+</table>
+<p>Check each one: <strong>Cardinality: Many to one (*:1)</strong> and <strong>Cross-filter direction: Single</strong>. Power BI often detects some of these automatically. Always check them.</p>
+<div class="admonition tip">
+<p class="admonition-title">Use dimension columns in visuals</p>
+<p>Build visuals with <code>Regions[region]</code>, <code>Products[category]</code>, <code>Customers[segment]</code> and <code>Date[Month]</code>, <strong>not</strong> the copies inside Orders. Dimension columns filter <strong>both</strong> Orders and Targets. Then hide the duplicate key columns in the fact tables (right-click → <strong>Hide in report view</strong>) so nobody picks them by mistake.</p>
+</div>
+<h2 id="example-see-the-relationship-work">Example: see the relationship work</h2>
+<p>Create a table visual with <code>Customers[segment]</code> and <code>Orders[value]</code> (Sum), and filter <code>Orders[status]</code> to exclude <strong>Cancelled</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>segment</th>
+<th>Sum of value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Garment Factory</td>
+<td>5,265</td>
+</tr>
+<tr>
+<td>Knitting Mill</td>
+<td>2,520</td>
+</tr>
+<tr>
+<td>Trader</td>
+<td>1,290</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td><strong>9,075</strong></td>
+</tr>
+</tbody>
+</table>
+<p>These are the same numbers as the SQL JOIN and Power Query merge lessons, now with <strong>no</strong> join or merge step.</p>
+<p><strong>What a missing relationship looks like:</strong> delete the Customers–Orders relationship and the table shows <strong>9,075 on every row</strong>. Each segment shows the grand total, because nothing tells the model how segments relate to orders. When you see the same number repeated down a visual, check the relationships first.</p>
+<h2 id="common-mistakes">Common mistakes</h2>
+<table>
+<thead>
+<tr>
+<th>Mistake</th>
+<th>What happens</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Using fact-table columns (e.g. <code>Orders[region]</code>) in visuals</td>
+<td>Targets aren't filtered, so comparisons are wrong</td>
+<td>Use dimension columns (<code>Regions[region]</code>)</td>
+</tr>
+<tr>
+<td>Missing relationship</td>
+<td>The same total repeats on every row</td>
+<td>Create the relationship in Model view</td>
+</tr>
+<tr>
+<td>Many-to-many caused by duplicate keys in a "dimension"</td>
+<td>Ambiguous or slow model, wrong totals</td>
+<td>Make dimension keys unique</td>
+</tr>
+<tr>
+<td>Both-direction filters everywhere</td>
+<td>Ambiguity and unexpected results</td>
+<td>Keep <strong>Single</strong> direction unless you have a specific need</td>
+</tr>
+<tr>
+<td>No date table, or not marked as one</td>
+<td>Time-intelligence functions fail or give wrong results</td>
+<td>Create a full calendar and mark it as the date table</td>
+</tr>
+</tbody>
+</table>
+<h2 id="try-it-yourself">Try it yourself</h2>
+<p><strong>Task:</strong> Using the model, build a visual showing non-cancelled revenue by <strong>division</strong> (from the Regions table). Which division is larger?</p>
+<details>
+<summary>Show a hint</summary>
+<p>Use <code>Regions[division]</code> with Sum of <code>Orders[value]</code>, with the status filter excluding Cancelled. It works because Regions → Orders is related.</p>
+</details>
+<details>
+<summary>Show the solution</summary>
+<table>
+<thead>
+<tr>
+<th>division</th>
+<th>revenue</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Dhaka Division</td>
+<td>6,920</td>
+</tr>
+<tr>
+<td>Chattogram Division</td>
+<td>2,155</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td><strong>9,075</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Dhaka Division (Dhaka, Gazipur and Narayanganj) brings in about three-quarters of revenue. <code>division</code> isn't in the Orders table at all: the relationship brings it in.</p>
+</details>
+<h2 id="quick-quiz">Quick quiz</h2>
+<div class="quiz-q" data-answer="1">
+<p>1. In a star schema, which tables have one row per item (customer, product, day)?</p>
+<ol>
+<li>Fact tables</li>
+<li>Dimension tables</li>
+<li>Bridge tables</li>
+</ol>
+<details>
+<summary>Show answer</summary>
+<p><strong>B — dimension tables.</strong> Fact tables store the events and numbers.</p>
+</details>
+</div>
+<div class="quiz-q" data-answer="1">
+<p>2. A visual shows <strong>9,075</strong> on every segment row. What is the most likely cause?</p>
+<ol>
+<li>Wrong number format</li>
+<li>Missing relationship between Customers and Orders</li>
+<li>Too many rows in Orders</li>
+</ol>
+<details>
+<summary>Show answer</summary>
+<p><strong>B.</strong> Without the relationship, the segment can't filter the orders, so every row shows the grand total.</p>
+</details>
+</div>
+<div class="quiz-q" data-answer="1">
+<p>3. Why use <code>Regions[region]</code> instead of <code>Orders[region]</code> in a sales-vs-target visual?</p>
+<ol>
+<li>It is faster to type</li>
+<li>The dimension filters both Orders and Targets</li>
+<li>Orders[region] can't be displayed</li>
+</ol>
+<details>
+<summary>Show answer</summary>
+<p><strong>B.</strong> Only the shared dimension filters both fact tables, so actuals and targets line up.</p>
+</details>
+</div>
+<h2 id="summary">Summary</h2>
+<ul>
+<li>A <strong>star schema</strong> has facts (Orders, Targets) in the middle and dimensions (Customers, Products, Regions, Date) around them.</li>
+<li>Relationships are <strong>one-to-many</strong> from dimension to fact, with <strong>single</strong> filter direction.</li>
+<li>Add a full <strong>date table</strong>, mark it, and sort month names by month number.</li>
+<li>Put <strong>dimension</strong> columns in visuals, and hide the duplicate keys in the facts.</li>
+<li>A repeated grand total on every row means a relationship is missing.</li>
+</ul>
+<div class="admonition job">
+<p class="admonition-title">Job-ready check</p>
+<p><strong>Interview question:</strong> <em>"What is a star schema, and why does Power BI recommend it?"</em></p>
+<p><strong>Strong answer:</strong> "Fact tables with events and numbers, surrounded by dimension tables that describe them, linked one-to-many. It keeps the model simple and fast, and filters flow predictably from dimensions to facts. One shared dimension, like Region or Date, can filter several facts at once. That's how I compare actual sales with targets."</p>
+<p><strong>Mini project:</strong> Build the six-table model in Power BI Desktop (or Power Pivot), and take a screenshot of Model view for your portfolio README. Save the file as <code>sales-model.pbix</code> (or <code>.xlsx</code>). You'll add measures to it in the next lesson.</p>
+</div>
+<div class="terms-box"><div class="files-head"><b>Key terms in this lesson</b><a href="../../../glossary.html">Glossary →</a></div><div class="term-chips"><a class="term-chip" href="../../../glossary.html#date-table" title="A table with one row per date (plus month, quarter, year), marked as the model&#x27;s date table so time calculations work.">Date table</a><a class="term-chip" href="../../../glossary.html#granularity" title="What one row represents: one order, one order line, one region per month. Mixing tables of different grain without care gives wrong totals.">Granularity</a><a class="term-chip" href="../../../glossary.html#relationship" title="A link between two tables in a model, usually one-to-many from a dimension to a fact, which lets filters flow between them.">Relationship</a><a class="term-chip" href="../../../glossary.html#star-schema" title="A data model with fact tables (events such as orders) in the middle and dimension tables (customers, products, dates) around them, linked one-to-many.">Star schema</a></div></div>
+<h2 id="free-resources">Free resources to go deeper</h2><ul class="resources"><li><a href="https://learn.microsoft.com/en-us/power-bi/guidance/star-schema">Understand star schema and the importance for Power BI</a><span class="r-meta">Microsoft Learn · The standard guide to facts, dimensions and relationships.</span></li><li><a href="https://learn.microsoft.com/en-us/power-bi/transform-model/desktop-date-tables">Set and use date tables in Power BI Desktop</a><span class="r-meta">Microsoft Learn · Why you need a date table, and how to mark it.</span></li><li><a href="https://support.microsoft.com/en-us/office/get-started-with-power-pivot-in-microsoft-excel-fdfcf944-7876-424a-8437-1a6c1043a80b">Get started with Power Pivot in Microsoft Excel</a><span class="r-meta">Microsoft Support · The Excel version: the data model, diagram view and relationships.</span></li></ul>
+<div class="complete-bar"><span>Finished reading and did the exercise?</span>
+<button class="btn" id="completeBtn" type="button" data-id="phase-1/power-pivot-dax/01-relationships">Mark lesson as complete</button></div>
+<nav class="pager"><a class="prev" href="../../../learn/phase-1/power-query/03-reshape-folder.html"><small>← Previous</small>Power Query Reshape &amp; Folder Workflows: Unpivot and Combine Files</a><a class="next" href="../../../learn/phase-1/power-pivot-dax/02-measures-kpi.html"><small>Next →</small>DAX Measures &amp; KPI Logic: Revenue, AOV and Target Achievement</a></nav>
+<p class="reviewed">Last reviewed: 2026-10-09</p>
+
+  </div></main>
+  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#step-1-load-the-tables">Step 1: load the tables</a><a href="#step-2-add-a-date-table">Step 2: add a date table</a><a href="#step-3-create-the-relationships">Step 3: create the relationships</a><a href="#example-see-the-relationship-work">Example: see the relationship work</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#free-resources">Free resources</a></aside>
+</div>
+<footer class="site">Data, AI &amp; Automation Path v0.7 · Applied AI, Data &amp; Automation Lab · Updated October 2026<br>
+Lesson text: <a href="../../../license.html">CC BY-NC-SA 4.0</a> · Code: <a href="../../../license.html#code-mit-license">MIT</a> · Free external resources belong to their respective owners.</footer>
+<script src="../../../search-index.js"></script>
+<script src="../../../assets/app.js"></script>
+</body>
+</html>

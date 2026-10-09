@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en" data-root="../../../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DAX CALCULATE &amp; Filter Context: Control What Each Number Includes — Data, AI &amp; Automation Path</title>
+<meta name="description" content="Understand the filters behind every number, then use CALCULATE to add, replace or remove them — for status splits, shares of total and month-on-month growth.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data, AI &amp; Automation Path">
+<meta property="og:title" content="DAX CALCULATE &amp; Filter Context: Control What Each Number Includes">
+<meta property="og:description" content="Understand the filters behind every number, then use CALCULATE to add, replace or remove them — for status splits, shares of total and month-on-month growth.">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+
+<script>(function(){var t=null;try{t=localStorage.getItem('daa-theme')}catch(e){}
+if(!t)t=(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';
+document.documentElement.setAttribute('data-theme',t);
+var n=null;try{n=localStorage.getItem('daa-nav')}catch(e){}
+if(n==='open'&&window.matchMedia&&matchMedia('(min-width: 961px)').matches)document.documentElement.setAttribute('data-nav','open');
+document.documentElement.classList.add('no-anim')})();</script>
+<link rel="stylesheet" href="../../../assets/style.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233f7d6a'/%3E%3Ctext x='16' y='21' font-family='sans-serif' font-size='13' font-weight='700' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Open curriculum menu" title="Curriculum menu (press M)" aria-controls="sidebar" aria-expanded="false"><span class="ico-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span class="ico-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></button>
+  <a class="brand" href="../../../index.html"><span class="brand-badge">AI</span><span class="brand-text"><span class="brand-name">Data, AI &amp; Automation Path</span><span class="brand-version">v0.7</span></span></a>
+  <nav class="top-links" aria-label="Main">
+    <a href="../../../index.html" class="">Home</a><a href="../../../curriculum.html" class="">Curriculum</a><a href="../../../practice-files.html" class="">Practice files</a><a href="../../../glossary.html" class="">Glossary</a><a href="../../../how-to-learn.html" class="">How to learn</a><a href="../../../about.html" class="">About</a>
+  </nav>
+  <div class="top-spacer"></div>
+  <div class="search" role="search">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input id="searchInput" type="search" placeholder="Search lessons, tools, topics" aria-label="Search" autocomplete="off">
+    <kbd>/</kbd>
+    <div class="search-results" id="searchResults" role="listbox"></div>
+  </div>
+  <button class="icon-btn theme-toggle" id="themeBtn" aria-label="Toggle light or dark mode" title="Light / dark"><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
+</header>
+<div class="layout wide">
+  <nav class="sidebar" id="sidebar" aria-label="Curriculum">
+    <div class="side-title">Curriculum</div>
+    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="64"><i></i></div><span class="bar-label" data-progress-label></span></div>
+<div class="nav-phase"><a href="../../../learn/phase-0/index.html"><span class="nav-num">0</span>Foundations</a>
+</div>
+<div class="nav-phase current open"><a href="../../../learn/phase-1/index.html"><span class="nav-num">1</span>Analytics &amp; BI</a>
+<ul class="nav-modules">
+<li><a class="" href="../../../learn/phase-1/excel-analysis/index.html">Excel for Analysis</a>
+</li>
+<li><a class="" href="../../../learn/phase-1/pivot-analysis/index.html">Pivot Analysis</a>
+</li>
+<li><a class="" href="../../../learn/phase-1/power-query/index.html">Power Query</a>
+</li>
+<li><a class="current" href="../../../learn/phase-1/power-pivot-dax/index.html">Power Pivot &amp; DAX</a>
+<ul class="nav-lessons">
+<li><a class="" data-lesson="phase-1/power-pivot-dax/01-relationships" href="../../../learn/phase-1/power-pivot-dax/01-relationships.html">Data Model Relationships: Build a Star Schema</a></li>
+<li><a class="" data-lesson="phase-1/power-pivot-dax/02-measures-kpi" href="../../../learn/phase-1/power-pivot-dax/02-measures-kpi.html">DAX Measures &amp; KPI Logic: Revenue, AOV and Target Achievement</a></li>
+<li><a class="current" data-lesson="phase-1/power-pivot-dax/03-calculate-filter-context" href="../../../learn/phase-1/power-pivot-dax/03-calculate-filter-context.html">DAX CALCULATE &amp; Filter Context: Control What Each Number Includes</a></li>
+</ul>
+</li>
+<li><a class="" href="../../../learn/phase-1/analytical-sql/index.html">Analytical SQL</a>
+</li>
+<li><a class="" href="../../../learn/phase-1/power-bi/index.html">Power BI</a>
+</li>
+<li><a class="" href="../../../learn/phase-1/semantic-models/index.html">Semantic Models &amp; Metrics Layer</a>
+</li>
+<li><a class="" href="../../../learn/phase-1/ai-assisted-analytics/index.html">AI-Assisted Analytics</a>
+</li>
+<li><a class="" href="../../../learn/phase-1/data-storytelling/index.html">Data Storytelling</a>
+</li>
+<li><a class="nav-project " href="../../../learn/phase-1/project.html">★ Milestone project</a></li>
+</ul>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-2/index.html"><span class="nav-num">2</span>Data Science</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-3/index.html"><span class="nav-num">3</span>Data Engineering</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-4/index.html"><span class="nav-num">4</span>ML Engineering</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-5/index.html"><span class="nav-num">5</span>LLM &amp; RAG</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-6/index.html"><span class="nav-num">6</span>Agents &amp; Automation</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-7/index.html"><span class="nav-num">7</span>LLMOps &amp; Governance</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-8/index.html"><span class="nav-num">8</span>Capstone</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-9/index.html"><span class="nav-num">9</span>Career</a>
+</div>
+<div class="side-extra"><a href="../../../index.html">Home</a><a href="../../../curriculum.html">Full curriculum map</a><a href="../../../practice-files.html">Practice files</a><a href="../../../glossary.html">Glossary</a><a href="../../../how-to-learn.html">How to learn here</a><a href="../../../about.html">About &amp; contributing</a></div></nav>
+  <main class="main" id="main"><div class="content">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../../index.html">Home</a><span class="sep">/</span><a href="../../../learn/phase-1/index.html">Phase 1</a><span class="sep">/</span><a href="../../../learn/phase-1/power-pivot-dax/index.html">Power Pivot &amp; DAX</a><span class="sep">/</span><span>DAX CALCULATE &amp; Filter Context: Control What Each Number Includes</span></nav>
+<h1>DAX CALCULATE &amp; Filter Context: Control What Each Number Includes</h1>
+<p class="lead">Understand the filters behind every number, then use CALCULATE to add, replace or remove them — for status splits, shares of total and month-on-month growth.</p>
+<div class="meta"><span class="pill">Phase <b>1</b> · Analytics &amp; BI</span><span class="pill">Level <b>Intermediate</b></span><span class="pill">Time <b>50 min</b></span></div>
+<div class="admonition note"><p class="admonition-title">Before you start</p><p><a href="../../../learn/phase-1/power-pivot-dax/02-measures-kpi.html">DAX Measures &amp; KPI Logic: Revenue, AOV and Target Achievement</a></p></div>
+<div class="files-box"><div class="files-head"><b>Practice files for this page</b><a href="../../../practice-files.html">All practice files →</a></div><ul><li><a href="../../../downloads/sales_model.xlsx" download>sales_model.xlsx</a><span class="f-desc">Five Excel Tables (Orders, Customers, Products, Regions, Targets) for the data model · 12 KB</span></li><li><a href="../../../downloads/known_answers.csv" download>known_answers.csv</a><span class="f-desc">24 key numbers every tool should reproduce, for checking your work (and AI output) · 1 KB</span></li></ul></div>
+<h2 id="what-is-it">What is it?</h2>
+<p><strong>Filter context</strong> is the set of filters active when a measure is calculated. In a matrix, the cell for <em>Dhaka</em> is calculated with the filter <em>region = Dhaka</em>. A slicer set to <em>February</em> adds <em>month = Feb</em>. Same measure, different filters, different number.</p>
+<p><strong>CALCULATE</strong> changes that filter context. It evaluates a measure with filters that you <strong>add</strong>, <strong>replace</strong> or <strong>remove</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="nf">CALCULATE</span><span class="w"> </span><span class="p">(</span><span class="w"> </span>&lt;measure&gt;, &lt;filter1&gt;, &lt;filter2&gt;, ... )
+</code></pre></div>
+
+<div class="admonition job">
+<p class="admonition-title">Why it matters at work</p>
+<p>"Delivered revenue", "share of total", "same period last month": nearly every useful KPI is a measure inside CALCULATE. Understanding filter context is what separates people who drag fields into visuals from people who can build any metric a manager asks for. It's the most tested DAX topic in interviews and on the PL-300 exam.</p>
+</div>
+<h2 id="example-1-see-filter-context">Example 1: see filter context</h2>
+<p>A matrix with <code>Products[category]</code> on rows and <code>[Net Revenue]</code>:</p>
+<table>
+<thead>
+<tr>
+<th>category</th>
+<th>Net Revenue</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Fabric</td>
+<td>4,745</td>
+</tr>
+<tr>
+<td>Trims</td>
+<td>940</td>
+</tr>
+<tr>
+<td>Yarn</td>
+<td>3,390</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td><strong>9,075</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Nothing in the measure mentions categories. Each row is different because the <strong>row filters the Products table</strong>, and the relationship passes that filter to Orders. The Total row has no category filter.</p>
+<h2 id="example-2-calculate-adds-a-filter">Example 2: CALCULATE adds a filter</h2>
+<div class="codehilite"><pre><span></span><code>Delivered Revenue =
+<span class="nf">CALCULATE</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="na">[Revenue]</span><span class="p">,</span><span class="w"> </span><span class="na">Orders[status]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"Delivered"</span><span class="w"> </span><span class="p">)</span>
+</code></pre></div>
+
+<p>With regions on rows:</p>
+<table>
+<thead>
+<tr>
+<th>region</th>
+<th>Net Revenue</th>
+<th>Delivered Revenue</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Chattogram</td>
+<td>2,155</td>
+<td>880</td>
+</tr>
+<tr>
+<td>Dhaka</td>
+<td>3,170</td>
+<td>2,850</td>
+</tr>
+<tr>
+<td>Gazipur</td>
+<td>2,520</td>
+<td>2,520</td>
+</tr>
+<tr>
+<td>Narayanganj</td>
+<td>1,230</td>
+<td>420</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td><strong>9,075</strong></td>
+<td><strong>6,670</strong></td>
+</tr>
+</tbody>
+</table>
+<p>The row filter (region) <strong>stays</strong>, and CALCULATE <strong>adds</strong> status = Delivered on top. This is the DAX version of the SQL CASE lesson's conditional aggregation.</p>
+<h2 id="example-3-calculate-replaces-a-filter-on-the-same-column">Example 3: CALCULATE replaces a filter on the same column</h2>
+<div class="codehilite"><pre><span></span><code>Fabric Revenue =
+<span class="nf">CALCULATE</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="na">[Net Revenue]</span><span class="p">,</span><span class="w"> </span><span class="na">Products[category]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"Fabric"</span><span class="w"> </span><span class="p">)</span>
+</code></pre></div>
+
+<p>Put it in the <strong>category</strong> matrix and every row shows <strong>4,745</strong>, even the Trims and Yarn rows. When CALCULATE filters a column that is <strong>already</strong> filtered (category), it <strong>replaces</strong> that filter. That's surprising at first, but useful, as the next example shows.</p>
+<h2 id="example-4-remove-filters-for-of-total">Example 4: remove filters for % of total</h2>
+<div class="codehilite"><pre><span></span><code>Net Revenue All Regions =
+<span class="nf">CALCULATE</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="na">[Net Revenue]</span><span class="p">,</span><span class="w"> </span><span class="nf">REMOVEFILTERS</span><span class="w"> </span><span class="p">(</span><span class="w"> </span>Regions ) )
+
+Share of Total = DIVIDE ( [Net Revenue], [Net Revenue All Regions] )
+</code></pre></div>
+
+<table>
+<thead>
+<tr>
+<th>region</th>
+<th>Net Revenue</th>
+<th>All Regions</th>
+<th>Share of Total</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Chattogram</td>
+<td>2,155</td>
+<td>9,075</td>
+<td>23.7%</td>
+</tr>
+<tr>
+<td>Dhaka</td>
+<td>3,170</td>
+<td>9,075</td>
+<td>34.9%</td>
+</tr>
+<tr>
+<td>Gazipur</td>
+<td>2,520</td>
+<td>9,075</td>
+<td>27.8%</td>
+</tr>
+<tr>
+<td>Narayanganj</td>
+<td>1,230</td>
+<td>9,075</td>
+<td>13.6%</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td><strong>9,075</strong></td>
+<td><strong>9,075</strong></td>
+<td><strong>100.0%</strong></td>
+</tr>
+</tbody>
+</table>
+<p><code>REMOVEFILTERS ( Regions )</code> (or the older <code>ALL ( Regions )</code>) removes the region filter, so the denominator is always the company total. Other filters, such as a month slicer, <strong>still apply</strong>, so the shares stay correct for whatever period is selected.</p>
+<h2 id="example-5-time-comparison-previous-month">Example 5: time comparison (previous month)</h2>
+<p>This needs the marked <strong>Date</strong> table from the relationships lesson.</p>
+<div class="codehilite"><pre><span></span><code>Prev Month Revenue =
+<span class="nf">CALCULATE</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="na">[Net Revenue]</span><span class="p">,</span><span class="w"> </span><span class="nf">DATEADD</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="na">'Date'[Date]</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="nf">MONTH</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">)</span>
+
+MoM Growth % =
+<span class="nf">DIVIDE</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="na">[Net Revenue]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="na">[Prev Month Revenue]</span><span class="p">,</span><span class="w"> </span><span class="na">[Prev Month Revenue]</span><span class="w"> </span><span class="p">)</span>
+</code></pre></div>
+
+<table>
+<thead>
+<tr>
+<th>Month</th>
+<th>Net Revenue</th>
+<th>Prev Month Revenue</th>
+<th>MoM Growth %</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Jan 2026</td>
+<td>3,440</td>
+<td><em>(blank)</em></td>
+<td><em>(blank)</em></td>
+</tr>
+<tr>
+<td>Feb 2026</td>
+<td>3,940</td>
+<td>3,440</td>
+<td>14.5%</td>
+</tr>
+<tr>
+<td>Mar 2026</td>
+<td>1,695</td>
+<td>3,940</td>
+<td>−57.0%</td>
+</tr>
+</tbody>
+</table>
+<p><code>DATEADD</code> shifts the dates in the current filter back one month, and CALCULATE evaluates Net Revenue for those dates. January has no previous month in the data, so it shows blank: DIVIDE handles that safely.</p>
+<h2 id="common-mistakes">Common mistakes</h2>
+<table>
+<thead>
+<tr>
+<th>Mistake</th>
+<th>What happens</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Expecting CALCULATE to keep an existing filter on the same column</td>
+<td>Every row shows the same number</td>
+<td>That's replacement. Use <code>KEEPFILTERS ( ... )</code> if you need to keep it</td>
+</tr>
+<tr>
+<td><code>REMOVEFILTERS ( Orders )</code> for % of region</td>
+<td>Removes <strong>all</strong> order filters, including status</td>
+<td>Remove only the dimension you mean: <code>REMOVEFILTERS ( Regions )</code></td>
+</tr>
+<tr>
+<td>Time intelligence without a marked date table</td>
+<td>Wrong or blank results</td>
+<td>Create a full calendar, mark it, and relate it</td>
+</tr>
+<tr>
+<td>Filtering with the fact table's copy (<code>Orders[region]</code>) while visuals use <code>Regions[region]</code></td>
+<td>Filters don't line up</td>
+<td>Filter and display the same dimension columns</td>
+</tr>
+<tr>
+<td>Building a long measure in one go</td>
+<td>Hard to debug</td>
+<td>Build small measures and test each one in a table visual</td>
+</tr>
+</tbody>
+</table>
+<h2 id="try-it-yourself">Try it yourself</h2>
+<p><strong>Task:</strong> Create <strong>Delivered %</strong>, the share of net revenue that is already delivered. What is it for the company, and which region has the <strong>lowest</strong> delivered share?</p>
+<details>
+<summary>Show a hint</summary>
+<p><code>DIVIDE ( [Delivered Revenue], [Net Revenue] )</code>. Both measures already exist.</p>
+</details>
+<details>
+<summary>Show the solution</summary>
+<div class="codehilite"><pre><span></span><code>Delivered % = DIVIDE ( [Delivered Revenue], [Net Revenue] )
+</code></pre></div>
+
+<table>
+<thead>
+<tr>
+<th>region</th>
+<th>Delivered %</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Chattogram</td>
+<td>40.8%</td>
+</tr>
+<tr>
+<td>Dhaka</td>
+<td>89.9%</td>
+</tr>
+<tr>
+<td>Gazipur</td>
+<td>100.0%</td>
+</tr>
+<tr>
+<td>Narayanganj</td>
+<td>34.1%</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td><strong>73.5%</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Narayanganj</strong> (34.1%) has the lowest share, with order 9 still pending. Chattogram (40.8%) is close behind, with order 12 shipped but not yet delivered. These two regions are the follow-up priorities.</p>
+</details>
+<h2 id="quick-quiz">Quick quiz</h2>
+<div class="quiz-q" data-answer="1">
+<p>1. In a region matrix, <code>CALCULATE ( [Revenue], Orders[status] = "Delivered" )</code> — what happens to the region filter?</p>
+<ol>
+<li>It is removed</li>
+<li>It stays, and status is added</li>
+<li>It is replaced by status</li>
+</ol>
+<details>
+<summary>Show answer</summary>
+<p><strong>B.</strong> Filters on <strong>different</strong> columns are combined. Only filters on the same column are replaced.</p>
+</details>
+</div>
+<div class="quiz-q" data-answer="1">
+<p>2. Which expression gives each region's share of the company total?</p>
+<ol>
+<li><code>DIVIDE ( [Net Revenue], [Net Revenue] )</code></li>
+<li><code>DIVIDE ( [Net Revenue], CALCULATE ( [Net Revenue], REMOVEFILTERS ( Regions ) ) )</code></li>
+<li><code>[Net Revenue] / 4</code></li>
+</ol>
+<details>
+<summary>Show answer</summary>
+<p><strong>B.</strong> The denominator removes the region filter, so it is always the total.</p>
+</details>
+</div>
+<div class="quiz-q" data-answer="0">
+<p>3. What does a measure need to use <code>DATEADD ( 'Date'[Date], -1, MONTH )</code> reliably?</p>
+<ol>
+<li>A marked date table with continuous dates, related to the facts</li>
+<li>A text column with month names</li>
+<li>Nothing extra</li>
+</ol>
+<details>
+<summary>Show answer</summary>
+<p><strong>A.</strong> Time-intelligence functions rely on a proper date table.</p>
+</details>
+</div>
+<h2 id="summary">Summary</h2>
+<ul>
+<li><strong>Filter context</strong> = the filters active for a calculation: rows, columns, slicers, filters.</li>
+<li><strong>CALCULATE</strong> evaluates a measure with modified filters. It <strong>adds</strong> filters on new columns and <strong>replaces</strong> filters on the same column.</li>
+<li><code>REMOVEFILTERS ( dimension )</code> gives totals for <strong>% of total</strong> measures.</li>
+<li><code>DATEADD</code> + CALCULATE gives previous-period comparisons, using a marked date table.</li>
+</ul>
+<div class="admonition job">
+<p class="admonition-title">Job-ready check</p>
+<p><strong>Interview question:</strong> <em>"Explain filter context and how CALCULATE changes it."</em></p>
+<p><strong>Strong answer:</strong> "Filter context is everything filtering the model when a measure is evaluated: visual rows, slicers, page filters. CALCULATE re-evaluates a measure with changed filters. It adds conditions on new columns, overrides existing filters on the same column, and can remove filters with REMOVEFILTERS. For example, a share-of-total measure divides region revenue by revenue with the region filter removed."</p>
+<p><strong>Mini project:</strong> Add Delivered Revenue, Share of Total, Prev Month Revenue and MoM Growth % to your model. Build one matrix (regions × measures) and one by month. Add each measure to your KPI dictionary with a one-line business meaning.</p>
+</div>
+<div class="terms-box"><div class="files-head"><b>Key terms in this lesson</b><a href="../../../glossary.html">Glossary →</a></div><div class="term-chips"><a class="term-chip" href="../../../glossary.html#calculate" title="The DAX function that changes the filter context before calculating, for example delivered revenue only, or a total ignoring the region filter.">CALCULATE</a><a class="term-chip" href="../../../glossary.html#filter-context" title="The set of filters (slicers, rows, columns, other visuals) that applies when a measure is calculated. It is why one measure shows different numbers in each cell.">Filter context</a><a class="term-chip" href="../../../glossary.html#month-on-month-growth" title="How much a value changed compared with the previous month, as a percentage: (this month − last month) ÷ last month.">Month-on-month growth</a></div></div>
+<h2 id="free-resources">Free resources to go deeper</h2><ul class="resources"><li><a href="https://learn.microsoft.com/en-us/dax/calculate-function-dax">CALCULATE function (DAX)</a><span class="r-meta">Microsoft Learn · The official reference.</span></li><li><a href="https://www.sqlbi.com/articles/filter-context-in-dax/">Filter context in DAX</a><span class="r-meta">SQLBI (free article) · The clearest explanation of filter context, from the authors of the standard DAX book.</span></li><li><a href="https://www.sqlbi.com/articles/introducing-calculate-in-dax/">Introducing CALCULATE in DAX</a><span class="r-meta">SQLBI (free article) · How CALCULATE adds and replaces filters.</span></li><li><a href="https://learn.microsoft.com/en-us/dax/removefilters-function-dax">REMOVEFILTERS function (DAX)</a><span class="r-meta">Microsoft Learn · Used for % of total.</span></li></ul>
+<div class="complete-bar"><span>Finished reading and did the exercise?</span>
+<button class="btn" id="completeBtn" type="button" data-id="phase-1/power-pivot-dax/03-calculate-filter-context">Mark lesson as complete</button></div>
+<nav class="pager"><a class="prev" href="../../../learn/phase-1/power-pivot-dax/02-measures-kpi.html"><small>← Previous</small>DAX Measures &amp; KPI Logic: Revenue, AOV and Target Achievement</a><a class="next" href="../../../learn/phase-1/analytical-sql/01-select-where.html"><small>Next →</small>SQL SELECT &amp; WHERE: Get Exactly the Rows You Need</a></nav>
+<p class="reviewed">Last reviewed: 2026-10-09</p>
+
+  </div></main>
+  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#example-1-see-filter-context">Example 1: see filter context</a><a href="#example-2-calculate-adds-a-filter">Example 2: CALCULATE adds a filter</a><a href="#example-3-calculate-replaces-a-filter-on-the-same-column">Example 3: CALCULATE replaces a filter on the same column</a><a href="#example-4-remove-filters-for-of-total">Example 4: remove filters for % of total</a><a href="#example-5-time-comparison-previous-month">Example 5: time comparison (previous month)</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#free-resources">Free resources</a></aside>
+</div>
+<footer class="site">Data, AI &amp; Automation Path v0.7 · Applied AI, Data &amp; Automation Lab · Updated October 2026<br>
+Lesson text: <a href="../../../license.html">CC BY-NC-SA 4.0</a> · Code: <a href="../../../license.html#code-mit-license">MIT</a> · Free external resources belong to their respective owners.</footer>
+<script src="../../../search-index.js"></script>
+<script src="../../../assets/app.js"></script>
+</body>
+</html>

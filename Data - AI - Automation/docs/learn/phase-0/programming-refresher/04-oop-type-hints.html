@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en" data-root="../../../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OOP &amp; Type Hints: Classes, Dataclasses and Clear Contracts — Data, AI &amp; Automation Path</title>
+<meta name="description" content="Model business objects with classes and dataclasses, add methods and properties, and use type hints so editors, checkers and reviewers catch mistakes before they run.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data, AI &amp; Automation Path">
+<meta property="og:title" content="OOP &amp; Type Hints: Classes, Dataclasses and Clear Contracts">
+<meta property="og:description" content="Model business objects with classes and dataclasses, add methods and properties, and use type hints so editors, checkers and reviewers catch mistakes before they run.">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+
+<script>(function(){var t=null;try{t=localStorage.getItem('daa-theme')}catch(e){}
+if(!t)t=(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';
+document.documentElement.setAttribute('data-theme',t);
+var n=null;try{n=localStorage.getItem('daa-nav')}catch(e){}
+if(n==='open'&&window.matchMedia&&matchMedia('(min-width: 961px)').matches)document.documentElement.setAttribute('data-nav','open');
+document.documentElement.classList.add('no-anim')})();</script>
+<link rel="stylesheet" href="../../../assets/style.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233f7d6a'/%3E%3Ctext x='16' y='21' font-family='sans-serif' font-size='13' font-weight='700' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Open curriculum menu" title="Curriculum menu (press M)" aria-controls="sidebar" aria-expanded="false"><span class="ico-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span class="ico-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></button>
+  <a class="brand" href="../../../index.html"><span class="brand-badge">AI</span><span class="brand-text"><span class="brand-name">Data, AI &amp; Automation Path</span><span class="brand-version">v0.7</span></span></a>
+  <nav class="top-links" aria-label="Main">
+    <a href="../../../index.html" class="">Home</a><a href="../../../curriculum.html" class="">Curriculum</a><a href="../../../practice-files.html" class="">Practice files</a><a href="../../../glossary.html" class="">Glossary</a><a href="../../../how-to-learn.html" class="">How to learn</a><a href="../../../about.html" class="">About</a>
+  </nav>
+  <div class="top-spacer"></div>
+  <div class="search" role="search">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input id="searchInput" type="search" placeholder="Search lessons, tools, topics" aria-label="Search" autocomplete="off">
+    <kbd>/</kbd>
+    <div class="search-results" id="searchResults" role="listbox"></div>
+  </div>
+  <button class="icon-btn theme-toggle" id="themeBtn" aria-label="Toggle light or dark mode" title="Light / dark"><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
+</header>
+<div class="layout wide">
+  <nav class="sidebar" id="sidebar" aria-label="Curriculum">
+    <div class="side-title">Curriculum</div>
+    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="64"><i></i></div><span class="bar-label" data-progress-label></span></div>
+<div class="nav-phase current open"><a href="../../../learn/phase-0/index.html"><span class="nav-num">0</span>Foundations</a>
+<ul class="nav-modules">
+<li><a class="" href="../../../learn/phase-0/dev-environment/index.html">Development Environment</a>
+</li>
+<li><a class="" href="../../../learn/phase-0/git-github/index.html">Git &amp; GitHub</a>
+</li>
+<li><a class="" href="../../../learn/phase-0/linux/index.html">Linux Essentials</a>
+</li>
+<li><a class="current" href="../../../learn/phase-0/programming-refresher/index.html">Programming Refresher</a>
+<ul class="nav-lessons">
+<li><a class="" data-lesson="phase-0/programming-refresher/01-basics" href="../../../learn/phase-0/programming-refresher/01-basics.html">Python Basics: Variables, Conditions, Loops &amp; Functions</a></li>
+<li><a class="" data-lesson="phase-0/programming-refresher/02-collections" href="../../../learn/phase-0/programming-refresher/02-collections.html">Python Collections: Lists, Dictionaries, Sets &amp; Tuples</a></li>
+<li><a class="" data-lesson="phase-0/programming-refresher/03-files-exceptions" href="../../../learn/phase-0/programming-refresher/03-files-exceptions.html">Files &amp; Exceptions: Read and Write Data Safely</a></li>
+<li><a class="current" data-lesson="phase-0/programming-refresher/04-oop-type-hints" href="../../../learn/phase-0/programming-refresher/04-oop-type-hints.html">OOP &amp; Type Hints: Classes, Dataclasses and Clear Contracts</a></li>
+</ul>
+</li>
+<li><a class="" href="../../../learn/phase-0/testing-ci/index.html">Testing &amp; CI Basics</a>
+</li>
+<li><a class="" href="../../../learn/phase-0/ai-assisted-dev/index.html">AI-Assisted Development</a>
+</li>
+<li><a class="nav-project " href="../../../learn/phase-0/project.html">★ Milestone project</a></li>
+</ul>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-1/index.html"><span class="nav-num">1</span>Analytics &amp; BI</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-2/index.html"><span class="nav-num">2</span>Data Science</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-3/index.html"><span class="nav-num">3</span>Data Engineering</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-4/index.html"><span class="nav-num">4</span>ML Engineering</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-5/index.html"><span class="nav-num">5</span>LLM &amp; RAG</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-6/index.html"><span class="nav-num">6</span>Agents &amp; Automation</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-7/index.html"><span class="nav-num">7</span>LLMOps &amp; Governance</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-8/index.html"><span class="nav-num">8</span>Capstone</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-9/index.html"><span class="nav-num">9</span>Career</a>
+</div>
+<div class="side-extra"><a href="../../../index.html">Home</a><a href="../../../curriculum.html">Full curriculum map</a><a href="../../../practice-files.html">Practice files</a><a href="../../../glossary.html">Glossary</a><a href="../../../how-to-learn.html">How to learn here</a><a href="../../../about.html">About &amp; contributing</a></div></nav>
+  <main class="main" id="main"><div class="content">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../../index.html">Home</a><span class="sep">/</span><a href="../../../learn/phase-0/index.html">Phase 0</a><span class="sep">/</span><a href="../../../learn/phase-0/programming-refresher/index.html">Programming Refresher</a><span class="sep">/</span><span>OOP &amp; Type Hints: Classes, Dataclasses and Clear Contracts</span></nav>
+<h1>OOP &amp; Type Hints: Classes, Dataclasses and Clear Contracts</h1>
+<p class="lead">Model business objects with classes and dataclasses, add methods and properties, and use type hints so editors, checkers and reviewers catch mistakes before they run.</p>
+<div class="meta"><span class="pill">Phase <b>0</b> · Foundations</span><span class="pill">Level <b>Beginner</b></span><span class="pill">Time <b>45 min</b></span></div>
+<div class="admonition note"><p class="admonition-title">Before you start</p><p><a href="../../../learn/phase-0/programming-refresher/03-files-exceptions.html">Files &amp; Exceptions: Read and Write Data Safely</a></p></div>
+<div class="files-box"><div class="files-head"><b>Practice files for this page</b><a href="../../../practice-files.html">All practice files →</a></div><ul><li><a href="../../../downloads/phase-0/python-refresher.zip" download>python-refresher.zip</a><span class="f-desc">Python refresher scripts, debugging, pytest and ruff examples, an AI-written function to review, with solutions · 12 KB</span></li></ul></div>
+<h2 id="what-is-it">What is it?</h2>
+<ul>
+<li><strong>OOP (object-oriented programming)</strong> groups <strong>data</strong> and the <strong>behaviour</strong> that belongs to it into a <strong>class</strong>. An <code>Order</code> knows its quantity and price, and how to calculate its value.</li>
+<li>A <strong>dataclass</strong> writes the boring parts of a class for you (<code>__init__</code>, a readable print-out, comparison).</li>
+<li><strong>Type hints</strong> (<code>quantity: int</code>, <code>-&gt; float</code>) document what goes in and out. Python doesn't enforce them at run time, but <strong>Pylance</strong> and <strong>mypy</strong> check them before you run anything.</li>
+</ul>
+<div class="admonition job">
+<p class="admonition-title">Why it matters at work</p>
+<p>Frameworks you'll use later are built on classes: Pydantic models for APIs and LLM outputs, scikit-learn estimators, LangChain/agent tools. Type hints are now standard in professional Python, because they make code self-documenting and let tools (and AI assistants) catch errors early.</p>
+</div>
+<p>Open <code>04_classes.py</code> from <a href="../../../downloads/phase-0/python-refresher.zip">python-refresher.zip</a>.</p>
+<h2 id="example-1-a-dataclass-with-a-property-and-a-method">Example 1: a dataclass with a property and a method</h2>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span>
+
+
+<span class="nd">@dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Order</span><span class="p">:</span>
+    <span class="n">order_id</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">customer</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">region</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">quantity</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">unit_price</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">status</span><span class="p">:</span> <span class="nb">str</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">value</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">quantity</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">unit_price</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_open</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">status</span> <span class="ow">in</span> <span class="p">{</span><span class="s2">"Shipped"</span><span class="p">,</span> <span class="s2">"Pending"</span><span class="p">}</span>
+</code></pre></div>
+
+<ul>
+<li><code>Order</code> is the <strong>class</strong> (the blueprint). <code>Order(1, "Rahim Traders", ...)</code> creates an <strong>instance</strong> (an object).</li>
+<li><code>self</code> is "this particular order".</li>
+<li><code>@property</code> lets you write <code>order.value</code> (no brackets) for a calculated field.</li>
+</ul>
+<h2 id="example-2-a-class-that-works-with-many-objects">Example 2: a class that works with many objects</h2>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">OrderBook</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""A collection of orders with business calculations."""</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">orders</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Order</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">orders</span> <span class="o">=</span> <span class="n">orders</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">net</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Order</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">o</span> <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">orders</span> <span class="k">if</span> <span class="n">o</span><span class="o">.</span><span class="n">status</span> <span class="o">!=</span> <span class="s2">"Cancelled"</span><span class="p">]</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">net_revenue</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">o</span><span class="o">.</span><span class="n">value</span> <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">net</span><span class="p">())</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">open_value</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">o</span><span class="o">.</span><span class="n">value</span> <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">orders</span> <span class="k">if</span> <span class="n">o</span><span class="o">.</span><span class="n">is_open</span><span class="p">())</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">revenue_by</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
+        <span class="n">result</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">net</span><span class="p">():</span>
+            <span class="n">key</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">o</span><span class="p">,</span> <span class="n">attr</span><span class="p">)</span>
+            <span class="n">result</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="n">o</span><span class="o">.</span><span class="n">value</span>
+        <span class="k">return</span> <span class="n">result</span>
+</code></pre></div>
+
+<p>With the five Dhaka orders:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">first</span> <span class="o">=</span> <span class="n">book</span><span class="o">.</span><span class="n">orders</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">first</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Order </span><span class="si">{</span><span class="n">first</span><span class="o">.</span><span class="n">order_id</span><span class="si">}</span><span class="s2"> value: </span><span class="si">{</span><span class="n">first</span><span class="o">.</span><span class="n">value</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Net revenue: </span><span class="si">{</span><span class="n">book</span><span class="o">.</span><span class="n">net_revenue</span><span class="p">()</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Open value: </span><span class="si">{</span><span class="n">book</span><span class="o">.</span><span class="n">open_value</span><span class="p">()</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">book</span><span class="o">.</span><span class="n">revenue_by</span><span class="p">(</span><span class="s2">"customer"</span><span class="p">))</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>Order(order_id=1, customer='Rahim Traders', region='Dhaka', quantity=120, unit_price=3.5, status='Delivered')
+Order 1 value: 420.00
+Net revenue: 3170.00
+Open value: 320.00
+{'Rahim Traders': 1290.0, 'Nova Apparel': 1880.0}
+</code></pre></div>
+
+<p>Dhaka net revenue = <strong>3,170</strong>, matching SQL, Excel and Power BI. The business rules now live in <strong>one</strong> place.</p>
+<h2 id="example-3-type-hints-catch-a-bug-before-it-runs">Example 3: type hints catch a bug before it runs</h2>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">achievement</span><span class="p">(</span><span class="n">revenue</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">target</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">revenue</span> <span class="o">/</span> <span class="n">target</span>
+
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">achievement</span><span class="p">(</span><span class="mi">3170</span><span class="p">,</span><span class="w"> </span><span class="mi">3600</span><span class="p">)</span><span class="si">:</span><span class="s2">.1%</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">achievement</span><span class="p">(</span><span class="s2">"3170"</span><span class="p">,</span> <span class="mi">3600</span><span class="p">))</span>     <span class="c1"># oops: text from a CSV</span>
+</code></pre></div>
+
+<p>Running it crashes on the second call:</p>
+<div class="codehilite"><pre><span></span><code>88.1%
+Traceback (most recent call last):
+  ...
+TypeError: unsupported operand type(s) for /: 'str' and 'int'
+</code></pre></div>
+
+<p>A type checker finds it <strong>without running</strong> the code (<code>uvx mypy hints.py</code>, or the red underline from Pylance in VS Code):</p>
+<div class="codehilite"><pre><span></span><code>hints.py:6: error: Argument 1 to "achievement" has incompatible type "str"; expected "float"  [arg-type]
+Found 1 error in 1 file (checked 1 source file)
+</code></pre></div>
+
+<table>
+<thead>
+<tr>
+<th>Hint</th>
+<th>Means</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>x: int</code>, <code>y: float</code>, <code>s: str</code>, <code>ok: bool</code></td>
+<td>Simple types (an <code>int</code> is accepted where <code>float</code> is expected)</td>
+</tr>
+<tr>
+<td><code>list[Order]</code></td>
+<td>A list of Order objects</td>
+</tr>
+<tr>
+<td><code>dict[str, float]</code></td>
+<td>Keys are text, values are numbers</td>
+</tr>
+<tr>
+<td><code>str | None</code></td>
+<td>Text, or nothing (an optional value)</td>
+</tr>
+<tr>
+<td><code>-&gt; None</code></td>
+<td>The function returns nothing</td>
+</tr>
+</tbody>
+</table>
+<h2 id="when-to-use-a-class">When to use a class</h2>
+<table>
+<thead>
+<tr>
+<th>Use a class when…</th>
+<th>Stay with functions when…</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Data and the rules about it belong together (<code>Order.value</code>)</td>
+<td>It's a single transformation (<code>clean_row(row)</code>)</td>
+</tr>
+<tr>
+<td>You create many similar objects</td>
+<td>A script runs once, top to bottom</td>
+</tr>
+<tr>
+<td>A framework expects one (Pydantic, scikit-learn)</td>
+<td>A dict or tuple is enough</td>
+</tr>
+</tbody>
+</table>
+<p>Good Python mixes both: dataclasses for records, plain functions for steps.</p>
+<h2 id="common-mistakes">Common mistakes</h2>
+<table>
+<thead>
+<tr>
+<th>Mistake</th>
+<th>What happens</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Forgetting <code>self</code> in a method</td>
+<td><code>TypeError: takes 0 positional arguments but 1 was given</code></td>
+<td><code>def net(self):</code></td>
+</tr>
+<tr>
+<td><code>order.value()</code> on a property</td>
+<td><code>TypeError: 'float' object is not callable</code></td>
+<td>No brackets for properties</td>
+</tr>
+<tr>
+<td>Mutable default: <code>def __init__(self, orders=[])</code></td>
+<td>Every instance shares one list</td>
+<td>Use <code>None</code>, or <code>field(default_factory=list)</code> in dataclasses</td>
+</tr>
+<tr>
+<td>Believing hints are enforced at run time</td>
+<td>Wrong types still crash later</td>
+<td>Run Pylance/mypy, and validate input (Pydantic later)</td>
+</tr>
+<tr>
+<td>Giant "God classes" doing everything</td>
+<td>Hard to test or change</td>
+<td>Small classes with one responsibility</td>
+</tr>
+</tbody>
+</table>
+<h2 id="try-it-yourself">Try it yourself</h2>
+<p><strong>Task:</strong> Add a method <code>largest(self) -&gt; Order</code> to <code>OrderBook</code> that returns the biggest <strong>non-cancelled</strong> order. Print its ID, customer and value.</p>
+<details>
+<summary>Show a hint</summary>
+<p><code>max(items, key=lambda o: o.value)</code> returns the item with the largest value.</p>
+</details>
+<details>
+<summary>Show the solution</summary>
+<div class="codehilite"><pre><span></span><code>    <span class="k">def</span><span class="w"> </span><span class="nf">largest</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Order</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""The biggest non-cancelled order."""</span>
+        <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">net</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">o</span><span class="p">:</span> <span class="n">o</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+
+
+<span class="n">big</span> <span class="o">=</span> <span class="n">book</span><span class="o">.</span><span class="n">largest</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Largest order: </span><span class="si">{</span><span class="n">big</span><span class="o">.</span><span class="n">order_id</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">big</span><span class="o">.</span><span class="n">customer</span><span class="si">}</span><span class="s2">) = </span><span class="si">{</span><span class="n">big</span><span class="o">.</span><span class="n">value</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>Largest order: 3 (Nova Apparel) = 1560.00
+</code></pre></div>
+
+<p>(File: <code>solutions/ex04_largest_order.py</code>.)</p>
+</details>
+<h2 id="quick-quiz">Quick quiz</h2>
+<div class="quiz-q" data-answer="1">
+<p>1. What does <code>@dataclass</code> generate for you?</p>
+<ol>
+<li>A database table</li>
+<li><code>__init__</code>, a readable print-out and comparison methods</li>
+<li>Type checking at run time</li>
+</ol>
+<details>
+<summary>Show answer</summary>
+<p><strong>B.</strong></p>
+</details>
+</div>
+<div class="quiz-q" data-answer="1">
+<p>2. Does Python stop <code>achievement("3170", 3600)</code> because of the type hint?</p>
+<ol>
+<li>Yes, immediately</li>
+<li>No; hints are checked by tools like Pylance and mypy, not at run time</li>
+<li>Only in Python 3.14</li>
+</ol>
+<details>
+<summary>Show answer</summary>
+<p><strong>B.</strong></p>
+</details>
+</div>
+<div class="quiz-q" data-answer="0">
+<p>3. What does <code>dict[str, float]</code> describe?</p>
+<ol>
+<li>A dict with text keys and number values</li>
+<li>A list of strings and floats</li>
+<li>A string that looks like a dict</li>
+</ol>
+<details>
+<summary>Show answer</summary>
+<p><strong>A.</strong></p>
+</details>
+</div>
+<h2 id="summary">Summary</h2>
+<ul>
+<li>A <strong>class</strong> bundles data and behaviour; <strong>instances</strong> are the objects; <code>self</code> is the current one.</li>
+<li><code>@dataclass</code> removes boilerplate; <code>@property</code> exposes calculated fields like <code>order.value</code>.</li>
+<li>Keep business rules in one place (<code>OrderBook.net_revenue</code>) so every report agrees.</li>
+<li><strong>Type hints</strong> document contracts; <strong>Pylance/mypy</strong> catch mismatches before run time.</li>
+</ul>
+<div class="admonition job">
+<p class="admonition-title">Job-ready check</p>
+<p><strong>Interview question:</strong> <em>"Why use type hints if Python doesn't enforce them?"</em></p>
+<p><strong>Strong answer:</strong> "They make function contracts explicit for readers, give the editor accurate autocomplete, and let a type checker like mypy catch mistakes, such as passing CSV text where a number is expected, before the code runs, often in CI. Libraries like Pydantic also use them to validate data at run time."</p>
+<p><strong>Mini project:</strong> Load all 12 orders from <code>data/orders.csv</code> into <code>Order</code> objects (convert the types), build an <code>OrderBook</code>, and print <code>revenue_by("region")</code>. It must match the region totals from the Collections lesson.</p>
+</div>
+<div class="terms-box"><div class="files-head"><b>Key terms in this lesson</b><a href="../../../glossary.html">Glossary →</a></div><div class="term-chips"><a class="term-chip" href="../../../glossary.html#class" title="A blueprint that bundles data and the behaviour that belongs to it. Each object created from it is an instance.">Class</a><a class="term-chip" href="../../../glossary.html#dataclass" title="A Python class whose __init__, readable print-out and comparison are generated from its typed fields.">Dataclass</a><a class="term-chip" href="../../../glossary.html#type-hints" title="Notes in code that say what type a variable or function expects (revenue: float). Tools like Pylance and mypy check them before the code runs.">Type hints</a></div></div>
+<h2 id="free-resources">Free resources to go deeper</h2><ul class="resources"><li><a href="https://docs.python.org/3/tutorial/">Classes (Python tutorial)</a><span class="r-meta">Python official docs · Section 9: classes, instances and methods.</span></li><li><a href="https://code.visualstudio.com/docs/python/debugging">Python debugging in VS Code</a><span class="r-meta">VS Code docs · Step into methods to see objects in the Variables panel.</span></li></ul>
+<div class="complete-bar"><span>Finished reading and did the exercise?</span>
+<button class="btn" id="completeBtn" type="button" data-id="phase-0/programming-refresher/04-oop-type-hints">Mark lesson as complete</button></div>
+<nav class="pager"><a class="prev" href="../../../learn/phase-0/programming-refresher/03-files-exceptions.html"><small>← Previous</small>Files &amp; Exceptions: Read and Write Data Safely</a><a class="next" href="../../../learn/phase-0/testing-ci/01-pytest-ruff.html"><small>Next →</small>pytest &amp; ruff: Prove Your Code Works and Keep It Clean</a></nav>
+<p class="reviewed">Last reviewed: 2026-10-09</p>
+
+  </div></main>
+  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#example-1-a-dataclass-with-a-property-and-a-method">Example 1: a dataclass with a property and a method</a><a href="#example-2-a-class-that-works-with-many-objects">Example 2: a class that works with many objects</a><a href="#example-3-type-hints-catch-a-bug-before-it-runs">Example 3: type hints catch a bug before it runs</a><a href="#when-to-use-a-class">When to use a class</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#free-resources">Free resources</a></aside>
+</div>
+<footer class="site">Data, AI &amp; Automation Path v0.7 · Applied AI, Data &amp; Automation Lab · Updated October 2026<br>
+Lesson text: <a href="../../../license.html">CC BY-NC-SA 4.0</a> · Code: <a href="../../../license.html#code-mit-license">MIT</a> · Free external resources belong to their respective owners.</footer>
+<script src="../../../search-index.js"></script>
+<script src="../../../assets/app.js"></script>
+</body>
+</html>

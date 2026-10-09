@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en" data-root="../../../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cleaning Data with pandas: From Messy Export to Trusted Table — Data, AI &amp; Automation Path</title>
+<meta name="description" content="Fix column names, text, numbers stored as text, duplicates, impossible values, typo outliers and missing values — then prove the result is right against a known clean file.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data, AI &amp; Automation Path">
+<meta property="og:title" content="Cleaning Data with pandas: From Messy Export to Trusted Table">
+<meta property="og:description" content="Fix column names, text, numbers stored as text, duplicates, impossible values, typo outliers and missing values — then prove the result is right against a known clean file.">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+
+<script>(function(){var t=null;try{t=localStorage.getItem('daa-theme')}catch(e){}
+if(!t)t=(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';
+document.documentElement.setAttribute('data-theme',t);
+var n=null;try{n=localStorage.getItem('daa-nav')}catch(e){}
+if(n==='open'&&window.matchMedia&&matchMedia('(min-width: 961px)').matches)document.documentElement.setAttribute('data-nav','open');
+document.documentElement.classList.add('no-anim')})();</script>
+<link rel="stylesheet" href="../../../assets/style.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233f7d6a'/%3E%3Ctext x='16' y='21' font-family='sans-serif' font-size='13' font-weight='700' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Open curriculum menu" title="Curriculum menu (press M)" aria-controls="sidebar" aria-expanded="false"><span class="ico-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span class="ico-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></button>
+  <a class="brand" href="../../../index.html"><span class="brand-badge">AI</span><span class="brand-text"><span class="brand-name">Data, AI &amp; Automation Path</span><span class="brand-version">v0.7</span></span></a>
+  <nav class="top-links" aria-label="Main">
+    <a href="../../../index.html" class="">Home</a><a href="../../../curriculum.html" class="">Curriculum</a><a href="../../../practice-files.html" class="">Practice files</a><a href="../../../glossary.html" class="">Glossary</a><a href="../../../how-to-learn.html" class="">How to learn</a><a href="../../../about.html" class="">About</a>
+  </nav>
+  <div class="top-spacer"></div>
+  <div class="search" role="search">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input id="searchInput" type="search" placeholder="Search lessons, tools, topics" aria-label="Search" autocomplete="off">
+    <kbd>/</kbd>
+    <div class="search-results" id="searchResults" role="listbox"></div>
+  </div>
+  <button class="icon-btn theme-toggle" id="themeBtn" aria-label="Toggle light or dark mode" title="Light / dark"><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
+</header>
+<div class="layout wide">
+  <nav class="sidebar" id="sidebar" aria-label="Curriculum">
+    <div class="side-title">Curriculum</div>
+    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="64"><i></i></div><span class="bar-label" data-progress-label></span></div>
+<div class="nav-phase"><a href="../../../learn/phase-0/index.html"><span class="nav-num">0</span>Foundations</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-1/index.html"><span class="nav-num">1</span>Analytics &amp; BI</a>
+</div>
+<div class="nav-phase current open"><a href="../../../learn/phase-2/index.html"><span class="nav-num">2</span>Data Science</a>
+<ul class="nav-modules">
+<li><a class="" href="../../../learn/phase-2/numpy/index.html">NumPy</a>
+</li>
+<li><a class="current" href="../../../learn/phase-2/pandas/index.html">Pandas</a>
+<ul class="nav-lessons">
+<li><a class="" data-lesson="phase-2/pandas/01-dataframe-basics" href="../../../learn/phase-2/pandas/01-dataframe-basics.html">pandas DataFrame Basics: Load, Explore, Select and Filter</a></li>
+<li><a class="current" data-lesson="phase-2/pandas/02-cleaning" href="../../../learn/phase-2/pandas/02-cleaning.html">Cleaning Data with pandas: From Messy Export to Trusted Table</a></li>
+<li><a class="" data-lesson="phase-2/pandas/03-merge-groupby" href="../../../learn/phase-2/pandas/03-merge-groupby.html">pandas Merge &amp; groupby: Join Tables and Summarise Like SQL</a></li>
+<li><a class="" data-lesson="phase-2/pandas/04-pivot-datetime" href="../../../learn/phase-2/pandas/04-pivot-datetime.html">pandas Pivot &amp; Datetime: Analyse Data Over Time</a></li>
+</ul>
+</li>
+<li><a class="" href="../../../learn/phase-2/polars-duckdb/index.html">Polars &amp; DuckDB</a>
+</li>
+<li><a class="" href="../../../learn/phase-2/eda/index.html">EDA</a>
+</li>
+<li><a class="" href="../../../learn/phase-2/statistics/index.html">Statistics</a>
+</li>
+<li><a class="" href="../../../learn/phase-2/ab-testing/index.html">Experimentation &amp; A/B Testing</a>
+</li>
+<li><a class="" href="../../../learn/phase-2/visualization/index.html">Visualization</a>
+</li>
+<li><a class="" href="../../../learn/phase-2/ml-foundations/index.html">ML Foundations</a>
+</li>
+<li><a class="" href="../../../learn/phase-2/research-thinking/index.html">Research Thinking</a>
+</li>
+<li><a class="nav-project " href="../../../learn/phase-2/project.html">★ Milestone project</a></li>
+</ul>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-3/index.html"><span class="nav-num">3</span>Data Engineering</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-4/index.html"><span class="nav-num">4</span>ML Engineering</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-5/index.html"><span class="nav-num">5</span>LLM &amp; RAG</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-6/index.html"><span class="nav-num">6</span>Agents &amp; Automation</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-7/index.html"><span class="nav-num">7</span>LLMOps &amp; Governance</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-8/index.html"><span class="nav-num">8</span>Capstone</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-9/index.html"><span class="nav-num">9</span>Career</a>
+</div>
+<div class="side-extra"><a href="../../../index.html">Home</a><a href="../../../curriculum.html">Full curriculum map</a><a href="../../../practice-files.html">Practice files</a><a href="../../../glossary.html">Glossary</a><a href="../../../how-to-learn.html">How to learn here</a><a href="../../../about.html">About &amp; contributing</a></div></nav>
+  <main class="main" id="main"><div class="content">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../../index.html">Home</a><span class="sep">/</span><a href="../../../learn/phase-2/index.html">Phase 2</a><span class="sep">/</span><a href="../../../learn/phase-2/pandas/index.html">Pandas</a><span class="sep">/</span><span>Cleaning Data with pandas: From Messy Export to Trusted Table</span></nav>
+<h1>Cleaning Data with pandas: From Messy Export to Trusted Table</h1>
+<p class="lead">Fix column names, text, numbers stored as text, duplicates, impossible values, typo outliers and missing values — then prove the result is right against a known clean file.</p>
+<div class="meta"><span class="pill">Phase <b>2</b> · Data Science</span><span class="pill">Level <b>Beginner</b></span><span class="pill">Time <b>55 min</b></span></div>
+<div class="admonition note"><p class="admonition-title">Before you start</p><p><a href="../../../learn/phase-2/pandas/01-dataframe-basics.html">pandas DataFrame Basics: Load, Explore, Select and Filter</a></p></div>
+<div class="files-box"><div class="files-head"><b>Practice files for this page</b><a href="../../../practice-files.html">All practice files →</a></div><ul><li><a href="../../../downloads/phase-2/data-science-scripts.zip" download>data-science-scripts.zip</a><span class="f-desc">All 21 Phase 2 lesson scripts (NumPy to research thinking), shared chart style, data folder and solutions · 230 KB</span></li><li><a href="../../../downloads/phase-2/orders_2025_raw.csv" download>orders_2025_raw.csv</a><span class="f-desc">The same orders as a messy ERP export (4,264 lines) for the pandas cleaning lesson · 424 KB</span></li><li><a href="../../../downloads/phase-2/orders_2025.csv" download>orders_2025.csv</a><span class="f-desc">4,246 clean orders for 2025 (synthetic, fixed seed): region, segment, channel, product, price, discount, status, delivery days, revenue · 472 KB</span></li></ul></div>
+<h2 id="what-is-it">What is it?</h2>
+<p><strong>Data cleaning</strong> turns a raw export into a table you can trust: consistent names and text, correct types, no duplicates, no impossible values, and missing values that are <strong>explained</strong>. You did this with Power Query in Phase 1 and with the CSV cleaner in Phase 0; pandas does it in a few lines of repeatable code.</p>
+<div class="admonition job">
+<p class="admonition-title">Why it matters at work</p>
+<p>Analysts commonly say most of their time goes on preparing data. Every wrong cleaning decision flows straight into dashboards and models. Being able to say <em>what</em> you changed, <em>why</em>, and <em>how you checked it</em> is what makes your numbers trusted.</p>
+</div>
+<p>The raw file <code>orders_2025_raw.csv</code> is the same 2025 data after a messy ERP export. The script is <code>04_pandas_cleaning.py</code>.</p>
+<h2 id="step-1-profile-the-raw-file">Step 1: profile the raw file</h2>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="n">raw</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">"data/orders_2025_raw.csv"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">raw</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">raw</span><span class="o">.</span><span class="n">dtypes</span><span class="p">[[</span><span class="s2">"Qty"</span><span class="p">,</span> <span class="s2">"Unit Price"</span><span class="p">,</span> <span class="s2">"Delivery Days"</span><span class="p">]])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">raw</span><span class="p">[</span><span class="s2">"Region"</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">raw</span><span class="p">[</span><span class="s2">"Status"</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">())</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>(4264, 14)
+Qty                  str
+Unit Price       float64
+Delivery Days    float64
+dtype: object
+&lt;ArrowStringArray&gt;
+[  'Chattogram',  'Narayanganj',      'Gazipur',       'Khulna',        'Dhaka',       'DHAKA ',  'CHATTOGRAM ',
+      'KHULNA ',     'GAZIPUR ', 'NARAYANGANJ ']
+Length: 10, dtype: str
+Status
+Delivered     3863
+Cancelled      282
+Shipped         45
+Pending         44
+ delivered      26
+ cancelled       2
+ pending         1
+ shipped         1
+Name: count, dtype: int64
+</code></pre></div>
+
+<p>Problems found: <strong>Qty is text</strong> (it shouldn't be), 10 region spellings for 5 regions, statuses with spaces and lower case, and 4,264 rows where the ERP says 4,246 orders. (The exact look of <code>unique()</code> depends on whether <code>pyarrow</code> is installed; the values are the same.)</p>
+<h2 id="step-2-tidy-column-names">Step 2: tidy column names</h2>
+<div class="codehilite"><pre><span></span><code><span class="n">df</span> <span class="o">=</span> <span class="n">raw</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">" "</span><span class="p">,</span> <span class="s2">"_"</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">"qty"</span><span class="p">:</span> <span class="s2">"quantity"</span><span class="p">})</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">))</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>['order_id', 'order_date', 'customer_id', 'region', 'segment', 'channel', 'category', 'product', 'quantity', 'unit_price', 'discount', 'status', 'promised_days', 'delivery_days']
+</code></pre></div>
+
+<p><code>snake_case</code> names are easy to type and match the SQL tables.</p>
+<h2 id="step-3-clean-text">Step 3: clean text</h2>
+<div class="codehilite"><pre><span></span><code><span class="n">df</span><span class="p">[</span><span class="s2">"region"</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">"region"</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">title</span><span class="p">()</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">"status"</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">"status"</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">title</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">"region"</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">"status"</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">())</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>region
+Chattogram     1541
+Dhaka          1410
+Gazipur         509
+Narayanganj     473
+Khulna          331
+Name: count, dtype: int64
+status
+Delivered    3889
+Cancelled     284
+Shipped       46
+Pending       45
+Name: count, dtype: int64
+</code></pre></div>
+
+<p>5 regions and 4 statuses. (The counts still include duplicates; Step 5 removes them.)</p>
+<h2 id="step-4-numbers-stored-as-text">Step 4: numbers stored as text</h2>
+<div class="codehilite"><pre><span></span><code><span class="n">bad</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">"quantity"</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s2">"coerce"</span><span class="p">)</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">bad</span><span class="p">,</span> <span class="s2">"quantity"</span><span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> <span class="n">bad</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">"quantity"</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">"quantity"</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">","</span><span class="p">,</span> <span class="s2">""</span><span class="p">,</span> <span class="n">regex</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">"int64"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">"quantity"</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>['3,052', '1,235', '15,347'] 25
+int64
+</code></pre></div>
+
+<p><code>to_numeric(errors="coerce")</code> turns anything that isn't a number into <code>NaN</code>, a quick way to <strong>find</strong> the problem values before fixing them. 25 quantities had thousands separators.</p>
+<h2 id="step-5-duplicates">Step 5: duplicates</h2>
+<div class="codehilite"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">duplicated</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">(),</span> <span class="s2">"exact duplicate rows"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">"order_id"</span><span class="p">]</span><span class="o">.</span><span class="n">duplicated</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">(),</span> <span class="s2">"duplicate order IDs"</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">),</span> <span class="n">df</span><span class="p">[</span><span class="s2">"order_id"</span><span class="p">]</span><span class="o">.</span><span class="n">is_unique</span><span class="p">)</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>18 exact duplicate rows
+18 duplicate order IDs
+4246 True
+</code></pre></div>
+
+<p>Always check both: whole-row duplicates (safe to drop) and duplicate <strong>keys</strong> (two different rows with the same ID need investigating). Here they're the same 18, so dropping them leaves 4,246 unique orders.</p>
+<h2 id="step-6-impossible-values">Step 6: impossible values</h2>
+<div class="codehilite"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">"quantity"</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">,</span> <span class="p">[</span><span class="s2">"order_id"</span><span class="p">,</span> <span class="s2">"product"</span><span class="p">,</span> <span class="s2">"quantity"</span><span class="p">]])</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">"quantity"</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">"quantity"</span><span class="p">]</span><span class="o">.</span><span class="n">abs</span><span class="p">()</span>          <span class="c1"># assumption (confirmed with ERP owner): sign error</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>      order_id         product  quantity
+341      10338   Metal Buttons    -13489
+2089     12080  Polyester Yarn      -698
+</code></pre></div>
+
+<p>A negative quantity could be a <strong>return</strong> or a <strong>typing error</strong>. You can't tell from the data: ask the data owner, then write the decision down next to the code.</p>
+<h2 id="step-7-outliers-that-are-errors">Step 7: outliers that are errors</h2>
+<p>Compare each price with the median price <strong>of the same product</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">median_price</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"product"</span><span class="p">)[</span><span class="s2">"unit_price"</span><span class="p">]</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="s2">"median"</span><span class="p">)</span>
+<span class="n">ratio</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">"unit_price"</span><span class="p">]</span> <span class="o">/</span> <span class="n">median_price</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">ratio</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">,</span> <span class="p">[</span><span class="s2">"order_id"</span><span class="p">,</span> <span class="s2">"product"</span><span class="p">,</span> <span class="s2">"unit_price"</span><span class="p">]]</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">median</span><span class="o">=</span><span class="n">median_price</span><span class="p">[</span><span class="n">ratio</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">]))</span>
+<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">ratio</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">,</span> <span class="s2">"unit_price"</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">ratio</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">,</span> <span class="s2">"unit_price"</span><span class="p">]</span> <span class="o">/</span> <span class="mi">100</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>      order_id       product  unit_price  median
+2035     12026  Cotton Twill       355.0    3.49
+3362     13352  Cotton Twill       344.0    3.49
+3642     13629  Cotton Twill       346.0    3.49
+</code></pre></div>
+
+<p>Prices about 100× the usual 3.49 are a decimal-point slip (3.55 typed as 355). <code>transform("median")</code> returns one value <strong>per row</strong> (the median of that row's product), so it lines up with the data. Real large orders, such as the 44,127 bulk order, are <strong>not</strong> errors and stay.</p>
+<h2 id="step-8-missing-values-explain-dont-just-fill">Step 8: missing values — explain, don't just fill</h2>
+<div class="codehilite"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()[</span><span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">"delivery_days"</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">(),</span> <span class="s2">"status"</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">())</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>delivery_days    374
+dtype: int64
+status
+Cancelled    283
+Shipped       46
+Pending       45
+Name: count, dtype: int64
+</code></pre></div>
+
+<p>All 374 missing delivery times belong to orders that <strong>haven't been delivered</strong>. That's correct data, so filling them with 0 or the average would be wrong. Missing values need a reason, not a reflex.</p>
+<table>
+<thead>
+<tr>
+<th>Situation</th>
+<th>Usual choice</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Missing because it doesn't apply (not delivered)</td>
+<td>Leave missing; filter when analysing</td>
+</tr>
+<tr>
+<td>Missing at random, few rows</td>
+<td>Drop those rows for that analysis, and say how many</td>
+</tr>
+<tr>
+<td>Needed for a model</td>
+<td>Fill (impute) with a documented rule, e.g. median per group</td>
+</tr>
+<tr>
+<td>Missing key fields (ID, date)</td>
+<td>Reject the row and report it</td>
+</tr>
+</tbody>
+</table>
+<h2 id="step-9-types-derived-columns-and-validation">Step 9: types, derived columns and validation</h2>
+<div class="codehilite"><pre><span></span><code><span class="n">df</span><span class="p">[</span><span class="s2">"order_date"</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">"order_date"</span><span class="p">])</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">"revenue"</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">"quantity"</span><span class="p">]</span> <span class="o">*</span> <span class="n">df</span><span class="p">[</span><span class="s2">"unit_price"</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="s2">"discount"</span><span class="p">]))</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">clean</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">"data/orders_2025.csv"</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="s2">"order_date"</span><span class="p">])</span>
+<span class="n">check</span> <span class="o">=</span> <span class="n">clean</span><span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">)]</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">check</span><span class="p">),</span> <span class="n">df</span><span class="p">[</span><span class="s2">"order_id"</span><span class="p">]</span><span class="o">.</span><span class="n">is_unique</span><span class="p">)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">testing</span><span class="o">.</span><span class="n">assert_frame_equal</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> <span class="n">check</span><span class="p">,</span> <span class="n">check_dtype</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Cleaned data matches orders_2025.csv"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">"status"</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">"Cancelled"</span><span class="p">,</span> <span class="s2">"revenue"</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">(),</span> <span class="mi">2</span><span class="p">))</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>True True
+Cleaned data matches orders_2025.csv
+5478357.79
+</code></pre></div>
+
+<p><code>assert_frame_equal</code> raises an error at the first difference, so a silent mistake can't slip through. The cleaned data is identical to the official clean file, and net revenue matches the known answer.</p>
+<h2 id="common-mistakes">Common mistakes</h2>
+<table>
+<thead>
+<tr>
+<th>Mistake</th>
+<th>What happens</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>fillna(0)</code> on everything</td>
+<td>Fake zeros distort averages</td>
+<td>Explain each missing pattern first</td>
+</tr>
+<tr>
+<td>Dropping all outliers</td>
+<td>Real big customers disappear</td>
+<td>Separate errors (impossible) from rare-but-real</td>
+</tr>
+<tr>
+<td><code>drop_duplicates()</code> without checking keys</td>
+<td>Conflicting rows with the same ID survive</td>
+<td>Also check <code>df["id"].duplicated()</code></td>
+</tr>
+<tr>
+<td>Cleaning in place on <code>raw</code></td>
+<td>No way to compare before/after</td>
+<td>Work on <code>raw.copy()</code></td>
+</tr>
+<tr>
+<td>No validation step</td>
+<td>Errors found by the CFO</td>
+<td>Row counts, unique keys, known totals, <code>assert</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="try-it-yourself">Try it yourself</h2>
+<p><strong>Task:</strong> Turn Steps 2–9 into one function, <code>clean_orders(path)</code>, that ends with <code>assert</code> checks (unique IDs, positive quantities, only the 4 known statuses). Run it on the raw file and print the shape and net revenue.</p>
+<details>
+<summary>Show the solution</summary>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">clean_orders</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+    <span class="n">d</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">" "</span><span class="p">,</span> <span class="s2">"_"</span><span class="p">)</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">"qty"</span><span class="p">:</span> <span class="s2">"quantity"</span><span class="p">})</span>
+    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">"region"</span><span class="p">,</span> <span class="s2">"status"</span><span class="p">]:</span>
+        <span class="n">d</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">title</span><span class="p">()</span>
+    <span class="n">d</span><span class="p">[</span><span class="s2">"quantity"</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s2">"quantity"</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">","</span><span class="p">,</span> <span class="s2">""</span><span class="p">,</span> <span class="n">regex</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">"int64"</span><span class="p">)</span><span class="o">.</span><span class="n">abs</span><span class="p">()</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span>
+    <span class="n">med</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"product"</span><span class="p">)[</span><span class="s2">"unit_price"</span><span class="p">]</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="s2">"median"</span><span class="p">)</span>
+    <span class="n">d</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">d</span><span class="p">[</span><span class="s2">"unit_price"</span><span class="p">]</span> <span class="o">/</span> <span class="n">med</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">,</span> <span class="s2">"unit_price"</span><span class="p">]</span> <span class="o">/=</span> <span class="mi">100</span>
+    <span class="n">d</span><span class="p">[</span><span class="s2">"order_date"</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="s2">"order_date"</span><span class="p">])</span>
+    <span class="n">d</span><span class="p">[</span><span class="s2">"revenue"</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="s2">"quantity"</span><span class="p">]</span> <span class="o">*</span> <span class="n">d</span><span class="p">[</span><span class="s2">"unit_price"</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">d</span><span class="p">[</span><span class="s2">"discount"</span><span class="p">]))</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">d</span><span class="p">[</span><span class="s2">"order_id"</span><span class="p">]</span><span class="o">.</span><span class="n">is_unique</span><span class="p">,</span> <span class="s2">"duplicate order IDs"</span>
+    <span class="k">assert</span> <span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="s2">"quantity"</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">(),</span> <span class="s2">"non-positive quantities"</span>
+    <span class="k">assert</span> <span class="n">d</span><span class="p">[</span><span class="s2">"status"</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s2">"Delivered"</span><span class="p">,</span> <span class="s2">"Shipped"</span><span class="p">,</span> <span class="s2">"Pending"</span><span class="p">,</span> <span class="s2">"Cancelled"</span><span class="p">])</span><span class="o">.</span><span class="n">all</span><span class="p">(),</span> <span class="s2">"unknown status"</span>
+    <span class="k">return</span> <span class="n">d</span>
+
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">clean_orders</span><span class="p">(</span><span class="s2">"data/orders_2025_raw.csv"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">result</span><span class="o">.</span><span class="n">status</span> <span class="o">!=</span> <span class="s2">"Cancelled"</span><span class="p">,</span> <span class="s2">"revenue"</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">(),</span> <span class="mi">2</span><span class="p">))</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>(4246, 15) 5478357.79
+</code></pre></div>
+
+<p>A function plus assertions is a small, testable pipeline: exactly the pattern of the Phase 0 CSV cleaner.</p>
+</details>
+<h2 id="quick-quiz">Quick quiz</h2>
+<div class="quiz-q" data-answer="2">
+<p>1. <code>delivery_days</code> is missing for 374 orders, all cancelled, shipped or pending. What should you do?</p>
+<ol>
+<li>Fill with 0</li>
+<li>Fill with the average</li>
+<li>Leave them missing, and filter to delivered orders when analysing delivery time</li>
+</ol>
+<details>
+<summary>Show answer</summary>
+<p><strong>C.</strong> The values are missing for a valid reason.</p>
+</details>
+</div>
+<div class="quiz-q" data-answer="1">
+<p>2. What does <code>groupby("product")["unit_price"].transform("median")</code> return?</p>
+<ol>
+<li>One median per product (a short table)</li>
+<li>One value per row: the median price of that row's product</li>
+<li>The overall median</li>
+</ol>
+<details>
+<summary>Show answer</summary>
+<p><strong>B.</strong> <code>transform</code> keeps the original row count, so you can compare each row with its group.</p>
+</details>
+</div>
+<div class="quiz-q" data-answer="1">
+<p>3. Which check proves your cleaned table matches a trusted version?</p>
+<ol>
+<li><code>df.head()</code></li>
+<li><code>pd.testing.assert_frame_equal(df, trusted)</code></li>
+<li><code>df.info()</code></li>
+</ol>
+<details>
+<summary>Show answer</summary>
+<p><strong>B.</strong></p>
+</details>
+</div>
+<h2 id="summary">Summary</h2>
+<ul>
+<li>Profile first: types, distinct values, counts, duplicates, missing values.</li>
+<li>Fix names and text (<code>.str.strip().str.title()</code>), convert text numbers, drop duplicates (checking keys).</li>
+<li>Separate <strong>errors</strong> (negative quantity, ×100 price) from <strong>rare but real</strong> values; document assumptions.</li>
+<li>Explain missing values before handling them.</li>
+<li>Validate: row counts, unique keys, known totals and <code>assert_frame_equal</code>.</li>
+</ul>
+<div class="admonition job">
+<p class="admonition-title">Job-ready check</p>
+<p><strong>Interview question:</strong> <em>"How do you decide whether an outlier is an error?"</em></p>
+<p><strong>Strong answer:</strong> "I compare it with its context, such as the same product's typical price or the customer's usual order size, and check whether it's physically possible. A price 100 times the median is almost certainly a decimal slip; a bulk order from a large factory is rare but real. I confirm with the data owner, fix errors in a documented step, and keep real extremes, using robust statistics like the median when they distort averages."</p>
+<p><strong>Mini project:</strong> Write <code>clean_orders()</code> in its own file with a pytest test that runs it on the raw file and checks 4,246 rows and net revenue 5,478,357.79, the Phase 0 testing habits applied to data.</p>
+</div>
+<div class="terms-box"><div class="files-head"><b>Key terms in this lesson</b><a href="../../../glossary.html">Glossary →</a></div><div class="term-chips"><a class="term-chip" href="../../../glossary.html#data-quality" title="How fit data is for use: complete, valid, unique, consistent and on time. Checked with automated tests in pipelines.">Data quality</a></div></div>
+<h2 id="free-resources">Free resources to go deeper</h2><ul class="resources"><li><a href="https://pandas.pydata.org/docs/user_guide/missing_data.html">Working with missing data</a><span class="r-meta">pandas official docs · NaN, NA, isna, fillna and dropna.</span></li><li><a href="https://pandas.pydata.org/docs/user_guide/text.html">Working with text data</a><span class="r-meta">pandas official docs · The .str methods: strip, lower, replace, contains and more.</span></li><li><a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.drop_duplicates.html">Duplicate labels and drop_duplicates</a><span class="r-meta">pandas API reference · Options for keeping the first, last or no duplicate.</span></li></ul>
+<div class="complete-bar"><span>Finished reading and did the exercise?</span>
+<button class="btn" id="completeBtn" type="button" data-id="phase-2/pandas/02-cleaning">Mark lesson as complete</button></div>
+<nav class="pager"><a class="prev" href="../../../learn/phase-2/pandas/01-dataframe-basics.html"><small>← Previous</small>pandas DataFrame Basics: Load, Explore, Select and Filter</a><a class="next" href="../../../learn/phase-2/pandas/03-merge-groupby.html"><small>Next →</small>pandas Merge &amp; groupby: Join Tables and Summarise Like SQL</a></nav>
+<p class="reviewed">Last reviewed: 2026-10-09</p>
+
+  </div></main>
+  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#step-1-profile-the-raw-file">Step 1: profile the raw file</a><a href="#step-2-tidy-column-names">Step 2: tidy column names</a><a href="#step-3-clean-text">Step 3: clean text</a><a href="#step-4-numbers-stored-as-text">Step 4: numbers stored as text</a><a href="#step-5-duplicates">Step 5: duplicates</a><a href="#step-6-impossible-values">Step 6: impossible values</a><a href="#step-7-outliers-that-are-errors">Step 7: outliers that are errors</a><a href="#step-8-missing-values-explain-dont-just-fill">Step 8: missing values — explain, don&#x27;t just fill</a><a href="#step-9-types-derived-columns-and-validation">Step 9: types, derived columns and validation</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#free-resources">Free resources</a></aside>
+</div>
+<footer class="site">Data, AI &amp; Automation Path v0.7 · Applied AI, Data &amp; Automation Lab · Updated October 2026<br>
+Lesson text: <a href="../../../license.html">CC BY-NC-SA 4.0</a> · Code: <a href="../../../license.html#code-mit-license">MIT</a> · Free external resources belong to their respective owners.</footer>
+<script src="../../../search-index.js"></script>
+<script src="../../../assets/app.js"></script>
+</body>
+</html>

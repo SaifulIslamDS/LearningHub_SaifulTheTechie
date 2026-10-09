@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en" data-root="../../../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Debugging: Read Tracebacks and Use Breakpoints Instead of Guessing — Data, AI &amp; Automation Path</title>
+<meta name="description" content="Read Python error messages, then use VS Code&#x27;s debugger to pause code, inspect variables and step through logic until the bug is obvious.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data, AI &amp; Automation Path">
+<meta property="og:title" content="Debugging: Read Tracebacks and Use Breakpoints Instead of Guessing">
+<meta property="og:description" content="Read Python error messages, then use VS Code&#x27;s debugger to pause code, inspect variables and step through logic until the bug is obvious.">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+
+<script>(function(){var t=null;try{t=localStorage.getItem('daa-theme')}catch(e){}
+if(!t)t=(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';
+document.documentElement.setAttribute('data-theme',t);
+var n=null;try{n=localStorage.getItem('daa-nav')}catch(e){}
+if(n==='open'&&window.matchMedia&&matchMedia('(min-width: 961px)').matches)document.documentElement.setAttribute('data-nav','open');
+document.documentElement.classList.add('no-anim')})();</script>
+<link rel="stylesheet" href="../../../assets/style.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233f7d6a'/%3E%3Ctext x='16' y='21' font-family='sans-serif' font-size='13' font-weight='700' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Open curriculum menu" title="Curriculum menu (press M)" aria-controls="sidebar" aria-expanded="false"><span class="ico-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span class="ico-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></button>
+  <a class="brand" href="../../../index.html"><span class="brand-badge">AI</span><span class="brand-text"><span class="brand-name">Data, AI &amp; Automation Path</span><span class="brand-version">v0.7</span></span></a>
+  <nav class="top-links" aria-label="Main">
+    <a href="../../../index.html" class="">Home</a><a href="../../../curriculum.html" class="">Curriculum</a><a href="../../../practice-files.html" class="">Practice files</a><a href="../../../glossary.html" class="">Glossary</a><a href="../../../how-to-learn.html" class="">How to learn</a><a href="../../../about.html" class="">About</a>
+  </nav>
+  <div class="top-spacer"></div>
+  <div class="search" role="search">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input id="searchInput" type="search" placeholder="Search lessons, tools, topics" aria-label="Search" autocomplete="off">
+    <kbd>/</kbd>
+    <div class="search-results" id="searchResults" role="listbox"></div>
+  </div>
+  <button class="icon-btn theme-toggle" id="themeBtn" aria-label="Toggle light or dark mode" title="Light / dark"><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
+</header>
+<div class="layout wide">
+  <nav class="sidebar" id="sidebar" aria-label="Curriculum">
+    <div class="side-title">Curriculum</div>
+    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="64"><i></i></div><span class="bar-label" data-progress-label></span></div>
+<div class="nav-phase current open"><a href="../../../learn/phase-0/index.html"><span class="nav-num">0</span>Foundations</a>
+<ul class="nav-modules">
+<li><a class="current" href="../../../learn/phase-0/dev-environment/index.html">Development Environment</a>
+<ul class="nav-lessons">
+<li><a class="" data-lesson="phase-0/dev-environment/01-vscode-python" href="../../../learn/phase-0/dev-environment/01-vscode-python.html">Set Up Python and VS Code: Your Daily Workbench</a></li>
+<li><a class="" data-lesson="phase-0/dev-environment/02-uv-environments" href="../../../learn/phase-0/dev-environment/02-uv-environments.html">uv, Virtual Environments &amp; Packages: One Project, One Environment</a></li>
+<li><a class="current" data-lesson="phase-0/dev-environment/03-debugging" href="../../../learn/phase-0/dev-environment/03-debugging.html">Debugging: Read Tracebacks and Use Breakpoints Instead of Guessing</a></li>
+</ul>
+</li>
+<li><a class="" href="../../../learn/phase-0/git-github/index.html">Git &amp; GitHub</a>
+</li>
+<li><a class="" href="../../../learn/phase-0/linux/index.html">Linux Essentials</a>
+</li>
+<li><a class="" href="../../../learn/phase-0/programming-refresher/index.html">Programming Refresher</a>
+</li>
+<li><a class="" href="../../../learn/phase-0/testing-ci/index.html">Testing &amp; CI Basics</a>
+</li>
+<li><a class="" href="../../../learn/phase-0/ai-assisted-dev/index.html">AI-Assisted Development</a>
+</li>
+<li><a class="nav-project " href="../../../learn/phase-0/project.html">★ Milestone project</a></li>
+</ul>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-1/index.html"><span class="nav-num">1</span>Analytics &amp; BI</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-2/index.html"><span class="nav-num">2</span>Data Science</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-3/index.html"><span class="nav-num">3</span>Data Engineering</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-4/index.html"><span class="nav-num">4</span>ML Engineering</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-5/index.html"><span class="nav-num">5</span>LLM &amp; RAG</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-6/index.html"><span class="nav-num">6</span>Agents &amp; Automation</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-7/index.html"><span class="nav-num">7</span>LLMOps &amp; Governance</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-8/index.html"><span class="nav-num">8</span>Capstone</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-9/index.html"><span class="nav-num">9</span>Career</a>
+</div>
+<div class="side-extra"><a href="../../../index.html">Home</a><a href="../../../curriculum.html">Full curriculum map</a><a href="../../../practice-files.html">Practice files</a><a href="../../../glossary.html">Glossary</a><a href="../../../how-to-learn.html">How to learn here</a><a href="../../../about.html">About &amp; contributing</a></div></nav>
+  <main class="main" id="main"><div class="content">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../../index.html">Home</a><span class="sep">/</span><a href="../../../learn/phase-0/index.html">Phase 0</a><span class="sep">/</span><a href="../../../learn/phase-0/dev-environment/index.html">Development Environment</a><span class="sep">/</span><span>Debugging: Read Tracebacks and Use Breakpoints Instead of Guessing</span></nav>
+<h1>Debugging: Read Tracebacks and Use Breakpoints Instead of Guessing</h1>
+<p class="lead">Read Python error messages, then use VS Code&#x27;s debugger to pause code, inspect variables and step through logic until the bug is obvious.</p>
+<div class="meta"><span class="pill">Phase <b>0</b> · Foundations</span><span class="pill">Level <b>Beginner</b></span><span class="pill">Time <b>40 min</b></span></div>
+<div class="admonition note"><p class="admonition-title">Before you start</p><p><a href="../../../learn/phase-0/dev-environment/01-vscode-python.html">Set Up Python and VS Code: Your Daily Workbench</a></p></div>
+<div class="files-box"><div class="files-head"><b>Practice files for this page</b><a href="../../../practice-files.html">All practice files →</a></div><ul><li><a href="../../../downloads/phase-0/python-refresher.zip" download>python-refresher.zip</a><span class="f-desc">Python refresher scripts, debugging, pytest and ruff examples, an AI-written function to review, with solutions · 12 KB</span></li></ul></div>
+<h2 id="what-is-it">What is it?</h2>
+<p><strong>Debugging</strong> means finding out <em>why</em> code does something different from what you expect. There are two kinds of bug:</p>
+<table>
+<thead>
+<tr>
+<th>Kind</th>
+<th>What you see</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Crash</strong></td>
+<td>A <strong>traceback</strong> (error message) and the program stops</td>
+<td><code>KeyError: 'Status'</code></td>
+</tr>
+<tr>
+<td><strong>Logic bug</strong></td>
+<td>The program runs, but the answer is <strong>wrong</strong></td>
+<td>The average is 447.50 but should be 516.67</td>
+</tr>
+</tbody>
+</table>
+<p>A <strong>debugger</strong> lets you pause the program on any line (a <strong>breakpoint</strong>), look at every variable, and run one line at a time.</p>
+<div class="admonition job">
+<p class="admonition-title">Why it matters at work</p>
+<p>Data pipelines rarely crash politely. More often, they quietly produce a wrong number. Engineers who can isolate a bug in minutes, instead of scattering <code>print()</code> everywhere, are noticeably more productive, and "walk me through how you'd debug this" is a common interview exercise.</p>
+</div>
+<h2 id="the-practice-script">The practice script</h2>
+<p>Open <code>debug_me.py</code> from <a href="../../../downloads/phase-0/python-refresher.zip">python-refresher.zip</a>. It has <strong>two bugs</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">orders</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span><span class="s2">"order_id"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">"value"</span><span class="p">:</span> <span class="mf">420.0</span><span class="p">,</span> <span class="s2">"status"</span><span class="p">:</span> <span class="s2">"Delivered"</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">"order_id"</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="s2">"value"</span><span class="p">:</span> <span class="mf">240.0</span><span class="p">,</span> <span class="s2">"status"</span><span class="p">:</span> <span class="s2">"Cancelled"</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">"order_id"</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span> <span class="s2">"value"</span><span class="p">:</span> <span class="mf">320.0</span><span class="p">,</span> <span class="s2">"status"</span><span class="p">:</span> <span class="s2">"Shipped"</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">"order_id"</span><span class="p">:</span> <span class="mi">9</span><span class="p">,</span> <span class="s2">"value"</span><span class="p">:</span> <span class="mf">810.0</span><span class="p">,</span> <span class="s2">"status"</span><span class="p">:</span> <span class="s2">"Pending"</span><span class="p">},</span>
+<span class="p">]</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">average_order_value</span><span class="p">(</span><span class="n">rows</span><span class="p">):</span>
+    <span class="c1"># Business rule: cancelled orders don't count</span>
+    <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">rows</span><span class="p">:</span>
+        <span class="n">total</span> <span class="o">+=</span> <span class="n">row</span><span class="p">[</span><span class="s2">"value"</span><span class="p">]</span>
+        <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">total</span> <span class="o">/</span> <span class="n">count</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">open_orders</span><span class="p">(</span><span class="n">rows</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">r</span><span class="p">[</span><span class="s2">"order_id"</span><span class="p">]</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">rows</span> <span class="k">if</span> <span class="n">r</span><span class="p">[</span><span class="s2">"Status"</span><span class="p">]</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">"Shipped"</span><span class="p">,</span> <span class="s2">"Pending"</span><span class="p">)]</span>
+
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Average order value:"</span><span class="p">,</span> <span class="n">average_order_value</span><span class="p">(</span><span class="n">orders</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Open orders:"</span><span class="p">,</span> <span class="n">open_orders</span><span class="p">(</span><span class="n">orders</span><span class="p">))</span>
+</code></pre></div>
+
+<p>Run it:</p>
+<div class="codehilite"><pre><span></span><code>Average order value: 447.5
+Traceback (most recent call last):
+  File "debug_me.py", line 26, in &lt;module&gt;
+    print("Open orders:", open_orders(orders))
+                          ~~~~~~~~~~~^^^^^^^^
+  File "debug_me.py", line 22, in open_orders
+    return [r["order_id"] for r in rows if r["Status"] in ("Shipped", "Pending")]
+                                           ~^^^^^^^^^^
+KeyError: 'Status'
+</code></pre></div>
+
+<h2 id="step-1-read-the-traceback-from-the-bottom-up">Step 1: read the traceback from the bottom up</h2>
+<ol>
+<li><strong>Last line = what went wrong:</strong> <code>KeyError: 'Status'</code>. The code asked a dictionary for a key that doesn't exist.</li>
+<li><strong>The line above = where:</strong> <code>line 22, in open_orders</code>, and the <code>^^^</code> markers point at <code>r["Status"]</code>.</li>
+<li><strong>Higher lines = how we got there:</strong> line 26 called <code>open_orders(...)</code>.</li>
+</ol>
+<p>The keys are lowercase: <code>"status"</code>. Fix line 22, run it again, and the crash is gone. That was <strong>bug 2</strong>.</p>
+<h2 id="step-2-find-the-logic-bug-with-the-debugger">Step 2: find the logic bug with the debugger</h2>
+<p>The average prints <strong>447.5</strong>, but the business rule says to skip cancelled orders: (420 + 320 + 810) ÷ 3 = <strong>516.67</strong>. There's no error message, so this is a logic bug. Use the debugger:</p>
+<ol>
+<li>Click in the <strong>gutter</strong> left of the line <code>total += row["value"]</code>. A <strong>red dot</strong> (breakpoint) appears.</li>
+<li>Press <strong>F5</strong> → choose <strong>Python File</strong>. The program <strong>pauses</strong> on that line.</li>
+<li>Look at the <strong>Variables</strong> panel: <code>row</code>, <code>total</code> and <code>count</code>.</li>
+<li>Press <strong>F10 (Step Over)</strong> a few times, and watch <code>total</code> and <code>count</code> change on each loop.</li>
+<li>On the second loop, <code>row</code> is <code>{'order_id': 4, 'value': 240.0, 'status': 'Cancelled'}</code>, and it's <strong>still added</strong>. Found it: nothing implements the rule in the comment.</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>F5</strong></td>
+<td>Start, or continue to the next breakpoint</td>
+</tr>
+<tr>
+<td><strong>F10</strong></td>
+<td>Step over: run the current line</td>
+</tr>
+<tr>
+<td><strong>F11</strong></td>
+<td>Step into: go inside a function call</td>
+</tr>
+<tr>
+<td><strong>Shift+F11</strong></td>
+<td>Step out: finish the current function</td>
+</tr>
+<tr>
+<td><strong>Shift+F5</strong></td>
+<td>Stop debugging</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="admonition-title">Watch and Debug Console</p>
+<p>In the <strong>Watch</strong> panel, add an expression like <code>total / max(count, 1)</code> to see it update live. In the <strong>Debug Console</strong>, type any Python, for example <code>[r["status"] for r in rows]</code>, while paused.</p>
+</div>
+<h2 id="step-3-fix-and-confirm">Step 3: fix and confirm</h2>
+<div class="codehilite"><pre><span></span><code><span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">rows</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">row</span><span class="p">[</span><span class="s2">"status"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"Cancelled"</span><span class="p">:</span>
+        <span class="k">continue</span>
+    <span class="n">total</span> <span class="o">+=</span> <span class="n">row</span><span class="p">[</span><span class="s2">"value"</span><span class="p">]</span>
+    <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>Average order value: 516.67
+Open orders: [7, 9]
+</code></pre></div>
+
+<p><em>(The fixed file is <code>solutions/debug_me_fixed.py</code>, which rounds to 2 decimals.)</em></p>
+<h2 id="no-editor-use-breakpoint">No editor? Use <code>breakpoint()</code></h2>
+<p>Add <code>breakpoint()</code> on any line and run the script in a terminal. Python stops there in <strong>pdb</strong>, the built-in debugger. Type <code>p total</code> to print a variable, <code>n</code> for the next line, <code>c</code> to continue, and <code>q</code> to quit. It's useful on servers where you only have a terminal.</p>
+<h2 id="common-mistakes">Common mistakes</h2>
+<table>
+<thead>
+<tr>
+<th>Mistake</th>
+<th>What happens</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Reading a traceback from the top</td>
+<td>You get lost in library internals</td>
+<td>Start at the <strong>last line</strong>, then find <strong>your</strong> file in the lines above</td>
+</tr>
+<tr>
+<td>Changing code randomly until it works</td>
+<td>New bugs, and no understanding</td>
+<td>Reproduce → pause → inspect → fix → re-run</td>
+</tr>
+<tr>
+<td>Dozens of <code>print()</code> statements left in</td>
+<td>Noisy output, and forgotten debug code</td>
+<td>Breakpoints, or proper logging (in the CLI project)</td>
+</tr>
+<tr>
+<td>Fixing without a check</td>
+<td>The bug returns later</td>
+<td>Add a test for it (Testing module)</td>
+</tr>
+<tr>
+<td>Ignoring a "no error" wrong number</td>
+<td>Wrong reports go out</td>
+<td>Compare with a known answer (here 516.67)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="try-it-yourself">Try it yourself</h2>
+<p><strong>Task:</strong> With both bugs fixed, add a breakpoint <strong>inside</strong> <code>open_orders</code>, so you're paused in the list comprehension. Use the <strong>Debug Console</strong> to evaluate <code>[r["status"] for r in rows]</code>. What do you see, and how does it confirm the result <code>[7, 9]</code>?</p>
+<details>
+<summary>Show the solution</summary>
+<p>The Debug Console shows <code>['Delivered', 'Cancelled', 'Shipped', 'Pending']</code>. Only orders 7 (Shipped) and 9 (Pending) match <code>("Shipped", "Pending")</code>, so the result is <code>[7, 9]</code>. Evaluating expressions while paused is often faster than stepping line by line.</p>
+</details>
+<h2 id="quick-quiz">Quick quiz</h2>
+<div class="quiz-q" data-answer="1">
+<p>1. Where do you start reading a Python traceback?</p>
+<ol>
+<li>The first line</li>
+<li>The last line (the error type and message)</li>
+<li>The middle</li>
+</ol>
+<details>
+<summary>Show answer</summary>
+<p><strong>B.</strong> The last line says <em>what</em> went wrong, and the lines above say <em>where</em>.</p>
+</details>
+</div>
+<div class="quiz-q" data-answer="1">
+<p>2. Your code runs without errors but returns the wrong total. What kind of bug is it, and what's the best tool?</p>
+<ol>
+<li>A crash: read the traceback</li>
+<li>A logic bug: use breakpoints and inspect the variables</li>
+<li>A syntax error: reinstall Python</li>
+</ol>
+<details>
+<summary>Show answer</summary>
+<p><strong>B.</strong></p>
+</details>
+</div>
+<div class="quiz-q" data-answer="1">
+<p>3. Which key runs the current line and moves to the next one, without going inside function calls?</p>
+<ol>
+<li>F5</li>
+<li>F10</li>
+<li>F11</li>
+</ol>
+<details>
+<summary>Show answer</summary>
+<p><strong>B — F10, Step Over.</strong> F11 steps into functions.</p>
+</details>
+</div>
+<h2 id="summary">Summary</h2>
+<ul>
+<li><strong>Crashes</strong> give a traceback: read it <strong>bottom-up</strong> to find the error and your line.</li>
+<li><strong>Logic bugs</strong> give wrong answers: pause with a <strong>breakpoint</strong> (F5), inspect <strong>Variables</strong>, step with <strong>F10/F11</strong>.</li>
+<li>Use <strong>Watch</strong> and the <strong>Debug Console</strong> to test ideas while paused, and <code>breakpoint()</code> in a terminal.</li>
+<li>Confirm every fix against a known answer, and later with a test.</li>
+</ul>
+<div class="admonition job">
+<p class="admonition-title">Job-ready check</p>
+<p><strong>Interview question:</strong> <em>"A report's average looks too low, but there are no errors. How do you investigate?"</em></p>
+<p><strong>Strong answer:</strong> "I'd reproduce it with a small input whose correct answer I know, set a breakpoint in the calculation, and step through, watching the running total and count. That shows which rows are included. Here, cancelled orders were being counted. After fixing it, I'd add a test with a cancelled order so it can't come back."</p>
+<p><strong>Mini project:</strong> Plant a bug of your own in <code>01_basics.py</code> (for example, change <code>&gt;=</code> to <code>&gt;</code>). Ask a friend, or yourself tomorrow, to find it using only the debugger, and note how many steps it took.</p>
+</div>
+<div class="terms-box"><div class="files-head"><b>Key terms in this lesson</b><a href="../../../glossary.html">Glossary →</a></div><div class="term-chips"><a class="term-chip" href="../../../glossary.html#breakpoint" title="A marker that pauses a running program on a chosen line so you can inspect variables and step through the code.">Breakpoint</a><a class="term-chip" href="../../../glossary.html#exception" title="Python&#x27;s way of signalling an error at run time. try/except lets you handle specific errors instead of crashing.">Exception</a><a class="term-chip" href="../../../glossary.html#traceback" title="Python&#x27;s error report. Read it from the bottom: the last line says what went wrong, the lines above say where.">Traceback</a></div></div>
+<h2 id="free-resources">Free resources to go deeper</h2><ul class="resources"><li><a href="https://code.visualstudio.com/docs/python/debugging">Python debugging in VS Code</a><span class="r-meta">VS Code docs · Breakpoints, stepping, watch expressions and launch configurations.</span></li><li><a href="https://docs.python.org/3/tutorial/errors.html">Errors and Exceptions (Python tutorial)</a><span class="r-meta">Python official docs · How to read and handle exceptions.</span></li></ul>
+<div class="complete-bar"><span>Finished reading and did the exercise?</span>
+<button class="btn" id="completeBtn" type="button" data-id="phase-0/dev-environment/03-debugging">Mark lesson as complete</button></div>
+<nav class="pager"><a class="prev" href="../../../learn/phase-0/dev-environment/02-uv-environments.html"><small>← Previous</small>uv, Virtual Environments &amp; Packages: One Project, One Environment</a><a class="next" href="../../../learn/phase-0/git-github/01-repos-commits.html"><small>Next →</small>Git Repositories &amp; Commits: Save Your Work in Safe Steps</a></nav>
+<p class="reviewed">Last reviewed: 2026-10-09</p>
+
+  </div></main>
+  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#the-practice-script">The practice script</a><a href="#step-1-read-the-traceback-from-the-bottom-up">Step 1: read the traceback from the bottom up</a><a href="#step-2-find-the-logic-bug-with-the-debugger">Step 2: find the logic bug with the debugger</a><a href="#step-3-fix-and-confirm">Step 3: fix and confirm</a><a href="#no-editor-use-breakpoint">No editor? Use breakpoint()</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#free-resources">Free resources</a></aside>
+</div>
+<footer class="site">Data, AI &amp; Automation Path v0.7 · Applied AI, Data &amp; Automation Lab · Updated October 2026<br>
+Lesson text: <a href="../../../license.html">CC BY-NC-SA 4.0</a> · Code: <a href="../../../license.html#code-mit-license">MIT</a> · Free external resources belong to their respective owners.</footer>
+<script src="../../../search-index.js"></script>
+<script src="../../../assets/app.js"></script>
+</body>
+</html>

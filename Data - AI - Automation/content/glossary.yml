@@ -1,0 +1,889 @@
+# Glossary — plain-English definitions used across the site.
+#
+#   term:  the word as learners meet it
+#   aka:   other names / spellings (also used to find the term in lesson keywords)
+#   cat:   category (one of CATEGORIES below)
+#   def:   1–2 sentences, plain English, no jargon that isn't itself in the glossary
+#   see:   where it is taught: a lesson id (phase-1/analytical-sql/04-joins),
+#          a module (phase-3/dbt) or a phase (phase-5). Lessons win when written.
+#
+# Lessons automatically show "Key terms" for glossary terms that appear in their
+# front-matter keywords; each glossary entry links back to those lessons.
+
+categories:
+  - Data & analytics
+  - SQL & databases
+  - Excel
+  - Power BI & DAX
+  - Python & tools
+  - Git & DevOps
+  - Data engineering
+  - Machine learning
+  - LLMs & RAG
+  - Agents & automation
+  - AI operations & governance
+
+terms:
+  # ---------------------------------------------------------------- Data & analytics
+  - term: KPI
+    aka: [key performance indicator, KPIs]
+    cat: Data & analytics
+    def: "A number that shows whether a business goal is being met, such as net revenue or achievement % of target. A good KPI has one agreed definition, an owner and a target."
+    see: phase-1/semantic-models/01-semantic-models
+  - term: Known answer
+    aka: [known answers, known-answer test]
+    cat: Data & analytics
+    def: "A result you already know is correct (for example, net revenue 9,075 on the practice data). Every new query, formula, dashboard or AI output is checked against it before you trust it."
+    see: phase-1/ai-assisted-analytics/01-ai-assisted-analytics
+  - term: Granularity
+    aka: [grain]
+    cat: Data & analytics
+    def: "What one row represents: one order, one order line, one region per month. Mixing tables of different grain without care gives wrong totals."
+    see: phase-1/power-pivot-dax/01-relationships
+  - term: Net revenue
+    aka: []
+    cat: Data & analytics
+    def: "In this course: quantity × unit price for all orders except Cancelled ones. On the practice data it is 9,075, while revenue of all statuses is 9,315."
+    see: phase-1/power-pivot-dax/02-measures-kpi
+  - term: Average order value
+    aka: [AOV]
+    cat: Data & analytics
+    def: "Net revenue divided by the number of net orders. On the practice data, 9,075 ÷ 11 = 825."
+    see: phase-1/power-pivot-dax/02-measures-kpi
+  - term: Month-on-month growth
+    aka: [MoM, MoM growth]
+    cat: Data & analytics
+    def: "How much a value changed compared with the previous month, as a percentage: (this month − last month) ÷ last month."
+    see: phase-1/power-pivot-dax/03-calculate-filter-context
+  - term: Executive summary
+    aka: [BLUF, bottom line up front]
+    cat: Data & analytics
+    def: "A short report that starts with the conclusion (bottom line up front), then gives a few findings with numbers, a recommendation and caveats."
+    see: phase-1/data-storytelling/01-executive-summaries-memos
+  - term: Action title
+    aka: []
+    cat: Data & analytics
+    def: "A chart title that states the conclusion (\"March drives the Q1 gap\") instead of describing the contents (\"Revenue by month\")."
+    see: phase-1/data-storytelling/02-stakeholder-communication
+  - term: Stakeholder
+    aka: [stakeholders]
+    cat: Data & analytics
+    def: "Anyone who uses, pays for or is affected by your analysis: executives, managers, finance, operations, IT."
+    see: phase-1/data-storytelling/02-stakeholder-communication
+  - term: Exploratory data analysis
+    aka: [EDA]
+    cat: Data & analytics
+    def: "A first look at a dataset with summaries and charts to understand its shape, quality and patterns before modelling or reporting."
+    see: phase-2/eda/01-questions-patterns-distributions
+  - term: A/B test
+    aka: [AB test, A/B testing, experiment]
+    cat: Data & analytics
+    def: "An experiment that shows two versions (A and B) to random groups and uses statistics to decide whether the difference in results is real or chance."
+    see: phase-2/ab-testing/01-hypothesis-tests-significance
+
+  # ---------------------------------------------------------------- Statistics & experiments (Phase 2)
+  - term: Median
+    aka: [mean, mode, central tendency, trimmed mean]
+    cat: Data & analytics
+    def: "The middle value when data is sorted. For skewed data like order values it describes a typical value better than the mean, which large values pull up."
+    see: phase-2/statistics/01-center-spread-distributions
+  - term: Standard deviation
+    aka: [std, variance, spread, coefficient of variation]
+    cat: Data & analytics
+    def: "The typical distance of values from their mean, in the data's own unit. Variance is its square. Always report a spread next to a centre."
+    see: phase-2/statistics/01-center-spread-distributions
+  - term: Normal distribution
+    aka: [bell curve, log-normal, gaussian, distribution, distributions]
+    cat: Data & analytics
+    def: "The symmetric bell-shaped distribution: about 68% of values within 1 standard deviation of the mean, 95% within 2. Money amounts are often log-normal (normal after taking logs)."
+    see: phase-2/statistics/01-center-spread-distributions
+  - term: Poisson distribution
+    aka: [poisson, binomial, binomial distribution]
+    cat: Data & analytics
+    def: "Describes counts of events in a fixed period (orders per day). The binomial describes the number of 'yes' outcomes in n yes/no trials (cancellations in 50 orders)."
+    see: phase-2/statistics/01-center-spread-distributions
+  - term: Skewness
+    aka: [skew, right-skewed, long tail]
+    cat: Data & analytics
+    def: "How lopsided a distribution is. Right-skewed data has many small values and a long tail of large ones, so its mean is above its median."
+    see: phase-2/eda/01-questions-patterns-distributions
+  - term: Correlation
+    aka: [pearson, spearman, correlation coefficient, r squared]
+    cat: Data & analytics
+    def: "A number from −1 to +1 for how consistently two variables move together. Pearson measures straight-line relationships; Spearman uses ranks and resists outliers. Correlation is not causation."
+    see: phase-2/statistics/02-correlation-confidence-intervals
+  - term: Confidence interval
+    aka: [95% confidence interval, confidence intervals, margin of error, standard error]
+    cat: Data & analytics
+    def: "A range of plausible values for something estimated from a sample, e.g. 'late rate 23.7% (95% CI 22.4–25.1%)'. It narrows as the sample grows."
+    see: phase-2/statistics/02-correlation-confidence-intervals
+  - term: Bootstrap
+    aka: [bootstrapping, resampling]
+    cat: Data & analytics
+    def: "Estimating uncertainty by resampling the data with replacement thousands of times and recomputing the statistic. Works for medians, ratios and model scores."
+    see: phase-2/statistics/02-correlation-confidence-intervals
+  - term: p-value
+    aka: [p value, statistical significance, significance, hypothesis test, null hypothesis]
+    cat: Data & analytics
+    def: "If there were really no effect, the probability of seeing a result at least as extreme as yours. Small p (e.g. < 0.05) = unlikely to be chance alone. It is not the probability that the effect is real."
+    see: phase-2/ab-testing/01-hypothesis-tests-significance
+  - term: Sample ratio mismatch
+    aka: [SRM]
+    cat: Data & analytics
+    def: "When an experiment's groups are a different size from the planned split (e.g. 50/50) by more than chance allows. It usually signals a bug: fix it before analysing results."
+    see: phase-2/ab-testing/01-hypothesis-tests-significance
+  - term: Statistical power
+    aka: [power, power analysis, sample size, minimum detectable effect, MDE]
+    cat: Data & analytics
+    def: "The chance an experiment detects an effect of a given size if it really exists (usually 80%). A power analysis sets the sample size from the baseline, the minimum effect worth detecting and α."
+    see: phase-2/ab-testing/02-sample-size-causal-pitfalls
+  - term: Peeking
+    aka: [optional stopping]
+    cat: Data & analytics
+    def: "Checking an experiment repeatedly and stopping as soon as it looks significant. It multiplies false positives; fix the duration or use sequential methods."
+    see: phase-2/ab-testing/02-sample-size-causal-pitfalls
+  - term: Confounding
+    aka: [confounder, confounding variable, simpson's paradox]
+    cat: Data & analytics
+    def: "When a third variable drives both the supposed cause and the outcome, creating a misleading relationship. Simpson's paradox is the extreme case where the direction flips within groups."
+    see: phase-2/ab-testing/02-sample-size-causal-pitfalls
+  - term: Research question
+    aka: [hypothesis, experiment design, unit of randomisation, randomisation]
+    cat: Data & analytics
+    def: "A specific, measurable, decision-linked question (who, what change, which outcome, how much, by when) that a study is designed to answer."
+    see: phase-2/research-thinking/01-research-question-design
+  - term: Reproducibility
+    aka: [reproducible, random seed, seed, provenance, data hash]
+    cat: Data & analytics
+    def: "Getting exactly the same results from the same data and code: a locked environment, fingerprinted data, fixed random seeds and one command from raw data to results."
+    see: phase-2/research-thinking/02-reproducibility-reporting
+
+  # ---------------------------------------------------------------- SQL & databases
+  - term: SQL
+    aka: [structured query language]
+    cat: SQL & databases
+    def: "The standard language for asking questions of relational databases: select columns, filter rows, join tables and summarise."
+    see: phase-1/analytical-sql/01-select-where
+  - term: WHERE
+    aka: [where clause]
+    cat: SQL & databases
+    def: "The part of a SQL query that keeps only the rows matching a condition, before any grouping."
+    see: phase-1/analytical-sql/01-select-where
+  - term: GROUP BY
+    aka: [group by, sql group by]
+    cat: SQL & databases
+    def: "Collapses rows with the same values into one row per group, so you can SUM, COUNT or AVG each group."
+    see: phase-1/analytical-sql/02-order-group-by
+  - term: HAVING
+    aka: [having]
+    cat: SQL & databases
+    def: "Filters groups after GROUP BY, for example customers whose total is above 1,000. WHERE filters rows; HAVING filters groups."
+    see: phase-1/analytical-sql/02-order-group-by
+  - term: CASE expression
+    aka: [CASE, case when]
+    cat: SQL & databases
+    def: "If-then-else logic inside a SQL query, used to create categories such as size bands or status groups."
+    see: phase-1/analytical-sql/03-case-expressions
+  - term: JOIN
+    aka: [joins, inner join, left join, anti join, anti-join]
+    cat: SQL & databases
+    def: "Combines rows from two tables using a matching key. INNER JOIN keeps only matches; LEFT JOIN keeps every row from the left table; an anti-join finds rows with no match."
+    see: phase-1/analytical-sql/04-joins
+  - term: Subquery
+    aka: [subqueries, derived table]
+    cat: SQL & databases
+    def: "A query inside another query, used in WHERE (with IN or EXISTS) or FROM, so one answer can feed the next."
+    see: phase-1/analytical-sql/05-subqueries
+  - term: CTE
+    aka: [common table expression, WITH clause]
+    cat: SQL & databases
+    def: "A named, temporary result defined with WITH at the start of a query. It makes multi-step SQL readable."
+    see: phase-1/analytical-sql/05-subqueries
+  - term: Window function
+    aka: [window functions, OVER, ROW_NUMBER, running total]
+    cat: SQL & databases
+    def: "A calculation across related rows that keeps every row, such as ranking or running totals, written with OVER (...)."
+    see: phase-3/advanced-sql
+  - term: Primary key
+    aka: [PK]
+    cat: SQL & databases
+    def: "A column (or set of columns) that uniquely identifies each row in a table, such as order_id."
+    see: phase-1/analytical-sql/04-joins
+  - term: Foreign key
+    aka: [FK]
+    cat: SQL & databases
+    def: "A column that points at the primary key of another table, such as customer_id in orders. It is what you JOIN on."
+    see: phase-1/analytical-sql/04-joins
+  - term: "NULL"
+    aka: ["null", missing value]
+    cat: SQL & databases
+    def: "\"No value\" in a database. It is not zero or empty text, and comparisons with NULL need IS NULL / IS NOT NULL."
+    see: phase-1/analytical-sql/04-joins
+  - term: Index
+    aka: [database index]
+    cat: SQL & databases
+    def: "A structure that lets a database find rows quickly without reading the whole table, at the cost of extra storage and slower writes."
+    see: phase-3/database-engineering
+  - term: Normalisation
+    aka: [normalization, normal form]
+    cat: SQL & databases
+    def: "Designing tables so each fact is stored once (customers in one table, orders in another), which avoids contradictions when data changes."
+    see: phase-3/database-engineering
+
+  # ---------------------------------------------------------------- Excel
+  - term: SUMIFS
+    aka: [sumifs, countifs, averageifs, COUNTIFS]
+    cat: Excel
+    def: "Excel functions that add up (SUMIFS), count (COUNTIFS) or average (AVERAGEIFS) only the rows that meet one or more conditions."
+    see: phase-1/excel-analysis/02-sumifs-countifs
+  - term: IF function
+    aka: [IF, IFS, nested if, logical test]
+    cat: Excel
+    def: "Excel's decision function: IF(test, value if true, value if false). IFS checks several conditions in order; AND and OR combine tests."
+    see: phase-1/excel-analysis/01-if-logical
+  - term: XLOOKUP
+    aka: [xlookup, INDEX/MATCH, index match, vlookup, lookup]
+    cat: Excel
+    def: "Finds a value in one column and returns the matching value from another. INDEX/MATCH does the same in older Excel versions."
+    see: phase-1/excel-analysis/03-xlookup-index-match
+  - term: Dynamic array
+    aka: [spill, FILTER function, dynamic arrays]
+    cat: Excel
+    def: "A formula that returns many values which \"spill\" into neighbouring cells, such as FILTER returning all Dhaka orders."
+    see: phase-1/excel-analysis/04-filter-let
+  - term: LET
+    aka: [let]
+    cat: Excel
+    def: "An Excel function that names parts of a formula, so long formulas become readable and calculate each part once."
+    see: phase-1/excel-analysis/04-filter-let
+  - term: Conditional formatting
+    aka: [conditional formatting]
+    cat: Excel
+    def: "Rules that change a cell's colour or icon based on its value, such as red for below target."
+    see: phase-1/excel-analysis/05-conditional-formatting
+  - term: PivotTable
+    aka: [pivot table, pivottable, pivot]
+    cat: Excel
+    def: "An interactive summary that groups and totals data by dragging fields into rows, columns, values and filters."
+    see: phase-1/pivot-analysis/01-pivottables-grouping
+  - term: Slicer
+    aka: [slicers, timeline]
+    cat: Excel
+    def: "A button panel that filters PivotTables or Power BI visuals with a click. A timeline is a slicer for dates."
+    see: phase-1/pivot-analysis/02-slicers
+  - term: Goal Seek
+    aka: [goal seek, what-if analysis, data table, scenario manager]
+    cat: Excel
+    def: "Excel's What-If tool that works backwards: it changes one input until a formula reaches the target you set."
+    see: phase-1/pivot-analysis/03-what-if-goal-seek
+  - term: Excel Table
+    aka: [structured reference, ctrl+t]
+    cat: Excel
+    def: "A range formatted with Ctrl+T. It grows automatically, has a name, and can be used in formulas as Orders[Revenue]."
+    see: phase-1/excel-analysis/02-sumifs-countifs
+
+  # ---------------------------------------------------------------- Power BI & DAX
+  - term: Power Query
+    aka: [power query, M, M language, query editor]
+    cat: Power BI & DAX
+    def: "The data-preparation tool in Excel and Power BI. It records cleaning steps (in the M language) so they repeat on every refresh."
+    see: phase-1/power-query/01-cleaning
+  - term: Merge and append
+    aka: [merge queries, append queries]
+    cat: Power BI & DAX
+    def: "Power Query's two ways to combine tables: merge adds columns by matching keys (like a JOIN); append stacks rows (like UNION)."
+    see: phase-1/power-query/02-merge-append
+  - term: Unpivot
+    aka: [unpivot, wide to long]
+    cat: Power BI & DAX
+    def: "Turns many columns (Jan, Feb, Mar) into rows (Month, Value), the long shape that models and pivots need."
+    see: phase-1/power-query/03-reshape-folder
+  - term: Star schema
+    aka: [star model, fact table, dimension table, fact, dimension]
+    cat: Power BI & DAX
+    def: "A data model with fact tables (events such as orders) in the middle and dimension tables (customers, products, dates) around them, linked one-to-many."
+    see: phase-1/power-pivot-dax/01-relationships
+  - term: Relationship
+    aka: [relationships, one-to-many, cardinality, cross-filter direction]
+    cat: Power BI & DAX
+    def: "A link between two tables in a model, usually one-to-many from a dimension to a fact, which lets filters flow between them."
+    see: phase-1/power-pivot-dax/01-relationships
+  - term: Date table
+    aka: [calendar table, mark as date table]
+    cat: Power BI & DAX
+    def: "A table with one row per date (plus month, quarter, year), marked as the model's date table so time calculations work."
+    see: phase-1/power-pivot-dax/01-relationships
+  - term: DAX
+    aka: [data analysis expressions]
+    cat: Power BI & DAX
+    def: "The formula language of Power BI, Power Pivot and Analysis Services, used to write measures and calculated columns."
+    see: phase-1/power-pivot-dax/02-measures-kpi
+  - term: Measure
+    aka: [measures, explicit measure]
+    cat: Power BI & DAX
+    def: "A DAX calculation that is evaluated for whatever filters are on screen, such as Net Revenue or Achievement %."
+    see: phase-1/power-pivot-dax/02-measures-kpi
+  - term: Calculated column
+    aka: [calculated columns]
+    cat: Power BI & DAX
+    def: "A DAX column computed row by row when data refreshes and stored in the model. Prefer measures for totals."
+    see: phase-1/power-pivot-dax/02-measures-kpi
+  - term: Filter context
+    aka: [filter context, row context, context transition]
+    cat: Power BI & DAX
+    def: "The set of filters (slicers, rows, columns, other visuals) that applies when a measure is calculated. It is why one measure shows different numbers in each cell."
+    see: phase-1/power-pivot-dax/03-calculate-filter-context
+  - term: CALCULATE
+    aka: [calculate, ALL, REMOVEFILTERS]
+    cat: Power BI & DAX
+    def: "The DAX function that changes the filter context before calculating, for example delivered revenue only, or a total ignoring the region filter."
+    see: phase-1/power-pivot-dax/03-calculate-filter-context
+  - term: Semantic model
+    aka: [semantic models, dataset, semantic layer]
+    cat: Power BI & DAX
+    def: "The shared model behind reports (tables, relationships, measures, descriptions), so every report and tool uses the same KPI definitions. Formerly called a dataset in Power BI."
+    see: phase-1/semantic-models/01-semantic-models
+  - term: Drill-through
+    aka: [drillthrough, drill through]
+    cat: Power BI & DAX
+    def: "A Power BI feature that opens a detail page filtered to the item you right-clicked, such as one customer."
+    see: phase-1/power-bi/02-drillthrough-bookmarks
+  - term: Bookmark
+    aka: [bookmarks]
+    cat: Power BI & DAX
+    def: "A saved view of a Power BI report page (filters, visible visuals) that a button can switch to."
+    see: phase-1/power-bi/02-drillthrough-bookmarks
+  - term: Row-level security
+    aka: [RLS, row level security, dynamic rls, static rls]
+    cat: Power BI & DAX
+    def: "Rules in a model that limit which rows each user can see, such as each regional manager seeing only their region."
+    see: phase-1/power-bi/03-row-level-security
+  - term: Power BI Service
+    aka: [workspace, power bi app, scheduled refresh, gateway]
+    cat: Power BI & DAX
+    def: "The online part of Power BI where reports are published, shared through workspaces and apps, and refreshed on a schedule."
+    see: phase-1/power-bi/04-publish-copilot
+
+  # ---------------------------------------------------------------- Python & tools
+  - term: Python
+    aka: [python install, python version]
+    cat: Python & tools
+    def: "A general-purpose programming language and the standard language of data engineering, data science and AI."
+    see: phase-0/dev-environment/01-vscode-python
+  - term: Interpreter
+    aka: [select interpreter, python interpreter]
+    cat: Python & tools
+    def: "The program that runs Python code. A computer can have several; your editor must use the right one (usually the project's .venv)."
+    see: phase-0/dev-environment/01-vscode-python
+  - term: Virtual environment
+    aka: [venv, .venv, virtual environments]
+    cat: Python & tools
+    def: "A private folder of packages for one project, so different projects can use different versions without conflicts."
+    see: phase-0/dev-environment/02-uv-environments
+  - term: uv
+    aka: [uv sync, uv run, uv add, uv init]
+    cat: Python & tools
+    def: "A fast all-in-one Python tool that installs Python, creates virtual environments, adds packages, writes a lock file and runs code."
+    see: phase-0/dev-environment/02-uv-environments
+  - term: Lock file
+    aka: [uv.lock, lockfile, requirements.txt]
+    cat: Python & tools
+    def: "A file that records the exact version of every installed package, so everyone and every server installs the same set."
+    see: phase-0/dev-environment/02-uv-environments
+  - term: pyproject.toml
+    aka: [pyproject]
+    cat: Python & tools
+    def: "The standard settings file of a Python project: name, Python version, dependencies and tool settings (such as ruff)."
+    see: phase-0/dev-environment/02-uv-environments
+  - term: Traceback
+    aka: [stack trace, traceback]
+    cat: Python & tools
+    def: "Python's error report. Read it from the bottom: the last line says what went wrong, the lines above say where."
+    see: phase-0/dev-environment/03-debugging
+  - term: Breakpoint
+    aka: [breakpoint, debugger, breakpoint(), pdb]
+    cat: Python & tools
+    def: "A marker that pauses a running program on a chosen line so you can inspect variables and step through the code."
+    see: phase-0/dev-environment/03-debugging
+  - term: Function
+    aka: [def, function, return]
+    cat: Python & tools
+    def: "A named, reusable block of code that takes inputs (parameters) and returns a result."
+    see: phase-0/programming-refresher/01-basics
+  - term: f-string
+    aka: [f-string, f-strings]
+    cat: Python & tools
+    def: "A Python string starting with f that inserts and formats values: f\"{revenue:,}\" shows 9,075."
+    see: phase-0/programming-refresher/01-basics
+  - term: Dictionary
+    aka: [dict, dictionary]
+    cat: Python & tools
+    def: "A Python collection of key → value pairs, such as {\"Dhaka\": 3170}. JSON objects and CSV rows are usually read as dictionaries."
+    see: phase-0/programming-refresher/02-collections
+  - term: List comprehension
+    aka: [comprehension, dict comprehension]
+    cat: Python & tools
+    def: "A one-line way to build a list from another: [o for o in orders if o.status != \"Cancelled\"]."
+    see: phase-0/programming-refresher/02-collections
+  - term: Exception
+    aka: [exception, try, except, ValueError, FileNotFoundError, KeyError]
+    cat: Python & tools
+    def: "Python's way of signalling an error at run time. try/except lets you handle specific errors instead of crashing."
+    see: phase-0/programming-refresher/03-files-exceptions
+  - term: CSV
+    aka: [csv, comma-separated values, DictReader]
+    cat: Python & tools
+    def: "A plain-text table: one row per line, values separated by commas. Every value is read as text until you convert it."
+    see: phase-0/programming-refresher/03-files-exceptions
+  - term: JSON
+    aka: [json]
+    cat: Python & tools
+    def: "A text format for structured data made of objects (key-value pairs) and arrays. Used by most APIs and LLM tools."
+    see: phase-0/programming-refresher/03-files-exceptions
+  - term: Class
+    aka: [class, object, instance, oop, object-oriented, self]
+    cat: Python & tools
+    def: "A blueprint that bundles data and the behaviour that belongs to it. Each object created from it is an instance."
+    see: phase-0/programming-refresher/04-oop-type-hints
+  - term: Dataclass
+    aka: [dataclass, "@dataclass"]
+    cat: Python & tools
+    def: "A Python class whose __init__, readable print-out and comparison are generated from its typed fields."
+    see: phase-0/programming-refresher/04-oop-type-hints
+  - term: Type hints
+    aka: [type hints, annotations, mypy, type checker]
+    cat: Python & tools
+    def: "Notes in code that say what type a variable or function expects (revenue: float). Tools like Pylance and mypy check them before the code runs."
+    see: phase-0/programming-refresher/04-oop-type-hints
+  - term: pytest
+    aka: [unit test, test, parametrize, fixture]
+    cat: Python & tools
+    def: "Python's most popular testing tool. It runs every function named test_..., and reports which assertions pass or fail."
+    see: phase-0/testing-ci/01-pytest-ruff
+  - term: Linter
+    aka: [lint, linting, ruff, formatter]
+    cat: Python & tools
+    def: "A tool that reads code without running it and flags likely bugs and bad patterns. Ruff is a fast Python linter and formatter."
+    see: phase-0/testing-ci/01-pytest-ruff
+  - term: CLI
+    aka: [command-line interface, command line tool, argparse]
+    cat: Python & tools
+    def: "A program you run by typing a command with options in the terminal, such as csv-clean data/orders_raw.csv -v."
+    see: phase-0/project
+  - term: Exit code
+    aka: [exit status, return code]
+    cat: Python & tools
+    def: "The number a program returns when it ends: 0 means success, anything else means a problem. Schedulers and CI decide what to do based on it."
+    see: phase-0/project
+  - term: pandas
+    aka: [dataframe, DataFrame]
+    cat: Python & tools
+    def: "The standard Python library for working with tables (DataFrames): load, clean, join, group and summarise data."
+    see: phase-2/pandas/01-dataframe-basics
+  - term: NumPy
+    aka: [numpy, ndarray, array]
+    cat: Python & tools
+    def: "Python's library for fast arrays of numbers. pandas, scikit-learn and most AI libraries store their data in NumPy arrays."
+    see: phase-2/numpy/01-arrays-indexing
+  - term: Vectorization
+    aka: [vectorized, vectorized operations, broadcasting]
+    cat: Python & tools
+    def: "Applying an operation to a whole array at once (prices * quantities) instead of looping element by element. Much faster and shorter."
+    see: phase-2/numpy/02-vectorized-numerical
+  - term: groupby
+    aka: [pandas groupby, split-apply-combine, named aggregation]
+    cat: Python & tools
+    def: "The pandas way to split rows into groups, calculate something per group and combine the results: the Python equivalent of SQL GROUP BY."
+    see: phase-2/pandas/03-merge-groupby
+  - term: Polars
+    aka: [polars, lazy frame, lazy evaluation]
+    cat: Python & tools
+    def: "A fast DataFrame library written in Rust, with an expression syntax and lazy queries that are optimised before they run."
+    see: phase-2/polars-duckdb/01-polars-dataframes
+  - term: DuckDB
+    aka: [duckdb, in-process sql, olap]
+    cat: Python & tools
+    def: "A free, in-process analytical database: run SQL directly on CSV and Parquet files from Python, with no server to install."
+    see: phase-2/polars-duckdb/02-duckdb-larger-data
+  - term: Parquet
+    aka: [parquet, columnar format]
+    cat: Data engineering
+    def: "A compressed, column-based file format for analytics. Smaller and much faster to query than CSV, and it keeps column types."
+    see: phase-2/polars-duckdb/02-duckdb-larger-data
+  - term: scikit-learn
+    aka: [sklearn, sklearn pipeline, columntransformer]
+    cat: Machine learning
+    def: "Python's standard library for classic machine learning. Every model has fit() and predict(); a Pipeline chains preprocessing and the model so both learn from training data only."
+    see: phase-2/ml-foundations/01-sklearn-train-test-split
+  - term: ROC AUC
+    aka: [AUC, roc curve, area under the curve]
+    cat: Machine learning
+    def: "How well a model ranks positives above negatives across all thresholds: 0.5 = random, 1.0 = perfect. Better than accuracy when one class is rare."
+    see: phase-2/ml-foundations/01-sklearn-train-test-split
+  - term: Data leakage
+    aka: [leakage, target leakage, train test contamination]
+    cat: Machine learning
+    def: "When a model is trained with information it won't have at prediction time (a column filled in after the outcome, or statistics computed on test data). Scores look great, then fail in production."
+    see: phase-2/ml-foundations/02-leakage-scaling
+  - term: Feature scaling
+    aka: [scaling, standardization, standardscaler]
+    cat: Machine learning
+    def: "Putting numeric features on comparable scales (e.g. mean 0, std 1). Essential for distance-based models such as k-nearest neighbours; unnecessary for trees."
+    see: phase-2/ml-foundations/02-leakage-scaling
+  - term: Cross-validation
+    aka: [cross validation, k-fold, kfold, stratifiedkfold]
+    cat: Machine learning
+    def: "Splitting the training data into k parts and letting each take a turn as the validation set, then averaging. Gives a more reliable score (with a ± range) than one split."
+    see: phase-2/ml-foundations/03-features-bias-variance
+  - term: Bias-variance trade-off
+    aka: [bias, bias/variance, model complexity, underfitting vs overfitting]
+    cat: Machine learning
+    def: "Simple models miss patterns (high bias, underfitting); complex ones memorise noise (high variance, overfitting). The best model sits where the validation score peaks."
+    see: phase-2/ml-foundations/03-features-bias-variance
+  - term: Data visualization
+    aka: [matplotlib, seaborn, plotly, chart, small multiples]
+    cat: Data & analytics
+    def: "Showing data as charts. In Python: matplotlib for full control, seaborn for statistical charts, Plotly for interactive ones."
+    see: phase-2/visualization/01-matplotlib-seaborn
+  - term: Data storytelling
+    aka: [analytical storytelling, storytelling, explanatory chart]
+    cat: Data & analytics
+    def: "Turning findings into a short sequence (context, finding, evidence, so what, recommendation) with charts designed around one message each."
+    see: phase-2/visualization/02-plotly-storytelling
+  - term: Jupyter notebook
+    aka: [notebook, jupyter, ipynb]
+    cat: Python & tools
+    def: "A document that mixes code, results, charts and notes in cells. Popular for exploration and teaching. VS Code can run a plain .py file cell by cell (# %%) the same way."
+    see: phase-2/numpy
+
+  # ---------------------------------------------------------------- Git & DevOps
+  - term: Git
+    aka: [git, version control]
+    cat: Git & DevOps
+    def: "A version control system that records every change to a project as commits, so you can review, undo and collaborate safely."
+    see: phase-0/git-github/01-repos-commits
+  - term: Repository
+    aka: [repo, repository, git init]
+    cat: Git & DevOps
+    def: "A project folder whose full history is tracked by Git (in a hidden .git folder), locally and usually on GitHub."
+    see: phase-0/git-github/01-repos-commits
+  - term: Commit
+    aka: [commit, git commit, staging area, git add]
+    cat: Git & DevOps
+    def: "A saved snapshot of chosen changes, with a message, author and unique ID. You stage changes with git add, then commit them."
+    see: phase-0/git-github/01-repos-commits
+  - term: .gitignore
+    aka: [gitignore]
+    cat: Git & DevOps
+    def: "A file listing what Git should never track, such as .venv/, logs and secret .env files."
+    see: phase-0/git-github/01-repos-commits
+  - term: Branch
+    aka: [git branch, git switch, feature branch, main branch]
+    cat: Git & DevOps
+    def: "A separate line of work in a repository. Each feature or fix gets a branch, which is merged back into main when ready."
+    see: phase-0/git-github/02-branches-merge
+  - term: Merge conflict
+    aka: [merge conflict, conflict markers, git merge]
+    cat: Git & DevOps
+    def: "When two branches change the same lines differently, Git stops and asks you to choose the final version between the conflict markers."
+    see: phase-0/git-github/02-branches-merge
+  - term: Pull request
+    aka: [pr, pull request, code review]
+    cat: Git & DevOps
+    def: "A request on GitHub to review a branch's changes and merge them. It shows the diff, comments and automated check results."
+    see: phase-0/git-github/03-pull-requests-readme
+  - term: README
+    aka: [readme]
+    cat: Git & DevOps
+    def: "The front page of a repository: what the project does, how to run it, and proof that it works."
+    see: phase-0/git-github/03-pull-requests-readme
+  - term: Terminal
+    aka: [shell, bash, terminal, command line]
+    cat: Git & DevOps
+    def: "A text window where you type commands to control the computer. On Linux the usual shell is bash."
+    see: phase-0/linux/01-filesystem-terminal
+  - term: WSL
+    aka: [wsl, windows subsystem for linux]
+    cat: Git & DevOps
+    def: "Windows Subsystem for Linux: runs a real Linux (usually Ubuntu) inside Windows, installed with wsl --install."
+    see: phase-0/linux/01-filesystem-terminal
+  - term: Path
+    aka: [absolute path, relative path, path, pathlib]
+    cat: Git & DevOps
+    def: "The address of a file or folder. Absolute paths start from the root (/home/learner/...); relative paths start from the current folder."
+    see: phase-0/linux/01-filesystem-terminal
+  - term: Pipe
+    aka: [pipe, "|", grep, redirect]
+    cat: Git & DevOps
+    def: "The | symbol, which sends one command's output into the next, so small tools combine into a pipeline (cut | sort | uniq -c)."
+    see: phase-0/linux/02-grep-pipes-cron
+  - term: cron
+    aka: [cron, crontab, schedule]
+    cat: Git & DevOps
+    def: "A scheduler that runs commands at set times using five time fields, such as 0 6 * * 1-5 for 06:00 on weekdays."
+    see: phase-0/linux/02-grep-pipes-cron
+  - term: CI
+    aka: [ci, continuous integration, ci/cd]
+    cat: Git & DevOps
+    def: "Continuous integration: every push and pull request is automatically installed, linted and tested on a clean machine."
+    see: phase-0/testing-ci/02-github-actions
+  - term: GitHub Actions
+    aka: [github actions, workflow, runner]
+    cat: Git & DevOps
+    def: "GitHub's built-in automation. Workflows written in YAML (in .github/workflows/) run on events like push, pull request or a schedule."
+    see: phase-0/testing-ci/02-github-actions
+  - term: YAML
+    aka: [yml, yaml]
+    cat: Git & DevOps
+    def: "A human-readable settings format based on indentation, used for CI workflows, configs and this site's curriculum."
+    see: phase-0/testing-ci/02-github-actions
+  - term: Docker
+    aka: [container, containers, docker image, dockerfile]
+    cat: Git & DevOps
+    def: "A tool that packages an application with everything it needs into a container image, so it runs the same on any machine."
+    see: phase-3/docker
+  - term: Infrastructure as code
+    aka: [IaC, terraform]
+    cat: Git & DevOps
+    def: "Creating cloud resources (servers, databases, permissions) from version-controlled files instead of clicking in a console."
+    see: phase-3/cloud-iac
+
+  # ---------------------------------------------------------------- Data engineering
+  - term: ETL / ELT
+    aka: [ETL, ELT, extract transform load]
+    cat: Data engineering
+    def: "Ways to move data: extract from sources, transform (clean, join) and load into a target. ELT loads first and transforms inside the warehouse."
+    see: phase-3/etl-elt
+  - term: Data pipeline
+    aka: [pipeline, data pipelines]
+    cat: Data engineering
+    def: "A repeatable, automated series of steps that moves and transforms data from sources to where it is used."
+    see: phase-3
+  - term: Data warehouse
+    aka: [warehouse, dwh]
+    cat: Data engineering
+    def: "A database designed for analysis, holding cleaned, modelled history from many sources (often in star schemas)."
+    see: phase-3/data-warehousing
+  - term: Lakehouse
+    aka: [data lake, delta lake, iceberg]
+    cat: Data engineering
+    def: "A data platform that stores files cheaply like a data lake but adds tables, transactions and SQL like a warehouse."
+    see: phase-3/lakehouse
+  - term: dbt
+    aka: [data build tool]
+    cat: Data engineering
+    def: "A tool that turns SQL SELECT statements into tested, documented and version-controlled transformation models in the warehouse."
+    see: phase-3/dbt
+  - term: Orchestration
+    aka: [orchestrator, airflow, dagster, DAG]
+    cat: Data engineering
+    def: "Scheduling and coordinating pipeline steps in the right order, with retries, alerts and monitoring (e.g. Airflow, Dagster)."
+    see: phase-3/orchestration
+  - term: Data quality
+    aka: [data validation, data tests]
+    cat: Data engineering
+    def: "How fit data is for use: complete, valid, unique, consistent and on time. Checked with automated tests in pipelines."
+    see: phase-3/data-quality
+  - term: Idempotent
+    aka: [idempotency]
+    cat: Data engineering
+    def: "A job is idempotent if running it twice gives the same result as running it once, which makes retries safe."
+    see: phase-3/etl-elt
+  - term: Streaming
+    aka: [kafka, event streaming, real-time]
+    cat: Data engineering
+    def: "Processing data continuously as events arrive (seconds), instead of in scheduled batches (hours or days)."
+    see: phase-3/big-data-streaming
+  - term: API
+    aka: [REST API, api, endpoint]
+    cat: Data engineering
+    def: "Application programming interface: a defined way for programs to request data or actions from another system, usually over HTTP with JSON."
+    see: phase-6/apis-webhooks
+  - term: Webhook
+    aka: [webhooks]
+    cat: Data engineering
+    def: "A URL that another system calls automatically when an event happens (an order is created), pushing data instead of you polling for it."
+    see: phase-6/apis-webhooks
+
+  # ---------------------------------------------------------------- Machine learning
+  - term: Machine learning
+    aka: [ML, machine learning model]
+    cat: Machine learning
+    def: "Building models that learn patterns from examples to make predictions, instead of writing every rule by hand."
+    see: phase-2/ml-foundations/01-sklearn-train-test-split
+  - term: Training and test sets
+    aka: [train/test split, test set, validation set, holdout]
+    cat: Machine learning
+    def: "Data is split so a model learns on one part (training) and is judged on unseen data (test), which shows how it will do in real use."
+    see: phase-2/ml-foundations/01-sklearn-train-test-split
+  - term: Overfitting
+    aka: [overfit, underfitting]
+    cat: Machine learning
+    def: "When a model memorises the training data, including noise, and performs badly on new data. Underfitting is the opposite: too simple to capture the pattern."
+    see: phase-2/ml-foundations/03-features-bias-variance
+  - term: Regression
+    aka: [linear regression]
+    cat: Machine learning
+    def: "Predicting a number, such as next month's revenue or a delivery time."
+    see: phase-4/regression
+  - term: Classification
+    aka: [classifier, logistic regression]
+    cat: Machine learning
+    def: "Predicting a category, such as whether an order will be cancelled or which defect type an image shows."
+    see: phase-4/classification
+  - term: Feature
+    aka: [features, feature engineering]
+    cat: Machine learning
+    def: "An input column a model learns from, such as order value or customer segment. Feature engineering creates better inputs."
+    see: phase-2/ml-foundations/03-features-bias-variance
+  - term: Precision and recall
+    aka: [precision, recall, F1]
+    cat: Machine learning
+    def: "Precision: of everything flagged, how much was right. Recall: of everything that should be flagged, how much was found."
+    see: phase-2/ml-foundations/01-sklearn-train-test-split
+  - term: MLOps
+    aka: [model deployment, model monitoring]
+    cat: Machine learning
+    def: "Practices and tools for deploying, monitoring, versioning and retraining machine learning models reliably in production."
+    see: phase-4/mlops
+  - term: Computer vision
+    aka: [CV, image classification, object detection]
+    cat: Machine learning
+    def: "AI that understands images and video, for example detecting defects on a production line."
+    see: phase-4/computer-vision
+
+  # ---------------------------------------------------------------- LLMs & RAG
+  - term: LLM
+    aka: [large language model, language model]
+    cat: LLMs & RAG
+    def: "Large language model: an AI model trained on huge amounts of text to predict the next token, which lets it write, summarise, answer and code."
+    see: phase-5/llm-apps
+  - term: Token
+    aka: [tokens, tokenizer]
+    cat: LLMs & RAG
+    def: "The unit of text an LLM reads and writes (roughly part of a word). Prices, limits and context windows are measured in tokens."
+    see: phase-5/nlp-foundations
+  - term: Context window
+    aka: [context length]
+    cat: LLMs & RAG
+    def: "The maximum amount of text (in tokens) an LLM can consider at once, including instructions, documents and the conversation."
+    see: phase-5/prompt-context
+  - term: Prompt
+    aka: [prompting, prompt engineering, prompting for code, system prompt]
+    cat: LLMs & RAG
+    def: "The instructions and context you give an AI model. Good prompts state context, the task, constraints and how the result will be checked."
+    see: phase-0/ai-assisted-dev/01-agents-prompting
+  - term: Context engineering
+    aka: []
+    cat: LLMs & RAG
+    def: "Deciding exactly what information, tools and instructions an AI model sees for each step, so it has what it needs and nothing distracting."
+    see: phase-5/prompt-context
+  - term: Hallucination
+    aka: [hallucinations, confabulation]
+    cat: LLMs & RAG
+    def: "When an AI model states something false or invented with confidence, such as a non-existent function or a wrong number."
+    see: phase-1/ai-assisted-analytics/01-ai-assisted-analytics
+  - term: Embedding
+    aka: [embeddings, vector embedding]
+    cat: LLMs & RAG
+    def: "A list of numbers that represents the meaning of a text (or image), so similar meanings are close together and can be searched."
+    see: phase-5/vector-databases
+  - term: Vector database
+    aka: [vector store, vector search, similarity search]
+    cat: LLMs & RAG
+    def: "A database that stores embeddings and quickly finds the ones most similar to a query, the retrieval engine behind most RAG systems."
+    see: phase-5/vector-databases
+  - term: RAG
+    aka: [retrieval-augmented generation, retrieval augmented generation]
+    cat: LLMs & RAG
+    def: "Retrieval-augmented generation: find relevant passages from your own documents, then give them to an LLM so its answer is grounded and citable."
+    see: phase-5/advanced-rag
+  - term: Chunking
+    aka: [chunks, chunk size]
+    cat: LLMs & RAG
+    def: "Splitting documents into smaller passages before embedding them, so retrieval returns focused, relevant text."
+    see: phase-5/advanced-rag
+  - term: Fine-tuning
+    aka: [fine tuning, LoRA]
+    cat: LLMs & RAG
+    def: "Further training an existing model on your own examples to change its style or behaviour. Usually tried after prompting and RAG."
+    see: phase-5/fine-tuning
+  - term: Evaluation
+    aka: [evals, LLM evaluation, LLM-as-a-judge]
+    cat: LLMs & RAG
+    def: "Measuring an AI system's quality with test sets and metrics (accuracy, groundedness, cost, latency) before and after every change."
+    see: phase-5/rag-evaluation
+
+  # ---------------------------------------------------------------- Agents & automation
+  - term: AI agent
+    aka: [agent, agents, agentic AI]
+    cat: Agents & automation
+    def: "An AI system that decides its own next steps, using tools (search, code, APIs) in a loop until the goal is reached."
+    see: phase-6/agent-architecture
+  - term: Coding agent
+    aka: [coding agents, coding assistant, agent mode, github copilot]
+    cat: Agents & automation
+    def: "An AI assistant that reads a code project, edits files, runs commands and tests, and may open pull requests for review."
+    see: phase-0/ai-assisted-dev/01-agents-prompting
+  - term: AGENTS.md
+    aka: [agents.md, project instructions, CLAUDE.md]
+    cat: Agents & automation
+    def: "A file in a repository with instructions for AI coding agents: setup commands, rules and checks to run before finishing."
+    see: phase-0/ai-assisted-dev/01-agents-prompting
+  - term: Workflow automation
+    aka: [workflow automation, automation, n8n, zapier, make]
+    cat: Agents & automation
+    def: "Connecting apps so a trigger (a new email, a form) runs fixed steps automatically. n8n, Make and Zapier are popular tools."
+    see: phase-6/workflow-vs-agent
+  - term: Tool calling
+    aka: [function calling, tool use, tools]
+    cat: Agents & automation
+    def: "An LLM's ability to ask your code to run a defined tool (search, query a database, send an email) and use the result."
+    see: phase-6/agent-architecture
+  - term: MCP
+    aka: [model context protocol, MCP server]
+    cat: Agents & automation
+    def: "Model Context Protocol: an open standard for connecting AI applications to tools and data sources through MCP servers."
+    see: phase-6/mcp-a2a
+  - term: Human-in-the-loop
+    aka: [HITL, human in the loop, approval step]
+    cat: Agents & automation
+    def: "Designing an AI workflow so a person reviews or approves important steps before they take effect."
+    see: phase-6/human-in-the-loop
+  - term: Multi-agent system
+    aka: [multi-agent, multi agent]
+    cat: Agents & automation
+    def: "Several specialised AI agents that hand work to each other or a coordinator, each with its own role and tools."
+    see: phase-6/multi-agent
+
+  # ---------------------------------------------------------------- AI operations & governance
+  - term: LLMOps
+    aka: [llmops]
+    cat: AI operations & governance
+    def: "Running LLM applications reliably in production: deployment, monitoring, evaluation, cost control and incident handling."
+    see: phase-7
+  - term: Observability
+    aka: [tracing, llm observability, monitoring]
+    cat: AI operations & governance
+    def: "Recording what a system does (traces, logs, metrics) so you can see why an answer was slow, costly or wrong."
+    see: phase-7/llm-observability
+  - term: Prompt injection
+    aka: [jailbreak, injection]
+    cat: AI operations & governance
+    def: "An attack where text in a document, web page or message tricks an AI system into ignoring its instructions or leaking data."
+    see: phase-7/security
+  - term: Guardrails
+    aka: [guardrail, content filter]
+    cat: AI operations & governance
+    def: "Checks around an AI system's inputs and outputs (validation, filters, limits) that block unsafe or invalid results."
+    see: phase-7/reliability
+  - term: Model routing
+    aka: [router, model router]
+    cat: AI operations & governance
+    def: "Sending each request to the most suitable model, for example a small cheap model for simple tasks and a larger one for hard ones."
+    see: phase-7/model-routing
+  - term: AI governance
+    aka: [responsible AI, EU AI Act, ai policy]
+    cat: AI operations & governance
+    def: "Policies, roles and controls that make sure AI systems are legal, safe, fair, documented and accountable."
+    see: phase-7/ai-governance

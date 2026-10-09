@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en" data-root="../../../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Research Questions &amp; Experiment Design: Ask Something You Can Answer — Data, AI &amp; Automation Path</title>
+<meta name="description" content="Turn a business worry into a precise research question and hypothesis, choose the unit of randomisation, and use a power analysis to pick a design that can actually deliver an answer — or to say early that it can&#x27;t.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data, AI &amp; Automation Path">
+<meta property="og:title" content="Research Questions &amp; Experiment Design: Ask Something You Can Answer">
+<meta property="og:description" content="Turn a business worry into a precise research question and hypothesis, choose the unit of randomisation, and use a power analysis to pick a design that can actually deliver an answer — or to say early that it can&#x27;t.">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+
+<script>(function(){var t=null;try{t=localStorage.getItem('daa-theme')}catch(e){}
+if(!t)t=(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';
+document.documentElement.setAttribute('data-theme',t);
+var n=null;try{n=localStorage.getItem('daa-nav')}catch(e){}
+if(n==='open'&&window.matchMedia&&matchMedia('(min-width: 961px)').matches)document.documentElement.setAttribute('data-nav','open');
+document.documentElement.classList.add('no-anim')})();</script>
+<link rel="stylesheet" href="../../../assets/style.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233f7d6a'/%3E%3Ctext x='16' y='21' font-family='sans-serif' font-size='13' font-weight='700' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Open curriculum menu" title="Curriculum menu (press M)" aria-controls="sidebar" aria-expanded="false"><span class="ico-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span class="ico-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></button>
+  <a class="brand" href="../../../index.html"><span class="brand-badge">AI</span><span class="brand-text"><span class="brand-name">Data, AI &amp; Automation Path</span><span class="brand-version">v0.7</span></span></a>
+  <nav class="top-links" aria-label="Main">
+    <a href="../../../index.html" class="">Home</a><a href="../../../curriculum.html" class="">Curriculum</a><a href="../../../practice-files.html" class="">Practice files</a><a href="../../../glossary.html" class="">Glossary</a><a href="../../../how-to-learn.html" class="">How to learn</a><a href="../../../about.html" class="">About</a>
+  </nav>
+  <div class="top-spacer"></div>
+  <div class="search" role="search">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input id="searchInput" type="search" placeholder="Search lessons, tools, topics" aria-label="Search" autocomplete="off">
+    <kbd>/</kbd>
+    <div class="search-results" id="searchResults" role="listbox"></div>
+  </div>
+  <button class="icon-btn theme-toggle" id="themeBtn" aria-label="Toggle light or dark mode" title="Light / dark"><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
+</header>
+<div class="layout wide">
+  <nav class="sidebar" id="sidebar" aria-label="Curriculum">
+    <div class="side-title">Curriculum</div>
+    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="64"><i></i></div><span class="bar-label" data-progress-label></span></div>
+<div class="nav-phase"><a href="../../../learn/phase-0/index.html"><span class="nav-num">0</span>Foundations</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-1/index.html"><span class="nav-num">1</span>Analytics &amp; BI</a>
+</div>
+<div class="nav-phase current open"><a href="../../../learn/phase-2/index.html"><span class="nav-num">2</span>Data Science</a>
+<ul class="nav-modules">
+<li><a class="" href="../../../learn/phase-2/numpy/index.html">NumPy</a>
+</li>
+<li><a class="" href="../../../learn/phase-2/pandas/index.html">Pandas</a>
+</li>
+<li><a class="" href="../../../learn/phase-2/polars-duckdb/index.html">Polars &amp; DuckDB</a>
+</li>
+<li><a class="" href="../../../learn/phase-2/eda/index.html">EDA</a>
+</li>
+<li><a class="" href="../../../learn/phase-2/statistics/index.html">Statistics</a>
+</li>
+<li><a class="" href="../../../learn/phase-2/ab-testing/index.html">Experimentation &amp; A/B Testing</a>
+</li>
+<li><a class="" href="../../../learn/phase-2/visualization/index.html">Visualization</a>
+</li>
+<li><a class="" href="../../../learn/phase-2/ml-foundations/index.html">ML Foundations</a>
+</li>
+<li><a class="current" href="../../../learn/phase-2/research-thinking/index.html">Research Thinking</a>
+<ul class="nav-lessons">
+<li><a class="current" data-lesson="phase-2/research-thinking/01-research-question-design" href="../../../learn/phase-2/research-thinking/01-research-question-design.html">Research Questions &amp; Experiment Design: Ask Something You Can Answer</a></li>
+<li><a class="" data-lesson="phase-2/research-thinking/02-reproducibility-reporting" href="../../../learn/phase-2/research-thinking/02-reproducibility-reporting.html">Reproducibility, Evaluation &amp; Reporting: Results Others Can Trust</a></li>
+</ul>
+</li>
+<li><a class="nav-project " href="../../../learn/phase-2/project.html">★ Milestone project</a></li>
+</ul>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-3/index.html"><span class="nav-num">3</span>Data Engineering</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-4/index.html"><span class="nav-num">4</span>ML Engineering</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-5/index.html"><span class="nav-num">5</span>LLM &amp; RAG</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-6/index.html"><span class="nav-num">6</span>Agents &amp; Automation</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-7/index.html"><span class="nav-num">7</span>LLMOps &amp; Governance</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-8/index.html"><span class="nav-num">8</span>Capstone</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-9/index.html"><span class="nav-num">9</span>Career</a>
+</div>
+<div class="side-extra"><a href="../../../index.html">Home</a><a href="../../../curriculum.html">Full curriculum map</a><a href="../../../practice-files.html">Practice files</a><a href="../../../glossary.html">Glossary</a><a href="../../../how-to-learn.html">How to learn here</a><a href="../../../about.html">About &amp; contributing</a></div></nav>
+  <main class="main" id="main"><div class="content">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../../index.html">Home</a><span class="sep">/</span><a href="../../../learn/phase-2/index.html">Phase 2</a><span class="sep">/</span><a href="../../../learn/phase-2/research-thinking/index.html">Research Thinking</a><span class="sep">/</span><span>Research Questions &amp; Experiment Design: Ask Something You Can Answer</span></nav>
+<h1>Research Questions &amp; Experiment Design: Ask Something You Can Answer</h1>
+<p class="lead">Turn a business worry into a precise research question and hypothesis, choose the unit of randomisation, and use a power analysis to pick a design that can actually deliver an answer — or to say early that it can&#x27;t.</p>
+<div class="meta"><span class="pill">Phase <b>2</b> · Data Science</span><span class="pill">Level <b>Intermediate</b></span><span class="pill">Time <b>45 min</b></span></div>
+<div class="admonition note"><p class="admonition-title">Before you start</p><p><a href="../../../learn/phase-2/ab-testing/02-sample-size-causal-pitfalls.html">A/B Testing Part 2: Sample Size, Peeking and Causal Pitfalls</a></p></div>
+<div class="files-box"><div class="files-head"><b>Practice files for this page</b><a href="../../../practice-files.html">All practice files →</a></div><ul><li><a href="../../../downloads/phase-2/data-science-scripts.zip" download>data-science-scripts.zip</a><span class="f-desc">All 21 Phase 2 lesson scripts (NumPy to research thinking), shared chart style, data folder and solutions · 230 KB</span></li><li><a href="../../../downloads/phase-2/orders_2025.csv" download>orders_2025.csv</a><span class="f-desc">4,246 clean orders for 2025 (synthetic, fixed seed): region, segment, channel, product, price, discount, status, delivery days, revenue · 472 KB</span></li><li><a href="../../../downloads/phase-2/customers_2025.csv" download>customers_2025.csv</a><span class="f-desc">63 customers: segment, region, sign-up date, credit terms · 3 KB</span></li><li><a href="../../../downloads/templates/experiment_plan_template.md" download>experiment_plan_template.md</a><span class="f-desc">Experiment plan template: question, unit, metrics, MDE, sample size, stopping rule (Markdown) · 1 KB</span></li></ul></div>
+<h2 id="what-is-it">What is it?</h2>
+<ul>
+<li>A <strong>research question</strong> is a precise, answerable question tied to a decision: <em>who</em>, <em>what change</em>, <em>which outcome</em>, <em>how much</em>, <em>by when</em>.</li>
+<li><strong>Experiment design</strong> is the plan for answering it: what's compared, how units are assigned, what's measured, how much data is needed, and how it will be analysed.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Vague worry</th>
+<th>Research question</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>"Credit customers cancel too much."</td>
+<td>For orders from customers on 30+ day credit, does a pre-dispatch confirmation call reduce the cancellation rate by at least 30% (relative) over the next quarter?</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition job">
+<p class="admonition-title">Why it matters at work</p>
+<p>Teams waste months on analyses that can't answer the question they were meant to: too little data, the wrong unit, no comparison group. An analyst who spots this at the planning stage, and proposes a design that works, saves real money. Senior interviews often include "design a study to find out whether X works".</p>
+</div>
+<p>The script is <code>20_research_question_design.py</code>.</p>
+<h2 id="step-1-from-worry-to-question">Step 1: from worry to question</h2>
+<p>The EDA found that cancellations rise with credit terms:</p>
+<div class="codehilite"><pre><span></span><code>             rate  orders  customers
+credit_days
+0             3.3    1336         18
+15            4.4     872         11
+30            8.2    1353         24
+60           14.1     640          7
+</code></pre></div>
+
+<p>The tempting conclusion, "shorten credit terms to cut cancellations", is a <strong>causal</strong> claim from <strong>observational</strong> data. Customers on 60-day terms may simply be different businesses. So the question needs a design that can isolate cause.</p>
+<p>A good research question is:</p>
+<table>
+<thead>
+<tr>
+<th>Criterion</th>
+<th>Check</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Decision-linked</strong></td>
+<td>We'll act differently depending on the answer</td>
+</tr>
+<tr>
+<td><strong>Specific</strong></td>
+<td>Population, intervention, outcome and time frame are named</td>
+</tr>
+<tr>
+<td><strong>Measurable</strong></td>
+<td>The outcome has an exact definition in the data</td>
+</tr>
+<tr>
+<td><strong>Feasible</strong></td>
+<td>Enough units and time to detect the effect that matters</td>
+</tr>
+<tr>
+<td><strong>Comparative</strong></td>
+<td>There's a comparison (control) that answers "compared with what?"</td>
+</tr>
+</tbody>
+</table>
+<p>Then write a <strong>hypothesis</strong> with a direction and a size: <em>"A confirmation call before dispatch will reduce cancellations from about 10% to 7%, because it catches orders customers have already changed their minds about."</em></p>
+<h2 id="step-2-choose-the-unit-of-randomisation">Step 2: choose the unit of randomisation</h2>
+<p><strong>Design A: randomise credit terms by customer.</strong> Credit terms are part of each customer's contract, so the unit has to be the customer.</p>
+<div class="codehilite"><pre><span></span><code>customers per credit band: {0: 19, 15: 12, 30: 25, 60: 7}
+customers on 60-day credit who ordered in 2025: 7
+their cancellation rates range from 10.7% to 26.3%
+</code></pre></div>
+
+<p>Only <strong>7 customers</strong> on 60-day terms, and they differ a lot from each other (10.7% to 26.3%). Randomising 3 vs 4 customers can't separate the effect of credit terms from differences between those few businesses, however many orders they place. <strong>Design A is not feasible.</strong> It's far better to discover that now than after a quarter of waiting.</p>
+<p><strong>Design B: randomise a confirmation call per order.</strong> The intervention happens per order, so each eligible order can be randomly assigned "call" or "no call". Many more units, and the same customer appears in both groups, which balances customer differences.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Design A (credit terms)</th>
+<th>Design B (confirmation call)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Unit</td>
+<td>Customer</td>
+<td>Order</td>
+</tr>
+<tr>
+<td>Units available</td>
+<td>7 (60-day) to 32 (30+ day)</td>
+<td>About 166 eligible orders a month</td>
+</tr>
+<tr>
+<td>Main risk</td>
+<td>Too few units; customers differ</td>
+<td>Contamination (same customer, both arms); staff compliance</td>
+</tr>
+<tr>
+<td>Answers</td>
+<td>"Do shorter terms reduce cancellations?"</td>
+<td>"Does a call reduce cancellations?" (a different, but actionable, question)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="step-3-size-it-before-you-commit">Step 3: size it before you commit</h2>
+<div class="codehilite"><pre><span></span><code><span class="n">eligible</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">"credit_days"</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">30</span><span class="p">]</span>
+<span class="n">base</span> <span class="o">=</span> <span class="n">eligible</span><span class="p">[</span><span class="s2">"cancelled"</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">target</span> <span class="o">=</span> <span class="n">base</span> <span class="o">*</span> <span class="mf">0.70</span>                                   <span class="c1"># the call is worth it if it cuts cancellations by 30%</span>
+<span class="n">h</span> <span class="o">=</span> <span class="n">proportion_effectsize</span><span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
+<span class="n">n</span> <span class="o">=</span> <span class="n">NormalIndPower</span><span class="p">()</span><span class="o">.</span><span class="n">solve_power</span><span class="p">(</span><span class="n">effect_size</span><span class="o">=</span><span class="n">h</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">power</span><span class="o">=</span><span class="mf">0.80</span><span class="p">)</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>eligible orders: 1993 in 2025 (166/month), baseline cancellation 10.1%
+detect 10.1% -&gt; 7.1%: 1335 orders per arm, about 17 months of eligible orders
+</code></pre></div>
+
+<p>Even Design B needs about <strong>17 months</strong> to detect a 30% reduction. Options to make it feasible, each a trade-off to agree with the business:</p>
+<div class="codehilite"><pre><span></span><code>cut 40%, 30+ day credit                baseline 10.1%: 705 per arm, ~9 months
+cut 30%, all credit customers (15+)    baseline 8.3%: 1639 per arm, ~14 months
+</code></pre></div>
+
+<ul>
+<li><strong>Aim for a larger effect</strong> (40%): about 9 months, but you'll miss a smaller real effect.</li>
+<li><strong>Widen eligibility</strong> to all credit customers: more orders, but a lower baseline, so the gain is small.</li>
+<li>Other levers: run it across a full year of seasonality anyway; accept 70% power; use a more sensitive metric.</li>
+</ul>
+<p>There's no free lunch. The right answer is a <strong>conversation</strong>: "with our volume, this experiment answers 'does the call cut cancellations by 40% or more?' in about 9 months. Is that useful?"</p>
+<h2 id="step-4-write-the-plan-down">Step 4: write the plan down</h2>
+<p>Use <code>experiment_plan_template.md</code>. The key fields:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Design B</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Decision</td>
+<td>Roll out confirmation calls to all credit orders, or not</td>
+</tr>
+<tr>
+<td>Population</td>
+<td>Orders from customers on 30+ day credit, from 1 January</td>
+</tr>
+<tr>
+<td>Unit</td>
+<td>Order (random 50/50 by order ID)</td>
+</tr>
+<tr>
+<td>Primary metric</td>
+<td>Cancellation within 14 days of order</td>
+</tr>
+<tr>
+<td>Guardrails</td>
+<td>Delivery time; sales-team hours; customer complaints</td>
+</tr>
+<tr>
+<td>MDE / power</td>
+<td>−40% relative, 80% power, α = 0.05 → 705 orders per arm</td>
+</tr>
+<tr>
+<td>Duration</td>
+<td>About 9 months; no early stopping</td>
+</tr>
+<tr>
+<td>Analysis</td>
+<td>Two-proportion test with 95% CI; segments (30 vs 60 days) pre-specified</td>
+</tr>
+</tbody>
+</table>
+<p>Writing this <strong>before</strong> the data arrives (sometimes called <em>pre-registration</em>) protects against choosing the metric, segment or end date that happens to look good.</p>
+<h2 id="when-you-cant-randomise">When you can't randomise</h2>
+<table>
+<thead>
+<tr>
+<th>Situation</th>
+<th>Option</th>
+<th>Main caveat</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Change rolls out to everyone at once</td>
+<td><strong>Before/after with a comparison group</strong> (difference-in-differences)</td>
+<td>Groups must have followed similar trends before</td>
+</tr>
+<tr>
+<td>Rollout region by region</td>
+<td><strong>Staggered rollout</strong></td>
+<td>Other changes may coincide</td>
+</tr>
+<tr>
+<td>Only historical data</td>
+<td>Compare within groups, adjust for confounders</td>
+<td>Never as strong as randomisation; state it</td>
+</tr>
+</tbody>
+</table>
+<h2 id="common-mistakes">Common mistakes</h2>
+<table>
+<thead>
+<tr>
+<th>Mistake</th>
+<th>What happens</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Starting with data, not a decision</td>
+<td>Interesting results nobody uses</td>
+<td>Write the decision first</td>
+</tr>
+<tr>
+<td>Causal language from observational data</td>
+<td>Wrong interventions</td>
+<td>Design for cause, or say "associated with"</td>
+</tr>
+<tr>
+<td>Ignoring the unit of randomisation</td>
+<td>Hundreds of "orders" but only 7 real units</td>
+<td>Count the units you randomise, not the rows</td>
+</tr>
+<tr>
+<td>No power analysis</td>
+<td>Months of inconclusive results</td>
+<td>Size before starting; adjust the design or the goal</td>
+</tr>
+<tr>
+<td>Changing the plan mid-way silently</td>
+<td>Untrustworthy results</td>
+<td>Document every change with a reason</td>
+</tr>
+</tbody>
+</table>
+<h2 id="try-it-yourself">Try it yourself</h2>
+<p><strong>Task:</strong> The operations director wants <strong>90% power</strong> for Design B (30% reduction, 30+ day credit customers). How many orders per arm, and how long would it take?</p>
+<details>
+<summary>Show the solution</summary>
+<div class="codehilite"><pre><span></span><code><span class="n">n90</span> <span class="o">=</span> <span class="n">NormalIndPower</span><span class="p">()</span><span class="o">.</span><span class="n">solve_power</span><span class="p">(</span><span class="n">effect_size</span><span class="o">=</span><span class="n">h</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">power</span><span class="o">=</span><span class="mf">0.90</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"90% power: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">n90</span><span class="p">)</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2"> per arm, ~</span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">n90</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">per_month</span><span class="p">)</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2"> months"</span><span class="p">)</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>90% power: 1786 per arm, ~22 months
+</code></pre></div>
+
+<p>Almost two years: not realistic for a process change. A sensible recommendation is the 40% / 80% design (about 9 months), stated clearly as "able to detect a large effect only".</p>
+</details>
+<h2 id="quick-quiz">Quick quiz</h2>
+<div class="quiz-q" data-answer="1">
+<p>1. Credit terms are set per customer, and only 7 customers have 60-day terms. What's the problem with randomising credit terms?</p>
+<ol>
+<li>None: they place 640 orders</li>
+<li>The unit of randomisation is the customer, so there are only 7 units</li>
+<li>Credit terms can't be measured</li>
+</ol>
+<details>
+<summary>Show answer</summary>
+<p><strong>B.</strong></p>
+</details>
+</div>
+<div class="quiz-q" data-answer="1">
+<p>2. Which makes a research question feasible?</p>
+<ol>
+<li>Using as many metrics as possible</li>
+<li>Enough units and time to detect the smallest effect worth acting on</li>
+<li>A large dataset of any kind</li>
+</ol>
+<details>
+<summary>Show answer</summary>
+<p><strong>B.</strong></p>
+</details>
+</div>
+<div class="quiz-q" data-answer="1">
+<p>3. Why write the experiment plan before collecting data?</p>
+<ol>
+<li>It's required by law</li>
+<li>It prevents choosing metrics, segments or stopping points after seeing the results</li>
+<li>It makes the experiment faster</li>
+</ol>
+<details>
+<summary>Show answer</summary>
+<p><strong>B.</strong></p>
+</details>
+</div>
+<h2 id="summary">Summary</h2>
+<ul>
+<li>Start from the <strong>decision</strong>; write a specific, measurable, comparative <strong>research question</strong> and a directional <strong>hypothesis</strong>.</li>
+<li>Choose the <strong>unit of randomisation</strong> from where the intervention happens, and count the units, not the rows.</li>
+<li>Run a <strong>power analysis</strong> before committing; trade off effect size, eligibility and duration with the business.</li>
+<li>Write the plan down first; when you can't randomise, use the strongest available design and state its limits.</li>
+</ul>
+<div class="admonition job">
+<p class="admonition-title">Job-ready check</p>
+<p><strong>Interview question:</strong> <em>"Design a study to find out whether shorter credit terms reduce cancellations."</em></p>
+<p><strong>Strong answer:</strong> "Credit terms are set per customer, so customers are the unit, and we only have a handful on long terms, which is too few for a fair randomised test. I'd say so up front, and propose either a staggered change of terms with a comparison group, or a related, testable intervention such as a confirmation call randomised per order, sized with a power analysis. I'd agree the primary metric, guardrails and duration in a written plan before starting."</p>
+<p><strong>Mini project:</strong> Fill in <code>experiment_plan_template.md</code> for one decision you'd like to test (in this dataset or at work), including the power calculation.</p>
+</div>
+<div class="terms-box"><div class="files-head"><b>Key terms in this lesson</b><a href="../../../glossary.html">Glossary →</a></div><div class="term-chips"><a class="term-chip" href="../../../glossary.html#research-question" title="A specific, measurable, decision-linked question (who, what change, which outcome, how much, by when) that a study is designed to answer.">Research question</a><a class="term-chip" href="../../../glossary.html#statistical-power" title="The chance an experiment detects an effect of a given size if it really exists (usually 80%). A power analysis sets the sample size from the baseline, the minimum effect worth detecting and α.">Statistical power</a></div></div>
+<h2 id="free-resources">Free resources to go deeper</h2><ul class="resources"><li><a href="https://experimentguide.com/">Trustworthy Online Controlled Experiments — resources</a><span class="r-meta">Kohavi, Tang &amp; Xu (book site) · Designing experiments: metrics, randomisation units and pitfalls.</span></li><li><a href="https://matheusfacure.github.io/python-causality-handbook/landing-page.html">Causal Inference for the Brave and True (free online book)</a><span class="r-meta">Matheus Facure · Randomised experiments and what to do when you can&#x27;t randomise.</span></li><li><a href="https://www.openintro.org/book/os/">OpenIntro Statistics (free textbook)</a><span class="r-meta">OpenIntro · Chapter 1: observational studies vs experiments, sampling and design.</span></li></ul>
+<div class="complete-bar"><span>Finished reading and did the exercise?</span>
+<button class="btn" id="completeBtn" type="button" data-id="phase-2/research-thinking/01-research-question-design">Mark lesson as complete</button></div>
+<nav class="pager"><a class="prev" href="../../../learn/phase-2/ml-foundations/03-features-bias-variance.html"><small>← Previous</small>Feature Engineering &amp; Bias/Variance: Better Inputs, the Right Complexity</a><a class="next" href="../../../learn/phase-2/research-thinking/02-reproducibility-reporting.html"><small>Next →</small>Reproducibility, Evaluation &amp; Reporting: Results Others Can Trust</a></nav>
+<p class="reviewed">Last reviewed: 2026-10-09</p>
+
+  </div></main>
+  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#step-1-from-worry-to-question">Step 1: from worry to question</a><a href="#step-2-choose-the-unit-of-randomisation">Step 2: choose the unit of randomisation</a><a href="#step-3-size-it-before-you-commit">Step 3: size it before you commit</a><a href="#step-4-write-the-plan-down">Step 4: write the plan down</a><a href="#when-you-cant-randomise">When you can&#x27;t randomise</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#free-resources">Free resources</a></aside>
+</div>
+<footer class="site">Data, AI &amp; Automation Path v0.7 · Applied AI, Data &amp; Automation Lab · Updated October 2026<br>
+Lesson text: <a href="../../../license.html">CC BY-NC-SA 4.0</a> · Code: <a href="../../../license.html#code-mit-license">MIT</a> · Free external resources belong to their respective owners.</footer>
+<script src="../../../search-index.js"></script>
+<script src="../../../assets/app.js"></script>
+</body>
+</html>

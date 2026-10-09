@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en" data-root="../../../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NumPy Arrays &amp; Indexing: Fast Tables of Numbers — Data, AI &amp; Automation Path</title>
+<meta name="description" content="Create 1-D and 2-D arrays, understand shape and dtype, and select exactly the values you need with slices, boolean masks and sorting — on real order data.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data, AI &amp; Automation Path">
+<meta property="og:title" content="NumPy Arrays &amp; Indexing: Fast Tables of Numbers">
+<meta property="og:description" content="Create 1-D and 2-D arrays, understand shape and dtype, and select exactly the values you need with slices, boolean masks and sorting — on real order data.">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+
+<script>(function(){var t=null;try{t=localStorage.getItem('daa-theme')}catch(e){}
+if(!t)t=(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';
+document.documentElement.setAttribute('data-theme',t);
+var n=null;try{n=localStorage.getItem('daa-nav')}catch(e){}
+if(n==='open'&&window.matchMedia&&matchMedia('(min-width: 961px)').matches)document.documentElement.setAttribute('data-nav','open');
+document.documentElement.classList.add('no-anim')})();</script>
+<link rel="stylesheet" href="../../../assets/style.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233f7d6a'/%3E%3Ctext x='16' y='21' font-family='sans-serif' font-size='13' font-weight='700' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Open curriculum menu" title="Curriculum menu (press M)" aria-controls="sidebar" aria-expanded="false"><span class="ico-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span class="ico-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></button>
+  <a class="brand" href="../../../index.html"><span class="brand-badge">AI</span><span class="brand-text"><span class="brand-name">Data, AI &amp; Automation Path</span><span class="brand-version">v0.7</span></span></a>
+  <nav class="top-links" aria-label="Main">
+    <a href="../../../index.html" class="">Home</a><a href="../../../curriculum.html" class="">Curriculum</a><a href="../../../practice-files.html" class="">Practice files</a><a href="../../../glossary.html" class="">Glossary</a><a href="../../../how-to-learn.html" class="">How to learn</a><a href="../../../about.html" class="">About</a>
+  </nav>
+  <div class="top-spacer"></div>
+  <div class="search" role="search">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input id="searchInput" type="search" placeholder="Search lessons, tools, topics" aria-label="Search" autocomplete="off">
+    <kbd>/</kbd>
+    <div class="search-results" id="searchResults" role="listbox"></div>
+  </div>
+  <button class="icon-btn theme-toggle" id="themeBtn" aria-label="Toggle light or dark mode" title="Light / dark"><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
+</header>
+<div class="layout wide">
+  <nav class="sidebar" id="sidebar" aria-label="Curriculum">
+    <div class="side-title">Curriculum</div>
+    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="64"><i></i></div><span class="bar-label" data-progress-label></span></div>
+<div class="nav-phase"><a href="../../../learn/phase-0/index.html"><span class="nav-num">0</span>Foundations</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-1/index.html"><span class="nav-num">1</span>Analytics &amp; BI</a>
+</div>
+<div class="nav-phase current open"><a href="../../../learn/phase-2/index.html"><span class="nav-num">2</span>Data Science</a>
+<ul class="nav-modules">
+<li><a class="current" href="../../../learn/phase-2/numpy/index.html">NumPy</a>
+<ul class="nav-lessons">
+<li><a class="current" data-lesson="phase-2/numpy/01-arrays-indexing" href="../../../learn/phase-2/numpy/01-arrays-indexing.html">NumPy Arrays &amp; Indexing: Fast Tables of Numbers</a></li>
+<li><a class="" data-lesson="phase-2/numpy/02-vectorized-numerical" href="../../../learn/phase-2/numpy/02-vectorized-numerical.html">Vectorized Operations &amp; Numerical Computation in NumPy</a></li>
+</ul>
+</li>
+<li><a class="" href="../../../learn/phase-2/pandas/index.html">Pandas</a>
+</li>
+<li><a class="" href="../../../learn/phase-2/polars-duckdb/index.html">Polars &amp; DuckDB</a>
+</li>
+<li><a class="" href="../../../learn/phase-2/eda/index.html">EDA</a>
+</li>
+<li><a class="" href="../../../learn/phase-2/statistics/index.html">Statistics</a>
+</li>
+<li><a class="" href="../../../learn/phase-2/ab-testing/index.html">Experimentation &amp; A/B Testing</a>
+</li>
+<li><a class="" href="../../../learn/phase-2/visualization/index.html">Visualization</a>
+</li>
+<li><a class="" href="../../../learn/phase-2/ml-foundations/index.html">ML Foundations</a>
+</li>
+<li><a class="" href="../../../learn/phase-2/research-thinking/index.html">Research Thinking</a>
+</li>
+<li><a class="nav-project " href="../../../learn/phase-2/project.html">★ Milestone project</a></li>
+</ul>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-3/index.html"><span class="nav-num">3</span>Data Engineering</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-4/index.html"><span class="nav-num">4</span>ML Engineering</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-5/index.html"><span class="nav-num">5</span>LLM &amp; RAG</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-6/index.html"><span class="nav-num">6</span>Agents &amp; Automation</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-7/index.html"><span class="nav-num">7</span>LLMOps &amp; Governance</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-8/index.html"><span class="nav-num">8</span>Capstone</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-9/index.html"><span class="nav-num">9</span>Career</a>
+</div>
+<div class="side-extra"><a href="../../../index.html">Home</a><a href="../../../curriculum.html">Full curriculum map</a><a href="../../../practice-files.html">Practice files</a><a href="../../../glossary.html">Glossary</a><a href="../../../how-to-learn.html">How to learn here</a><a href="../../../about.html">About &amp; contributing</a></div></nav>
+  <main class="main" id="main"><div class="content">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../../index.html">Home</a><span class="sep">/</span><a href="../../../learn/phase-2/index.html">Phase 2</a><span class="sep">/</span><a href="../../../learn/phase-2/numpy/index.html">NumPy</a><span class="sep">/</span><span>NumPy Arrays &amp; Indexing: Fast Tables of Numbers</span></nav>
+<h1>NumPy Arrays &amp; Indexing: Fast Tables of Numbers</h1>
+<p class="lead">Create 1-D and 2-D arrays, understand shape and dtype, and select exactly the values you need with slices, boolean masks and sorting — on real order data.</p>
+<div class="meta"><span class="pill">Phase <b>2</b> · Data Science</span><span class="pill">Level <b>Beginner</b></span><span class="pill">Time <b>40 min</b></span></div>
+<div class="admonition note"><p class="admonition-title">Before you start</p><p><a href="../../../learn/phase-0/programming-refresher/02-collections.html">Python Collections: Lists, Dictionaries, Sets &amp; Tuples</a></p></div>
+<div class="files-box"><div class="files-head"><b>Practice files for this page</b><a href="../../../practice-files.html">All practice files →</a></div><ul><li><a href="../../../downloads/phase-2/data-science-scripts.zip" download>data-science-scripts.zip</a><span class="f-desc">All 21 Phase 2 lesson scripts (NumPy to research thinking), shared chart style, data folder and solutions · 230 KB</span></li><li><a href="../../../downloads/phase-2/orders_2025.csv" download>orders_2025.csv</a><span class="f-desc">4,246 clean orders for 2025 (synthetic, fixed seed): region, segment, channel, product, price, discount, status, delivery days, revenue · 472 KB</span></li></ul></div>
+<h2 id="what-is-it">What is it?</h2>
+<p>A <strong>NumPy array</strong> (<code>ndarray</code>) is a grid of values that all have the <strong>same type</strong>, stored compactly in memory.</p>
+<table>
+<thead>
+<tr>
+<th>Python list</th>
+<th>NumPy array</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Can mix types (<code>[1, "a", 2.5]</code>)</td>
+<td>One type (<code>int64</code>, <code>float64</code> …)</td>
+</tr>
+<tr>
+<td>Loops to do maths</td>
+<td>Maths on the whole array at once</td>
+</tr>
+<tr>
+<td>Slow for millions of numbers</td>
+<td>Fast: the work runs in compiled C code</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>shape</strong> = size of each dimension: <code>(5,)</code> for 5 values, <code>(3, 6)</code> for 3 rows × 6 columns.</li>
+<li><strong>dtype</strong> = the type of every element.</li>
+<li><strong>Indexing</strong> = choosing elements by position, by slice or by a True/False <strong>mask</strong>.</li>
+</ul>
+<div class="admonition job">
+<p class="admonition-title">Why it matters at work</p>
+<p>pandas columns, scikit-learn inputs, images in computer vision and embeddings in AI search are all NumPy arrays underneath. When a model says "expected 2D array, got 1D" or a calculation is mysteriously slow, array thinking is what fixes it.</p>
+</div>
+<p>Run <code>01_numpy_arrays.py</code> from <a href="../../../downloads/phase-2/data-science-scripts.zip">data-science-scripts.zip</a> cell by cell.</p>
+<h2 id="example-1-create-arrays">Example 1: create arrays</h2>
+<p>The five orders from Phase 1, as arrays:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="n">qty</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">120</span><span class="p">,</span> <span class="mi">5000</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">800</span><span class="p">,</span> <span class="mi">450</span><span class="p">])</span>          <span class="c1"># quantities of 5 orders</span>
+<span class="n">price</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">3.50</span><span class="p">,</span> <span class="mf">0.04</span><span class="p">,</span> <span class="mf">5.20</span><span class="p">,</span> <span class="mf">0.30</span><span class="p">,</span> <span class="mf">2.80</span><span class="p">])</span>     <span class="c1"># unit prices</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">qty</span><span class="p">,</span> <span class="n">qty</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">qty</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">price</span><span class="p">,</span> <span class="n">price</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>[ 120 5000  300  800  450] int64 (5,)
+[3.5  0.04 5.2  0.3  2.8 ] float64
+</code></pre></div>
+
+<h2 id="example-2-a-2-d-array">Example 2: a 2-D array</h2>
+<p>Orders per day for three weeks (rows = weeks, columns = Saturday to Thursday; Friday is the weekend):</p>
+<div class="codehilite"><pre><span></span><code><span class="n">week_orders</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">15</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">14</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">9</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">17</span><span class="p">],</span>
+<span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">week_orders</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">week_orders</span><span class="o">.</span><span class="n">ndim</span><span class="p">,</span> <span class="n">week_orders</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>(3, 6) 2 18
+</code></pre></div>
+
+<p>3 rows × 6 columns, 2 dimensions, 18 values.</p>
+<h2 id="example-3-indexing-and-slicing">Example 3: indexing and slicing</h2>
+<div class="codehilite"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">qty</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">qty</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>          <span class="c1"># first, last</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">qty</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">4</span><span class="p">])</span>                 <span class="c1"># positions 1, 2, 3</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">week_orders</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>        <span class="c1"># week 2, Mon</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">week_orders</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span>        <span class="c1"># every Saturday</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">week_orders</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>           <span class="c1"># week 1</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>120 450
+[5000  300  800]
+15
+[8 7 9]
+[ 8 15 14 16 13 15]
+</code></pre></div>
+
+<table>
+<thead>
+<tr>
+<th>Syntax</th>
+<th>Means</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>a[0]</code>, <code>a[-1]</code></td>
+<td>First, last element (counting starts at 0)</td>
+</tr>
+<tr>
+<td><code>a[1:4]</code></td>
+<td>Positions 1 up to, <strong>not including</strong>, 4</td>
+</tr>
+<tr>
+<td><code>m[row, col]</code></td>
+<td>One cell of a 2-D array</td>
+</tr>
+<tr>
+<td><code>m[:, 0]</code></td>
+<td>Every row, column 0 (<code>:</code> = "all")</td>
+</tr>
+</tbody>
+</table>
+<h2 id="example-4-boolean-masks-filter-without-loops">Example 4: boolean masks — filter without loops</h2>
+<div class="codehilite"><pre><span></span><code><span class="n">value</span> <span class="o">=</span> <span class="n">qty</span> <span class="o">*</span> <span class="n">price</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+<span class="n">big</span> <span class="o">=</span> <span class="n">value</span> <span class="o">&gt;=</span> <span class="mi">1000</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">big</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">value</span><span class="p">[</span><span class="n">big</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">qty</span><span class="p">[(</span><span class="n">price</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">qty</span> <span class="o">&gt;</span> <span class="mi">1000</span><span class="p">)])</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>[ 420.  200. 1560.  240. 1260.]
+[False False  True False  True]
+[1560. 1260.]
+[5000]
+</code></pre></div>
+
+<ul>
+<li><code>value &gt;= 1000</code> gives a <strong>mask</strong>: one True/False per element.</li>
+<li><code>value[mask]</code> keeps only the True positions, like SQL <code>WHERE</code>.</li>
+<li>Combine conditions with <code>&amp;</code> (and), <code>|</code> (or), <code>~</code> (not), and <strong>brackets around each condition</strong>.</li>
+</ul>
+<h2 id="example-5-sort-by-value">Example 5: sort by value</h2>
+<div class="codehilite"><pre><span></span><code><span class="n">order</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">value</span><span class="p">)[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>   <span class="c1"># positions, biggest value first</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">order</span><span class="p">,</span> <span class="n">value</span><span class="p">[</span><span class="n">order</span><span class="p">])</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>[2 4 0 3 1] [1560. 1260.  420.  240.  200.]
+</code></pre></div>
+
+<p><code>argsort</code> returns the <strong>positions</strong> that would sort the array; <code>[::-1]</code> reverses them. Use those positions to reorder any related array (<code>qty[order]</code>), so rows stay aligned.</p>
+<h2 id="example-6-reshape-stack-and-load-a-file">Example 6: reshape, stack and load a file</h2>
+<div class="codehilite"><pre><span></span><code><span class="n">daily</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">13</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">daily</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">qty</span><span class="p">,</span> <span class="n">price</span><span class="p">])</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>[[ 1  2  3  4]
+ [ 5  6  7  8]
+ [ 9 10 11 12]]
+(2, 5)
+</code></pre></div>
+
+<p>Load three numeric columns (quantity, unit price, revenue) from the 2025 orders:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">genfromtxt</span><span class="p">(</span><span class="s2">"data/orders_2025.csv"</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s2">","</span><span class="p">,</span> <span class="n">skip_header</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">usecols</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">15</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">suppress</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>   <span class="c1"># plain numbers instead of 4.6160e+03</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">[:</span><span class="mi">3</span><span class="p">])</span>
+<span class="n">revenue</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Orders: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">revenue</span><span class="p">)</span><span class="si">}</span><span class="s2">, total revenue: </span><span class="si">{</span><span class="n">revenue</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="si">:</span><span class="s2">,.2f</span><span class="si">}</span><span class="s2">, largest: </span><span class="si">{</span><span class="n">revenue</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="si">:</span><span class="s2">,.2f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>(4246, 3)
+[[4616.       0.041  189.26 ]
+ [ 256.       3.26   834.56 ]
+ [6370.       0.041  248.11 ]]
+Orders: 4246, total revenue: 5,898,071.17, largest: 44,127.55
+</code></pre></div>
+
+<p>(This total includes cancelled orders. Text columns like status are easier with pandas, in the next module.)</p>
+<h2 id="common-mistakes">Common mistakes</h2>
+<table>
+<thead>
+<tr>
+<th>Mistake</th>
+<th>What happens</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>a[mask1 and mask2]</code></td>
+<td><code>ValueError: truth value of an array … is ambiguous</code></td>
+<td><code>a[(mask1) &amp; (mask2)]</code></td>
+</tr>
+<tr>
+<td>Forgetting brackets: <code>price &lt; 1 &amp; qty &gt; 1000</code></td>
+<td>Wrong result: <code>&amp;</code> binds before <code>&lt;</code></td>
+<td>Bracket each condition</td>
+</tr>
+<tr>
+<td>Expecting <code>a[1:4]</code> to include position 4</td>
+<td>One element short</td>
+<td>The end of a slice is excluded</td>
+</tr>
+<tr>
+<td>Mixing text into a numeric array</td>
+<td>Everything becomes text (<code>&lt;U32</code> dtype)</td>
+<td>Keep arrays numeric; use pandas for mixed tables</td>
+</tr>
+<tr>
+<td>Changing a slice and surprising the original</td>
+<td>Slices are <strong>views</strong> that share memory</td>
+<td>Use <code>.copy()</code> when you need an independent array</td>
+</tr>
+</tbody>
+</table>
+<h2 id="try-it-yourself">Try it yourself</h2>
+<p><strong>Task:</strong> Using <code>week_orders</code>, find (a) the total orders per week, and (b) which weekday columns ever had <strong>16 or more</strong> orders in a day.</p>
+<details>
+<summary>Show a hint</summary>
+<p><code>week_orders.sum(axis=1)</code> adds across each row. <code>(week_orders &gt;= 16).any(axis=0)</code> checks each column.</p>
+</details>
+<details>
+<summary>Show the solution</summary>
+<div class="codehilite"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">week_orders</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">days</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="s2">"Sat"</span><span class="p">,</span> <span class="s2">"Sun"</span><span class="p">,</span> <span class="s2">"Mon"</span><span class="p">,</span> <span class="s2">"Tue"</span><span class="p">,</span> <span class="s2">"Wed"</span><span class="p">,</span> <span class="s2">"Thu"</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">days</span><span class="p">[(</span><span class="n">week_orders</span> <span class="o">&gt;=</span> <span class="mi">16</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)])</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>[81 78 84]
+['Sun' 'Tue' 'Wed' 'Thu']
+</code></pre></div>
+
+<p><code>axis=1</code> works across columns (one result per row); <code>axis=0</code> works down rows (one result per column).</p>
+</details>
+<h2 id="quick-quiz">Quick quiz</h2>
+<div class="quiz-q" data-answer="1">
+<p>1. What is the shape of an array with 4 rows and 12 columns?</p>
+<ol>
+<li><code>(12, 4)</code></li>
+<li><code>(4, 12)</code></li>
+<li><code>(48,)</code></li>
+</ol>
+<details>
+<summary>Show answer</summary>
+<p><strong>B.</strong> Rows first, then columns.</p>
+</details>
+</div>
+<div class="quiz-q" data-answer="1">
+<p>2. What does <code>value[value &gt;= 1000]</code> return?</p>
+<ol>
+<li>True/False values</li>
+<li>Only the values that are 1,000 or more</li>
+<li>The positions of large values</li>
+</ol>
+<details>
+<summary>Show answer</summary>
+<p><strong>B.</strong> The mask selects matching elements.</p>
+</details>
+</div>
+<div class="quiz-q" data-answer="1">
+<p>3. <code>a = np.array([1, 2.5, 3])</code>. What is <code>a.dtype</code>?</p>
+<ol>
+<li><code>int64</code></li>
+<li><code>float64</code></li>
+<li><code>object</code></li>
+</ol>
+<details>
+<summary>Show answer</summary>
+<p><strong>B.</strong> One float makes the whole array float, because every element must share one type.</p>
+</details>
+</div>
+<h2 id="summary">Summary</h2>
+<ul>
+<li>A NumPy array holds values of <strong>one dtype</strong> in a given <strong>shape</strong>.</li>
+<li>Index with positions and slices (<code>a[1:4]</code>, <code>m[:, 0]</code>); the slice end is excluded.</li>
+<li>Filter with <strong>boolean masks</strong> (<code>a[(x &gt; 1) &amp; (y &lt; 5)]</code>), the array version of <code>WHERE</code>.</li>
+<li><code>argsort</code> gives positions for sorting related arrays together; <code>reshape</code> and <code>vstack</code> change layout.</li>
+</ul>
+<div class="admonition job">
+<p class="admonition-title">Job-ready check</p>
+<p><strong>Interview question:</strong> <em>"Why is NumPy faster than a Python list for numerical work?"</em></p>
+<p><strong>Strong answer:</strong> "An array stores one data type in a continuous block of memory, and operations run in compiled code over the whole block, instead of the Python interpreter looping element by element. That's also why NumPy needs a single dtype."</p>
+<p><strong>Mini project:</strong> Load <code>quantity</code>, <code>unit_price</code> and <code>revenue</code> from <code>orders_2025.csv</code>, and use masks to count how many orders are above 5,000 in revenue and what share of total revenue they bring.</p>
+</div>
+<div class="terms-box"><div class="files-head"><b>Key terms in this lesson</b><a href="../../../glossary.html">Glossary →</a></div><div class="term-chips"><a class="term-chip" href="../../../glossary.html#numpy" title="Python&#x27;s library for fast arrays of numbers. pandas, scikit-learn and most AI libraries store their data in NumPy arrays.">NumPy</a></div></div>
+<h2 id="free-resources">Free resources to go deeper</h2><ul class="resources"><li><a href="https://numpy.org/doc/stable/user/absolute_beginners.html">NumPy: the absolute basics for beginners</a><span class="r-meta">NumPy official docs · Arrays, shape, indexing and basic operations.</span></li><li><a href="https://numpy.org/doc/stable/user/basics.indexing.html">Indexing on ndarrays</a><span class="r-meta">NumPy official docs · Slicing, boolean and integer-array indexing in depth.</span></li><li><a href="https://jakevdp.github.io/PythonDataScienceHandbook/02.00-introduction-to-numpy.html">Python Data Science Handbook — Introduction to NumPy</a><span class="r-meta">Jake VanderPlas (free online book) · A classic, clear chapter with many examples.</span></li></ul>
+<div class="complete-bar"><span>Finished reading and did the exercise?</span>
+<button class="btn" id="completeBtn" type="button" data-id="phase-2/numpy/01-arrays-indexing">Mark lesson as complete</button></div>
+<nav class="pager"><a class="prev" href="../../../learn/phase-1/data-storytelling/02-stakeholder-communication.html"><small>← Previous</small>Stakeholder Communication: The Right Message, Chart and Channel</a><a class="next" href="../../../learn/phase-2/numpy/02-vectorized-numerical.html"><small>Next →</small>Vectorized Operations &amp; Numerical Computation in NumPy</a></nav>
+<p class="reviewed">Last reviewed: 2026-10-09</p>
+
+  </div></main>
+  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#example-1-create-arrays">Example 1: create arrays</a><a href="#example-2-a-2-d-array">Example 2: a 2-D array</a><a href="#example-3-indexing-and-slicing">Example 3: indexing and slicing</a><a href="#example-4-boolean-masks-filter-without-loops">Example 4: boolean masks — filter without loops</a><a href="#example-5-sort-by-value">Example 5: sort by value</a><a href="#example-6-reshape-stack-and-load-a-file">Example 6: reshape, stack and load a file</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#free-resources">Free resources</a></aside>
+</div>
+<footer class="site">Data, AI &amp; Automation Path v0.7 · Applied AI, Data &amp; Automation Lab · Updated October 2026<br>
+Lesson text: <a href="../../../license.html">CC BY-NC-SA 4.0</a> · Code: <a href="../../../license.html#code-mit-license">MIT</a> · Free external resources belong to their respective owners.</footer>
+<script src="../../../search-index.js"></script>
+<script src="../../../assets/app.js"></script>
+</body>
+</html>

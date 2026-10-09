@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en" data-root="../../../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Files &amp; Exceptions: Read and Write Data Safely — Data, AI &amp; Automation Path</title>
+<meta name="description" content="Read CSV files, write JSON and CSV output with pathlib, and handle missing files and bad values with try/except so one bad row doesn&#x27;t stop the job.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data, AI &amp; Automation Path">
+<meta property="og:title" content="Files &amp; Exceptions: Read and Write Data Safely">
+<meta property="og:description" content="Read CSV files, write JSON and CSV output with pathlib, and handle missing files and bad values with try/except so one bad row doesn&#x27;t stop the job.">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+
+<script>(function(){var t=null;try{t=localStorage.getItem('daa-theme')}catch(e){}
+if(!t)t=(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';
+document.documentElement.setAttribute('data-theme',t);
+var n=null;try{n=localStorage.getItem('daa-nav')}catch(e){}
+if(n==='open'&&window.matchMedia&&matchMedia('(min-width: 961px)').matches)document.documentElement.setAttribute('data-nav','open');
+document.documentElement.classList.add('no-anim')})();</script>
+<link rel="stylesheet" href="../../../assets/style.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233f7d6a'/%3E%3Ctext x='16' y='21' font-family='sans-serif' font-size='13' font-weight='700' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Open curriculum menu" title="Curriculum menu (press M)" aria-controls="sidebar" aria-expanded="false"><span class="ico-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span class="ico-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></button>
+  <a class="brand" href="../../../index.html"><span class="brand-badge">AI</span><span class="brand-text"><span class="brand-name">Data, AI &amp; Automation Path</span><span class="brand-version">v0.7</span></span></a>
+  <nav class="top-links" aria-label="Main">
+    <a href="../../../index.html" class="">Home</a><a href="../../../curriculum.html" class="">Curriculum</a><a href="../../../practice-files.html" class="">Practice files</a><a href="../../../glossary.html" class="">Glossary</a><a href="../../../how-to-learn.html" class="">How to learn</a><a href="../../../about.html" class="">About</a>
+  </nav>
+  <div class="top-spacer"></div>
+  <div class="search" role="search">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input id="searchInput" type="search" placeholder="Search lessons, tools, topics" aria-label="Search" autocomplete="off">
+    <kbd>/</kbd>
+    <div class="search-results" id="searchResults" role="listbox"></div>
+  </div>
+  <button class="icon-btn theme-toggle" id="themeBtn" aria-label="Toggle light or dark mode" title="Light / dark"><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
+</header>
+<div class="layout wide">
+  <nav class="sidebar" id="sidebar" aria-label="Curriculum">
+    <div class="side-title">Curriculum</div>
+    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="64"><i></i></div><span class="bar-label" data-progress-label></span></div>
+<div class="nav-phase current open"><a href="../../../learn/phase-0/index.html"><span class="nav-num">0</span>Foundations</a>
+<ul class="nav-modules">
+<li><a class="" href="../../../learn/phase-0/dev-environment/index.html">Development Environment</a>
+</li>
+<li><a class="" href="../../../learn/phase-0/git-github/index.html">Git &amp; GitHub</a>
+</li>
+<li><a class="" href="../../../learn/phase-0/linux/index.html">Linux Essentials</a>
+</li>
+<li><a class="current" href="../../../learn/phase-0/programming-refresher/index.html">Programming Refresher</a>
+<ul class="nav-lessons">
+<li><a class="" data-lesson="phase-0/programming-refresher/01-basics" href="../../../learn/phase-0/programming-refresher/01-basics.html">Python Basics: Variables, Conditions, Loops &amp; Functions</a></li>
+<li><a class="" data-lesson="phase-0/programming-refresher/02-collections" href="../../../learn/phase-0/programming-refresher/02-collections.html">Python Collections: Lists, Dictionaries, Sets &amp; Tuples</a></li>
+<li><a class="current" data-lesson="phase-0/programming-refresher/03-files-exceptions" href="../../../learn/phase-0/programming-refresher/03-files-exceptions.html">Files &amp; Exceptions: Read and Write Data Safely</a></li>
+<li><a class="" data-lesson="phase-0/programming-refresher/04-oop-type-hints" href="../../../learn/phase-0/programming-refresher/04-oop-type-hints.html">OOP &amp; Type Hints: Classes, Dataclasses and Clear Contracts</a></li>
+</ul>
+</li>
+<li><a class="" href="../../../learn/phase-0/testing-ci/index.html">Testing &amp; CI Basics</a>
+</li>
+<li><a class="" href="../../../learn/phase-0/ai-assisted-dev/index.html">AI-Assisted Development</a>
+</li>
+<li><a class="nav-project " href="../../../learn/phase-0/project.html">★ Milestone project</a></li>
+</ul>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-1/index.html"><span class="nav-num">1</span>Analytics &amp; BI</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-2/index.html"><span class="nav-num">2</span>Data Science</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-3/index.html"><span class="nav-num">3</span>Data Engineering</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-4/index.html"><span class="nav-num">4</span>ML Engineering</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-5/index.html"><span class="nav-num">5</span>LLM &amp; RAG</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-6/index.html"><span class="nav-num">6</span>Agents &amp; Automation</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-7/index.html"><span class="nav-num">7</span>LLMOps &amp; Governance</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-8/index.html"><span class="nav-num">8</span>Capstone</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-9/index.html"><span class="nav-num">9</span>Career</a>
+</div>
+<div class="side-extra"><a href="../../../index.html">Home</a><a href="../../../curriculum.html">Full curriculum map</a><a href="../../../practice-files.html">Practice files</a><a href="../../../glossary.html">Glossary</a><a href="../../../how-to-learn.html">How to learn here</a><a href="../../../about.html">About &amp; contributing</a></div></nav>
+  <main class="main" id="main"><div class="content">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../../index.html">Home</a><span class="sep">/</span><a href="../../../learn/phase-0/index.html">Phase 0</a><span class="sep">/</span><a href="../../../learn/phase-0/programming-refresher/index.html">Programming Refresher</a><span class="sep">/</span><span>Files &amp; Exceptions: Read and Write Data Safely</span></nav>
+<h1>Files &amp; Exceptions: Read and Write Data Safely</h1>
+<p class="lead">Read CSV files, write JSON and CSV output with pathlib, and handle missing files and bad values with try/except so one bad row doesn&#x27;t stop the job.</p>
+<div class="meta"><span class="pill">Phase <b>0</b> · Foundations</span><span class="pill">Level <b>Beginner</b></span><span class="pill">Time <b>45 min</b></span></div>
+<div class="admonition note"><p class="admonition-title">Before you start</p><p><a href="../../../learn/phase-0/programming-refresher/02-collections.html">Python Collections: Lists, Dictionaries, Sets &amp; Tuples</a></p></div>
+<div class="files-box"><div class="files-head"><b>Practice files for this page</b><a href="../../../practice-files.html">All practice files →</a></div><ul><li><a href="../../../downloads/phase-0/python-refresher.zip" download>python-refresher.zip</a><span class="f-desc">Python refresher scripts, debugging, pytest and ruff examples, an AI-written function to review, with solutions · 12 KB</span></li><li><a href="../../../downloads/orders.csv" download>orders.csv</a><span class="f-desc">The 12 clean practice orders as CSV · 963 B</span></li></ul></div>
+<h2 id="what-is-it">What is it?</h2>
+<ul>
+<li><strong>Files:</strong> Python reads and writes text, CSV and JSON files. Use <code>pathlib.Path</code> for paths and <code>with</code> so files are always closed.</li>
+<li><strong>Exceptions</strong> are Python's way of reporting problems at run time (a missing file, a bad number). With <code>try/except</code> you <strong>decide</strong> what happens instead of crashing.</li>
+</ul>
+<div class="admonition job">
+<p class="admonition-title">Why it matters at work</p>
+<p>Real data is messy: files go missing, a row says <code>"ten"</code> instead of <code>10</code>. A pipeline that crashes on row 9,999 of 10,000, or silently skips rows without saying so, causes incidents. Handling exceptions well, and logging what was skipped, is a core data engineering skill and part of the Phase 0 project.</p>
+</div>
+<p>Open <code>03_files_exceptions.py</code> from <a href="../../../downloads/phase-0/python-refresher.zip">python-refresher.zip</a>. It reads <code>data/orders.csv</code>.</p>
+<h2 id="example-1-read-a-csv-into-dictionaries">Example 1: read a CSV into dictionaries</h2>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">csv</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+
+<span class="n">DATA</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span> <span class="o">/</span> <span class="s2">"data"</span>     <span class="c1"># folder next to this script</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">read_orders</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]:</span>
+    <span class="k">with</span> <span class="n">path</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">newline</span><span class="o">=</span><span class="s2">""</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">csv</span><span class="o">.</span><span class="n">DictReader</span><span class="p">(</span><span class="n">f</span><span class="p">))</span>
+
+
+<span class="n">rows</span> <span class="o">=</span> <span class="n">read_orders</span><span class="p">(</span><span class="n">DATA</span> <span class="o">/</span> <span class="s2">"orders.csv"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Rows:"</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">rows</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"First row:"</span><span class="p">,</span> <span class="n">rows</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>Rows: 12
+First row: {'order_id': '1', 'order_date': '2026-01-05', 'customer': 'Rahim Traders', 'region': 'Dhaka', 'category': 'Fabric', 'product': 'Cotton Twill', 'quantity': '120', 'unit_price': '3.50', 'status': 'Delivered'}
+</code></pre></div>
+
+<ul>
+<li><code>with … as f:</code> closes the file automatically, even if an error happens.</li>
+<li><code>DictReader</code> turns each row into a dict keyed by the header.</li>
+<li><strong>Every value is text</strong> (<code>'120'</code>, <code>'3.50'</code>): convert before doing maths.</li>
+<li><code>Path(__file__).parent / "data"</code> works no matter which folder you run the script from.</li>
+</ul>
+<h2 id="example-2-calculate-then-write-json">Example 2: calculate, then write JSON</h2>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">order_value</span><span class="p">(</span><span class="n">row</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+    <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">"quantity"</span><span class="p">])</span> <span class="o">*</span> <span class="nb">float</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">"unit_price"</span><span class="p">])</span>
+
+
+<span class="n">net</span> <span class="o">=</span> <span class="p">[</span><span class="n">r</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">rows</span> <span class="k">if</span> <span class="n">r</span><span class="p">[</span><span class="s2">"status"</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">"Cancelled"</span><span class="p">]</span>
+<span class="n">summary</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"orders"</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">net</span><span class="p">),</span> <span class="s2">"revenue"</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">order_value</span><span class="p">(</span><span class="n">r</span><span class="p">)</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">net</span><span class="p">),</span> <span class="mi">2</span><span class="p">)}</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">summary</span><span class="p">)</span>
+
+<span class="n">out</span> <span class="o">=</span> <span class="n">DATA</span> <span class="o">/</span> <span class="s2">"summary.json"</span>
+<span class="n">out</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">summary</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Wrote"</span><span class="p">,</span> <span class="n">out</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>{'orders': 11, 'revenue': 9075.0}
+Wrote summary.json
+</code></pre></div>
+
+<h2 id="example-3-handle-a-missing-file">Example 3: handle a missing file</h2>
+<div class="codehilite"><pre><span></span><code><span class="k">try</span><span class="p">:</span>
+    <span class="n">read_orders</span><span class="p">(</span><span class="n">DATA</span> <span class="o">/</span> <span class="s2">"missing.csv"</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">FileNotFoundError</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Could not open file:"</span><span class="p">,</span> <span class="n">Path</span><span class="p">(</span><span class="n">exc</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>Could not open file: missing.csv
+</code></pre></div>
+
+<h2 id="example-4-skip-a-bad-row-keep-going">Example 4: skip a bad row, keep going</h2>
+<div class="codehilite"><pre><span></span><code><span class="n">bad_rows</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span><span class="s2">"quantity"</span><span class="p">:</span> <span class="s2">"10"</span><span class="p">,</span> <span class="s2">"unit_price"</span><span class="p">:</span> <span class="s2">"2.5"</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">"quantity"</span><span class="p">:</span> <span class="s2">"ten"</span><span class="p">,</span> <span class="s2">"unit_price"</span><span class="p">:</span> <span class="s2">"2.5"</span><span class="p">},</span>
+<span class="p">]</span>
+<span class="n">total</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">bad_rows</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">total</span> <span class="o">+=</span> <span class="n">order_value</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Row </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2"> skipped: </span><span class="si">{</span><span class="n">exc</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Total of good rows:"</span><span class="p">,</span> <span class="n">total</span><span class="p">)</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>Row 2 skipped: invalid literal for int() with base 10: 'ten'
+Total of good rows: 25.0
+</code></pre></div>
+
+<p>This is exactly what the CSV cleaner project does: reject the bad row, <strong>report</strong> it, and process the rest.</p>
+<h2 id="the-full-try-statement">The full try statement</h2>
+<div class="codehilite"><pre><span></span><code><span class="k">try</span><span class="p">:</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">open</span><span class="p">()</span>          <span class="c1"># code that might fail</span>
+<span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
+    <span class="o">...</span>                      <span class="c1"># runs only for this error type</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="o">...</span>                      <span class="c1"># runs only if nothing failed</span>
+<span class="k">finally</span><span class="p">:</span>
+    <span class="o">...</span>                      <span class="c1"># always runs (clean-up)</span>
+</code></pre></div>
+
+<table>
+<thead>
+<tr>
+<th>Exception</th>
+<th>Typical cause</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>FileNotFoundError</code></td>
+<td>Wrong path, or the file isn't there yet</td>
+</tr>
+<tr>
+<td><code>ValueError</code></td>
+<td><code>int("ten")</code>, a bad date format</td>
+</tr>
+<tr>
+<td><code>KeyError</code></td>
+<td>A missing dict key / CSV column (<code>row["Status"]</code>)</td>
+</tr>
+<tr>
+<td><code>TypeError</code></td>
+<td><code>"3170" / 3600</code> (text divided by a number)</td>
+</tr>
+<tr>
+<td><code>ZeroDivisionError</code></td>
+<td>Average of zero rows</td>
+</tr>
+</tbody>
+</table>
+<p>Raise your own when input breaks a rule: <code>raise ValueError(f"Missing required columns: {missing}")</code>.</p>
+<h2 id="common-mistakes">Common mistakes</h2>
+<table>
+<thead>
+<tr>
+<th>Mistake</th>
+<th>What happens</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>except:</code> or <code>except Exception: pass</code></td>
+<td>Real bugs are hidden silently</td>
+<td>Catch <strong>specific</strong> errors, and log them</td>
+</tr>
+<tr>
+<td>Forgetting <code>newline=""</code> with csv</td>
+<td>Blank lines between rows on Windows</td>
+<td><code>open(..., newline="")</code> for CSV</td>
+</tr>
+<tr>
+<td>No <code>encoding="utf-8"</code></td>
+<td>Garbled names on some systems</td>
+<td>Always pass it</td>
+</tr>
+<tr>
+<td>Hard-coded paths (<code>C:\Users\me\...</code>)</td>
+<td>Breaks on every other computer</td>
+<td><code>Path(__file__).parent / "data"</code>, or a config setting</td>
+</tr>
+<tr>
+<td>Doing maths on CSV text</td>
+<td><code>TypeError</code>, or <code>'120' * 2 = '120120'</code></td>
+<td>Convert with <code>int()</code> / <code>float()</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="try-it-yourself">Try it yourself</h2>
+<p><strong>Task:</strong> Write all <strong>Dhaka</strong> orders from <code>orders.csv</code> to <code>dhaka_orders.csv</code> (same columns), and print a friendly message instead of a traceback if <code>orders.csv</code> is missing.</p>
+<details>
+<summary>Show a hint</summary>
+<p><code>csv.DictWriter(f, fieldnames=reader.fieldnames)</code>, then <code>.writeheader()</code> and <code>.writerows(rows)</code>. Put the reading in <code>try</code>, and the writing in <code>else</code>.</p>
+</details>
+<details>
+<summary>Show the solution</summary>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">csv</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+
+<span class="n">DATA</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">parent</span> <span class="o">/</span> <span class="s2">"data"</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="k">with</span> <span class="p">(</span><span class="n">DATA</span> <span class="o">/</span> <span class="s2">"orders.csv"</span><span class="p">)</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">newline</span><span class="o">=</span><span class="s2">""</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictReader</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+        <span class="n">fieldnames</span> <span class="o">=</span> <span class="n">reader</span><span class="o">.</span><span class="n">fieldnames</span>
+        <span class="n">dhaka</span> <span class="o">=</span> <span class="p">[</span><span class="n">row</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">reader</span> <span class="k">if</span> <span class="n">row</span><span class="p">[</span><span class="s2">"region"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"Dhaka"</span><span class="p">]</span>
+<span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"orders.csv not found — check the data folder"</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="n">DATA</span> <span class="o">/</span> <span class="s2">"dhaka_orders.csv"</span>
+    <span class="k">with</span> <span class="n">out</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">"w"</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s2">""</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">writer</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictWriter</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">fieldnames</span><span class="o">=</span><span class="n">fieldnames</span><span class="p">)</span>
+        <span class="n">writer</span><span class="o">.</span><span class="n">writeheader</span><span class="p">()</span>
+        <span class="n">writer</span><span class="o">.</span><span class="n">writerows</span><span class="p">(</span><span class="n">dhaka</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Wrote </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">dhaka</span><span class="p">)</span><span class="si">}</span><span class="s2"> rows to </span><span class="si">{</span><span class="n">out</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>Wrote 5 rows to dhaka_orders.csv
+</code></pre></div>
+
+<p>(File: <code>solutions/ex03_dhaka_file.py</code>.)</p>
+</details>
+<h2 id="quick-quiz">Quick quiz</h2>
+<div class="quiz-q" data-answer="1">
+<p>1. Why use <code>with path.open() as f:</code>?</p>
+<ol>
+<li>It's faster</li>
+<li>The file is closed automatically, even after an error</li>
+<li>It's required for CSV</li>
+</ol>
+<details>
+<summary>Show answer</summary>
+<p><strong>B.</strong></p>
+</details>
+</div>
+<div class="quiz-q" data-answer="1">
+<p>2. <code>int("ten")</code> raises which exception?</p>
+<ol>
+<li><code>KeyError</code></li>
+<li><code>ValueError</code></li>
+<li><code>FileNotFoundError</code></li>
+</ol>
+<details>
+<summary>Show answer</summary>
+<p><strong>B.</strong></p>
+</details>
+</div>
+<div class="quiz-q" data-answer="1">
+<p>3. What's wrong with <code>except Exception: pass</code>?</p>
+<ol>
+<li>Nothing</li>
+<li>It hides every error, including real bugs, without a trace</li>
+<li>It only catches <code>ValueError</code></li>
+</ol>
+<details>
+<summary>Show answer</summary>
+<p><strong>B.</strong> Catch specific errors and log what you skipped.</p>
+</details>
+</div>
+<h2 id="summary">Summary</h2>
+<ul>
+<li>Use <code>pathlib.Path</code> and <code>with … open(…, encoding="utf-8")</code>; add <code>newline=""</code> for CSV.</li>
+<li><code>csv.DictReader</code> / <code>DictWriter</code> handle CSV rows as dicts; <code>json.dumps</code> writes JSON. CSV values are text.</li>
+<li><code>try/except</code> handles <strong>specific</strong> exceptions; <code>else</code> runs on success; <code>finally</code> always runs.</li>
+<li>Skip bad rows <strong>and report them</strong>, rather than crashing or failing silently.</li>
+</ul>
+<div class="admonition job">
+<p class="admonition-title">Job-ready check</p>
+<p><strong>Interview question:</strong> <em>"Your script processes 10,000 rows and one has a bad date. What should happen?"</em></p>
+<p><strong>Strong answer:</strong> "It depends on the agreed rule, but usually: reject that row, log its line number and the reason, process the rest, and report the counts (read, written, rejected) at the end. If rejections pass a threshold, fail the job, because silent data loss is worse than a visible failure."</p>
+<p><strong>Mini project:</strong> Extend <code>03_files_exceptions.py</code> to read <code>orders_raw.csv</code> (from the downloads), skip rows that fail conversion, and print <strong>read / written / rejected</strong> counts.</p>
+</div>
+<div class="terms-box"><div class="files-head"><b>Key terms in this lesson</b><a href="../../../glossary.html">Glossary →</a></div><div class="term-chips"><a class="term-chip" href="../../../glossary.html#csv" title="A plain-text table: one row per line, values separated by commas. Every value is read as text until you convert it.">CSV</a><a class="term-chip" href="../../../glossary.html#exception" title="Python&#x27;s way of signalling an error at run time. try/except lets you handle specific errors instead of crashing.">Exception</a><a class="term-chip" href="../../../glossary.html#json" title="A text format for structured data made of objects (key-value pairs) and arrays. Used by most APIs and LLM tools.">JSON</a><a class="term-chip" href="../../../glossary.html#path" title="The address of a file or folder. Absolute paths start from the root (/home/learner/...); relative paths start from the current folder.">Path</a><a class="term-chip" href="../../../glossary.html#traceback" title="Python&#x27;s error report. Read it from the bottom: the last line says what went wrong, the lines above say where.">Traceback</a></div></div>
+<h2 id="free-resources">Free resources to go deeper</h2><ul class="resources"><li><a href="https://docs.python.org/3/tutorial/">Reading and Writing Files (Python tutorial)</a><span class="r-meta">Python official docs · Section 7.2: open(), with, and JSON.</span></li><li><a href="https://docs.python.org/3/tutorial/errors.html">Errors and Exceptions (Python tutorial)</a><span class="r-meta">Python official docs · try/except/else/finally and raising your own errors.</span></li></ul>
+<div class="complete-bar"><span>Finished reading and did the exercise?</span>
+<button class="btn" id="completeBtn" type="button" data-id="phase-0/programming-refresher/03-files-exceptions">Mark lesson as complete</button></div>
+<nav class="pager"><a class="prev" href="../../../learn/phase-0/programming-refresher/02-collections.html"><small>← Previous</small>Python Collections: Lists, Dictionaries, Sets &amp; Tuples</a><a class="next" href="../../../learn/phase-0/programming-refresher/04-oop-type-hints.html"><small>Next →</small>OOP &amp; Type Hints: Classes, Dataclasses and Clear Contracts</a></nav>
+<p class="reviewed">Last reviewed: 2026-10-09</p>
+
+  </div></main>
+  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#example-1-read-a-csv-into-dictionaries">Example 1: read a CSV into dictionaries</a><a href="#example-2-calculate-then-write-json">Example 2: calculate, then write JSON</a><a href="#example-3-handle-a-missing-file">Example 3: handle a missing file</a><a href="#example-4-skip-a-bad-row-keep-going">Example 4: skip a bad row, keep going</a><a href="#the-full-try-statement">The full try statement</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#free-resources">Free resources</a></aside>
+</div>
+<footer class="site">Data, AI &amp; Automation Path v0.7 · Applied AI, Data &amp; Automation Lab · Updated October 2026<br>
+Lesson text: <a href="../../../license.html">CC BY-NC-SA 4.0</a> · Code: <a href="../../../license.html#code-mit-license">MIT</a> · Free external resources belong to their respective owners.</footer>
+<script src="../../../search-index.js"></script>
+<script src="../../../assets/app.js"></script>
+</body>
+</html>

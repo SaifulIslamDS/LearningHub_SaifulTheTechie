@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en" data-root="../../../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>pytest &amp; ruff: Prove Your Code Works and Keep It Clean — Data, AI &amp; Automation Path</title>
+<meta name="description" content="Write automated tests with pytest (asserts, parametrize, expected errors), read a failing test, and use ruff to lint and format code in seconds.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data, AI &amp; Automation Path">
+<meta property="og:title" content="pytest &amp; ruff: Prove Your Code Works and Keep It Clean">
+<meta property="og:description" content="Write automated tests with pytest (asserts, parametrize, expected errors), read a failing test, and use ruff to lint and format code in seconds.">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+
+<script>(function(){var t=null;try{t=localStorage.getItem('daa-theme')}catch(e){}
+if(!t)t=(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';
+document.documentElement.setAttribute('data-theme',t);
+var n=null;try{n=localStorage.getItem('daa-nav')}catch(e){}
+if(n==='open'&&window.matchMedia&&matchMedia('(min-width: 961px)').matches)document.documentElement.setAttribute('data-nav','open');
+document.documentElement.classList.add('no-anim')})();</script>
+<link rel="stylesheet" href="../../../assets/style.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233f7d6a'/%3E%3Ctext x='16' y='21' font-family='sans-serif' font-size='13' font-weight='700' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Open curriculum menu" title="Curriculum menu (press M)" aria-controls="sidebar" aria-expanded="false"><span class="ico-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span class="ico-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></button>
+  <a class="brand" href="../../../index.html"><span class="brand-badge">AI</span><span class="brand-text"><span class="brand-name">Data, AI &amp; Automation Path</span><span class="brand-version">v0.7</span></span></a>
+  <nav class="top-links" aria-label="Main">
+    <a href="../../../index.html" class="">Home</a><a href="../../../curriculum.html" class="">Curriculum</a><a href="../../../practice-files.html" class="">Practice files</a><a href="../../../glossary.html" class="">Glossary</a><a href="../../../how-to-learn.html" class="">How to learn</a><a href="../../../about.html" class="">About</a>
+  </nav>
+  <div class="top-spacer"></div>
+  <div class="search" role="search">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input id="searchInput" type="search" placeholder="Search lessons, tools, topics" aria-label="Search" autocomplete="off">
+    <kbd>/</kbd>
+    <div class="search-results" id="searchResults" role="listbox"></div>
+  </div>
+  <button class="icon-btn theme-toggle" id="themeBtn" aria-label="Toggle light or dark mode" title="Light / dark"><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
+</header>
+<div class="layout wide">
+  <nav class="sidebar" id="sidebar" aria-label="Curriculum">
+    <div class="side-title">Curriculum</div>
+    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="64"><i></i></div><span class="bar-label" data-progress-label></span></div>
+<div class="nav-phase current open"><a href="../../../learn/phase-0/index.html"><span class="nav-num">0</span>Foundations</a>
+<ul class="nav-modules">
+<li><a class="" href="../../../learn/phase-0/dev-environment/index.html">Development Environment</a>
+</li>
+<li><a class="" href="../../../learn/phase-0/git-github/index.html">Git &amp; GitHub</a>
+</li>
+<li><a class="" href="../../../learn/phase-0/linux/index.html">Linux Essentials</a>
+</li>
+<li><a class="" href="../../../learn/phase-0/programming-refresher/index.html">Programming Refresher</a>
+</li>
+<li><a class="current" href="../../../learn/phase-0/testing-ci/index.html">Testing &amp; CI Basics</a>
+<ul class="nav-lessons">
+<li><a class="current" data-lesson="phase-0/testing-ci/01-pytest-ruff" href="../../../learn/phase-0/testing-ci/01-pytest-ruff.html">pytest &amp; ruff: Prove Your Code Works and Keep It Clean</a></li>
+<li><a class="" data-lesson="phase-0/testing-ci/02-github-actions" href="../../../learn/phase-0/testing-ci/02-github-actions.html">GitHub Actions: Run Lint and Tests on Every Push</a></li>
+</ul>
+</li>
+<li><a class="" href="../../../learn/phase-0/ai-assisted-dev/index.html">AI-Assisted Development</a>
+</li>
+<li><a class="nav-project " href="../../../learn/phase-0/project.html">★ Milestone project</a></li>
+</ul>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-1/index.html"><span class="nav-num">1</span>Analytics &amp; BI</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-2/index.html"><span class="nav-num">2</span>Data Science</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-3/index.html"><span class="nav-num">3</span>Data Engineering</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-4/index.html"><span class="nav-num">4</span>ML Engineering</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-5/index.html"><span class="nav-num">5</span>LLM &amp; RAG</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-6/index.html"><span class="nav-num">6</span>Agents &amp; Automation</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-7/index.html"><span class="nav-num">7</span>LLMOps &amp; Governance</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-8/index.html"><span class="nav-num">8</span>Capstone</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-9/index.html"><span class="nav-num">9</span>Career</a>
+</div>
+<div class="side-extra"><a href="../../../index.html">Home</a><a href="../../../curriculum.html">Full curriculum map</a><a href="../../../practice-files.html">Practice files</a><a href="../../../glossary.html">Glossary</a><a href="../../../how-to-learn.html">How to learn here</a><a href="../../../about.html">About &amp; contributing</a></div></nav>
+  <main class="main" id="main"><div class="content">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../../index.html">Home</a><span class="sep">/</span><a href="../../../learn/phase-0/index.html">Phase 0</a><span class="sep">/</span><a href="../../../learn/phase-0/testing-ci/index.html">Testing &amp; CI Basics</a><span class="sep">/</span><span>pytest &amp; ruff: Prove Your Code Works and Keep It Clean</span></nav>
+<h1>pytest &amp; ruff: Prove Your Code Works and Keep It Clean</h1>
+<p class="lead">Write automated tests with pytest (asserts, parametrize, expected errors), read a failing test, and use ruff to lint and format code in seconds.</p>
+<div class="meta"><span class="pill">Phase <b>0</b> · Foundations</span><span class="pill">Level <b>Beginner</b></span><span class="pill">Time <b>50 min</b></span></div>
+<div class="admonition note"><p class="admonition-title">Before you start</p><p><a href="../../../learn/phase-0/programming-refresher/01-basics.html">Python Basics: Variables, Conditions, Loops &amp; Functions</a> · <a href="../../../learn/phase-0/dev-environment/02-uv-environments.html">uv, Virtual Environments &amp; Packages: One Project, One Environment</a></p></div>
+<div class="files-box"><div class="files-head"><b>Practice files for this page</b><a href="../../../practice-files.html">All practice files →</a></div><ul><li><a href="../../../downloads/phase-0/python-refresher.zip" download>python-refresher.zip</a><span class="f-desc">Python refresher scripts, debugging, pytest and ruff examples, an AI-written function to review, with solutions · 12 KB</span></li><li><a href="../../../downloads/phase-0/csv-cleaner-solution.zip" download>csv-cleaner-solution.zip</a><span class="f-desc">Phase 0 Gate project reference solution (17 passing tests, CI workflow) · 14 KB</span></li></ul></div>
+<h2 id="what-is-it">What is it?</h2>
+<ul>
+<li>A <strong>test</strong> is a small piece of code that checks your code gives the expected answer. <strong>pytest</strong> finds and runs every function whose name starts with <code>test_</code>.</li>
+<li>A <strong>linter</strong> reads code without running it and flags likely bugs and bad patterns (unused imports, <code>== None</code>). A <strong>formatter</strong> fixes the layout (spaces, line breaks) automatically.</li>
+<li><strong>ruff</strong> does both, extremely fast.</li>
+</ul>
+<div class="admonition job">
+<p class="admonition-title">Why it matters at work</p>
+<p>Tests let you change code without fear: if the business rule breaks, a test fails before a wrong number reaches a dashboard. Linting and formatting stop style arguments in code review. Most teams require both to pass before a PR can merge, and "how do you test your code?" is asked in almost every engineering interview. With AI writing more code, tests are how you <strong>verify</strong> it.</p>
+</div>
+<p>Use the <code>testing/</code> folder from <a href="../../../downloads/phase-0/python-refresher.zip">python-refresher.zip</a>.</p>
+<h2 id="example-1-the-code-under-test">Example 1: the code under test</h2>
+<p><code>sales.py</code> has three small business functions:</p>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">size_band</span><span class="p">(</span><span class="n">order_value</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">order_value</span> <span class="o">&gt;=</span> <span class="mi">1000</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">"Large"</span>
+    <span class="k">if</span> <span class="n">order_value</span> <span class="o">&gt;=</span> <span class="mi">500</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">"Medium"</span>
+    <span class="k">return</span> <span class="s2">"Small"</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">parse_quantity</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""'5,000' -&gt; 5000"""</span>
+    <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">text</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">","</span><span class="p">,</span> <span class="s2">""</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">net_revenue</span><span class="p">(</span><span class="n">orders</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Sum of value for all orders except Cancelled."""</span>
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">o</span><span class="p">[</span><span class="s2">"value"</span><span class="p">]</span> <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="n">orders</span> <span class="k">if</span> <span class="n">o</span><span class="p">[</span><span class="s2">"status"</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">"Cancelled"</span><span class="p">)</span>
+</code></pre></div>
+
+<h2 id="example-2-tests">Example 2: tests</h2>
+<p><code>test_sales.py</code>:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">pytest</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sales</span><span class="w"> </span><span class="kn">import</span> <span class="n">net_revenue</span><span class="p">,</span> <span class="n">parse_quantity</span><span class="p">,</span> <span class="n">size_band</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">test_size_band_large</span><span class="p">():</span>
+    <span class="k">assert</span> <span class="n">size_band</span><span class="p">(</span><span class="mi">1560</span><span class="p">)</span> <span class="o">==</span> <span class="s2">"Large"</span>
+
+
+<span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span>
+    <span class="p">(</span><span class="s2">"value"</span><span class="p">,</span> <span class="s2">"expected"</span><span class="p">),</span>
+    <span class="p">[(</span><span class="mi">1000</span><span class="p">,</span> <span class="s2">"Large"</span><span class="p">),</span> <span class="p">(</span><span class="mf">999.99</span><span class="p">,</span> <span class="s2">"Medium"</span><span class="p">),</span> <span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="s2">"Medium"</span><span class="p">),</span> <span class="p">(</span><span class="mi">499</span><span class="p">,</span> <span class="s2">"Small"</span><span class="p">)],</span>
+<span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">test_size_band_boundaries</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">expected</span><span class="p">):</span>
+    <span class="k">assert</span> <span class="n">size_band</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">==</span> <span class="n">expected</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">test_parse_quantity_removes_commas</span><span class="p">():</span>
+    <span class="k">assert</span> <span class="n">parse_quantity</span><span class="p">(</span><span class="s2">"5,000"</span><span class="p">)</span> <span class="o">==</span> <span class="mi">5000</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">test_parse_quantity_rejects_text</span><span class="p">():</span>
+    <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">):</span>
+        <span class="n">parse_quantity</span><span class="p">(</span><span class="s2">"lots"</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">test_net_revenue_excludes_cancelled</span><span class="p">():</span>
+    <span class="n">orders</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">{</span><span class="s2">"value"</span><span class="p">:</span> <span class="mf">420.0</span><span class="p">,</span> <span class="s2">"status"</span><span class="p">:</span> <span class="s2">"Delivered"</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">"value"</span><span class="p">:</span> <span class="mf">240.0</span><span class="p">,</span> <span class="s2">"status"</span><span class="p">:</span> <span class="s2">"Cancelled"</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">"value"</span><span class="p">:</span> <span class="mf">320.0</span><span class="p">,</span> <span class="s2">"status"</span><span class="p">:</span> <span class="s2">"Shipped"</span><span class="p">},</span>
+    <span class="p">]</span>
+    <span class="k">assert</span> <span class="n">net_revenue</span><span class="p">(</span><span class="n">orders</span><span class="p">)</span> <span class="o">==</span> <span class="mf">740.0</span>
+</code></pre></div>
+
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Use it to…</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>assert x == y</code></td>
+<td>Check a result</td>
+</tr>
+<tr>
+<td><code>@pytest.mark.parametrize</code></td>
+<td>Run one test with many inputs, especially <strong>boundaries</strong> (999.99, 1000)</td>
+</tr>
+<tr>
+<td><code>pytest.raises(ValueError)</code></td>
+<td>Check that bad input fails <strong>loudly</strong></td>
+</tr>
+<tr>
+<td>A small hand-made list</td>
+<td>Test a business rule with a known answer (420 + 320 = 740)</td>
+</tr>
+</tbody>
+</table>
+<p>Run them from the <code>testing</code> folder:</p>
+<div class="codehilite"><pre><span></span><code>uv<span class="w"> </span>run<span class="w"> </span>--with<span class="w"> </span>pytest<span class="w"> </span>pytest<span class="w"> </span>-v<span class="w">      </span><span class="c1"># or: python -m pytest -v</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>test_sales.py::test_size_band_large PASSED                               [ 12%]
+test_sales.py::test_size_band_boundaries[1000-Large] PASSED              [ 25%]
+test_sales.py::test_size_band_boundaries[999.99-Medium] PASSED           [ 37%]
+test_sales.py::test_size_band_boundaries[500-Medium] PASSED              [ 50%]
+test_sales.py::test_size_band_boundaries[499-Small] PASSED               [ 62%]
+test_sales.py::test_parse_quantity_removes_commas PASSED                 [ 75%]
+test_sales.py::test_parse_quantity_rejects_text PASSED                   [ 87%]
+test_sales.py::test_net_revenue_excludes_cancelled PASSED                [100%]
+
+============================== 8 passed in 0.02s ===============================
+</code></pre></div>
+
+<h2 id="example-3-read-a-failing-test">Example 3: read a failing test</h2>
+<p>Break the rule on purpose: change <code>&gt;= 1000</code> to <code>&gt; 1000</code> in <code>sales.py</code>, and run <code>pytest</code> again:</p>
+<div class="codehilite"><pre><span></span><code>test_sales.py .F......                                                   [100%]
+
+=================================== FAILURES ===================================
+____________________ test_size_band_boundaries[1000-Large] _____________________
+
+value = 1000, expected = 'Large'
+
+    def test_size_band_boundaries(value, expected):
+&gt;       assert size_band(value) == expected
+E       AssertionError: assert 'Medium' == 'Large'
+E
+E         - Large
+E         + Medium
+
+test_sales.py:14: AssertionError
+=========================== short test summary info ============================
+FAILED test_sales.py::test_size_band_boundaries[1000-Large] - AssertionError:...
+========================= 1 failed, 7 passed in 0.03s ==========================
+</code></pre></div>
+
+<p>Read it like a traceback: <strong>which test</strong> (<code>[1000-Large]</code>), <strong>what it got</strong> (<code>'Medium'</code>) and <strong>what it expected</strong> (<code>'Large'</code>). The boundary test caught a one-character bug. Undo the change.</p>
+<h2 id="example-4-lint-with-ruff">Example 4: lint with ruff</h2>
+<p><code>messy.py</code> works, but it's sloppy:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">total</span><span class="p">(</span><span class="n">values</span><span class="p">):</span>
+    <span class="n">result</span><span class="o">=</span><span class="mi">0</span>
+    <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">values</span> <span class="p">:</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">result</span><span class="o">+</span><span class="n">v</span>
+    <span class="k">return</span> <span class="n">result</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">report</span><span class="p">(</span><span class="n">orders</span><span class="p">,</span> <span class="n">region</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">region</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">total</span><span class="p">([</span><span class="n">o</span><span class="p">[</span><span class="s2">"value"</span><span class="p">]</span> <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="n">orders</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">total</span><span class="p">([</span><span class="n">o</span><span class="p">[</span><span class="s2">"value"</span><span class="p">]</span> <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="n">orders</span> <span class="k">if</span> <span class="n">o</span><span class="p">[</span><span class="s2">"region"</span><span class="p">]</span><span class="o">==</span><span class="n">region</span><span class="p">])</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>uvx<span class="w"> </span>ruff<span class="w"> </span>check<span class="w"> </span>--select<span class="w"> </span>E,F,I<span class="w"> </span>--output-format<span class="o">=</span>concise<span class="w"> </span>messy.py
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>messy.py:1:1: I001 [*] Import block is un-sorted or un-formatted
+messy.py:1:8: F401 [*] `os` imported but unused
+messy.py:2:8: F401 [*] `json` imported but unused
+messy.py:9:18: E711 Comparison to `None` should be `cond is None`
+Found 4 errors.
+[*] 3 fixable with the `--fix` option (1 hidden fix can be enabled with the `--unsafe-fixes` option).
+</code></pre></div>
+
+<ul>
+<li><code>uvx</code> runs a tool without adding it to the project. In a project, use <code>uv add --dev ruff</code> and <code>uv run ruff …</code>.</li>
+<li><code>--fix</code> removes the unused imports automatically. Fix <code>== None</code> → <code>is None</code> yourself.</li>
+</ul>
+<h2 id="example-5-format-with-ruff">Example 5: format with ruff</h2>
+<div class="codehilite"><pre><span></span><code>uvx<span class="w"> </span>ruff<span class="w"> </span>format<span class="w"> </span>--diff<span class="w"> </span>messy.py<span class="w">     </span><span class="c1"># preview</span>
+uvx<span class="w"> </span>ruff<span class="w"> </span>format<span class="w"> </span>messy.py<span class="w">            </span><span class="c1"># apply</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>-    result=0
+-    for v in values :
+-        result = result+v
++    result = 0
++    for v in values:
++        result = result + v
+     return result
+-def report(orders, region = None):
++
++
++def report(orders, region=None):
+</code></pre></div>
+
+<p>Configure rules once in <code>pyproject.toml</code>, so everyone (and CI) uses the same ones. This is the csv-cleaner project's setting:</p>
+<div class="codehilite"><pre><span></span><code><span class="k">[tool.ruff]</span>
+<span class="n">line-length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span>
+
+<span class="k">[tool.ruff.lint]</span>
+<span class="n">select</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">"E"</span><span class="p">,</span><span class="w"> </span><span class="s2">"F"</span><span class="p">,</span><span class="w"> </span><span class="s2">"I"</span><span class="p">,</span><span class="w"> </span><span class="s2">"B"</span><span class="p">,</span><span class="w"> </span><span class="s2">"UP"</span><span class="p">]</span><span class="w">   </span><span class="c1"># errors, pyflakes, imports, bugbear, pyupgrade</span>
+</code></pre></div>
+
+<div class="admonition tip">
+<p class="admonition-title">Format on save</p>
+<p>Install the <strong>Ruff</strong> extension in VS Code and turn on <em>Format On Save</em>: files are tidied every time you save.</p>
+</div>
+<h2 id="what-to-test">What to test</h2>
+<table>
+<thead>
+<tr>
+<th>Test…</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>The normal case</td>
+<td><code>size_band(1560) == "Large"</code></td>
+</tr>
+<tr>
+<td><strong>Boundaries</strong></td>
+<td>999.99, 1000, 500, 499</td>
+</tr>
+<tr>
+<td>Bad input</td>
+<td><code>parse_quantity("lots")</code> raises <code>ValueError</code></td>
+</tr>
+<tr>
+<td>Business rules</td>
+<td>Cancelled orders excluded</td>
+</tr>
+<tr>
+<td>A known answer</td>
+<td>Clean file has 12 rows, net revenue 9,075</td>
+</tr>
+</tbody>
+</table>
+<h2 id="common-mistakes">Common mistakes</h2>
+<table>
+<thead>
+<tr>
+<th>Mistake</th>
+<th>What happens</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Testing only the "happy path"</td>
+<td>Edge-case bugs slip through</td>
+<td>Add boundary and bad-input tests</td>
+</tr>
+<tr>
+<td>Test names like <code>test1</code></td>
+<td>Failures tell you nothing</td>
+<td><code>test_net_revenue_excludes_cancelled</code></td>
+</tr>
+<tr>
+<td>Comparing floats with <code>==</code> after maths</td>
+<td>Rare false failures (0.1 + 0.2)</td>
+<td><code>pytest.approx(9075.0)</code></td>
+</tr>
+<tr>
+<td>Ignoring ruff warnings</td>
+<td>Real bugs (unused variables, <code>== None</code>) stay</td>
+<td>Fix them, or disable a rule deliberately in config</td>
+</tr>
+<tr>
+<td>Arguing about style in reviews</td>
+<td>Wasted time</td>
+<td>Let <code>ruff format</code> decide</td>
+</tr>
+</tbody>
+</table>
+<h2 id="try-it-yourself">Try it yourself</h2>
+<p><strong>Task:</strong> Add a test to <code>test_sales.py</code> checking that <code>parse_quantity(" 120 ")</code> (with spaces) returns <code>120</code>, and a test that <code>net_revenue([])</code> returns <code>0</code>. Run pytest. How many tests pass now?</p>
+<details>
+<summary>Show the solution</summary>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">test_parse_quantity_strips_spaces</span><span class="p">():</span>
+    <span class="k">assert</span> <span class="n">parse_quantity</span><span class="p">(</span><span class="s2">" 120 "</span><span class="p">)</span> <span class="o">==</span> <span class="mi">120</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">test_net_revenue_empty_list</span><span class="p">():</span>
+    <span class="k">assert</span> <span class="n">net_revenue</span><span class="p">([])</span> <span class="o">==</span> <span class="mi">0</span>
+</code></pre></div>
+
+<p><code>pytest</code> reports <strong>10 passed</strong>. <code>strip()</code> handles the spaces, and <code>sum()</code> of nothing is 0. Testing the empty case is a good habit: averages, for example, would crash with <code>ZeroDivisionError</code>.</p>
+</details>
+<h2 id="quick-quiz">Quick quiz</h2>
+<div class="quiz-q" data-answer="1">
+<p>1. Which function will pytest run automatically?</p>
+<ol>
+<li><code>check_total()</code></li>
+<li><code>test_total()</code></li>
+<li><code>total_test_case()</code></li>
+</ol>
+<details>
+<summary>Show answer</summary>
+<p><strong>B.</strong> Names starting with <code>test_</code>, in files named <code>test_*.py</code>.</p>
+</details>
+</div>
+<div class="quiz-q" data-answer="1">
+<p>2. Why test 999.99 <strong>and</strong> 1000?</p>
+<ol>
+<li>They're random values</li>
+<li>Bugs hide at boundaries, like <code>&gt;</code> vs <code>&gt;=</code></li>
+<li>pytest requires two values</li>
+</ol>
+<details>
+<summary>Show answer</summary>
+<p><strong>B.</strong></p>
+</details>
+</div>
+<div class="quiz-q" data-answer="1">
+<p>3. What does <code>ruff format</code> do?</p>
+<ol>
+<li>Runs the tests</li>
+<li>Rewrites code layout consistently</li>
+<li>Installs packages</li>
+</ol>
+<details>
+<summary>Show answer</summary>
+<p><strong>B.</strong> <code>ruff check</code> finds problems; <code>ruff format</code> fixes layout.</p>
+</details>
+</div>
+<h2 id="summary">Summary</h2>
+<ul>
+<li>pytest runs <code>test_*</code> functions; use <code>assert</code>, <code>parametrize</code> for boundaries, and <code>pytest.raises</code> for bad input.</li>
+<li>Read failures as: which test, got what, expected what.</li>
+<li><code>ruff check</code> (with <code>--fix</code>) finds bugs and messy patterns; <code>ruff format</code> fixes layout.</li>
+<li>Put rules in <code>pyproject.toml</code> so your editor, your teammates and CI agree.</li>
+</ul>
+<div class="admonition job">
+<p class="admonition-title">Job-ready check</p>
+<p><strong>Interview question:</strong> <em>"How do you know your data transformation is correct?"</em></p>
+<p><strong>Strong answer:</strong> "I write unit tests for each rule, including boundaries and bad input, plus an end-to-end test that runs a small known input and compares the output with an expected file. Linting and formatting run with the tests, locally and in CI, so problems are caught before review."</p>
+<p><strong>Mini project:</strong> Add <code>pytest.approx</code> and an end-to-end test that reads <code>orders.csv</code>, computes net revenue and checks <strong>9,075</strong>. Keep <code>ruff check</code> and <code>ruff format --check</code> clean.</p>
+</div>
+<div class="terms-box"><div class="files-head"><b>Key terms in this lesson</b><a href="../../../glossary.html">Glossary →</a></div><div class="term-chips"><a class="term-chip" href="../../../glossary.html#linter" title="A tool that reads code without running it and flags likely bugs and bad patterns. Ruff is a fast Python linter and formatter.">Linter</a><a class="term-chip" href="../../../glossary.html#pyproject-toml" title="The standard settings file of a Python project: name, Python version, dependencies and tool settings (such as ruff).">pyproject.toml</a><a class="term-chip" href="../../../glossary.html#pytest" title="Python&#x27;s most popular testing tool. It runs every function named test_..., and reports which assertions pass or fail.">pytest</a></div></div>
+<h2 id="free-resources">Free resources to go deeper</h2><ul class="resources"><li><a href="https://docs.pytest.org/en/stable/getting-started.html">Get started with pytest</a><span class="r-meta">pytest docs (official) · Install, write and run your first tests; pytest.raises.</span></li><li><a href="https://docs.astral.sh/ruff/tutorial/">Ruff tutorial</a><span class="r-meta">Astral (official) · Linting, formatting and configuring rules in pyproject.toml.</span></li></ul>
+<div class="complete-bar"><span>Finished reading and did the exercise?</span>
+<button class="btn" id="completeBtn" type="button" data-id="phase-0/testing-ci/01-pytest-ruff">Mark lesson as complete</button></div>
+<nav class="pager"><a class="prev" href="../../../learn/phase-0/programming-refresher/04-oop-type-hints.html"><small>← Previous</small>OOP &amp; Type Hints: Classes, Dataclasses and Clear Contracts</a><a class="next" href="../../../learn/phase-0/testing-ci/02-github-actions.html"><small>Next →</small>GitHub Actions: Run Lint and Tests on Every Push</a></nav>
+<p class="reviewed">Last reviewed: 2026-10-09</p>
+
+  </div></main>
+  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#example-1-the-code-under-test">Example 1: the code under test</a><a href="#example-2-tests">Example 2: tests</a><a href="#example-3-read-a-failing-test">Example 3: read a failing test</a><a href="#example-4-lint-with-ruff">Example 4: lint with ruff</a><a href="#example-5-format-with-ruff">Example 5: format with ruff</a><a href="#what-to-test">What to test</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#free-resources">Free resources</a></aside>
+</div>
+<footer class="site">Data, AI &amp; Automation Path v0.7 · Applied AI, Data &amp; Automation Lab · Updated October 2026<br>
+Lesson text: <a href="../../../license.html">CC BY-NC-SA 4.0</a> · Code: <a href="../../../license.html#code-mit-license">MIT</a> · Free external resources belong to their respective owners.</footer>
+<script src="../../../search-index.js"></script>
+<script src="../../../assets/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en" data-root="../../../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Statistics Part 1: Centre, Spread and Common Distributions — Data, AI &amp; Automation Path</title>
+<meta name="description" content="Describe a variable with the right measure of centre and spread, and recognise the normal, log-normal, Poisson and binomial distributions in business data — and what each lets you predict.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data, AI &amp; Automation Path">
+<meta property="og:title" content="Statistics Part 1: Centre, Spread and Common Distributions">
+<meta property="og:description" content="Describe a variable with the right measure of centre and spread, and recognise the normal, log-normal, Poisson and binomial distributions in business data — and what each lets you predict.">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+
+<script>(function(){var t=null;try{t=localStorage.getItem('daa-theme')}catch(e){}
+if(!t)t=(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';
+document.documentElement.setAttribute('data-theme',t);
+var n=null;try{n=localStorage.getItem('daa-nav')}catch(e){}
+if(n==='open'&&window.matchMedia&&matchMedia('(min-width: 961px)').matches)document.documentElement.setAttribute('data-nav','open');
+document.documentElement.classList.add('no-anim')})();</script>
+<link rel="stylesheet" href="../../../assets/style.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233f7d6a'/%3E%3Ctext x='16' y='21' font-family='sans-serif' font-size='13' font-weight='700' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Open curriculum menu" title="Curriculum menu (press M)" aria-controls="sidebar" aria-expanded="false"><span class="ico-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span class="ico-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></button>
+  <a class="brand" href="../../../index.html"><span class="brand-badge">AI</span><span class="brand-text"><span class="brand-name">Data, AI &amp; Automation Path</span><span class="brand-version">v0.7</span></span></a>
+  <nav class="top-links" aria-label="Main">
+    <a href="../../../index.html" class="">Home</a><a href="../../../curriculum.html" class="">Curriculum</a><a href="../../../practice-files.html" class="">Practice files</a><a href="../../../glossary.html" class="">Glossary</a><a href="../../../how-to-learn.html" class="">How to learn</a><a href="../../../about.html" class="">About</a>
+  </nav>
+  <div class="top-spacer"></div>
+  <div class="search" role="search">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input id="searchInput" type="search" placeholder="Search lessons, tools, topics" aria-label="Search" autocomplete="off">
+    <kbd>/</kbd>
+    <div class="search-results" id="searchResults" role="listbox"></div>
+  </div>
+  <button class="icon-btn theme-toggle" id="themeBtn" aria-label="Toggle light or dark mode" title="Light / dark"><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
+</header>
+<div class="layout wide">
+  <nav class="sidebar" id="sidebar" aria-label="Curriculum">
+    <div class="side-title">Curriculum</div>
+    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="64"><i></i></div><span class="bar-label" data-progress-label></span></div>
+<div class="nav-phase"><a href="../../../learn/phase-0/index.html"><span class="nav-num">0</span>Foundations</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-1/index.html"><span class="nav-num">1</span>Analytics &amp; BI</a>
+</div>
+<div class="nav-phase current open"><a href="../../../learn/phase-2/index.html"><span class="nav-num">2</span>Data Science</a>
+<ul class="nav-modules">
+<li><a class="" href="../../../learn/phase-2/numpy/index.html">NumPy</a>
+</li>
+<li><a class="" href="../../../learn/phase-2/pandas/index.html">Pandas</a>
+</li>
+<li><a class="" href="../../../learn/phase-2/polars-duckdb/index.html">Polars &amp; DuckDB</a>
+</li>
+<li><a class="" href="../../../learn/phase-2/eda/index.html">EDA</a>
+</li>
+<li><a class="current" href="../../../learn/phase-2/statistics/index.html">Statistics</a>
+<ul class="nav-lessons">
+<li><a class="current" data-lesson="phase-2/statistics/01-center-spread-distributions" href="../../../learn/phase-2/statistics/01-center-spread-distributions.html">Statistics Part 1: Centre, Spread and Common Distributions</a></li>
+<li><a class="" data-lesson="phase-2/statistics/02-correlation-confidence-intervals" href="../../../learn/phase-2/statistics/02-correlation-confidence-intervals.html">Statistics Part 2: Correlation and Confidence Intervals</a></li>
+</ul>
+</li>
+<li><a class="" href="../../../learn/phase-2/ab-testing/index.html">Experimentation &amp; A/B Testing</a>
+</li>
+<li><a class="" href="../../../learn/phase-2/visualization/index.html">Visualization</a>
+</li>
+<li><a class="" href="../../../learn/phase-2/ml-foundations/index.html">ML Foundations</a>
+</li>
+<li><a class="" href="../../../learn/phase-2/research-thinking/index.html">Research Thinking</a>
+</li>
+<li><a class="nav-project " href="../../../learn/phase-2/project.html">★ Milestone project</a></li>
+</ul>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-3/index.html"><span class="nav-num">3</span>Data Engineering</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-4/index.html"><span class="nav-num">4</span>ML Engineering</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-5/index.html"><span class="nav-num">5</span>LLM &amp; RAG</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-6/index.html"><span class="nav-num">6</span>Agents &amp; Automation</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-7/index.html"><span class="nav-num">7</span>LLMOps &amp; Governance</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-8/index.html"><span class="nav-num">8</span>Capstone</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-9/index.html"><span class="nav-num">9</span>Career</a>
+</div>
+<div class="side-extra"><a href="../../../index.html">Home</a><a href="../../../curriculum.html">Full curriculum map</a><a href="../../../practice-files.html">Practice files</a><a href="../../../glossary.html">Glossary</a><a href="../../../how-to-learn.html">How to learn here</a><a href="../../../about.html">About &amp; contributing</a></div></nav>
+  <main class="main" id="main"><div class="content">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../../index.html">Home</a><span class="sep">/</span><a href="../../../learn/phase-2/index.html">Phase 2</a><span class="sep">/</span><a href="../../../learn/phase-2/statistics/index.html">Statistics</a><span class="sep">/</span><span>Statistics Part 1: Centre, Spread and Common Distributions</span></nav>
+<h1>Statistics Part 1: Centre, Spread and Common Distributions</h1>
+<p class="lead">Describe a variable with the right measure of centre and spread, and recognise the normal, log-normal, Poisson and binomial distributions in business data — and what each lets you predict.</p>
+<div class="meta"><span class="pill">Phase <b>2</b> · Data Science</span><span class="pill">Level <b>Intermediate</b></span><span class="pill">Time <b>50 min</b></span></div>
+<div class="admonition note"><p class="admonition-title">Before you start</p><p><a href="../../../learn/phase-2/eda/01-questions-patterns-distributions.html">EDA Part 1: Analytical Questions, Distributions and Patterns</a></p></div>
+<div class="files-box"><div class="files-head"><b>Practice files for this page</b><a href="../../../practice-files.html">All practice files →</a></div><ul><li><a href="../../../downloads/phase-2/data-science-scripts.zip" download>data-science-scripts.zip</a><span class="f-desc">All 21 Phase 2 lesson scripts (NumPy to research thinking), shared chart style, data folder and solutions · 230 KB</span></li><li><a href="../../../downloads/phase-2/orders_2025.csv" download>orders_2025.csv</a><span class="f-desc">4,246 clean orders for 2025 (synthetic, fixed seed): region, segment, channel, product, price, discount, status, delivery days, revenue · 472 KB</span></li></ul></div>
+<h2 id="what-is-it">What is it?</h2>
+<table>
+<thead>
+<tr>
+<th>Idea</th>
+<th>Question it answers</th>
+<th>Main measures</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Central tendency</strong></td>
+<td>What's a typical value?</td>
+<td>Mean, median, mode, trimmed mean</td>
+</tr>
+<tr>
+<td><strong>Spread (variance)</strong></td>
+<td>How different are the values from each other?</td>
+<td>Range, IQR, variance, standard deviation, CV</td>
+</tr>
+<tr>
+<td><strong>Distribution</strong></td>
+<td>What shape do the values follow, so I can model and predict?</td>
+<td>Normal, log-normal, Poisson, binomial</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition job">
+<p class="admonition-title">Why it matters at work</p>
+<p>"Average order value" is reported in every sales meeting, often wrongly for skewed data. Knowing which centre and spread to report, and which distribution fits (counts per day, yes/no outcomes, money amounts), lets you set realistic targets, spot unusual values and plan capacity. These basics come up in almost every data science interview.</p>
+</div>
+<p>The script is <code>11_stats_center_spread.py</code>. <code>net</code> = orders that weren't cancelled; <code>rev</code> = their revenue.</p>
+<h2 id="part-1-central-tendency">Part 1: central tendency</h2>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="kn">import</span> <span class="n">stats</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"mean   "</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">rev</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="mi">2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"median "</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">rev</span><span class="o">.</span><span class="n">median</span><span class="p">(),</span> <span class="mi">2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"trimmed mean (5</span><span class="si">% e</span><span class="s2">ach end)"</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">stats</span><span class="o">.</span><span class="n">trim_mean</span><span class="p">(</span><span class="n">rev</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">),</span> <span class="mi">2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"mode of discount:"</span><span class="p">,</span> <span class="n">net</span><span class="p">[</span><span class="s2">"discount"</span><span class="p">]</span><span class="o">.</span><span class="n">mode</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>mean    1382.38
+median  1060.22
+trimmed mean (5% each end) 1224.96
+mode of discount: [0.05]
+</code></pre></div>
+
+<table>
+<thead>
+<tr>
+<th>Measure</th>
+<th>What it is</th>
+<th>Use it when</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Mean</strong></td>
+<td>Sum ÷ count</td>
+<td>Data is roughly symmetric, or you need totals (mean × count = total revenue)</td>
+</tr>
+<tr>
+<td><strong>Median</strong></td>
+<td>The middle value</td>
+<td>Data is skewed or has outliers: "a typical order"</td>
+</tr>
+<tr>
+<td><strong>Trimmed mean</strong></td>
+<td>Mean after dropping the top and bottom 5%</td>
+<td>You want a mean that ignores extremes</td>
+</tr>
+<tr>
+<td><strong>Mode</strong></td>
+<td>The most common value</td>
+<td>Categories or a few repeated values (the most common discount is 5%)</td>
+</tr>
+</tbody>
+</table>
+<p>Order revenue is right-skewed, so the three answers differ by 30%. For "typical order value", report the <strong>median, 1,060</strong>. For forecasting <strong>total</strong> revenue, you still need the mean.</p>
+<h2 id="part-2-spread">Part 2: spread</h2>
+<div class="codehilite"><pre><span></span><code><span class="n">q1</span><span class="p">,</span> <span class="n">q3</span> <span class="o">=</span> <span class="n">rev</span><span class="o">.</span><span class="n">quantile</span><span class="p">([</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">])</span>
+<span class="n">spread</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">({</span>
+    <span class="s2">"range"</span><span class="p">:</span> <span class="n">rev</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">-</span> <span class="n">rev</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span>
+    <span class="s2">"IQR"</span><span class="p">:</span> <span class="n">q3</span> <span class="o">-</span> <span class="n">q1</span><span class="p">,</span>
+    <span class="s2">"variance"</span><span class="p">:</span> <span class="n">rev</span><span class="o">.</span><span class="n">var</span><span class="p">(),</span>          <span class="c1"># sample variance (divides by n - 1)</span>
+    <span class="s2">"std"</span><span class="p">:</span> <span class="n">rev</span><span class="o">.</span><span class="n">std</span><span class="p">(),</span>
+    <span class="s2">"CV"</span><span class="p">:</span> <span class="n">rev</span><span class="o">.</span><span class="n">std</span><span class="p">()</span> <span class="o">/</span> <span class="n">rev</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span>
+<span class="p">})</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">spread</span><span class="p">)</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>range         44091.51
+IQR            1222.69
+variance    2157984.61
+std            1469.01
+CV                1.06
+dtype: float64
+</code></pre></div>
+
+<ul>
+<li><strong>Variance</strong> is the average squared distance from the mean. Its unit is "revenue squared", which is hard to read, so we use its square root, the <strong>standard deviation (std)</strong>, in the original unit.</li>
+<li><strong>IQR</strong> (75th − 25th percentile) is the spread of the middle half: robust to the 44,000 outlier, unlike the range.</li>
+<li><strong>CV</strong> (coefficient of variation = std ÷ mean) compares spread across things with different units or sizes. Above 1, as here, means very uneven values.</li>
+<li>pandas' <code>.var()</code> and <code>.std()</code> divide by <strong>n − 1</strong> (sample statistics), NumPy's <code>np.std</code> divides by <strong>n</strong> by default. Tiny difference for big data, but know which one you report.</li>
+</ul>
+<p>Centre and spread together describe a region's delivery performance:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">dd</span> <span class="o">=</span> <span class="n">net</span><span class="p">[</span><span class="n">net</span><span class="p">[</span><span class="s2">"status"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"Delivered"</span><span class="p">]</span>
+<span class="n">two</span> <span class="o">=</span> <span class="n">dd</span><span class="p">[</span><span class="n">dd</span><span class="p">[</span><span class="s2">"region"</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s2">"Dhaka"</span><span class="p">,</span> <span class="s2">"Khulna"</span><span class="p">])]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"region"</span><span class="p">)[</span><span class="s2">"delivery_days"</span><span class="p">]</span><span class="o">.</span><span class="n">agg</span><span class="p">([</span><span class="s2">"mean"</span><span class="p">,</span> <span class="s2">"std"</span><span class="p">,</span> <span class="s2">"min"</span><span class="p">,</span> <span class="s2">"max"</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">two</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>        mean   std  min   max
+region
+Dhaka   2.38  1.22  1.0   7.0
+Khulna  5.26  2.64  1.0  17.0
+</code></pre></div>
+
+<p>Khulna is not only slower on average; it's also <strong>less predictable</strong> (std 2.64 vs 1.22). For customers, unpredictability is often worse than slowness, which is why delivery promises should consider spread, not just the mean.</p>
+<h2 id="part-3-four-distributions-youll-meet-constantly">Part 3: four distributions you'll meet constantly</h2>
+<table>
+<thead>
+<tr>
+<th>Distribution</th>
+<th>Describes</th>
+<th>Example here</th>
+<th>Key parameter(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Normal</strong></td>
+<td>Symmetric values around a mean</td>
+<td>Log of order revenue; measurement errors; averages of many values</td>
+<td>mean, std</td>
+</tr>
+<tr>
+<td><strong>Log-normal</strong></td>
+<td>Positive, right-skewed amounts whose log is normal</td>
+<td>Order revenue, salaries, web session times</td>
+<td>mean and std of the log</td>
+</tr>
+<tr>
+<td><strong>Poisson</strong></td>
+<td>Counts of events in a fixed period</td>
+<td>Orders per working day</td>
+<td>λ (average count)</td>
+</tr>
+<tr>
+<td><strong>Binomial</strong></td>
+<td>Number of "yes" in <em>n</em> independent yes/no trials</td>
+<td>Cancellations in a batch of orders</td>
+<td>n, p</td>
+</tr>
+</tbody>
+</table>
+<h3 id="normal-and-log-normal">Normal and log-normal</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[(</span><span class="s2">"revenue"</span><span class="p">,</span> <span class="n">rev</span><span class="p">),</span> <span class="p">(</span><span class="s2">"log revenue"</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">rev</span><span class="p">))]:</span>
+    <span class="n">within_1sd</span> <span class="o">=</span> <span class="p">((</span><span class="n">x</span> <span class="o">-</span> <span class="n">x</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span><span class="o">.</span><span class="n">abs</span><span class="p">()</span> <span class="o">&lt;=</span> <span class="n">x</span><span class="o">.</span><span class="n">std</span><span class="p">())</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">name</span><span class="si">:</span><span class="s2">12s</span><span class="si">}</span><span class="s2"> skew </span><span class="si">{</span><span class="n">stats</span><span class="o">.</span><span class="n">skew</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="si">:</span><span class="s2">5.2f</span><span class="si">}</span><span class="s2"> | share within 1 std of mean: </span><span class="si">{</span><span class="n">within_1sd</span><span class="si">:</span><span class="s2">.1%</span><span class="si">}</span><span class="s2"> (normal: 68.3%)"</span><span class="p">)</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>revenue      skew  9.27 | share within 1 std of mean: 91.1% (normal: 68.3%)
+log revenue  skew -0.34 | share within 1 std of mean: 69.2% (normal: 68.3%)
+</code></pre></div>
+
+<p>A normal distribution has about <strong>68%</strong> of values within 1 std of the mean and <strong>95%</strong> within 2. Raw revenue breaks that rule; <strong>log revenue</strong> follows it closely. So order revenue is approximately <strong>log-normal</strong>: work on the log scale when you need "normal" methods.</p>
+<h3 id="poisson-counts-per-day">Poisson: counts per day</h3>
+<div class="codehilite"><pre><span></span><code><span class="n">weekday</span> <span class="o">=</span> <span class="n">net</span><span class="p">[</span><span class="n">net</span><span class="p">[</span><span class="s2">"order_date"</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">dayofweek</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">])]</span>   <span class="c1"># Sunday–Thursday working days</span>
+<span class="n">per_day</span> <span class="o">=</span> <span class="n">weekday</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"order_date"</span><span class="p">)</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
+<span class="n">per_day</span> <span class="o">=</span> <span class="n">per_day</span><span class="p">[</span><span class="n">per_day</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">month</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">])]</span>   <span class="c1"># two steady months, no Eid: May, July</span>
+<span class="n">lam</span> <span class="o">=</span> <span class="n">per_day</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"May + July working days: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">per_day</span><span class="p">)</span><span class="si">}</span><span class="s2">, mean orders/day </span><span class="si">{</span><span class="n">lam</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">, variance </span><span class="si">{</span><span class="n">per_day</span><span class="o">.</span><span class="n">var</span><span class="p">()</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"P(a working day has 20+ orders), Poisson model:"</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">stats</span><span class="o">.</span><span class="n">poisson</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="mi">19</span><span class="p">,</span> <span class="n">lam</span><span class="p">),</span> <span class="mi">3</span><span class="p">),</span>
+      <span class="s2">"| observed:"</span><span class="p">,</span> <span class="nb">round</span><span class="p">((</span><span class="n">per_day</span> <span class="o">&gt;=</span> <span class="mi">20</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="mi">3</span><span class="p">))</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>May + July working days: 44, mean orders/day 13.57, variance 17.18
+P(a working day has 20+ orders), Poisson model: 0.06 | observed: 0.068
+</code></pre></div>
+
+<p><img alt="Left: histogram of log10 order revenue with a normal curve that fits it closely. Right: bars of orders per working day in May and July compared with a Poisson curve centred on 13.6." src="../../../images/phase-2/stats_distributions.png" /></p>
+<p>The Poisson model predicts a 20+ order day on about <strong>6%</strong> of working days; we observed 6.8%. That's useful for <strong>capacity planning</strong>: "plan staff for 20 orders on roughly 1 day in 15". In a Poisson distribution the variance equals the mean; here it's a bit higher (17.2 vs 13.6), which is common in real data (<strong>overdispersion</strong>: some days are busier for reasons the model doesn't know).</p>
+<h3 id="binomial-yesno-outcomes">Binomial: yes/no outcomes</h3>
+<div class="codehilite"><pre><span></span><code><span class="n">p_cancel</span> <span class="o">=</span> <span class="p">(</span><span class="n">orders</span><span class="p">[</span><span class="s2">"status"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"Cancelled"</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"cancellation rate </span><span class="si">{</span><span class="n">p_cancel</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">; in a batch of 50 orders, P(5 or more cancelled) ="</span><span class="p">,</span>
+      <span class="nb">round</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">stats</span><span class="o">.</span><span class="n">binom</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="n">p_cancel</span><span class="p">),</span> <span class="mi">3</span><span class="p">))</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>cancellation rate 0.067; in a batch of 50 orders, P(5 or more cancelled) = 0.239
+</code></pre></div>
+
+<p>With a 6.7% cancellation rate, a batch of 50 orders has <strong>5 or more cancellations about 1 time in 4</strong> by chance alone. So "5 cancellations this week!" is not, by itself, a sign of a problem. The binomial gives you the yardstick.</p>
+<h2 id="z-scores-how-many-standard-deviations-away">z-scores: "how many standard deviations away?"</h2>
+<p>A <strong>z-score</strong> = (value − mean) ÷ std. On a normal distribution, |z| &gt; 3 is rare (about 3 in 1,000). Only use z-scores where the data is roughly normal, or on a transformed scale (see <em>Try it yourself</em>).</p>
+<h2 id="common-mistakes">Common mistakes</h2>
+<table>
+<thead>
+<tr>
+<th>Mistake</th>
+<th>What happens</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Reporting only the mean of skewed data</td>
+<td>"Typical" value overstated</td>
+<td>Median (and percentiles) for typical; mean for totals</td>
+</tr>
+<tr>
+<td>Reporting a centre without a spread</td>
+<td>Can't tell steady from erratic</td>
+<td>Always pair them: median + IQR, or mean + std</td>
+</tr>
+<tr>
+<td>Assuming everything is normal</td>
+<td>Wrong probabilities and false outliers</td>
+<td>Check shape; use log scale, Poisson or binomial as appropriate</td>
+</tr>
+<tr>
+<td>Treating normal chance variation as a signal</td>
+<td>Panic over 5 cancellations in 50</td>
+<td>Compare with the binomial/Poisson range first</td>
+</tr>
+<tr>
+<td>Mixing sample and population std</td>
+<td>Small, confusing differences</td>
+<td>Know whether you divide by n − 1 (pandas) or n (NumPy default)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="try-it-yourself">Try it yourself</h2>
+<p><strong>Task:</strong> How unusual is the 44,127.55 order? Calculate its z-score on the raw revenue scale and on the log10 scale. Which one is meaningful, and why?</p>
+<details>
+<summary>Show the solution</summary>
+<div class="codehilite"><pre><span></span><code><span class="n">big</span> <span class="o">=</span> <span class="mf">44127.55</span>
+<span class="n">z_raw</span> <span class="o">=</span> <span class="p">(</span><span class="n">big</span> <span class="o">-</span> <span class="n">rev</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span> <span class="o">/</span> <span class="n">rev</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+<span class="n">z_log</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">big</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">rev</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">rev</span><span class="p">)</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"z on the raw scale: </span><span class="si">{</span><span class="n">z_raw</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> | z on the log scale: </span><span class="si">{</span><span class="n">z_log</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>z on the raw scale: 29.1 | z on the log scale: 4.4
+</code></pre></div>
+
+<p>The <strong>log-scale z (4.4)</strong> is the meaningful one, because log revenue is close to normal. It says the order is very rare (beyond 4 std) but not absurd. The raw-scale 29.1 is misleading: raw revenue isn't normal, so its std doesn't describe "typical" distances.</p>
+</details>
+<h2 id="quick-quiz">Quick quiz</h2>
+<div class="quiz-q" data-answer="1">
+<p>1. Which measure of centre is best for "a typical order value" in right-skewed data?</p>
+<ol>
+<li>Mean</li>
+<li>Median</li>
+<li>Range</li>
+</ol>
+<details>
+<summary>Show answer</summary>
+<p><strong>B.</strong></p>
+</details>
+</div>
+<div class="quiz-q" data-answer="1">
+<p>2. "Number of orders received per day" usually follows which distribution?</p>
+<ol>
+<li>Normal</li>
+<li>Poisson</li>
+<li>Binomial</li>
+</ol>
+<details>
+<summary>Show answer</summary>
+<p><strong>B.</strong> Counts of events in a fixed period. Binomial is for "yes" counts out of a known number of trials.</p>
+</details>
+</div>
+<div class="quiz-q" data-answer="1">
+<p>3. Two regions have the same mean delivery time, but region B has double the standard deviation. What does that mean for customers?</p>
+<ol>
+<li>Nothing: the means are equal</li>
+<li>Region B's delivery times are less predictable</li>
+<li>Region B is faster</li>
+</ol>
+<details>
+<summary>Show answer</summary>
+<p><strong>B.</strong></p>
+</details>
+</div>
+<h2 id="summary">Summary</h2>
+<ul>
+<li><strong>Centre:</strong> mean (for totals), median (typical value in skewed data), trimmed mean, mode.</li>
+<li><strong>Spread:</strong> IQR (robust), standard deviation (same unit as the data), CV (compare across scales). Always report centre <em>with</em> spread.</li>
+<li><strong>Distributions:</strong> normal (symmetric), log-normal (money amounts), Poisson (counts per period), binomial (yes/no out of n).</li>
+<li>Use them to ask "is this unusual, or normal variation?" before reacting.</li>
+</ul>
+<div class="admonition job">
+<p class="admonition-title">Job-ready check</p>
+<p><strong>Interview question:</strong> <em>"Our average order value went up 10% this month. Is that good news?"</em></p>
+<p><strong>Strong answer:</strong> "Maybe. Order values are skewed, so a few very large orders can move the mean a lot. I'd check the median and percentiles, how many large orders there were, and whether the number of orders changed. Then I'd compare the change with normal month-to-month variation before calling it a trend."</p>
+<p><strong>Mini project:</strong> For each customer segment, report median and mean revenue, IQR, std and CV in one table, plus one sentence per segment on how predictable its orders are.</p>
+</div>
+<div class="terms-box"><div class="files-head"><b>Key terms in this lesson</b><a href="../../../glossary.html">Glossary →</a></div><div class="term-chips"><a class="term-chip" href="../../../glossary.html#median" title="The middle value when data is sorted. For skewed data like order values it describes a typical value better than the mean, which large values pull up.">Median</a><a class="term-chip" href="../../../glossary.html#normal-distribution" title="The symmetric bell-shaped distribution: about 68% of values within 1 standard deviation of the mean, 95% within 2. Money amounts are often log-normal (normal after taking logs).">Normal distribution</a><a class="term-chip" href="../../../glossary.html#poisson-distribution" title="Describes counts of events in a fixed period (orders per day). The binomial describes the number of &#x27;yes&#x27; outcomes in n yes/no trials (cancellations in 50 orders).">Poisson distribution</a><a class="term-chip" href="../../../glossary.html#standard-deviation" title="The typical distance of values from their mean, in the data&#x27;s own unit. Variance is its square. Always report a spread next to a centre.">Standard deviation</a></div></div>
+<h2 id="free-resources">Free resources to go deeper</h2><ul class="resources"><li><a href="https://docs.scipy.org/doc/scipy/reference/stats.html">Statistical functions (scipy.stats)</a><span class="r-meta">SciPy official docs · Distributions (norm, poisson, binom), descriptive statistics and tests.</span></li><li><a href="https://www.openintro.org/book/os/">OpenIntro Statistics (free textbook)</a><span class="r-meta">OpenIntro · Chapters 2–4: summarising data and common distributions, with exercises.</span></li><li><a href="https://www.khanacademy.org/math/statistics-probability">Statistics and probability</a><span class="r-meta">Khan Academy · Short videos on mean, spread, normal and binomial distributions.</span></li></ul>
+<div class="complete-bar"><span>Finished reading and did the exercise?</span>
+<button class="btn" id="completeBtn" type="button" data-id="phase-2/statistics/01-center-spread-distributions">Mark lesson as complete</button></div>
+<nav class="pager"><a class="prev" href="../../../learn/phase-2/eda/02-relationships-anomalies.html"><small>← Previous</small>EDA Part 2: Relationships and Anomalies</a><a class="next" href="../../../learn/phase-2/statistics/02-correlation-confidence-intervals.html"><small>Next →</small>Statistics Part 2: Correlation and Confidence Intervals</a></nav>
+<p class="reviewed">Last reviewed: 2026-10-09</p>
+
+  </div></main>
+  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#part-1-central-tendency">Part 1: central tendency</a><a href="#part-2-spread">Part 2: spread</a><a href="#part-3-four-distributions-youll-meet-constantly">Part 3: four distributions you&#x27;ll meet constantly</a><a href="#z-scores-how-many-standard-deviations-away">z-scores: &quot;how many standard deviations away?&quot;</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#free-resources">Free resources</a></aside>
+</div>
+<footer class="site">Data, AI &amp; Automation Path v0.7 · Applied AI, Data &amp; Automation Lab · Updated October 2026<br>
+Lesson text: <a href="../../../license.html">CC BY-NC-SA 4.0</a> · Code: <a href="../../../license.html#code-mit-license">MIT</a> · Free external resources belong to their respective owners.</footer>
+<script src="../../../search-index.js"></script>
+<script src="../../../assets/app.js"></script>
+</body>
+</html>

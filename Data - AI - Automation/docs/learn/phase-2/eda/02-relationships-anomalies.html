@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en" data-root="../../../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EDA Part 2: Relationships and Anomalies — Data, AI &amp; Automation Path</title>
+<meta name="description" content="Measure how variables move together with crosstabs, group rates and correlation, avoid the classic traps, and find anomalies with robust rules — then decide whether each one is an error, an event or a real outlier.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data, AI &amp; Automation Path">
+<meta property="og:title" content="EDA Part 2: Relationships and Anomalies">
+<meta property="og:description" content="Measure how variables move together with crosstabs, group rates and correlation, avoid the classic traps, and find anomalies with robust rules — then decide whether each one is an error, an event or a real outlier.">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+
+<script>(function(){var t=null;try{t=localStorage.getItem('daa-theme')}catch(e){}
+if(!t)t=(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';
+document.documentElement.setAttribute('data-theme',t);
+var n=null;try{n=localStorage.getItem('daa-nav')}catch(e){}
+if(n==='open'&&window.matchMedia&&matchMedia('(min-width: 961px)').matches)document.documentElement.setAttribute('data-nav','open');
+document.documentElement.classList.add('no-anim')})();</script>
+<link rel="stylesheet" href="../../../assets/style.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233f7d6a'/%3E%3Ctext x='16' y='21' font-family='sans-serif' font-size='13' font-weight='700' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Open curriculum menu" title="Curriculum menu (press M)" aria-controls="sidebar" aria-expanded="false"><span class="ico-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span class="ico-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></button>
+  <a class="brand" href="../../../index.html"><span class="brand-badge">AI</span><span class="brand-text"><span class="brand-name">Data, AI &amp; Automation Path</span><span class="brand-version">v0.7</span></span></a>
+  <nav class="top-links" aria-label="Main">
+    <a href="../../../index.html" class="">Home</a><a href="../../../curriculum.html" class="">Curriculum</a><a href="../../../practice-files.html" class="">Practice files</a><a href="../../../glossary.html" class="">Glossary</a><a href="../../../how-to-learn.html" class="">How to learn</a><a href="../../../about.html" class="">About</a>
+  </nav>
+  <div class="top-spacer"></div>
+  <div class="search" role="search">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input id="searchInput" type="search" placeholder="Search lessons, tools, topics" aria-label="Search" autocomplete="off">
+    <kbd>/</kbd>
+    <div class="search-results" id="searchResults" role="listbox"></div>
+  </div>
+  <button class="icon-btn theme-toggle" id="themeBtn" aria-label="Toggle light or dark mode" title="Light / dark"><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
+</header>
+<div class="layout wide">
+  <nav class="sidebar" id="sidebar" aria-label="Curriculum">
+    <div class="side-title">Curriculum</div>
+    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="64"><i></i></div><span class="bar-label" data-progress-label></span></div>
+<div class="nav-phase"><a href="../../../learn/phase-0/index.html"><span class="nav-num">0</span>Foundations</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-1/index.html"><span class="nav-num">1</span>Analytics &amp; BI</a>
+</div>
+<div class="nav-phase current open"><a href="../../../learn/phase-2/index.html"><span class="nav-num">2</span>Data Science</a>
+<ul class="nav-modules">
+<li><a class="" href="../../../learn/phase-2/numpy/index.html">NumPy</a>
+</li>
+<li><a class="" href="../../../learn/phase-2/pandas/index.html">Pandas</a>
+</li>
+<li><a class="" href="../../../learn/phase-2/polars-duckdb/index.html">Polars &amp; DuckDB</a>
+</li>
+<li><a class="current" href="../../../learn/phase-2/eda/index.html">EDA</a>
+<ul class="nav-lessons">
+<li><a class="" data-lesson="phase-2/eda/01-questions-patterns-distributions" href="../../../learn/phase-2/eda/01-questions-patterns-distributions.html">EDA Part 1: Analytical Questions, Distributions and Patterns</a></li>
+<li><a class="current" data-lesson="phase-2/eda/02-relationships-anomalies" href="../../../learn/phase-2/eda/02-relationships-anomalies.html">EDA Part 2: Relationships and Anomalies</a></li>
+</ul>
+</li>
+<li><a class="" href="../../../learn/phase-2/statistics/index.html">Statistics</a>
+</li>
+<li><a class="" href="../../../learn/phase-2/ab-testing/index.html">Experimentation &amp; A/B Testing</a>
+</li>
+<li><a class="" href="../../../learn/phase-2/visualization/index.html">Visualization</a>
+</li>
+<li><a class="" href="../../../learn/phase-2/ml-foundations/index.html">ML Foundations</a>
+</li>
+<li><a class="" href="../../../learn/phase-2/research-thinking/index.html">Research Thinking</a>
+</li>
+<li><a class="nav-project " href="../../../learn/phase-2/project.html">★ Milestone project</a></li>
+</ul>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-3/index.html"><span class="nav-num">3</span>Data Engineering</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-4/index.html"><span class="nav-num">4</span>ML Engineering</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-5/index.html"><span class="nav-num">5</span>LLM &amp; RAG</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-6/index.html"><span class="nav-num">6</span>Agents &amp; Automation</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-7/index.html"><span class="nav-num">7</span>LLMOps &amp; Governance</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-8/index.html"><span class="nav-num">8</span>Capstone</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-9/index.html"><span class="nav-num">9</span>Career</a>
+</div>
+<div class="side-extra"><a href="../../../index.html">Home</a><a href="../../../curriculum.html">Full curriculum map</a><a href="../../../practice-files.html">Practice files</a><a href="../../../glossary.html">Glossary</a><a href="../../../how-to-learn.html">How to learn here</a><a href="../../../about.html">About &amp; contributing</a></div></nav>
+  <main class="main" id="main"><div class="content">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../../index.html">Home</a><span class="sep">/</span><a href="../../../learn/phase-2/index.html">Phase 2</a><span class="sep">/</span><a href="../../../learn/phase-2/eda/index.html">EDA</a><span class="sep">/</span><span>EDA Part 2: Relationships and Anomalies</span></nav>
+<h1>EDA Part 2: Relationships and Anomalies</h1>
+<p class="lead">Measure how variables move together with crosstabs, group rates and correlation, avoid the classic traps, and find anomalies with robust rules — then decide whether each one is an error, an event or a real outlier.</p>
+<div class="meta"><span class="pill">Phase <b>2</b> · Data Science</span><span class="pill">Level <b>Intermediate</b></span><span class="pill">Time <b>50 min</b></span></div>
+<div class="admonition note"><p class="admonition-title">Before you start</p><p><a href="../../../learn/phase-2/eda/01-questions-patterns-distributions.html">EDA Part 1: Analytical Questions, Distributions and Patterns</a></p></div>
+<div class="files-box"><div class="files-head"><b>Practice files for this page</b><a href="../../../practice-files.html">All practice files →</a></div><ul><li><a href="../../../downloads/phase-2/data-science-scripts.zip" download>data-science-scripts.zip</a><span class="f-desc">All 21 Phase 2 lesson scripts (NumPy to research thinking), shared chart style, data folder and solutions · 230 KB</span></li><li><a href="../../../downloads/phase-2/orders_2025.csv" download>orders_2025.csv</a><span class="f-desc">4,246 clean orders for 2025 (synthetic, fixed seed): region, segment, channel, product, price, discount, status, delivery days, revenue · 472 KB</span></li><li><a href="../../../downloads/phase-2/customers_2025.csv" download>customers_2025.csv</a><span class="f-desc">63 customers: segment, region, sign-up date, credit terms · 3 KB</span></li></ul></div>
+<h2 id="what-is-it">What is it?</h2>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>Question</th>
+<th>Typical tools</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Relationships</strong></td>
+<td>When one variable changes, does another tend to change too?</td>
+<td>Crosstab, rate by group, correlation, scatter plot</td>
+</tr>
+<tr>
+<td><strong>Anomalies</strong></td>
+<td>Which values or periods don't fit the usual pattern, and why?</td>
+<td>IQR rule, rolling median, robust z-score, investigation</td>
+</tr>
+</tbody>
+</table>
+<p>Both end with <strong>judgement</strong>: a relationship is not a cause, and an anomaly is not automatically an error.</p>
+<div class="admonition job">
+<p class="admonition-title">Why it matters at work</p>
+<p>"What drives cancellations?" and "Is this spike real?" are everyday questions. Answering them well (with the right comparison, the counts behind each rate, and an explanation for every outlier) builds trust. Removing a "weird" value that turns out to be your biggest customer's real order destroys it.</p>
+</div>
+<p>The script is <code>10_eda_relationships_anomalies.py</code>. It joins <code>customers_2025.csv</code> to the orders to bring in each customer's <strong>credit terms</strong>.</p>
+<h2 id="relationship-1-two-categories-crosstab">Relationship 1: two categories (crosstab)</h2>
+<p>Which channels does each segment use? Use <strong>row percentages</strong>, so segments of different sizes compare fairly:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">ct</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">"segment"</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s2">"channel"</span><span class="p">],</span> <span class="n">normalize</span><span class="o">=</span><span class="s2">"index"</span><span class="p">)</span><span class="o">.</span><span class="n">mul</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ct</span><span class="p">)</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>channel          Phone  Portal  Sales rep
+segment
+Garment Factory   14.7    61.4       23.8
+Knitting Mill     19.7    50.1       30.2
+Retailer          36.0    14.4       49.7
+Trader            29.8    23.6       46.6
+</code></pre></div>
+
+<p>Factories mostly order through the web <strong>portal</strong> (61%); retailers mostly through <strong>sales reps</strong> and the <strong>phone</strong>. Keep this in mind: any "portal effect" is mixed up with "who uses the portal" (see <em>Traps</em> below).</p>
+<h2 id="relationship-2-a-category-and-a-rate">Relationship 2: a category and a rate</h2>
+<p>Do credit terms relate to cancellations? Show the <strong>rate and the count</strong> for every group:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">rate</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"credit_days"</span><span class="p">)[</span><span class="s2">"cancelled"</span><span class="p">]</span><span class="o">.</span><span class="n">agg</span><span class="p">([</span><span class="s2">"mean"</span><span class="p">,</span> <span class="s2">"size"</span><span class="p">])</span>
+<span class="n">rate</span><span class="p">[</span><span class="s2">"mean"</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">rate</span><span class="p">[</span><span class="s2">"mean"</span><span class="p">]</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">rate</span><span class="p">)</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>             mean  size
+credit_days
+0             3.3  1353
+15            4.3   880
+30            8.1  1366
+60           13.9   647
+</code></pre></div>
+
+<p><img alt="Bar chart of cancelled orders by customer credit terms: 3.3% at 0 days, 4.3% at 15, 8.1% at 30 and 13.9% at 60 days." src="../../../images/phase-2/eda_cancel_by_credit.png" /></p>
+<p>A clear, steady relationship: customers on 60-day credit cancel <strong>4× as often</strong> as cash customers. Every group has hundreds of orders, so it's not noise from a tiny group. It is still a <strong>relationship, not proof of cause</strong>: maybe riskier customers are the ones given long credit.</p>
+<h2 id="relationship-3-numbers-together-correlation">Relationship 3: numbers together (correlation)</h2>
+<p><strong>Correlation</strong> (from −1 to +1) measures how consistently two numbers move together. Use <strong>Spearman</strong> (rank-based) for skewed data like ours; Pearson assumes a straight-line relationship and is pulled around by outliers.</p>
+<div class="codehilite"><pre><span></span><code><span class="n">num</span> <span class="o">=</span> <span class="n">net</span><span class="p">[[</span><span class="s2">"quantity"</span><span class="p">,</span> <span class="s2">"unit_price"</span><span class="p">,</span> <span class="s2">"discount"</span><span class="p">,</span> <span class="s2">"revenue"</span><span class="p">,</span> <span class="s2">"delivery_days"</span><span class="p">,</span> <span class="s2">"promised_days"</span><span class="p">,</span> <span class="s2">"credit_days"</span><span class="p">]]</span>
+<span class="n">corr</span> <span class="o">=</span> <span class="n">num</span><span class="o">.</span><span class="n">corr</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s2">"spearman"</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">corr</span><span class="o">.</span><span class="n">loc</span><span class="p">[[</span><span class="s2">"revenue"</span><span class="p">,</span> <span class="s2">"delivery_days"</span><span class="p">],</span> <span class="p">[</span><span class="s2">"quantity"</span><span class="p">,</span> <span class="s2">"discount"</span><span class="p">,</span> <span class="s2">"promised_days"</span><span class="p">,</span> <span class="s2">"credit_days"</span><span class="p">]])</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>               quantity  discount  promised_days  credit_days
+revenue           -0.03       0.5           0.04        -0.04
+delivery_days      0.05      -0.0           0.49        -0.01
+</code></pre></div>
+
+<p><img alt="Correlation heatmap of seven numeric columns. Strongest: quantity and unit price −0.80, discount and revenue 0.50, unit price and revenue 0.50, delivery days and promised days 0.49; most others near 0." src="../../../images/phase-2/eda_correlation_heatmap.png" /></p>
+<p>How to read it, and why each number needs a business explanation:</p>
+<table>
+<thead>
+<tr>
+<th>Pair</th>
+<th>ρ</th>
+<th>Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>quantity – unit_price</td>
+<td><strong>−0.80</strong></td>
+<td><strong>Product mix</strong>: cheap trims (buttons at 0.04) are bought in thousands, fabric (3.50) in hundreds. Not "higher quantity lowers the price"</td>
+</tr>
+<tr>
+<td>quantity – revenue</td>
+<td>−0.03</td>
+<td>Same mix effect: across different products, quantity says little about value. Within one product it's strongly positive</td>
+</tr>
+<tr>
+<td>discount – revenue</td>
+<td>0.50</td>
+<td>A <strong>business rule</strong>: orders above 1,500 get at least 5%</td>
+</tr>
+<tr>
+<td>delivery_days – promised_days</td>
+<td>0.49</td>
+<td>Both depend on <strong>region</strong>: far regions are promised and get longer times</td>
+</tr>
+<tr>
+<td>credit_days – anything</td>
+<td>≈ 0</td>
+<td>Correlation misses relationships with a yes/no outcome (cancellation): use rates, as above</td>
+</tr>
+</tbody>
+</table>
+<h2 id="relationship-4-a-scatter-plot-shows-the-shape">Relationship 4: a scatter plot shows the shape</h2>
+<div class="codehilite"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">net</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"discount"</span><span class="p">)[</span><span class="s2">"revenue"</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">()</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>discount
+0.00     709.0
+0.02     722.0
+0.05    1822.0
+0.08    1141.0
+Name: revenue, dtype: float64
+</code></pre></div>
+
+<p><img alt="Scatter of order revenue (log scale) by discount: at 0% and 2% revenue stops at about 1,500; at 5% most orders are above 1,500; 8% is spread widely." src="../../../images/phase-2/eda_discount_vs_revenue.png" /></p>
+<p>The scatter reveals what the 0.50 hides: a <strong>hard cut at 1,500</strong>. Discounts don't <em>cause</em> big orders; the discount policy is <em>triggered by</em> big orders. Reading this the wrong way round ("give discounts to grow orders") would be an expensive mistake.</p>
+<h2 id="traps-when-reading-relationships">Traps when reading relationships</h2>
+<table>
+<thead>
+<tr>
+<th>Trap</th>
+<th>Example in our data</th>
+<th>Defence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Confounding</strong> (a third variable drives both)</td>
+<td>Portal orders may look different only because factories use the portal</td>
+<td>Compare within groups (portal vs not, <em>per segment</em>)</td>
+</tr>
+<tr>
+<td><strong>Reverse causation</strong></td>
+<td>Big orders → discount, not discount → big orders</td>
+<td>Ask which came first; check the business rules</td>
+</tr>
+<tr>
+<td><strong>Mix effects</strong></td>
+<td>quantity vs price is −0.80 across products</td>
+<td>Analyse within one product or category</td>
+</tr>
+<tr>
+<td><strong>Small groups</strong></td>
+<td>A 50% rate from 4 orders</td>
+<td>Always show counts next to rates</td>
+</tr>
+<tr>
+<td><strong>Correlation = 0 means no relationship</strong></td>
+<td>Credit vs cancellation</td>
+<td>Correlation only sees steady, monotonic patterns between numbers</td>
+</tr>
+</tbody>
+</table>
+<h2 id="anomalies-1-unusually-large-orders-iqr-rule-per-group">Anomalies 1: unusually large orders (IQR rule per group)</h2>
+<p>A value is flagged when it is far above the <strong>interquartile range (IQR)</strong> of its own group. Using each segment's own range avoids flagging every factory order just because factories are big.</p>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">iqr_flags</span><span class="p">(</span><span class="n">s</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">:</span>
+    <span class="n">q1</span><span class="p">,</span> <span class="n">q3</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">quantile</span><span class="p">([</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">s</span> <span class="o">&gt;</span> <span class="n">q3</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">*</span> <span class="p">(</span><span class="n">q3</span> <span class="o">-</span> <span class="n">q1</span><span class="p">)</span>
+
+
+<span class="n">net</span><span class="p">[</span><span class="s2">"unusual"</span><span class="p">]</span> <span class="o">=</span> <span class="n">net</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"segment"</span><span class="p">)[</span><span class="s2">"revenue"</span><span class="p">]</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">iqr_flags</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">net</span><span class="p">[</span><span class="s2">"unusual"</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">(),</span> <span class="s2">"unusually large orders"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">net</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">net</span><span class="p">[</span><span class="s2">"unusual"</span><span class="p">]]</span><span class="o">.</span><span class="n">nlargest</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="s2">"revenue"</span><span class="p">)[[</span><span class="s2">"order_id"</span><span class="p">,</span> <span class="s2">"segment"</span><span class="p">,</span> <span class="s2">"product"</span><span class="p">,</span> <span class="s2">"quantity"</span><span class="p">,</span> <span class="s2">"revenue"</span><span class="p">]])</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>57 unusually large orders
+      order_id          segment        product  quantity   revenue
+3824     13825  Garment Factory  Sewing Thread     54776  44127.55
+2934     12935  Garment Factory     Denim 12oz      5128  25381.04
+1550     11551    Knitting Mill  Sewing Thread     16968  13927.33
+2967     12968  Garment Factory   Cotton Twill      4032  13253.18
+3269     13270  Garment Factory   Viscose Yarn      4176  13091.76
+</code></pre></div>
+
+<p><code>3 × IQR</code> flags only extreme values (1.5 × IQR is the usual box-plot whisker). Prices on these orders are normal; only the quantity is large. They look like <strong>genuine bulk orders</strong>: keep them, and report medians so they don't distort "typical" figures. (The impossible prices like 350 per metre were <em>errors</em>, and the Cleaning lesson removed them.)</p>
+<h2 id="anomalies-2-unusual-days-rolling-median">Anomalies 2: unusual days (rolling median)</h2>
+<p>A fixed threshold fails when the level changes through the year. Instead, compare each day with the <strong>rolling median of similar days</strong> around it (Saturdays are half days, so they're compared with other Saturdays):</p>
+<div class="codehilite"><pre><span></span><code><span class="n">daily</span> <span class="o">=</span> <span class="n">net</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">"order_date"</span><span class="p">)</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s2">"D"</span><span class="p">)[</span><span class="s2">"order_id"</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+<span class="n">daily</span> <span class="o">=</span> <span class="n">daily</span><span class="p">[</span><span class="n">daily</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">dayofweek</span> <span class="o">!=</span> <span class="mi">4</span><span class="p">]</span>                          <span class="c1"># skip Fridays (weekend)</span>
+<span class="n">is_saturday</span> <span class="o">=</span> <span class="n">daily</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">dayofweek</span> <span class="o">==</span> <span class="mi">5</span>
+<span class="n">normal</span> <span class="o">=</span> <span class="n">daily</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">is_saturday</span><span class="p">)</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">min_periods</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">median</span><span class="p">())</span>
+<span class="n">ratio</span> <span class="o">=</span> <span class="n">daily</span> <span class="o">/</span> <span class="n">normal</span>
+<span class="n">low_days</span> <span class="o">=</span> <span class="n">ratio</span><span class="p">[</span><span class="n">ratio</span> <span class="o">&lt;</span> <span class="mf">0.35</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">low_days</span><span class="p">)</span><span class="si">}</span><span class="s2"> unusually quiet days (below 35% of the rolling median for that kind of day):"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">([</span><span class="n">d</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">"</span><span class="si">%d</span><span class="s2"> %b"</span><span class="p">)</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">low_days</span><span class="o">.</span><span class="n">index</span><span class="p">])</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>15 unusually quiet days (below 35% of the rolling median for that kind of day):
+['18 Jan', '29 Mar', '30 Mar', '31 Mar', '01 Apr', '02 Apr', '05 Apr', '13 Apr', '05 Jun', '07 Jun', '08 Jun', '09 Jun', '10 Jun', '11 Jun', '12 Jun']
+</code></pre></div>
+
+<p>13 of the 15 days fall in the two <strong>Eid holiday</strong> periods: anomalies with a known cause (an <em>event</em>, not an error). Two (18 January and 13 April) have no explanation in our calendar. Those are the ones to ask the sales team about.</p>
+<h2 id="error-event-or-outlier">Error, event or outlier?</h2>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Example</th>
+<th>What to do</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Data error</strong></td>
+<td>Unit price 350 instead of 3.50; negative quantity</td>
+<td>Fix with a documented rule, or remove and report</td>
+</tr>
+<tr>
+<td><strong>Known event</strong></td>
+<td>Eid week, a system outage, a price change</td>
+<td>Keep; annotate charts; exclude from "normal" baselines if needed</td>
+</tr>
+<tr>
+<td><strong>Genuine outlier</strong></td>
+<td>A 44,000 bulk order</td>
+<td>Keep; use robust statistics; mention it in findings</td>
+</tr>
+<tr>
+<td><strong>Unexplained</strong></td>
+<td>18 January</td>
+<td>Investigate before deciding</td>
+</tr>
+</tbody>
+</table>
+<h2 id="common-mistakes">Common mistakes</h2>
+<table>
+<thead>
+<tr>
+<th>Mistake</th>
+<th>What happens</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Rates without counts</td>
+<td>Tiny groups look dramatic</td>
+<td>Show <code>size</code> next to every rate</td>
+</tr>
+<tr>
+<td>Pearson on skewed data</td>
+<td>Outliers drive the number</td>
+<td>Spearman, or log-transform first</td>
+</tr>
+<tr>
+<td>Reading correlation as cause</td>
+<td>Wrong actions (discounts "to grow orders")</td>
+<td>Look for confounders, rules and timing</td>
+</tr>
+<tr>
+<td>Deleting all outliers</td>
+<td>Real big customers disappear</td>
+<td>Classify first: error, event, outlier, unexplained</td>
+</tr>
+<tr>
+<td>One global threshold for anomalies</td>
+<td>Seasons flagged as anomalies</td>
+<td>Compare with a rolling or group baseline</td>
+</tr>
+</tbody>
+</table>
+<h2 id="try-it-yourself">Try it yourself</h2>
+<p><strong>Task:</strong> Is there a relationship between <strong>region</strong> and delivery days? Show the median, mean and maximum per region, then list the three slowest deliveries. Are those anomalies, and what would you check?</p>
+<details>
+<summary>Show the solution</summary>
+<div class="codehilite"><pre><span></span><code><span class="n">by_region</span> <span class="o">=</span> <span class="n">net</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"region"</span><span class="p">)[</span><span class="s2">"delivery_days"</span><span class="p">]</span><span class="o">.</span><span class="n">agg</span><span class="p">([</span><span class="s2">"median"</span><span class="p">,</span> <span class="s2">"mean"</span><span class="p">,</span> <span class="s2">"max"</span><span class="p">])</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">by_region</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">"mean"</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">net</span><span class="o">.</span><span class="n">nlargest</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s2">"delivery_days"</span><span class="p">)[[</span><span class="s2">"order_id"</span><span class="p">,</span> <span class="s2">"order_date"</span><span class="p">,</span> <span class="s2">"region"</span><span class="p">,</span> <span class="s2">"delivery_days"</span><span class="p">,</span> <span class="s2">"promised_days"</span><span class="p">]])</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>             median  mean   max
+region
+Dhaka           2.0  2.38   7.0
+Narayanganj     3.0  2.80  10.0
+Gazipur         3.0  2.87   9.0
+Chattogram      4.0  4.39  14.0
+Khulna          5.0  5.26  17.0
+      order_id order_date  region  delivery_days  promised_days
+3592     13593 2025-11-12  Khulna           17.0              6
+3265     13266 2025-10-23  Khulna           16.0              6
+3375     13376 2025-10-29  Khulna           15.0              6
+</code></pre></div>
+
+<p>A strong relationship: Khulna takes more than twice as long as Dhaka. The three slowest are all Khulna orders in October–November, the busiest season. They're real late deliveries (nearly 3× the promised 6 days) rather than data errors. Check carrier records for those weeks before deciding whether it's a capacity problem.</p>
+</details>
+<h2 id="quick-quiz">Quick quiz</h2>
+<div class="quiz-q" data-answer="1">
+<p>1. Quantity and unit price have a correlation of −0.80. What's the most likely explanation here?</p>
+<ol>
+<li>Customers get lower prices when they buy more of the same product</li>
+<li>Product mix: cheap items are bought in large quantities, expensive ones in small</li>
+<li>The data has errors</li>
+</ol>
+<details>
+<summary>Show answer</summary>
+<p><strong>B.</strong> Always look for a business explanation before interpreting a correlation.</p>
+</details>
+</div>
+<div class="quiz-q" data-answer="1">
+<p>2. Why compare each day with a rolling median instead of one yearly threshold?</p>
+<ol>
+<li>It's faster</li>
+<li>The normal level changes through the year, so a fixed line flags whole seasons</li>
+<li>Rolling medians remove all anomalies</li>
+</ol>
+<details>
+<summary>Show answer</summary>
+<p><strong>B.</strong></p>
+</details>
+</div>
+<div class="quiz-q" data-answer="1">
+<p>3. You find a 44,000 order with a normal unit price and a very large quantity. What do you do?</p>
+<ol>
+<li>Delete it, because it's an outlier</li>
+<li>Keep it as a genuine outlier, use robust statistics, and mention it in the findings</li>
+<li>Replace it with the mean</li>
+</ol>
+<details>
+<summary>Show answer</summary>
+<p><strong>B.</strong></p>
+</details>
+</div>
+<h2 id="summary">Summary</h2>
+<ul>
+<li><strong>Two categories:</strong> crosstab with row percentages. <strong>Category and outcome:</strong> rate <em>and</em> count per group. <strong>Two numbers:</strong> Spearman correlation plus a scatter plot.</li>
+<li>Explain every relationship with the business (mix, rules, region), and watch for <strong>confounding</strong> and <strong>reverse causation</strong>.</li>
+<li>Find anomalies against the right baseline (IQR within group, rolling median of similar days).</li>
+<li>Classify each anomaly: <strong>error, event, genuine outlier or unexplained</strong>, and act accordingly.</li>
+</ul>
+<div class="admonition job">
+<p class="admonition-title">Job-ready check</p>
+<p><strong>Interview question:</strong> <em>"You find that customers with discounts place much larger orders. Should we give more discounts?"</em></p>
+<p><strong>Strong answer:</strong> "Not on that evidence. In this data the discount policy is triggered by order size (5% above 1,500), so large orders cause discounts, not the reverse. To learn whether discounts <em>increase</em> order size, we'd need an experiment, for example randomly offering a discount to some comparable customers, which is the A/B testing module."</p>
+<p><strong>Mini project:</strong> Write a short "drivers of cancellation" note: rate and count by credit terms, segment and channel, one chart, and three sentences on which relationships might be confounded.</p>
+</div>
+<div class="terms-box"><div class="files-head"><b>Key terms in this lesson</b><a href="../../../glossary.html">Glossary →</a></div><div class="term-chips"><a class="term-chip" href="../../../glossary.html#confounding" title="When a third variable drives both the supposed cause and the outcome, creating a misleading relationship. Simpson&#x27;s paradox is the extreme case where the direction flips within groups.">Confounding</a><a class="term-chip" href="../../../glossary.html#correlation" title="A number from −1 to +1 for how consistently two variables move together. Pearson measures straight-line relationships; Spearman uses ranks and resists outliers. Correlation is not causation.">Correlation</a><a class="term-chip" href="../../../glossary.html#relationship" title="A link between two tables in a model, usually one-to-many from a dimension to a fact, which lets filters flow between them.">Relationship</a></div></div>
+<h2 id="free-resources">Free resources to go deeper</h2><ul class="resources"><li><a href="https://pandas.pydata.org/docs/reference/api/pandas.crosstab.html">pandas.crosstab</a><span class="r-meta">pandas official docs · Counts and row/column percentages for two categories.</span></li><li><a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.corr.html">pandas.DataFrame.corr</a><span class="r-meta">pandas official docs · Pearson, Spearman and Kendall correlation.</span></li><li><a href="https://www.itl.nist.gov/div898/handbook/prc/section1/prc16.htm">What are outliers in the data? (NIST e-Handbook)</a><span class="r-meta">NIST (US National Institute of Standards and Technology) · How to detect outliers, and why you must investigate before removing them.</span></li></ul>
+<div class="complete-bar"><span>Finished reading and did the exercise?</span>
+<button class="btn" id="completeBtn" type="button" data-id="phase-2/eda/02-relationships-anomalies">Mark lesson as complete</button></div>
+<nav class="pager"><a class="prev" href="../../../learn/phase-2/eda/01-questions-patterns-distributions.html"><small>← Previous</small>EDA Part 1: Analytical Questions, Distributions and Patterns</a><a class="next" href="../../../learn/phase-2/statistics/01-center-spread-distributions.html"><small>Next →</small>Statistics Part 1: Centre, Spread and Common Distributions</a></nav>
+<p class="reviewed">Last reviewed: 2026-10-09</p>
+
+  </div></main>
+  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#relationship-1-two-categories-crosstab">Relationship 1: two categories (crosstab)</a><a href="#relationship-2-a-category-and-a-rate">Relationship 2: a category and a rate</a><a href="#relationship-3-numbers-together-correlation">Relationship 3: numbers together (correlation)</a><a href="#relationship-4-a-scatter-plot-shows-the-shape">Relationship 4: a scatter plot shows the shape</a><a href="#traps-when-reading-relationships">Traps when reading relationships</a><a href="#anomalies-1-unusually-large-orders-iqr-rule-per-group">Anomalies 1: unusually large orders (IQR rule per group)</a><a href="#anomalies-2-unusual-days-rolling-median">Anomalies 2: unusual days (rolling median)</a><a href="#error-event-or-outlier">Error, event or outlier?</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#free-resources">Free resources</a></aside>
+</div>
+<footer class="site">Data, AI &amp; Automation Path v0.7 · Applied AI, Data &amp; Automation Lab · Updated October 2026<br>
+Lesson text: <a href="../../../license.html">CC BY-NC-SA 4.0</a> · Code: <a href="../../../license.html#code-mit-license">MIT</a> · Free external resources belong to their respective owners.</footer>
+<script src="../../../search-index.js"></script>
+<script src="../../../assets/app.js"></script>
+</body>
+</html>

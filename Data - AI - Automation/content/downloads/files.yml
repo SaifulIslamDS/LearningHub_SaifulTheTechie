@@ -1,0 +1,121 @@
+# Catalogue of every practice file in content/downloads/.
+# The build uses it for the "Practice files" page and the download box on each lesson.
+# Lessons list their files in front matter:  files: [orders.xlsx, sql-solutions.sql]
+# The build warns if a file is missing on disk or missing from this list.
+
+groups:
+  - "Phase 0 — Engineering Foundations"
+  - "SQL"
+  - "Excel & PivotTables"
+  - "Power Query"
+  - "Power Pivot, DAX & Power BI"
+  - "Phase 2 — Data Science"
+  - "Answer keys & templates"
+
+files:
+  # ---------------------------------------------------------- Phase 0
+  - path: phase-0/python-refresher.zip
+    group: "Phase 0 — Engineering Foundations"
+    description: "Python refresher scripts, debugging, pytest and ruff examples, an AI-written function to review, with solutions"
+  - path: phase-0/linux-practice.zip
+    group: "Phase 0 — Engineering Foundations"
+    description: "Practice folder for the Linux lessons: data, a cleaner log file, a cron script"
+  - path: phase-0/csv-cleaner-starter.zip
+    group: "Phase 0 — Engineering Foundations"
+    description: "Phase 0 Gate project starter: CLI, config and tests ready, cleaning functions to write"
+  - path: phase-0/csv-cleaner-solution.zip
+    group: "Phase 0 — Engineering Foundations"
+    description: "Phase 0 Gate project reference solution (17 passing tests, CI workflow)"
+
+  # ---------------------------------------------------------- SQL
+  - path: orders.sql
+    group: "SQL"
+    description: "Creates the orders (12 rows) and customers (6 rows) tables. Run it once in your SQL tool"
+  - path: orders.csv
+    group: "SQL"
+    description: "The 12 clean practice orders as CSV"
+  - path: customers.csv
+    group: "SQL"
+    description: "6 customers with segment, city and account manager"
+
+  # ---------------------------------------------------------- Excel
+  - path: orders.xlsx
+    group: "Excel & PivotTables"
+    description: "Starting workbook: Orders (with value formula), Products, Customers sheets"
+
+  # ---------------------------------------------------------- Power Query
+  - path: orders_raw.csv
+    group: "Power Query"
+    description: "Messy export of the 12 orders (14 rows) to clean"
+  - path: monthly/orders_2026-01.csv
+    group: "Power Query"
+    description: "January orders (5 rows), for append and folder lessons"
+  - path: monthly/orders_2026-02.csv
+    group: "Power Query"
+    description: "February orders (5 rows)"
+  - path: monthly/orders_2026-03.csv
+    group: "Power Query"
+    description: "March orders (2 rows)"
+  - path: targets_wide.csv
+    group: "Power Query"
+    description: "Sales targets with one column per month, to unpivot"
+  - path: products.csv
+    group: "Power Query"
+    description: "6 products with category, list price and supplier"
+
+  # ---------------------------------------------------------- Power BI
+  - path: sales_model.xlsx
+    group: "Power Pivot, DAX & Power BI"
+    description: "Five Excel Tables (Orders, Customers, Products, Regions, Targets) for the data model"
+  - path: regions.csv
+    group: "Power Pivot, DAX & Power BI"
+    description: "4 regions with division and manager e-mail (for row-level security)"
+  - path: targets_long.csv
+    group: "Power Pivot, DAX & Power BI"
+    description: "Targets already unpivoted: region × month (12 rows)"
+
+  # ---------------------------------------------------------- answers & templates
+  - path: sql-solutions.sql
+    group: "Answer keys & templates"
+    description: "Solutions to every SQL exercise, tested in SQLite"
+  - path: excel-solutions.xlsx
+    group: "Answer keys & templates"
+    description: "Worked Excel answers: IF, SUMIFS, lookups, conditional formatting, FILTER/LET formulas, What-If model"
+  - path: known_answers.csv
+    group: "Answer keys & templates"
+    description: "24 key numbers every tool should reproduce, for checking your work (and AI output)"
+  - path: templates/experiment_plan_template.md
+    group: "Answer keys & templates"
+    description: "Experiment plan template: question, unit, metrics, MDE, sample size, stopping rule (Markdown)"
+  - path: templates/analysis_report_template.md
+    group: "Answer keys & templates"
+    description: "Analysis report template: bottom line first, results with CIs, limitations, how to reproduce (Markdown)"
+  - path: templates/kpi_dictionary_template.md
+    group: "Answer keys & templates"
+    description: "KPI dictionary template (Markdown)"
+  - path: templates/executive_summary_template.md
+    group: "Answer keys & templates"
+    description: "Executive summary template (Markdown)"
+  - path: templates/decision_memo_template.md
+    group: "Answer keys & templates"
+    description: "Decision memo template (Markdown)"
+
+  # ---------------------------------------------------------- Phase 2
+  - path: phase-2/data-science-scripts.zip
+    group: "Phase 2 — Data Science"
+    description: "All 21 Phase 2 lesson scripts (NumPy to research thinking), shared chart style, data folder and solutions"
+  - path: phase-2/orders_2025.csv
+    group: "Phase 2 — Data Science"
+    description: "4,246 clean orders for 2025 (synthetic, fixed seed): region, segment, channel, product, price, discount, status, delivery days, revenue"
+  - path: phase-2/orders_2025_raw.csv
+    group: "Phase 2 — Data Science"
+    description: "The same orders as a messy ERP export (4,264 lines) for the pandas cleaning lesson"
+  - path: phase-2/customers_2025.csv
+    group: "Phase 2 — Data Science"
+    description: "63 customers: segment, region, sign-up date, credit terms"
+  - path: phase-2/products_2025.csv
+    group: "Phase 2 — Data Science"
+    description: "12 products with category, list price and unit cost"
+  - path: phase-2/ab_test_checkout.csv
+    group: "Phase 2 — Data Science"
+    description: "10,836 portal sessions from a November A/B test of a one-page checkout (variant, device, converted, order value)"

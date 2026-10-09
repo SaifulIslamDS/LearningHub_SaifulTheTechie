@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en" data-root="../../../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Excel IF, AND &amp; OR: Let Your Sheet Make Decisions — Data, AI &amp; Automation Path</title>
+<meta name="description" content="Label rows, build categories and flag the orders that need attention with IF, IFS, AND and OR.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Data, AI &amp; Automation Path">
+<meta property="og:title" content="Excel IF, AND &amp; OR: Let Your Sheet Make Decisions">
+<meta property="og:description" content="Label rows, build categories and flag the orders that need attention with IF, IFS, AND and OR.">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+
+<script>(function(){var t=null;try{t=localStorage.getItem('daa-theme')}catch(e){}
+if(!t)t=(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';
+document.documentElement.setAttribute('data-theme',t);
+var n=null;try{n=localStorage.getItem('daa-nav')}catch(e){}
+if(n==='open'&&window.matchMedia&&matchMedia('(min-width: 961px)').matches)document.documentElement.setAttribute('data-nav','open');
+document.documentElement.classList.add('no-anim')})();</script>
+<link rel="stylesheet" href="../../../assets/style.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233f7d6a'/%3E%3Ctext x='16' y='21' font-family='sans-serif' font-size='13' font-weight='700' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Open curriculum menu" title="Curriculum menu (press M)" aria-controls="sidebar" aria-expanded="false"><span class="ico-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span class="ico-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></button>
+  <a class="brand" href="../../../index.html"><span class="brand-badge">AI</span><span class="brand-text"><span class="brand-name">Data, AI &amp; Automation Path</span><span class="brand-version">v0.7</span></span></a>
+  <nav class="top-links" aria-label="Main">
+    <a href="../../../index.html" class="">Home</a><a href="../../../curriculum.html" class="">Curriculum</a><a href="../../../practice-files.html" class="">Practice files</a><a href="../../../glossary.html" class="">Glossary</a><a href="../../../how-to-learn.html" class="">How to learn</a><a href="../../../about.html" class="">About</a>
+  </nav>
+  <div class="top-spacer"></div>
+  <div class="search" role="search">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input id="searchInput" type="search" placeholder="Search lessons, tools, topics" aria-label="Search" autocomplete="off">
+    <kbd>/</kbd>
+    <div class="search-results" id="searchResults" role="listbox"></div>
+  </div>
+  <button class="icon-btn theme-toggle" id="themeBtn" aria-label="Toggle light or dark mode" title="Light / dark"><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
+</header>
+<div class="layout wide">
+  <nav class="sidebar" id="sidebar" aria-label="Curriculum">
+    <div class="side-title">Curriculum</div>
+    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="64"><i></i></div><span class="bar-label" data-progress-label></span></div>
+<div class="nav-phase"><a href="../../../learn/phase-0/index.html"><span class="nav-num">0</span>Foundations</a>
+</div>
+<div class="nav-phase current open"><a href="../../../learn/phase-1/index.html"><span class="nav-num">1</span>Analytics &amp; BI</a>
+<ul class="nav-modules">
+<li><a class="current" href="../../../learn/phase-1/excel-analysis/index.html">Excel for Analysis</a>
+<ul class="nav-lessons">
+<li><a class="current" data-lesson="phase-1/excel-analysis/01-if-logical" href="../../../learn/phase-1/excel-analysis/01-if-logical.html">Excel IF, AND &amp; OR: Let Your Sheet Make Decisions</a></li>
+<li><a class="" data-lesson="phase-1/excel-analysis/02-sumifs-countifs" href="../../../learn/phase-1/excel-analysis/02-sumifs-countifs.html">Excel SUMIFS &amp; COUNTIFS: Build KPI Summaries</a></li>
+<li><a class="" data-lesson="phase-1/excel-analysis/03-xlookup-index-match" href="../../../learn/phase-1/excel-analysis/03-xlookup-index-match.html">Excel XLOOKUP &amp; INDEX/MATCH: Bring Data Together from Other Sheets</a></li>
+<li><a class="" data-lesson="phase-1/excel-analysis/04-filter-let" href="../../../learn/phase-1/excel-analysis/04-filter-let.html">Excel FILTER &amp; LET: Live Filtered Lists and Readable Formulas</a></li>
+<li><a class="" data-lesson="phase-1/excel-analysis/05-conditional-formatting" href="../../../learn/phase-1/excel-analysis/05-conditional-formatting.html">Excel Conditional Formatting: Make Important Data Stand Out</a></li>
+</ul>
+</li>
+<li><a class="" href="../../../learn/phase-1/pivot-analysis/index.html">Pivot Analysis</a>
+</li>
+<li><a class="" href="../../../learn/phase-1/power-query/index.html">Power Query</a>
+</li>
+<li><a class="" href="../../../learn/phase-1/power-pivot-dax/index.html">Power Pivot &amp; DAX</a>
+</li>
+<li><a class="" href="../../../learn/phase-1/analytical-sql/index.html">Analytical SQL</a>
+</li>
+<li><a class="" href="../../../learn/phase-1/power-bi/index.html">Power BI</a>
+</li>
+<li><a class="" href="../../../learn/phase-1/semantic-models/index.html">Semantic Models &amp; Metrics Layer</a>
+</li>
+<li><a class="" href="../../../learn/phase-1/ai-assisted-analytics/index.html">AI-Assisted Analytics</a>
+</li>
+<li><a class="" href="../../../learn/phase-1/data-storytelling/index.html">Data Storytelling</a>
+</li>
+<li><a class="nav-project " href="../../../learn/phase-1/project.html">★ Milestone project</a></li>
+</ul>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-2/index.html"><span class="nav-num">2</span>Data Science</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-3/index.html"><span class="nav-num">3</span>Data Engineering</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-4/index.html"><span class="nav-num">4</span>ML Engineering</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-5/index.html"><span class="nav-num">5</span>LLM &amp; RAG</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-6/index.html"><span class="nav-num">6</span>Agents &amp; Automation</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-7/index.html"><span class="nav-num">7</span>LLMOps &amp; Governance</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-8/index.html"><span class="nav-num">8</span>Capstone</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-9/index.html"><span class="nav-num">9</span>Career</a>
+</div>
+<div class="side-extra"><a href="../../../index.html">Home</a><a href="../../../curriculum.html">Full curriculum map</a><a href="../../../practice-files.html">Practice files</a><a href="../../../glossary.html">Glossary</a><a href="../../../how-to-learn.html">How to learn here</a><a href="../../../about.html">About &amp; contributing</a></div></nav>
+  <main class="main" id="main"><div class="content">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../../index.html">Home</a><span class="sep">/</span><a href="../../../learn/phase-1/index.html">Phase 1</a><span class="sep">/</span><a href="../../../learn/phase-1/excel-analysis/index.html">Excel for Analysis</a><span class="sep">/</span><span>Excel IF, AND &amp; OR: Let Your Sheet Make Decisions</span></nav>
+<h1>Excel IF, AND &amp; OR: Let Your Sheet Make Decisions</h1>
+<p class="lead">Label rows, build categories and flag the orders that need attention with IF, IFS, AND and OR.</p>
+<div class="meta"><span class="pill">Phase <b>1</b> · Analytics &amp; BI</span><span class="pill">Level <b>Beginner</b></span><span class="pill">Time <b>30 min</b></span></div>
+
+<div class="files-box"><div class="files-head"><b>Practice files for this page</b><a href="../../../practice-files.html">All practice files →</a></div><ul><li><a href="../../../downloads/orders.xlsx" download>orders.xlsx</a><span class="f-desc">Starting workbook: Orders (with value formula), Products, Customers sheets · 8 KB</span></li><li><a href="../../../downloads/excel-solutions.xlsx" download>excel-solutions.xlsx</a><span class="f-desc">Worked Excel answers: IF, SUMIFS, lookups, conditional formatting, FILTER/LET formulas, What-If model · 14 KB</span></li></ul></div>
+<h2 id="what-is-it">What is it?</h2>
+<p><code>IF</code> checks a condition and returns one value when it is true and another when it is false. It is the Excel version of SQL's <code>CASE</code>. With <code>AND</code> and <code>OR</code> you can check several conditions at once.</p>
+<div class="admonition job">
+<p class="admonition-title">Why it matters at work</p>
+<p>Raw data rarely says "needs follow-up" or "large order". Analysts add those labels with IF formulas, then filter, count and chart them. IF is the most used logical function in Excel, and it appears in nearly every Excel skills test.</p>
+</div>
+<h2 id="the-syntax">The syntax</h2>
+<div class="codehilite"><pre><span></span><code>=IF(logical_test, value_if_true, value_if_false)
+=AND(condition1, condition2, ...)   → TRUE only if ALL are true
+=OR(condition1, condition2, ...)    → TRUE if ANY is true
+</code></pre></div>
+
+<ul>
+<li>Text results go in double quotes: <code>"Yes"</code>. Numbers don't: <code>0</code>.</li>
+<li>A logical test compares something: <code>I2="Cancelled"</code>, <code>J2&gt;=1000</code>, <code>G2&lt;&gt;0</code>.</li>
+</ul>
+<h2 id="example-1-a-simple-yesno-label">Example 1: a simple yes/no label</h2>
+<p><em>Question: does each order count as a sale (anything except Cancelled)?</em> In <strong>K2</strong>:</p>
+<div class="codehilite"><pre><span></span><code>=IF(I2="Cancelled","No","Yes")
+</code></pre></div>
+
+<p>Copy it down to K13. Order 4 shows <strong>No</strong>, and the other 11 show <strong>Yes</strong>. Check: <code>=COUNTIF(K2:K13,"Yes")</code> returns <strong>11</strong>.</p>
+<h2 id="example-2-three-categories-with-a-nested-if">Example 2: three categories with a nested IF</h2>
+<p><em>Question: label each order Large (1,000 or more), Medium (500 or more) or Small.</em> In <strong>L2</strong>:</p>
+<div class="codehilite"><pre><span></span><code>=IF(J2&gt;=1000,"Large",IF(J2&gt;=500,"Medium","Small"))
+</code></pre></div>
+
+<table>
+<thead>
+<tr>
+<th>order_id</th>
+<th>value</th>
+<th>L: size</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>420.00</td>
+<td>Small</td>
+</tr>
+<tr>
+<td>3</td>
+<td>1,560.00</td>
+<td>Large</td>
+</tr>
+<tr>
+<td>6</td>
+<td>680.00</td>
+<td>Medium</td>
+</tr>
+<tr>
+<td>9</td>
+<td>810.00</td>
+<td>Medium</td>
+</tr>
+<tr>
+<td>12</td>
+<td>1,275.00</td>
+<td>Large</td>
+</tr>
+</tbody>
+</table>
+<p><em>(5 of 12 rows shown.)</em> The labels match the SQL CASE lesson exactly.</p>
+<p><strong>Cleaner option: IFS</strong> (Excel 2019 and newer). It lists the conditions in order. <code>TRUE</code> at the end means "otherwise":</p>
+<div class="codehilite"><pre><span></span><code>=IFS(J2&gt;=1000,"Large",J2&gt;=500,"Medium",TRUE,"Small")
+</code></pre></div>
+
+<div class="admonition mistake">
+<p class="admonition-title">Order matters, just like in SQL</p>
+<p>Excel checks from left to right and stops at the first true condition. If <code>J2&gt;=500</code> came first, a 1,560 order would be labelled "Medium".</p>
+</div>
+<h2 id="example-3-several-conditions-with-and-or">Example 3: several conditions with AND / OR</h2>
+<p><em>Question: flag "Priority" orders: from Dhaka </em><em>and</em><em> worth 1,000 or more.</em> In <strong>N2</strong>:</p>
+<div class="codehilite"><pre><span></span><code>=IF(AND(D2="Dhaka",J2&gt;=1000),"Priority","Normal")
+</code></pre></div>
+
+<p>Only <strong>order 3</strong> (Nova Apparel, 1,560) is Priority.</p>
+<p><em>Question: flag orders that need a follow-up: Shipped </em><em>or</em><em> Pending.</em> In <strong>O2</strong>:</p>
+<div class="codehilite"><pre><span></span><code>=IF(OR(I2="Shipped",I2="Pending"),"Follow up","")
+</code></pre></div>
+
+<p>Orders <strong>7, 9 and 12</strong> show "Follow up". The others stay blank (<code>""</code> means an empty text).</p>
+<h2 id="common-mistakes">Common mistakes</h2>
+<table>
+<thead>
+<tr>
+<th>Mistake</th>
+<th>What happens</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>=IF(I2=Cancelled,...)</code> (no quotes)</td>
+<td><code>#NAME?</code> error</td>
+<td><code>"Cancelled"</code> in double quotes</td>
+</tr>
+<tr>
+<td><code>=IF(J2&gt;=1000 AND D2="Dhaka",...)</code></td>
+<td>Error: Excel has no AND operator</td>
+<td><code>AND(J2&gt;=1000,D2="Dhaka")</code></td>
+</tr>
+<tr>
+<td>Looser condition first in a nested IF</td>
+<td>Wrong labels</td>
+<td>Strictest condition first</td>
+</tr>
+<tr>
+<td>Typing numbers as text: <code>"1000"</code></td>
+<td>The comparison doesn't behave as expected</td>
+<td>Numbers without quotes</td>
+</tr>
+<tr>
+<td>Seven or more nested IFs</td>
+<td>Unreadable and easy to break</td>
+<td><code>IFS</code>, or a lookup table (next lessons)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="try-it-yourself">Try it yourself</h2>
+<p><strong>Task:</strong> In column <strong>P</strong>, label an order <strong>"Key delivery"</strong> if it is <em>Delivered</em> <strong>and</strong> worth 1,000 or more. Otherwise show <strong>"-"</strong>. Which orders are key deliveries?</p>
+<details>
+<summary>Show a hint</summary>
+<p>Use <code>IF</code> with <code>AND(...)</code> inside, combining a status check and a value check.</p>
+</details>
+<details>
+<summary>Show the solution</summary>
+<div class="codehilite"><pre><span></span><code>=IF(AND(I2="Delivered",J2&gt;=1000),"Key delivery","-")
+</code></pre></div>
+
+<p>Orders <strong>3, 5 and 8</strong> are key deliveries. Order 12 is worth 1,275 but is only <em>Shipped</em>, so it shows "-".</p>
+</details>
+<h2 id="quick-quiz">Quick quiz</h2>
+<div class="quiz-q" data-answer="1">
+<p>1. What does <code>=IF(J2&gt;=500,"Medium",IF(J2&gt;=1000,"Large","Small"))</code> return for a value of 1,560?</p>
+<ol>
+<li>Large</li>
+<li>Medium</li>
+<li>Small</li>
+</ol>
+<details>
+<summary>Show answer</summary>
+<p><strong>B — Medium.</strong> The first test (<code>&gt;=500</code>) is already true, so Excel never reaches the Large check. That's why the strictest test goes first.</p>
+</details>
+</div>
+<div class="quiz-q" data-answer="1">
+<p>2. Which formula is TRUE only when <strong>both</strong> conditions are true?</p>
+<ol>
+<li><code>=OR(A1&gt;5,B1&gt;5)</code></li>
+<li><code>=AND(A1&gt;5,B1&gt;5)</code></li>
+<li><code>=IF(A1&gt;5,B1&gt;5)</code></li>
+</ol>
+<details>
+<summary>Show answer</summary>
+<p><strong>B — AND.</strong> OR is true when at least one condition is true.</p>
+</details>
+</div>
+<div class="quiz-q" data-answer="1">
+<p>3. In <code>IFS</code>, how do you give a default result when nothing else matches?</p>
+<ol>
+<li>Leave the last argument empty</li>
+<li>Use <code>TRUE</code> as the final condition</li>
+<li>Use <code>ELSE</code></li>
+</ol>
+<details>
+<summary>Show answer</summary>
+<p><strong>B.</strong> <code>...,TRUE,"Small")</code>. Without it, IFS returns <code>#N/A</code> when nothing matches.</p>
+</details>
+</div>
+<h2 id="summary">Summary</h2>
+<ul>
+<li><code>=IF(test, if_true, if_false)</code> adds decisions to a sheet. Text goes in double quotes.</li>
+<li>Nest IFs, or use <code>IFS</code>, for several categories. Put the strictest test first.</li>
+<li><code>AND(...)</code> needs all conditions to be true, and <code>OR(...)</code> needs any one. Use them inside IF.</li>
+<li>The labels you create become filters, counts and chart categories.</li>
+</ul>
+<div class="admonition job">
+<p class="admonition-title">Job-ready check</p>
+<p><strong>Interview question:</strong> <em>"How would you flag orders that need attention in a sheet with thousands of rows?"</em></p>
+<p><strong>Strong answer:</strong> "I'd add a helper column with IF plus AND/OR for the business rule, for example Shipped or Pending and older than 7 days. Then I'd filter or count that column. If the rules get complex, I'd keep them in a small rules table and look them up, so they're easy to change."</p>
+<p><strong>Mini project:</strong> In <code>orders.xlsx</code>, add three label columns (Counts as sale, Size, Follow up). Below the data, count each label with <code>COUNTIF</code>. Save it as <code>orders-labelled.xlsx</code>.</p>
+</div>
+<div class="terms-box"><div class="files-head"><b>Key terms in this lesson</b><a href="../../../glossary.html">Glossary →</a></div><div class="term-chips"><a class="term-chip" href="../../../glossary.html#if-function" title="Excel&#x27;s decision function: IF(test, value if true, value if false). IFS checks several conditions in order; AND and OR combine tests.">IF function</a></div></div>
+<h2 id="free-resources">Free resources to go deeper</h2><ul class="resources"><li><a href="https://support.microsoft.com/en-us/excel/if-function-nested-formulas-and-avoiding-pitfalls">IF function — nested formulas and avoiding pitfalls</a><span class="r-meta">Microsoft Support · The official guide, including when nested IFs become a problem.</span></li><li><a href="https://support.microsoft.com/en-us/excel/using-if-with-and-or-and-not-functions-in-excel">Using IF with AND, OR and NOT functions</a><span class="r-meta">Microsoft Support · Combining several conditions, with examples.</span></li><li><a href="https://support.microsoft.com/en-us/excel/functions/ifs-function">IFS function</a><span class="r-meta">Microsoft Support · A cleaner alternative to nested IFs (Excel 2019 and newer).</span></li><li><a href="https://exceljet.net/functions/if-function">Excel IF function</a><span class="r-meta">Exceljet (free) · Many short worked examples.</span></li></ul>
+<div class="complete-bar"><span>Finished reading and did the exercise?</span>
+<button class="btn" id="completeBtn" type="button" data-id="phase-1/excel-analysis/01-if-logical">Mark lesson as complete</button></div>
+<nav class="pager"><a class="prev" href="../../../learn/phase-0/ai-assisted-dev/02-review-test-ai-code.html"><small>← Previous</small>Reviewing &amp; Testing AI-Written Code: Trust, but Verify</a><a class="next" href="../../../learn/phase-1/excel-analysis/02-sumifs-countifs.html"><small>Next →</small>Excel SUMIFS &amp; COUNTIFS: Build KPI Summaries</a></nav>
+<p class="reviewed">Last reviewed: 2026-10-09</p>
+
+  </div></main>
+  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#the-syntax">The syntax</a><a href="#example-1-a-simple-yesno-label">Example 1: a simple yes/no label</a><a href="#example-2-three-categories-with-a-nested-if">Example 2: three categories with a nested IF</a><a href="#example-3-several-conditions-with-and-or">Example 3: several conditions with AND / OR</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#free-resources">Free resources</a></aside>
+</div>
+<footer class="site">Data, AI &amp; Automation Path v0.7 · Applied AI, Data &amp; Automation Lab · Updated October 2026<br>
+Lesson text: <a href="../../../license.html">CC BY-NC-SA 4.0</a> · Code: <a href="../../../license.html#code-mit-license">MIT</a> · Free external resources belong to their respective owners.</footer>
+<script src="../../../search-index.js"></script>
+<script src="../../../assets/app.js"></script>
+</body>
+</html>
