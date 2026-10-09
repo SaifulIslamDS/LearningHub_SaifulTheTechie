@@ -25,14 +25,15 @@ Then run the current build before changing anything.
 - Preserve SOURCE CURRICULUM / TUTORIAL EXPANSION / ST RECOMMENDED distinctions.
 - Never fabricate executable output.
 - Prefer official docs for current/version-sensitive claims.
-- YouTube companions are optional and supplementary; verify them before adding and keep the written tutorial complete without them.
+- YouTube companions are optional and supplementary; verify them before adding and keep the written tutorial complete without them. Use `content/youtube.yml` for central reviewed mappings and per-lesson `youtube:` only when a local override is needed.
+- Every authored tutorial must render the generator-created **Learn this lesson with AI** frontier-LLM tutor prompt. Preserve its tutoring/verification behavior.
 - Fix Markdown/YAML/code/assets and regenerate; never hand-edit normal content in `docs/`.
 - Preserve the Saiful The Techie deep-navy / electric-cyan documentation-first design system.
 - Use the exact approved logo only when its original asset is actually available; do not invent a substitute.
 
 ## Current approved task
 
-**v0.6.0 — Advanced Software Engineering**, as defined in `ROADMAP.md`.
+**v0.6.0 — Complete Level 01: Full Stack Project 2 + AI-Assisted Coding (Modules 53–67)**, as defined in `ROADMAP.md`. The completed v0.5.2 platform standard (AI tutor, protocol-safe video companions, collapsible levels, available-vs-roadmap UX and cleaned learner-facing module pages) is permanent.
 
 Implement only that approved milestone. Run verification, update release documentation and package the versioned ZIP.
 

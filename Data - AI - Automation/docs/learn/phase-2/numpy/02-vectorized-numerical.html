@@ -6,7 +6,7 @@
 <title>Vectorized Operations &amp; Numerical Computation in NumPy — Data, AI &amp; Automation Path</title>
 <meta name="description" content="Replace slow loops with whole-array maths, use broadcasting and axis aggregations, handle missing values and floating-point traps, and make random numbers reproducible.">
 <meta property="og:type" content="article">
-<meta property="og:site_name" content="Data, AI &amp; Automation Path">
+<meta property="og:site_name" content="Saiful The Techie">
 <meta property="og:title" content="Vectorized Operations &amp; Numerical Computation in NumPy">
 <meta property="og:description" content="Replace slow loops with whole-array maths, use broadcasting and axis aggregations, handle missing values and floating-point traps, and make random numbers reproducible.">
 <meta property="og:locale" content="en_US">
@@ -19,13 +19,13 @@ var n=null;try{n=localStorage.getItem('daa-nav')}catch(e){}
 if(n==='open'&&window.matchMedia&&matchMedia('(min-width: 961px)').matches)document.documentElement.setAttribute('data-nav','open');
 document.documentElement.classList.add('no-anim')})();</script>
 <link rel="stylesheet" href="../../../assets/style.css">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233f7d6a'/%3E%3Ctext x='16' y='21' font-family='sans-serif' font-size='13' font-weight='700' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
+
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="topbar">
   <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Open curriculum menu" title="Curriculum menu (press M)" aria-controls="sidebar" aria-expanded="false"><span class="ico-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span class="ico-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></button>
-  <a class="brand" href="../../../index.html"><span class="brand-badge">AI</span><span class="brand-text"><span class="brand-name">Data, AI &amp; Automation Path</span><span class="brand-version">v0.8</span></span></a>
+  <a class="brand" href="../../../index.html"><span class="brand-text"><span class="brand-name">Saiful The Techie</span><span class="brand-version">Data, AI &amp; Automation Path · v0.9.1</span></span></a>
   <nav class="top-links" aria-label="Main">
     <a href="../../../index.html" class="">Home</a><a href="../../../curriculum.html" class="">Curriculum</a><a href="../../../practice-files.html" class="">Practice files</a><a href="../../../glossary.html" class="">Glossary</a><a href="../../../how-to-learn.html" class="">How to learn</a><a href="../../../about.html" class="">About</a>
   </nav>
@@ -41,7 +41,7 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="layout wide">
   <nav class="sidebar" id="sidebar" aria-label="Curriculum">
     <div class="side-title">Curriculum</div>
-    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="77"><i></i></div><span class="bar-label" data-progress-label></span></div>
+    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="85"><i></i></div><span class="bar-label" data-progress-label></span></div>
 <div class="nav-phase"><a href="../../../learn/phase-0/index.html"><span class="nav-num">0</span>Foundations</a>
 </div>
 <div class="nav-phase"><a href="../../../learn/phase-1/index.html"><span class="nav-num">1</span>Analytics &amp; BI</a>
@@ -97,264 +97,364 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="files-box"><div class="files-head"><b>Practice files for this page</b><a href="../../../practice-files.html">All practice files →</a></div><ul><li><a href="../../../downloads/phase-2/data-science-scripts.zip" download>data-science-scripts.zip</a><span class="f-desc">All 21 Phase 2 lesson scripts (NumPy to research thinking), shared chart style, data folder and solutions · 230 KB</span></li><li><a href="../../../downloads/phase-2/orders_2025.csv" download>orders_2025.csv</a><span class="f-desc">4,246 clean orders for 2025 (synthetic, fixed seed): region, segment, channel, product, price, discount, status, delivery days, revenue · 472 KB</span></li></ul></div>
 <h2 id="what-is-it">What is it?</h2>
 <ul>
-<li><strong>Vectorized operation:</strong> one expression that works on whole arrays (<code>qty * price</code>) instead of a Python loop over each element.</li>
-<li><strong>Broadcasting:</strong> NumPy's rule for combining arrays of different shapes, such as a column of prices with a row of discounts.</li>
-<li><strong>Numerical computation:</strong> aggregating (sum, mean, percentiles) along an axis, handling missing values (<code>nan</code>), and knowing the limits of floating-point numbers.</li>
+<li><strong>Vectorized operation:</strong> one expression that works on
+whole arrays (<code>qty * price</code>) instead of a Python loop over
+each element.</li>
+<li><strong>Broadcasting:</strong> NumPy’s rule for combining arrays of
+different shapes, such as a column of prices with a row of
+discounts.</li>
+<li><strong>Numerical computation:</strong> aggregating (sum, mean,
+percentiles) along an axis, handling missing values (<code>nan</code>),
+and knowing the limits of floating-point numbers.</li>
 </ul>
-<div class="admonition job">
-<p class="admonition-title">Why it matters at work</p>
-<p>Vectorized code is shorter, has fewer bugs and runs tens to hundreds of times faster, which matters once data reaches millions of rows. pandas, scikit-learn and every ML library expect you to think this way. Knowing about <code>nan</code> and floating-point rounding prevents "the totals are off by 0.01" arguments.</p>
+<div class="admonition job" data-markdown="1">
+<p class="admonition-title">
+Why it matters at work
+</p>
+<p>Vectorized code is shorter, has fewer bugs and runs tens to hundreds
+of times faster, which matters once data reaches millions of rows.
+pandas, scikit-learn and every ML library expect you to think this way.
+Knowing about <code>nan</code> and floating-point rounding prevents “the
+totals are off by 0.01” arguments.</p>
 </div>
-<p>The script is <code>02_numpy_vectorized.py</code> in <a href="../../../downloads/phase-2/data-science-scripts.zip">data-science-scripts.zip</a>.</p>
+<p>The script is <code>02_numpy_vectorized.py</code> in <a
+href="../../../downloads/phase-2/data-science-scripts.zip">data-science-scripts.zip</a>.</p>
 <h2 id="example-1-loop-vs-vectorized">Example 1: loop vs vectorized</h2>
 <p>One million random orders, total value two ways:</p>
-<div class="codehilite"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<pre class="python"><code>import time
+import numpy as np
 
-<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
-<span class="n">qty</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">integers</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5000</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">1_000_000</span><span class="p">)</span>
-<span class="n">price</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mf">0.04</span><span class="p">,</span> <span class="mf">5.5</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">1_000_000</span><span class="p">)</span>
+rng = np.random.default_rng(42)
+qty = rng.integers(1, 5000, size=1_000_000)
+price = rng.uniform(0.04, 5.5, size=1_000_000)
 
-<span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
-<span class="n">loop_total</span> <span class="o">=</span> <span class="mf">0.0</span>
-<span class="k">for</span> <span class="n">q</span><span class="p">,</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">qty</span><span class="p">,</span> <span class="n">price</span><span class="p">):</span>
-    <span class="n">loop_total</span> <span class="o">+=</span> <span class="n">q</span> <span class="o">*</span> <span class="n">p</span>
-<span class="n">loop_s</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span>
+start = time.perf_counter()
+loop_total = 0.0
+for q, p in zip(qty, price):
+    loop_total += q * p
+loop_s = time.perf_counter() - start
 
-<span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
-<span class="n">vec_total</span> <span class="o">=</span> <span class="p">(</span><span class="n">qty</span> <span class="o">*</span> <span class="n">price</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
-<span class="n">vec_s</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"loop:       </span><span class="si">{</span><span class="n">loop_s</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> s"</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"vectorized: </span><span class="si">{</span><span class="n">vec_s</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> s  (</span><span class="si">{</span><span class="n">loop_s</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">vec_s</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2">x faster)"</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">loop_total</span><span class="p">,</span> <span class="n">vec_total</span><span class="p">))</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>loop:       0.316 s
+start = time.perf_counter()
+vec_total = (qty * price).sum()
+vec_s = time.perf_counter() - start
+print(f&quot;loop:       {loop_s:.3f} s&quot;)
+print(f&quot;vectorized: {vec_s:.4f} s  ({loop_s / vec_s:.0f}x faster)&quot;)
+print(np.isclose(loop_total, vec_total))</code></pre>
+<pre class="text"><code>loop:       0.316 s
 vectorized: 0.0053 s  (60x faster)
-True
-</code></pre></div>
-
-<p>Same answer, about 60 times faster on our build machine. Your timings will differ, but the gap is always large.</p>
+True</code></pre>
+<p>Same answer, about 60 times faster on our build machine. Your timings
+will differ, but the gap is always large.</p>
 <h2 id="example-2-broadcasting">Example 2: broadcasting</h2>
 <p>Net price for 4 products × 4 discount levels, without a loop:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">prices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">3.50</span><span class="p">,</span> <span class="mf">5.20</span><span class="p">,</span> <span class="mf">2.90</span><span class="p">,</span> <span class="mf">0.30</span><span class="p">])</span>          <span class="c1"># 4 products</span>
-<span class="n">discounts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.08</span><span class="p">])</span>           <span class="c1"># 4 discount levels</span>
-<span class="n">table</span> <span class="o">=</span> <span class="n">prices</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">discounts</span><span class="p">)</span>             <span class="c1"># (4, 1) x (4,) -&gt; (4, 4)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>[[3.5   3.43  3.325 3.22 ]
+<pre class="python"><code>prices = np.array([3.50, 5.20, 2.90, 0.30])          # 4 products
+discounts = np.array([0, 0.02, 0.05, 0.08])           # 4 discount levels
+table = prices[:, None] * (1 - discounts)             # (4, 1) x (4,) -&gt; (4, 4)
+print(table.round(3))</code></pre>
+<pre class="text"><code>[[3.5   3.43  3.325 3.22 ]
  [5.2   5.096 4.94  4.784]
  [2.9   2.842 2.755 2.668]
- [0.3   0.294 0.285 0.276]]
-</code></pre></div>
-
-<p><code>prices[:, None]</code> turns the prices into a <strong>column</strong> (shape <code>(4, 1)</code>). NumPy then "stretches" the column and the discount row to a 4 × 4 grid. <strong>Rule:</strong> shapes are compared from the right, and each dimension must be equal or 1.</p>
-<h2 id="example-3-aggregate-along-an-axis">Example 3: aggregate along an axis</h2>
-<div class="codehilite"><pre><span></span><code><span class="n">week_orders</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">15</span><span class="p">],</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">14</span><span class="p">],</span> <span class="p">[</span><span class="mi">9</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">17</span><span class="p">]])</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">week_orders</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>   <span class="c1"># average per weekday</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">week_orders</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>             <span class="c1"># busiest day per week</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">week_orders</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>       <span class="c1"># running total, week 1</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>[ 8.  15.  14.  14.3 14.3 15.3]
+ [0.3   0.294 0.285 0.276]]</code></pre>
+<p><code>prices[:, None]</code> turns the prices into a
+<strong>column</strong> (shape <code>(4, 1)</code>). NumPy then
+“stretches” the column and the discount row to a 4 × 4 grid.
+<strong>Rule:</strong> shapes are compared from the right, and each
+dimension must be equal or 1.</p>
+<h2 id="example-3-aggregate-along-an-axis">Example 3: aggregate along an
+axis</h2>
+<pre class="python"><code>week_orders = np.array([[8, 15, 14, 16, 13, 15], [7, 14, 15, 12, 16, 14], [9, 16, 13, 15, 14, 17]])
+print(week_orders.mean(axis=0).round(1))   # average per weekday
+print(week_orders.max(axis=1))             # busiest day per week
+print(week_orders.cumsum(axis=1)[0])       # running total, week 1</code></pre>
+<pre class="text"><code>[ 8.  15.  14.  14.3 14.3 15.3]
 [16 16 17]
-[ 8 23 37 53 66 81]
-</code></pre></div>
-
+[ 8 23 37 53 66 81]</code></pre>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th><code>axis=</code></th>
 <th>Collapses</th>
 <th>One result per</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td><code>0</code></td>
 <td>rows (goes down)</td>
 <td>column</td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>1</code></td>
 <td>columns (goes across)</td>
 <td>row</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>none</td>
 <td>everything</td>
 <td>whole array</td>
 </tr>
 </tbody>
 </table>
-<h2 id="example-4-real-data-percentiles-and-missing-values">Example 4: real data, percentiles and missing values</h2>
-<div class="codehilite"><pre><span></span><code><span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">genfromtxt</span><span class="p">(</span><span class="s2">"data/orders_2025.csv"</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s2">","</span><span class="p">,</span> <span class="n">skip_header</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">usecols</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">15</span><span class="p">))</span>
-<span class="n">delivery_days</span><span class="p">,</span> <span class="n">revenue</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">data</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">revenue</span><span class="p">,</span> <span class="p">[</span><span class="mi">25</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">75</span><span class="p">,</span> <span class="mi">95</span><span class="p">])</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">delivery_days</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(),</span> <span class="s2">"orders without delivery days"</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">delivery_days</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmean</span><span class="p">(</span><span class="n">delivery_days</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>[ 554.21 1062.3  1794.22 3510.48]
+<h2 id="example-4-real-data-percentiles-and-missing-values">Example 4:
+real data, percentiles and missing values</h2>
+<pre class="python"><code>data = np.genfromtxt(&quot;data/orders_2025.csv&quot;, delimiter=&quot;,&quot;, skip_header=1, usecols=(14, 15))
+delivery_days, revenue = data[:, 0], data[:, 1]
+print(np.percentile(revenue, [25, 50, 75, 95]).round(2))
+print(np.isnan(delivery_days).sum(), &quot;orders without delivery days&quot;)
+print(np.mean(delivery_days), np.nanmean(delivery_days).round(2))</code></pre>
+<pre class="text"><code>[ 554.21 1062.3  1794.22 3510.48]
 374 orders without delivery days
-nan 3.44
-</code></pre></div>
-
+nan 3.44</code></pre>
 <ul>
-<li>Half of the orders are below 1,062; only 5% are above 3,510. A few very large orders pull the <strong>mean</strong> up (you'll see why that matters in Statistics).</li>
-<li>374 orders (cancelled, shipped or pending) have no delivery days, stored as <code>nan</code> ("not a number").</li>
-<li><strong>One <code>nan</code> makes <code>mean</code> return <code>nan</code>.</strong> Use <code>np.nanmean</code>, <code>np.nansum</code> and so on, and report how many values were missing.</li>
+<li>Half of the orders are below 1,062; only 5% are above 3,510. A few
+very large orders pull the <strong>mean</strong> up (you’ll see why that
+matters in Statistics).</li>
+<li>374 orders (cancelled, shipped or pending) have no delivery days,
+stored as <code>nan</code> (“not a number”).</li>
+<li><strong>One <code>nan</code> makes <code>mean</code> return
+<code>nan</code>.</strong> Use <code>np.nanmean</code>,
+<code>np.nansum</code> and so on, and report how many values were
+missing.</li>
 </ul>
-<h2 id="example-5-floating-point-care">Example 5: floating-point care</h2>
-<div class="codehilite"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="mf">0.1</span> <span class="o">+</span> <span class="mf">0.2</span> <span class="o">==</span> <span class="mf">0.3</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="mf">0.1</span> <span class="o">+</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mf">2.675</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="nb">round</span><span class="p">(</span><span class="mf">2.675</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">]))</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>False True
+<h2 id="example-5-floating-point-care">Example 5: floating-point
+care</h2>
+<pre class="python"><code>print(0.1 + 0.2 == 0.3, np.isclose(0.1 + 0.2, 0.3))
+print(np.round(2.675, 2), round(2.675, 2))
+print(np.array([1, 2, 3]) / np.array([1, 0, 3]))</code></pre>
+<pre class="text"><code>False True
 2.68 2.67
-[ 1. inf  1.]
-</code></pre></div>
-
-<p>(plus <code>RuntimeWarning: divide by zero encountered in divide</code>)</p>
+[ 1. inf  1.]</code></pre>
+<p>(plus
+<code>RuntimeWarning: divide by zero encountered in divide</code>)</p>
 <ul>
-<li>Decimals like 0.1 can't be stored exactly in binary, so compare with <code>np.isclose</code>, never <code>==</code>.</li>
-<li><code>2.675</code> is really stored as 2.67499999…, and NumPy and Python round it differently. For money, round <strong>once, at the end</strong>, with an agreed rule (or use Python's <code>decimal</code> module).</li>
-<li>Dividing by zero gives <code>inf</code> and a <strong>warning, not an error</strong>. Check for it.</li>
+<li>Decimals like 0.1 can’t be stored exactly in binary, so compare with
+<code>np.isclose</code>, never <code>==</code>.</li>
+<li><code>2.675</code> is really stored as 2.67499999…, and NumPy and
+Python round it differently. For money, round <strong>once, at the
+end</strong>, with an agreed rule (or use Python’s <code>decimal</code>
+module).</li>
+<li>Dividing by zero gives <code>inf</code> and a <strong>warning, not
+an error</strong>. Check for it.</li>
 </ul>
-<h2 id="example-6-reproducible-random-numbers">Example 6: reproducible random numbers</h2>
-<div class="codehilite"><pre><span></span><code><span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
-<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>[1000.2 1044.8  958.9]
-[1000.2 1044.8  958.9]
-</code></pre></div>
-
-<p>The same <strong>seed</strong> gives the same numbers, so simulations, train/test splits and the practice data itself can be reproduced exactly. (The Phase 2 data was generated with seed 2025.)</p>
+<h2 id="example-6-reproducible-random-numbers">Example 6: reproducible
+random numbers</h2>
+<pre class="python"><code>rng = np.random.default_rng(7)
+print(rng.normal(loc=1000, scale=150, size=3).round(1))
+rng = np.random.default_rng(7)
+print(rng.normal(loc=1000, scale=150, size=3).round(1))</code></pre>
+<pre class="text"><code>[1000.2 1044.8  958.9]
+[1000.2 1044.8  958.9]</code></pre>
+<p>The same <strong>seed</strong> gives the same numbers, so
+simulations, train/test splits and the practice data itself can be
+reproduced exactly. (The Phase 2 data was generated with seed 2025.)</p>
 <h2 id="common-mistakes">Common mistakes</h2>
 <table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Mistake</th>
 <th>What happens</th>
 <th>Fix</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td>Looping over rows "to be safe"</td>
+<tr class="odd">
+<td>Looping over rows “to be safe”</td>
 <td>Slow code, more bugs</td>
 <td>Write the maths for the whole array</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Wrong <code>axis</code></td>
 <td>Totals per row when you wanted per column</td>
 <td><code>axis=0</code> = per column, <code>axis=1</code> = per row</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><code>np.mean</code> on data with <code>nan</code></td>
 <td>Result is <code>nan</code></td>
 <td><code>np.nanmean</code>, and report the missing count</td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>==</code> on floats</td>
 <td>Equal numbers look different</td>
 <td><code>np.isclose</code></td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Shapes <code>(4,)</code> and <code>(3,)</code> combined</td>
 <td><code>ValueError: operands could not be broadcast</code></td>
-<td>Check <code>.shape</code>; add an axis with <code>[:, None]</code></td>
+<td>Check <code>.shape</code>; add an axis with
+<code>[:, None]</code></td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>np.random.seed(…)</code> everywhere</td>
 <td>Hidden global state</td>
-<td><code>rng = np.random.default_rng(seed)</code> and pass <code>rng</code> around</td>
+<td><code>rng = np.random.default_rng(seed)</code> and pass
+<code>rng</code> around</td>
 </tr>
 </tbody>
 </table>
 <h2 id="try-it-yourself">Try it yourself</h2>
-<p><strong>Task:</strong> Margin per unit is <code>price − cost</code>. With <code>prices = [3.50, 5.20, 2.90, 0.30]</code>, <code>costs = [2.60, 3.90, 2.10, 0.19]</code> and the same 4 discount levels, build the 4 × 4 table of <strong>margin % after discount</strong> (<code>(net price − cost) / net price</code>). Which product–discount combinations fall below 20%?</p>
+<p><strong>Task:</strong> Margin per unit is <code>price − cost</code>.
+With <code>prices = [3.50, 5.20, 2.90, 0.30]</code>,
+<code>costs = [2.60, 3.90, 2.10, 0.19]</code> and the same 4 discount
+levels, build the 4 × 4 table of <strong>margin % after
+discount</strong> (<code>(net price − cost) / net price</code>). Which
+product–discount combinations fall below 20%?</p>
 <details>
-<summary>Show a hint</summary>
-<p>Compute <code>net = prices[:, None] * (1 - discounts)</code>, then <code>(net - costs[:, None]) / net</code>.</p>
+<summary>
+Show a hint
+</summary>
+Compute <code>net = prices[:, None] * (1 - discounts)</code>, then
+<code>(net - costs[:, None]) / net</code>.
 </details>
 <details>
-<summary>Show the solution</summary>
-<div class="codehilite"><pre><span></span><code><span class="n">costs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">2.60</span><span class="p">,</span> <span class="mf">3.90</span><span class="p">,</span> <span class="mf">2.10</span><span class="p">,</span> <span class="mf">0.19</span><span class="p">])</span>
-<span class="n">net</span> <span class="o">=</span> <span class="n">prices</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">discounts</span><span class="p">)</span>
-<span class="n">margin</span> <span class="o">=</span> <span class="p">(</span><span class="n">net</span> <span class="o">-</span> <span class="n">costs</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">])</span> <span class="o">/</span> <span class="n">net</span>
-<span class="nb">print</span><span class="p">((</span><span class="n">margin</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">margin</span> <span class="o">&lt;</span> <span class="mf">0.20</span><span class="p">)</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>[[25.7 24.2 21.8 19.3]
+<summary>
+Show the solution
+</summary>
+<pre class="python"><code>costs = np.array([2.60, 3.90, 2.10, 0.19])
+net = prices[:, None] * (1 - discounts)
+margin = (net - costs[:, None]) / net
+print((margin * 100).round(1))
+print(margin &lt; 0.20)</code></pre>
+<pre class="text"><code>[[25.7 24.2 21.8 19.3]
  [25.  23.5 21.1 18.5]
  [27.6 26.1 23.8 21.3]
  [36.7 35.4 33.3 31.2]]
 [[False False False  True]
  [False False False  True]
  [False False False False]
- [False False False False]]
-</code></pre></div>
-
-<p>Cotton Twill and Denim drop below 20% margin at the 8% discount: a useful rule for the sales team.</p>
+ [False False False False]]</code></pre>
+Cotton Twill and Denim drop below 20% margin at the 8% discount: a
+useful rule for the sales team.
 </details>
 <h2 id="quick-quiz">Quick quiz</h2>
 <div class="quiz-q" data-answer="1">
-<p>1. <code>m</code> has shape <code>(3, 6)</code>. What shape is <code>m.sum(axis=0)</code>?</p>
-<ol>
+<p>1. <code>m</code> has shape <code>(3, 6)</code>. What shape is
+<code>m.sum(axis=0)</code>?</p>
+<ol type="1">
 <li><code>(3,)</code></li>
 <li><code>(6,)</code></li>
 <li><code>(3, 6)</code></li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B.</strong> <code>axis=0</code> collapses the rows, leaving one value per column.</p>
+<summary>
+Show answer
+</summary>
+<strong>B.</strong> <code>axis=0</code> collapses the rows, leaving one
+value per column.
 </details>
 </div>
 <div class="quiz-q" data-answer="1">
 <p>2. <code>np.mean([2, np.nan, 4])</code> returns:</p>
-<ol>
+<ol type="1">
 <li><code>3.0</code></li>
 <li><code>nan</code></li>
 <li>An error</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B.</strong> Use <code>np.nanmean</code> to ignore missing values.</p>
+<summary>
+Show answer
+</summary>
+<strong>B.</strong> Use <code>np.nanmean</code> to ignore missing
+values.
 </details>
 </div>
 <div class="quiz-q" data-answer="1">
 <p>3. Why use <code>np.random.default_rng(42)</code>?</p>
-<ol>
-<li>It's faster than any other method</li>
-<li>The same seed gives the same random numbers, so results are reproducible</li>
+<ol type="1">
+<li>It’s faster than any other method</li>
+<li>The same seed gives the same random numbers, so results are
+reproducible</li>
 <li>It makes numbers truly random</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B.</strong></p>
+<summary>
+Show answer
+</summary>
+<strong>B.</strong>
 </details>
 </div>
 <h2 id="summary">Summary</h2>
 <ul>
-<li><strong>Vectorize:</strong> whole-array expressions replace loops and run much faster.</li>
-<li><strong>Broadcasting</strong> combines shapes like <code>(4, 1)</code> and <code>(4,)</code> into a grid; check shapes when it fails.</li>
-<li>Aggregate with <code>axis=0</code> (per column) or <code>axis=1</code> (per row); use <code>nan</code>-aware functions for missing data.</li>
-<li>Compare floats with <code>isclose</code>, round once at the end, and watch for <code>inf</code>.</li>
-<li>Use a seeded <code>default_rng</code> for reproducible randomness.</li>
+<li><strong>Vectorize:</strong> whole-array expressions replace loops
+and run much faster.</li>
+<li><strong>Broadcasting</strong> combines shapes like
+<code>(4, 1)</code> and <code>(4,)</code> into a grid; check shapes when
+it fails.</li>
+<li>Aggregate with <code>axis=0</code> (per column) or
+<code>axis=1</code> (per row); use <code>nan</code>-aware functions for
+missing data.</li>
+<li>Compare floats with <code>isclose</code>, round once at the end, and
+watch for <code>inf</code>.</li>
+<li>Use a seeded <code>default_rng</code> for reproducible
+randomness.</li>
 </ul>
-<div class="admonition job">
-<p class="admonition-title">Job-ready check</p>
-<p><strong>Interview question:</strong> <em>"What is broadcasting in NumPy?"</em></p>
-<p><strong>Strong answer:</strong> "It's how NumPy applies an operation to arrays of different shapes without copying data. It compares shapes from the right; a dimension of size 1 is stretched to match. For example, a <code>(4, 1)</code> column of prices times a <code>(4,)</code> row of discounts gives a <code>(4, 4)</code> table of net prices."</p>
-<p><strong>Mini project:</strong> Using <code>orders_2025.csv</code>, calculate the 50th, 90th and 99th percentiles of revenue, and the mean delivery days with <code>nanmean</code>. Write two sentences on what the gap between the median and the mean tells a manager.</p>
+<div class="admonition job" data-markdown="1">
+<p class="admonition-title">
+Job-ready check
+</p>
+<p><strong>Interview question:</strong> <em>“What is broadcasting in
+NumPy?”</em></p>
+<p><strong>Strong answer:</strong> “It’s how NumPy applies an operation
+to arrays of different shapes without copying data. It compares shapes
+from the right; a dimension of size 1 is stretched to match. For
+example, a <code>(4, 1)</code> column of prices times a
+<code>(4,)</code> row of discounts gives a <code>(4, 4)</code> table of
+net prices.”</p>
+<p><strong>Mini project:</strong> Using <code>orders_2025.csv</code>,
+calculate the 50th, 90th and 99th percentiles of revenue, and the mean
+delivery days with <code>nanmean</code>. Write two sentences on what the
+gap between the median and the mean tells a manager.</p>
 </div>
+<section class="mentor-prompt"><div class="mentor-head"><div><span class="eyebrow">AI study companion</span><h2 id="ai-mentor-prompt">AI Mentor Prompt</h2></div><button class="btn copy-prompt" type="button" data-copy-target="mentor-prompt-phase-2-numpy-02-vectorized-numerical">Copy prompt</button></div><p>Paste this into ChatGPT, Claude, Gemini, or another capable assistant to turn this tutorial into an interactive mentoring session.</p><pre class="prompt-box"><code id="mentor-prompt-phase-2-numpy-02-vectorized-numerical">You are my hands-on Python, statistics and data-science mentor.
+
+I am currently studying:
+&quot;Vectorized Operations &amp; Numerical Computation in NumPy&quot;
+
+My level:
+Beginner
+
+Teach me this topic interactively rather than giving me a long lecture.
+
+Use this sequence:
+
+1. Check what I already understand with one short diagnostic question.
+2. Explain the concept in simple language and give me the mental model first.
+3. Give me one small task using code, SQL, configuration, data, or architecture as appropriate.
+4. Wait for my attempt before showing a complete solution.
+5. Review my work and explain both what is correct and what needs improvement.
+6. Help me debug errors step by step instead of immediately replacing my work.
+7. Increase the difficulty gradually and connect each new step to the previous one.
+8. Relate what I am learning to real professional data/AI engineering work.
+9. Ask me to explain an important decision in my own words so you can check my understanding.
+10. At the end, ask me to build or modify one small feature independently.
+
+Important rules:
+- Do not do the entire exercise for me unless I explicitly ask.
+- Explain unfamiliar terminology before using it heavily.
+- Prefer current, production-relevant practices over outdated shortcuts.
+- Distinguish clearly between concepts, tool-specific behaviour, and optional alternatives.
+- If a technical fact, API, syntax, version, or best practice may have changed, verify it against current official documentation before teaching it.
+- Never invent command output, test results, benchmark numbers, cloud behaviour, or data results.
+- If something cannot be executed in the current environment, say so and give me the exact command or verification step I should run.
+- Keep me actively coding, querying, configuring, reasoning, or debugging throughout the session.
+- When useful, work from the tutorial practice files (data-science-scripts.zip, orders_2025.csv) instead of inventing unrelated examples.
+
+The concepts I need to master are:
+- Vectorized operations
+- Numerical computation
+- vectorization
+- vectorized
+- broadcasting
+- axis
+- aggregation
+- cumsum
+
+Start by asking me one diagnostic question.</code></pre></section>
+
 <div class="terms-box"><div class="files-head"><b>Key terms in this lesson</b><a href="../../../glossary.html">Glossary →</a></div><div class="term-chips"><a class="term-chip" href="../../../glossary.html#reproducibility" title="Getting exactly the same results from the same data and code: a locked environment, fingerprinted data, fixed random seeds and one command from raw data to results.">Reproducibility</a><a class="term-chip" href="../../../glossary.html#vectorization" title="Applying an operation to a whole array at once (prices * quantities) instead of looping element by element. Much faster and shorter.">Vectorization</a></div></div>
 <h2 id="free-resources">Free resources to go deeper</h2><ul class="resources"><li><a href="https://numpy.org/doc/stable/user/basics.broadcasting.html">Broadcasting</a><span class="r-meta">NumPy official docs · The rules for combining arrays of different shapes, with diagrams.</span></li><li><a href="https://numpy.org/doc/stable/reference/random/index.html">Random sampling (numpy.random)</a><span class="r-meta">NumPy official docs · Why default_rng is the recommended way to make random numbers.</span></li><li><a href="https://docs.python.org/3/tutorial/floatingpoint.html">Floating-point arithmetic: issues and limitations</a><span class="r-meta">Python official docs · Why 0.1 + 0.2 isn&#x27;t exactly 0.3.</span></li></ul>
 <div class="complete-bar"><span>Finished reading and did the exercise?</span>
@@ -363,9 +463,9 @@ nan 3.44
 <p class="reviewed">Last reviewed: 2026-10-09</p>
 
   </div></main>
-  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#example-1-loop-vs-vectorized">Example 1: loop vs vectorized</a><a href="#example-2-broadcasting">Example 2: broadcasting</a><a href="#example-3-aggregate-along-an-axis">Example 3: aggregate along an axis</a><a href="#example-4-real-data-percentiles-and-missing-values">Example 4: real data, percentiles and missing values</a><a href="#example-5-floating-point-care">Example 5: floating-point care</a><a href="#example-6-reproducible-random-numbers">Example 6: reproducible random numbers</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#free-resources">Free resources</a></aside>
+  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#example-1-loop-vs-vectorized">Example 1: loop vs vectorized</a><a href="#example-2-broadcasting">Example 2: broadcasting</a><a href="#example-3-aggregate-along-an-axis">Example 3: aggregate along an axis</a><a href="#example-4-real-data-percentiles-and-missing-values">Example 4: real data, percentiles and missing values</a><a href="#example-5-floating-point-care">Example 5: floating-point care</a><a href="#example-6-reproducible-random-numbers">Example 6: reproducible random numbers</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#ai-mentor-prompt">AI Mentor Prompt</a><a href="#free-resources">Free resources</a></aside>
 </div>
-<footer class="site">Data, AI &amp; Automation Path v0.8 · Applied AI, Data &amp; Automation Lab · Updated October 2026<br>
+<footer class="site"><b>Saiful The Techie</b> · Data, AI &amp; Automation Path v0.9.1 · Updated October 2026<br>
 Lesson text: <a href="../../../license.html">CC BY-NC-SA 4.0</a> · Code: <a href="../../../license.html#code-mit-license">MIT</a> · Free external resources belong to their respective owners.</footer>
 <script src="../../../search-index.js"></script>
 <script src="../../../assets/app.js"></script>

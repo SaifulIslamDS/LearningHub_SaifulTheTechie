@@ -1,0 +1,958 @@
+videos:
+  level-01/l1-1-frontend-basics-html-and-css/01-main:
+    title: Web Development with HTML & CSS — Full Course for Beginners
+    creator: freeCodeCamp.org
+    url: https://www.youtube.com/watch?v=dX8396ZmSPk
+    video_id: dX8396ZmSPk
+    duration: ≈19 hours
+    language: English
+    level: Beginner
+    reviewed: '2026-10-09'
+    why_recommended: A long-form beginner course that visually reinforces HTML, CSS,
+      Git/GitHub, responsive design and a portfolio build. Use the timestamps below
+      instead of watching the entire course for this lesson.
+    timestamps:
+    - label: HTML and CSS basics
+      time: 00:00:34
+  level-01/l1-10-fundamental-concepts-of-loops/01-main:
+    title: JavaScript Course for Beginners
+    creator: freeCodeCamp.org
+    url: https://www.youtube.com/watch?v=Zi-Q0t4gMC8
+    video_id: Zi-Q0t4gMC8
+    duration: ≈3 h 33 min
+    language: English
+    level: Beginner
+    reviewed: '2026-10-09'
+    why_recommended: A compact full JavaScript course that aligns well with variables,
+      operators, control flow, arrays, objects, functions and modern syntax in this
+      path.
+    timestamps:
+    - label: For loops
+      time: 01:05:32
+    - label: While loops
+      time: 01:10:58
+    - label: Break and continue
+      time: 01:21:38
+  level-01/l1-11-fundamental-concepts-of-array-part-2/01-main:
+    title: JavaScript Course for Beginners
+    creator: freeCodeCamp.org
+    url: https://www.youtube.com/watch?v=Zi-Q0t4gMC8
+    video_id: Zi-Q0t4gMC8
+    duration: ≈3 h 33 min
+    language: English
+    level: Beginner
+    reviewed: '2026-10-09'
+    why_recommended: A compact full JavaScript course that aligns well with variables,
+      operators, control flow, arrays, objects, functions and modern syntax in this
+      path.
+    timestamps:
+    - label: Iterating arrays
+      time: 02:34:48
+    - label: Sorting arrays
+      time: 02:41:19
+  level-01/l1-12-fundamentals-of-strings-and-objects/01-main:
+    title: JavaScript Course for Beginners
+    creator: freeCodeCamp.org
+    url: https://www.youtube.com/watch?v=Zi-Q0t4gMC8
+    video_id: Zi-Q0t4gMC8
+    duration: ≈3 h 33 min
+    language: English
+    level: Beginner
+    reviewed: '2026-10-09'
+    why_recommended: A compact full JavaScript course that aligns well with variables,
+      operators, control flow, arrays, objects, functions and modern syntax in this
+      path.
+    timestamps:
+    - label: Objects
+      time: 01:35:55
+    - label: String methods
+      time: 02:03:19
+  level-01/l1-13-fundamentals-of-functions/01-main:
+    title: JavaScript Course for Beginners
+    creator: freeCodeCamp.org
+    url: https://www.youtube.com/watch?v=Zi-Q0t4gMC8
+    video_id: Zi-Q0t4gMC8
+    duration: ≈3 h 33 min
+    language: English
+    level: Beginner
+    reviewed: '2026-10-09'
+    why_recommended: A compact full JavaScript course that aligns well with variables,
+      operators, control flow, arrays, objects, functions and modern syntax in this
+      path.
+    timestamps:
+    - label: Functions
+      time: 03:01:21
+    - label: Arguments and rest
+      time: 03:06:06
+  level-01/l1-13-fundamentals-of-functions/02-pure-functions-side-effects:
+    title: JavaScript Course for Beginners
+    creator: freeCodeCamp.org
+    url: https://www.youtube.com/watch?v=Zi-Q0t4gMC8
+    video_id: Zi-Q0t4gMC8
+    duration: ≈3 h 33 min
+    language: English
+    level: Beginner
+    reviewed: '2026-10-09'
+    why_recommended: A compact full JavaScript course that aligns well with variables,
+      operators, control flow, arrays, objects, functions and modern syntax in this
+      path.
+    timestamps:
+    - label: Functions
+      time: 03:01:21
+    - label: Arguments and rest
+      time: 03:06:06
+  level-01/l1-14-basic-problem-solving-with-javascript/01-main:
+    title: JavaScript Course for Beginners
+    creator: freeCodeCamp.org
+    url: https://www.youtube.com/watch?v=Zi-Q0t4gMC8
+    video_id: Zi-Q0t4gMC8
+    duration: ≈3 h 33 min
+    language: English
+    level: Beginner
+    reviewed: '2026-10-09'
+    why_recommended: A compact full JavaScript course that aligns well with variables,
+      operators, control flow, arrays, objects, functions and modern syntax in this
+      path.
+    timestamps:
+    - label: 'Problem-solving exercise: max'
+      time: 01:30:01
+    - label: FizzBuzz exercise
+      time: 01:31:05
+  level-01/l1-16-es6-fundamentals/01-main:
+    title: JavaScript Course for Beginners
+    creator: freeCodeCamp.org
+    url: https://www.youtube.com/watch?v=Zi-Q0t4gMC8
+    video_id: Zi-Q0t4gMC8
+    duration: ≈3 h 33 min
+    language: English
+    level: Beginner
+    reviewed: '2026-10-09'
+    why_recommended: A compact full JavaScript course that aligns well with variables,
+      operators, control flow, arrays, objects, functions and modern syntax in this
+      path.
+    timestamps:
+    - label: Arrow functions
+      time: 02:23:40
+    - label: Spread operator
+      time: 02:33:15
+    - label: Default parameters
+      time: 03:13:48
+  level-01/l1-16-es6-fundamentals/02-modules-npm-awareness:
+    title: Intro to Backend Web Development — Node.js & Express Tutorial for Beginners
+    creator: freeCodeCamp.org
+    url: https://www.youtube.com/watch?v=KOutPbKc9UM
+    video_id: KOutPbKc9UM
+    duration: ≈2 h 25 min
+    language: English
+    level: Beginner / Intermediate
+    reviewed: '2026-10-09'
+    why_recommended: A modern backend walkthrough covering Node.js, Express, MongoDB
+      Atlas, environment variables, routing, controllers, authentication, Postman
+      and CRUD.
+    timestamps:
+    - label: What is a backend?
+      time: 01:44
+    - label: Express app setup
+      time: '20:30'
+    - label: Routing and controllers
+      time: '53:40'
+  level-01/l1-17-more-es6/01-main:
+    title: JavaScript Course for Beginners
+    creator: freeCodeCamp.org
+    url: https://www.youtube.com/watch?v=Zi-Q0t4gMC8
+    video_id: Zi-Q0t4gMC8
+    duration: ≈3 h 33 min
+    language: English
+    level: Beginner
+    reviewed: '2026-10-09'
+    why_recommended: A compact full JavaScript course that aligns well with variables,
+      operators, control flow, arrays, objects, functions and modern syntax in this
+      path.
+    timestamps:
+    - label: Equality operators
+      time: 00:38:22
+    - label: Scope
+      time: 03:24:58
+    - label: let vs var
+      time: 03:28:03
+  level-01/l1-17-more-es6/02-strict-equality-coercion:
+    title: JavaScript Course for Beginners
+    creator: freeCodeCamp.org
+    url: https://www.youtube.com/watch?v=Zi-Q0t4gMC8
+    video_id: Zi-Q0t4gMC8
+    duration: ≈3 h 33 min
+    language: English
+    level: Beginner
+    reviewed: '2026-10-09'
+    why_recommended: A compact full JavaScript course that aligns well with variables,
+      operators, control flow, arrays, objects, functions and modern syntax in this
+      path.
+    timestamps:
+    - label: Equality operators
+      time: 00:38:22
+    - label: Scope
+      time: 03:24:58
+    - label: let vs var
+      time: 03:28:03
+  level-01/l1-18-problem-solving-with-javascript-es6-part-1/01-main:
+    title: JavaScript Course for Beginners
+    creator: freeCodeCamp.org
+    url: https://www.youtube.com/watch?v=Zi-Q0t4gMC8
+    video_id: Zi-Q0t4gMC8
+    duration: ≈3 h 33 min
+    language: English
+    level: Beginner
+    reviewed: '2026-10-09'
+    why_recommended: A compact full JavaScript course that aligns well with variables,
+      operators, control flow, arrays, objects, functions and modern syntax in this
+      path.
+    timestamps:
+    - label: Problem-solving exercises
+      time: 01:30:01
+  level-01/l1-19-problem-solving-with-javascript-es6-part-2/01-main:
+    title: JavaScript Course for Beginners
+    creator: freeCodeCamp.org
+    url: https://www.youtube.com/watch?v=Zi-Q0t4gMC8
+    video_id: Zi-Q0t4gMC8
+    duration: ≈3 h 33 min
+    language: English
+    level: Beginner
+    reviewed: '2026-10-09'
+    why_recommended: A compact full JavaScript course that aligns well with variables,
+      operators, control flow, arrays, objects, functions and modern syntax in this
+      path.
+    timestamps:
+    - label: Array filtering and mapping
+      time: 02:50:12
+    - label: Reducing arrays
+      time: 02:57:43
+  level-01/l1-2-version-control-with-git-and-github/01-main:
+    title: Git & GitHub Crash Course for Beginners [2026]
+    creator: freeCodeCamp.org
+    url: https://www.youtube.com/watch?v=mAFoROnOfHs
+    video_id: mAFoROnOfHs
+    duration: ≈1 h 20 min
+    language: English
+    level: Beginner
+    reviewed: '2026-10-09'
+    why_recommended: A current beginner-friendly Git/GitHub walkthrough covering local
+      repositories, commits, branches, push/pull, merge conflicts and pull requests.
+    timestamps:
+    - label: Git vs GitHub
+      time: 00:04:01
+    - label: Commit workflow
+      time: 00:20:20
+    - label: Push, fetch and pull
+      time: 00:55:50
+  level-01/l1-21-typescript-fundamentals/01-main:
+    title: Learn TypeScript — Full Course for Beginners
+    creator: freeCodeCamp.org · Scrimba
+    url: https://www.youtube.com/watch?v=SpwzRDUQ1GI
+    video_id: SpwzRDUQ1GI
+    duration: ≈2 h 04 min
+    language: English
+    level: Beginner
+    reviewed: '2026-10-09'
+    why_recommended: A practical TypeScript course built around converting a real
+      JavaScript app, with custom types, narrowing, utility types and generics.
+    timestamps:
+    - label: Move JavaScript code to TypeScript
+      time: 00:16:49
+    - label: Custom types
+      time: 00:29:55
+    - label: Function return types
+      time: 01:14:54
+  level-01/l1-21-typescript-fundamentals/02-strict-tsconfig:
+    title: Learn TypeScript — Full Course for Beginners
+    creator: freeCodeCamp.org · Scrimba
+    url: https://www.youtube.com/watch?v=SpwzRDUQ1GI
+    video_id: SpwzRDUQ1GI
+    duration: ≈2 h 04 min
+    language: English
+    level: Beginner
+    reviewed: '2026-10-09'
+    why_recommended: A practical TypeScript course built around converting a real
+      JavaScript app, with custom types, narrowing, utility types and generics.
+    timestamps:
+    - label: Move JavaScript code to TypeScript
+      time: 00:16:49
+    - label: Custom types
+      time: 00:29:55
+    - label: Function return types
+      time: 01:14:54
+  level-01/l1-22-5-optional-advanced-oop-in-typescript/01-main:
+    title: Learn TypeScript — Full Tutorial
+    creator: freeCodeCamp.org
+    url: https://www.youtube.com/watch?v=30LWjhZzg50
+    video_id: 30LWjhZzg50
+    duration: ≈4 h 43 min
+    language: English
+    level: Beginner / Intermediate
+    reviewed: '2026-10-09'
+    why_recommended: A broader TypeScript course with a strong OOP section covering
+      classes, access modifiers, getters/setters, abstract classes, generics and narrowing.
+    timestamps:
+    - label: Classes
+      time: 02:53:44
+    - label: Access modifiers
+      time: 03:02:06
+    - label: Abstract classes
+      time: 03:26:05
+  level-01/l1-22-more-typescript/01-main:
+    title: Learn TypeScript — Full Course for Beginners
+    creator: freeCodeCamp.org · Scrimba
+    url: https://www.youtube.com/watch?v=SpwzRDUQ1GI
+    video_id: SpwzRDUQ1GI
+    duration: ≈2 h 04 min
+    language: English
+    level: Beginner
+    reviewed: '2026-10-09'
+    why_recommended: A practical TypeScript course built around converting a real
+      JavaScript app, with custom types, narrowing, utility types and generics.
+    timestamps:
+    - label: Utility types
+      time: 01:30:31
+    - label: Generics
+      time: 01:48:53
+  level-01/l1-23-problem-solving-with-typescript/01-main:
+    title: Learn TypeScript — Full Course for Beginners
+    creator: freeCodeCamp.org · Scrimba
+    url: https://www.youtube.com/watch?v=SpwzRDUQ1GI
+    video_id: SpwzRDUQ1GI
+    duration: ≈2 h 04 min
+    language: English
+    level: Beginner
+    reviewed: '2026-10-09'
+    why_recommended: A practical TypeScript course built around converting a real
+      JavaScript app, with custom types, narrowing, utility types and generics.
+    timestamps:
+    - label: Defensive coding and narrowing
+      time: 00:19:58
+    - label: Generic functions
+      time: 01:56:17
+  level-01/l1-25-react-core-components-jsx-props-and-rendering/01-main:
+    title: Learn React JS — Full Beginner's Tutorial & Practice Projects
+    creator: freeCodeCamp.org · Scrimba
+    url: https://www.youtube.com/watch?v=x4rFhThSX04
+    video_id: x4rFhThSX04
+    duration: ≈15 h 18 min
+    language: English
+    level: Beginner / Intermediate
+    reviewed: '2026-10-09'
+    why_recommended: A highly hands-on React course with components, JSX, props, state,
+      forms, data fetching, effects and multiple projects. Use the matching chapter
+      timestamps.
+    timestamps:
+    - label: React basics, JSX and components
+      time: 00:00:00
+    - label: Props and mapping components
+      time: 02:17:59
+  level-01/l1-25-react-core-components-jsx-props-and-rendering/02-react-accessibility:
+    title: Web Development with HTML & CSS — Full Course for Beginners
+    creator: freeCodeCamp.org
+    url: https://www.youtube.com/watch?v=dX8396ZmSPk
+    video_id: dX8396ZmSPk
+    duration: ≈19 hours
+    language: English
+    level: Beginner
+    reviewed: '2026-10-09'
+    why_recommended: A long-form beginner course that visually reinforces HTML, CSS,
+      Git/GitHub, responsive design and a portfolio build. Use the timestamps below
+      instead of watching the entire course for this lesson.
+    timestamps:
+    - label: Advanced HTML and CSS
+      time: 02:14:15
+  level-01/l1-26-state-management-in-react-events-and-data-fetchi/01-main:
+    title: Learn React JS — Full Beginner's Tutorial & Practice Projects
+    creator: freeCodeCamp.org · Scrimba
+    url: https://www.youtube.com/watch?v=x4rFhThSX04
+    video_id: x4rFhThSX04
+    duration: ≈15 h 18 min
+    language: English
+    level: Beginner / Intermediate
+    reviewed: '2026-10-09'
+    why_recommended: A highly hands-on React course with components, JSX, props, state,
+      forms, data fetching, effects and multiple projects. Use the matching chapter
+      timestamps.
+    timestamps:
+    - label: Events, state and forms
+      time: 04:33:02
+    - label: Fetching data and useEffect
+      time: 09:43:55
+  level-01/l1-26-state-management-in-react-events-and-data-fetchi/02-testing-devtools-foundations:
+    title: Learn React JS — Full Beginner's Tutorial & Practice Projects
+    creator: freeCodeCamp.org · Scrimba
+    url: https://www.youtube.com/watch?v=x4rFhThSX04
+    video_id: x4rFhThSX04
+    duration: ≈15 h 18 min
+    language: English
+    level: Beginner / Intermediate
+    reviewed: '2026-10-09'
+    why_recommended: A highly hands-on React course with components, JSX, props, state,
+      forms, data fetching, effects and multiple projects. Use the matching chapter
+      timestamps.
+    timestamps:
+    - label: React basics, JSX and components
+      time: 00:00:00
+    - label: Props and mapping components
+      time: 02:17:59
+  level-01/l1-27-react-project-countries-explorer/01-main:
+    title: Learn React JS — Full Beginner's Tutorial & Practice Projects
+    creator: freeCodeCamp.org · Scrimba
+    url: https://www.youtube.com/watch?v=x4rFhThSX04
+    video_id: x4rFhThSX04
+    duration: ≈15 h 18 min
+    language: English
+    level: Beginner / Intermediate
+    reviewed: '2026-10-09'
+    why_recommended: A highly hands-on React course with components, JSX, props, state,
+      forms, data fetching, effects and multiple projects. Use the matching chapter
+      timestamps.
+    timestamps:
+    - label: Travel Journal project and reusable props
+      time: 02:17:59
+    - label: Stateful project patterns
+      time: 04:33:02
+  level-01/l1-28-javascript-dom-and-bom-deep-dive-react-bridge/01-main:
+    title: JavaScript DOM Manipulation — Full Course for Beginners
+    creator: freeCodeCamp.org
+    url: https://www.youtube.com/watch?v=5fb2aPlgoys
+    video_id: 5fb2aPlgoys
+    duration: ≈2 h 40 min
+    language: English
+    level: Beginner / Intermediate
+    reviewed: '2026-10-09'
+    why_recommended: A dedicated DOM course covering the DOM tree, selection, manipulation,
+      events, propagation, delegation and several build examples.
+    timestamps:
+    - label: What is the DOM?
+      time: 00:01:32
+    - label: DOM selection and manipulation
+      time: 00:04:01
+    - label: Events and propagation
+      time: 00:37:48
+  level-01/l1-29-simple-react-spa-with-bpl-dream/01-main:
+    title: Learn React JS — Full Beginner's Tutorial & Practice Projects
+    creator: freeCodeCamp.org · Scrimba
+    url: https://www.youtube.com/watch?v=x4rFhThSX04
+    video_id: x4rFhThSX04
+    duration: ≈15 h 18 min
+    language: English
+    level: Beginner / Intermediate
+    reviewed: '2026-10-09'
+    why_recommended: A highly hands-on React course with components, JSX, props, state,
+      forms, data fetching, effects and multiple projects. Use the matching chapter
+      timestamps.
+    timestamps:
+    - label: Stateful project patterns
+      time: 04:33:02
+    - label: Accessibility improvements
+      time: '11:41:14'
+  level-01/l1-3-semantic-html-and-advanced-elements/01-main:
+    title: Web Development with HTML & CSS — Full Course for Beginners
+    creator: freeCodeCamp.org
+    url: https://www.youtube.com/watch?v=dX8396ZmSPk
+    video_id: dX8396ZmSPk
+    duration: ≈19 hours
+    language: English
+    level: Beginner
+    reviewed: '2026-10-09'
+    why_recommended: A long-form beginner course that visually reinforces HTML, CSS,
+      Git/GitHub, responsive design and a portfolio build. Use the timestamps below
+      instead of watching the entire course for this lesson.
+    timestamps:
+    - label: Advanced HTML and CSS
+      time: 02:14:15
+  level-01/l1-3-semantic-html-and-advanced-elements/02-accessibility-foundations:
+    title: Web Development with HTML & CSS — Full Course for Beginners
+    creator: freeCodeCamp.org
+    url: https://www.youtube.com/watch?v=dX8396ZmSPk
+    video_id: dX8396ZmSPk
+    duration: ≈19 hours
+    language: English
+    level: Beginner
+    reviewed: '2026-10-09'
+    why_recommended: A long-form beginner course that visually reinforces HTML, CSS,
+      Git/GitHub, responsive design and a portfolio build. Use the timestamps below
+      instead of watching the entire course for this lesson.
+    timestamps:
+    - label: Advanced HTML and CSS
+      time: 02:14:15
+  level-01/l1-32-next-js-rendering-basics/01-main:
+    title: 'Next.js App Router: Routing, Data Fetching, Caching'
+    creator: Vercel
+    url: https://www.youtube.com/watch?v=gSSsZReIFRk
+    video_id: gSSsZReIFRk
+    duration: ≈12 min
+    language: English
+    level: Beginner / Intermediate
+    reviewed: '2026-10-09'
+    why_recommended: An official Vercel walkthrough of App Router routing, dynamic
+      segments, data fetching, caching and metadata. Pair it with current Next.js
+      docs for version-sensitive details.
+    timestamps:
+    - label: Data fetching and server rendering mental model
+      time: 04:53
+  level-01/l1-33-advanced-data-fetching-and-ui-integration/01-main:
+    title: 'Next.js App Router: Routing, Data Fetching, Caching'
+    creator: Vercel
+    url: https://www.youtube.com/watch?v=gSSsZReIFRk
+    video_id: gSSsZReIFRk
+    duration: ≈12 min
+    language: English
+    level: Beginner / Intermediate
+    reviewed: '2026-10-09'
+    why_recommended: An official Vercel walkthrough of App Router routing, dynamic
+      segments, data fetching, caching and metadata. Pair it with current Next.js
+      docs for version-sensitive details.
+    timestamps:
+    - label: Caching
+      time: 07:36
+    - label: Metadata
+      time: '11:42'
+  level-01/l1-36-authentication-advanced-profile-password-and-ema/01-main:
+    title: Better Auth in Next.js (Complete Tutorial)
+    creator: Cosden Solutions
+    url: https://www.youtube.com/watch?v=x4hQ2Hmuy3k
+    video_id: x4hQ2Hmuy3k
+    duration: ≈35 min
+    language: English
+    level: Intermediate
+    reviewed: '2026-10-09'
+    why_recommended: A focused end-to-end Better Auth walkthrough covering setup,
+      database integration, Next.js integration, server actions and auth UI. Use official
+      Better Auth docs as the authority for current APIs.
+    timestamps:
+    - label: Database setup
+      time: 08:15
+    - label: Auth UI and client instance
+      time: '24:24'
+  level-01/l1-37-next-js-project-with-authentication-part-1/01-main:
+    title: Better Auth in Next.js (Complete Tutorial)
+    creator: Cosden Solutions
+    url: https://www.youtube.com/watch?v=x4hQ2Hmuy3k
+    video_id: x4hQ2Hmuy3k
+    duration: ≈35 min
+    language: English
+    level: Intermediate
+    reviewed: '2026-10-09'
+    why_recommended: A focused end-to-end Better Auth walkthrough covering setup,
+      database integration, Next.js integration, server actions and auth UI. Use official
+      Better Auth docs as the authority for current APIs.
+    timestamps:
+    - label: Next.js integration
+      time: '13:38'
+    - label: Building the UI
+      time: '24:24'
+  level-01/l1-38-next-js-project-with-authentication-part-2/01-main:
+    title: Better Auth in Next.js (Complete Tutorial)
+    creator: Cosden Solutions
+    url: https://www.youtube.com/watch?v=x4hQ2Hmuy3k
+    video_id: x4hQ2Hmuy3k
+    duration: ≈35 min
+    language: English
+    level: Intermediate
+    reviewed: '2026-10-09'
+    why_recommended: A focused end-to-end Better Auth walkthrough covering setup,
+      database integration, Next.js integration, server actions and auth UI. Use official
+      Better Auth docs as the authority for current APIs.
+    timestamps:
+    - label: Auth server actions
+      time: '18:47'
+    - label: Client instance overview
+      time: '32:28'
+  level-01/l1-4-css-layouts-and-advanced-styling/01-main:
+    title: Introduction to Responsive Web Design — HTML & CSS Tutorial
+    creator: freeCodeCamp.org · Kevin Powell
+    url: https://www.youtube.com/watch?v=srvUrASNj0s
+    video_id: srvUrASNj0s
+    duration: ≈4 h 12 min
+    language: English
+    level: Beginner
+    reviewed: '2026-10-09'
+    why_recommended: A focused responsive-design course covering CSS units, Flexbox,
+      media queries, mobile-first thinking and responsive navigation.
+    timestamps:
+    - label: CSS units
+      time: 00:06:01
+    - label: Flexbox refresher
+      time: 00:47:10
+    - label: Media queries
+      time: 01:19:42
+  level-01/l1-4-css-layouts-and-advanced-styling/02-responsive-web-design:
+    title: Introduction to Responsive Web Design — HTML & CSS Tutorial
+    creator: freeCodeCamp.org · Kevin Powell
+    url: https://www.youtube.com/watch?v=srvUrASNj0s
+    video_id: srvUrASNj0s
+    duration: ≈4 h 12 min
+    language: English
+    level: Beginner
+    reviewed: '2026-10-09'
+    why_recommended: A focused responsive-design course covering CSS units, Flexbox,
+      media queries, mobile-first thinking and responsive navigation.
+    timestamps:
+    - label: CSS units
+      time: 00:06:01
+    - label: Flexbox refresher
+      time: 00:47:10
+    - label: Media queries
+      time: 01:19:42
+  level-01/l1-4-css-layouts-and-advanced-styling/03-browser-devtools:
+    title: JavaScript Course for Beginners
+    creator: freeCodeCamp.org
+    url: https://www.youtube.com/watch?v=Zi-Q0t4gMC8
+    video_id: Zi-Q0t4gMC8
+    duration: ≈3 h 33 min
+    language: English
+    level: Beginner
+    reviewed: '2026-10-09'
+    why_recommended: A compact full JavaScript course that aligns well with variables,
+      operators, control flow, arrays, objects, functions and modern syntax in this
+      path.
+    timestamps:
+    - label: What is JavaScript?
+      time: 00:01:22
+    - label: Variables and primitive types
+      time: 00:07:46
+  level-01/l1-40-node-js-and-express-from-setup-to-first-api/01-main:
+    title: Intro to Backend Web Development — Node.js & Express Tutorial for Beginners
+    creator: freeCodeCamp.org
+    url: https://www.youtube.com/watch?v=KOutPbKc9UM
+    video_id: KOutPbKc9UM
+    duration: ≈2 h 25 min
+    language: English
+    level: Beginner / Intermediate
+    reviewed: '2026-10-09'
+    why_recommended: A modern backend walkthrough covering Node.js, Express, MongoDB
+      Atlas, environment variables, routing, controllers, authentication, Postman
+      and CRUD.
+    timestamps:
+    - label: What is a backend?
+      time: 01:44
+    - label: Express app setup
+      time: '20:30'
+    - label: Routing and controllers
+      time: '53:40'
+  level-01/l1-40-node-js-and-express-from-setup-to-first-api/02-api-testing-http-contracts:
+    title: Intro to Backend Web Development — Node.js & Express Tutorial for Beginners
+    creator: freeCodeCamp.org
+    url: https://www.youtube.com/watch?v=KOutPbKc9UM
+    video_id: KOutPbKc9UM
+    duration: ≈2 h 25 min
+    language: English
+    level: Beginner / Intermediate
+    reviewed: '2026-10-09'
+    why_recommended: A modern backend walkthrough covering Node.js, Express, MongoDB
+      Atlas, environment variables, routing, controllers, authentication, Postman
+      and CRUD.
+    timestamps:
+    - label: What is a backend?
+      time: 01:44
+    - label: Express app setup
+      time: '20:30'
+    - label: Routing and controllers
+      time: '53:40'
+  level-01/l1-42-deep-dive-into-mongodb-operators-and-queries/01-main:
+    title: Intro to Backend Web Development — Node.js & Express Tutorial for Beginners
+    creator: freeCodeCamp.org
+    url: https://www.youtube.com/watch?v=KOutPbKc9UM
+    video_id: KOutPbKc9UM
+    duration: ≈2 h 25 min
+    language: English
+    level: Beginner / Intermediate
+    reviewed: '2026-10-09'
+    why_recommended: A modern backend walkthrough covering Node.js, Express, MongoDB
+      Atlas, environment variables, routing, controllers, authentication, Postman
+      and CRUD.
+    timestamps:
+    - label: MongoDB Atlas and data models
+      time: '12:56'
+    - label: Viewing data in MongoDB Atlas
+      time: 01:25:53
+  level-01/l1-43-project-setup-and-destination-crud/01-main:
+    title: CRUD API Tutorial — Node, Express, MongoDB
+    creator: freeCodeCamp.org
+    url: https://www.youtube.com/watch?v=_7UQPve99r4
+    video_id: _7UQPve99r4
+    duration: ≈1 h 30 min
+    language: English
+    level: Beginner / Intermediate
+    reviewed: '2026-10-09'
+    why_recommended: A build-oriented CRUD API course that visually reinforces Express,
+      MongoDB, CRUD routes, controllers and API testing.
+    timestamps:
+    - label: Routes and controllers
+      time: 01:12:19
+    - label: Checking and testing
+      time: 01:26:19
+  level-01/l1-44-booking-system-and-authentication/01-main:
+    title: Intro to Backend Web Development — Node.js & Express Tutorial for Beginners
+    creator: freeCodeCamp.org
+    url: https://www.youtube.com/watch?v=KOutPbKc9UM
+    video_id: KOutPbKc9UM
+    duration: ≈2 h 25 min
+    language: English
+    level: Beginner / Intermediate
+    reviewed: '2026-10-09'
+    why_recommended: A modern backend walkthrough covering Node.js, Express, MongoDB
+      Atlas, environment variables, routing, controllers, authentication, Postman
+      and CRUD.
+    timestamps:
+    - label: Register/login architecture
+      time: '56:23'
+    - label: Password hashing
+      time: 01:31:40
+  level-01/l1-45-jwt-security-and-deployment/01-main:
+    title: Intro to Backend Web Development — Node.js & Express Tutorial for Beginners
+    creator: freeCodeCamp.org
+    url: https://www.youtube.com/watch?v=KOutPbKc9UM
+    video_id: KOutPbKc9UM
+    duration: ≈2 h 25 min
+    language: English
+    level: Beginner / Intermediate
+    reviewed: '2026-10-09'
+    why_recommended: A modern backend walkthrough covering Node.js, Express, MongoDB
+      Atlas, environment variables, routing, controllers, authentication, Postman
+      and CRUD.
+    timestamps:
+    - label: Environment variables
+      time: '15:45'
+    - label: Authentication flow
+      time: 01:27:14
+  level-01/l1-45-jwt-security-and-deployment/02-environment-variables-secrets-config:
+    title: Intro to Backend Web Development — Node.js & Express Tutorial for Beginners
+    creator: freeCodeCamp.org
+    url: https://www.youtube.com/watch?v=KOutPbKc9UM
+    video_id: KOutPbKc9UM
+    duration: ≈2 h 25 min
+    language: English
+    level: Beginner / Intermediate
+    reviewed: '2026-10-09'
+    why_recommended: A modern backend walkthrough covering Node.js, Express, MongoDB
+      Atlas, environment variables, routing, controllers, authentication, Postman
+      and CRUD.
+    timestamps:
+    - label: Environment variables
+      time: '15:45'
+    - label: Authentication flow
+      time: 01:27:14
+  level-01/l1-47-requirement-analysis-and-planning/01-main:
+    title: Intro to Backend Web Development — Node.js & Express Tutorial for Beginners
+    creator: freeCodeCamp.org
+    url: https://www.youtube.com/watch?v=KOutPbKc9UM
+    video_id: KOutPbKc9UM
+    duration: ≈2 h 25 min
+    language: English
+    level: Beginner / Intermediate
+    reviewed: '2026-10-09'
+    why_recommended: A modern backend walkthrough covering Node.js, Express, MongoDB
+      Atlas, environment variables, routing, controllers, authentication, Postman
+      and CRUD.
+    timestamps:
+    - label: Backend architecture flowchart
+      time: 04:36
+    - label: Project folder structure
+      time: 08:50
+  level-01/l1-48-project-setup-and-architecture/01-main:
+    title: Intro to Backend Web Development — Node.js & Express Tutorial for Beginners
+    creator: freeCodeCamp.org
+    url: https://www.youtube.com/watch?v=KOutPbKc9UM
+    video_id: KOutPbKc9UM
+    duration: ≈2 h 25 min
+    language: English
+    level: Beginner / Intermediate
+    reviewed: '2026-10-09'
+    why_recommended: A modern backend walkthrough covering Node.js, Express, MongoDB
+      Atlas, environment variables, routing, controllers, authentication, Postman
+      and CRUD.
+    timestamps:
+    - label: Project initialization
+      time: 09:30
+    - label: Environment variables
+      time: '15:45'
+    - label: Express app and database connection
+      time: '20:30'
+  level-01/l1-49-core-implementation/01-main:
+    title: Intro to Backend Web Development — Node.js & Express Tutorial for Beginners
+    creator: freeCodeCamp.org
+    url: https://www.youtube.com/watch?v=KOutPbKc9UM
+    video_id: KOutPbKc9UM
+    duration: ≈2 h 25 min
+    language: English
+    level: Beginner / Intermediate
+    reviewed: '2026-10-09'
+    why_recommended: A modern backend walkthrough covering Node.js, Express, MongoDB
+      Atlas, environment variables, routing, controllers, authentication, Postman
+      and CRUD.
+    timestamps:
+    - label: Routes and controllers
+      time: '53:40'
+    - label: CRUD APIs
+      time: 01:49:14
+  level-01/l1-5-build-a-beautiful-portfolio-website/01-main:
+    title: Web Development with HTML & CSS — Full Course for Beginners
+    creator: freeCodeCamp.org
+    url: https://www.youtube.com/watch?v=dX8396ZmSPk
+    video_id: dX8396ZmSPk
+    duration: ≈19 hours
+    language: English
+    level: Beginner
+    reviewed: '2026-10-09'
+    why_recommended: A long-form beginner course that visually reinforces HTML, CSS,
+      Git/GitHub, responsive design and a portfolio build. Use the timestamps below
+      instead of watching the entire course for this lesson.
+    timestamps:
+    - label: Build your personal website
+      time: '18:30:21'
+  level-01/l1-51-review-ui-ux-check-and-deployment/01-main:
+    title: Intro to Backend Web Development — Node.js & Express Tutorial for Beginners
+    creator: freeCodeCamp.org
+    url: https://www.youtube.com/watch?v=KOutPbKc9UM
+    video_id: KOutPbKc9UM
+    duration: ≈2 h 25 min
+    language: English
+    level: Beginner / Intermediate
+    reviewed: '2026-10-09'
+    why_recommended: A modern backend walkthrough covering Node.js, Express, MongoDB
+      Atlas, environment variables, routing, controllers, authentication, Postman
+      and CRUD.
+    timestamps:
+    - label: Final testing and conclusion
+      time: 02:19:36
+  level-01/l1-51-review-ui-ux-check-and-deployment/02-production-errors-observability:
+    title: Intro to Backend Web Development — Node.js & Express Tutorial for Beginners
+    creator: freeCodeCamp.org
+    url: https://www.youtube.com/watch?v=KOutPbKc9UM
+    video_id: KOutPbKc9UM
+    duration: ≈2 h 25 min
+    language: English
+    level: Beginner / Intermediate
+    reviewed: '2026-10-09'
+    why_recommended: A modern backend walkthrough covering Node.js, Express, MongoDB
+      Atlas, environment variables, routing, controllers, authentication, Postman
+      and CRUD.
+    timestamps:
+    - label: Final testing and conclusion
+      time: 02:19:36
+  level-01/l1-7-introduction-to-javascript/01-main:
+    title: JavaScript Course for Beginners
+    creator: freeCodeCamp.org
+    url: https://www.youtube.com/watch?v=Zi-Q0t4gMC8
+    video_id: Zi-Q0t4gMC8
+    duration: ≈3 h 33 min
+    language: English
+    level: Beginner
+    reviewed: '2026-10-09'
+    why_recommended: A compact full JavaScript course that aligns well with variables,
+      operators, control flow, arrays, objects, functions and modern syntax in this
+      path.
+    timestamps:
+    - label: What is JavaScript?
+      time: 00:01:22
+    - label: Variables and primitive types
+      time: 00:07:46
+  level-01/l1-7-introduction-to-javascript/02-debugging-console-devtools:
+    title: JavaScript Course for Beginners
+    creator: freeCodeCamp.org
+    url: https://www.youtube.com/watch?v=Zi-Q0t4gMC8
+    video_id: Zi-Q0t4gMC8
+    duration: ≈3 h 33 min
+    language: English
+    level: Beginner
+    reviewed: '2026-10-09'
+    why_recommended: A compact full JavaScript course that aligns well with variables,
+      operators, control flow, arrays, objects, functions and modern syntax in this
+      path.
+    timestamps:
+    - label: What is JavaScript?
+      time: 00:01:22
+    - label: Variables and primitive types
+      time: 00:07:46
+  level-01/l1-8-fundamental-concepts-of-conditionals/01-main:
+    title: JavaScript Course for Beginners
+    creator: freeCodeCamp.org
+    url: https://www.youtube.com/watch?v=Zi-Q0t4gMC8
+    video_id: Zi-Q0t4gMC8
+    duration: ≈3 h 33 min
+    language: English
+    level: Beginner
+    reviewed: '2026-10-09'
+    why_recommended: A compact full JavaScript course that aligns well with variables,
+      operators, control flow, arrays, objects, functions and modern syntax in this
+      path.
+    timestamps:
+    - label: Comparison and equality operators
+      time: 00:36:24
+    - label: If/else control flow
+      time: 00:56:31
+  level-01/l1-9-fundamental-concepts-of-array-part-1/01-main:
+    title: JavaScript Course for Beginners
+    creator: freeCodeCamp.org
+    url: https://www.youtube.com/watch?v=Zi-Q0t4gMC8
+    video_id: Zi-Q0t4gMC8
+    duration: ≈3 h 33 min
+    language: English
+    level: Beginner
+    reviewed: '2026-10-09'
+    why_recommended: A compact full JavaScript course that aligns well with variables,
+      operators, control flow, arrays, objects, functions and modern syntax in this
+      path.
+    timestamps:
+    - label: Arrays
+      time: 02:14:03
+    - label: Add and remove elements
+      time: 02:14:39
+  level-01/l1-0-welcome-to-the-course/01-main:
+    title: AI, Machine Learning, Deep Learning and Generative AI Explained
+    creator: IBM Technology
+    url: https://www.youtube.com/watch?v=qYNweeDHiyU
+    video_id: qYNweeDHiyU
+    duration: ≈10 min
+    language: English
+    level: Beginner
+    reviewed: '2026-10-09'
+    why_recommended: A concise visual orientation to the AI vocabulary you will encounter
+      later in this software and AI engineering path.
+    timestamps: []
+  level-01/l1-0-orientation-install-necessary-tools/01-main:
+    title: Git & GitHub Crash Course for Beginners [2026]
+    creator: freeCodeCamp.org
+    url: https://www.youtube.com/watch?v=mAFoROnOfHs
+    video_id: mAFoROnOfHs
+    duration: ≈1 h 20 min
+    language: English
+    level: Beginner
+    reviewed: '2026-10-09'
+    why_recommended: Use this after your basic setup to see Git and GitHub demonstrated
+      in a real terminal workflow.
+    timestamps:
+    - label: Git vs GitHub
+      time: 00:04:01
+    - label: First commits
+      time: 00:30:22
+  level-01/l1-0-5-1-understanding-ai-reality-risks-and-mindset/01-main:
+    title: AI, Machine Learning, Deep Learning and Generative AI Explained
+    creator: IBM Technology
+    url: https://www.youtube.com/watch?v=qYNweeDHiyU
+    video_id: qYNweeDHiyU
+    duration: ≈10 min
+    language: English
+    level: Beginner
+    reviewed: '2026-10-09'
+    why_recommended: A compact visual explanation that separates major AI concepts
+      without requiring mathematical background.
+    timestamps: []
+  level-01/l1-0-5-2-beyond-the-hype-how-to-actually-use-ai/01-main:
+    title: How Large Language Models Work
+    creator: IBM Technology
+    url: https://www.youtube.com/watch?v=5sLYAQS9sWQ
+    video_id: 5sLYAQS9sWQ
+    duration: ≈6 min
+    language: English
+    level: Beginner
+    reviewed: '2026-10-09'
+    why_recommended: A short conceptual companion for understanding what an LLM is
+      doing before you rely on it as a coding assistant.
+    timestamps: []
+review_note: Curated as supplementary companions. Written tutorials remain primary;
+  use official documentation for version-sensitive implementation details.

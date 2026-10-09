@@ -1,5 +1,3 @@
-**Source mapping:** Level 01 source curriculum · PDF page 24
-
 This module turns **Booking System & Authentication** into a guided Saiful The Techie learning sequence. Use the tutorials in order: understand the architecture first, then build the matching feature with the downloadable files.
 
 ## What you'll learn

@@ -65,6 +65,49 @@
   // re-enable animations after the first paint (no slide-in flash when a page loads)
   requestAnimationFrame(function () { requestAnimationFrame(function () { root.classList.remove("no-anim"); }); });
 
+
+  /* ---------- Level 01 / Level 02 sidebar sections ---------- */
+  (function () {
+    var KEY = "stse-levels-v1", saved = {};
+    try { saved = JSON.parse(localStorage.getItem(KEY) || "{}") || {}; } catch (e) { saved = {}; }
+    document.querySelectorAll(".nav-phase").forEach(function (phase) {
+      var btn = phase.querySelector(".nav-phase-toggle"), body = phase.querySelector(".nav-phase-body");
+      if (!btn || !body) return;
+      var id = phase.getAttribute("data-level") || body.id;
+      var open = Object.prototype.hasOwnProperty.call(saved, id) ? !!saved[id] : btn.getAttribute("data-default-open") === "1";
+      function paint(value) {
+        body.hidden = !value;
+        phase.classList.toggle("open", value);
+        btn.setAttribute("aria-expanded", value ? "true" : "false");
+      }
+      paint(open);
+      btn.addEventListener("click", function () {
+        open = !open; paint(open); saved[id] = open;
+        try { localStorage.setItem(KEY, JSON.stringify(saved)); } catch (e) {}
+      });
+    });
+  })();
+
+  /* ---------- YouTube companions: avoid error 153 in file:// mode ---------- */
+  document.querySelectorAll(".js-youtube-frame").forEach(function (frame) {
+    var id = frame.getAttribute("data-video-id"), title = frame.getAttribute("data-video-title") || "YouTube video";
+    var url = frame.getAttribute("data-video-url") || "https://www.youtube.com/";
+    var status = frame.querySelector(".video-placeholder-status");
+    if (location.protocol !== "http:" && location.protocol !== "https:") {
+      frame.classList.add("video-file-mode");
+      if (status) status.textContent = "Embedded playback needs HTTP(S). Open on YouTube, or serve this folder locally.";
+      return;
+    }
+    var iframe = document.createElement("iframe");
+    iframe.loading = "lazy";
+    iframe.src = "https://www.youtube-nocookie.com/embed/" + encodeURIComponent(id) + "?rel=0";
+    iframe.title = title;
+    iframe.referrerPolicy = "strict-origin-when-cross-origin";
+    iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+    iframe.allowFullscreen = true;
+    frame.replaceChildren(iframe);
+  });
+
   /* ---------- language labels on code blocks ---------- */
   document.querySelectorAll(".content pre > code[class*='language-']").forEach(function (code) {
     var m = code.className.match(/language-([\w+-]+)/);
@@ -75,7 +118,7 @@
   });
 
   /* ---------- copy buttons on code blocks ---------- */
-  document.querySelectorAll(".content pre").forEach(function (pre) {
+  document.querySelectorAll(".content pre:not(.ai-prompt)").forEach(function (pre) {
     var btn = document.createElement("button");
     btn.className = "copy-btn"; btn.type = "button"; btn.textContent = "Copy";
     btn.addEventListener("click", function () {
@@ -92,6 +135,24 @@
       }
     });
     pre.appendChild(btn);
+  });
+
+  /* ---------- copy lesson-aware AI tutor prompts ---------- */
+  document.querySelectorAll("[data-copy-target]").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var target = document.getElementById(btn.getAttribute("data-copy-target"));
+      if (!target) return;
+      var text = target.innerText;
+      var old = btn.textContent;
+      function done() { btn.textContent = "Copied ✓"; setTimeout(function () { btn.textContent = old; }, 1600); }
+      function fallback() {
+        var ta = document.createElement("textarea"); ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
+        document.body.appendChild(ta); ta.select();
+        try { document.execCommand("copy"); done(); } catch (e) { btn.textContent = "Select prompt & copy"; }
+        document.body.removeChild(ta);
+      }
+      if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(text).then(done, fallback); else fallback();
+    });
   });
 
   /* ---------- wrap tables for horizontal scroll ---------- */
@@ -120,7 +181,7 @@
       var pct = total ? Math.round((done / total) * 100) : 0;
       var bar = el.querySelector("i"); if (bar) bar.style.width = pct + "%";
       var label = el.parentElement && el.parentElement.querySelector("[data-progress-label]");
-      if (label) label.textContent = total ? done + " of " + total + " written lessons done" : "Lessons coming soon";
+      if (label) label.textContent = total ? done + " of " + total + " written lessons done" : "No authored lessons in this roadmap section yet";
     });
     var btn = document.getElementById("completeBtn");
     if (btn) {

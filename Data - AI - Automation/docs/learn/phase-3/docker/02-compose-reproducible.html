@@ -6,7 +6,7 @@
 <title>Docker Compose &amp; Reproducible Environments: Run the Whole Pipeline With One Command — Data, AI &amp; Automation Path</title>
 <meta name="description" content="Describe a multi-container pipeline (API + ingestion job) in compose.yaml with health checks, dependencies, environment variables and volumes, run it with one command, and make builds reproducible with pinned versions, lock files and digests.">
 <meta property="og:type" content="article">
-<meta property="og:site_name" content="Data, AI &amp; Automation Path">
+<meta property="og:site_name" content="Saiful The Techie">
 <meta property="og:title" content="Docker Compose &amp; Reproducible Environments: Run the Whole Pipeline With One Command">
 <meta property="og:description" content="Describe a multi-container pipeline (API + ingestion job) in compose.yaml with health checks, dependencies, environment variables and volumes, run it with one command, and make builds reproducible with pinned versions, lock files and digests.">
 <meta property="og:locale" content="en_US">
@@ -19,13 +19,13 @@ var n=null;try{n=localStorage.getItem('daa-nav')}catch(e){}
 if(n==='open'&&window.matchMedia&&matchMedia('(min-width: 961px)').matches)document.documentElement.setAttribute('data-nav','open');
 document.documentElement.classList.add('no-anim')})();</script>
 <link rel="stylesheet" href="../../../assets/style.css">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233f7d6a'/%3E%3Ctext x='16' y='21' font-family='sans-serif' font-size='13' font-weight='700' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
+
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="topbar">
   <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Open curriculum menu" title="Curriculum menu (press M)" aria-controls="sidebar" aria-expanded="false"><span class="ico-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span class="ico-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></button>
-  <a class="brand" href="../../../index.html"><span class="brand-badge">AI</span><span class="brand-text"><span class="brand-name">Data, AI &amp; Automation Path</span><span class="brand-version">v0.8</span></span></a>
+  <a class="brand" href="../../../index.html"><span class="brand-text"><span class="brand-name">Saiful The Techie</span><span class="brand-version">Data, AI &amp; Automation Path · v0.9.1</span></span></a>
   <nav class="top-links" aria-label="Main">
     <a href="../../../index.html" class="">Home</a><a href="../../../curriculum.html" class="">Curriculum</a><a href="../../../practice-files.html" class="">Practice files</a><a href="../../../glossary.html" class="">Glossary</a><a href="../../../how-to-learn.html" class="">How to learn</a><a href="../../../about.html" class="">About</a>
   </nav>
@@ -41,7 +41,7 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="layout wide">
   <nav class="sidebar" id="sidebar" aria-label="Curriculum">
     <div class="side-title">Curriculum</div>
-    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="77"><i></i></div><span class="bar-label" data-progress-label></span></div>
+    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="85"><i></i></div><span class="bar-label" data-progress-label></span></div>
 <div class="nav-phase"><a href="../../../learn/phase-0/index.html"><span class="nav-num">0</span>Foundations</a>
 </div>
 <div class="nav-phase"><a href="../../../learn/phase-1/index.html"><span class="nav-num">1</span>Analytics &amp; BI</a>
@@ -101,93 +101,113 @@ document.documentElement.classList.add('no-anim')})();</script>
 <p class="lead">Describe a multi-container pipeline (API + ingestion job) in compose.yaml with health checks, dependencies, environment variables and volumes, run it with one command, and make builds reproducible with pinned versions, lock files and digests.</p>
 <div class="meta"><span class="pill">Phase <b>3</b> · Data Engineering</span><span class="pill">Level <b>Intermediate</b></span><span class="pill">Time <b>50 min</b></span></div>
 <div class="admonition note"><p class="admonition-title">Before you start</p><p><a href="../../../learn/phase-3/docker/01-images-containers.html">Docker Images &amp; Containers: Package a Pipeline Once, Run It Anywhere</a></p></div>
-<div class="files-box"><div class="files-head"><b>Practice files for this page</b><a href="../../../practice-files.html">All practice files →</a></div><ul><li><a href="../../../downloads/phase-3/data-engineering-scripts.zip" download>data-engineering-scripts.zip</a><span class="f-desc">Phase 3A scripts: practice API + website, ingestion, PostgreSQL loader, advanced SQL, indexing, transactions, star schema, SCD, BigQuery dialect, Delta Lake, Iceberg, Dockerfiles and compose.yaml · 270 KB</span></li></ul></div>
+<div class="files-box"><div class="files-head"><b>Practice files for this page</b><a href="../../../practice-files.html">All practice files →</a></div><ul><li><a href="../../../downloads/phase-3/data-engineering-scripts.zip" download>data-engineering-scripts.zip</a><span class="f-desc">Phase 3 scripts: ingestion, PostgreSQL, advanced SQL, warehousing, lakehouse, Docker, ETL/CDC, data quality, plus the dbt mini-project and verification scripts · 476 KB</span></li></ul></div>
 <h2 id="what-is-it">What is it?</h2>
 <ul>
-<li><strong>Docker Compose</strong> describes several containers (<strong>services</strong>), their settings and how they connect, in one file, <code>compose.yaml</code>. <code>docker compose up</code> starts them all; <code>docker compose down</code> removes them.</li>
-<li>A <strong>reproducible environment</strong> gives the same result for anyone, on any machine, at any later date: same OS, same Python, same library versions, same configuration.</li>
+<li><strong>Docker Compose</strong> describes several containers
+(<strong>services</strong>), their settings and how they connect, in one
+file, <code>compose.yaml</code>. <code>docker compose up</code> starts
+them all; <code>docker compose down</code> removes them.</li>
+<li>A <strong>reproducible environment</strong> gives the same result
+for anyone, on any machine, at any later date: same OS, same Python,
+same library versions, same configuration.</li>
 </ul>
-<div class="admonition job">
-<p class="admonition-title">Why it matters at work</p>
-<p>Local development stacks (a database, an API, a pipeline, maybe Airflow) are almost always started with Compose, and it's the usual first step before Kubernetes or a managed container service. Reproducibility is what lets a teammate, CI and production all run the code you tested, and it's the foundation of reliable data pipelines.</p>
+<div class="admonition job" data-markdown="1">
+<p class="admonition-title">
+Why it matters at work
+</p>
+<p>Local development stacks (a database, an API, a pipeline, maybe
+Airflow) are almost always started with Compose, and it’s the usual
+first step before Kubernetes or a managed container service.
+Reproducibility is what lets a teammate, CI and production all run the
+code you tested, and it’s the foundation of reliable data pipelines.</p>
 </div>
 <h2 id="step-1-the-compose-file">Step 1: the compose file</h2>
-<p><code>docker/compose.yaml</code> runs the practice API and the ingestion job together:</p>
-<div class="codehilite"><pre><span></span><code><span class="c1"># Two services: the practice API and the ingestion job that reads from it.</span>
-<span class="c1">#   docker compose up --build      start everything (Ctrl+C to stop)</span>
-<span class="c1">#   docker compose down            remove the containers</span>
-<span class="nt">services</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">api</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">build</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">context</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.</span>
-<span class="w">      </span><span class="nt">dockerfile</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Dockerfile.api</span>
-<span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">ORDERS_API_TOKEN</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${ORDERS_API_TOKEN:-practice-token-123}</span>
-<span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">"8765:8765"</span><span class="w">                     </span><span class="c1"># host:container, so you can open it from your browser too</span>
-<span class="w">    </span><span class="nt">healthcheck</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">test</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">"CMD"</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">"python"</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">"-c"</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">"import</span><span class="nv"> </span><span class="s">urllib.request;</span><span class="nv"> </span><span class="s">urllib.request.urlopen('http://localhost:8765/robots.txt')"</span><span class="p p-Indicator">]</span>
-<span class="w">      </span><span class="nt">interval</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2s</span>
-<span class="w">      </span><span class="nt">timeout</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2s</span>
-<span class="w">      </span><span class="nt">retries</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span>
+<p><code>docker/compose.yaml</code> runs the practice API and the
+ingestion job together:</p>
+<pre class="yaml"><code># Two services: the practice API and the ingestion job that reads from it.
+#   docker compose up --build      start everything (Ctrl+C to stop)
+#   docker compose down            remove the containers
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    environment:
+      ORDERS_API_TOKEN: ${ORDERS_API_TOKEN:-practice-token-123}
+    ports:
+      - &quot;8765:8765&quot;                     # host:container, so you can open it from your browser too
+    healthcheck:
+      test: [&quot;CMD&quot;, &quot;python&quot;, &quot;-c&quot;, &quot;import urllib.request; urllib.request.urlopen(&#39;http://localhost:8765/robots.txt&#39;)&quot;]
+      interval: 2s
+      timeout: 2s
+      retries: 10
 
-<span class="w">  </span><span class="nt">ingest</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">build</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.</span>
-<span class="w">    </span><span class="nt">depends_on</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">api</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">condition</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">service_healthy</span><span class="w">      </span><span class="c1"># wait until the API answers</span>
-<span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">ORDERS_API_URL</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://api:8765</span><span class="w">   </span><span class="c1"># service name = host name on the compose network</span>
-<span class="w">      </span><span class="nt">ORDERS_API_TOKEN</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${ORDERS_API_TOKEN:-practice-token-123}</span>
-<span class="w">      </span><span class="nt">OUTPUT_DIR</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/out</span>
-<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./output:/out</span><span class="w">                   </span><span class="c1"># the Parquet file appears in ./output on your machine</span>
-</code></pre></div>
-
+  ingest:
+    build: .
+    depends_on:
+      api:
+        condition: service_healthy      # wait until the API answers
+    environment:
+      ORDERS_API_URL: http://api:8765   # service name = host name on the compose network
+      ORDERS_API_TOKEN: ${ORDERS_API_TOKEN:-practice-token-123}
+      OUTPUT_DIR: /out
+    volumes:
+      - ./output:/out                   # the Parquet file appears in ./output on your machine</code></pre>
 <table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Key</th>
 <th>Purpose</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td><code>services</code></td>
 <td>One entry per container: <code>api</code>, <code>ingest</code></td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>build</code></td>
-<td>Build the image from a Dockerfile (or use <code>image:</code> for a ready-made one, e.g. <code>postgres:18</code>)</td>
+<td>Build the image from a Dockerfile (or use <code>image:</code> for a
+ready-made one, e.g. <code>postgres:18</code>)</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><code>environment</code></td>
-<td>Settings; <code>${VAR:-default}</code> reads your shell or a <code>.env</code> file</td>
+<td>Settings; <code>${VAR:-default}</code> reads your shell or a
+<code>.env</code> file</td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>ports</code></td>
-<td>Publish to your computer (not needed for container-to-container traffic)</td>
+<td>Publish to your computer (not needed for container-to-container
+traffic)</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><code>healthcheck</code></td>
 <td>How Docker tests that the service really works</td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>depends_on</code> + <code>service_healthy</code></td>
-<td>Start <code>ingest</code> only after <code>api</code> passes its health check</td>
+<td>Start <code>ingest</code> only after <code>api</code> passes its
+health check</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><code>volumes</code></td>
 <td>Bind a host folder (or a named volume) into the container</td>
 </tr>
 </tbody>
 </table>
-<p>Compose creates a private <strong>network</strong> automatically; every service is reachable by its <strong>service name</strong> (<code>http://api:8765</code>). There's no top-level <code>version:</code> key: modern Compose ignores it and warns that it's obsolete.</p>
+<p>Compose creates a private <strong>network</strong> automatically;
+every service is reachable by its <strong>service name</strong>
+(<code>http://api:8765</code>). There’s no top-level
+<code>version:</code> key: modern Compose ignores it and warns that it’s
+obsolete.</p>
 <h2 id="step-2-one-command">Step 2: one command</h2>
-<div class="codehilite"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>--build<span class="w"> </span>--abort-on-container-exit<span class="w"> </span>--exit-code-from<span class="w"> </span>ingest
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code> Container docker-api-1 Starting
+<pre class="bash"><code>docker compose up --build --abort-on-container-exit --exit-code-from ingest</code></pre>
+<pre class="text"><code> Container docker-api-1 Starting
  Container docker-api-1 Started
  Container docker-api-1 Waiting
 api-1  | Practice API on http://0.0.0.0:8765  (token: practice-token-123)  Ctrl+C to stop
@@ -196,81 +216,97 @@ api-1  | Practice API on http://0.0.0.0:8765  (token: practice-token-123)  Ctrl+
  Container docker-ingest-1 Started
 ingest-1  | ingested 4246 orders (API total 4246) -&gt; /out/orders.parquet
 ingest-1 exited with code 0
-api-1 exited with code 130
-</code></pre></div>
-
+api-1 exited with code 130</code></pre>
 <ul>
-<li>Compose built both images, started the API, <strong>waited until it was healthy</strong>, then ran the job.</li>
-<li><code>--exit-code-from ingest</code> makes the whole command succeed or fail with the job, which is perfect for CI.</li>
-<li>Container names are <code>&lt;project&gt;-&lt;service&gt;-&lt;n&gt;</code>. The project name defaults to the folder name (<code>docker</code>).</li>
+<li>Compose built both images, started the API, <strong>waited until it
+was healthy</strong>, then ran the job.</li>
+<li><code>--exit-code-from ingest</code> makes the whole command succeed
+or fail with the job, which is perfect for CI.</li>
+<li>Container names are
+<code>&lt;project&gt;-&lt;service&gt;-&lt;n&gt;</code>. The project name
+defaults to the folder name (<code>docker</code>).</li>
 </ul>
-<div class="codehilite"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>ps<span class="w"> </span>-a<span class="w">        </span><span class="c1"># status of each service</span>
-docker<span class="w"> </span>compose<span class="w"> </span>logs<span class="w"> </span>ingest<span class="w">  </span><span class="c1"># one service's output</span>
-docker<span class="w"> </span>compose<span class="w"> </span>down<span class="w">         </span><span class="c1"># stop and remove containers and the network</span>
-</code></pre></div>
-
-<h3 id="a-real-bug-we-hit-stopping-the-api-took-10-seconds-exit-137">A real bug we hit: stopping the API took 10 seconds (exit 137)</h3>
-<p>The first version stopped with <code>api-1 exited with code 137</code>: Docker sent the stop signal, waited 10 seconds, then killed it. A Python program running as the container's <strong>main process (PID 1)</strong> doesn't react to the default stop signal (SIGTERM) unless it handles it. The fix in <code>Dockerfile.api</code>:</p>
-<div class="codehilite"><pre><span></span><code><span class="c"># Python running as PID 1 ignores the default stop signal; Ctrl+C (SIGINT) stops it cleanly</span>
-<span class="k">STOPSIGNAL</span><span class="w"> </span><span class="s">SIGINT</span>
-<span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">"python"</span><span class="p">,</span><span class="w"> </span><span class="s2">"mock_api.py"</span><span class="p">]</span>
-</code></pre></div>
-
-<p>Now it stops immediately (exit <strong>130</strong> = interrupted by SIGINT). Alternatives: handle SIGTERM in your code, or add <code>init: true</code> to the service.</p>
-<h3 id="another-one-port-is-already-allocated">Another one: "port is already allocated"</h3>
-<div class="codehilite"><pre><span></span><code>failed to bind host port 0.0.0.0:8765/tcp: address already in use
-</code></pre></div>
-
-<p>The practice API was still running outside Docker on port 8765. Stop the other program, or publish a different host port (<code>"18765:8765"</code>).</p>
-<h2 id="step-3-configuration-and-secrets">Step 3: configuration and secrets</h2>
-<div class="codehilite"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>config<span class="w">        </span><span class="c1"># shows the final, fully resolved configuration</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>    environment:
+<pre class="bash"><code>docker compose ps -a        # status of each service
+docker compose logs ingest  # one service&#39;s output
+docker compose down         # stop and remove containers and the network</code></pre>
+<h3 id="a-real-bug-we-hit-stopping-the-api-took-10-seconds-exit-137">A
+real bug we hit: stopping the API took 10 seconds (exit 137)</h3>
+<p>The first version stopped with
+<code>api-1 exited with code 137</code>: Docker sent the stop signal,
+waited 10 seconds, then killed it. A Python program running as the
+container’s <strong>main process (PID 1)</strong> doesn’t react to the
+default stop signal (SIGTERM) unless it handles it. The fix in
+<code>Dockerfile.api</code>:</p>
+<pre class="dockerfile"><code># Python running as PID 1 ignores the default stop signal; Ctrl+C (SIGINT) stops it cleanly
+STOPSIGNAL SIGINT
+CMD [&quot;python&quot;, &quot;mock_api.py&quot;]</code></pre>
+<p>Now it stops immediately (exit <strong>130</strong> = interrupted by
+SIGINT). Alternatives: handle SIGTERM in your code, or add
+<code>init: true</code> to the service.</p>
+<h3 id="another-one-port-is-already-allocated">Another one: “port is
+already allocated”</h3>
+<pre class="text"><code>failed to bind host port 0.0.0.0:8765/tcp: address already in use</code></pre>
+<p>The practice API was still running outside Docker on port 8765. Stop
+the other program, or publish a different host port
+(<code>"18765:8765"</code>).</p>
+<h2 id="step-3-configuration-and-secrets">Step 3: configuration and
+secrets</h2>
+<pre class="bash"><code>docker compose config        # shows the final, fully resolved configuration</code></pre>
+<pre class="text"><code>    environment:
       ORDERS_API_TOKEN: practice-token-123
       ORDERS_API_URL: http://api:8765
-      OUTPUT_DIR: /out
-</code></pre></div>
-
-<p>Set <code>ORDERS_API_TOKEN=s3cret</code> in your shell (or in a <code>.env</code> file next to <code>compose.yaml</code>) and the resolved value changes everywhere it's used:</p>
-<div class="codehilite"><pre><span></span><code>      ORDERS_API_TOKEN: s3cret
-</code></pre></div>
-
+      OUTPUT_DIR: /out</code></pre>
+<p>Set <code>ORDERS_API_TOKEN=s3cret</code> in your shell (or in a
+<code>.env</code> file next to <code>compose.yaml</code>) and the
+resolved value changes everywhere it’s used:</p>
+<pre class="text"><code>      ORDERS_API_TOKEN: s3cret</code></pre>
 <ul>
-<li>Keep real secrets in <code>.env</code> (and add <code>.env</code> to <code>.gitignore</code>), or use Compose <strong>secrets</strong> / your platform's secret store.</li>
-<li><code>docker compose config</code> is the quickest way to debug "why does my container see the wrong value?".</li>
+<li>Keep real secrets in <code>.env</code> (and add <code>.env</code> to
+<code>.gitignore</code>), or use Compose <strong>secrets</strong> / your
+platform’s secret store.</li>
+<li><code>docker compose config</code> is the quickest way to debug “why
+does my container see the wrong value?”.</li>
 </ul>
-<h2 id="step-4-reproducible-environments">Step 4: reproducible environments</h2>
+<h2 id="step-4-reproducible-environments">Step 4: reproducible
+environments</h2>
 <table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Layer</th>
 <th>Pin it with</th>
 <th>In this project</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>Base OS + Python</td>
-<td>A specific image tag, or a <strong>digest</strong> (<code>python:3.14-slim@sha256:…</code>) for full immutability</td>
+<td>A specific image tag, or a <strong>digest</strong>
+(<code>python:3.14-slim@sha256:…</code>) for full immutability</td>
 <td><code>FROM python:3.14-slim</code></td>
 </tr>
-<tr>
+<tr class="even">
 <td>Python libraries</td>
-<td>Exact versions, ideally a <strong>lock file</strong> with hashes</td>
+<td>Exact versions, ideally a <strong>lock file</strong> with
+hashes</td>
 <td><code>requirements.txt</code> with <code>==</code> pins</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>System packages</td>
-<td>Explicit <code>apt-get install pkg=version</code> (when you need them)</td>
+<td>Explicit <code>apt-get install pkg=version</code> (when you need
+them)</td>
 <td>None needed</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Configuration</td>
 <td>Environment variables + versioned <code>compose.yaml</code></td>
 <td><code>.env</code>, compose</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Data</td>
 <td>Versioned inputs and fingerprints (Phase 2 research thinking)</td>
 <td>SHA-256 of input files</td>
@@ -278,10 +314,8 @@ docker<span class="w"> </span>compose<span class="w"> </span>down<span class="w"
 </tbody>
 </table>
 <p>Check what really ended up in the image:</p>
-<div class="codehilite"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>orders-ingest:1.0<span class="w"> </span>pip<span class="w"> </span>freeze
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>certifi==2026.7.22
+<pre class="bash"><code>docker run --rm orders-ingest:1.0 pip freeze</code></pre>
+<pre class="text"><code>certifi==2026.7.22
 charset-normalizer==3.5.2
 idna==3.20
 numpy==2.5.3
@@ -290,51 +324,59 @@ pyarrow==25.0.1
 python-dateutil==2.9.0.post0
 requests==2.34.2
 six==1.17.0
-urllib3==2.8.0
-</code></pre></div>
-
-<p>Only 3 libraries were pinned, but 10 were installed: their <strong>dependencies</strong> (numpy, urllib3, …) were resolved at build time and could differ next month. A <strong>lock file</strong> pins the whole tree. With uv (Phase 0), the officially recommended pattern is:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">FROM</span><span class="w"> </span><span class="s">python:3.14-slim</span>
-<span class="k">COPY</span><span class="w"> </span>--from<span class="o">=</span>ghcr.io/astral-sh/uv:0.11<span class="w"> </span>/uv<span class="w"> </span>/uvx<span class="w"> </span>/bin/
-<span class="k">WORKDIR</span><span class="w"> </span><span class="s">/app</span>
-<span class="k">COPY</span><span class="w"> </span>pyproject.toml<span class="w"> </span>uv.lock<span class="w"> </span>./
-<span class="k">RUN</span><span class="w"> </span>uv<span class="w"> </span>sync<span class="w"> </span>--locked<span class="w"> </span>--no-dev<span class="w"> </span>--no-install-project
-<span class="k">COPY</span><span class="w"> </span>.<span class="w"> </span>.
-<span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">"uv"</span><span class="p">,</span><span class="w"> </span><span class="s2">"run"</span><span class="p">,</span><span class="w"> </span><span class="s2">"--no-sync"</span><span class="p">,</span><span class="w"> </span><span class="s2">"python"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ingest_job.py"</span><span class="p">]</span>
-</code></pre></div>
-
-<p><em>(Shown for reference; this variant wasn't run for the lesson. <code>--locked</code> fails the build if <code>uv.lock</code> is out of date, so the image always matches the lock file.)</em></p>
+urllib3==2.8.0</code></pre>
+<p>Only 3 libraries were pinned, but 10 were installed: their
+<strong>dependencies</strong> (numpy, urllib3, …) were resolved at build
+time and could differ next month. A <strong>lock file</strong> pins the
+whole tree. With uv (Phase 0), the officially recommended pattern
+is:</p>
+<pre class="dockerfile"><code>FROM python:3.14-slim
+COPY --from=ghcr.io/astral-sh/uv:0.11 /uv /uvx /bin/
+WORKDIR /app
+COPY pyproject.toml uv.lock ./
+RUN uv sync --locked --no-dev --no-install-project
+COPY . .
+CMD [&quot;uv&quot;, &quot;run&quot;, &quot;--no-sync&quot;, &quot;python&quot;, &quot;ingest_job.py&quot;]</code></pre>
+<p><em>(Shown for reference; this variant wasn’t run for the lesson.
+<code>--locked</code> fails the build if <code>uv.lock</code> is out of
+date, so the image always matches the lock file.)</em></p>
 <h2 id="common-mistakes">Common mistakes</h2>
 <table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Mistake</th>
 <th>What happens</th>
 <th>Fix</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td><code>depends_on</code> without a health check</td>
 <td>The job starts before the API/database is ready</td>
 <td><code>condition: service_healthy</code> + a real healthcheck</td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>localhost</code> in service URLs</td>
 <td>Connection refused</td>
 <td>Service names on the compose network</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Secrets committed in <code>compose.yaml</code></td>
 <td>Leaked credentials</td>
-<td><code>${VAR}</code> + <code>.env</code> (git-ignored) or secrets</td>
+<td><code>${VAR}</code> + <code>.env</code> (git-ignored) or
+secrets</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Pinning only top-level packages</td>
 <td>Dependency drift between builds</td>
 <td>Lock files (<code>uv.lock</code>), digests for base images</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Ignoring exit codes</td>
 <td>CI passes while the job failed</td>
 <td><code>--exit-code-from</code>; non-zero on failure</td>
@@ -342,89 +384,178 @@ urllib3==2.8.0
 </tbody>
 </table>
 <h2 id="try-it-yourself">Try it yourself</h2>
-<p><strong>Task:</strong> Add a <strong>PostgreSQL</strong> service to <code>compose.yaml</code> that the pipeline could load into: official image, a password from <code>.env</code>, a named volume so data survives <code>docker compose down</code>, and a health check.</p>
+<p><strong>Task:</strong> Add a <strong>PostgreSQL</strong> service to
+<code>compose.yaml</code> that the pipeline could load into: official
+image, a password from <code>.env</code>, a named volume so data
+survives <code>docker compose down</code>, and a health check.</p>
 <details>
-<summary>Show a model answer</summary>
-<div class="codehilite"><pre><span></span><code><span class="w">  </span><span class="nt">db</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">postgres:18</span>
-<span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">POSTGRES_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in .env}</span>
-<span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">"5432:5432"</span>
-<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pgdata:/var/lib/postgresql</span>
-<span class="w">    </span><span class="nt">healthcheck</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">test</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">"CMD-SHELL"</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">"pg_isready</span><span class="nv"> </span><span class="s">-U</span><span class="nv"> </span><span class="s">postgres"</span><span class="p p-Indicator">]</span>
-<span class="w">      </span><span class="nt">interval</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2s</span>
-<span class="w">      </span><span class="nt">retries</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">15</span>
+<summary>
+Show a model answer
+</summary>
+<pre class="yaml"><code>  db:
+    image: postgres:18
+    environment:
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in .env}
+    ports:
+      - &quot;5432:5432&quot;
+    volumes:
+      - pgdata:/var/lib/postgresql
+    healthcheck:
+      test: [&quot;CMD-SHELL&quot;, &quot;pg_isready -U postgres&quot;]
+      interval: 2s
+      retries: 15
 
-<span class="nt">volumes</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">pgdata</span><span class="p">:</span>
-</code></pre></div>
-
-<p><code>${VAR:?message}</code> makes Compose stop with a clear error if the password isn't set. The named volume <code>pgdata</code> keeps the database files between runs (<code>docker compose down -v</code> deletes it). The official image's documentation explains its data directory and environment variables. <em>(This answer wasn't executed for the lesson, because our build machine couldn't pull images from Docker Hub.)</em></p>
+volumes:
+  pgdata:</code></pre>
+<code>${VAR:?message}</code> makes Compose stop with a clear error if
+the password isn’t set. The named volume <code>pgdata</code> keeps the
+database files between runs (<code>docker compose down -v</code> deletes
+it). The official image’s documentation explains its data directory and
+environment variables. <em>(This answer wasn’t executed for the lesson,
+because our build machine couldn’t pull images from Docker Hub.)</em>
 </details>
 <h2 id="quick-quiz">Quick quiz</h2>
 <div class="quiz-q" data-answer="1">
-<p>1. How does the <code>ingest</code> service find the <code>api</code> service?</p>
-<ol>
+<p>1. How does the <code>ingest</code> service find the <code>api</code>
+service?</p>
+<ol type="1">
 <li>By its IP address, written in the code</li>
-<li>By its service name (<code>api</code>) on the network Compose creates</li>
+<li>By its service name (<code>api</code>) on the network Compose
+creates</li>
 <li>Through a shared folder</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B.</strong></p>
+<summary>
+Show answer
+</summary>
+<strong>B.</strong>
 </details>
 </div>
 <div class="quiz-q" data-answer="1">
-<p>2. What does <code>condition: service_healthy</code> add to <code>depends_on</code>?</p>
-<ol>
+<p>2. What does <code>condition: service_healthy</code> add to
+<code>depends_on</code>?</p>
+<ol type="1">
 <li>Nothing</li>
-<li>The dependent service waits until the health check passes, not just until the container starts</li>
+<li>The dependent service waits until the health check passes, not just
+until the container starts</li>
 <li>It restarts failed containers</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B.</strong></p>
+<summary>
+Show answer
+</summary>
+<strong>B.</strong>
 </details>
 </div>
 <div class="quiz-q" data-answer="1">
-<p>3. You pinned pandas, pyarrow and requests, but the image contains numpy too. Is the environment fully reproducible?</p>
-<ol>
+<p>3. You pinned pandas, pyarrow and requests, but the image contains
+numpy too. Is the environment fully reproducible?</p>
+<ol type="1">
 <li>Yes</li>
-<li>No: dependencies like numpy can drift; use a lock file (and a pinned base image)</li>
+<li>No: dependencies like numpy can drift; use a lock file (and a pinned
+base image)</li>
 <li>Only on Linux</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B.</strong></p>
+<summary>
+Show answer
+</summary>
+<strong>B.</strong>
 </details>
 </div>
 <h2 id="summary">Summary</h2>
 <ul>
-<li><strong>Compose</strong> = several services in one <code>compose.yaml</code>: build/image, environment, ports, volumes, health checks, dependencies.</li>
-<li><code>docker compose up --build</code> / <code>down</code>; <code>config</code> shows the resolved settings; <code>--exit-code-from</code> for CI.</li>
-<li>Containers reach each other by <strong>service name</strong>; use health checks so services start in the right order; handle stop signals (<code>STOPSIGNAL</code>, <code>init: true</code>).</li>
-<li><strong>Reproducible</strong>: pinned base image (tag or digest), lock files for the full dependency tree, configuration in env/<code>.env</code>, versioned data.</li>
+<li><strong>Compose</strong> = several services in one
+<code>compose.yaml</code>: build/image, environment, ports, volumes,
+health checks, dependencies.</li>
+<li><code>docker compose up --build</code> / <code>down</code>;
+<code>config</code> shows the resolved settings;
+<code>--exit-code-from</code> for CI.</li>
+<li>Containers reach each other by <strong>service name</strong>; use
+health checks so services start in the right order; handle stop signals
+(<code>STOPSIGNAL</code>, <code>init: true</code>).</li>
+<li><strong>Reproducible</strong>: pinned base image (tag or digest),
+lock files for the full dependency tree, configuration in
+env/<code>.env</code>, versioned data.</li>
 </ul>
-<div class="admonition job">
-<p class="admonition-title">Job-ready check</p>
-<p><strong>Interview question:</strong> <em>"How do you make sure a pipeline runs the same on your laptop, in CI and in production?"</em></p>
-<p><strong>Strong answer:</strong> "I containerise it: a pinned base image, dependencies installed from a lock file, configuration and secrets injected through environment variables, and the same image promoted from CI to production. Locally, Docker Compose starts the pipeline with its dependencies (database, API) using health checks, and CI runs the same compose setup, failing on the job's exit code. Data inputs are versioned too, so a run can be reproduced exactly."</p>
-<p><strong>Mini project:</strong> Extend the compose stack with the PostgreSQL service from <em>Try it yourself</em> and a <code>load</code> service that reads <code>output/orders.parquet</code> into the database after <code>ingest</code> completes successfully (<code>condition: service_completed_successfully</code>).</p>
+<div class="admonition job" data-markdown="1">
+<p class="admonition-title">
+Job-ready check
+</p>
+<p><strong>Interview question:</strong> <em>“How do you make sure a
+pipeline runs the same on your laptop, in CI and in
+production?”</em></p>
+<p><strong>Strong answer:</strong> “I containerise it: a pinned base
+image, dependencies installed from a lock file, configuration and
+secrets injected through environment variables, and the same image
+promoted from CI to production. Locally, Docker Compose starts the
+pipeline with its dependencies (database, API) using health checks, and
+CI runs the same compose setup, failing on the job’s exit code. Data
+inputs are versioned too, so a run can be reproduced exactly.”</p>
+<p><strong>Mini project:</strong> Extend the compose stack with the
+PostgreSQL service from <em>Try it yourself</em> and a <code>load</code>
+service that reads <code>output/orders.parquet</code> into the database
+after <code>ingest</code> completes successfully
+(<code>condition: service_completed_successfully</code>).</p>
 </div>
+<section class="mentor-prompt"><div class="mentor-head"><div><span class="eyebrow">AI study companion</span><h2 id="ai-mentor-prompt">AI Mentor Prompt</h2></div><button class="btn copy-prompt" type="button" data-copy-target="mentor-prompt-phase-3-docker-02-compose-reproducible">Copy prompt</button></div><p>Paste this into ChatGPT, Claude, Gemini, or another capable assistant to turn this tutorial into an interactive mentoring session.</p><pre class="prompt-box"><code id="mentor-prompt-phase-3-docker-02-compose-reproducible">You are my hands-on data-engineering mentor.
+
+I am currently studying:
+&quot;Docker Compose &amp; Reproducible Environments: Run the Whole Pipeline With One Command&quot;
+
+My level:
+Intermediate
+
+Teach me this topic interactively rather than giving me a long lecture.
+
+Use this sequence:
+
+1. Check what I already understand with one short diagnostic question.
+2. Explain the concept in simple language and give me the mental model first.
+3. Give me one small task using code, SQL, configuration, data, or architecture as appropriate.
+4. Wait for my attempt before showing a complete solution.
+5. Review my work and explain both what is correct and what needs improvement.
+6. Help me debug errors step by step instead of immediately replacing my work.
+7. Increase the difficulty gradually and connect each new step to the previous one.
+8. Relate what I am learning to real professional data/AI engineering work.
+9. Ask me to explain an important decision in my own words so you can check my understanding.
+10. At the end, ask me to build or modify one small feature independently.
+
+Important rules:
+- Do not do the entire exercise for me unless I explicitly ask.
+- Explain unfamiliar terminology before using it heavily.
+- Prefer current, production-relevant practices over outdated shortcuts.
+- Distinguish clearly between concepts, tool-specific behaviour, and optional alternatives.
+- If a technical fact, API, syntax, version, or best practice may have changed, verify it against current official documentation before teaching it.
+- Never invent command output, test results, benchmark numbers, cloud behaviour, or data results.
+- If something cannot be executed in the current environment, say so and give me the exact command or verification step I should run.
+- Keep me actively coding, querying, configuring, reasoning, or debugging throughout the session.
+- When useful, work from the tutorial practice files (data-engineering-scripts.zip) instead of inventing unrelated examples.
+- For Phase 3 order-data exercises, preserve the established reconciliation targets when relevant: 4,246 orders and net revenue 5,478,357.79. If my result differs, help me debug the cause instead of changing the expected result.
+
+The concepts I need to master are:
+- Compose
+- Reproducible environments
+- docker compose
+- compose.yaml
+- services
+- depends_on
+- healthcheck
+- service_healthy
+
+Start by asking me one diagnostic question.</code></pre></section>
+
 <div class="terms-box"><div class="files-head"><b>Key terms in this lesson</b><a href="../../../glossary.html">Glossary →</a></div><div class="term-chips"><a class="term-chip" href="../../../glossary.html#docker-compose" title="A tool and YAML file for running several containers together (services, networks, volumes, health checks) with one command: docker compose up.">Docker Compose</a><a class="term-chip" href="../../../glossary.html#lock-file" title="A file that records the exact version of every installed package, so everyone and every server installs the same set.">Lock file</a></div></div>
 <h2 id="free-resources">Free resources to go deeper</h2><ul class="resources"><li><a href="https://docs.docker.com/compose/">Docker Compose overview</a><span class="r-meta">Docker official docs · What Compose is and how to use it.</span></li><li><a href="https://docs.docker.com/reference/compose-file/">Compose file reference</a><span class="r-meta">Docker official docs · services, healthcheck, depends_on, volumes, environment and more.</span></li><li><a href="https://docs.astral.sh/uv/guides/integration/docker/">Using uv in Docker</a><span class="r-meta">Astral (official) · Reproducible Python images from uv.lock.</span></li></ul>
 <div class="complete-bar"><span>Finished reading and did the exercise?</span>
 <button class="btn" id="completeBtn" type="button" data-id="phase-3/docker/02-compose-reproducible">Mark lesson as complete</button></div>
-<nav class="pager"><a class="prev" href="../../../learn/phase-3/docker/01-images-containers.html"><small>← Previous</small>Docker Images &amp; Containers: Package a Pipeline Once, Run It Anywhere</a><a class="next" href="../../../learn/phase-3/docker/index.html"><small>Back to module →</small>Docker</a></nav>
+<nav class="pager"><a class="prev" href="../../../learn/phase-3/docker/01-images-containers.html"><small>← Previous</small>Docker Images &amp; Containers: Package a Pipeline Once, Run It Anywhere</a><a class="next" href="../../../learn/phase-3/dbt/01-models-tests.html"><small>Next →</small>dbt Models and Tests: Turn SQL into a Trusted Transformation Graph</a></nav>
 <p class="reviewed">Last reviewed: 2026-10-09</p>
 
   </div></main>
-  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#step-1-the-compose-file">Step 1: the compose file</a><a href="#step-2-one-command">Step 2: one command</a><a href="#step-3-configuration-and-secrets">Step 3: configuration and secrets</a><a href="#step-4-reproducible-environments">Step 4: reproducible environments</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#free-resources">Free resources</a></aside>
+  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#step-1-the-compose-file">Step 1: the compose file</a><a href="#step-2-one-command">Step 2: one command</a><a href="#a-real-bug-we-hit-stopping-the-api-took-10-seconds-exit-137">A real bug we hit: stopping the API took 10 seconds (exit 137)</a><a href="#another-one-port-is-already-allocated">Another one: “port is already allocated”</a><a href="#step-3-configuration-and-secrets">Step 3: configuration and secrets</a><a href="#step-4-reproducible-environments">Step 4: reproducible environments</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#ai-mentor-prompt">AI Mentor Prompt</a><a href="#free-resources">Free resources</a></aside>
 </div>
-<footer class="site">Data, AI &amp; Automation Path v0.8 · Applied AI, Data &amp; Automation Lab · Updated October 2026<br>
+<footer class="site"><b>Saiful The Techie</b> · Data, AI &amp; Automation Path v0.9.1 · Updated October 2026<br>
 Lesson text: <a href="../../../license.html">CC BY-NC-SA 4.0</a> · Code: <a href="../../../license.html#code-mit-license">MIT</a> · Free external resources belong to their respective owners.</footer>
 <script src="../../../search-index.js"></script>
 <script src="../../../assets/app.js"></script>

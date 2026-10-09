@@ -6,7 +6,7 @@
 <title>About &amp; Contributing — Data, AI &amp; Automation Path</title>
 <meta name="description" content="What this site is, how lessons are built, and how to add a new lesson.">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="Data, AI &amp; Automation Path">
+<meta property="og:site_name" content="Saiful The Techie">
 <meta property="og:title" content="About &amp; Contributing">
 <meta property="og:description" content="What this site is, how lessons are built, and how to add a new lesson.">
 <meta property="og:locale" content="en_US">
@@ -19,13 +19,13 @@ var n=null;try{n=localStorage.getItem('daa-nav')}catch(e){}
 if(n==='open'&&window.matchMedia&&matchMedia('(min-width: 961px)').matches)document.documentElement.setAttribute('data-nav','open');
 document.documentElement.classList.add('no-anim')})();</script>
 <link rel="stylesheet" href="./assets/style.css">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233f7d6a'/%3E%3Ctext x='16' y='21' font-family='sans-serif' font-size='13' font-weight='700' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
+
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="topbar">
   <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Open curriculum menu" title="Curriculum menu (press M)" aria-controls="sidebar" aria-expanded="false"><span class="ico-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span class="ico-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></button>
-  <a class="brand" href="./index.html"><span class="brand-badge">AI</span><span class="brand-text"><span class="brand-name">Data, AI &amp; Automation Path</span><span class="brand-version">v0.8</span></span></a>
+  <a class="brand" href="./index.html"><span class="brand-text"><span class="brand-name">Saiful The Techie</span><span class="brand-version">Data, AI &amp; Automation Path · v0.9.1</span></span></a>
   <nav class="top-links" aria-label="Main">
     <a href="./index.html" class="">Home</a><a href="./curriculum.html" class="">Curriculum</a><a href="./practice-files.html" class="">Practice files</a><a href="./glossary.html" class="">Glossary</a><a href="./how-to-learn.html" class="">How to learn</a><a href="./about.html" class="active">About</a>
   </nav>
@@ -41,7 +41,7 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="layout wide">
   <nav class="sidebar" id="sidebar" aria-label="Curriculum">
     <div class="side-title">Curriculum</div>
-    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="77"><i></i></div><span class="bar-label" data-progress-label></span></div>
+    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="85"><i></i></div><span class="bar-label" data-progress-label></span></div>
 <div class="nav-phase"><a href="./learn/phase-0/index.html"><span class="nav-num">0</span>Foundations</a>
 </div>
 <div class="nav-phase"><a href="./learn/phase-1/index.html"><span class="nav-num">1</span>Analytics &amp; BI</a>
@@ -68,93 +68,89 @@ document.documentElement.classList.add('no-anim')})();</script>
 <h1>About &amp; Contributing</h1>
 <p class="lead">What this site is, how lessons are built, and how to add a new lesson.</p>
 <h2 id="what-this-site-is">What this site is</h2>
-<p>A free, text-first tutorial site for one integrated curriculum: Data Analytics, Data Science, Data Engineering, Machine Learning, LLMs and RAG, AI Agents, Automation, and Production AI. It is built to take a motivated learner from basics to job-ready skills.</p>
+<p>A free, text-first <strong>Saiful The Techie</strong> tutorial site
+for an integrated curriculum covering Data Analytics, Data Science, Data
+Engineering, Machine Learning, LLMs and RAG, AI Agents, Automation, and
+Production AI. It is built to take a motivated learner from basics to
+job-ready skills.</p>
 <ul>
-<li><strong>Text-first:</strong> short explanations, runnable examples and real business questions.</li>
-<li><strong>Practical:</strong> every lesson has an exercise, a quiz and a job-ready check.</li>
-<li><strong>Open:</strong> a plain static website. It works offline and is hosted on GitHub Pages.</li>
+<li><strong>Text-first:</strong> clear mental models, runnable examples
+and real business questions.</li>
+<li><strong>Practical:</strong> tutorials prioritize verified code/data,
+step-by-step builds and synchronized practice files; quizzes and other
+review blocks are used only when they improve the topic.</li>
+<li><strong>Open:</strong> a plain static website. It works offline and
+is hosted on GitHub Pages.</li>
 </ul>
-<h2 id="how-every-lesson-is-structured">How every lesson is structured</h2>
-<p>Every lesson follows <strong>Template v1</strong>:</p>
-<table>
-<thead>
-<tr>
-<th>Section</th>
-<th>Purpose</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>What is it?</td>
-<td>A plain-language definition with an everyday comparison</td>
-</tr>
-<tr>
-<td>Why it matters at work</td>
-<td>The job use case and how it appears in interviews</td>
-</tr>
-<tr>
-<td>Syntax / core idea</td>
-<td>The minimum pattern to remember</td>
-</tr>
-<tr>
-<td>Examples</td>
-<td>Real business questions, with checked results</td>
-</tr>
-<tr>
-<td>Common mistakes</td>
-<td>The errors beginners actually make</td>
-</tr>
-<tr>
-<td>Try it yourself</td>
-<td>An exercise with a hint and a hidden solution</td>
-</tr>
-<tr>
-<td>Quick quiz</td>
-<td>Three questions with explained answers</td>
-</tr>
-<tr>
-<td>Summary</td>
-<td>Four or five bullets to revise from</td>
-</tr>
-<tr>
-<td>Job-ready check</td>
-<td>An interview question, a strong answer and a mini project</td>
-</tr>
-<tr>
-<td>Free resources</td>
-<td>Official docs, interactive practice and free courses</td>
-</tr>
-</tbody>
-</table>
-<p>Each lesson also shows a <strong>Last reviewed</strong> date. Tools change quickly, so older pages are re-checked first.</p>
+<h2 id="how-tutorials-are-structured">How tutorials are structured</h2>
+<p>The approved <strong>Template v2</strong> is flexible rather than
+rigid. A substantial tutorial normally moves through:</p>
+<pre class="text"><code>Concept → mental model → detailed explanation → code/data/config
+→ real output → explain the result → build step-by-step
+→ complete implementation → practice files → professional context
+→ key terms → curated resources → next tutorial</code></pre>
+<p>A small topic may be short. A major topic can be several thousand
+words with substantial code. <strong>Common mistakes, exercises,
+quizzes, summaries and job-ready checks are optional</strong>, not
+compulsory interruptions.</p>
+<p>Practice packages increasingly use a <code>starter/</code> → tutorial
+→ <code>completed/</code> workflow so the written lesson and
+downloadable implementation stay synchronized. Every written tutorial
+also receives a detailed <strong>AI Mentor Prompt</strong> for
+interactive study. Curated YouTube companions are added only when a
+relevant video has been reviewed; the written tutorial remains complete
+without the video.</p>
 <h2 id="quality-rules">Quality rules</h2>
 <ul>
-<li><strong>Original writing only.</strong> We learn from other sites' formats but never copy their text.</li>
-<li><strong>Every example result is run, not guessed.</strong> Example outputs come from actually running the code on the practice files.</li>
-<li><strong>Facts are checked against official documentation</strong> before a lesson is published.</li>
-<li><strong>External links are free resources</strong> that don't require payment to be useful.</li>
+<li><strong>Original writing only.</strong> We learn from other sites’
+formats but never copy their text.</li>
+<li><strong>Every example result is run, not guessed.</strong> Example
+outputs come from actually running the code on the practice files.</li>
+<li><strong>Facts are checked against official documentation</strong>
+before a lesson is published.</li>
+<li><strong>External links are free resources</strong> that don’t
+require payment to be useful.</li>
 </ul>
 <h2 id="add-or-edit-a-lesson">Add or edit a lesson</h2>
-<ol>
-<li>Copy <code>content/_templates/lesson-template.md</code> into <code>content/lessons/&lt;phase-id&gt;/&lt;module-id&gt;/</code>. Name it like <code>03-case-expressions.md</code>.</li>
-<li>Fill in the front matter: title, order, summary, level, time, and which <code>topics</code> from <code>curriculum.yml</code> it covers.</li>
+<ol type="1">
+<li>Copy <code>content/_templates/lesson-template.md</code> into
+<code>content/lessons/&lt;phase-id&gt;/&lt;module-id&gt;/</code>. Name
+it like <code>03-case-expressions.md</code>.</li>
+<li>Fill in the front matter: title, order, summary, level, time, and
+which <code>topics</code> from <code>curriculum.yml</code> it
+covers.</li>
 <li>Write the lesson using the section structure above.</li>
-<li>Run <code>python build.py</code>. It rebuilds the <code>docs/</code> folder and reports any broken internal links.</li>
-<li>Open <code>docs/index.html</code> to check the result, then commit.</li>
+<li>Run <code>python build.py</code>. It rebuilds the <code>docs/</code>
+folder and reports any broken internal links.</li>
+<li>Open <code>docs/index.html</code> to check the result, then
+commit.</li>
 </ol>
-<p>A topic listed in <code>curriculum.yml</code> shows as <strong>Coming soon</strong> until a lesson file lists it under <code>topics</code>.</p>
+<p>A topic listed in <code>curriculum.yml</code> remains visible before
+it is written, but the site now shows the <strong>projected roadmap
+milestone/version</strong> instead of an ambiguous a generic
+future-status label label. Once a lesson file covers that exact topic
+under <code>topics</code>, the learner sees the finished tutorial
+link.</p>
 <h2 id="licence">Licence</h2>
 <ul>
-<li><strong>Lesson content:</strong> CC BY-NC-SA 4.0. You may share and adapt it with credit, for non-commercial use, under the same licence.</li>
+<li><strong>Lesson content:</strong> CC BY-NC-SA 4.0. You may share and
+adapt it with credit, for non-commercial use, under the same
+licence.</li>
 <li><strong>Site code:</strong> MIT.</li>
 </ul>
 <p>Details are on the <a href="license.html">licence page</a>.</p>
 <h2 id="status">Status</h2>
-<p>The site skeleton covers all 10 phases and every module. Lessons are being written phase by phase. <strong>Phases 0, 1 and 2 are complete, and Phase 3 (Data Engineering) is half done</strong>: 77 lessons, from Python, Git and testing, through SQL, Excel and Power BI, pandas, statistics and machine learning foundations, to APIs, PostgreSQL, warehousing, lakehouses and Docker, plus three milestone projects and a library of practice files. The site also has a 182-term glossary linked from every lesson, scored quizzes, and share previews for LinkedIn. Next: Phase 3B (pipelines, data quality, orchestration, dbt and cloud). The milestone plan is in <code>ROADMAP.md</code> in the repository.</p>
+<p>The site skeleton covers all 10 phases and every module.
+<strong>Phases 0, 1 and 2 are complete. Phase 3 is now 40 of 55 topics
+complete with 21 lessons; the full source contains 85 lessons.</strong>
+M8 has completed ETL/ELT, Data Quality and dbt in the current working
+checkpoint. The glossary contains <strong>199 terms</strong>.
+<strong>Next approved M8 module: AI-Ready Data.</strong> The milestone
+plan is in <code>ROADMAP.md</code> in the repository.</p>
   </div></main>
-  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-this-site-is">What this site is</a><a href="#how-every-lesson-is-structured">How every lesson is structured</a><a href="#quality-rules">Quality rules</a><a href="#add-or-edit-a-lesson">Add or edit a lesson</a><a href="#licence">Licence</a><a href="#status">Status</a></aside>
+  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-this-site-is">What this site is</a><a href="#how-tutorials-are-structured">How tutorials are structured</a><a href="#quality-rules">Quality rules</a><a href="#add-or-edit-a-lesson">Add or edit a lesson</a><a href="#licence">Licence</a><a href="#status">Status</a></aside>
 </div>
-<footer class="site">Data, AI &amp; Automation Path v0.8 · Applied AI, Data &amp; Automation Lab · Updated October 2026<br>
+<footer class="site"><b>Saiful The Techie</b> · Data, AI &amp; Automation Path v0.9.1 · Updated October 2026<br>
 Lesson text: <a href="./license.html">CC BY-NC-SA 4.0</a> · Code: <a href="./license.html#code-mit-license">MIT</a> · Free external resources belong to their respective owners.</footer>
 <script src="./search-index.js"></script>
 <script src="./assets/app.js"></script>

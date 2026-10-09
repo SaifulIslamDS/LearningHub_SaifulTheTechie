@@ -6,7 +6,7 @@
 <title>Excel Conditional Formatting: Make Important Data Stand Out — Data, AI &amp; Automation Path</title>
 <meta name="description" content="Highlight cancelled orders, big values and whole rows automatically — with built-in rules, data bars and your own formulas.">
 <meta property="og:type" content="article">
-<meta property="og:site_name" content="Data, AI &amp; Automation Path">
+<meta property="og:site_name" content="Saiful The Techie">
 <meta property="og:title" content="Excel Conditional Formatting: Make Important Data Stand Out">
 <meta property="og:description" content="Highlight cancelled orders, big values and whole rows automatically — with built-in rules, data bars and your own formulas.">
 <meta property="og:locale" content="en_US">
@@ -19,13 +19,13 @@ var n=null;try{n=localStorage.getItem('daa-nav')}catch(e){}
 if(n==='open'&&window.matchMedia&&matchMedia('(min-width: 961px)').matches)document.documentElement.setAttribute('data-nav','open');
 document.documentElement.classList.add('no-anim')})();</script>
 <link rel="stylesheet" href="../../../assets/style.css">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233f7d6a'/%3E%3Ctext x='16' y='21' font-family='sans-serif' font-size='13' font-weight='700' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
+
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="topbar">
   <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Open curriculum menu" title="Curriculum menu (press M)" aria-controls="sidebar" aria-expanded="false"><span class="ico-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span class="ico-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></button>
-  <a class="brand" href="../../../index.html"><span class="brand-badge">AI</span><span class="brand-text"><span class="brand-name">Data, AI &amp; Automation Path</span><span class="brand-version">v0.8</span></span></a>
+  <a class="brand" href="../../../index.html"><span class="brand-text"><span class="brand-name">Saiful The Techie</span><span class="brand-version">Data, AI &amp; Automation Path · v0.9.1</span></span></a>
   <nav class="top-links" aria-label="Main">
     <a href="../../../index.html" class="">Home</a><a href="../../../curriculum.html" class="">Curriculum</a><a href="../../../practice-files.html" class="">Practice files</a><a href="../../../glossary.html" class="">Glossary</a><a href="../../../how-to-learn.html" class="">How to learn</a><a href="../../../about.html" class="">About</a>
   </nav>
@@ -41,7 +41,7 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="layout wide">
   <nav class="sidebar" id="sidebar" aria-label="Curriculum">
     <div class="side-title">Curriculum</div>
-    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="77"><i></i></div><span class="bar-label" data-progress-label></span></div>
+    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="85"><i></i></div><span class="bar-label" data-progress-label></span></div>
 <div class="nav-phase"><a href="../../../learn/phase-0/index.html"><span class="nav-num">0</span>Foundations</a>
 </div>
 <div class="nav-phase current open"><a href="../../../learn/phase-1/index.html"><span class="nav-num">1</span>Analytics &amp; BI</a>
@@ -99,109 +99,148 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="admonition note"><p class="admonition-title">Before you start</p><p><a href="../../../learn/phase-1/excel-analysis/01-if-logical.html">Excel IF, AND &amp; OR: Let Your Sheet Make Decisions</a></p></div>
 <div class="files-box"><div class="files-head"><b>Practice files for this page</b><a href="../../../practice-files.html">All practice files →</a></div><ul><li><a href="../../../downloads/orders.xlsx" download>orders.xlsx</a><span class="f-desc">Starting workbook: Orders (with value formula), Products, Customers sheets · 8 KB</span></li><li><a href="../../../downloads/excel-solutions.xlsx" download>excel-solutions.xlsx</a><span class="f-desc">Worked Excel answers: IF, SUMIFS, lookups, conditional formatting, FILTER/LET formulas, What-If model · 14 KB</span></li></ul></div>
 <h2 id="what-is-it">What is it?</h2>
-<p>Conditional formatting changes a cell's look, such as its fill colour, font or a small bar, <strong>based on its value</strong>. When the data changes, the colours update by themselves. Readers see what matters without reading every number.</p>
-<div class="admonition job">
-<p class="admonition-title">Why it matters at work</p>
-<p>Managers scan reports; they don't read them. Highlighting cancelled orders, overdue items or the biggest deals in red or green is expected in every operations and sales report. Formula-based rules show that you go beyond the basic menu.</p>
+<p>Conditional formatting changes a cell’s look, such as its fill
+colour, font or a small bar, <strong>based on its value</strong>. When
+the data changes, the colours update by themselves. Readers see what
+matters without reading every number.</p>
+<div class="admonition job" data-markdown="1">
+<p class="admonition-title">
+Why it matters at work
+</p>
+<p>Managers scan reports; they don’t read them. Highlighting cancelled
+orders, overdue items or the biggest deals in red or green is expected
+in every operations and sales report. Formula-based rules show that you
+go beyond the basic menu.</p>
 </div>
 <h2 id="where-to-find-it">Where to find it</h2>
-<p>Select the cells → <strong>Home</strong> tab → <strong>Conditional Formatting</strong>. The main options:</p>
+<p>Select the cells → <strong>Home</strong> tab → <strong>Conditional
+Formatting</strong>. The main options:</p>
 <table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Option</th>
 <th>Use it for</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td><strong>Highlight Cells Rules</strong></td>
 <td>Equal to, greater than, text contains, dates</td>
 </tr>
-<tr>
+<tr class="even">
 <td><strong>Top/Bottom Rules</strong></td>
 <td>Top 10, above average, below average</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><strong>Data Bars / Color Scales / Icon Sets</strong></td>
 <td>Show size inside the cell</td>
 </tr>
-<tr>
+<tr class="even">
 <td><strong>New Rule → Use a formula</strong></td>
 <td>Any rule you can write as a TRUE/FALSE formula</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><strong>Manage Rules</strong></td>
 <td>See, edit, reorder and delete rules</td>
 </tr>
 </tbody>
 </table>
-<h2 id="example-1-highlight-big-values-built-in-rule">Example 1: highlight big values (built-in rule)</h2>
+<h2 id="example-1-highlight-big-values-built-in-rule">Example 1:
+highlight big values (built-in rule)</h2>
 <p><em>Goal: make every order worth 1,000 or more green.</em></p>
-<ol>
+<ol type="1">
 <li>Select <strong>J2:J13</strong>.</li>
-<li>Choose <strong>Conditional Formatting → Highlight Cells Rules → Greater Than…</strong></li>
-<li>"Greater than" is strictly greater, so for "1,000 or more" type <strong>999.99</strong>. Or use <strong>New Rule → Format only cells that contain → greater than or equal to → 1000</strong>.</li>
+<li>Choose <strong>Conditional Formatting → Highlight Cells Rules →
+Greater Than…</strong></li>
+<li>“Greater than” is strictly greater, so for “1,000 or more” type
+<strong>999.99</strong>. Or use <strong>New Rule → Format only cells
+that contain → greater than or equal to → 1000</strong>.</li>
 <li>Pick a green fill and click <strong>OK</strong>.</li>
 </ol>
 <p>Highlighted: orders <strong>3, 5, 8 and 12</strong>.</p>
 <h2 id="example-2-data-bars">Example 2: data bars</h2>
-<p>Select <strong>J2:J13</strong> → <strong>Conditional Formatting → Data Bars</strong> → choose a colour. Each cell gets a bar sized by its value, a mini bar chart inside the table. Order 3 (1,560) has the longest bar and order 2 (200) the shortest.</p>
-<h2 id="example-3-highlight-the-whole-row-with-a-formula">Example 3: highlight the whole row with a formula</h2>
+<p>Select <strong>J2:J13</strong> → <strong>Conditional Formatting →
+Data Bars</strong> → choose a colour. Each cell gets a bar sized by its
+value, a mini bar chart inside the table. Order 3 (1,560) has the
+longest bar and order 2 (200) the shortest.</p>
+<h2 id="example-3-highlight-the-whole-row-with-a-formula">Example 3:
+highlight the whole row with a formula</h2>
 <p><em>Goal: shade the full row of every cancelled order.</em></p>
-<ol>
-<li>Select the <strong>whole data area A2:J13</strong>, starting from row 2.</li>
-<li>Choose <strong>Conditional Formatting → New Rule → Use a formula to determine which cells to format</strong>.</li>
+<ol type="1">
+<li>Select the <strong>whole data area A2:J13</strong>, starting from
+row 2.</li>
+<li>Choose <strong>Conditional Formatting → New Rule → Use a formula to
+determine which cells to format</strong>.</li>
 <li>Enter:</li>
 </ol>
-<div class="codehilite"><pre><span></span><code>=$I2="Cancelled"
-</code></pre></div>
-
-<ol start="4">
+<pre class="excel"><code>=$I2=&quot;Cancelled&quot;</code></pre>
+<ol start="4" type="1">
 <li>Choose a light red fill and click <strong>OK</strong>.</li>
 </ol>
-<p>Row <strong>5</strong> of the sheet (order 4, Rahim Traders, Zippers) turns red across all columns.</p>
-<div class="admonition tip">
-<p class="admonition-title">The $ sign is the trick</p>
-<p><code>$I2</code> locks the <strong>column</strong> (I = status), but leaves the <strong>row</strong> free. Excel checks the formula from the top-left cell of your selection (row 2). For each cell, it looks at column I <strong>in that cell's own row</strong>, so the whole row gets the colour. Without the <code>$</code>, only the cells in column I would change.</p>
+<p>Row <strong>5</strong> of the sheet (order 4, Rahim Traders, Zippers)
+turns red across all columns.</p>
+<div class="admonition tip" data-markdown="1">
+<p class="admonition-title">
+The $ sign is the trick
+</p>
+<p><code>$I2</code> locks the <strong>column</strong> (I = status), but
+leaves the <strong>row</strong> free. Excel checks the formula from the
+top-left cell of your selection (row 2). For each cell, it looks at
+column I <strong>in that cell’s own row</strong>, so the whole row gets
+the colour. Without the <code>$</code>, only the cells in column I would
+change.</p>
 </div>
-<h2 id="example-4-above-average-and-a-hidden-trap">Example 4: "above average" — and a hidden trap</h2>
-<p>Select <strong>J2:J13</strong> → <strong>Top/Bottom Rules → Above Average</strong>. Highlighted: orders <strong>3, 5, 8, 9, 10 and 12</strong>.</p>
-<p>The rule uses the average of <strong>all 12 cells: 776.25</strong>, including the cancelled order. The business average you calculated earlier (non-cancelled) was <strong>825</strong>. With 825, order 9 (810) would <strong>not</strong> be highlighted. Built-in rules can't exclude rows. For a business definition, use a formula rule:</p>
-<div class="codehilite"><pre><span></span><code>=AND($I2&lt;&gt;"Cancelled",$J2&gt;AVERAGEIFS($J$2:$J$13,$I$2:$I$13,"&lt;&gt;Cancelled"))
-</code></pre></div>
-
+<h2 id="example-4-above-average-and-a-hidden-trap">Example 4: “above
+average” — and a hidden trap</h2>
+<p>Select <strong>J2:J13</strong> → <strong>Top/Bottom Rules → Above
+Average</strong>. Highlighted: orders <strong>3, 5, 8, 9, 10 and
+12</strong>.</p>
+<p>The rule uses the average of <strong>all 12 cells: 776.25</strong>,
+including the cancelled order. The business average you calculated
+earlier (non-cancelled) was <strong>825</strong>. With 825, order 9
+(810) would <strong>not</strong> be highlighted. Built-in rules can’t
+exclude rows. For a business definition, use a formula rule:</p>
+<pre class="excel"><code>=AND($I2&lt;&gt;&quot;Cancelled&quot;,$J2&gt;AVERAGEIFS($J$2:$J$13,$I$2:$I$13,&quot;&lt;&gt;Cancelled&quot;))</code></pre>
 <h2 id="common-mistakes">Common mistakes</h2>
 <table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Mistake</th>
 <th>What happens</th>
 <th>Fix</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>Formula rule without <code>$</code> before the column</td>
 <td>Only one column is coloured, or the wrong cells are</td>
 <td><code>=$I2=...</code></td>
 </tr>
-<tr>
+<tr class="even">
 <td>Selection starts at row 1, formula refers to row 2</td>
 <td>Colours are shifted one row</td>
-<td>Start the selection at the formula's row</td>
+<td>Start the selection at the formula’s row</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Too many colours</td>
 <td>The report looks like a rainbow, and nothing stands out</td>
 <td>1–2 rules per table, with consistent meaning</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Rules pile up after copy-pasting</td>
 <td>A slow file, conflicting colours</td>
 <td>Clean them up in <strong>Manage Rules</strong></td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Built-in average/top rules on data with excluded rows</td>
 <td>Misleading highlights</td>
 <td>Use a formula rule with the business filter</td>
@@ -209,68 +248,147 @@ document.documentElement.classList.add('no-anim')})();</script>
 </tbody>
 </table>
 <h2 id="try-it-yourself">Try it yourself</h2>
-<p><strong>Task:</strong> Shade the <strong>whole row</strong> of every order that needs follow-up: status <strong>Shipped</strong> or <strong>Pending</strong>. Which rows change colour?</p>
+<p><strong>Task:</strong> Shade the <strong>whole row</strong> of every
+order that needs follow-up: status <strong>Shipped</strong> or
+<strong>Pending</strong>. Which rows change colour?</p>
 <details>
-<summary>Show a hint</summary>
-<p>Select A2:J13 and use a formula rule with <code>OR(...)</code>. Lock column I with <code>$</code>.</p>
+<summary>
+Show a hint
+</summary>
+Select A2:J13 and use a formula rule with <code>OR(...)</code>. Lock
+column I with <code>$</code>.
 </details>
 <details>
-<summary>Show the solution</summary>
-<div class="codehilite"><pre><span></span><code>=OR($I2="Shipped",$I2="Pending")
-</code></pre></div>
-
-<p>Orders <strong>7, 9 and 12</strong> (sheet rows 8, 10 and 13) are highlighted. Combined with the red cancelled rule, the sheet now shows at a glance: one cancelled order and three that need follow-up.</p>
+<summary>
+Show the solution
+</summary>
+<pre class="excel"><code>=OR($I2=&quot;Shipped&quot;,$I2=&quot;Pending&quot;)</code></pre>
+Orders <strong>7, 9 and 12</strong> (sheet rows 8, 10 and 13) are
+highlighted. Combined with the red cancelled rule, the sheet now shows
+at a glance: one cancelled order and three that need follow-up.
 </details>
 <h2 id="quick-quiz">Quick quiz</h2>
 <div class="quiz-q" data-answer="1">
-<p>1. You select A2:J13 and use <code>=I2="Cancelled"</code> (no <code>$</code>). What happens?</p>
-<ol>
+<p>1. You select A2:J13 and use <code>=I2="Cancelled"</code> (no
+<code>$</code>). What happens?</p>
+<ol type="1">
 <li>Whole rows are highlighted correctly</li>
-<li>The wrong cells are highlighted, because the column reference moves too</li>
+<li>The wrong cells are highlighted, because the column reference moves
+too</li>
 <li>Excel shows an error</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B.</strong> Without <code>$</code>, each column checks a different column (I, J, K…). Lock the column: <code>=$I2=...</code>.</p>
+<summary>
+Show answer
+</summary>
+<strong>B.</strong> Without <code>$</code>, each column checks a
+different column (I, J, K…). Lock the column: <code>=$I2=...</code>.
 </details>
 </div>
 <div class="quiz-q" data-answer="1">
-<p>2. Which option shows a small bar inside each cell, sized by the value?</p>
-<ol>
+<p>2. Which option shows a small bar inside each cell, sized by the
+value?</p>
+<ol type="1">
 <li>Color Scales</li>
 <li>Data Bars</li>
 <li>Icon Sets</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B — Data Bars.</strong></p>
+<summary>
+Show answer
+</summary>
+<strong>B — Data Bars.</strong>
 </details>
 </div>
 <div class="quiz-q" data-answer="0">
-<p>3. The built-in "Above Average" rule on J2:J13 uses which average?</p>
-<ol>
+<p>3. The built-in “Above Average” rule on J2:J13 uses which
+average?</p>
+<ol type="1">
 <li>All 12 values (776.25)</li>
 <li>Only non-cancelled values (825)</li>
 <li>The median</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>A.</strong> Built-in rules use every selected cell. For a filtered business average, write a formula rule.</p>
+<summary>
+Show answer
+</summary>
+<strong>A.</strong> Built-in rules use every selected cell. For a
+filtered business average, write a formula rule.
 </details>
 </div>
 <h2 id="summary">Summary</h2>
 <ul>
-<li>Conditional formatting colours cells by value, and updates automatically.</li>
-<li>Built-in rules cover common needs. Data bars show size in the cell.</li>
-<li><strong>Formula rules</strong> (<code>=$I2="Cancelled"</code>) can highlight whole rows. The <code>$</code> locks the column.</li>
-<li>Keep it to 1–2 meaningful rules per table, and check what "average" or "top" really includes.</li>
+<li>Conditional formatting colours cells by value, and updates
+automatically.</li>
+<li>Built-in rules cover common needs. Data bars show size in the
+cell.</li>
+<li><strong>Formula rules</strong> (<code>=$I2="Cancelled"</code>) can
+highlight whole rows. The <code>$</code> locks the column.</li>
+<li>Keep it to 1–2 meaningful rules per table, and check what “average”
+or “top” really includes.</li>
 </ul>
-<div class="admonition job">
-<p class="admonition-title">Job-ready check</p>
-<p><strong>Interview question:</strong> <em>"How would you highlight every overdue order row in a large sheet?"</em></p>
-<p><strong>Strong answer:</strong> "Select the full data range from the first data row and add a formula rule like <code>=AND($I2&lt;&gt;"Delivered",$K2&lt;TODAY())</code>, with the column locked by <code>$</code>. It colours entire rows and updates every day. I'd use one colour per meaning and document the rule for the team."</p>
-<p><strong>Mini project:</strong> In your workbook, add three rules: red rows for Cancelled, amber rows for Shipped/Pending, and data bars on value. Take a screenshot for your portfolio README.</p>
+<div class="admonition job" data-markdown="1">
+<p class="admonition-title">
+Job-ready check
+</p>
+<p><strong>Interview question:</strong> <em>“How would you highlight
+every overdue order row in a large sheet?”</em></p>
+<p><strong>Strong answer:</strong> “Select the full data range from the
+first data row and add a formula rule like
+<code>=AND($I2&lt;&gt;"Delivered",$K2&lt;TODAY())</code>, with the
+column locked by <code>$</code>. It colours entire rows and updates
+every day. I’d use one colour per meaning and document the rule for the
+team.”</p>
+<p><strong>Mini project:</strong> In your workbook, add three rules: red
+rows for Cancelled, amber rows for Shipped/Pending, and data bars on
+value. Take a screenshot for your portfolio README.</p>
 </div>
+<section class="mentor-prompt"><div class="mentor-head"><div><span class="eyebrow">AI study companion</span><h2 id="ai-mentor-prompt">AI Mentor Prompt</h2></div><button class="btn copy-prompt" type="button" data-copy-target="mentor-prompt-phase-1-excel-analysis-05-conditional-formatting">Copy prompt</button></div><p>Paste this into ChatGPT, Claude, Gemini, or another capable assistant to turn this tutorial into an interactive mentoring session.</p><pre class="prompt-box"><code id="mentor-prompt-phase-1-excel-analysis-05-conditional-formatting">You are my hands-on data-analytics and business-intelligence mentor.
+
+I am currently studying:
+&quot;Excel Conditional Formatting: Make Important Data Stand Out&quot;
+
+My level:
+Beginner
+
+Teach me this topic interactively rather than giving me a long lecture.
+
+Use this sequence:
+
+1. Check what I already understand with one short diagnostic question.
+2. Explain the concept in simple language and give me the mental model first.
+3. Give me one small task using code, SQL, configuration, data, or architecture as appropriate.
+4. Wait for my attempt before showing a complete solution.
+5. Review my work and explain both what is correct and what needs improvement.
+6. Help me debug errors step by step instead of immediately replacing my work.
+7. Increase the difficulty gradually and connect each new step to the previous one.
+8. Relate what I am learning to real professional data/AI engineering work.
+9. Ask me to explain an important decision in my own words so you can check my understanding.
+10. At the end, ask me to build or modify one small feature independently.
+
+Important rules:
+- Do not do the entire exercise for me unless I explicitly ask.
+- Explain unfamiliar terminology before using it heavily.
+- Prefer current, production-relevant practices over outdated shortcuts.
+- Distinguish clearly between concepts, tool-specific behaviour, and optional alternatives.
+- If a technical fact, API, syntax, version, or best practice may have changed, verify it against current official documentation before teaching it.
+- Never invent command output, test results, benchmark numbers, cloud behaviour, or data results.
+- If something cannot be executed in the current environment, say so and give me the exact command or verification step I should run.
+- Keep me actively coding, querying, configuring, reasoning, or debugging throughout the session.
+- When useful, work from the tutorial practice files (orders.xlsx, excel-solutions.xlsx) instead of inventing unrelated examples.
+
+The concepts I need to master are:
+- Conditional formatting
+- highlight
+- data bars
+- color scales
+- icon sets
+- formula rule
+- highlight row
+- above average
+
+Start by asking me one diagnostic question.</code></pre></section>
+
 <div class="terms-box"><div class="files-head"><b>Key terms in this lesson</b><a href="../../../glossary.html">Glossary →</a></div><div class="term-chips"><a class="term-chip" href="../../../glossary.html#conditional-formatting" title="Rules that change a cell&#x27;s colour or icon based on its value, such as red for below target.">Conditional formatting</a></div></div>
 <h2 id="free-resources">Free resources to go deeper</h2><ul class="resources"><li><a href="https://support.microsoft.com/en-us/excel/use-conditional-formatting-to-highlight-information-in-excel">Use conditional formatting to highlight information in Excel</a><span class="r-meta">Microsoft Support · All rule types, step by step.</span></li><li><a href="https://support.microsoft.com/en-us/excel/use-data-bars-color-scales-and-icon-sets-to-highlight-data">Use data bars, color scales, and icon sets to highlight data</a><span class="r-meta">Microsoft Support · Visual rules inside cells.</span></li><li><a href="https://edu.gcfglobal.org/en/excelformulas/overbudget-items/full">Excel Formulas: Over-Budget Items</a><span class="r-meta">GCFGlobal (free) · A short tutorial on formula-based highlighting.</span></li></ul>
 <div class="complete-bar"><span>Finished reading and did the exercise?</span>
@@ -279,9 +397,9 @@ document.documentElement.classList.add('no-anim')})();</script>
 <p class="reviewed">Last reviewed: 2026-10-09</p>
 
   </div></main>
-  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#where-to-find-it">Where to find it</a><a href="#example-1-highlight-big-values-built-in-rule">Example 1: highlight big values (built-in rule)</a><a href="#example-2-data-bars">Example 2: data bars</a><a href="#example-3-highlight-the-whole-row-with-a-formula">Example 3: highlight the whole row with a formula</a><a href="#example-4-above-average-and-a-hidden-trap">Example 4: &quot;above average&quot; — and a hidden trap</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#free-resources">Free resources</a></aside>
+  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#where-to-find-it">Where to find it</a><a href="#example-1-highlight-big-values-built-in-rule">Example 1: highlight big values (built-in rule)</a><a href="#example-2-data-bars">Example 2: data bars</a><a href="#example-3-highlight-the-whole-row-with-a-formula">Example 3: highlight the whole row with a formula</a><a href="#example-4-above-average-and-a-hidden-trap">Example 4: “above average” — and a hidden trap</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#ai-mentor-prompt">AI Mentor Prompt</a><a href="#free-resources">Free resources</a></aside>
 </div>
-<footer class="site">Data, AI &amp; Automation Path v0.8 · Applied AI, Data &amp; Automation Lab · Updated October 2026<br>
+<footer class="site"><b>Saiful The Techie</b> · Data, AI &amp; Automation Path v0.9.1 · Updated October 2026<br>
 Lesson text: <a href="../../../license.html">CC BY-NC-SA 4.0</a> · Code: <a href="../../../license.html#code-mit-license">MIT</a> · Free external resources belong to their respective owners.</footer>
 <script src="../../../search-index.js"></script>
 <script src="../../../assets/app.js"></script>

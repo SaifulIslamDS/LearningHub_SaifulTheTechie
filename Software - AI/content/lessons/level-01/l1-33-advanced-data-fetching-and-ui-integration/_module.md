@@ -1,5 +1,3 @@
-**Source mapping:** Level 01 source curriculum · PDF page 18
-
 This module turns **Advanced Data Fetching & UI Integration** into a guided Saiful The Techie learning sequence. Use the tutorials in order: understand the architecture first, then build the matching feature with the downloadable files.
 
 ## What you'll learn

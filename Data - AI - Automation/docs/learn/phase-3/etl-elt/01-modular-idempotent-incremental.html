@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en" data-root="../../../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Modular, Idempotent Pipelines with Incremental Loads — Data, AI &amp; Automation Path</title>
+<meta name="description" content="Build a pipeline in small testable steps, load only new orders, and make retries safe without creating duplicates.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Saiful The Techie">
+<meta property="og:title" content="Modular, Idempotent Pipelines with Incremental Loads">
+<meta property="og:description" content="Build a pipeline in small testable steps, load only new orders, and make retries safe without creating duplicates.">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+
+<script>(function(){var t=null;try{t=localStorage.getItem('daa-theme')}catch(e){}
+if(!t)t=(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';
+document.documentElement.setAttribute('data-theme',t);
+var n=null;try{n=localStorage.getItem('daa-nav')}catch(e){}
+if(n==='open'&&window.matchMedia&&matchMedia('(min-width: 961px)').matches)document.documentElement.setAttribute('data-nav','open');
+document.documentElement.classList.add('no-anim')})();</script>
+<link rel="stylesheet" href="../../../assets/style.css">
+
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Open curriculum menu" title="Curriculum menu (press M)" aria-controls="sidebar" aria-expanded="false"><span class="ico-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span class="ico-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></button>
+  <a class="brand" href="../../../index.html"><span class="brand-text"><span class="brand-name">Saiful The Techie</span><span class="brand-version">Data, AI &amp; Automation Path · v0.9.1</span></span></a>
+  <nav class="top-links" aria-label="Main">
+    <a href="../../../index.html" class="">Home</a><a href="../../../curriculum.html" class="">Curriculum</a><a href="../../../practice-files.html" class="">Practice files</a><a href="../../../glossary.html" class="">Glossary</a><a href="../../../how-to-learn.html" class="">How to learn</a><a href="../../../about.html" class="">About</a>
+  </nav>
+  <div class="top-spacer"></div>
+  <div class="search" role="search">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input id="searchInput" type="search" placeholder="Search lessons, tools, topics" aria-label="Search" autocomplete="off">
+    <kbd>/</kbd>
+    <div class="search-results" id="searchResults" role="listbox"></div>
+  </div>
+  <button class="icon-btn theme-toggle" id="themeBtn" aria-label="Toggle light or dark mode" title="Light / dark"><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
+</header>
+<div class="layout wide">
+  <nav class="sidebar" id="sidebar" aria-label="Curriculum">
+    <div class="side-title">Curriculum</div>
+    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="85"><i></i></div><span class="bar-label" data-progress-label></span></div>
+<div class="nav-phase"><a href="../../../learn/phase-0/index.html"><span class="nav-num">0</span>Foundations</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-1/index.html"><span class="nav-num">1</span>Analytics &amp; BI</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-2/index.html"><span class="nav-num">2</span>Data Science</a>
+</div>
+<div class="nav-phase current open"><a href="../../../learn/phase-3/index.html"><span class="nav-num">3</span>Data Engineering</a>
+<ul class="nav-modules">
+<li><a class="" href="../../../learn/phase-3/data-ingestion/index.html">Data Ingestion</a>
+</li>
+<li><a class="" href="../../../learn/phase-3/advanced-sql/index.html">Advanced SQL</a>
+</li>
+<li><a class="" href="../../../learn/phase-3/database-engineering/index.html">Database Engineering</a>
+</li>
+<li><a class="" href="../../../learn/phase-3/data-warehousing/index.html">Data Warehousing</a>
+</li>
+<li><a class="" href="../../../learn/phase-3/lakehouse/index.html">Lakehouse &amp; Open Table Formats</a>
+</li>
+<li><a class="current" href="../../../learn/phase-3/etl-elt/index.html">ETL / ELT</a>
+<ul class="nav-lessons">
+<li><a class="current" data-lesson="phase-3/etl-elt/01-modular-idempotent-incremental" href="../../../learn/phase-3/etl-elt/01-modular-idempotent-incremental.html">Modular, Idempotent Pipelines with Incremental Loads</a></li>
+<li><a class="" data-lesson="phase-3/etl-elt/02-replayable-pipelines-cdc" href="../../../learn/phase-3/etl-elt/02-replayable-pipelines-cdc.html">Replayable Pipelines and Change Data Capture</a></li>
+</ul>
+</li>
+<li><a class="" href="../../../learn/phase-3/data-quality/index.html">Data Quality &amp; Contracts</a>
+</li>
+<li><a class="" href="../../../learn/phase-3/docker/index.html">Docker</a>
+</li>
+<li><a class="" href="../../../learn/phase-3/orchestration/index.html">Orchestration</a>
+</li>
+<li><a class="" href="../../../learn/phase-3/dbt/index.html">dbt</a>
+</li>
+<li><a class="" href="../../../learn/phase-3/cloud-iac/index.html">Cloud &amp; Infrastructure as Code</a>
+</li>
+<li><a class="" href="../../../learn/phase-3/ai-ready-data/index.html">AI-Ready Data</a>
+</li>
+<li><a class="" href="../../../learn/phase-3/big-data-streaming/index.html">Big Data &amp; Streaming</a>
+</li>
+</ul>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-4/index.html"><span class="nav-num">4</span>ML Engineering</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-5/index.html"><span class="nav-num">5</span>LLM &amp; RAG</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-6/index.html"><span class="nav-num">6</span>Agents &amp; Automation</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-7/index.html"><span class="nav-num">7</span>LLMOps &amp; Governance</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-8/index.html"><span class="nav-num">8</span>Capstone</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-9/index.html"><span class="nav-num">9</span>Career</a>
+</div>
+<div class="side-extra"><a href="../../../index.html">Home</a><a href="../../../curriculum.html">Full curriculum map</a><a href="../../../practice-files.html">Practice files</a><a href="../../../glossary.html">Glossary</a><a href="../../../how-to-learn.html">How to learn here</a><a href="../../../about.html">About &amp; contributing</a></div></nav>
+  <main class="main" id="main"><div class="content">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../../index.html">Home</a><span class="sep">/</span><a href="../../../learn/phase-3/index.html">Phase 3</a><span class="sep">/</span><a href="../../../learn/phase-3/etl-elt/index.html">ETL / ELT</a><span class="sep">/</span><span>Modular, Idempotent Pipelines with Incremental Loads</span></nav>
+<h1>Modular, Idempotent Pipelines with Incremental Loads</h1>
+<p class="lead">Build a pipeline in small testable steps, load only new orders, and make retries safe without creating duplicates.</p>
+<div class="meta"><span class="pill">Phase <b>3</b> · Data Engineering</span><span class="pill">Level <b>Intermediate</b></span><span class="pill">Time <b>45 min</b></span></div>
+<div class="admonition note"><p class="admonition-title">Before you start</p><p><a href="../../../learn/phase-3/data-ingestion/01-rest-apis-auth-pagination.html">REST APIs, Authentication &amp; Pagination: Pull Data Like a Pro</a> · <a href="../../../learn/phase-3/lakehouse/01-delta-lake-medallion.html">Delta Lake &amp; the Medallion Architecture: Bronze, Silver, Gold</a></p></div>
+<div class="files-box"><div class="files-head"><b>Practice files for this page</b><a href="../../../practice-files.html">All practice files →</a></div><ul><li><a href="../../../downloads/phase-3/data-engineering-scripts.zip" download>data-engineering-scripts.zip</a><span class="f-desc">Phase 3 scripts: ingestion, PostgreSQL, advanced SQL, warehousing, lakehouse, Docker, ETL/CDC, data quality, plus the dbt mini-project and verification scripts · 476 KB</span></li></ul></div>
+<h2 id="what-is-it">What is it?</h2>
+<p>A <strong>data pipeline</strong> is a repeatable sequence that moves
+and transforms data. A reliable pipeline is easier to operate when it is
+split into small <strong>modules</strong> with one clear job each:</p>
+<ol type="1">
+<li><strong>Extract</strong> — read the source.</li>
+<li><strong>Transform</strong> — validate, clean and reshape.</li>
+<li><strong>Load</strong> — write to the target safely.</li>
+</ol>
+<p>That is <strong>ETL</strong> when transformation happens before the
+target is loaded. In <strong>ELT</strong>, you extract and load first,
+then transform inside a warehouse or lakehouse. The choice changes
+<em>where</em> transformation happens, not the need for reliable
+steps.</p>
+<p>For daily work, you usually do not want to reload every historical
+row. An <strong>incremental load</strong> moves only data that is new or
+changed since the last successful run. A <strong>watermark</strong>
+records where the last run stopped, such as the maximum date or update
+timestamp.</p>
+<div class="admonition job" data-markdown="1">
+<p class="admonition-title">
+Why it matters at work
+</p>
+<p>Full reloads are simple but become slow and expensive as data grows.
+Incremental jobs are faster, but they introduce state: you must know
+what was already processed and make retries safe. Interviewers often ask
+how you would prevent a scheduled job from duplicating rows after a
+retry.</p>
+</div>
+<p>The script is <code>14_modular_incremental_pipeline.py</code>. It
+uses the 2025 order data and only <code>pandas</code>.</p>
+<h2 id="step-1-keep-extract-transform-and-load-separate">Step 1: keep
+extract, transform and load separate</h2>
+<p>The extractor owns source filtering:</p>
+<pre class="python"><code>def extract_orders(start_exclusive=None, end_inclusive=None):
+    df = pd.read_csv(SOURCE, parse_dates=[&quot;order_date&quot;])
+    if start_exclusive:
+        df = df[df[&quot;order_date&quot;] &gt; pd.Timestamp(start_exclusive)]
+    if end_inclusive:
+        df = df[df[&quot;order_date&quot;] &lt;= pd.Timestamp(end_inclusive)]
+    return df.copy()</code></pre>
+<p>The transformer owns business and data-quality rules:</p>
+<pre class="python"><code>def transform_orders(df):
+    out = df.copy()
+    if out[&quot;order_id&quot;].duplicated().any():
+        raise ValueError(&quot;source batch contains duplicate order_id values&quot;)
+    if (out[&quot;quantity&quot;] &lt;= 0).any():
+        raise ValueError(&quot;quantity must be positive&quot;)
+    if out[&quot;status&quot;].isna().any():
+        raise ValueError(&quot;status must not be null&quot;)
+    out[&quot;order_date&quot;] = pd.to_datetime(out[&quot;order_date&quot;]).dt.strftime(&quot;%Y-%m-%d&quot;)
+    return out.sort_values(&quot;order_id&quot;).reset_index(drop=True)</code></pre>
+<p>The loader owns target-writing behaviour. Because each function has
+one purpose, you can test or replace it without rewriting the whole
+pipeline.</p>
+<h2 id="step-2-use-a-watermark-for-the-incremental-window">Step 2: use a
+watermark for the incremental window</h2>
+<p>Our first run loads everything through 30 November. The second run
+starts <em>after</em> that watermark and loads December only:</p>
+<pre class="python"><code>run_window(&quot;initial&quot;, None, &quot;2025-11-30&quot;)
+run_window(&quot;incremental&quot;, &quot;2025-11-30&quot;, &quot;2025-12-31&quot;)</code></pre>
+<p>Real output from the script:</p>
+<pre class="text"><code>initial: extracted 3850 | target 3850 | watermark 2025-11-30
+incremental: extracted 396 | target 4246 | watermark 2025-12-31</code></pre>
+<p>The <strong>396 December orders</strong> match the existing Phase 3A
+API-ingestion known answer. The important rule is: advance the stored
+watermark <strong>only after the load succeeds</strong>. If the job
+fails before completion, keep the old watermark and retry the same
+window.</p>
+<p>A date works for this practice dataset because orders are historical
+and fixed. In a live source, prefer a reliable <code>updated_at</code>,
+sequence number, database change-tracking token or CDC position when
+updates can arrive for old dates.</p>
+<h2 id="step-3-make-retries-idempotent">Step 3: make retries
+idempotent</h2>
+<p><strong>Idempotent</strong> means: running the same job again gives
+the same final state as running it once.</p>
+<p>An unsafe incremental loader simply appends rows. If a scheduler
+retries the December batch, you get duplicates. Instead, this loader
+uses <code>order_id</code> as the business key and keeps the newest
+copy:</p>
+<pre class="python"><code>def load_upsert(batch):
+    if TARGET.exists():
+        current = pd.read_csv(TARGET)
+        combined = pd.concat([current, batch], ignore_index=True)
+    else:
+        combined = batch.copy()
+
+    combined = (
+        combined.drop_duplicates(subset=[&quot;order_id&quot;], keep=&quot;last&quot;)
+                .sort_values(&quot;order_id&quot;)
+                .reset_index(drop=True)
+    )
+    combined.to_csv(TARGET, index=False, lineterminator=&quot;\n&quot;)
+    return combined</code></pre>
+<p>This is a small-file demonstration of an <strong>upsert</strong>:
+insert new keys, update keys that already exist.</p>
+<p>The script deliberately loads the December batch twice:</p>
+<pre class="text"><code>retry same batch: extracted 396 | target 4246 | duplicate order_ids 0
+known answer: rows 4246 | net revenue 5478357.79</code></pre>
+<p>The retry does not create another 396 rows. The result still
+reconciles to the shared known answer: <strong>4,246 orders and BDT
+5,478,357.79 net revenue excluding Cancelled orders</strong>.</p>
+<p>In a database or lakehouse, use native <code>MERGE</code> / upsert
+logic rather than rewriting a whole CSV. The design principle stays the
+same: identify the row grain with a stable unique key.</p>
+<h2 id="step-4-etl-vs-elt-in-the-same-design">Step 4: ETL vs ELT in the
+same design</h2>
+<p>The same modular pipeline can be implemented in either order:</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Pattern</th>
+<th>Typical flow</th>
+<th>Good fit</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>ETL</td>
+<td>source → Python validation/cleanup → curated target</td>
+<td>Smaller pipelines, strict pre-load rules, external APIs/files</td>
+</tr>
+<tr class="even">
+<td>ELT</td>
+<td>source → raw warehouse/lakehouse → SQL/dbt transformations</td>
+<td>Modern warehouses/lakehouses, scalable SQL transformation</td>
+</tr>
+</tbody>
+</table>
+<p>The practice script is ETL because <code>transform_orders()</code>
+runs before the curated CSV is written. In a later dbt module, the
+project will use an ELT-style approach: land data first, then transform
+it inside the analytical platform.</p>
+<h2 id="common-mistakes">Common mistakes</h2>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Mistake</th>
+<th>What happens</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>One giant pipeline function</td>
+<td>Failures are hard to isolate and test</td>
+<td>Separate extract, transform and load responsibilities</td>
+</tr>
+<tr class="even">
+<td>Advancing the watermark before the load succeeds</td>
+<td>Failed rows can be skipped forever</td>
+<td>Commit state only after a successful target write</td>
+</tr>
+<tr class="odd">
+<td>Appending every incremental batch</td>
+<td>Retries create duplicate business rows</td>
+<td>Upsert/MERGE on a stable unique key</td>
+</tr>
+<tr class="even">
+<td>Using <code>order_date</code> when old rows can be edited</td>
+<td>Late updates to old dates are missed</td>
+<td>Use <code>updated_at</code>, a sequence, change tracking or CDC</td>
+</tr>
+<tr class="odd">
+<td>Rebuilding all history every day</td>
+<td>Runtime and compute cost grow with history</td>
+<td>Use incremental loading once correctness is proven</td>
+</tr>
+</tbody>
+</table>
+<h2 id="try-it-yourself">Try it yourself</h2>
+<p><strong>Task:</strong> Add a guard to <code>load_upsert()</code> that
+fails if the final target contains duplicate <code>order_id</code>
+values. Then rerun the script and confirm the retry still succeeds.</p>
+<details>
+<summary>
+Show a hint
+</summary>
+After the <code>drop_duplicates(...)</code> step, check
+<code>combined["order_id"].duplicated().any()</code>.
+</details>
+<details>
+<summary>
+Show the solution
+</summary>
+<pre class="python"><code>if combined[&quot;order_id&quot;].duplicated().any():
+    raise AssertionError(&quot;target grain broken: duplicate order_id&quot;)</code></pre>
+Place the check immediately before <code>to_csv()</code>. It turns the
+expected target grain into an executable rule.
+</details>
+<h2 id="quick-quiz">Quick quiz</h2>
+<div class="quiz-q" data-answer="1">
+<p>1. What does an incremental load do after the initial load?</p>
+<ol type="1">
+<li>Reloads every historical row</li>
+<li>Processes only new or changed data since the previous successful
+point</li>
+<li>Deletes the target and starts again</li>
+</ol>
+<details>
+<summary>
+Show answer
+</summary>
+<strong>B.</strong> Incremental loading reduces repeated work by
+processing the delta.
+</details>
+</div>
+<div class="quiz-q" data-answer="0">
+<p>2. Why is an idempotent load important?</p>
+<ol type="1">
+<li>A retry can run safely without changing the intended final
+result</li>
+<li>It makes every pipeline real-time</li>
+<li>It removes the need for validation</li>
+</ol>
+<details>
+<summary>
+Show answer
+</summary>
+<strong>A.</strong> Retries are normal in production, so the same batch
+must not create duplicate effects.
+</details>
+</div>
+<div class="quiz-q" data-answer="2">
+<p>3. When should a pipeline save its new watermark?</p>
+<ol type="1">
+<li>Before extraction starts</li>
+<li>After extraction but before loading</li>
+<li>After the target load has completed successfully</li>
+</ol>
+<details>
+<summary>
+Show answer
+</summary>
+<strong>C.</strong> Otherwise a failure can move the state forward while
+data is still missing.
+</details>
+</div>
+<h2 id="summary">Summary</h2>
+<ul>
+<li>A modular pipeline separates <strong>extract → transform →
+load</strong> so each part is easier to test and replace.</li>
+<li><strong>ETL</strong> transforms before loading; <strong>ELT</strong>
+loads first and transforms in the target platform.</li>
+<li>A <strong>watermark</strong> records the last successful point so
+later runs can process only the delta.</li>
+<li><strong>Idempotency</strong> makes retries safe; an upsert on a
+stable key prevents duplicate effects.</li>
+<li>The practice run loads 3,850 rows first, 396 incrementally, and
+still finishes at the known 4,246 orders after retrying the same
+batch.</li>
+</ul>
+<div class="admonition job" data-markdown="1">
+<p class="admonition-title">
+Job-ready check
+</p>
+<p><strong>Interview question:</strong> <em>“How would you design a
+daily incremental orders pipeline so a retry cannot duplicate
+rows?”</em></p>
+<p><strong>Strong answer:</strong> “I would separate extraction,
+transformation and loading. I would read only rows after the last
+successful watermark, validate the batch, then MERGE into the target
+using <code>order_id</code> as the unique key. I would update the stored
+watermark only after that transaction succeeds. If the scheduler retries
+the same window, the MERGE updates the same keys instead of appending
+duplicates, so the job is idempotent. I would also reconcile row counts
+and business totals after each run.”</p>
+<p><strong>Mini project:</strong> Replace the CSV target with PostgreSQL
+or Delta Lake. Keep the same 3,850 + 396 load windows, use a native
+MERGE/upsert, retry December twice, and prove the final table still has
+4,246 unique order IDs.</p>
+</div>
+<section class="mentor-prompt"><div class="mentor-head"><div><span class="eyebrow">AI study companion</span><h2 id="ai-mentor-prompt">AI Mentor Prompt</h2></div><button class="btn copy-prompt" type="button" data-copy-target="mentor-prompt-phase-3-etl-elt-01-modular-idempotent-incremental">Copy prompt</button></div><p>Paste this into ChatGPT, Claude, Gemini, or another capable assistant to turn this tutorial into an interactive mentoring session.</p><pre class="prompt-box"><code id="mentor-prompt-phase-3-etl-elt-01-modular-idempotent-incremental">You are my hands-on data-engineering mentor.
+
+I am currently studying:
+&quot;Modular, Idempotent Pipelines with Incremental Loads&quot;
+
+My level:
+Intermediate
+
+Teach me this topic interactively rather than giving me a long lecture.
+
+Use this sequence:
+
+1. Check what I already understand with one short diagnostic question.
+2. Explain the concept in simple language and give me the mental model first.
+3. Give me one small task using code, SQL, configuration, data, or architecture as appropriate.
+4. Wait for my attempt before showing a complete solution.
+5. Review my work and explain both what is correct and what needs improvement.
+6. Help me debug errors step by step instead of immediately replacing my work.
+7. Increase the difficulty gradually and connect each new step to the previous one.
+8. Relate what I am learning to real professional data/AI engineering work.
+9. Ask me to explain an important decision in my own words so you can check my understanding.
+10. At the end, ask me to build or modify one small feature independently.
+
+Important rules:
+- Do not do the entire exercise for me unless I explicitly ask.
+- Explain unfamiliar terminology before using it heavily.
+- Prefer current, production-relevant practices over outdated shortcuts.
+- Distinguish clearly between concepts, tool-specific behaviour, and optional alternatives.
+- If a technical fact, API, syntax, version, or best practice may have changed, verify it against current official documentation before teaching it.
+- Never invent command output, test results, benchmark numbers, cloud behaviour, or data results.
+- If something cannot be executed in the current environment, say so and give me the exact command or verification step I should run.
+- Keep me actively coding, querying, configuring, reasoning, or debugging throughout the session.
+- When useful, work from the tutorial practice files (data-engineering-scripts.zip) instead of inventing unrelated examples.
+- For Phase 3 order-data exercises, preserve the established reconciliation targets when relevant: 4,246 orders and net revenue 5,478,357.79. If my result differs, help me debug the cause instead of changing the expected result.
+
+The concepts I need to master are:
+- Modular pipelines
+- Idempotency
+- Incremental loads
+- etl
+- elt
+- data pipeline
+- idempotent
+- incremental load
+
+Start by asking me one diagnostic question.</code></pre></section>
+<section class="video-companion"><h2 id="video-companion">Video companion</h2><div class="video-frame"><iframe src="https://www.youtube-nocookie.com/embed/JbM4JhBiztM?start=1843" title="5-Hour Data Engineering Course: Complete Interview Preparation" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div><h3>5-Hour Data Engineering Course: Complete Interview Preparation</h3><p>The selected section directly reinforces incremental loads, change-detection strategies and idempotency patterns. Watch the focused timestamps, then implement the same ideas with the supplied deterministic local pipeline instead of copying the video stack.</p><p class="video-meta">Mukul Raina · ~5 hours (use the selected section) · English · Intermediate</p><div class="video-timestamps"><b>Recommended sections</b><ul><li><a href="https://www.youtube.com/watch?v=JbM4JhBiztM&amp;t=1843s">30:43 — Incremental load</a></li><li><a href="https://www.youtube.com/watch?v=JbM4JhBiztM&amp;t=2203s">36:43 — Change-detection strategies</a></li><li><a href="https://www.youtube.com/watch?v=JbM4JhBiztM&amp;t=2328s">38:48 — Idempotency in pipelines</a></li></ul></div><p class="video-reviewed">Video link reviewed: 2026-10-09</p><p><a href="https://www.youtube.com/watch?v=JbM4JhBiztM&amp;t=1843s">Watch on YouTube ↗</a></p></section>
+<div class="terms-box"><div class="files-head"><b>Key terms in this lesson</b><a href="../../../glossary.html">Glossary →</a></div><div class="term-chips"><a class="term-chip" href="../../../glossary.html#data-pipeline" title="A repeatable, automated series of steps that moves and transforms data from sources to where it is used.">Data pipeline</a><a class="term-chip" href="../../../glossary.html#etl-elt" title="Ways to move data: extract from sources, transform (clean, join) and load into a target. ELT loads first and transforms inside the warehouse.">ETL / ELT</a><a class="term-chip" href="../../../glossary.html#idempotent" title="A job is idempotent if running it twice gives the same result as running it once, which makes retries safe.">Idempotent</a><a class="term-chip" href="../../../glossary.html#incremental-load" title="A load that processes only rows or files that are new or changed since the previous successful point instead of rebuilding all history.">Incremental load</a><a class="term-chip" href="../../../glossary.html#upsert" title="A write that updates a target row when its key already exists and inserts it when the key is new, making incremental retries easier to keep idempotent.">Upsert</a><a class="term-chip" href="../../../glossary.html#watermark" title="A saved value such as the latest update timestamp or sequence number that marks how far a successful incremental load has processed.">Watermark</a></div></div>
+<h2 id="free-resources">Free resources to go deeper</h2><ul class="resources"><li><a href="https://learn.microsoft.com/en-us/fabric/data-factory/incremental-copy-job">Incremental copy in Copy job</a><span class="r-meta">Microsoft Learn · Current explanation of full vs incremental copy, watermarks and CDC.</span></li><li><a href="https://learn.microsoft.com/en-us/azure/data-factory/tutorial-incremental-copy-overview">Incrementally load data from a source data store</a><span class="r-meta">Microsoft Learn · Shows the common watermark pattern for database and file sources.</span></li><li><a href="https://docs.getdbt.com/docs/build/incremental-models">Configure incremental models</a><span class="r-meta">dbt Developer Hub · Shows how warehouse transformations filter new or changed rows and use a unique key for updates.</span></li></ul>
+<div class="complete-bar"><span>Finished reading and did the exercise?</span>
+<button class="btn" id="completeBtn" type="button" data-id="phase-3/etl-elt/01-modular-idempotent-incremental">Mark lesson as complete</button></div>
+<nav class="pager"><a class="prev" href="../../../learn/phase-3/lakehouse/02-iceberg-lakehouse-platforms.html"><small>← Previous</small>Apache Iceberg &amp; Lakehouse Platforms: Fabric, Databricks, Snowflake</a><a class="next" href="../../../learn/phase-3/etl-elt/02-replayable-pipelines-cdc.html"><small>Next →</small>Replayable Pipelines and Change Data Capture</a></nav>
+<p class="reviewed">Last reviewed: 2026-10-09</p>
+
+  </div></main>
+  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#step-1-keep-extract-transform-and-load-separate">Step 1: keep extract, transform and load separate</a><a href="#step-2-use-a-watermark-for-the-incremental-window">Step 2: use a watermark for the incremental window</a><a href="#step-3-make-retries-idempotent">Step 3: make retries idempotent</a><a href="#step-4-etl-vs-elt-in-the-same-design">Step 4: ETL vs ELT in the same design</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#ai-mentor-prompt">AI Mentor Prompt</a><a href="#video-companion">Video companion</a><a href="#free-resources">Free resources</a></aside>
+</div>
+<footer class="site"><b>Saiful The Techie</b> · Data, AI &amp; Automation Path v0.9.1 · Updated October 2026<br>
+Lesson text: <a href="../../../license.html">CC BY-NC-SA 4.0</a> · Code: <a href="../../../license.html#code-mit-license">MIT</a> · Free external resources belong to their respective owners.</footer>
+<script src="../../../search-index.js"></script>
+<script src="../../../assets/app.js"></script>
+</body>
+</html>

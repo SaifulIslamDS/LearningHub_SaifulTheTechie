@@ -12,7 +12,7 @@ The two user-supplied source curricula are the **coverage backbone**. Saiful The
 
 ## Current release
 
-**v0.5.0 — Next.js + Full-Stack** extends Level 01 through Modules 31–52 and also applies the post-v0.4 tutorial-architecture upgrade: deeper tutorial writing, reduced title repetition, practice-file synchronization, optional video companions and removal of compulsory quiz/mistake/summary/job-ready blocks.
+**v0.5.2 — Navigation, Video & Learning-Path Audit** is a corrective release on top of v0.5.1. It makes Level 01 and Level 02 independently collapsible in the curriculum sidebar, removes learner-facing source bookkeeping from module pages, eliminates duplicate module-title blocks, prevents broken YouTube embeds when the downloaded hub is opened through `file://`, and records a full beginner-to-career learning-path audit before the next content milestone.
 
 Framework/cloud examples are labelled honestly when the build environment cannot execute them. Node-based examples are executed where possible and their output is verified rather than invented.
 
@@ -34,7 +34,9 @@ The site separates page responsibilities:
 - **Practice files** — starters, runnable examples and references.
 - **Projects** — integrated builds.
 - **Glossary** — plain-English technical vocabulary.
-- **Video companions** — optional external explanations; the written tutorial remains complete without them.
+- **Video companions** — optional reviewed external explanations; the written tutorial remains complete without them.
+- **AI tutor prompt** — a lesson-aware copyable prompt that turns a frontier LLM into a guided mentor instead of an answer generator.
+- **Roadmap** — future modules are preserved but separated from the active authored learning path.
 
 ## Build architecture
 
@@ -47,7 +49,8 @@ Markdown, YAML, code and assets are the source of truth. `build.py` generates `d
 - Runnable output is never fabricated.
 - Practice downloads are catalogued and tied to tutorials.
 - External resources are free/public and favour official documentation.
-- YouTube videos are supplementary, reviewed and linked rather than redistributed.
+- YouTube videos are supplementary, reviewed and linked rather than redistributed. Embedded players use privacy-enhanced YouTube mode with an external fallback link.
+- Every authored tutorial gets a contextual AI tutor prompt generated from its title, level, curriculum topics and practice files.
 - Every release rebuilds, validates links and checks deterministic generated output.
 
 ## Branding

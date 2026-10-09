@@ -18,9 +18,10 @@ This hub is designed for career-focused self-study. The written tutorial is the 
 4. Run executable examples and compare with verified output where provided.
 5. Change one input, route, component, query or configuration value and predict what will happen.
 6. Follow the **Build with the practice package** section until your files match the tutorial's completed state.
-7. Use the optional video companion when another visual explanation would help.
-8. Read the linked official documentation for details that change across framework versions.
-9. Mark the tutorial complete only after you can explain the main idea in your own words.
+7. Use the optional **video companion** when another visual explanation would help. Follow the recommended timestamps instead of assuming you need the whole video.
+8. Open **Learn this lesson with AI**, copy the lesson-aware frontier-LLM prompt, and use it for guided practice, code review and debugging. Make the model wait for your attempt instead of asking it to do the work immediately.
+9. Read the linked official documentation for details that change across framework versions.
+10. Mark the tutorial complete only after you can explain the main idea in your own words.
 
 ## Tutorials, practice and projects are different
 
@@ -29,9 +30,13 @@ This hub is designed for career-focused self-study. The written tutorial is the 
 - **Projects** combine multiple concepts into a portfolio-quality build.
 - **Curriculum** is the roadmap and source-topic map, not the tutorial itself.
 
+## Use five learning layers together
+
+A strong session can follow: **Read → Build → Watch → Learn with AI → Verify in official docs**. The written Saiful The Techie tutorial is the core; the other layers give you another angle without replacing your own reasoning.
+
 ## Using AI responsibly
 
-Use an AI assistant as an explainer, reviewer and debugger after you have attempted the step. Ask it to explain the error or compare two approaches before asking it to replace your whole solution. Keep Git history so AI-assisted changes remain inspectable.
+Every authored tutorial now includes a copyable lesson-aware frontier-LLM prompt. Use the AI as an explainer, reviewer and debugger after you have attempted the step. Ask it to explain the error or compare two approaches before asking it to replace your whole solution. Keep Git history so AI-assisted changes remain inspectable.
 
 ## Verification labels
 

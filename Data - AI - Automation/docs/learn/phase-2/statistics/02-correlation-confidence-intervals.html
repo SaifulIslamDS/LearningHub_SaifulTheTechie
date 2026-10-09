@@ -6,7 +6,7 @@
 <title>Statistics Part 2: Correlation and Confidence Intervals — Data, AI &amp; Automation Path</title>
 <meta name="description" content="Measure relationships with Pearson and Spearman correlation without being fooled by outliers, and report means, proportions and medians with 95% confidence intervals — including the bootstrap.">
 <meta property="og:type" content="article">
-<meta property="og:site_name" content="Data, AI &amp; Automation Path">
+<meta property="og:site_name" content="Saiful The Techie">
 <meta property="og:title" content="Statistics Part 2: Correlation and Confidence Intervals">
 <meta property="og:description" content="Measure relationships with Pearson and Spearman correlation without being fooled by outliers, and report means, proportions and medians with 95% confidence intervals — including the bootstrap.">
 <meta property="og:locale" content="en_US">
@@ -19,13 +19,13 @@ var n=null;try{n=localStorage.getItem('daa-nav')}catch(e){}
 if(n==='open'&&window.matchMedia&&matchMedia('(min-width: 961px)').matches)document.documentElement.setAttribute('data-nav','open');
 document.documentElement.classList.add('no-anim')})();</script>
 <link rel="stylesheet" href="../../../assets/style.css">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233f7d6a'/%3E%3Ctext x='16' y='21' font-family='sans-serif' font-size='13' font-weight='700' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
+
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="topbar">
   <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Open curriculum menu" title="Curriculum menu (press M)" aria-controls="sidebar" aria-expanded="false"><span class="ico-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span class="ico-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></button>
-  <a class="brand" href="../../../index.html"><span class="brand-badge">AI</span><span class="brand-text"><span class="brand-name">Data, AI &amp; Automation Path</span><span class="brand-version">v0.8</span></span></a>
+  <a class="brand" href="../../../index.html"><span class="brand-text"><span class="brand-name">Saiful The Techie</span><span class="brand-version">Data, AI &amp; Automation Path · v0.9.1</span></span></a>
   <nav class="top-links" aria-label="Main">
     <a href="../../../index.html" class="">Home</a><a href="../../../curriculum.html" class="">Curriculum</a><a href="../../../practice-files.html" class="">Practice files</a><a href="../../../glossary.html" class="">Glossary</a><a href="../../../how-to-learn.html" class="">How to learn</a><a href="../../../about.html" class="">About</a>
   </nav>
@@ -41,7 +41,7 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="layout wide">
   <nav class="sidebar" id="sidebar" aria-label="Curriculum">
     <div class="side-title">Curriculum</div>
-    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="77"><i></i></div><span class="bar-label" data-progress-label></span></div>
+    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="85"><i></i></div><span class="bar-label" data-progress-label></span></div>
 <div class="nav-phase"><a href="../../../learn/phase-0/index.html"><span class="nav-num">0</span>Foundations</a>
 </div>
 <div class="nav-phase"><a href="../../../learn/phase-1/index.html"><span class="nav-num">1</span>Analytics &amp; BI</a>
@@ -97,161 +97,201 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="files-box"><div class="files-head"><b>Practice files for this page</b><a href="../../../practice-files.html">All practice files →</a></div><ul><li><a href="../../../downloads/phase-2/data-science-scripts.zip" download>data-science-scripts.zip</a><span class="f-desc">All 21 Phase 2 lesson scripts (NumPy to research thinking), shared chart style, data folder and solutions · 230 KB</span></li><li><a href="../../../downloads/phase-2/orders_2025.csv" download>orders_2025.csv</a><span class="f-desc">4,246 clean orders for 2025 (synthetic, fixed seed): region, segment, channel, product, price, discount, status, delivery days, revenue · 472 KB</span></li></ul></div>
 <h2 id="what-is-it">What is it?</h2>
 <ul>
-<li><strong>Correlation</strong> is one number (−1 to +1) for how consistently two variables move together. <strong>Pearson r</strong> measures straight-line relationships; <strong>Spearman ρ</strong> (rho) works on ranks, so it handles skew and outliers.</li>
-<li>A <strong>confidence interval (CI)</strong> gives a range of plausible values for something you estimated from a sample: "mean delivery time 5.26 days, 95% CI 4.96 to 5.55".</li>
+<li><strong>Correlation</strong> is one number (−1 to +1) for how
+consistently two variables move together. <strong>Pearson r</strong>
+measures straight-line relationships; <strong>Spearman ρ</strong> (rho)
+works on ranks, so it handles skew and outliers.</li>
+<li>A <strong>confidence interval (CI)</strong> gives a range of
+plausible values for something you estimated from a sample: “mean
+delivery time 5.26 days, 95% CI 4.96 to 5.55”.</li>
 </ul>
-<div class="admonition job">
-<p class="admonition-title">Why it matters at work</p>
-<p>A single number without uncertainty invites over-reaction: "Khulna's late rate is 26%, Gazipur's is 28%, so Gazipur is worse!" Confidence intervals show when a difference is real and when it's noise, and they're expected in any serious analysis, A/B test or model evaluation.</p>
+<div class="admonition job" data-markdown="1">
+<p class="admonition-title">
+Why it matters at work
+</p>
+<p>A single number without uncertainty invites over-reaction: “Khulna’s
+late rate is 26%, Gazipur’s is 28%, so Gazipur is worse!” Confidence
+intervals show when a difference is real and when it’s noise, and
+they’re expected in any serious analysis, A/B test or model
+evaluation.</p>
 </div>
 <p>The script is <code>12_stats_correlation_ci.py</code>.</p>
-<h2 id="part-1-correlation-done-right">Part 1: correlation done right</h2>
-<h3 id="within-one-product-quantity-and-revenue-are-tightly-linked">Within one product, quantity and revenue are tightly linked</h3>
-<p>The EDA lesson found quantity vs revenue ≈ 0 across all products (a mix effect). Within <strong>one</strong> product it's a different story:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">twill</span> <span class="o">=</span> <span class="n">net</span><span class="p">[</span><span class="n">net</span><span class="p">[</span><span class="s2">"product"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"Cotton Twill"</span><span class="p">]</span>
-<span class="n">r</span><span class="p">,</span> <span class="n">p_r</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">pearsonr</span><span class="p">(</span><span class="n">twill</span><span class="p">[</span><span class="s2">"quantity"</span><span class="p">],</span> <span class="n">twill</span><span class="p">[</span><span class="s2">"revenue"</span><span class="p">])</span>
-<span class="n">rho</span><span class="p">,</span> <span class="n">p_rho</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">spearmanr</span><span class="p">(</span><span class="n">twill</span><span class="p">[</span><span class="s2">"quantity"</span><span class="p">],</span> <span class="n">twill</span><span class="p">[</span><span class="s2">"revenue"</span><span class="p">])</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Cotton Twill orders: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">twill</span><span class="p">)</span><span class="si">}</span><span class="s2"> | Pearson r = </span><span class="si">{</span><span class="n">r</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> (p = </span><span class="si">{</span><span class="n">p_r</span><span class="si">:</span><span class="s2">.1e</span><span class="si">}</span><span class="s2">) | Spearman rho = </span><span class="si">{</span><span class="n">rho</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"r squared = </span><span class="si">{</span><span class="n">r</span><span class="o">**</span><span class="mi">2</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">: quantity explains </span><span class="si">{</span><span class="n">r</span><span class="o">**</span><span class="mi">2</span><span class="si">:</span><span class="s2">.1%</span><span class="si">}</span><span class="s2"> of the variation in revenue"</span><span class="p">)</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>Cotton Twill orders: 348 | Pearson r = 0.999 (p = 0.0e+00) | Spearman rho = 0.999
-r squared = 0.998: quantity explains 99.8% of the variation in revenue
-</code></pre></div>
-
+<h2 id="part-1-correlation-done-right">Part 1: correlation done
+right</h2>
+<h3
+id="within-one-product-quantity-and-revenue-are-tightly-linked">Within
+one product, quantity and revenue are tightly linked</h3>
+<p>The EDA lesson found quantity vs revenue ≈ 0 across all products (a
+mix effect). Within <strong>one</strong> product it’s a different
+story:</p>
+<pre class="python"><code>twill = net[net[&quot;product&quot;] == &quot;Cotton Twill&quot;]
+r, p_r = stats.pearsonr(twill[&quot;quantity&quot;], twill[&quot;revenue&quot;])
+rho, p_rho = stats.spearmanr(twill[&quot;quantity&quot;], twill[&quot;revenue&quot;])
+print(f&quot;Cotton Twill orders: {len(twill)} | Pearson r = {r:.3f} (p = {p_r:.1e}) | Spearman rho = {rho:.3f}&quot;)
+print(f&quot;r squared = {r**2:.3f}: quantity explains {r**2:.1%} of the variation in revenue&quot;)</code></pre>
+<pre class="text"><code>Cotton Twill orders: 348 | Pearson r = 0.999 (p = 0.0e+00) | Spearman rho = 0.999
+r squared = 0.998: quantity explains 99.8% of the variation in revenue</code></pre>
 <ul>
-<li><strong>r²</strong> (r squared) is the share of the variation in one variable that a straight line on the other explains.</li>
-<li>The p-value tests "is the true correlation zero?". With hundreds of rows, even tiny correlations get tiny p-values, so <strong>judge the size, not just the p-value</strong>.</li>
+<li><strong>r²</strong> (r squared) is the share of the variation in one
+variable that a straight line on the other explains.</li>
+<li>The p-value tests “is the true correlation zero?”. With hundreds of
+rows, even tiny correlations get tiny p-values, so <strong>judge the
+size, not just the p-value</strong>.</li>
 </ul>
-<h3 id="one-extreme-point-can-invent-a-correlation">One extreme point can invent a correlation</h3>
-<div class="codehilite"><pre><span></span><code><span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
-<span class="n">x</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"30 random points:      Pearson </span><span class="si">{</span><span class="n">stats</span><span class="o">.</span><span class="n">pearsonr</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> | Spearman </span><span class="si">{</span><span class="n">stats</span><span class="o">.</span><span class="n">spearmanr</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-<span class="n">x2</span><span class="p">,</span> <span class="n">y2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"plus one extreme point: Pearson </span><span class="si">{</span><span class="n">stats</span><span class="o">.</span><span class="n">pearsonr</span><span class="p">(</span><span class="n">x2</span><span class="p">,</span><span class="w"> </span><span class="n">y2</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> | Spearman </span><span class="si">{</span><span class="n">stats</span><span class="o">.</span><span class="n">spearmanr</span><span class="p">(</span><span class="n">x2</span><span class="p">,</span><span class="w"> </span><span class="n">y2</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>30 random points:      Pearson -0.12 | Spearman -0.14
-plus one extreme point: Pearson 0.72 | Spearman -0.03
-</code></pre></div>
-
-<p>Thirty random, unrelated points, plus <strong>one</strong> outlier, and Pearson jumps to 0.72. Spearman barely moves. Always <strong>plot</strong> before you believe a correlation, and prefer Spearman for skewed business data.</p>
+<h3 id="one-extreme-point-can-invent-a-correlation">One extreme point
+can invent a correlation</h3>
+<pre class="python"><code>rng = np.random.default_rng(7)
+x = rng.normal(0, 1, 30)
+y = rng.normal(0, 1, 30)
+print(f&quot;30 random points:      Pearson {stats.pearsonr(x, y)[0]:.2f} | Spearman {stats.spearmanr(x, y)[0]:.2f}&quot;)
+x2, y2 = np.append(x, 8), np.append(y, 8)
+print(f&quot;plus one extreme point: Pearson {stats.pearsonr(x2, y2)[0]:.2f} | Spearman {stats.spearmanr(x2, y2)[0]:.2f}&quot;)</code></pre>
+<pre class="text"><code>30 random points:      Pearson -0.12 | Spearman -0.14
+plus one extreme point: Pearson 0.72 | Spearman -0.03</code></pre>
+<p>Thirty random, unrelated points, plus <strong>one</strong> outlier,
+and Pearson jumps to 0.72. Spearman barely moves. Always
+<strong>plot</strong> before you believe a correlation, and prefer
+Spearman for skewed business data.</p>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>Size of |r|</th>
 <th>Rough description</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>&lt; 0.1</td>
 <td>Negligible</td>
 </tr>
-<tr>
+<tr class="even">
 <td>0.1–0.3</td>
 <td>Weak</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>0.3–0.5</td>
 <td>Moderate</td>
 </tr>
-<tr>
+<tr class="even">
 <td>&gt; 0.5</td>
 <td>Strong</td>
 </tr>
 </tbody>
 </table>
-<p>These bands are only a guide: in some fields 0.2 matters a lot; in others 0.8 is disappointing.</p>
+<p>These bands are only a guide: in some fields 0.2 matters a lot; in
+others 0.8 is disappointing.</p>
 <h2 id="part-2-confidence-intervals">Part 2: confidence intervals</h2>
 <h3 id="why-an-interval">Why an interval?</h3>
-<p>Our 2025 orders are a <strong>sample</strong> of how the business behaves. Next year's orders will differ a little. A <strong>95% CI</strong> is built so that, if we repeated the sampling many times, about 95% of such intervals would contain the true value. In practice: <em>a range of plausible values</em>. Its width depends on the <strong>spread</strong> of the data and the <strong>sample size</strong> (the standard error, std ÷ √n).</p>
+<p>Our 2025 orders are a <strong>sample</strong> of how the business
+behaves. Next year’s orders will differ a little. A <strong>95%
+CI</strong> is built so that, if we repeated the sampling many times,
+about 95% of such intervals would contain the true value. In practice:
+<em>a range of plausible values</em>. Its width depends on the
+<strong>spread</strong> of the data and the <strong>sample size</strong>
+(the standard error, std ÷ √n).</p>
 <h3 id="ci-for-a-mean-t-interval">CI for a mean (t-interval)</h3>
-<div class="codehilite"><pre><span></span><code><span class="n">khulna</span> <span class="o">=</span> <span class="n">delivered</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">delivered</span><span class="p">[</span><span class="s2">"region"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"Khulna"</span><span class="p">,</span> <span class="s2">"delivery_days"</span><span class="p">]</span>
-<span class="n">m</span><span class="p">,</span> <span class="n">se</span> <span class="o">=</span> <span class="n">khulna</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">stats</span><span class="o">.</span><span class="n">sem</span><span class="p">(</span><span class="n">khulna</span><span class="p">)</span>
-<span class="n">lo</span><span class="p">,</span> <span class="n">hi</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">interval</span><span class="p">(</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">df</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">khulna</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="n">m</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">se</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Khulna delivery days: n = </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">khulna</span><span class="p">)</span><span class="si">}</span><span class="s2">, mean </span><span class="si">{</span><span class="n">m</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">, 95% CI </span><span class="si">{</span><span class="n">lo</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> to </span><span class="si">{</span><span class="n">hi</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>Khulna delivery days: n = 305, mean 5.26, 95% CI 4.96 to 5.55
-Only 30 orders:       mean 5.43, 95% CI 4.43 to 6.43
-</code></pre></div>
-
-<p>With 305 orders the interval is ±0.3 days; with only 30 it's ±1 day, about <strong>3× wider</strong> (√(305/30) ≈ 3.2). More data, narrower interval.</p>
+<pre class="python"><code>khulna = delivered.loc[delivered[&quot;region&quot;] == &quot;Khulna&quot;, &quot;delivery_days&quot;]
+m, se = khulna.mean(), stats.sem(khulna)
+lo, hi = stats.t.interval(0.95, df=len(khulna) - 1, loc=m, scale=se)
+print(f&quot;Khulna delivery days: n = {len(khulna)}, mean {m:.2f}, 95% CI {lo:.2f} to {hi:.2f}&quot;)</code></pre>
+<pre class="text"><code>Khulna delivery days: n = 305, mean 5.26, 95% CI 4.96 to 5.55
+Only 30 orders:       mean 5.43, 95% CI 4.43 to 6.43</code></pre>
+<p>With 305 orders the interval is ±0.3 days; with only 30 it’s ±1 day,
+about <strong>3× wider</strong> (√(305/30) ≈ 3.2). More data, narrower
+interval.</p>
 <h3 id="ci-for-a-proportion-wilson">CI for a proportion (Wilson)</h3>
-<div class="codehilite"><pre><span></span><code><span class="n">late</span> <span class="o">=</span> <span class="n">delivered</span><span class="p">[</span><span class="s2">"delivery_days"</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">delivered</span><span class="p">[</span><span class="s2">"promised_days"</span><span class="p">]</span>
-<span class="n">res</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">binomtest</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">late</span><span class="o">.</span><span class="n">sum</span><span class="p">()),</span> <span class="nb">len</span><span class="p">(</span><span class="n">late</span><span class="p">))</span>
-<span class="n">ci</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">proportion_ci</span><span class="p">(</span><span class="n">confidence_level</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">"wilson"</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Late deliveries: </span><span class="si">{</span><span class="n">late</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="si">}</span><span class="s2"> of </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">late</span><span class="p">)</span><span class="si">}</span><span class="s2"> = </span><span class="si">{</span><span class="n">late</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s2">.2%</span><span class="si">}</span><span class="s2">, 95% CI </span><span class="si">{</span><span class="n">ci</span><span class="o">.</span><span class="n">low</span><span class="si">:</span><span class="s2">.2%</span><span class="si">}</span><span class="s2"> to </span><span class="si">{</span><span class="n">ci</span><span class="o">.</span><span class="n">high</span><span class="si">:</span><span class="s2">.2%</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>Late deliveries: 919 of 3872 = 23.73%, 95% CI 22.42% to 25.10%
-</code></pre></div>
-
-<p>Almost <strong>1 in 4</strong> deliveries miss the promised date. The <strong>Wilson</strong> method works well even for small samples or rates near 0% or 100%, where the simple "p ± 1.96 × SE" formula breaks down.</p>
-<h3 id="compare-groups-with-their-cis">Compare groups with their CIs</h3>
-<div class="codehilite"><pre><span></span><code>     region    n  late_pct   lo   hi
+<pre class="python"><code>late = delivered[&quot;delivery_days&quot;] &gt; delivered[&quot;promised_days&quot;]
+res = stats.binomtest(int(late.sum()), len(late))
+ci = res.proportion_ci(confidence_level=0.95, method=&quot;wilson&quot;)
+print(f&quot;Late deliveries: {late.sum()} of {len(late)} = {late.mean():.2%}, 95% CI {ci.low:.2%} to {ci.high:.2%}&quot;)</code></pre>
+<pre class="text"><code>Late deliveries: 919 of 3872 = 23.73%, 95% CI 22.42% to 25.10%</code></pre>
+<p>Almost <strong>1 in 4</strong> deliveries miss the promised date. The
+<strong>Wilson</strong> method works well even for small samples or
+rates near 0% or 100%, where the simple “p ± 1.96 × SE” formula breaks
+down.</p>
+<h3 id="compare-groups-with-their-cis">Compare groups with their
+CIs</h3>
+<pre class="text"><code>     region    n  late_pct   lo   hi
       Dhaka 1270      16.7 14.7 18.8
      Khulna  305      26.2 21.6 31.4
  Chattogram 1397      27.0 24.7 29.4
 Narayanganj  437      27.2 23.3 31.6
-    Gazipur  463      28.3 24.4 32.6
-</code></pre></div>
-
-<p><img alt="Dot plot of late-delivery rate by region with 95% confidence intervals: Dhaka at about 17% with an interval that doesn't touch the others; Khulna, Chattogram, Narayanganj and Gazipur all between 26% and 28% with heavily overlapping intervals." src="../../../images/phase-2/stats_late_ci.png" /></p>
+    Gazipur  463      28.3 24.4 32.6</code></pre>
+<figure>
+<img src="../../../images/phase-2/stats_late_ci.png"
+alt="Dot plot of late-delivery rate by region with 95% confidence intervals: Dhaka at about 17% with an interval that doesn’t touch the others; Khulna, Chattogram, Narayanganj and Gazipur all between 26% and 28% with heavily overlapping intervals." />
+<figcaption aria-hidden="true">Dot plot of late-delivery rate by region
+with 95% confidence intervals: Dhaka at about 17% with an interval that
+doesn’t touch the others; Khulna, Chattogram, Narayanganj and Gazipur
+all between 26% and 28% with heavily overlapping intervals.</figcaption>
+</figure>
 <ul>
-<li><strong>Dhaka is clearly better</strong>: its interval (14.7–18.8%) doesn't overlap any other region's.</li>
-<li>The other four (26–28%) <strong>overlap heavily</strong>: ranking them would be over-reading noise. Khulna's interval is widest because it has the fewest deliveries.</li>
-<li>Overlapping intervals don't strictly <em>prove</em> "no difference" (the A/B testing module shows the proper test), but non-overlap is a strong sign of a real one.</li>
+<li><strong>Dhaka is clearly better</strong>: its interval (14.7–18.8%)
+doesn’t overlap any other region’s.</li>
+<li>The other four (26–28%) <strong>overlap heavily</strong>: ranking
+them would be over-reading noise. Khulna’s interval is widest because it
+has the fewest deliveries.</li>
+<li>Overlapping intervals don’t strictly <em>prove</em> “no difference”
+(the A/B testing module shows the proper test), but non-overlap is a
+strong sign of a real one.</li>
 </ul>
-<h3 id="ci-for-anything-the-bootstrap">CI for anything: the bootstrap</h3>
-<p>There's no simple formula for the CI of a <strong>median</strong>. The <strong>bootstrap</strong> resamples the data with replacement thousands of times, recomputes the statistic each time, and takes the middle 95% of the results:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">rev</span> <span class="o">=</span> <span class="n">net</span><span class="p">[</span><span class="s2">"revenue"</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
-<span class="n">boot</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">rev</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">rev</span><span class="p">),</span> <span class="n">replace</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5000</span><span class="p">)])</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"median order value </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">rev</span><span class="p">)</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2">, bootstrap 95% CI </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">boot</span><span class="p">,</span><span class="w"> </span><span class="mf">2.5</span><span class="p">)</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2"> "</span>
-      <span class="sa">f</span><span class="s2">"to </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">boot</span><span class="p">,</span><span class="w"> </span><span class="mf">97.5</span><span class="p">)</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>median order value 1060, bootstrap 95% CI 1023 to 1099
-</code></pre></div>
-
-<p>The bootstrap works for medians, percentiles, ratios and model scores. (<code>scipy.stats.bootstrap</code> does the same with better methods built in.)</p>
+<h3 id="ci-for-anything-the-bootstrap">CI for anything: the
+bootstrap</h3>
+<p>There’s no simple formula for the CI of a <strong>median</strong>.
+The <strong>bootstrap</strong> resamples the data with replacement
+thousands of times, recomputes the statistic each time, and takes the
+middle 95% of the results:</p>
+<pre class="python"><code>rev = net[&quot;revenue&quot;].to_numpy()
+boot = np.array([np.median(rng.choice(rev, size=len(rev), replace=True)) for _ in range(5000)])
+print(f&quot;median order value {np.median(rev):.0f}, bootstrap 95% CI {np.percentile(boot, 2.5):.0f} &quot;
+      f&quot;to {np.percentile(boot, 97.5):.0f}&quot;)</code></pre>
+<pre class="text"><code>median order value 1060, bootstrap 95% CI 1023 to 1099</code></pre>
+<p>The bootstrap works for medians, percentiles, ratios and model
+scores. (<code>scipy.stats.bootstrap</code> does the same with better
+methods built in.)</p>
 <h2 id="how-to-report-it">How to report it</h2>
 <blockquote>
-<p>Median order value was <strong>1,060</strong> (95% CI 1,023–1,099). <strong>23.7%</strong> of deliveries were late (95% CI 22.4–25.1%). Dhaka's late rate (16.7%) is clearly lower than the other regions (26–28%, which can't be separated with this data).</p>
+<p>Median order value was <strong>1,060</strong> (95% CI 1,023–1,099).
+<strong>23.7%</strong> of deliveries were late (95% CI 22.4–25.1%).
+Dhaka’s late rate (16.7%) is clearly lower than the other regions
+(26–28%, which can’t be separated with this data).</p>
 </blockquote>
 <h2 id="common-mistakes">Common mistakes</h2>
 <table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Mistake</th>
 <th>What happens</th>
 <th>Fix</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>Believing a correlation without a plot</td>
-<td>One outlier creates a "strong" relationship</td>
+<td>One outlier creates a “strong” relationship</td>
 <td>Scatter plot + Spearman</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Judging by p-value alone</td>
-<td>Trivial correlations look "significant" with big data</td>
+<td>Trivial correlations look “significant” with big data</td>
 <td>Report the size (r, r²) and a CI</td>
 </tr>
-<tr>
-<td>"95% chance the true value is in <em>this</em> interval"</td>
+<tr class="odd">
+<td>“95% chance the true value is in <em>this</em> interval”</td>
 <td>A common, technically wrong wording</td>
-<td>Say "a range of plausible values"; the 95% is about the method</td>
+<td>Say “a range of plausible values”; the 95% is about the method</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Ranking groups whose CIs overlap</td>
 <td>Acting on noise</td>
 <td>Show CIs; test the difference properly</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Normal-formula CIs for skewed medians or tiny samples</td>
 <td>Wrong intervals</td>
 <td>Bootstrap; Wilson for proportions</td>
@@ -259,71 +299,145 @@ Narayanganj  437      27.2 23.3 31.6
 </tbody>
 </table>
 <h2 id="try-it-yourself">Try it yourself</h2>
-<p><strong>Task:</strong> Compute a 95% CI for the <strong>mean</strong> order revenue of Garment Factories and of Retailers. How wide is each, and why is one wider relative to its mean?</p>
+<p><strong>Task:</strong> Compute a 95% CI for the <strong>mean</strong>
+order revenue of Garment Factories and of Retailers. How wide is each,
+and why is one wider relative to its mean?</p>
 <details>
-<summary>Show the solution</summary>
-<div class="codehilite"><pre><span></span><code><span class="k">for</span> <span class="n">seg</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">"Garment Factory"</span><span class="p">,</span> <span class="s2">"Retailer"</span><span class="p">]:</span>
-    <span class="n">s</span> <span class="o">=</span> <span class="n">net</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">net</span><span class="p">[</span><span class="s2">"segment"</span><span class="p">]</span> <span class="o">==</span> <span class="n">seg</span><span class="p">,</span> <span class="s2">"revenue"</span><span class="p">]</span>
-    <span class="n">lo_s</span><span class="p">,</span> <span class="n">hi_s</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">t</span><span class="o">.</span><span class="n">interval</span><span class="p">(</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">df</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="n">s</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">scale</span><span class="o">=</span><span class="n">stats</span><span class="o">.</span><span class="n">sem</span><span class="p">(</span><span class="n">s</span><span class="p">))</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">seg</span><span class="si">:</span><span class="s2">16s</span><span class="si">}</span><span class="s2"> n=</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="si">:</span><span class="s2">4d</span><span class="si">}</span><span class="s2"> mean </span><span class="si">{</span><span class="n">s</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s2">7.0f</span><span class="si">}</span><span class="s2">  95% CI </span><span class="si">{</span><span class="n">lo_s</span><span class="si">:</span><span class="s2">7.0f</span><span class="si">}</span><span class="s2"> to </span><span class="si">{</span><span class="n">hi_s</span><span class="si">:</span><span class="s2">7.0f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>Garment Factory  n=2594 mean    1632  95% CI    1570 to    1695
-Retailer         n= 256 mean     324  95% CI     282 to     367
-</code></pre></div>
-
-<p>Garment factories: ±63 around 1,632 (about ±4%). Retailers: ±43 around 324 (about ±13%). The retailer interval is relatively <strong>3× wider</strong> because there are 10× fewer retailer orders. The two intervals are nowhere near each other, so the difference between segments is clearly real.</p>
+<summary>
+Show the solution
+</summary>
+<pre class="python"><code>for seg in [&quot;Garment Factory&quot;, &quot;Retailer&quot;]:
+    s = net.loc[net[&quot;segment&quot;] == seg, &quot;revenue&quot;]
+    lo_s, hi_s = stats.t.interval(0.95, df=len(s) - 1, loc=s.mean(), scale=stats.sem(s))
+    print(f&quot;{seg:16s} n={len(s):4d} mean {s.mean():7.0f}  95% CI {lo_s:7.0f} to {hi_s:7.0f}&quot;)</code></pre>
+<pre class="text"><code>Garment Factory  n=2594 mean    1632  95% CI    1570 to    1695
+Retailer         n= 256 mean     324  95% CI     282 to     367</code></pre>
+Garment factories: ±63 around 1,632 (about ±4%). Retailers: ±43 around
+324 (about ±13%). The retailer interval is relatively <strong>3×
+wider</strong> because there are 10× fewer retailer orders. The two
+intervals are nowhere near each other, so the difference between
+segments is clearly real.
 </details>
 <h2 id="quick-quiz">Quick quiz</h2>
 <div class="quiz-q" data-answer="1">
-<p>1. 30 unrelated points plus one extreme point give Pearson 0.72 and Spearman −0.03. What should you conclude?</p>
-<ol>
-<li>There's a strong relationship</li>
-<li>The outlier creates the Pearson value; there's no real relationship</li>
+<p>1. 30 unrelated points plus one extreme point give Pearson 0.72 and
+Spearman −0.03. What should you conclude?</p>
+<ol type="1">
+<li>There’s a strong relationship</li>
+<li>The outlier creates the Pearson value; there’s no real
+relationship</li>
 <li>Spearman is broken</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B.</strong></p>
+<summary>
+Show answer
+</summary>
+<strong>B.</strong>
 </details>
 </div>
 <div class="quiz-q" data-answer="0">
-<p>2. You quadruple the sample size. Roughly what happens to the width of a CI for the mean?</p>
-<ol>
+<p>2. You quadruple the sample size. Roughly what happens to the width
+of a CI for the mean?</p>
+<ol type="1">
 <li>It halves</li>
 <li>It quarters</li>
 <li>It stays the same</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>A.</strong> Width shrinks with √n: √4 = 2.</p>
+<summary>
+Show answer
+</summary>
+<strong>A.</strong> Width shrinks with √n: √4 = 2.
 </details>
 </div>
 <div class="quiz-q" data-answer="1">
 <p>3. Which method gives a CI for a median without a formula?</p>
-<ol>
+<ol type="1">
 <li>The t-interval</li>
 <li>The bootstrap</li>
 <li>Pearson correlation</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B.</strong></p>
+<summary>
+Show answer
+</summary>
+<strong>B.</strong>
 </details>
 </div>
 <h2 id="summary">Summary</h2>
 <ul>
-<li><strong>Pearson</strong> = straight-line relationships; <strong>Spearman</strong> = rank-based, robust. Plot first; report size (r, r²), not just p-values.</li>
-<li>A <strong>95% CI</strong> is a range of plausible values; width depends on spread and √n.</li>
-<li>Means: t-interval. Proportions: Wilson. Anything else (medians, percentiles): <strong>bootstrap</strong>.</li>
+<li><strong>Pearson</strong> = straight-line relationships;
+<strong>Spearman</strong> = rank-based, robust. Plot first; report size
+(r, r²), not just p-values.</li>
+<li>A <strong>95% CI</strong> is a range of plausible values; width
+depends on spread and √n.</li>
+<li>Means: t-interval. Proportions: Wilson. Anything else (medians,
+percentiles): <strong>bootstrap</strong>.</li>
 <li>Compare groups with their CIs before ranking them.</li>
 </ul>
-<div class="admonition job">
-<p class="admonition-title">Job-ready check</p>
-<p><strong>Interview question:</strong> <em>"Region A's late rate is 26%, region B's is 28%. Is B worse?"</em></p>
-<p><strong>Strong answer:</strong> "Not necessarily. I'd put a confidence interval on each rate: with a few hundred deliveries each, the intervals are about ±4 percentage points and overlap heavily, so the 2-point gap is within noise. I'd say they perform similarly, and a formal two-proportion test or more data would be needed to separate them."</p>
-<p><strong>Mini project:</strong> Make a one-page "KPIs with uncertainty" table: median order value, cancellation rate and late-delivery rate, each overall and per segment, with 95% CIs (bootstrap for medians, Wilson for rates).</p>
+<div class="admonition job" data-markdown="1">
+<p class="admonition-title">
+Job-ready check
+</p>
+<p><strong>Interview question:</strong> <em>“Region A’s late rate is
+26%, region B’s is 28%. Is B worse?”</em></p>
+<p><strong>Strong answer:</strong> “Not necessarily. I’d put a
+confidence interval on each rate: with a few hundred deliveries each,
+the intervals are about ±4 percentage points and overlap heavily, so the
+2-point gap is within noise. I’d say they perform similarly, and a
+formal two-proportion test or more data would be needed to separate
+them.”</p>
+<p><strong>Mini project:</strong> Make a one-page “KPIs with
+uncertainty” table: median order value, cancellation rate and
+late-delivery rate, each overall and per segment, with 95% CIs
+(bootstrap for medians, Wilson for rates).</p>
 </div>
+<section class="mentor-prompt"><div class="mentor-head"><div><span class="eyebrow">AI study companion</span><h2 id="ai-mentor-prompt">AI Mentor Prompt</h2></div><button class="btn copy-prompt" type="button" data-copy-target="mentor-prompt-phase-2-statistics-02-correlation-confidence-intervals">Copy prompt</button></div><p>Paste this into ChatGPT, Claude, Gemini, or another capable assistant to turn this tutorial into an interactive mentoring session.</p><pre class="prompt-box"><code id="mentor-prompt-phase-2-statistics-02-correlation-confidence-intervals">You are my hands-on Python, statistics and data-science mentor.
+
+I am currently studying:
+&quot;Statistics Part 2: Correlation and Confidence Intervals&quot;
+
+My level:
+Intermediate
+
+Teach me this topic interactively rather than giving me a long lecture.
+
+Use this sequence:
+
+1. Check what I already understand with one short diagnostic question.
+2. Explain the concept in simple language and give me the mental model first.
+3. Give me one small task using code, SQL, configuration, data, or architecture as appropriate.
+4. Wait for my attempt before showing a complete solution.
+5. Review my work and explain both what is correct and what needs improvement.
+6. Help me debug errors step by step instead of immediately replacing my work.
+7. Increase the difficulty gradually and connect each new step to the previous one.
+8. Relate what I am learning to real professional data/AI engineering work.
+9. Ask me to explain an important decision in my own words so you can check my understanding.
+10. At the end, ask me to build or modify one small feature independently.
+
+Important rules:
+- Do not do the entire exercise for me unless I explicitly ask.
+- Explain unfamiliar terminology before using it heavily.
+- Prefer current, production-relevant practices over outdated shortcuts.
+- Distinguish clearly between concepts, tool-specific behaviour, and optional alternatives.
+- If a technical fact, API, syntax, version, or best practice may have changed, verify it against current official documentation before teaching it.
+- Never invent command output, test results, benchmark numbers, cloud behaviour, or data results.
+- If something cannot be executed in the current environment, say so and give me the exact command or verification step I should run.
+- Keep me actively coding, querying, configuring, reasoning, or debugging throughout the session.
+- When useful, work from the tutorial practice files (data-science-scripts.zip, orders_2025.csv) instead of inventing unrelated examples.
+
+The concepts I need to master are:
+- Correlation
+- Confidence intervals
+- pearson
+- spearman
+- r squared
+- coefficient of determination
+- confidence interval
+- 95% confidence interval
+
+Start by asking me one diagnostic question.</code></pre></section>
+
 <div class="terms-box"><div class="files-head"><b>Key terms in this lesson</b><a href="../../../glossary.html">Glossary →</a></div><div class="term-chips"><a class="term-chip" href="../../../glossary.html#bootstrap" title="Estimating uncertainty by resampling the data with replacement thousands of times and recomputing the statistic. Works for medians, ratios and model scores.">Bootstrap</a><a class="term-chip" href="../../../glossary.html#confidence-interval" title="A range of plausible values for something estimated from a sample, e.g. &#x27;late rate 23.7% (95% CI 22.4–25.1%)&#x27;. It narrows as the sample grows.">Confidence interval</a><a class="term-chip" href="../../../glossary.html#correlation" title="A number from −1 to +1 for how consistently two variables move together. Pearson measures straight-line relationships; Spearman uses ranks and resists outliers. Correlation is not causation.">Correlation</a><a class="term-chip" href="../../../glossary.html#statistical-power" title="The chance an experiment detects an effect of a given size if it really exists (usually 80%). A power analysis sets the sample size from the baseline, the minimum effect worth detecting and α.">Statistical power</a></div></div>
 <h2 id="free-resources">Free resources to go deeper</h2><ul class="resources"><li><a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.pearsonr.html">scipy.stats.pearsonr / spearmanr</a><span class="r-meta">SciPy official docs · Correlation coefficients with p-values and confidence intervals.</span></li><li><a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.bootstrap.html">scipy.stats.bootstrap</a><span class="r-meta">SciPy official docs · A ready-made bootstrap confidence interval for any statistic.</span></li><li><a href="https://www.openintro.org/book/os/">OpenIntro Statistics (free textbook)</a><span class="r-meta">OpenIntro · Chapters 5–8: inference, confidence intervals and correlation.</span></li></ul>
 <div class="complete-bar"><span>Finished reading and did the exercise?</span>
@@ -332,9 +446,9 @@ Retailer         n= 256 mean     324  95% CI     282 to     367
 <p class="reviewed">Last reviewed: 2026-10-09</p>
 
   </div></main>
-  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#part-1-correlation-done-right">Part 1: correlation done right</a><a href="#part-2-confidence-intervals">Part 2: confidence intervals</a><a href="#how-to-report-it">How to report it</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#free-resources">Free resources</a></aside>
+  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#part-1-correlation-done-right">Part 1: correlation done right</a><a href="#within-one-product-quantity-and-revenue-are-tightly-linked">Within one product, quantity and revenue are tightly linked</a><a href="#one-extreme-point-can-invent-a-correlation">One extreme point can invent a correlation</a><a href="#part-2-confidence-intervals">Part 2: confidence intervals</a><a href="#why-an-interval">Why an interval?</a><a href="#ci-for-a-mean-t-interval">CI for a mean (t-interval)</a><a href="#ci-for-a-proportion-wilson">CI for a proportion (Wilson)</a><a href="#compare-groups-with-their-cis">Compare groups with their CIs</a><a href="#ci-for-anything-the-bootstrap">CI for anything: the bootstrap</a><a href="#how-to-report-it">How to report it</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#ai-mentor-prompt">AI Mentor Prompt</a><a href="#free-resources">Free resources</a></aside>
 </div>
-<footer class="site">Data, AI &amp; Automation Path v0.8 · Applied AI, Data &amp; Automation Lab · Updated October 2026<br>
+<footer class="site"><b>Saiful The Techie</b> · Data, AI &amp; Automation Path v0.9.1 · Updated October 2026<br>
 Lesson text: <a href="../../../license.html">CC BY-NC-SA 4.0</a> · Code: <a href="../../../license.html#code-mit-license">MIT</a> · Free external resources belong to their respective owners.</footer>
 <script src="../../../search-index.js"></script>
 <script src="../../../assets/app.js"></script>

@@ -6,7 +6,7 @@
 <title>Git Repositories &amp; Commits: Save Your Work in Safe Steps — Data, AI &amp; Automation Path</title>
 <meta name="description" content="Create a repository, stage and commit changes, ignore files that don&#x27;t belong, and read the history with status, diff and log.">
 <meta property="og:type" content="article">
-<meta property="og:site_name" content="Data, AI &amp; Automation Path">
+<meta property="og:site_name" content="Saiful The Techie">
 <meta property="og:title" content="Git Repositories &amp; Commits: Save Your Work in Safe Steps">
 <meta property="og:description" content="Create a repository, stage and commit changes, ignore files that don&#x27;t belong, and read the history with status, diff and log.">
 <meta property="og:locale" content="en_US">
@@ -19,13 +19,13 @@ var n=null;try{n=localStorage.getItem('daa-nav')}catch(e){}
 if(n==='open'&&window.matchMedia&&matchMedia('(min-width: 961px)').matches)document.documentElement.setAttribute('data-nav','open');
 document.documentElement.classList.add('no-anim')})();</script>
 <link rel="stylesheet" href="../../../assets/style.css">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233f7d6a'/%3E%3Ctext x='16' y='21' font-family='sans-serif' font-size='13' font-weight='700' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
+
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="topbar">
   <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Open curriculum menu" title="Curriculum menu (press M)" aria-controls="sidebar" aria-expanded="false"><span class="ico-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span class="ico-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></button>
-  <a class="brand" href="../../../index.html"><span class="brand-badge">AI</span><span class="brand-text"><span class="brand-name">Data, AI &amp; Automation Path</span><span class="brand-version">v0.8</span></span></a>
+  <a class="brand" href="../../../index.html"><span class="brand-text"><span class="brand-name">Saiful The Techie</span><span class="brand-version">Data, AI &amp; Automation Path · v0.9.1</span></span></a>
   <nav class="top-links" aria-label="Main">
     <a href="../../../index.html" class="">Home</a><a href="../../../curriculum.html" class="">Curriculum</a><a href="../../../practice-files.html" class="">Practice files</a><a href="../../../glossary.html" class="">Glossary</a><a href="../../../how-to-learn.html" class="">How to learn</a><a href="../../../about.html" class="">About</a>
   </nav>
@@ -41,7 +41,7 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="layout wide">
   <nav class="sidebar" id="sidebar" aria-label="Curriculum">
     <div class="side-title">Curriculum</div>
-    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="77"><i></i></div><span class="bar-label" data-progress-label></span></div>
+    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="85"><i></i></div><span class="bar-label" data-progress-label></span></div>
 <div class="nav-phase current open"><a href="../../../learn/phase-0/index.html"><span class="nav-num">0</span>Foundations</a>
 <ul class="nav-modules">
 <li><a class="" href="../../../learn/phase-0/dev-environment/index.html">Development Environment</a>
@@ -92,169 +92,188 @@ document.documentElement.classList.add('no-anim')})();</script>
 
 <h2 id="what-is-it">What is it?</h2>
 <ul>
-<li>A <strong>repository (repo)</strong> is a project folder whose history Git tracks. The history lives in a hidden <code>.git</code> folder.</li>
-<li>A <strong>commit</strong> is a saved snapshot of your files, with a message, an author and a unique ID (like <code>50ff5b0</code>).</li>
-<li>The <strong>staging area</strong> sits between your files and a commit: you choose <em>which</em> changes go into the next snapshot.</li>
+<li>A <strong>repository (repo)</strong> is a project folder whose
+history Git tracks. The history lives in a hidden <code>.git</code>
+folder.</li>
+<li>A <strong>commit</strong> is a saved snapshot of your files, with a
+message, an author and a unique ID (like <code>50ff5b0</code>).</li>
+<li>The <strong>staging area</strong> sits between your files and a
+commit: you choose <em>which</em> changes go into the next
+snapshot.</li>
 </ul>
-<div class="codehilite"><pre><span></span><code>working folder  --git add--&gt;  staging area  --git commit--&gt;  history
- (you edit)                   (next snapshot)                (saved forever)
-</code></pre></div>
-
-<div class="admonition job">
-<p class="admonition-title">Why it matters at work</p>
-<p>Every data, analytics and AI team keeps SQL, Python, notebooks, dbt models and even Power BI projects in Git. Small commits with clear messages let you undo mistakes, explain what changed, and show reviewers your work. "Is your code on GitHub?" is a standard hiring question.</p>
+<pre class="text"><code>working folder  --git add--&gt;  staging area  --git commit--&gt;  history
+ (you edit)                   (next snapshot)                (saved forever)</code></pre>
+<div class="admonition job" data-markdown="1">
+<p class="admonition-title">
+Why it matters at work
+</p>
+<p>Every data, analytics and AI team keeps SQL, Python, notebooks, dbt
+models and even Power BI projects in Git. Small commits with clear
+messages let you undo mistakes, explain what changed, and show reviewers
+your work. “Is your code on GitHub?” is a standard hiring question.</p>
 </div>
-<h2 id="example-1-create-a-repository-and-the-first-commit">Example 1: create a repository and the first commit</h2>
-<div class="codehilite"><pre><span></span><code>git<span class="w"> </span>init<span class="w"> </span>sales-report
-<span class="nb">cd</span><span class="w"> </span>sales-report
-</code></pre></div>
-
-<p>Create <code>report.py</code> with one line: <code>print("Q1 net revenue: 9,075")</code>. Then ask Git what it sees:</p>
-<div class="codehilite"><pre><span></span><code>git<span class="w"> </span>status
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>On branch main
+<h2 id="example-1-create-a-repository-and-the-first-commit">Example 1:
+create a repository and the first commit</h2>
+<pre class="bash"><code>git init sales-report
+cd sales-report</code></pre>
+<p>Create <code>report.py</code> with one line:
+<code>print("Q1 net revenue: 9,075")</code>. Then ask Git what it
+sees:</p>
+<pre class="bash"><code>git status</code></pre>
+<pre class="text"><code>On branch main
 
 No commits yet
 
 Untracked files:
-  (use "git add &lt;file&gt;..." to include in what will be committed)
+  (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)
     report.py
 
-nothing added to commit but untracked files present (use "git add" to track)
-</code></pre></div>
-
+nothing added to commit but untracked files present (use &quot;git add&quot; to track)</code></pre>
 <p>Stage the file, then commit it:</p>
-<div class="codehilite"><pre><span></span><code>git<span class="w"> </span>add<span class="w"> </span>report.py
-git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">"Add Q1 revenue report"</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>[main (root-commit) 50ff5b0] Add Q1 revenue report
+<pre class="bash"><code>git add report.py
+git commit -m &quot;Add Q1 revenue report&quot;</code></pre>
+<pre class="text"><code>[main (root-commit) 50ff5b0] Add Q1 revenue report
  1 file changed, 1 insertion(+)
- create mode 100644 report.py
-</code></pre></div>
-
-<p><em>(Your commit ID will be different: it depends on time, author and content.)</em></p>
-<h2 id="example-2-ignore-files-that-dont-belong">Example 2: ignore files that don't belong</h2>
-<p>Logs, virtual environments and caches should never be committed. Create a <code>.gitignore</code> file:</p>
-<div class="codehilite"><pre><span></span><code>.venv/
+ create mode 100644 report.py</code></pre>
+<p><em>(Your commit ID will be different: it depends on time, author and
+content.)</em></p>
+<h2 id="example-2-ignore-files-that-dont-belong">Example 2: ignore files
+that don’t belong</h2>
+<p>Logs, virtual environments and caches should never be committed.
+Create a <code>.gitignore</code> file:</p>
+<pre class="text"><code>.venv/
 *.log
-__pycache__/
-</code></pre></div>
-
-<p>Now a <code>run.log</code> file is invisible to Git. <code>git status --short</code> shows only the new <code>.gitignore</code>:</p>
-<div class="codehilite"><pre><span></span><code>?? .gitignore
-</code></pre></div>
-
-<p><code>??</code> = untracked, <code>A</code> = staged (added), <code>M</code> = modified, <code>UU</code> = conflict (next lesson).</p>
-<div class="admonition warning">
-<p class="admonition-title">Never commit secrets</p>
-<p>Passwords, API keys and <code>.env</code> files must go in <code>.gitignore</code> <strong>before</strong> the first commit. Once pushed, assume a secret is leaked: change it.</p>
+__pycache__/</code></pre>
+<p>Now a <code>run.log</code> file is invisible to Git.
+<code>git status --short</code> shows only the new
+<code>.gitignore</code>:</p>
+<pre class="text"><code>?? .gitignore</code></pre>
+<p><code>??</code> = untracked, <code>A</code> = staged (added),
+<code>M</code> = modified, <code>UU</code> = conflict (next lesson).</p>
+<div class="admonition warning" data-markdown="1">
+<p class="admonition-title">
+Never commit secrets
+</p>
+<p>Passwords, API keys and <code>.env</code> files must go in
+<code>.gitignore</code> <strong>before</strong> the first commit. Once
+pushed, assume a secret is leaked: change it.</p>
 </div>
-<h2 id="example-3-see-what-changed-with-git-diff">Example 3: see what changed with <code>git diff</code></h2>
-<p>Add a second line, <code>print("Q1 target: 9,600")</code>, then run <code>git diff</code>:</p>
-<div class="codehilite"><pre><span></span><code>diff --git a/report.py b/report.py
+<h2 id="example-3-see-what-changed-with-git-diff">Example 3: see what
+changed with <code>git diff</code></h2>
+<p>Add a second line, <code>print("Q1 target: 9,600")</code>, then run
+<code>git diff</code>:</p>
+<pre class="text"><code>diff --git a/report.py b/report.py
 index 4fd8f9d..ba4f1d5 100644
 --- a/report.py
 +++ b/report.py
 @@ -1 +1,2 @@
- print("Q1 net revenue: 9,075")
-+print("Q1 target: 9,600")
-</code></pre></div>
-
-<p>Lines starting with <code>+</code> were added, and <code>-</code> were removed. Commit it: <code>git commit -am "Show Q1 target"</code> (<code>-a</code> stages every already-tracked file that changed).</p>
+ print(&quot;Q1 net revenue: 9,075&quot;)
++print(&quot;Q1 target: 9,600&quot;)</code></pre>
+<p>Lines starting with <code>+</code> were added, and <code>-</code>
+were removed. Commit it: <code>git commit -am "Show Q1 target"</code>
+(<code>-a</code> stages every already-tracked file that changed).</p>
 <h2 id="example-4-read-the-history">Example 4: read the history</h2>
-<div class="codehilite"><pre><span></span><code>git<span class="w"> </span>log<span class="w"> </span>--oneline
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>fcc10c8 Show Q1 target
+<pre class="bash"><code>git log --oneline</code></pre>
+<pre class="text"><code>fcc10c8 Show Q1 target
 91fa0f4 Ignore logs and venv
-50ff5b0 Add Q1 revenue report
-</code></pre></div>
-
-<p>Newest first. Each line is one commit you can inspect (<code>git show fcc10c8</code>) or return to.</p>
+50ff5b0 Add Q1 revenue report</code></pre>
+<p>Newest first. Each line is one commit you can inspect
+(<code>git show fcc10c8</code>) or return to.</p>
 <h2 id="undo-cheatsheet">Undo cheatsheet</h2>
 <table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>You want to…</th>
 <th>Command</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>Throw away unsaved edits to a file</td>
 <td><code>git restore report.py</code></td>
 </tr>
-<tr>
+<tr class="even">
 <td>Unstage a file (keep the edits)</td>
 <td><code>git restore --staged report.py</code></td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Fix the message of the last commit (not yet pushed)</td>
 <td><code>git commit --amend -m "Better message"</code></td>
 </tr>
-<tr>
+<tr class="even">
 <td>Undo a pushed commit safely</td>
-<td><code>git revert &lt;id&gt;</code> (creates a new "undo" commit)</td>
+<td><code>git revert &lt;id&gt;</code> (creates a new “undo”
+commit)</td>
 </tr>
 </tbody>
 </table>
 <h2 id="good-commit-messages">Good commit messages</h2>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>Weak</th>
 <th>Strong</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td><code>update</code></td>
 <td><code>Add Q1 target to revenue report</code></td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>fix stuff</code></td>
 <td><code>Exclude cancelled orders from average</code></td>
 </tr>
-<tr>
+<tr class="odd">
 <td><code>final version 2</code></td>
 <td><code>Rename region column to match SQL schema</code></td>
 </tr>
 </tbody>
 </table>
-<p>Rule of thumb: <strong>imperative mood, under ~60 characters, says <em>what</em> and <em>why</em>.</strong> One logical change per commit.</p>
+<p>Rule of thumb: <strong>imperative mood, under ~60 characters, says
+<em>what</em> and <em>why</em>.</strong> One logical change per
+commit.</p>
 <h2 id="common-mistakes">Common mistakes</h2>
 <table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Mistake</th>
 <th>What happens</th>
 <th>Fix</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td><code>git add .</code> without checking</td>
 <td>Logs, data dumps or secrets get committed</td>
-<td><code>git status</code> first, and keep a good <code>.gitignore</code></td>
+<td><code>git status</code> first, and keep a good
+<code>.gitignore</code></td>
 </tr>
-<tr>
-<td>Huge commits ("did everything")</td>
+<tr class="even">
+<td>Huge commits (“did everything”)</td>
 <td>Hard to review or undo</td>
 <td>Small commits, one idea each</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Committing large data files</td>
 <td>A slow, bloated repo</td>
 <td>Keep samples only, or use storage outside Git</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Forgetting <code>git config user.name/email</code></td>
 <td>Commits with the wrong author</td>
 <td>Set them once per computer</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Running <code>git init</code> inside another repo</td>
 <td>Confusing nested repositories</td>
 <td>One repo per project folder</td>
@@ -262,70 +281,145 @@ index 4fd8f9d..ba4f1d5 100644
 </tbody>
 </table>
 <h2 id="try-it-yourself">Try it yourself</h2>
-<p><strong>Task:</strong> In your <code>sales-report</code> repo, add a line <code>print("Achievement: 94.5%")</code>, commit it with a good message, then show the last <strong>two</strong> commits only.</p>
+<p><strong>Task:</strong> In your <code>sales-report</code> repo, add a
+line <code>print("Achievement: 94.5%")</code>, commit it with a good
+message, then show the last <strong>two</strong> commits only.</p>
 <details>
-<summary>Show a hint</summary>
-<p><code>git log</code> accepts <code>-n 2</code> (or simply <code>-2</code>).</p>
+<summary>
+Show a hint
+</summary>
+<code>git log</code> accepts <code>-n 2</code> (or simply
+<code>-2</code>).
 </details>
 <details>
-<summary>Show the solution</summary>
-<div class="codehilite"><pre><span></span><code>git<span class="w"> </span>commit<span class="w"> </span>-am<span class="w"> </span><span class="s2">"Add Q1 achievement percentage"</span>
-git<span class="w"> </span>log<span class="w"> </span>--oneline<span class="w"> </span>-2
-</code></pre></div>
-
-<p>The newest commit is on top, followed by <code>Show Q1 target</code>.</p>
+<summary>
+Show the solution
+</summary>
+<pre class="bash"><code>git commit -am &quot;Add Q1 achievement percentage&quot;
+git log --oneline -2</code></pre>
+The newest commit is on top, followed by <code>Show Q1 target</code>.
 </details>
 <h2 id="quick-quiz">Quick quiz</h2>
 <div class="quiz-q" data-answer="1">
 <p>1. What does <code>git add report.py</code> do?</p>
-<ol>
+<ol type="1">
 <li>Saves a commit</li>
-<li>Puts the file's current changes in the staging area for the next commit</li>
+<li>Puts the file’s current changes in the staging area for the next
+commit</li>
 <li>Uploads the file to GitHub</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B.</strong> <code>git commit</code> saves the snapshot, and <code>git push</code> uploads it.</p>
+<summary>
+Show answer
+</summary>
+<strong>B.</strong> <code>git commit</code> saves the snapshot, and
+<code>git push</code> uploads it.
 </details>
 </div>
 <div class="quiz-q" data-answer="1">
-<p>2. Which file stops <code>run.log</code> and <code>.venv/</code> from being tracked?</p>
-<ol>
+<p>2. Which file stops <code>run.log</code> and <code>.venv/</code> from
+being tracked?</p>
+<ol type="1">
 <li><code>README.md</code></li>
 <li><code>.gitignore</code></li>
 <li><code>pyproject.toml</code></li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B.</strong></p>
+<summary>
+Show answer
+</summary>
+<strong>B.</strong>
 </details>
 </div>
 <div class="quiz-q" data-answer="0">
-<p>3. You pushed a bad commit to a shared branch. What's the safe way to undo it?</p>
-<ol>
+<p>3. You pushed a bad commit to a shared branch. What’s the safe way to
+undo it?</p>
+<ol type="1">
 <li><code>git revert &lt;id&gt;</code></li>
 <li>Delete the <code>.git</code> folder</li>
 <li><code>git commit --amend</code> and force-push</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>A.</strong> Revert adds a new commit that undoes the change, without rewriting shared history.</p>
+<summary>
+Show answer
+</summary>
+<strong>A.</strong> Revert adds a new commit that undoes the change,
+without rewriting shared history.
 </details>
 </div>
 <h2 id="summary">Summary</h2>
 <ul>
-<li><code>git init</code> creates a repo; <code>git status</code> tells you what Git sees.</li>
-<li><code>git add</code> → staging area → <code>git commit -m "..."</code> → history.</li>
-<li><code>.gitignore</code> keeps logs, environments and secrets out.</li>
-<li><code>git diff</code> shows changes; <code>git log --oneline</code> shows history.</li>
+<li><code>git init</code> creates a repo; <code>git status</code> tells
+you what Git sees.</li>
+<li><code>git add</code> → staging area →
+<code>git commit -m "..."</code> → history.</li>
+<li><code>.gitignore</code> keeps logs, environments and secrets
+out.</li>
+<li><code>git diff</code> shows changes; <code>git log --oneline</code>
+shows history.</li>
 <li>Small commits with clear, imperative messages.</li>
 </ul>
-<div class="admonition job">
-<p class="admonition-title">Job-ready check</p>
-<p><strong>Interview question:</strong> <em>"What's the difference between <code>git add</code>, <code>git commit</code> and <code>git push</code>?"</em></p>
-<p><strong>Strong answer:</strong> "<code>add</code> stages chosen changes, <code>commit</code> saves them as a snapshot in my local history with a message, and <code>push</code> sends my commits to the remote repository, such as GitHub, so others can see them."</p>
-<p><strong>Mini project:</strong> Put your <code>python-practice</code> folder from the first lesson under Git: a <code>.gitignore</code>, at least three small commits, and a <code>git log --oneline</code> that tells the story.</p>
+<div class="admonition job" data-markdown="1">
+<p class="admonition-title">
+Job-ready check
+</p>
+<p><strong>Interview question:</strong> <em>“What’s the difference
+between <code>git add</code>, <code>git commit</code> and
+<code>git push</code>?”</em></p>
+<p><strong>Strong answer:</strong> “<code>add</code> stages chosen
+changes, <code>commit</code> saves them as a snapshot in my local
+history with a message, and <code>push</code> sends my commits to the
+remote repository, such as GitHub, so others can see them.”</p>
+<p><strong>Mini project:</strong> Put your <code>python-practice</code>
+folder from the first lesson under Git: a <code>.gitignore</code>, at
+least three small commits, and a <code>git log --oneline</code> that
+tells the story.</p>
 </div>
+<section class="mentor-prompt"><div class="mentor-head"><div><span class="eyebrow">AI study companion</span><h2 id="ai-mentor-prompt">AI Mentor Prompt</h2></div><button class="btn copy-prompt" type="button" data-copy-target="mentor-prompt-phase-0-git-github-01-repos-commits">Copy prompt</button></div><p>Paste this into ChatGPT, Claude, Gemini, or another capable assistant to turn this tutorial into an interactive mentoring session.</p><pre class="prompt-box"><code id="mentor-prompt-phase-0-git-github-01-repos-commits">You are my hands-on software-engineering mentor.
+
+I am currently studying:
+&quot;Git Repositories &amp; Commits: Save Your Work in Safe Steps&quot;
+
+My level:
+Beginner
+
+Teach me this topic interactively rather than giving me a long lecture.
+
+Use this sequence:
+
+1. Check what I already understand with one short diagnostic question.
+2. Explain the concept in simple language and give me the mental model first.
+3. Give me one small task using code, SQL, configuration, data, or architecture as appropriate.
+4. Wait for my attempt before showing a complete solution.
+5. Review my work and explain both what is correct and what needs improvement.
+6. Help me debug errors step by step instead of immediately replacing my work.
+7. Increase the difficulty gradually and connect each new step to the previous one.
+8. Relate what I am learning to real professional data/AI engineering work.
+9. Ask me to explain an important decision in my own words so you can check my understanding.
+10. At the end, ask me to build or modify one small feature independently.
+
+Important rules:
+- Do not do the entire exercise for me unless I explicitly ask.
+- Explain unfamiliar terminology before using it heavily.
+- Prefer current, production-relevant practices over outdated shortcuts.
+- Distinguish clearly between concepts, tool-specific behaviour, and optional alternatives.
+- If a technical fact, API, syntax, version, or best practice may have changed, verify it against current official documentation before teaching it.
+- Never invent command output, test results, benchmark numbers, cloud behaviour, or data results.
+- If something cannot be executed in the current environment, say so and give me the exact command or verification step I should run.
+- Keep me actively coding, querying, configuring, reasoning, or debugging throughout the session.
+
+The concepts I need to master are:
+- Repositories &amp; commits
+- git
+- repository
+- repo
+- commit
+- git init
+- git status
+- git add
+
+Start by asking me one diagnostic question.</code></pre></section>
+
 <div class="terms-box"><div class="files-head"><b>Key terms in this lesson</b><a href="../../../glossary.html">Glossary →</a></div><div class="term-chips"><a class="term-chip" href="../../../glossary.html#commit" title="A saved snapshot of chosen changes, with a message, author and unique ID. You stage changes with git add, then commit them.">Commit</a><a class="term-chip" href="../../../glossary.html#git" title="A version control system that records every change to a project as commits, so you can review, undo and collaborate safely.">Git</a><a class="term-chip" href="../../../glossary.html#gitignore" title="A file listing what Git should never track, such as .venv/, logs and secret .env files.">.gitignore</a><a class="term-chip" href="../../../glossary.html#repository" title="A project folder whose full history is tracked by Git (in a hidden .git folder), locally and usually on GitHub.">Repository</a></div></div>
 <h2 id="free-resources">Free resources to go deeper</h2><ul class="resources"><li><a href="https://git-scm.com/book/en/v2">Pro Git book (free)</a><span class="r-meta">git-scm.com (official) · Chapters 1–2 cover everything in this lesson.</span></li><li><a href="https://github.com/skills/introduction-to-github">Introduction to GitHub (interactive course)</a><span class="r-meta">GitHub Skills · Free, hands-on course inside a real repository.</span></li></ul>
 <div class="complete-bar"><span>Finished reading and did the exercise?</span>
@@ -334,9 +428,9 @@ git<span class="w"> </span>log<span class="w"> </span>--oneline<span class="w"> 
 <p class="reviewed">Last reviewed: 2026-10-09</p>
 
   </div></main>
-  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#example-1-create-a-repository-and-the-first-commit">Example 1: create a repository and the first commit</a><a href="#example-2-ignore-files-that-dont-belong">Example 2: ignore files that don&#x27;t belong</a><a href="#example-3-see-what-changed-with-git-diff">Example 3: see what changed with git diff</a><a href="#example-4-read-the-history">Example 4: read the history</a><a href="#undo-cheatsheet">Undo cheatsheet</a><a href="#good-commit-messages">Good commit messages</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#free-resources">Free resources</a></aside>
+  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#example-1-create-a-repository-and-the-first-commit">Example 1: create a repository and the first commit</a><a href="#example-2-ignore-files-that-dont-belong">Example 2: ignore files that don’t belong</a><a href="#example-3-see-what-changed-with-git-diff">Example 3: see what changed with git diff</a><a href="#example-4-read-the-history">Example 4: read the history</a><a href="#undo-cheatsheet">Undo cheatsheet</a><a href="#good-commit-messages">Good commit messages</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#ai-mentor-prompt">AI Mentor Prompt</a><a href="#free-resources">Free resources</a></aside>
 </div>
-<footer class="site">Data, AI &amp; Automation Path v0.8 · Applied AI, Data &amp; Automation Lab · Updated October 2026<br>
+<footer class="site"><b>Saiful The Techie</b> · Data, AI &amp; Automation Path v0.9.1 · Updated October 2026<br>
 Lesson text: <a href="../../../license.html">CC BY-NC-SA 4.0</a> · Code: <a href="../../../license.html#code-mit-license">MIT</a> · Free external resources belong to their respective owners.</footer>
 <script src="../../../search-index.js"></script>
 <script src="../../../assets/app.js"></script>

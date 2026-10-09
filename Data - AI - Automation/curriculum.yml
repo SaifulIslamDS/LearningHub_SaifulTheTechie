@@ -1,5 +1,5 @@
 # The curriculum map. Every phase and module page is generated from this file.
-# Module "topics" become the planned lesson list until a lesson file covers them.
+# Module "topics" are authoritative coverage items; until written, the UI shows their projected roadmap milestone/version.
 # tag: new | updated  (2026 market upgrade labels)
 
 tracks:

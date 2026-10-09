@@ -6,7 +6,7 @@
 <title>Polars DataFrames: Fast Expressions and Lazy Queries — Data, AI &amp; Automation Path</title>
 <meta name="description" content="Load data with Polars, transform it with expressions (filter, with_columns, group_by, join), and use lazy mode so Polars optimises the whole query before running it.">
 <meta property="og:type" content="article">
-<meta property="og:site_name" content="Data, AI &amp; Automation Path">
+<meta property="og:site_name" content="Saiful The Techie">
 <meta property="og:title" content="Polars DataFrames: Fast Expressions and Lazy Queries">
 <meta property="og:description" content="Load data with Polars, transform it with expressions (filter, with_columns, group_by, join), and use lazy mode so Polars optimises the whole query before running it.">
 <meta property="og:locale" content="en_US">
@@ -19,13 +19,13 @@ var n=null;try{n=localStorage.getItem('daa-nav')}catch(e){}
 if(n==='open'&&window.matchMedia&&matchMedia('(min-width: 961px)').matches)document.documentElement.setAttribute('data-nav','open');
 document.documentElement.classList.add('no-anim')})();</script>
 <link rel="stylesheet" href="../../../assets/style.css">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233f7d6a'/%3E%3Ctext x='16' y='21' font-family='sans-serif' font-size='13' font-weight='700' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
+
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="topbar">
   <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Open curriculum menu" title="Curriculum menu (press M)" aria-controls="sidebar" aria-expanded="false"><span class="ico-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span class="ico-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></button>
-  <a class="brand" href="../../../index.html"><span class="brand-badge">AI</span><span class="brand-text"><span class="brand-name">Data, AI &amp; Automation Path</span><span class="brand-version">v0.8</span></span></a>
+  <a class="brand" href="../../../index.html"><span class="brand-text"><span class="brand-name">Saiful The Techie</span><span class="brand-version">Data, AI &amp; Automation Path · v0.9.1</span></span></a>
   <nav class="top-links" aria-label="Main">
     <a href="../../../index.html" class="">Home</a><a href="../../../curriculum.html" class="">Curriculum</a><a href="../../../practice-files.html" class="">Practice files</a><a href="../../../glossary.html" class="">Glossary</a><a href="../../../how-to-learn.html" class="">How to learn</a><a href="../../../about.html" class="">About</a>
   </nav>
@@ -41,7 +41,7 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="layout wide">
   <nav class="sidebar" id="sidebar" aria-label="Curriculum">
     <div class="side-title">Curriculum</div>
-    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="77"><i></i></div><span class="bar-label" data-progress-label></span></div>
+    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="85"><i></i></div><span class="bar-label" data-progress-label></span></div>
 <div class="nav-phase"><a href="../../../learn/phase-0/index.html"><span class="nav-num">0</span>Foundations</a>
 </div>
 <div class="nav-phase"><a href="../../../learn/phase-1/index.html"><span class="nav-num">1</span>Analytics &amp; BI</a>
@@ -96,57 +96,68 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="admonition note"><p class="admonition-title">Before you start</p><p><a href="../../../learn/phase-2/pandas/03-merge-groupby.html">pandas Merge &amp; groupby: Join Tables and Summarise Like SQL</a></p></div>
 <div class="files-box"><div class="files-head"><b>Practice files for this page</b><a href="../../../practice-files.html">All practice files →</a></div><ul><li><a href="../../../downloads/phase-2/data-science-scripts.zip" download>data-science-scripts.zip</a><span class="f-desc">All 21 Phase 2 lesson scripts (NumPy to research thinking), shared chart style, data folder and solutions · 230 KB</span></li><li><a href="../../../downloads/phase-2/orders_2025.csv" download>orders_2025.csv</a><span class="f-desc">4,246 clean orders for 2025 (synthetic, fixed seed): region, segment, channel, product, price, discount, status, delivery days, revenue · 472 KB</span></li><li><a href="../../../downloads/phase-2/customers_2025.csv" download>customers_2025.csv</a><span class="f-desc">63 customers: segment, region, sign-up date, credit terms · 3 KB</span></li></ul></div>
 <h2 id="what-is-it">What is it?</h2>
-<p><strong>Polars</strong> is a DataFrame library (like pandas) built for speed: it's written in Rust, uses all CPU cores, and stores data in the Apache Arrow column format.</p>
+<p><strong>Polars</strong> is a DataFrame library (like pandas) built
+for speed: it’s written in Rust, uses all CPU cores, and stores data in
+the Apache Arrow column format.</p>
 <table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th></th>
 <th>pandas</th>
 <th>Polars</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>Style</td>
 <td>Methods and indexing (<code>df[df.x &gt; 1]</code>)</td>
-<td><strong>Expressions</strong> (<code>df.filter(pl.col("x") &gt; 1)</code>)</td>
+<td><strong>Expressions</strong>
+(<code>df.filter(pl.col("x") &gt; 1)</code>)</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Row index</td>
 <td>Yes</td>
 <td>No: rows are just rows</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Execution</td>
 <td>Eager (runs each line)</td>
 <td>Eager <strong>or lazy</strong> (plans first, then runs)</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Speed on large data</td>
 <td>Good</td>
 <td>Usually much faster, uses all cores</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Ecosystem</td>
 <td>Huge (most tutorials, libraries)</td>
 <td>Growing quickly; converts to/from pandas</td>
 </tr>
 </tbody>
 </table>
-<div class="admonition job">
-<p class="admonition-title">Why it matters at work</p>
-<p>Data teams increasingly use Polars for pipelines that were slow in pandas, and job adverts have started listing it next to pandas. Learning its expression style also prepares you for Spark and SQL-style thinking used in data engineering (Phase 3).</p>
+<div class="admonition job" data-markdown="1">
+<p class="admonition-title">
+Why it matters at work
+</p>
+<p>Data teams increasingly use Polars for pipelines that were slow in
+pandas, and job adverts have started listing it next to pandas. Learning
+its expression style also prepares you for Spark and SQL-style thinking
+used in data engineering (Phase 3).</p>
 </div>
 <p>The script is <code>07_polars.py</code> (Polars 2.0).</p>
 <h2 id="example-1-read-and-inspect">Example 1: read and inspect</h2>
-<div class="codehilite"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">polars</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pl</span>
+<pre class="python"><code>import polars as pl
 
-<span class="n">orders</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">"data/orders_2025.csv"</span><span class="p">,</span> <span class="n">try_parse_dates</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">orders</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">orders</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">"order_id"</span><span class="p">,</span> <span class="s2">"order_date"</span><span class="p">,</span> <span class="s2">"region"</span><span class="p">,</span> <span class="s2">"status"</span><span class="p">,</span> <span class="s2">"revenue"</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>(4246, 16)
+orders = pl.read_csv(&quot;data/orders_2025.csv&quot;, try_parse_dates=True)
+print(orders.shape)
+print(orders.select(&quot;order_id&quot;, &quot;order_date&quot;, &quot;region&quot;, &quot;status&quot;, &quot;revenue&quot;).head(3))</code></pre>
+<pre class="text"><code>(4246, 16)
 shape: (3, 5)
 ┌──────────┬────────────┬─────────────┬───────────┬─────────┐
 │ order_id ┆ order_date ┆ region      ┆ status    ┆ revenue │
@@ -156,23 +167,21 @@ shape: (3, 5)
 │ 10001    ┆ 2025-01-01 ┆ Chattogram  ┆ Delivered ┆ 189.26  │
 │ 10002    ┆ 2025-01-01 ┆ Narayanganj ┆ Cancelled ┆ 834.56  │
 │ 10003    ┆ 2025-01-01 ┆ Gazipur     ┆ Delivered ┆ 248.11  │
-└──────────┴────────────┴─────────────┴───────────┴─────────┘
-</code></pre></div>
-
-<p>Types are shown under each column name. <code>try_parse_dates=True</code> already turned <code>order_date</code> into a real <code>date</code>.</p>
+└──────────┴────────────┴─────────────┴───────────┴─────────┘</code></pre>
+<p>Types are shown under each column name.
+<code>try_parse_dates=True</code> already turned <code>order_date</code>
+into a real <code>date</code>.</p>
 <h2 id="example-2-expressions">Example 2: expressions</h2>
-<div class="codehilite"><pre><span></span><code><span class="n">net</span> <span class="o">=</span> <span class="p">(</span>
-    <span class="n">orders</span>
-    <span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">"status"</span><span class="p">)</span> <span class="o">!=</span> <span class="s2">"Cancelled"</span><span class="p">)</span>
-    <span class="o">.</span><span class="n">with_columns</span><span class="p">(</span>
-        <span class="p">(</span><span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">"quantity"</span><span class="p">)</span> <span class="o">*</span> <span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">"unit_cost"</span><span class="p">))</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">"cost"</span><span class="p">),</span>
-        <span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">"order_date"</span><span class="p">)</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">month</span><span class="p">()</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">"month"</span><span class="p">),</span>
-    <span class="p">)</span>
-<span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">net</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">"order_id"</span><span class="p">,</span> <span class="s2">"revenue"</span><span class="p">,</span> <span class="s2">"cost"</span><span class="p">,</span> <span class="s2">"month"</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>shape: (3, 4)
+<pre class="python"><code>net = (
+    orders
+    .filter(pl.col(&quot;status&quot;) != &quot;Cancelled&quot;)
+    .with_columns(
+        (pl.col(&quot;quantity&quot;) * pl.col(&quot;unit_cost&quot;)).alias(&quot;cost&quot;),
+        pl.col(&quot;order_date&quot;).dt.month().alias(&quot;month&quot;),
+    )
+)
+print(net.select(&quot;order_id&quot;, &quot;revenue&quot;, &quot;cost&quot;, &quot;month&quot;).head(3))</code></pre>
+<pre class="text"><code>shape: (3, 4)
 ┌──────────┬─────────┬────────┬───────┐
 │ order_id ┆ revenue ┆ cost   ┆ month │
 │ ---      ┆ ---     ┆ ---    ┆ ---   │
@@ -181,54 +190,58 @@ shape: (3, 5)
 │ 10001    ┆ 189.26  ┆ 115.4  ┆ 1     │
 │ 10003    ┆ 248.11  ┆ 159.25 ┆ 1     │
 │ 10004    ┆ 1988.18 ┆ 1614.0 ┆ 1     │
-└──────────┴─────────┴────────┴───────┘
-</code></pre></div>
-
-<p>An <strong>expression</strong> (<code>pl.col("quantity") * pl.col("unit_cost")</code>) describes a calculation on columns. Polars runs the expressions inside one <code>with_columns</code> <strong>in parallel</strong>. Methods chain top to bottom, so the code reads like a recipe.</p>
+└──────────┴─────────┴────────┴───────┘</code></pre>
+<p>An <strong>expression</strong>
+(<code>pl.col("quantity") * pl.col("unit_cost")</code>) describes a
+calculation on columns. Polars runs the expressions inside one
+<code>with_columns</code> <strong>in parallel</strong>. Methods chain
+top to bottom, so the code reads like a recipe.</p>
 <table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>pandas</th>
 <th>Polars</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td><code>df[df["status"] != "Cancelled"]</code></td>
 <td><code>df.filter(pl.col("status") != "Cancelled")</code></td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>df["cost"] = df.quantity * df.unit_cost</code></td>
 <td><code>df.with_columns((pl.col("quantity") * pl.col("unit_cost")).alias("cost"))</code></td>
 </tr>
-<tr>
+<tr class="odd">
 <td><code>df[["a", "b"]]</code></td>
 <td><code>df.select("a", "b")</code></td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>df.groupby("x").agg(...)</code></td>
 <td><code>df.group_by("x").agg(...)</code></td>
 </tr>
-<tr>
+<tr class="odd">
 <td><code>df.sort_values("x", ascending=False)</code></td>
 <td><code>df.sort("x", descending=True)</code></td>
 </tr>
 </tbody>
 </table>
 <h2 id="example-3-group_by-and-agg">Example 3: group_by and agg</h2>
-<div class="codehilite"><pre><span></span><code><span class="n">by_region</span> <span class="o">=</span> <span class="p">(</span>
-    <span class="n">net</span><span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="s2">"region"</span><span class="p">)</span>
-    <span class="o">.</span><span class="n">agg</span><span class="p">(</span>
-        <span class="n">pl</span><span class="o">.</span><span class="n">len</span><span class="p">()</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">"orders"</span><span class="p">),</span>
-        <span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">"revenue"</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">"revenue"</span><span class="p">),</span>
-        <span class="p">((</span><span class="mi">1</span> <span class="o">-</span> <span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">"cost"</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">"revenue"</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">"margin_pct"</span><span class="p">),</span>
-    <span class="p">)</span>
-    <span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="s2">"revenue"</span><span class="p">,</span> <span class="n">descending</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">by_region</span><span class="p">)</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>shape: (5, 4)
+<pre class="python"><code>by_region = (
+    net.group_by(&quot;region&quot;)
+    .agg(
+        pl.len().alias(&quot;orders&quot;),
+        pl.col(&quot;revenue&quot;).sum().round(0).alias(&quot;revenue&quot;),
+        ((1 - pl.col(&quot;cost&quot;).sum() / pl.col(&quot;revenue&quot;).sum()) * 100).round(1).alias(&quot;margin_pct&quot;),
+    )
+    .sort(&quot;revenue&quot;, descending=True)
+)
+print(by_region)</code></pre>
+<pre class="text"><code>shape: (5, 4)
 ┌─────────────┬────────┬────────────┬────────────┐
 │ region      ┆ orders ┆ revenue    ┆ margin_pct │
 │ ---         ┆ ---    ┆ ---        ┆ ---        │
@@ -239,18 +252,18 @@ shape: (3, 5)
 │ Narayanganj ┆ 447    ┆ 583516.0   ┆ 24.9       │
 │ Gazipur     ┆ 469    ┆ 571973.0   ┆ 25.3       │
 │ Khulna      ┆ 313    ┆ 429968.0   ┆ 25.7       │
-└─────────────┴────────┴────────────┴────────────┘
-</code></pre></div>
-
-<p>The same regional totals as pandas (2.057404e6 = 2,057,404). Polars shows big floats in scientific notation; <code>pl.Config(float_precision=0)</code> or casting to integers changes the display. <strong>Note:</strong> <code>group_by</code> doesn't keep a stable group order, so always <code>sort</code> when order matters.</p>
+└─────────────┴────────┴────────────┴────────────┘</code></pre>
+<p>The same regional totals as pandas (2.057404e6 = 2,057,404). Polars
+shows big floats in scientific notation;
+<code>pl.Config(float_precision=0)</code> or casting to integers changes
+the display. <strong>Note:</strong> <code>group_by</code> doesn’t keep a
+stable group order, so always <code>sort</code> when order matters.</p>
 <h2 id="example-4-join">Example 4: join</h2>
-<div class="codehilite"><pre><span></span><code><span class="n">customers</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">"data/customers_2025.csv"</span><span class="p">)</span>
-<span class="n">joined</span> <span class="o">=</span> <span class="n">net</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">customers</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">"customer_id"</span><span class="p">,</span> <span class="s2">"customer_name"</span><span class="p">,</span> <span class="s2">"credit_days"</span><span class="p">),</span> <span class="n">on</span><span class="o">=</span><span class="s2">"customer_id"</span><span class="p">,</span>
-                  <span class="n">how</span><span class="o">=</span><span class="s2">"left"</span><span class="p">,</span> <span class="n">validate</span><span class="o">=</span><span class="s2">"m:1"</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">joined</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">"order_id"</span><span class="p">,</span> <span class="s2">"customer_name"</span><span class="p">,</span> <span class="s2">"credit_days"</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>shape: (3, 3)
+<pre class="python"><code>customers = pl.read_csv(&quot;data/customers_2025.csv&quot;)
+joined = net.join(customers.select(&quot;customer_id&quot;, &quot;customer_name&quot;, &quot;credit_days&quot;), on=&quot;customer_id&quot;,
+                  how=&quot;left&quot;, validate=&quot;m:1&quot;)
+print(joined.select(&quot;order_id&quot;, &quot;customer_name&quot;, &quot;credit_days&quot;).head(3))</code></pre>
+<pre class="text"><code>shape: (3, 3)
 ┌──────────┬──────────────────┬─────────────┐
 │ order_id ┆ customer_name    ┆ credit_days │
 │ ---      ┆ ---              ┆ ---         │
@@ -259,30 +272,28 @@ shape: (3, 5)
 │ 10001    ┆ Padma Knitting   ┆ 15          │
 │ 10003    ┆ Ocean Enterprise ┆ 15          │
 │ 10004    ┆ Jamuna Knit      ┆ 30          │
-└──────────┴──────────────────┴─────────────┘
-</code></pre></div>
-
-<p><code>validate="m:1"</code> is the same safety check as in pandas.</p>
-<h2 id="example-5-lazy-mode-and-the-query-plan">Example 5: lazy mode and the query plan</h2>
-<div class="codehilite"><pre><span></span><code><span class="n">lazy</span> <span class="o">=</span> <span class="p">(</span>
-    <span class="n">pl</span><span class="o">.</span><span class="n">scan_csv</span><span class="p">(</span><span class="s2">"data/orders_2025.csv"</span><span class="p">,</span> <span class="n">try_parse_dates</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">"status"</span><span class="p">)</span> <span class="o">==</span> <span class="s2">"Delivered"</span><span class="p">)</span>
-    <span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">"order_date"</span><span class="p">)</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">month</span><span class="p">()</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">"month"</span><span class="p">))</span>
-    <span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">"delivery_days"</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">"avg_days"</span><span class="p">))</span>
-    <span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="s2">"month"</span><span class="p">)</span>
-<span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">lazy</span><span class="o">.</span><span class="n">explain</span><span class="p">())</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">lazy</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>SORT BY [col("month")]
+└──────────┴──────────────────┴─────────────┘</code></pre>
+<p><code>validate="m:1"</code> is the same safety check as in
+pandas.</p>
+<h2 id="example-5-lazy-mode-and-the-query-plan">Example 5: lazy mode and
+the query plan</h2>
+<pre class="python"><code>lazy = (
+    pl.scan_csv(&quot;data/orders_2025.csv&quot;, try_parse_dates=True)
+    .filter(pl.col(&quot;status&quot;) == &quot;Delivered&quot;)
+    .group_by(pl.col(&quot;order_date&quot;).dt.month().alias(&quot;month&quot;))
+    .agg(pl.col(&quot;delivery_days&quot;).mean().round(2).alias(&quot;avg_days&quot;))
+    .sort(&quot;month&quot;)
+)
+print(lazy.explain())
+print(lazy.collect().head(4))</code></pre>
+<pre class="text"><code>SORT BY [col(&quot;month&quot;)]
   AGGREGATE[maintain_order: false]
-    [col("delivery_days").mean().round().alias("avg_days")] BY [col("order_date").dt.month().alias("month")]
+    [col(&quot;delivery_days&quot;).mean().round().alias(&quot;avg_days&quot;)] BY [col(&quot;order_date&quot;).dt.month().alias(&quot;month&quot;)]
     FROM
-    simple π 2/2 ["order_date", "delivery_days"]
+    simple π 2/2 [&quot;order_date&quot;, &quot;delivery_days&quot;]
       Csv SCAN [data/orders_2025.csv]
       PROJECT 3/16 COLUMNS
-      SELECTION: col("status") == "Delivered"
+      SELECTION: col(&quot;status&quot;) == &quot;Delivered&quot;
       ESTIMATED ROWS: 4130
 shape: (4, 2)
 ┌───────┬──────────┐
@@ -294,59 +305,69 @@ shape: (4, 2)
 │ 2     ┆ 3.11     │
 │ 3     ┆ 2.92     │
 │ 4     ┆ 3.17     │
-└───────┴──────────┘
-</code></pre></div>
-
-<p><code>scan_csv</code> reads <strong>nothing</strong> yet; it builds a plan. Read the plan from the bottom up:</p>
+└───────┴──────────┘</code></pre>
+<p><code>scan_csv</code> reads <strong>nothing</strong> yet; it builds a
+plan. Read the plan from the bottom up:</p>
 <ul>
-<li><strong><code>PROJECT 3/16 COLUMNS</code></strong>: Polars will read only the 3 columns it needs (<em>projection pushdown</em>).</li>
-<li><strong><code>SELECTION: col("status") == "Delivered"</code></strong>: the filter is applied <strong>while reading</strong> (<em>predicate pushdown</em>), so unneeded rows never enter memory.</li>
+<li><strong><code>PROJECT 3/16 COLUMNS</code></strong>: Polars will read
+only the 3 columns it needs (<em>projection pushdown</em>).</li>
+<li><strong><code>SELECTION: col("status") == "Delivered"</code></strong>:
+the filter is applied <strong>while reading</strong> (<em>predicate
+pushdown</em>), so unneeded rows never enter memory.</li>
 <li><code>.collect()</code> runs the optimised plan.</li>
 </ul>
-<p>On a 2-million-row file this is the difference between "fits easily" and "out of memory" (next lesson).</p>
-<h2 id="example-6-same-answer-as-pandas">Example 6: same answer as pandas?</h2>
-<div class="codehilite"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<p>On a 2-million-row file this is the difference between “fits easily”
+and “out of memory” (next lesson).</p>
+<h2 id="example-6-same-answer-as-pandas">Example 6: same answer as
+pandas?</h2>
+<pre class="python"><code>import pandas as pd
 
-<span class="n">pd_total</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">"data/orders_2025.csv"</span><span class="p">)</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">"status != 'Cancelled'"</span><span class="p">)[</span><span class="s2">"revenue"</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
-<span class="n">pl_total</span> <span class="o">=</span> <span class="n">net</span><span class="p">[</span><span class="s2">"revenue"</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">pd_total</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="nb">round</span><span class="p">(</span><span class="n">pl_total</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>5478357.79 5478357.79
-</code></pre></div>
-
-<p>Always reconcile a new tool against a known answer. Convert between them with <code>pl.from_pandas(df)</code> and <code>df_pl.to_pandas()</code>.</p>
+pd_total = pd.read_csv(&quot;data/orders_2025.csv&quot;).query(&quot;status != &#39;Cancelled&#39;&quot;)[&quot;revenue&quot;].sum()
+pl_total = net[&quot;revenue&quot;].sum()
+print(round(pd_total, 2), round(pl_total, 2))</code></pre>
+<pre class="text"><code>5478357.79 5478357.79</code></pre>
+<p>Always reconcile a new tool against a known answer. Convert between
+them with <code>pl.from_pandas(df)</code> and
+<code>df_pl.to_pandas()</code>.</p>
 <h2 id="common-mistakes">Common mistakes</h2>
 <table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Mistake</th>
 <th>What happens</th>
 <th>Fix</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td>Writing pandas syntax (<code>df[df.x &gt; 1]</code>, <code>df["new"] = …</code>)</td>
+<tr class="odd">
+<td>Writing pandas syntax (<code>df[df.x &gt; 1]</code>,
+<code>df["new"] = …</code>)</td>
 <td>Errors or unexpected results</td>
-<td><code>filter</code>, <code>with_columns</code>, <code>select</code></td>
+<td><code>filter</code>, <code>with_columns</code>,
+<code>select</code></td>
 </tr>
-<tr>
+<tr class="even">
 <td>Forgetting <code>.alias()</code></td>
 <td>The new column overwrites or is named after the input</td>
 <td>Name every derived column</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Expecting group order</td>
 <td>Groups come back in random order</td>
 <td><code>.sort(...)</code> after <code>group_by</code></td>
 </tr>
-<tr>
+<tr class="even">
 <td>Using <code>read_csv</code> for big files</td>
 <td>Everything loads, then you filter</td>
-<td><code>scan_csv</code> / <code>scan_parquet</code> + <code>collect()</code></td>
+<td><code>scan_csv</code> / <code>scan_parquet</code> +
+<code>collect()</code></td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Forgetting <code>.collect()</code></td>
 <td>You print a plan, not data</td>
 <td>Call <code>.collect()</code> at the end of a lazy query</td>
@@ -354,22 +375,27 @@ shape: (4, 2)
 </tbody>
 </table>
 <h2 id="try-it-yourself">Try it yourself</h2>
-<p><strong>Task:</strong> In Polars, calculate the <strong>cancellation rate (%) by channel</strong>, with the number of orders, highest rate first.</p>
+<p><strong>Task:</strong> In Polars, calculate the <strong>cancellation
+rate (%) by channel</strong>, with the number of orders, highest rate
+first.</p>
 <details>
-<summary>Show a hint</summary>
-<p><code>(pl.col("status") == "Cancelled").mean()</code> gives the share of cancelled orders in each group.</p>
+<summary>
+Show a hint
+</summary>
+<code>(pl.col("status") == "Cancelled").mean()</code> gives the share of
+cancelled orders in each group.
 </details>
 <details>
-<summary>Show the solution</summary>
-<div class="codehilite"><pre><span></span><code><span class="n">rate</span> <span class="o">=</span> <span class="p">(</span>
-    <span class="n">orders</span><span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="s2">"channel"</span><span class="p">)</span>
-    <span class="o">.</span><span class="n">agg</span><span class="p">((</span><span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">"status"</span><span class="p">)</span> <span class="o">==</span> <span class="s2">"Cancelled"</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">mul</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">"cancel_pct"</span><span class="p">),</span> <span class="n">pl</span><span class="o">.</span><span class="n">len</span><span class="p">()</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">"orders"</span><span class="p">))</span>
-    <span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="s2">"cancel_pct"</span><span class="p">,</span> <span class="n">descending</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">rate</span><span class="p">)</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>shape: (3, 3)
+<summary>
+Show the solution
+</summary>
+<pre class="python"><code>rate = (
+    orders.group_by(&quot;channel&quot;)
+    .agg((pl.col(&quot;status&quot;) == &quot;Cancelled&quot;).mean().mul(100).round(1).alias(&quot;cancel_pct&quot;), pl.len().alias(&quot;orders&quot;))
+    .sort(&quot;cancel_pct&quot;, descending=True)
+)
+print(rate)</code></pre>
+<pre class="text"><code>shape: (3, 3)
 ┌───────────┬────────────┬────────┐
 │ channel   ┆ cancel_pct ┆ orders │
 │ ---       ┆ ---        ┆ ---    │
@@ -378,61 +404,132 @@ shape: (4, 2)
 │ Phone     ┆ 9.5        ┆ 796    │
 │ Sales rep ┆ 6.3        ┆ 1244   │
 │ Portal    ┆ 5.8        ┆ 2206   │
-└───────────┴────────────┴────────┘
-</code></pre></div>
-
-<p>Phone orders are cancelled most often (9.5%). Is the channel the cause, or do certain customers prefer the phone? Hold that question for the Causal pitfalls lesson.</p>
+└───────────┴────────────┴────────┘</code></pre>
+Phone orders are cancelled most often (9.5%). Is the channel the cause,
+or do certain customers prefer the phone? Hold that question for the
+Causal pitfalls lesson.
 </details>
 <h2 id="quick-quiz">Quick quiz</h2>
 <div class="quiz-q" data-answer="1">
 <p>1. What does <code>pl.scan_csv(...)</code> return?</p>
-<ol>
+<ol type="1">
 <li>A DataFrame with all rows loaded</li>
-<li>A lazy query plan that runs when you call <code>.collect()</code></li>
+<li>A lazy query plan that runs when you call
+<code>.collect()</code></li>
 <li>A list of column names</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B.</strong></p>
+<summary>
+Show answer
+</summary>
+<strong>B.</strong>
 </details>
 </div>
 <div class="quiz-q" data-answer="0">
-<p>2. What is "predicate pushdown"?</p>
-<ol>
-<li>Applying the filter while reading the file, so fewer rows are loaded</li>
+<p>2. What is “predicate pushdown”?</p>
+<ol type="1">
+<li>Applying the filter while reading the file, so fewer rows are
+loaded</li>
 <li>Sorting rows before grouping</li>
 <li>Pushing results to a database</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>A.</strong> (Projection pushdown does the same for columns.)</p>
+<summary>
+Show answer
+</summary>
+<strong>A.</strong> (Projection pushdown does the same for columns.)
 </details>
 </div>
 <div class="quiz-q" data-answer="1">
 <p>3. How do you add a calculated column in Polars?</p>
-<ol>
+<ol type="1">
 <li><code>df["cost"] = df["quantity"] * df["unit_cost"]</code></li>
 <li><code>df.with_columns((pl.col("quantity") * pl.col("unit_cost")).alias("cost"))</code></li>
 <li><code>df.add_column("cost")</code></li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B.</strong></p>
+<summary>
+Show answer
+</summary>
+<strong>B.</strong>
 </details>
 </div>
 <h2 id="summary">Summary</h2>
 <ul>
-<li>Polars uses <strong>expressions</strong> (<code>pl.col(...)</code>) inside <code>select</code>, <code>filter</code>, <code>with_columns</code>, <code>group_by().agg()</code> and <code>join</code>.</li>
-<li>No index; <code>group_by</code> order isn't guaranteed, so sort.</li>
-<li><strong>Lazy mode</strong> (<code>scan_*</code> → plan → <code>collect()</code>) reads only the needed columns and rows; check with <code>explain()</code>.</li>
+<li>Polars uses <strong>expressions</strong> (<code>pl.col(...)</code>)
+inside <code>select</code>, <code>filter</code>,
+<code>with_columns</code>, <code>group_by().agg()</code> and
+<code>join</code>.</li>
+<li>No index; <code>group_by</code> order isn’t guaranteed, so
+sort.</li>
+<li><strong>Lazy mode</strong> (<code>scan_*</code> → plan →
+<code>collect()</code>) reads only the needed columns and rows; check
+with <code>explain()</code>.</li>
 <li>Reconcile with pandas or a known answer when switching tools.</li>
 </ul>
-<div class="admonition job">
-<p class="admonition-title">Job-ready check</p>
-<p><strong>Interview question:</strong> <em>"When would you choose Polars over pandas?"</em></p>
-<p><strong>Strong answer:</strong> "When data is large enough that pandas is slow or memory-hungry, or for a pipeline where performance matters. Polars' lazy engine pushes filters and column selection into the file scan and uses all cores. For small exploratory work or when a library expects pandas, I stay with pandas and convert at the boundary."</p>
-<p><strong>Mini project:</strong> Rewrite the segment summary from the merge &amp; groupby lesson (orders, revenue, average order, distinct customers, share) in Polars, and check that every number matches pandas.</p>
+<div class="admonition job" data-markdown="1">
+<p class="admonition-title">
+Job-ready check
+</p>
+<p><strong>Interview question:</strong> <em>“When would you choose
+Polars over pandas?”</em></p>
+<p><strong>Strong answer:</strong> “When data is large enough that
+pandas is slow or memory-hungry, or for a pipeline where performance
+matters. Polars’ lazy engine pushes filters and column selection into
+the file scan and uses all cores. For small exploratory work or when a
+library expects pandas, I stay with pandas and convert at the
+boundary.”</p>
+<p><strong>Mini project:</strong> Rewrite the segment summary from the
+merge &amp; groupby lesson (orders, revenue, average order, distinct
+customers, share) in Polars, and check that every number matches
+pandas.</p>
 </div>
+<section class="mentor-prompt"><div class="mentor-head"><div><span class="eyebrow">AI study companion</span><h2 id="ai-mentor-prompt">AI Mentor Prompt</h2></div><button class="btn copy-prompt" type="button" data-copy-target="mentor-prompt-phase-2-polars-duckdb-01-polars-dataframes">Copy prompt</button></div><p>Paste this into ChatGPT, Claude, Gemini, or another capable assistant to turn this tutorial into an interactive mentoring session.</p><pre class="prompt-box"><code id="mentor-prompt-phase-2-polars-duckdb-01-polars-dataframes">You are my hands-on Python, statistics and data-science mentor.
+
+I am currently studying:
+&quot;Polars DataFrames: Fast Expressions and Lazy Queries&quot;
+
+My level:
+Intermediate
+
+Teach me this topic interactively rather than giving me a long lecture.
+
+Use this sequence:
+
+1. Check what I already understand with one short diagnostic question.
+2. Explain the concept in simple language and give me the mental model first.
+3. Give me one small task using code, SQL, configuration, data, or architecture as appropriate.
+4. Wait for my attempt before showing a complete solution.
+5. Review my work and explain both what is correct and what needs improvement.
+6. Help me debug errors step by step instead of immediately replacing my work.
+7. Increase the difficulty gradually and connect each new step to the previous one.
+8. Relate what I am learning to real professional data/AI engineering work.
+9. Ask me to explain an important decision in my own words so you can check my understanding.
+10. At the end, ask me to build or modify one small feature independently.
+
+Important rules:
+- Do not do the entire exercise for me unless I explicitly ask.
+- Explain unfamiliar terminology before using it heavily.
+- Prefer current, production-relevant practices over outdated shortcuts.
+- Distinguish clearly between concepts, tool-specific behaviour, and optional alternatives.
+- If a technical fact, API, syntax, version, or best practice may have changed, verify it against current official documentation before teaching it.
+- Never invent command output, test results, benchmark numbers, cloud behaviour, or data results.
+- If something cannot be executed in the current environment, say so and give me the exact command or verification step I should run.
+- Keep me actively coding, querying, configuring, reasoning, or debugging throughout the session.
+- When useful, work from the tutorial practice files (data-science-scripts.zip, orders_2025.csv, customers_2025.csv) instead of inventing unrelated examples.
+
+The concepts I need to master are:
+- Polars DataFrames
+- polars
+- dataframe
+- expression
+- pl.col
+- filter
+- with_columns
+- group_by
+
+Start by asking me one diagnostic question.</code></pre></section>
+
 <div class="terms-box"><div class="files-head"><b>Key terms in this lesson</b><a href="../../../glossary.html">Glossary →</a></div><div class="term-chips"><a class="term-chip" href="../../../glossary.html#explain-analyze" title="Runs a query and shows the plan the database actually used (scans, joins, rows, timings), the starting point for any performance fix.">EXPLAIN ANALYZE</a><a class="term-chip" href="../../../glossary.html#join" title="Combines rows from two tables using a matching key. INNER JOIN keeps only matches; LEFT JOIN keeps every row from the left table; an anti-join finds rows with no match.">JOIN</a><a class="term-chip" href="../../../glossary.html#pandas" title="The standard Python library for working with tables (DataFrames): load, clean, join, group and summarise data.">pandas</a><a class="term-chip" href="../../../glossary.html#polars" title="A fast DataFrame library written in Rust, with an expression syntax and lazy queries that are optimised before they run.">Polars</a></div></div>
 <h2 id="free-resources">Free resources to go deeper</h2><ul class="resources"><li><a href="https://docs.pola.rs/user-guide/getting-started/">Polars user guide — Getting started</a><span class="r-meta">Polars official docs · Reading data, expressions, contexts and joins.</span></li><li><a href="https://docs.pola.rs/user-guide/lazy/">Lazy API</a><span class="r-meta">Polars official docs · Why lazy queries are faster, and how to read a query plan.</span></li><li><a href="https://docs.pola.rs/user-guide/migration/pandas/">Coming from pandas</a><span class="r-meta">Polars official docs · Key differences for pandas users.</span></li></ul>
 <div class="complete-bar"><span>Finished reading and did the exercise?</span>
@@ -441,9 +538,9 @@ shape: (4, 2)
 <p class="reviewed">Last reviewed: 2026-10-09</p>
 
   </div></main>
-  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#example-1-read-and-inspect">Example 1: read and inspect</a><a href="#example-2-expressions">Example 2: expressions</a><a href="#example-3-group_by-and-agg">Example 3: group_by and agg</a><a href="#example-4-join">Example 4: join</a><a href="#example-5-lazy-mode-and-the-query-plan">Example 5: lazy mode and the query plan</a><a href="#example-6-same-answer-as-pandas">Example 6: same answer as pandas?</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#free-resources">Free resources</a></aside>
+  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#example-1-read-and-inspect">Example 1: read and inspect</a><a href="#example-2-expressions">Example 2: expressions</a><a href="#example-3-group_by-and-agg">Example 3: group_by and agg</a><a href="#example-4-join">Example 4: join</a><a href="#example-5-lazy-mode-and-the-query-plan">Example 5: lazy mode and the query plan</a><a href="#example-6-same-answer-as-pandas">Example 6: same answer as pandas?</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#ai-mentor-prompt">AI Mentor Prompt</a><a href="#free-resources">Free resources</a></aside>
 </div>
-<footer class="site">Data, AI &amp; Automation Path v0.8 · Applied AI, Data &amp; Automation Lab · Updated October 2026<br>
+<footer class="site"><b>Saiful The Techie</b> · Data, AI &amp; Automation Path v0.9.1 · Updated October 2026<br>
 Lesson text: <a href="../../../license.html">CC BY-NC-SA 4.0</a> · Code: <a href="../../../license.html#code-mit-license">MIT</a> · Free external resources belong to their respective owners.</footer>
 <script src="../../../search-index.js"></script>
 <script src="../../../assets/app.js"></script>

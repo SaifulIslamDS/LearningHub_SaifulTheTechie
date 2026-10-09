@@ -6,7 +6,7 @@
 <title>scikit-learn &amp; the Train/Test Split: Your First Honest Model — Data, AI &amp; Automation Path</title>
 <meta name="description" content="Frame a prediction problem, build a scikit-learn pipeline, hold out a test set, beat a baseline, and choose a metric and threshold that match the business — not just accuracy.">
 <meta property="og:type" content="article">
-<meta property="og:site_name" content="Data, AI &amp; Automation Path">
+<meta property="og:site_name" content="Saiful The Techie">
 <meta property="og:title" content="scikit-learn &amp; the Train/Test Split: Your First Honest Model">
 <meta property="og:description" content="Frame a prediction problem, build a scikit-learn pipeline, hold out a test set, beat a baseline, and choose a metric and threshold that match the business — not just accuracy.">
 <meta property="og:locale" content="en_US">
@@ -19,13 +19,13 @@ var n=null;try{n=localStorage.getItem('daa-nav')}catch(e){}
 if(n==='open'&&window.matchMedia&&matchMedia('(min-width: 961px)').matches)document.documentElement.setAttribute('data-nav','open');
 document.documentElement.classList.add('no-anim')})();</script>
 <link rel="stylesheet" href="../../../assets/style.css">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233f7d6a'/%3E%3Ctext x='16' y='21' font-family='sans-serif' font-size='13' font-weight='700' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
+
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="topbar">
   <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Open curriculum menu" title="Curriculum menu (press M)" aria-controls="sidebar" aria-expanded="false"><span class="ico-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span class="ico-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></button>
-  <a class="brand" href="../../../index.html"><span class="brand-badge">AI</span><span class="brand-text"><span class="brand-name">Data, AI &amp; Automation Path</span><span class="brand-version">v0.8</span></span></a>
+  <a class="brand" href="../../../index.html"><span class="brand-text"><span class="brand-name">Saiful The Techie</span><span class="brand-version">Data, AI &amp; Automation Path · v0.9.1</span></span></a>
   <nav class="top-links" aria-label="Main">
     <a href="../../../index.html" class="">Home</a><a href="../../../curriculum.html" class="">Curriculum</a><a href="../../../practice-files.html" class="">Practice files</a><a href="../../../glossary.html" class="">Glossary</a><a href="../../../how-to-learn.html" class="">How to learn</a><a href="../../../about.html" class="">About</a>
   </nav>
@@ -41,7 +41,7 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="layout wide">
   <nav class="sidebar" id="sidebar" aria-label="Curriculum">
     <div class="side-title">Curriculum</div>
-    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="77"><i></i></div><span class="bar-label" data-progress-label></span></div>
+    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="85"><i></i></div><span class="bar-label" data-progress-label></span></div>
 <div class="nav-phase"><a href="../../../learn/phase-0/index.html"><span class="nav-num">0</span>Foundations</a>
 </div>
 <div class="nav-phase"><a href="../../../learn/phase-1/index.html"><span class="nav-num">1</span>Analytics &amp; BI</a>
@@ -98,176 +98,206 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="files-box"><div class="files-head"><b>Practice files for this page</b><a href="../../../practice-files.html">All practice files →</a></div><ul><li><a href="../../../downloads/phase-2/data-science-scripts.zip" download>data-science-scripts.zip</a><span class="f-desc">All 21 Phase 2 lesson scripts (NumPy to research thinking), shared chart style, data folder and solutions · 230 KB</span></li><li><a href="../../../downloads/phase-2/orders_2025.csv" download>orders_2025.csv</a><span class="f-desc">4,246 clean orders for 2025 (synthetic, fixed seed): region, segment, channel, product, price, discount, status, delivery days, revenue · 472 KB</span></li><li><a href="../../../downloads/phase-2/customers_2025.csv" download>customers_2025.csv</a><span class="f-desc">63 customers: segment, region, sign-up date, credit terms · 3 KB</span></li></ul></div>
 <h2 id="what-is-it">What is it?</h2>
 <ul>
-<li><strong>scikit-learn</strong> (<code>sklearn</code>) is Python's standard library for classic machine learning. Every model has the same interface: <code>fit(X, y)</code> to learn, <code>predict(X)</code> / <code>predict_proba(X)</code> to use.</li>
-<li>The <strong>train/test split</strong> keeps part of the data hidden during training, so you can measure how the model does on <strong>new</strong> data, the only performance that matters.</li>
+<li><strong>scikit-learn</strong> (<code>sklearn</code>) is Python’s
+standard library for classic machine learning. Every model has the same
+interface: <code>fit(X, y)</code> to learn, <code>predict(X)</code> /
+<code>predict_proba(X)</code> to use.</li>
+<li>The <strong>train/test split</strong> keeps part of the data hidden
+during training, so you can measure how the model does on
+<strong>new</strong> data, the only performance that matters.</li>
 </ul>
 <table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Word</th>
 <th>In our problem</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td><strong>Target (y)</strong></td>
 <td><code>cancelled</code>: 1 if the order was cancelled, else 0</td>
 </tr>
-<tr>
+<tr class="even">
 <td><strong>Features (X)</strong></td>
-<td>What we know when the order is placed: segment, region, channel, category, quantity, price, discount, revenue, promised days, credit terms, month</td>
+<td>What we know when the order is placed: segment, region, channel,
+category, quantity, price, discount, revenue, promised days, credit
+terms, month</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><strong>Classification</strong></td>
 <td>Predicting a category (cancelled or not)</td>
 </tr>
-<tr>
+<tr class="even">
 <td><strong>Model</strong></td>
-<td>Logistic regression: a weighted sum of features turned into a probability</td>
+<td>Logistic regression: a weighted sum of features turned into a
+probability</td>
 </tr>
 </tbody>
 </table>
-<div class="admonition job">
-<p class="admonition-title">Why it matters at work</p>
-<p>Most ML failures in companies aren't bad algorithms; they're bad evaluation: no baseline, a leaky feature, accuracy on unbalanced data, or a random split for a time problem. Getting these foundations right is what interviewers test in "walk me through how you'd build this model" questions.</p>
+<div class="admonition job" data-markdown="1">
+<p class="admonition-title">
+Why it matters at work
+</p>
+<p>Most ML failures in companies aren’t bad algorithms; they’re bad
+evaluation: no baseline, a leaky feature, accuracy on unbalanced data,
+or a random split for a time problem. Getting these foundations right is
+what interviewers test in “walk me through how you’d build this model”
+questions.</p>
 </div>
-<p>The script is <code>17_ml_sklearn_split.py</code>. <code>ml_data.py</code> loads the orders, joins credit terms, drops 45 still-pending orders (their outcome is unknown) and defines which columns are allowed as features.</p>
-<div class="codehilite"><pre><span></span><code>4201 orders, 283 cancelled (6.7%)
-</code></pre></div>
-
+<p>The script is <code>17_ml_sklearn_split.py</code>.
+<code>ml_data.py</code> loads the orders, joins credit terms, drops 45
+still-pending orders (their outcome is unknown) and defines which
+columns are allowed as features.</p>
+<pre class="text"><code>4201 orders, 283 cancelled (6.7%)</code></pre>
 <h2 id="step-1-split-first">Step 1: split first</h2>
-<div class="codehilite"><pre><span></span><code><span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">ORDER_TIME_FEATURES</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s2">"cancelled"</span><span class="p">]</span>
-<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>train 3150 (6.7% cancelled) | test 1051 (6.8% cancelled)
-</code></pre></div>
-
+<pre class="python"><code>X, y = df[ORDER_TIME_FEATURES], df[&quot;cancelled&quot;]
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, stratify=y, random_state=42)</code></pre>
+<pre class="text"><code>train 3150 (6.7% cancelled) | test 1051 (6.8% cancelled)</code></pre>
 <ul>
-<li><strong>75% to train, 25% to test.</strong> The test set is locked away until the end.</li>
-<li><code>stratify=y</code> keeps the rare class (6.7%) at the same rate in both parts.</li>
+<li><strong>75% to train, 25% to test.</strong> The test set is locked
+away until the end.</li>
+<li><code>stratify=y</code> keeps the rare class (6.7%) at the same rate
+in both parts.</li>
 <li><code>random_state=42</code> makes the split reproducible.</li>
 </ul>
 <h2 id="step-2-a-baseline">Step 2: a baseline</h2>
-<div class="codehilite"><pre><span></span><code><span class="n">dummy</span> <span class="o">=</span> <span class="n">DummyClassifier</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s2">"most_frequent"</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>baseline accuracy 0.932 | ROC AUC 0.500
-</code></pre></div>
-
-<p>A "model" that says <strong>never cancelled</strong> is right 93.2% of the time. That's why <strong>accuracy is misleading</strong> when one class is rare. <strong>ROC AUC</strong> is better here: it measures how well the model <em>ranks</em> cancelled orders above others (0.5 = random, 1.0 = perfect).</p>
-<h2 id="step-3-a-real-model-in-a-pipeline">Step 3: a real model in a pipeline</h2>
-<div class="codehilite"><pre><span></span><code><span class="n">prep</span> <span class="o">=</span> <span class="n">ColumnTransformer</span><span class="p">([</span>
-    <span class="p">(</span><span class="s2">"cat"</span><span class="p">,</span> <span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">handle_unknown</span><span class="o">=</span><span class="s2">"ignore"</span><span class="p">),</span> <span class="n">CATEGORICAL</span><span class="p">),</span>   <span class="c1"># text categories -&gt; 0/1 columns</span>
-    <span class="p">(</span><span class="s2">"num"</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">(),</span> <span class="n">NUMERIC</span><span class="p">),</span>                             <span class="c1"># numbers -&gt; comparable scale</span>
-<span class="p">])</span>
-<span class="n">model</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s2">"prep"</span><span class="p">,</span> <span class="n">prep</span><span class="p">),</span> <span class="p">(</span><span class="s2">"clf"</span><span class="p">,</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">))])</span>
-<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
-<span class="n">proba</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_test</span><span class="p">)[:,</span> <span class="mi">1</span><span class="p">]</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>logistic accuracy 0.932 | ROC AUC 0.652
-</code></pre></div>
-
-<p>A <strong>Pipeline</strong> chains preprocessing and the model, so <code>fit</code> learns everything (categories, scaling, weights) from the <strong>training data only</strong>, and <code>predict</code> applies the same steps to new data. It's the single most important habit in scikit-learn (the next lesson shows why).</p>
-<p><strong>ROC AUC 0.652</strong>: clearly better than random (0.5), but far from perfect. Cancellations are hard to predict from order details alone. That's an honest, useful finding.</p>
-<h2 id="step-4-why-accuracy-stayed-at-0932">Step 4: why accuracy stayed at 0.932</h2>
-<div class="codehilite"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">),</span> <span class="n">digits</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">zero_division</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>              precision    recall  f1-score   support
+<pre class="python"><code>dummy = DummyClassifier(strategy=&quot;most_frequent&quot;).fit(X_train, y_train)</code></pre>
+<pre class="text"><code>baseline accuracy 0.932 | ROC AUC 0.500</code></pre>
+<p>A “model” that says <strong>never cancelled</strong> is right 93.2%
+of the time. That’s why <strong>accuracy is misleading</strong> when one
+class is rare. <strong>ROC AUC</strong> is better here: it measures how
+well the model <em>ranks</em> cancelled orders above others (0.5 =
+random, 1.0 = perfect).</p>
+<h2 id="step-3-a-real-model-in-a-pipeline">Step 3: a real model in a
+pipeline</h2>
+<pre class="python"><code>prep = ColumnTransformer([
+    (&quot;cat&quot;, OneHotEncoder(handle_unknown=&quot;ignore&quot;), CATEGORICAL),   # text categories -&gt; 0/1 columns
+    (&quot;num&quot;, StandardScaler(), NUMERIC),                             # numbers -&gt; comparable scale
+])
+model = Pipeline([(&quot;prep&quot;, prep), (&quot;clf&quot;, LogisticRegression(max_iter=1000))])
+model.fit(X_train, y_train)
+proba = model.predict_proba(X_test)[:, 1]</code></pre>
+<pre class="text"><code>logistic accuracy 0.932 | ROC AUC 0.652</code></pre>
+<p>A <strong>Pipeline</strong> chains preprocessing and the model, so
+<code>fit</code> learns everything (categories, scaling, weights) from
+the <strong>training data only</strong>, and <code>predict</code>
+applies the same steps to new data. It’s the single most important habit
+in scikit-learn (the next lesson shows why).</p>
+<p><strong>ROC AUC 0.652</strong>: clearly better than random (0.5), but
+far from perfect. Cancellations are hard to predict from order details
+alone. That’s an honest, useful finding.</p>
+<h2 id="step-4-why-accuracy-stayed-at-0.932">Step 4: why accuracy stayed
+at 0.932</h2>
+<pre class="python"><code>print(classification_report(y_test, model.predict(X_test), digits=3, zero_division=0))</code></pre>
+<pre class="text"><code>              precision    recall  f1-score   support
 
            0      0.932     1.000     0.965       980
-           1      0.000     0.000     0.000        71
-</code></pre></div>
-
-<p>At the default <strong>threshold of 0.5</strong>, the model never predicts "cancelled" (no order reaches a 50% risk), so recall for cancellations is 0. The model still <em>ranks</em> orders usefully; we just need a threshold that fits the business.</p>
+           1      0.000     0.000     0.000        71</code></pre>
+<p>At the default <strong>threshold of 0.5</strong>, the model never
+predicts “cancelled” (no order reaches a 50% risk), so recall for
+cancellations is 0. The model still <em>ranks</em> orders usefully; we
+just need a threshold that fits the business.</p>
 <table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Metric</th>
 <th>Question it answers</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td><strong>Precision</strong></td>
 <td>Of the orders we flag, how many really cancel?</td>
 </tr>
-<tr>
+<tr class="even">
 <td><strong>Recall</strong></td>
 <td>Of the orders that cancel, how many did we flag?</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><strong>ROC AUC</strong></td>
-<td>How well are cancellations ranked above non-cancellations, across all thresholds?</td>
+<td>How well are cancellations ranked above non-cancellations, across
+all thresholds?</td>
 </tr>
 </tbody>
 </table>
 <h2 id="step-5-a-business-threshold">Step 5: a business threshold</h2>
-<p>Suppose the credit team can check <strong>10% of orders</strong>. Flag the riskiest 10%:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">cut</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="n">proba</span><span class="p">,</span> <span class="mf">0.90</span><span class="p">)</span>
-<span class="n">flag</span> <span class="o">=</span> <span class="n">proba</span> <span class="o">&gt;=</span> <span class="n">cut</span>
-<span class="n">caught</span> <span class="o">=</span> <span class="p">(</span><span class="n">flag</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">y_test</span> <span class="o">==</span> <span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>flag top 10% (106 orders): catches 16 of 71 cancellations (23%); precision 15% vs base rate 7%
-</code></pre></div>
-
-<p>Checking 10% of orders catches 23% of cancellations, and a flagged order is <strong>twice as likely</strong> to cancel as a random one (15% vs 7%). Whether that's worth it is a <strong>business</strong> decision: the cost of a credit check vs the cost of a cancelled order.</p>
+<p>Suppose the credit team can check <strong>10% of orders</strong>.
+Flag the riskiest 10%:</p>
+<pre class="python"><code>cut = np.quantile(proba, 0.90)
+flag = proba &gt;= cut
+caught = (flag &amp; (y_test == 1)).sum()</code></pre>
+<pre class="text"><code>flag top 10% (106 orders): catches 16 of 71 cancellations (23%); precision 15% vs base rate 7%</code></pre>
+<p>Checking 10% of orders catches 23% of cancellations, and a flagged
+order is <strong>twice as likely</strong> to cancel as a random one (15%
+vs 7%). Whether that’s worth it is a <strong>business</strong> decision:
+the cost of a credit check vs the cost of a cancelled order.</p>
 <h2 id="step-6-respect-time">Step 6: respect time</h2>
-<p>In real use, the model is trained on the past and used on the future. A <strong>time-based split</strong> mimics that:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">is_train</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">"order_date"</span><span class="p">]</span> <span class="o">&lt;</span> <span class="s2">"2025-10-01"</span>
-<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">is_train</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="n">is_train</span><span class="p">])</span>
-<span class="n">auc_time</span> <span class="o">=</span> <span class="n">roc_auc_score</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="o">~</span><span class="n">is_train</span><span class="p">],</span> <span class="n">model</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="o">~</span><span class="n">is_train</span><span class="p">])[:,</span> <span class="mi">1</span><span class="p">])</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>time-based split: train 2899 orders, test 1302 | ROC AUC 0.634
-</code></pre></div>
-
-<p>Slightly lower than the random split (0.652): the future is a bit different from the past (October–December is the busy season). The time-based number is the more honest estimate.</p>
+<p>In real use, the model is trained on the past and used on the future.
+A <strong>time-based split</strong> mimics that:</p>
+<pre class="python"><code>is_train = df[&quot;order_date&quot;] &lt; &quot;2025-10-01&quot;
+model.fit(X[is_train], y[is_train])
+auc_time = roc_auc_score(y[~is_train], model.predict_proba(X[~is_train])[:, 1])</code></pre>
+<pre class="text"><code>time-based split: train 2899 orders, test 1302 | ROC AUC 0.634</code></pre>
+<p>Slightly lower than the random split (0.652): the future is a bit
+different from the past (October–December is the busy season). The
+time-based number is the more honest estimate.</p>
 <h2 id="step-7-what-did-it-learn">Step 7: what did it learn?</h2>
-<div class="codehilite"><pre><span></span><code>cat__segment_Garment Factory   -0.22
+<pre class="text"><code>cat__segment_Garment Factory   -0.22
 cat__segment_Knitting Mill     -0.16
 num__unit_price                -0.15
 cat__channel_Phone              0.23
 cat__segment_Retailer           0.49
 num__credit_days                0.56
-dtype: float64
-</code></pre></div>
-
-<p>Positive coefficients raise the cancellation risk: <strong>long credit terms, retailers and phone orders</strong>, the same drivers the EDA found. When a model agrees with careful EDA, trust it more; when it doesn't, investigate.</p>
+dtype: float64</code></pre>
+<p>Positive coefficients raise the cancellation risk: <strong>long
+credit terms, retailers and phone orders</strong>, the same drivers the
+EDA found. When a model agrees with careful EDA, trust it more; when it
+doesn’t, investigate.</p>
 <h2 id="common-mistakes">Common mistakes</h2>
 <table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Mistake</th>
 <th>What happens</th>
 <th>Fix</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>No test set, or peeking at it while tuning</td>
 <td>Over-optimistic scores</td>
 <td>Split first; touch the test set once, at the end</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Reporting accuracy on rare outcomes</td>
-<td>93% "accuracy" from a useless model</td>
+<td>93% “accuracy” from a useless model</td>
 <td>Baseline + ROC AUC, precision and recall</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Default 0.5 threshold</td>
 <td>Model never flags anything</td>
 <td>Choose the threshold from business capacity and costs</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Random split for time-dependent data</td>
-<td>Scores that won't hold in production</td>
+<td>Scores that won’t hold in production</td>
 <td>Train on the past, test on the future</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Preprocessing outside a pipeline</td>
 <td>Leakage from test into train</td>
 <td><code>Pipeline</code> + <code>ColumnTransformer</code></td>
@@ -275,72 +305,152 @@ dtype: float64
 </tbody>
 </table>
 <h2 id="try-it-yourself">Try it yourself</h2>
-<p><strong>Task:</strong> Re-run the random split with <code>random_state</code> 1, 2 and 3 and fit the same pipeline each time. How much does the test ROC AUC move? What does that tell you about a single score?</p>
+<p><strong>Task:</strong> Re-run the random split with
+<code>random_state</code> 1, 2 and 3 and fit the same pipeline each
+time. How much does the test ROC AUC move? What does that tell you about
+a single score?</p>
 <details>
-<summary>Show the solution</summary>
-<div class="codehilite"><pre><span></span><code><span class="k">for</span> <span class="n">seed</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]:</span>
-    <span class="n">Xa</span><span class="p">,</span> <span class="n">Xb</span><span class="p">,</span> <span class="n">ya</span><span class="p">,</span> <span class="n">yb</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">seed</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">seed</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">roc_auc_score</span><span class="p">(</span><span class="n">yb</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">Xa</span><span class="p">,</span> <span class="n">ya</span><span class="p">)</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">Xb</span><span class="p">)[:,</span> <span class="mi">1</span><span class="p">]),</span> <span class="mi">3</span><span class="p">))</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>1 0.69
+<summary>
+Show the solution
+</summary>
+<pre class="python"><code>for seed in [1, 2, 3]:
+    Xa, Xb, ya, yb = train_test_split(X, y, test_size=0.25, stratify=y, random_state=seed)
+    print(seed, round(roc_auc_score(yb, model.fit(Xa, ya).predict_proba(Xb)[:, 1]), 3))</code></pre>
+<pre class="text"><code>1 0.69
 2 0.638
-3 0.686
-</code></pre></div>
-
-<p>The score ranges from 0.64 to 0.69 depending only on <strong>which</strong> orders land in the test set. With about 70 cancellations in a test set, one score is noisy. That's why the next lessons use <strong>cross-validation</strong> (several splits, averaged) and report a ± range.</p>
+3 0.686</code></pre>
+The score ranges from 0.64 to 0.69 depending only on
+<strong>which</strong> orders land in the test set. With about 70
+cancellations in a test set, one score is noisy. That’s why the next
+lessons use <strong>cross-validation</strong> (several splits, averaged)
+and report a ± range.
 </details>
 <h2 id="quick-quiz">Quick quiz</h2>
 <div class="quiz-q" data-answer="1">
-<p>1. 6.7% of orders are cancelled. A model has 93% accuracy. What can you conclude?</p>
-<ol>
-<li>It's an excellent model</li>
-<li>Nothing yet: predicting "never cancelled" also gets about 93%</li>
+<p>1. 6.7% of orders are cancelled. A model has 93% accuracy. What can
+you conclude?</p>
+<ol type="1">
+<li>It’s an excellent model</li>
+<li>Nothing yet: predicting “never cancelled” also gets about 93%</li>
 <li>It has 93% recall</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B.</strong> Compare with a baseline and use ROC AUC, precision and recall.</p>
+<summary>
+Show answer
+</summary>
+<strong>B.</strong> Compare with a baseline and use ROC AUC, precision
+and recall.
 </details>
 </div>
 <div class="quiz-q" data-answer="1">
-<p>2. Why put preprocessing and the model in one <code>Pipeline</code>?</p>
-<ol>
+<p>2. Why put preprocessing and the model in one
+<code>Pipeline</code>?</p>
+<ol type="1">
 <li>It runs faster</li>
-<li>Everything is learned from the training data only and applied the same way to new data</li>
-<li>It's required for logistic regression</li>
+<li>Everything is learned from the training data only and applied the
+same way to new data</li>
+<li>It’s required for logistic regression</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B.</strong></p>
+<summary>
+Show answer
+</summary>
+<strong>B.</strong>
 </details>
 </div>
 <div class="quiz-q" data-answer="1">
-<p>3. A model will predict next month's cancellations. Which split best estimates its real performance?</p>
-<ol>
+<p>3. A model will predict next month’s cancellations. Which split best
+estimates its real performance?</p>
+<ol type="1">
 <li>A random 75/25 split</li>
 <li>Train on earlier months, test on later months</li>
 <li>Train and test on all data</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B.</strong></p>
+<summary>
+Show answer
+</summary>
+<strong>B.</strong>
 </details>
 </div>
 <h2 id="summary">Summary</h2>
 <ul>
-<li>Define the <strong>target</strong>, and use only features known <strong>at prediction time</strong>.</li>
-<li><strong>Split first</strong> (stratified; time-based for time problems), compare with a <strong>baseline</strong>.</li>
-<li>Use a <strong>Pipeline</strong> so preprocessing is learned from training data only.</li>
-<li>For rare outcomes, use <strong>ROC AUC, precision and recall</strong>, and pick a <strong>threshold</strong> from business capacity.</li>
+<li>Define the <strong>target</strong>, and use only features known
+<strong>at prediction time</strong>.</li>
+<li><strong>Split first</strong> (stratified; time-based for time
+problems), compare with a <strong>baseline</strong>.</li>
+<li>Use a <strong>Pipeline</strong> so preprocessing is learned from
+training data only.</li>
+<li>For rare outcomes, use <strong>ROC AUC, precision and
+recall</strong>, and pick a <strong>threshold</strong> from business
+capacity.</li>
 </ul>
-<div class="admonition job">
-<p class="admonition-title">Job-ready check</p>
-<p><strong>Interview question:</strong> <em>"How would you build a model to flag orders likely to be cancelled?"</em></p>
-<p><strong>Strong answer:</strong> "I'd define the target and restrict features to what's known at order time. I'd split by time (train on earlier months, test on later), start with a baseline and a simple, interpretable model in a scikit-learn pipeline, and evaluate with ROC AUC plus precision and recall at a threshold set by how many orders the credit team can review. Then I'd check that the drivers make business sense and agree with the EDA."</p>
-<p><strong>Mini project:</strong> Train the same pipeline to predict <strong>late delivery</strong> (delivered orders, <code>delivery_days &gt; promised_days</code>) using order-time features. Report baseline, ROC AUC with a time-based split, and the top drivers.</p>
+<div class="admonition job" data-markdown="1">
+<p class="admonition-title">
+Job-ready check
+</p>
+<p><strong>Interview question:</strong> <em>“How would you build a model
+to flag orders likely to be cancelled?”</em></p>
+<p><strong>Strong answer:</strong> “I’d define the target and restrict
+features to what’s known at order time. I’d split by time (train on
+earlier months, test on later), start with a baseline and a simple,
+interpretable model in a scikit-learn pipeline, and evaluate with ROC
+AUC plus precision and recall at a threshold set by how many orders the
+credit team can review. Then I’d check that the drivers make business
+sense and agree with the EDA.”</p>
+<p><strong>Mini project:</strong> Train the same pipeline to predict
+<strong>late delivery</strong> (delivered orders,
+<code>delivery_days &gt; promised_days</code>) using order-time
+features. Report baseline, ROC AUC with a time-based split, and the top
+drivers.</p>
 </div>
-<div class="terms-box"><div class="files-head"><b>Key terms in this lesson</b><a href="../../../glossary.html">Glossary →</a></div><div class="term-chips"><a class="term-chip" href="../../../glossary.html#classification" title="Predicting a category, such as whether an order will be cancelled or which defect type an image shows.">Classification</a><a class="term-chip" href="../../../glossary.html#data-pipeline" title="A repeatable, automated series of steps that moves and transforms data from sources to where it is used.">Data pipeline</a><a class="term-chip" href="../../../glossary.html#machine-learning" title="Building models that learn patterns from examples to make predictions, instead of writing every rule by hand.">Machine learning</a><a class="term-chip" href="../../../glossary.html#precision-and-recall" title="Precision: of everything flagged, how much was right. Recall: of everything that should be flagged, how much was found.">Precision and recall</a><a class="term-chip" href="../../../glossary.html#roc-auc" title="How well a model ranks positives above negatives across all thresholds: 0.5 = random, 1.0 = perfect. Better than accuracy when one class is rare.">ROC AUC</a><a class="term-chip" href="../../../glossary.html#scikit-learn" title="Python&#x27;s standard library for classic machine learning. Every model has fit() and predict(); a Pipeline chains preprocessing and the model so both learn from training data only.">scikit-learn</a><a class="term-chip" href="../../../glossary.html#training-and-test-sets" title="Data is split so a model learns on one part (training) and is judged on unseen data (test), which shows how it will do in real use.">Training and test sets</a></div></div>
+<section class="mentor-prompt"><div class="mentor-head"><div><span class="eyebrow">AI study companion</span><h2 id="ai-mentor-prompt">AI Mentor Prompt</h2></div><button class="btn copy-prompt" type="button" data-copy-target="mentor-prompt-phase-2-ml-foundations-01-sklearn-train-test-split">Copy prompt</button></div><p>Paste this into ChatGPT, Claude, Gemini, or another capable assistant to turn this tutorial into an interactive mentoring session.</p><pre class="prompt-box"><code id="mentor-prompt-phase-2-ml-foundations-01-sklearn-train-test-split">You are my hands-on Python, statistics and data-science mentor.
+
+I am currently studying:
+&quot;scikit-learn &amp; the Train/Test Split: Your First Honest Model&quot;
+
+My level:
+Intermediate
+
+Teach me this topic interactively rather than giving me a long lecture.
+
+Use this sequence:
+
+1. Check what I already understand with one short diagnostic question.
+2. Explain the concept in simple language and give me the mental model first.
+3. Give me one small task using code, SQL, configuration, data, or architecture as appropriate.
+4. Wait for my attempt before showing a complete solution.
+5. Review my work and explain both what is correct and what needs improvement.
+6. Help me debug errors step by step instead of immediately replacing my work.
+7. Increase the difficulty gradually and connect each new step to the previous one.
+8. Relate what I am learning to real professional data/AI engineering work.
+9. Ask me to explain an important decision in my own words so you can check my understanding.
+10. At the end, ask me to build or modify one small feature independently.
+
+Important rules:
+- Do not do the entire exercise for me unless I explicitly ask.
+- Explain unfamiliar terminology before using it heavily.
+- Prefer current, production-relevant practices over outdated shortcuts.
+- Distinguish clearly between concepts, tool-specific behaviour, and optional alternatives.
+- If a technical fact, API, syntax, version, or best practice may have changed, verify it against current official documentation before teaching it.
+- Never invent command output, test results, benchmark numbers, cloud behaviour, or data results.
+- If something cannot be executed in the current environment, say so and give me the exact command or verification step I should run.
+- Keep me actively coding, querying, configuring, reasoning, or debugging throughout the session.
+- When useful, work from the tutorial practice files (data-science-scripts.zip, orders_2025.csv, customers_2025.csv) instead of inventing unrelated examples.
+
+The concepts I need to master are:
+- scikit-learn
+- Train/test split
+- machine learning
+- sklearn
+- classification
+- logistic regression
+- pipeline
+- columntransformer
+
+Start by asking me one diagnostic question.</code></pre></section>
+
+<div class="terms-box"><div class="files-head"><b>Key terms in this lesson</b><a href="../../../glossary.html">Glossary →</a></div><div class="term-chips"><a class="term-chip" href="../../../glossary.html#classification" title="Predicting a category, such as whether an order will be cancelled or which defect type an image shows.">Classification</a><a class="term-chip" href="../../../glossary.html#machine-learning" title="Building models that learn patterns from examples to make predictions, instead of writing every rule by hand.">Machine learning</a><a class="term-chip" href="../../../glossary.html#precision-and-recall" title="Precision: of everything flagged, how much was right. Recall: of everything that should be flagged, how much was found.">Precision and recall</a><a class="term-chip" href="../../../glossary.html#roc-auc" title="How well a model ranks positives above negatives across all thresholds: 0.5 = random, 1.0 = perfect. Better than accuracy when one class is rare.">ROC AUC</a><a class="term-chip" href="../../../glossary.html#scikit-learn" title="Python&#x27;s standard library for classic machine learning. Every model has fit() and predict(); a Pipeline chains preprocessing and the model so both learn from training data only.">scikit-learn</a><a class="term-chip" href="../../../glossary.html#training-and-test-sets" title="Data is split so a model learns on one part (training) and is judged on unseen data (test), which shows how it will do in real use.">Training and test sets</a></div></div>
 <h2 id="free-resources">Free resources to go deeper</h2><ul class="resources"><li><a href="https://scikit-learn.org/stable/getting_started.html">Getting started with scikit-learn</a><span class="r-meta">scikit-learn official docs · Estimators, pipelines, fit/predict and model evaluation in one page.</span></li><li><a href="https://scikit-learn.org/stable/modules/model_evaluation.html">Metrics and scoring: quantifying the quality of predictions</a><span class="r-meta">scikit-learn official docs · Accuracy, precision, recall, ROC AUC and when to use each.</span></li><li><a href="https://developers.google.com/machine-learning/crash-course">Machine Learning Crash Course</a><span class="r-meta">Google for Developers (free) · Short modules on classification, thresholds and evaluation.</span></li></ul>
 <div class="complete-bar"><span>Finished reading and did the exercise?</span>
 <button class="btn" id="completeBtn" type="button" data-id="phase-2/ml-foundations/01-sklearn-train-test-split">Mark lesson as complete</button></div>
@@ -348,9 +458,9 @@ dtype: float64
 <p class="reviewed">Last reviewed: 2026-10-09</p>
 
   </div></main>
-  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#step-1-split-first">Step 1: split first</a><a href="#step-2-a-baseline">Step 2: a baseline</a><a href="#step-3-a-real-model-in-a-pipeline">Step 3: a real model in a pipeline</a><a href="#step-4-why-accuracy-stayed-at-0932">Step 4: why accuracy stayed at 0.932</a><a href="#step-5-a-business-threshold">Step 5: a business threshold</a><a href="#step-6-respect-time">Step 6: respect time</a><a href="#step-7-what-did-it-learn">Step 7: what did it learn?</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#free-resources">Free resources</a></aside>
+  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#step-1-split-first">Step 1: split first</a><a href="#step-2-a-baseline">Step 2: a baseline</a><a href="#step-3-a-real-model-in-a-pipeline">Step 3: a real model in a pipeline</a><a href="#step-4-why-accuracy-stayed-at-0.932">Step 4: why accuracy stayed at 0.932</a><a href="#step-5-a-business-threshold">Step 5: a business threshold</a><a href="#step-6-respect-time">Step 6: respect time</a><a href="#step-7-what-did-it-learn">Step 7: what did it learn?</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#ai-mentor-prompt">AI Mentor Prompt</a><a href="#free-resources">Free resources</a></aside>
 </div>
-<footer class="site">Data, AI &amp; Automation Path v0.8 · Applied AI, Data &amp; Automation Lab · Updated October 2026<br>
+<footer class="site"><b>Saiful The Techie</b> · Data, AI &amp; Automation Path v0.9.1 · Updated October 2026<br>
 Lesson text: <a href="../../../license.html">CC BY-NC-SA 4.0</a> · Code: <a href="../../../license.html#code-mit-license">MIT</a> · Free external resources belong to their respective owners.</footer>
 <script src="../../../search-index.js"></script>
 <script src="../../../assets/app.js"></script>

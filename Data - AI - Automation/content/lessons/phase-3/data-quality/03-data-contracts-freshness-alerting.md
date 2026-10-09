@@ -1,27 +1,52 @@
 ---
-title: "Data Contracts, Freshness and Alerting"
+title: Data Contracts, Freshness and Alerting
 order: 3
-summary: "Define a machine-readable orders contract, measure whether the source is fresh enough, and turn failures into useful operational alerts."
+summary: Define a machine-readable orders contract, measure whether the source is fresh enough, and turn failures into useful
+  operational alerts.
 level: Intermediate
-time: "50 min"
-topics: ["Data contracts", "Freshness & alerting"]
-prerequisites: ["phase-3/data-quality/01-validation-rules-pytest", "phase-3/etl-elt/02-replayable-pipelines-cdc"]
-keywords: [data quality, data contract, json schema, freshness, alerting, sla, schema]
+time: 50 min
+topics:
+- Data contracts
+- Freshness & alerting
+prerequisites:
+- phase-3/data-quality/01-validation-rules-pytest
+- phase-3/etl-elt/02-replayable-pipelines-cdc
+keywords:
+- data quality
+- data contract
+- json schema
+- freshness
+- alerting
+- sla
+- schema
 reviewed: 2026-10-09
-files: [phase-3/data-engineering-scripts.zip, phase-3/orders_contract.schema.json]
+files:
+- phase-3/data-engineering-scripts.zip
+- phase-3/orders_contract.schema.json
 resources:
-  - title: "JSON Schema Draft 2020-12"
-    url: "https://json-schema.org/draft/2020-12/"
-    source: "JSON Schema"
-    note: "Current published JSON Schema dialect used by the downloadable row contract."
-  - title: "JSON Schema validation vocabulary"
-    url: "https://json-schema.org/draft/2020-12/json-schema-validation"
-    source: "JSON Schema"
-    note: "Defines structural assertions such as required properties, types, enums and numeric bounds."
-  - title: "Freshness configuration"
-    url: "https://docs.getdbt.com/reference/resource-configs/freshness"
-    source: "dbt Developer Hub"
-    note: "A production-oriented example of warn/error freshness thresholds for analytical data."
+- title: JSON Schema Draft 2020-12
+  url: https://json-schema.org/draft/2020-12/
+  source: JSON Schema
+  note: Current published JSON Schema dialect used by the downloadable row contract.
+- title: JSON Schema validation vocabulary
+  url: https://json-schema.org/draft/2020-12/json-schema-validation
+  source: JSON Schema
+  note: Defines structural assertions such as required properties, types, enums and numeric bounds.
+- title: Freshness configuration
+  url: https://docs.getdbt.com/reference/resource-configs/freshness
+  source: dbt Developer Hub
+  note: A production-oriented example of warn/error freshness thresholds for analytical data.
+youtube:
+  title: Data Contracts - Accountable Data Quality
+  creator: Data Council / AI Council
+  url: https://www.youtube.com/watch?v=qT-Atu9mfvM
+  video_id: qT-Atu9mfvM
+  language: English
+  level: Intermediate
+  reviewed: '2026-10-09'
+  why_recommended: This talk gives the producer/consumer accountability mental model behind data contracts. Use the written
+    tutorial for the concrete JSON Schema contract, freshness thresholds and alerting implementation; the video adds the organisational
+    and platform context.
 ---
 
 ## What is it?

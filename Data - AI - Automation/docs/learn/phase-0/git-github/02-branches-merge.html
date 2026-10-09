@@ -6,7 +6,7 @@
 <title>Branches &amp; Merge: Work on Changes Without Breaking Main — Data, AI &amp; Automation Path</title>
 <meta name="description" content="Create a branch for each change, merge it back, and calmly resolve a merge conflict when two branches edit the same line.">
 <meta property="og:type" content="article">
-<meta property="og:site_name" content="Data, AI &amp; Automation Path">
+<meta property="og:site_name" content="Saiful The Techie">
 <meta property="og:title" content="Branches &amp; Merge: Work on Changes Without Breaking Main">
 <meta property="og:description" content="Create a branch for each change, merge it back, and calmly resolve a merge conflict when two branches edit the same line.">
 <meta property="og:locale" content="en_US">
@@ -19,13 +19,13 @@ var n=null;try{n=localStorage.getItem('daa-nav')}catch(e){}
 if(n==='open'&&window.matchMedia&&matchMedia('(min-width: 961px)').matches)document.documentElement.setAttribute('data-nav','open');
 document.documentElement.classList.add('no-anim')})();</script>
 <link rel="stylesheet" href="../../../assets/style.css">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233f7d6a'/%3E%3Ctext x='16' y='21' font-family='sans-serif' font-size='13' font-weight='700' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
+
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="topbar">
   <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Open curriculum menu" title="Curriculum menu (press M)" aria-controls="sidebar" aria-expanded="false"><span class="ico-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span class="ico-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></button>
-  <a class="brand" href="../../../index.html"><span class="brand-badge">AI</span><span class="brand-text"><span class="brand-name">Data, AI &amp; Automation Path</span><span class="brand-version">v0.8</span></span></a>
+  <a class="brand" href="../../../index.html"><span class="brand-text"><span class="brand-name">Saiful The Techie</span><span class="brand-version">Data, AI &amp; Automation Path · v0.9.1</span></span></a>
   <nav class="top-links" aria-label="Main">
     <a href="../../../index.html" class="">Home</a><a href="../../../curriculum.html" class="">Curriculum</a><a href="../../../practice-files.html" class="">Practice files</a><a href="../../../glossary.html" class="">Glossary</a><a href="../../../how-to-learn.html" class="">How to learn</a><a href="../../../about.html" class="">About</a>
   </nav>
@@ -41,7 +41,7 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="layout wide">
   <nav class="sidebar" id="sidebar" aria-label="Curriculum">
     <div class="side-title">Curriculum</div>
-    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="77"><i></i></div><span class="bar-label" data-progress-label></span></div>
+    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="85"><i></i></div><span class="bar-label" data-progress-label></span></div>
 <div class="nav-phase current open"><a href="../../../learn/phase-0/index.html"><span class="nav-num">0</span>Foundations</a>
 <ul class="nav-modules">
 <li><a class="" href="../../../learn/phase-0/dev-environment/index.html">Development Environment</a>
@@ -92,102 +92,107 @@ document.documentElement.classList.add('no-anim')})();</script>
 
 <h2 id="what-is-it">What is it?</h2>
 <ul>
-<li>A <strong>branch</strong> is a separate line of work. <code>main</code> holds the working version, and each new feature or fix gets its own branch.</li>
-<li><strong>Merging</strong> brings a branch's commits back into <code>main</code>.</li>
-<li>A <strong>merge conflict</strong> happens when two branches change the <strong>same lines</strong> differently, and Git asks you to decide.</li>
+<li>A <strong>branch</strong> is a separate line of work.
+<code>main</code> holds the working version, and each new feature or fix
+gets its own branch.</li>
+<li><strong>Merging</strong> brings a branch’s commits back into
+<code>main</code>.</li>
+<li>A <strong>merge conflict</strong> happens when two branches change
+the <strong>same lines</strong> differently, and Git asks you to
+decide.</li>
 </ul>
-<div class="codehilite"><pre><span></span><code>main:     A---B---C-----------M
+<pre class="text"><code>main:     A---B---C-----------M
                    \         /
-feature:            D---E---
-</code></pre></div>
-
-<div class="admonition job">
-<p class="admonition-title">Why it matters at work</p>
-<p>Teams never edit <code>main</code> directly. Every change, whether a new SQL model, a dashboard measure or a bug fix, goes on a branch, is reviewed in a pull request (next lesson) and is merged. Resolving conflicts without panic is a basic expectation in any engineering team.</p>
+feature:            D---E---</code></pre>
+<div class="admonition job" data-markdown="1">
+<p class="admonition-title">
+Why it matters at work
+</p>
+<p>Teams never edit <code>main</code> directly. Every change, whether a
+new SQL model, a dashboard measure or a bug fix, goes on a branch, is
+reviewed in a pull request (next lesson) and is merged. Resolving
+conflicts without panic is a basic expectation in any engineering
+team.</p>
 </div>
-<h2 id="example-1-create-a-branch-and-commit-on-it">Example 1: create a branch and commit on it</h2>
-<div class="codehilite"><pre><span></span><code>git<span class="w"> </span>switch<span class="w"> </span>-c<span class="w"> </span>feature/achievement<span class="w">      </span><span class="c1"># create the branch and move to it</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>Switched to a new branch 'feature/achievement'
-</code></pre></div>
-
-<p>Add the line <code>print("Achievement: 94.5%")</code> to <code>report.py</code>, then commit:</p>
-<div class="codehilite"><pre><span></span><code>git<span class="w"> </span>commit<span class="w"> </span>-am<span class="w"> </span><span class="s2">"Add achievement %"</span>
-git<span class="w"> </span>branch<span class="w">          </span><span class="c1"># list branches; * marks where you are</span>
-</code></pre></div>
-
-<h2 id="example-2-merge-it-back-fast-forward">Example 2: merge it back (fast-forward)</h2>
-<div class="codehilite"><pre><span></span><code>git<span class="w"> </span>switch<span class="w"> </span>main
-git<span class="w"> </span>merge<span class="w"> </span>feature/achievement
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>Updating fcc10c8..4457684
+<h2 id="example-1-create-a-branch-and-commit-on-it">Example 1: create a
+branch and commit on it</h2>
+<pre class="bash"><code>git switch -c feature/achievement      # create the branch and move to it</code></pre>
+<pre class="text"><code>Switched to a new branch &#39;feature/achievement&#39;</code></pre>
+<p>Add the line <code>print("Achievement: 94.5%")</code> to
+<code>report.py</code>, then commit:</p>
+<pre class="bash"><code>git commit -am &quot;Add achievement %&quot;
+git branch          # list branches; * marks where you are</code></pre>
+<h2 id="example-2-merge-it-back-fast-forward">Example 2: merge it back
+(fast-forward)</h2>
+<pre class="bash"><code>git switch main
+git merge feature/achievement</code></pre>
+<pre class="text"><code>Updating fcc10c8..4457684
 Fast-forward
  report.py | 1 +
- 1 file changed, 1 insertion(+)
-</code></pre></div>
-
-<p><strong>Fast-forward</strong> means <code>main</code> hadn't moved, so Git simply moved <code>main</code> forward to the branch's commit. Delete the finished branch:</p>
-<div class="codehilite"><pre><span></span><code>git<span class="w"> </span>branch<span class="w"> </span>-d<span class="w"> </span>feature/achievement
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>Deleted branch feature/achievement (was 4457684).
-</code></pre></div>
-
-<h2 id="example-3-a-merge-conflict-step-by-step">Example 3: a merge conflict, step by step</h2>
-<p>Two people rename the same label. On <code>feature/a</code> the first line becomes <code>print("Net revenue Q1: 9,075")</code>. Meanwhile, on <code>main</code> it becomes <code>print("Quarter 1 net revenue: 9,075")</code>. Merge:</p>
-<div class="codehilite"><pre><span></span><code>git<span class="w"> </span>merge<span class="w"> </span>feature/a
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>Auto-merging report.py
+ 1 file changed, 1 insertion(+)</code></pre>
+<p><strong>Fast-forward</strong> means <code>main</code> hadn’t moved,
+so Git simply moved <code>main</code> forward to the branch’s commit.
+Delete the finished branch:</p>
+<pre class="bash"><code>git branch -d feature/achievement</code></pre>
+<pre class="text"><code>Deleted branch feature/achievement (was 4457684).</code></pre>
+<h2 id="example-3-a-merge-conflict-step-by-step">Example 3: a merge
+conflict, step by step</h2>
+<p>Two people rename the same label. On <code>feature/a</code> the first
+line becomes <code>print("Net revenue Q1: 9,075")</code>. Meanwhile, on
+<code>main</code> it becomes
+<code>print("Quarter 1 net revenue: 9,075")</code>. Merge:</p>
+<pre class="bash"><code>git merge feature/a</code></pre>
+<pre class="text"><code>Auto-merging report.py
 CONFLICT (content): Merge conflict in report.py
-Automatic merge failed; fix conflicts and then commit the result.
-</code></pre></div>
-
+Automatic merge failed; fix conflicts and then commit the result.</code></pre>
 <p>Open <code>report.py</code>:</p>
-<div class="codehilite"><pre><span></span><code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
-print("Quarter 1 net revenue: 9,075")
+<pre class="text"><code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+print(&quot;Quarter 1 net revenue: 9,075&quot;)
 =======
-print("Net revenue Q1: 9,075")
+print(&quot;Net revenue Q1: 9,075&quot;)
 &gt;&gt;&gt;&gt;&gt;&gt;&gt; feature/a
-print("Q1 target: 9,600")
-print("Achievement: 94.5%")
-</code></pre></div>
-
+print(&quot;Q1 target: 9,600&quot;)
+print(&quot;Achievement: 94.5%&quot;)</code></pre>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>Marker</th>
 <th>Means</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td><code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</code> … <code>=======</code></td>
-<td>Your current branch's version (<code>main</code>)</td>
+<tr class="odd">
+<td><code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</code> …
+<code>=======</code></td>
+<td>Your current branch’s version (<code>main</code>)</td>
 </tr>
-<tr>
-<td><code>=======</code> … <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt; feature/a</code></td>
-<td>The incoming branch's version</td>
+<tr class="even">
+<td><code>=======</code> …
+<code>&gt;&gt;&gt;&gt;&gt;&gt;&gt; feature/a</code></td>
+<td>The incoming branch’s version</td>
 </tr>
 </tbody>
 </table>
-<p><code>git status --short</code> shows <code>UU report.py</code> (both modified, unmerged).</p>
-<p><strong>Resolve it:</strong> edit the file into the version you want (keep one, the other, or combine them), <strong>delete all three marker lines</strong>, then:</p>
-<div class="codehilite"><pre><span></span><code>git<span class="w"> </span>add<span class="w"> </span>report.py
-git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">"Merge feature/a: keep short label"</span>
-</code></pre></div>
-
-<div class="admonition tip">
-<p class="admonition-title">VS Code helps</p>
-<p>VS Code highlights conflicts with buttons: <strong>Accept Current</strong>, <strong>Accept Incoming</strong>, <strong>Accept Both</strong>, or the <strong>Merge Editor</strong>. Always read the result before committing.</p>
+<p><code>git status --short</code> shows <code>UU report.py</code> (both
+modified, unmerged).</p>
+<p><strong>Resolve it:</strong> edit the file into the version you want
+(keep one, the other, or combine them), <strong>delete all three marker
+lines</strong>, then:</p>
+<pre class="bash"><code>git add report.py
+git commit -m &quot;Merge feature/a: keep short label&quot;</code></pre>
+<div class="admonition tip" data-markdown="1">
+<p class="admonition-title">
+VS Code helps
+</p>
+<p>VS Code highlights conflicts with buttons: <strong>Accept
+Current</strong>, <strong>Accept Incoming</strong>, <strong>Accept
+Both</strong>, or the <strong>Merge Editor</strong>. Always read the
+result before committing.</p>
 </div>
-<h2 id="example-4-see-the-history-as-a-graph">Example 4: see the history as a graph</h2>
-<div class="codehilite"><pre><span></span><code>git<span class="w"> </span>log<span class="w"> </span>--oneline<span class="w"> </span>--graph
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>*   cc21d45 Merge feature/a: keep short label
+<h2 id="example-4-see-the-history-as-a-graph">Example 4: see the history
+as a graph</h2>
+<pre class="bash"><code>git log --oneline --graph</code></pre>
+<pre class="text"><code>*   cc21d45 Merge feature/a: keep short label
 |\
 | * 4cb03c8 Rename label (a)
 * | ba472ca Rename label (main)
@@ -195,32 +200,31 @@ git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </sp
 * 4457684 Add achievement %
 * fcc10c8 Show Q1 target
 * 91fa0f4 Ignore logs and venv
-* 50ff5b0 Add Q1 revenue report
-</code></pre></div>
-
-<p>The two lines of work split and come back together in a <strong>merge commit</strong>.</p>
+* 50ff5b0 Add Q1 revenue report</code></pre>
+<p>The two lines of work split and come back together in a <strong>merge
+commit</strong>.</p>
 <h2 id="branch-naming">Branch naming</h2>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>Type</th>
 <th>Example</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>New feature</td>
 <td><code>feature/region-filter</code></td>
 </tr>
-<tr>
+<tr class="even">
 <td>Bug fix</td>
 <td><code>fix/cancelled-in-average</code></td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Documentation</td>
 <td><code>docs/readme-setup</code></td>
 </tr>
-<tr>
+<tr class="even">
 <td>Experiment</td>
 <td><code>exp/llm-summary</code></td>
 </tr>
@@ -229,35 +233,42 @@ git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </sp
 <p>Short, lowercase, hyphens, one purpose per branch.</p>
 <h2 id="common-mistakes">Common mistakes</h2>
 <table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Mistake</th>
 <th>What happens</th>
 <th>Fix</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>Working directly on <code>main</code></td>
 <td>Unreviewed changes, harder to undo</td>
 <td><code>git switch -c &lt;branch&gt;</code> before you start</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Long-lived branches</td>
 <td>Big, painful conflicts</td>
 <td>Merge small branches often</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Committing conflict markers</td>
-<td>Broken code (<code>SyntaxError</code> on <code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code>)</td>
-<td>Search for <code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code> before <code>git add</code></td>
+<td>Broken code (<code>SyntaxError</code> on
+<code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code>)</td>
+<td>Search for <code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code> before
+<code>git add</code></td>
 </tr>
-<tr>
+<tr class="even">
 <td>Switching branches with unsaved edits</td>
 <td>Git refuses, or edits follow you</td>
 <td>Commit first, or <code>git stash</code></td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Panicking mid-conflict</td>
 <td>Random edits</td>
 <td><code>git merge --abort</code> returns to before the merge</td>
@@ -265,69 +276,138 @@ git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </sp
 </tbody>
 </table>
 <h2 id="try-it-yourself">Try it yourself</h2>
-<p><strong>Task:</strong> Create <code>fix/label-case</code> from <code>main</code>, change <code>Achievement</code> to <code>Q1 achievement</code>, commit, switch to <code>main</code>, merge, and delete the branch. Was it a fast-forward?</p>
+<p><strong>Task:</strong> Create <code>fix/label-case</code> from
+<code>main</code>, change <code>Achievement</code> to
+<code>Q1 achievement</code>, commit, switch to <code>main</code>, merge,
+and delete the branch. Was it a fast-forward?</p>
 <details>
-<summary>Show the solution</summary>
-<div class="codehilite"><pre><span></span><code>git<span class="w"> </span>switch<span class="w"> </span>-c<span class="w"> </span>fix/label-case
-<span class="c1"># edit report.py</span>
-git<span class="w"> </span>commit<span class="w"> </span>-am<span class="w"> </span><span class="s2">"Clarify achievement label"</span>
-git<span class="w"> </span>switch<span class="w"> </span>main
-git<span class="w"> </span>merge<span class="w"> </span>fix/label-case
-git<span class="w"> </span>branch<span class="w"> </span>-d<span class="w"> </span>fix/label-case
-</code></pre></div>
-
-<p>Yes: <code>main</code> had no new commits since you branched, so Git prints <strong>Fast-forward</strong>.</p>
+<summary>
+Show the solution
+</summary>
+<pre class="bash"><code>git switch -c fix/label-case
+# edit report.py
+git commit -am &quot;Clarify achievement label&quot;
+git switch main
+git merge fix/label-case
+git branch -d fix/label-case</code></pre>
+Yes: <code>main</code> had no new commits since you branched, so Git
+prints <strong>Fast-forward</strong>.
 </details>
 <h2 id="quick-quiz">Quick quiz</h2>
 <div class="quiz-q" data-answer="1">
 <p>1. What creates a new branch and switches to it?</p>
-<ol>
+<ol type="1">
 <li><code>git branch -d name</code></li>
 <li><code>git switch -c name</code></li>
 <li><code>git merge name</code></li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B.</strong></p>
+<summary>
+Show answer
+</summary>
+<strong>B.</strong>
 </details>
 </div>
 <div class="quiz-q" data-answer="1">
 <p>2. When does a merge conflict happen?</p>
-<ol>
+<ol type="1">
 <li>Whenever you merge</li>
 <li>When both branches changed the same lines differently</li>
 <li>When a branch has more than 3 commits</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B.</strong> Changes to different lines or files merge automatically.</p>
+<summary>
+Show answer
+</summary>
+<strong>B.</strong> Changes to different lines or files merge
+automatically.
 </details>
 </div>
 <div class="quiz-q" data-answer="0">
-<p>3. You're mid-conflict and want to start over. What do you run?</p>
-<ol>
+<p>3. You’re mid-conflict and want to start over. What do you run?</p>
+<ol type="1">
 <li><code>git merge --abort</code></li>
 <li><code>rm -rf .git</code></li>
 <li><code>git commit -m "conflict"</code></li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>A.</strong> It restores the state from before the merge.</p>
+<summary>
+Show answer
+</summary>
+<strong>A.</strong> It restores the state from before the merge.
 </details>
 </div>
 <h2 id="summary">Summary</h2>
 <ul>
 <li>One branch per change: <code>git switch -c feature/x</code>.</li>
-<li><code>git merge</code> brings it back. <strong>Fast-forward</strong> if <code>main</code> didn't move, otherwise a <strong>merge commit</strong>.</li>
-<li>Conflicts: read the markers, edit, delete the markers, <code>git add</code>, <code>git commit</code>.</li>
-<li><code>git log --oneline --graph</code> shows how branches split and join.</li>
+<li><code>git merge</code> brings it back. <strong>Fast-forward</strong>
+if <code>main</code> didn’t move, otherwise a <strong>merge
+commit</strong>.</li>
+<li>Conflicts: read the markers, edit, delete the markers,
+<code>git add</code>, <code>git commit</code>.</li>
+<li><code>git log --oneline --graph</code> shows how branches split and
+join.</li>
 </ul>
-<div class="admonition job">
-<p class="admonition-title">Job-ready check</p>
-<p><strong>Interview question:</strong> <em>"How do you handle a merge conflict?"</em></p>
-<p><strong>Strong answer:</strong> "I read both versions between the markers, decide the correct result, often by talking to whoever wrote the other change, remove the markers, run the tests, then stage and commit. To avoid conflicts, I keep branches small and merge <code>main</code> into them often."</p>
-<p><strong>Mini project:</strong> Recreate the conflict from Example 3 in your own repo, resolve it with VS Code's merge buttons, and save the <code>git log --oneline --graph</code> output in your notes.</p>
+<div class="admonition job" data-markdown="1">
+<p class="admonition-title">
+Job-ready check
+</p>
+<p><strong>Interview question:</strong> <em>“How do you handle a merge
+conflict?”</em></p>
+<p><strong>Strong answer:</strong> “I read both versions between the
+markers, decide the correct result, often by talking to whoever wrote
+the other change, remove the markers, run the tests, then stage and
+commit. To avoid conflicts, I keep branches small and merge
+<code>main</code> into them often.”</p>
+<p><strong>Mini project:</strong> Recreate the conflict from Example 3
+in your own repo, resolve it with VS Code’s merge buttons, and save the
+<code>git log --oneline --graph</code> output in your notes.</p>
 </div>
+<section class="mentor-prompt"><div class="mentor-head"><div><span class="eyebrow">AI study companion</span><h2 id="ai-mentor-prompt">AI Mentor Prompt</h2></div><button class="btn copy-prompt" type="button" data-copy-target="mentor-prompt-phase-0-git-github-02-branches-merge">Copy prompt</button></div><p>Paste this into ChatGPT, Claude, Gemini, or another capable assistant to turn this tutorial into an interactive mentoring session.</p><pre class="prompt-box"><code id="mentor-prompt-phase-0-git-github-02-branches-merge">You are my hands-on software-engineering mentor.
+
+I am currently studying:
+&quot;Branches &amp; Merge: Work on Changes Without Breaking Main&quot;
+
+My level:
+Beginner
+
+Teach me this topic interactively rather than giving me a long lecture.
+
+Use this sequence:
+
+1. Check what I already understand with one short diagnostic question.
+2. Explain the concept in simple language and give me the mental model first.
+3. Give me one small task using code, SQL, configuration, data, or architecture as appropriate.
+4. Wait for my attempt before showing a complete solution.
+5. Review my work and explain both what is correct and what needs improvement.
+6. Help me debug errors step by step instead of immediately replacing my work.
+7. Increase the difficulty gradually and connect each new step to the previous one.
+8. Relate what I am learning to real professional data/AI engineering work.
+9. Ask me to explain an important decision in my own words so you can check my understanding.
+10. At the end, ask me to build or modify one small feature independently.
+
+Important rules:
+- Do not do the entire exercise for me unless I explicitly ask.
+- Explain unfamiliar terminology before using it heavily.
+- Prefer current, production-relevant practices over outdated shortcuts.
+- Distinguish clearly between concepts, tool-specific behaviour, and optional alternatives.
+- If a technical fact, API, syntax, version, or best practice may have changed, verify it against current official documentation before teaching it.
+- Never invent command output, test results, benchmark numbers, cloud behaviour, or data results.
+- If something cannot be executed in the current environment, say so and give me the exact command or verification step I should run.
+- Keep me actively coding, querying, configuring, reasoning, or debugging throughout the session.
+
+The concepts I need to master are:
+- Branches &amp; merge
+- git branch
+- git switch
+- git merge
+- fast-forward
+- merge commit
+- merge conflict
+- conflict markers
+
+Start by asking me one diagnostic question.</code></pre></section>
+
 <div class="terms-box"><div class="files-head"><b>Key terms in this lesson</b><a href="../../../glossary.html">Glossary →</a></div><div class="term-chips"><a class="term-chip" href="../../../glossary.html#branch" title="A separate line of work in a repository. Each feature or fix gets a branch, which is merged back into main when ready.">Branch</a><a class="term-chip" href="../../../glossary.html#merge-conflict" title="When two branches change the same lines differently, Git stops and asks you to choose the final version between the conflict markers.">Merge conflict</a></div></div>
 <h2 id="free-resources">Free resources to go deeper</h2><ul class="resources"><li><a href="https://git-scm.com/book/en/v2">Git Branching — Basic Branching and Merging</a><span class="r-meta">Pro Git book (official) · Chapter 3 explains branches, merges and conflicts with diagrams.</span></li><li><a href="https://github.com/skills/introduction-to-github">Introduction to GitHub (interactive course)</a><span class="r-meta">GitHub Skills · Practise branches and merges in a real repository.</span></li></ul>
 <div class="complete-bar"><span>Finished reading and did the exercise?</span>
@@ -336,9 +416,9 @@ git<span class="w"> </span>branch<span class="w"> </span>-d<span class="w"> </sp
 <p class="reviewed">Last reviewed: 2026-10-09</p>
 
   </div></main>
-  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#example-1-create-a-branch-and-commit-on-it">Example 1: create a branch and commit on it</a><a href="#example-2-merge-it-back-fast-forward">Example 2: merge it back (fast-forward)</a><a href="#example-3-a-merge-conflict-step-by-step">Example 3: a merge conflict, step by step</a><a href="#example-4-see-the-history-as-a-graph">Example 4: see the history as a graph</a><a href="#branch-naming">Branch naming</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#free-resources">Free resources</a></aside>
+  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#example-1-create-a-branch-and-commit-on-it">Example 1: create a branch and commit on it</a><a href="#example-2-merge-it-back-fast-forward">Example 2: merge it back (fast-forward)</a><a href="#example-3-a-merge-conflict-step-by-step">Example 3: a merge conflict, step by step</a><a href="#example-4-see-the-history-as-a-graph">Example 4: see the history as a graph</a><a href="#branch-naming">Branch naming</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#ai-mentor-prompt">AI Mentor Prompt</a><a href="#free-resources">Free resources</a></aside>
 </div>
-<footer class="site">Data, AI &amp; Automation Path v0.8 · Applied AI, Data &amp; Automation Lab · Updated October 2026<br>
+<footer class="site"><b>Saiful The Techie</b> · Data, AI &amp; Automation Path v0.9.1 · Updated October 2026<br>
 Lesson text: <a href="../../../license.html">CC BY-NC-SA 4.0</a> · Code: <a href="../../../license.html#code-mit-license">MIT</a> · Free external resources belong to their respective owners.</footer>
 <script src="../../../search-index.js"></script>
 <script src="../../../assets/app.js"></script>

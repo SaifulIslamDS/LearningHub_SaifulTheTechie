@@ -6,7 +6,7 @@
 <title>Programming Refresher — Data, AI &amp; Automation Path</title>
 <meta name="description" content="Programming Refresher: Variables &amp; conditions, Loops &amp; functions, Collections, Files &amp; exceptions, OOP, Type hints">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="Data, AI &amp; Automation Path">
+<meta property="og:site_name" content="Saiful The Techie">
 <meta property="og:title" content="Programming Refresher">
 <meta property="og:description" content="Programming Refresher: Variables &amp; conditions, Loops &amp; functions, Collections, Files &amp; exceptions, OOP, Type hints">
 <meta property="og:locale" content="en_US">
@@ -19,13 +19,13 @@ var n=null;try{n=localStorage.getItem('daa-nav')}catch(e){}
 if(n==='open'&&window.matchMedia&&matchMedia('(min-width: 961px)').matches)document.documentElement.setAttribute('data-nav','open');
 document.documentElement.classList.add('no-anim')})();</script>
 <link rel="stylesheet" href="../../../assets/style.css">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233f7d6a'/%3E%3Ctext x='16' y='21' font-family='sans-serif' font-size='13' font-weight='700' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
+
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="topbar">
   <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Open curriculum menu" title="Curriculum menu (press M)" aria-controls="sidebar" aria-expanded="false"><span class="ico-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span class="ico-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></button>
-  <a class="brand" href="../../../index.html"><span class="brand-badge">AI</span><span class="brand-text"><span class="brand-name">Data, AI &amp; Automation Path</span><span class="brand-version">v0.8</span></span></a>
+  <a class="brand" href="../../../index.html"><span class="brand-text"><span class="brand-name">Saiful The Techie</span><span class="brand-version">Data, AI &amp; Automation Path · v0.9.1</span></span></a>
   <nav class="top-links" aria-label="Main">
     <a href="../../../index.html" class="">Home</a><a href="../../../curriculum.html" class="">Curriculum</a><a href="../../../practice-files.html" class="">Practice files</a><a href="../../../glossary.html" class="">Glossary</a><a href="../../../how-to-learn.html" class="">How to learn</a><a href="../../../about.html" class="">About</a>
   </nav>
@@ -41,7 +41,7 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="layout">
   <nav class="sidebar" id="sidebar" aria-label="Curriculum">
     <div class="side-title">Curriculum</div>
-    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="77"><i></i></div><span class="bar-label" data-progress-label></span></div>
+    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="85"><i></i></div><span class="bar-label" data-progress-label></span></div>
 <div class="nav-phase current open"><a href="../../../learn/phase-0/index.html"><span class="nav-num">0</span>Foundations</a>
 <ul class="nav-modules">
 <li><a class="" href="../../../learn/phase-0/dev-environment/index.html">Development Environment</a>
@@ -86,23 +86,38 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="side-extra"><a href="../../../index.html">Home</a><a href="../../../curriculum.html">Full curriculum map</a><a href="../../../practice-files.html">Practice files</a><a href="../../../glossary.html">Glossary</a><a href="../../../how-to-learn.html">How to learn here</a><a href="../../../about.html">About &amp; contributing</a></div></nav>
   <main class="main" id="main"><div class="content">
 <nav class="crumbs" aria-label="Breadcrumb"><a href="../../../index.html">Home</a><span class="sep">/</span><a href="../../../learn/phase-0/index.html">Phase 0</a><span class="sep">/</span><span>Programming Refresher</span></nav>
+<span class="eyebrow">Phase 0 · Foundations</span>
 <h1>Programming Refresher</h1>
-<p class="lead">Part of Phase 0 — Engineering Foundations. Topics: Variables &amp; conditions, Loops &amp; functions, Collections, Files &amp; exceptions, OOP, Type hints.</p>
-<p>A fast, practical refresher of the Python you'll use every day as a data or AI engineer. Every example uses the <strong>same 12 sales orders</strong> as Phase 1, so you can compare Python's answers with SQL, Excel and Power BI.</p>
-<div class="admonition note">
-<p class="admonition-title">Practice files</p>
-<p>Download <a href="../../../downloads/phase-0/python-refresher.zip">python-refresher.zip</a>. It contains one script per lesson, the data file, a debugging exercise, testing examples and <strong>solutions</strong> to every exercise. Run a script with <code>python 01_basics.py</code>, or <code>uv run 01_basics.py</code>.</p>
+<p class="lead">Build the technical base used by every later phase.</p>
+<p>A fast, practical refresher of the Python you’ll use every day as a
+data or AI engineer. Every example uses the <strong>same 12 sales
+orders</strong> as Phase 1, so you can compare Python’s answers with
+SQL, Excel and Power BI.</p>
+<div class="admonition note" data-markdown="1">
+<p class="admonition-title">
+Practice files
+</p>
+<p>Download <a
+href="../../../downloads/phase-0/python-refresher.zip">python-refresher.zip</a>.
+It contains one script per lesson, the data file, a debugging exercise,
+testing examples and <strong>solutions</strong> to every exercise. Run a
+script with <code>python 01_basics.py</code>, or
+<code>uv run 01_basics.py</code>.</p>
 </div>
-<p><strong>By the end of this module you can:</strong> write functions with conditions and loops, choose the right collection (list, dict, set, tuple), read and write CSV/JSON files safely, handle errors, and model data with classes and type hints.</p>
+<p><strong>By the end of this module you can:</strong> write functions
+with conditions and loops, choose the right collection (list, dict, set,
+tuple), read and write CSV/JSON files safely, handle errors, and model
+data with classes and type hints.</p>
+<div class="module-topics"><b>Curriculum coverage</b><div class="term-chips"><span class="term-chip">Variables &amp; conditions</span><span class="term-chip">Loops &amp; functions</span><span class="term-chip">Collections</span><span class="term-chip">Files &amp; exceptions</span><span class="term-chip">OOP</span><span class="term-chip">Type hints</span></div></div>
 <div class="files-box"><div class="files-head"><b>Practice files for this page</b><a href="../../../practice-files.html">All practice files →</a></div><ul><li><a href="../../../downloads/phase-0/python-refresher.zip" download>python-refresher.zip</a><span class="f-desc">Python refresher scripts, debugging, pytest and ruff examples, an AI-written function to review, with solutions · 12 KB</span></li><li><a href="../../../downloads/orders.csv" download>orders.csv</a><span class="f-desc">The 12 clean practice orders as CSV · 963 B</span></li></ul></div>
-<div class="section-head"><h2>Lessons</h2><p>4 written · 0 planned</p></div>
+<div class="section-head"><h2>Tutorials</h2><p>4 ready · 0 planned</p></div>
 <ul class="lesson-list"><li class="lesson-row" data-lesson="phase-0/programming-refresher/01-basics"><span class="n">1</span><span><a href="../../../learn/phase-0/programming-refresher/01-basics.html">Python Basics: Variables, Conditions, Loops &amp; Functions</a><span class="desc">Store values in variables, make decisions with if/elif/else, repeat work with for and while loops, and package logic into reusable functions — using real order data.</span></span><span class="lesson-state">45 min</span></li><li class="lesson-row" data-lesson="phase-0/programming-refresher/02-collections"><span class="n">2</span><span><a href="../../../learn/phase-0/programming-refresher/02-collections.html">Python Collections: Lists, Dictionaries, Sets &amp; Tuples</a><span class="desc">Hold many values with lists, tuples, dictionaries and sets; filter with comprehensions; and group and sort data the way SQL GROUP BY does.</span></span><span class="lesson-state">45 min</span></li><li class="lesson-row" data-lesson="phase-0/programming-refresher/03-files-exceptions"><span class="n">3</span><span><a href="../../../learn/phase-0/programming-refresher/03-files-exceptions.html">Files &amp; Exceptions: Read and Write Data Safely</a><span class="desc">Read CSV files, write JSON and CSV output with pathlib, and handle missing files and bad values with try/except so one bad row doesn&#x27;t stop the job.</span></span><span class="lesson-state">45 min</span></li><li class="lesson-row" data-lesson="phase-0/programming-refresher/04-oop-type-hints"><span class="n">4</span><span><a href="../../../learn/phase-0/programming-refresher/04-oop-type-hints.html">OOP &amp; Type Hints: Classes, Dataclasses and Clear Contracts</a><span class="desc">Model business objects with classes and dataclasses, add methods and properties, and use type hints so editors, checkers and reviewers catch mistakes before they run.</span></span><span class="lesson-state">45 min</span></li></ul>
 <nav class="pager"><a class="prev" href="../../../learn/phase-0/linux/index.html"><small>← Previous module</small>Linux Essentials</a><a class="next" href="../../../learn/phase-0/testing-ci/index.html"><small>Next module →</small>Testing &amp; CI Basics</a></nav>
 
   </div></main>
   
 </div>
-<footer class="site">Data, AI &amp; Automation Path v0.8 · Applied AI, Data &amp; Automation Lab · Updated October 2026<br>
+<footer class="site"><b>Saiful The Techie</b> · Data, AI &amp; Automation Path v0.9.1 · Updated October 2026<br>
 Lesson text: <a href="../../../license.html">CC BY-NC-SA 4.0</a> · Code: <a href="../../../license.html#code-mit-license">MIT</a> · Free external resources belong to their respective owners.</footer>
 <script src="../../../search-index.js"></script>
 <script src="../../../assets/app.js"></script>

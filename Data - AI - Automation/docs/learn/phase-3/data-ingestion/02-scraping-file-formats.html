@@ -6,7 +6,7 @@
 <title>Web Scraping and File Formats: HTML, CSV, JSON &amp; Parquet — Data, AI &amp; Automation Path</title>
 <meta name="description" content="Scrape a web page responsibly with Beautiful Soup (robots.txt, delays, a real User-Agent), flatten nested JSON, and choose between CSV, JSON and Parquet by size, speed and type safety.">
 <meta property="og:type" content="article">
-<meta property="og:site_name" content="Data, AI &amp; Automation Path">
+<meta property="og:site_name" content="Saiful The Techie">
 <meta property="og:title" content="Web Scraping and File Formats: HTML, CSV, JSON &amp; Parquet">
 <meta property="og:description" content="Scrape a web page responsibly with Beautiful Soup (robots.txt, delays, a real User-Agent), flatten nested JSON, and choose between CSV, JSON and Parquet by size, speed and type safety.">
 <meta property="og:locale" content="en_US">
@@ -19,13 +19,13 @@ var n=null;try{n=localStorage.getItem('daa-nav')}catch(e){}
 if(n==='open'&&window.matchMedia&&matchMedia('(min-width: 961px)').matches)document.documentElement.setAttribute('data-nav','open');
 document.documentElement.classList.add('no-anim')})();</script>
 <link rel="stylesheet" href="../../../assets/style.css">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233f7d6a'/%3E%3Ctext x='16' y='21' font-family='sans-serif' font-size='13' font-weight='700' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
+
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="topbar">
   <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Open curriculum menu" title="Curriculum menu (press M)" aria-controls="sidebar" aria-expanded="false"><span class="ico-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span class="ico-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></button>
-  <a class="brand" href="../../../index.html"><span class="brand-badge">AI</span><span class="brand-text"><span class="brand-name">Data, AI &amp; Automation Path</span><span class="brand-version">v0.8</span></span></a>
+  <a class="brand" href="../../../index.html"><span class="brand-text"><span class="brand-name">Saiful The Techie</span><span class="brand-version">Data, AI &amp; Automation Path · v0.9.1</span></span></a>
   <nav class="top-links" aria-label="Main">
     <a href="../../../index.html" class="">Home</a><a href="../../../curriculum.html" class="">Curriculum</a><a href="../../../practice-files.html" class="">Practice files</a><a href="../../../glossary.html" class="">Glossary</a><a href="../../../how-to-learn.html" class="">How to learn</a><a href="../../../about.html" class="">About</a>
   </nav>
@@ -41,7 +41,7 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="layout wide">
   <nav class="sidebar" id="sidebar" aria-label="Curriculum">
     <div class="side-title">Curriculum</div>
-    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="77"><i></i></div><span class="bar-label" data-progress-label></span></div>
+    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="85"><i></i></div><span class="bar-label" data-progress-label></span></div>
 <div class="nav-phase"><a href="../../../learn/phase-0/index.html"><span class="nav-num">0</span>Foundations</a>
 </div>
 <div class="nav-phase"><a href="../../../learn/phase-1/index.html"><span class="nav-num">1</span>Analytics &amp; BI</a>
@@ -101,15 +101,25 @@ document.documentElement.classList.add('no-anim')})();</script>
 <p class="lead">Scrape a web page responsibly with Beautiful Soup (robots.txt, delays, a real User-Agent), flatten nested JSON, and choose between CSV, JSON and Parquet by size, speed and type safety.</p>
 <div class="meta"><span class="pill">Phase <b>3</b> · Data Engineering</span><span class="pill">Level <b>Intermediate</b></span><span class="pill">Time <b>50 min</b></span></div>
 <div class="admonition note"><p class="admonition-title">Before you start</p><p><a href="../../../learn/phase-3/data-ingestion/01-rest-apis-auth-pagination.html">REST APIs, Authentication &amp; Pagination: Pull Data Like a Pro</a></p></div>
-<div class="files-box"><div class="files-head"><b>Practice files for this page</b><a href="../../../practice-files.html">All practice files →</a></div><ul><li><a href="../../../downloads/phase-3/data-engineering-scripts.zip" download>data-engineering-scripts.zip</a><span class="f-desc">Phase 3A scripts: practice API + website, ingestion, PostgreSQL loader, advanced SQL, indexing, transactions, star schema, SCD, BigQuery dialect, Delta Lake, Iceberg, Dockerfiles and compose.yaml · 270 KB</span></li></ul></div>
+<div class="files-box"><div class="files-head"><b>Practice files for this page</b><a href="../../../practice-files.html">All practice files →</a></div><ul><li><a href="../../../downloads/phase-3/data-engineering-scripts.zip" download>data-engineering-scripts.zip</a><span class="f-desc">Phase 3 scripts: ingestion, PostgreSQL, advanced SQL, warehousing, lakehouse, Docker, ETL/CDC, data quality, plus the dbt mini-project and verification scripts · 476 KB</span></li></ul></div>
 <h2 id="what-is-it">What is it?</h2>
 <ul>
-<li><strong>Web scraping</strong> = extracting data from web pages (HTML) when there's no API. You download the page, then pick values out with <strong>CSS selectors</strong>.</li>
-<li><strong>File formats</strong> decide how collected data is stored:</li>
+<li><strong>Web scraping</strong> = extracting data from web pages
+(HTML) when there’s no API. You download the page, then pick values out
+with <strong>CSS selectors</strong>.</li>
+<li><strong>File formats</strong> decide how collected data is
+stored:</li>
 </ul>
 <table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Format</th>
 <th>Shape</th>
 <th>Types kept?</th>
@@ -118,28 +128,28 @@ document.documentElement.classList.add('no-anim')})();</script>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td><strong>CSV</strong></td>
 <td>Rows of text</td>
 <td>❌ everything is text</td>
 <td>Medium</td>
 <td>Exchanging tables with people and Excel</td>
 </tr>
-<tr>
+<tr class="even">
 <td><strong>JSON</strong></td>
 <td>Nested objects</td>
 <td>Partly (numbers, true/false; no dates)</td>
 <td>Large</td>
 <td>API responses, nested data</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><strong>JSON Lines</strong> (<code>.jsonl</code>)</td>
 <td>One JSON object per line</td>
 <td>Partly</td>
 <td>Large</td>
 <td>Logs, streaming, appendable raw data</td>
 </tr>
-<tr>
+<tr class="even">
 <td><strong>Parquet</strong></td>
 <td>Columns, compressed</td>
 <td>✅ ints, decimals, dates, nulls</td>
@@ -148,135 +158,154 @@ document.documentElement.classList.add('no-anim')})();</script>
 </tr>
 </tbody>
 </table>
-<div class="admonition job">
-<p class="admonition-title">Why it matters at work</p>
-<p>Competitor prices, supplier catalogues and public statistics often exist only as web pages. And every pipeline decides on a storage format: Parquet is the default for analytics in modern data platforms, so knowing why (and when CSV or JSON is still right) is basic data engineering literacy.</p>
+<div class="admonition job" data-markdown="1">
+<p class="admonition-title">
+Why it matters at work
+</p>
+<p>Competitor prices, supplier catalogues and public statistics often
+exist only as web pages. And every pipeline decides on a storage format:
+Parquet is the default for analytics in modern data platforms, so
+knowing why (and when CSV or JSON is still right) is basic data
+engineering literacy.</p>
 </div>
-<p>The script is <code>02_scrape_formats.py</code>. Keep the practice API running: it also serves a small <strong>product catalogue website</strong>.</p>
+<p>The script is <code>02_scrape_formats.py</code>. Keep the practice
+API running: it also serves a small <strong>product catalogue
+website</strong>.</p>
 <h2 id="part-1-scrape-responsibly">Part 1: scrape responsibly</h2>
 <h3 id="check-the-rules-first">Check the rules first</h3>
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">urllib</span><span class="w"> </span><span class="kn">import</span> <span class="n">robotparser</span>
+<pre class="python"><code>from urllib import robotparser
 
-<span class="n">rp</span> <span class="o">=</span> <span class="n">robotparser</span><span class="o">.</span><span class="n">RobotFileParser</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">BASE</span><span class="si">}</span><span class="s2">/robots.txt"</span><span class="p">)</span>
-<span class="n">rp</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">"may fetch /catalog/page/1:"</span><span class="p">,</span> <span class="n">rp</span><span class="o">.</span><span class="n">can_fetch</span><span class="p">(</span><span class="s2">"practice-bot"</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">BASE</span><span class="si">}</span><span class="s2">/catalog/page/1"</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">"may fetch /admin/prices:  "</span><span class="p">,</span> <span class="n">rp</span><span class="o">.</span><span class="n">can_fetch</span><span class="p">(</span><span class="s2">"practice-bot"</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">BASE</span><span class="si">}</span><span class="s2">/admin/prices"</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">"crawl delay:"</span><span class="p">,</span> <span class="n">rp</span><span class="o">.</span><span class="n">crawl_delay</span><span class="p">(</span><span class="s2">"practice-bot"</span><span class="p">),</span> <span class="s2">"second(s)"</span><span class="p">)</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>may fetch /catalog/page/1: True
+rp = robotparser.RobotFileParser(f&quot;{BASE}/robots.txt&quot;)
+rp.read()
+print(&quot;may fetch /catalog/page/1:&quot;, rp.can_fetch(&quot;practice-bot&quot;, f&quot;{BASE}/catalog/page/1&quot;))
+print(&quot;may fetch /admin/prices:  &quot;, rp.can_fetch(&quot;practice-bot&quot;, f&quot;{BASE}/admin/prices&quot;))
+print(&quot;crawl delay:&quot;, rp.crawl_delay(&quot;practice-bot&quot;), &quot;second(s)&quot;)</code></pre>
+<pre class="text"><code>may fetch /catalog/page/1: True
 may fetch /admin/prices:   False
-crawl delay: 1 second(s)
-</code></pre></div>
-
-<div class="admonition warning">
-<p class="admonition-title">Legal and ethical scraping</p>
-<p><code>robots.txt</code> states what the site owner allows automated tools to fetch. Also read the site's <strong>terms of service</strong>, never scrape personal data or anything behind a login without permission, identify yourself with a real <code>User-Agent</code>, and go slowly. If the site offers an API or a download, use that instead.</p>
+crawl delay: 1 second(s)</code></pre>
+<div class="admonition warning" data-markdown="1">
+<p class="admonition-title">
+Legal and ethical scraping
+</p>
+<p><code>robots.txt</code> states what the site owner allows automated
+tools to fetch. Also read the site’s <strong>terms of service</strong>,
+never scrape personal data or anything behind a login without
+permission, identify yourself with a real <code>User-Agent</code>, and
+go slowly. If the site offers an API or a download, use that
+instead.</p>
 </div>
 <h3 id="pick-values-out-of-the-html">Pick values out of the HTML</h3>
 <p>Each product on the page looks like this:</p>
-<div class="codehilite"><pre><span></span><code><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">"product"</span> <span class="na">data-sku</span><span class="o">=</span><span class="s">"SKU-001"</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">h2</span> <span class="na">class</span><span class="o">=</span><span class="s">"name"</span><span class="p">&gt;</span>Cotton Twill<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">"category"</span><span class="p">&gt;</span>Fabric<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">"price"</span><span class="p">&gt;</span>BDT 420.00<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">"stock"</span><span class="p">&gt;</span>In stock<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code><span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"User-Agent"</span><span class="p">:</span> <span class="s2">"practice-bot/1.0 (learner@example.com)"</span><span class="p">}</span>
-<span class="n">url</span><span class="p">,</span> <span class="n">products</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">BASE</span><span class="si">}</span><span class="s2">/catalog/page/1"</span><span class="p">,</span> <span class="p">[]</span>
-<span class="k">while</span> <span class="n">url</span><span class="p">:</span>
-    <span class="n">html</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
-    <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">html</span><span class="p">,</span> <span class="s2">"html.parser"</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">card</span> <span class="ow">in</span> <span class="n">soup</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">"div.product"</span><span class="p">):</span>
-        <span class="n">products</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
-            <span class="s2">"sku"</span><span class="p">:</span> <span class="n">card</span><span class="p">[</span><span class="s2">"data-sku"</span><span class="p">],</span>
-            <span class="s2">"product"</span><span class="p">:</span> <span class="n">card</span><span class="o">.</span><span class="n">select_one</span><span class="p">(</span><span class="s2">".name"</span><span class="p">)</span><span class="o">.</span><span class="n">get_text</span><span class="p">(</span><span class="n">strip</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
-            <span class="s2">"category"</span><span class="p">:</span> <span class="n">card</span><span class="o">.</span><span class="n">select_one</span><span class="p">(</span><span class="s2">".category"</span><span class="p">)</span><span class="o">.</span><span class="n">get_text</span><span class="p">(</span><span class="n">strip</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
-            <span class="s2">"price_bdt"</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">card</span><span class="o">.</span><span class="n">select_one</span><span class="p">(</span><span class="s2">".price"</span><span class="p">)</span><span class="o">.</span><span class="n">get_text</span><span class="p">(</span><span class="n">strip</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">"BDT"</span><span class="p">,</span> <span class="s2">""</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">","</span><span class="p">,</span> <span class="s2">""</span><span class="p">)),</span>
-            <span class="s2">"in_stock"</span><span class="p">:</span> <span class="n">card</span><span class="o">.</span><span class="n">select_one</span><span class="p">(</span><span class="s2">".stock"</span><span class="p">)</span><span class="o">.</span><span class="n">get_text</span><span class="p">(</span><span class="n">strip</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">==</span> <span class="s2">"In stock"</span><span class="p">,</span>
-        <span class="p">})</span>
-    <span class="n">nxt</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">select_one</span><span class="p">(</span><span class="s2">"a.next"</span><span class="p">)</span>
-    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">BASE</span><span class="si">}{</span><span class="n">nxt</span><span class="p">[</span><span class="s1">'href'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span> <span class="k">if</span> <span class="n">nxt</span> <span class="k">else</span> <span class="kc">None</span>
-    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">rp</span><span class="o">.</span><span class="n">crawl_delay</span><span class="p">(</span><span class="s2">"practice-bot"</span><span class="p">)</span> <span class="ow">or</span> <span class="mi">1</span><span class="p">)</span>          <span class="c1"># be polite</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>    sku      product category  price_bdt  in_stock
+<pre class="html"><code>&lt;div class=&quot;product&quot; data-sku=&quot;SKU-001&quot;&gt;
+  &lt;h2 class=&quot;name&quot;&gt;Cotton Twill&lt;/h2&gt;
+  &lt;span class=&quot;category&quot;&gt;Fabric&lt;/span&gt;
+  &lt;span class=&quot;price&quot;&gt;BDT 420.00&lt;/span&gt;
+  &lt;span class=&quot;stock&quot;&gt;In stock&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+<pre class="python"><code>headers = {&quot;User-Agent&quot;: &quot;practice-bot/1.0 (learner@example.com)&quot;}
+url, products = f&quot;{BASE}/catalog/page/1&quot;, []
+while url:
+    html = requests.get(url, headers=headers, timeout=10).text
+    soup = BeautifulSoup(html, &quot;html.parser&quot;)
+    for card in soup.select(&quot;div.product&quot;):
+        products.append({
+            &quot;sku&quot;: card[&quot;data-sku&quot;],
+            &quot;product&quot;: card.select_one(&quot;.name&quot;).get_text(strip=True),
+            &quot;category&quot;: card.select_one(&quot;.category&quot;).get_text(strip=True),
+            &quot;price_bdt&quot;: float(card.select_one(&quot;.price&quot;).get_text(strip=True).replace(&quot;BDT&quot;, &quot;&quot;).replace(&quot;,&quot;, &quot;&quot;)),
+            &quot;in_stock&quot;: card.select_one(&quot;.stock&quot;).get_text(strip=True) == &quot;In stock&quot;,
+        })
+    nxt = soup.select_one(&quot;a.next&quot;)
+    url = f&quot;{BASE}{nxt[&#39;href&#39;]}&quot; if nxt else None
+    time.sleep(rp.crawl_delay(&quot;practice-bot&quot;) or 1)          # be polite</code></pre>
+<pre class="text"><code>    sku      product category  price_bdt  in_stock
 SKU-001 Cotton Twill   Fabric      420.0      True
 SKU-002   Denim 12oz   Fabric      624.0      True
 SKU-003 Poplin White   Fabric      348.0      True
-12 products | 2 out of stock
-</code></pre></div>
-
+12 products | 2 out of stock</code></pre>
 <ul>
-<li><code>soup.select("div.product")</code> finds every element matching the <strong>CSS selector</strong>; <code>select_one</code> finds the first.</li>
-<li><code>card["data-sku"]</code> reads an attribute; <code>.get_text(strip=True)</code> reads the visible text.</li>
-<li>Clean as you go: <code>"BDT 420.00"</code> → <code>420.0</code>.</li>
-<li>Scrapers <strong>break</strong> when the site's HTML changes. Test that each field was found, and alert when a page returns 0 products.</li>
+<li><code>soup.select("div.product")</code> finds every element matching
+the <strong>CSS selector</strong>; <code>select_one</code> finds the
+first.</li>
+<li><code>card["data-sku"]</code> reads an attribute;
+<code>.get_text(strip=True)</code> reads the visible text.</li>
+<li>Clean as you go: <code>"BDT 420.00"</code> →
+<code>420.0</code>.</li>
+<li>Scrapers <strong>break</strong> when the site’s HTML changes. Test
+that each field was found, and alert when a page returns 0
+products.</li>
 </ul>
-<p>Pages built by JavaScript in the browser don't contain the data in their HTML. Look for the JSON API the page calls (browser DevTools → Network tab), or use a browser automation tool such as Playwright.</p>
-<h2 id="part-2-csv-vs-json-vs-parquet">Part 2: CSV vs JSON vs Parquet</h2>
-<div class="codehilite"><pre><span></span><code><span class="n">orders</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">OUT</span> <span class="o">/</span> <span class="s2">"orders.csv"</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">orders</span><span class="o">.</span><span class="n">to_json</span><span class="p">(</span><span class="n">OUT</span> <span class="o">/</span> <span class="s2">"orders.json"</span><span class="p">,</span> <span class="n">orient</span><span class="o">=</span><span class="s2">"records"</span><span class="p">,</span> <span class="n">date_format</span><span class="o">=</span><span class="s2">"iso"</span><span class="p">)</span>
-<span class="n">orders</span><span class="o">.</span><span class="n">to_json</span><span class="p">(</span><span class="n">OUT</span> <span class="o">/</span> <span class="s2">"orders.jsonl"</span><span class="p">,</span> <span class="n">orient</span><span class="o">=</span><span class="s2">"records"</span><span class="p">,</span> <span class="n">lines</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">date_format</span><span class="o">=</span><span class="s2">"iso"</span><span class="p">)</span>
-<span class="n">orders</span><span class="o">.</span><span class="n">to_parquet</span><span class="p">(</span><span class="n">OUT</span> <span class="o">/</span> <span class="s2">"orders.parquet"</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>                 <span class="c1"># needs pyarrow</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>orders.csv          472 KB
+<p>Pages built by JavaScript in the browser don’t contain the data in
+their HTML. Look for the JSON API the page calls (browser DevTools →
+Network tab), or use a browser automation tool such as Playwright.</p>
+<h2 id="part-2-csv-vs-json-vs-parquet">Part 2: CSV vs JSON vs
+Parquet</h2>
+<pre class="python"><code>orders.to_csv(OUT / &quot;orders.csv&quot;, index=False)
+orders.to_json(OUT / &quot;orders.json&quot;, orient=&quot;records&quot;, date_format=&quot;iso&quot;)
+orders.to_json(OUT / &quot;orders.jsonl&quot;, orient=&quot;records&quot;, lines=True, date_format=&quot;iso&quot;)
+orders.to_parquet(OUT / &quot;orders.parquet&quot;, index=False)                 # needs pyarrow</code></pre>
+<pre class="text"><code>orders.csv          472 KB
 orders.json        1373 KB
 orders.jsonl       1373 KB
-orders.parquet      106 KB
-</code></pre></div>
-
-<p>The same 4,246 orders: <strong>Parquet is 4.5× smaller than CSV and 13× smaller than JSON</strong>. JSON repeats every column name on every row; Parquet stores each column together and compresses repeated values like <code>Dhaka</code>, <code>Delivered</code> and <code>Fabric</code> very well.</p>
-<h3 id="types-survive-or-dont">Types survive (or don't)</h3>
-<div class="codehilite"><pre><span></span><code>CSV     order_date: str | delivery_days: float64
-Parquet order_date: datetime64[us] | delivery_days: float64
-</code></pre></div>
-
-<p>After a round trip through CSV, dates come back as <strong>text</strong> until you parse them again. Parquet stores the schema with the data, so dates stay dates.</p>
-<h3 id="read-only-the-columns-you-need">Read only the columns you need</h3>
-<div class="codehilite"><pre><span></span><code>read 2 columns: CSV 10.5 ms | Parquet 3.8 ms
-</code></pre></div>
-
-<p><em>(Timings depend on your machine.)</em> Parquet can read two columns without touching the others; a CSV has to be scanned in full. On millions of rows this is the difference between seconds and minutes (the DuckDB lesson in Phase 2 showed it at scale).</p>
+orders.parquet      106 KB</code></pre>
+<p>The same 4,246 orders: <strong>Parquet is 4.5× smaller than CSV and
+13× smaller than JSON</strong>. JSON repeats every column name on every
+row; Parquet stores each column together and compresses repeated values
+like <code>Dhaka</code>, <code>Delivered</code> and <code>Fabric</code>
+very well.</p>
+<h3 id="types-survive-or-dont">Types survive (or don’t)</h3>
+<pre class="text"><code>CSV     order_date: str | delivery_days: float64
+Parquet order_date: datetime64[us] | delivery_days: float64</code></pre>
+<p>After a round trip through CSV, dates come back as
+<strong>text</strong> until you parse them again. Parquet stores the
+schema with the data, so dates stay dates.</p>
+<h3 id="read-only-the-columns-you-need">Read only the columns you
+need</h3>
+<pre class="text"><code>read 2 columns: CSV 10.5 ms | Parquet 3.8 ms</code></pre>
+<p><em>(Timings depend on your machine.)</em> Parquet can read two
+columns without touching the others; a CSV has to be scanned in full. On
+millions of rows this is the difference between seconds and minutes (the
+DuckDB lesson in Phase 2 showed it at scale).</p>
 <h3 id="nested-json-a-flat-table">Nested JSON → a flat table</h3>
-<p>APIs often nest objects and lists. <code>pd.json_normalize</code> flattens them:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">nested</span> <span class="o">=</span> <span class="p">[{</span><span class="s2">"order_id"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">"customer"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"id"</span><span class="p">:</span> <span class="s2">"C010"</span><span class="p">,</span> <span class="s2">"region"</span><span class="p">:</span> <span class="s2">"Dhaka"</span><span class="p">},</span> <span class="s2">"lines"</span><span class="p">:</span> <span class="p">[{</span><span class="s2">"sku"</span><span class="p">:</span> <span class="s2">"SKU-001"</span><span class="p">,</span> <span class="s2">"qty"</span><span class="p">:</span> <span class="mi">120</span><span class="p">}]},</span>
-          <span class="p">{</span><span class="s2">"order_id"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">"customer"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"id"</span><span class="p">:</span> <span class="s2">"C044"</span><span class="p">,</span> <span class="s2">"region"</span><span class="p">:</span> <span class="s2">"Gazipur"</span><span class="p">},</span> <span class="s2">"lines"</span><span class="p">:</span> <span class="p">[{</span><span class="s2">"sku"</span><span class="p">:</span> <span class="s2">"SKU-005"</span><span class="p">,</span> <span class="s2">"qty"</span><span class="p">:</span> <span class="mi">6000</span><span class="p">},</span>
-                                                                                       <span class="p">{</span><span class="s2">"sku"</span><span class="p">:</span> <span class="s2">"SKU-006"</span><span class="p">,</span> <span class="s2">"qty"</span><span class="p">:</span> <span class="mi">900</span><span class="p">}]}]</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">json_normalize</span><span class="p">(</span><span class="n">nested</span><span class="p">,</span> <span class="n">record_path</span><span class="o">=</span><span class="s2">"lines"</span><span class="p">,</span> <span class="n">meta</span><span class="o">=</span><span class="p">[</span><span class="s2">"order_id"</span><span class="p">,</span> <span class="p">[</span><span class="s2">"customer"</span><span class="p">,</span> <span class="s2">"id"</span><span class="p">],</span> <span class="p">[</span><span class="s2">"customer"</span><span class="p">,</span> <span class="s2">"region"</span><span class="p">]]))</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>       sku   qty order_id customer.id customer.region
+<p>APIs often nest objects and lists. <code>pd.json_normalize</code>
+flattens them:</p>
+<pre class="python"><code>nested = [{&quot;order_id&quot;: 1, &quot;customer&quot;: {&quot;id&quot;: &quot;C010&quot;, &quot;region&quot;: &quot;Dhaka&quot;}, &quot;lines&quot;: [{&quot;sku&quot;: &quot;SKU-001&quot;, &quot;qty&quot;: 120}]},
+          {&quot;order_id&quot;: 2, &quot;customer&quot;: {&quot;id&quot;: &quot;C044&quot;, &quot;region&quot;: &quot;Gazipur&quot;}, &quot;lines&quot;: [{&quot;sku&quot;: &quot;SKU-005&quot;, &quot;qty&quot;: 6000},
+                                                                                       {&quot;sku&quot;: &quot;SKU-006&quot;, &quot;qty&quot;: 900}]}]
+print(pd.json_normalize(nested, record_path=&quot;lines&quot;, meta=[&quot;order_id&quot;, [&quot;customer&quot;, &quot;id&quot;], [&quot;customer&quot;, &quot;region&quot;]]))</code></pre>
+<pre class="text"><code>       sku   qty order_id customer.id customer.region
 0  SKU-001   120        1        C010           Dhaka
 1  SKU-005  6000        2        C044         Gazipur
-2  SKU-006   900        2        C044         Gazipur
-</code></pre></div>
-
-<p>One row per order <strong>line</strong>, with the order's fields repeated: the grain changes from "order" to "order line", so be careful with sums afterwards.</p>
+2  SKU-006   900        2        C044         Gazipur</code></pre>
+<p>One row per order <strong>line</strong>, with the order’s fields
+repeated: the grain changes from “order” to “order line”, so be careful
+with sums afterwards.</p>
 <h2 id="choosing-a-format">Choosing a format</h2>
 <table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Situation</th>
 <th>Choose</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>Raw API responses in a landing zone</td>
 <td>JSON / JSON Lines (exactly as received)</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Cleaned data for analysis or a data lake</td>
 <td><strong>Parquet</strong></td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Sending a table to a business user</td>
 <td>CSV or Excel</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Appending events one at a time</td>
 <td>JSON Lines</td>
 </tr>
@@ -284,35 +313,40 @@ Parquet order_date: datetime64[us] | delivery_days: float64
 </table>
 <h2 id="common-mistakes">Common mistakes</h2>
 <table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Mistake</th>
 <th>What happens</th>
 <th>Fix</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>Ignoring robots.txt and terms</td>
 <td>Blocked IPs, legal risk</td>
 <td>Check the rules; prefer APIs; go slowly</td>
 </tr>
-<tr>
+<tr class="even">
 <td>No delay between requests</td>
 <td>You overload a small site</td>
 <td><code>time.sleep</code>; respect crawl delays</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Assuming selectors never change</td>
 <td>Scraper silently returns 0 rows</td>
 <td>Validate counts and fields; alert on zero</td>
 </tr>
-<tr>
+<tr class="even">
 <td>CSV for pipeline storage</td>
 <td>Lost types, slow reads, big files</td>
 <td>Parquet</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Summing after flattening nested lists</td>
 <td>Order totals double-counted</td>
 <td>Know your grain after <code>json_normalize</code></td>
@@ -320,76 +354,149 @@ Parquet order_date: datetime64[us] | delivery_days: float64
 </tbody>
 </table>
 <h2 id="try-it-yourself">Try it yourself</h2>
-<p><strong>Task:</strong> Compare the scraped website prices (BDT) with <code>products_2025.csv</code> (list prices). Does every product match, and what exchange rate does the website imply?</p>
+<p><strong>Task:</strong> Compare the scraped website prices (BDT) with
+<code>products_2025.csv</code> (list prices). Does every product match,
+and what exchange rate does the website imply?</p>
 <details>
-<summary>Show the solution</summary>
-<div class="codehilite"><pre><span></span><code><span class="n">prices</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">"data/products_2025.csv"</span><span class="p">)</span>
-<span class="n">check</span> <span class="o">=</span> <span class="n">catalog</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">prices</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s2">"product"</span><span class="p">,</span> <span class="s2">"category"</span><span class="p">],</span> <span class="n">how</span><span class="o">=</span><span class="s2">"left"</span><span class="p">)</span>
-<span class="n">check</span><span class="p">[</span><span class="s2">"implied_rate"</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">check</span><span class="p">[</span><span class="s2">"price_bdt"</span><span class="p">]</span> <span class="o">/</span> <span class="n">check</span><span class="p">[</span><span class="s2">"list_price"</span><span class="p">])</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">check</span><span class="p">[[</span><span class="s2">"product"</span><span class="p">,</span> <span class="s2">"list_price"</span><span class="p">,</span> <span class="s2">"price_bdt"</span><span class="p">,</span> <span class="s2">"implied_rate"</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">"every product matched:"</span><span class="p">,</span> <span class="n">check</span><span class="p">[</span><span class="s2">"list_price"</span><span class="p">]</span><span class="o">.</span><span class="n">notna</span><span class="p">()</span><span class="o">.</span><span class="n">all</span><span class="p">(),</span> <span class="s2">"| rates:"</span><span class="p">,</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">check</span><span class="p">[</span><span class="s2">"implied_rate"</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()))</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>     product  list_price  price_bdt  implied_rate
+<summary>
+Show the solution
+</summary>
+<pre class="python"><code>prices = pd.read_csv(&quot;data/products_2025.csv&quot;)
+check = catalog.merge(prices, on=[&quot;product&quot;, &quot;category&quot;], how=&quot;left&quot;)
+check[&quot;implied_rate&quot;] = (check[&quot;price_bdt&quot;] / check[&quot;list_price&quot;]).round(1)
+print(check[[&quot;product&quot;, &quot;list_price&quot;, &quot;price_bdt&quot;, &quot;implied_rate&quot;]].head(4).to_string(index=False))
+print(&quot;every product matched:&quot;, check[&quot;list_price&quot;].notna().all(), &quot;| rates:&quot;, sorted(float(x) for x in check[&quot;implied_rate&quot;].unique()))</code></pre>
+<pre class="text"><code>     product  list_price  price_bdt  implied_rate
 Cotton Twill         3.5      420.0         120.0
   Denim 12oz         5.2      624.0         120.0
 Poplin White         2.9      348.0         120.0
  Jersey Knit         4.1      492.0         120.0
-every product matched: True | rates: [120.0]
-</code></pre></div>
-
-<p>All 12 products match, and the website uses one consistent rate (120 BDT per unit of list price, the practice site's assumption). In real projects this kind of reconciliation between a scraped source and an internal file catches both scraper bugs and genuine price-list errors.</p>
+every product matched: True | rates: [120.0]</code></pre>
+All 12 products match, and the website uses one consistent rate (120 BDT
+per unit of list price, the practice site’s assumption). In real
+projects this kind of reconciliation between a scraped source and an
+internal file catches both scraper bugs and genuine price-list errors.
 </details>
 <h2 id="quick-quiz">Quick quiz</h2>
 <div class="quiz-q" data-answer="1">
 <p>1. What should you check before scraping a website?</p>
-<ol>
+<ol type="1">
 <li>Nothing; public pages are free to scrape</li>
-<li>robots.txt, the terms of service, and whether an API or download exists</li>
+<li>robots.txt, the terms of service, and whether an API or download
+exists</li>
 <li>Only the page speed</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B.</strong></p>
+<summary>
+Show answer
+</summary>
+<strong>B.</strong>
 </details>
 </div>
 <div class="quiz-q" data-answer="1">
 <p>2. Why is Parquet much smaller than JSON for the same table?</p>
-<ol>
+<ol type="1">
 <li>It deletes rows</li>
-<li>It stores and compresses each column together, without repeating column names on every row</li>
+<li>It stores and compresses each column together, without repeating
+column names on every row</li>
 <li>It only stores numbers</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B.</strong></p>
+<summary>
+Show answer
+</summary>
+<strong>B.</strong>
 </details>
 </div>
 <div class="quiz-q" data-answer="1">
-<p>3. You save orders as CSV and read them back. What happens to the date column?</p>
-<ol>
+<p>3. You save orders as CSV and read them back. What happens to the
+date column?</p>
+<ol type="1">
 <li>It stays a date</li>
 <li>It comes back as text until you parse it</li>
 <li>It disappears</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B.</strong></p>
+<summary>
+Show answer
+</summary>
+<strong>B.</strong>
 </details>
 </div>
 <h2 id="summary">Summary</h2>
 <ul>
-<li>Scrape only when allowed: robots.txt, terms, a real User-Agent, delays; prefer APIs.</li>
-<li>Beautiful Soup + CSS selectors extract values; validate counts so layout changes don't fail silently.</li>
-<li><code>pd.json_normalize</code> flattens nested JSON; watch the new grain.</li>
-<li><strong>Parquet</strong> for pipelines (small, fast, typed); JSON for raw API data; CSV for people.</li>
+<li>Scrape only when allowed: robots.txt, terms, a real User-Agent,
+delays; prefer APIs.</li>
+<li>Beautiful Soup + CSS selectors extract values; validate counts so
+layout changes don’t fail silently.</li>
+<li><code>pd.json_normalize</code> flattens nested JSON; watch the new
+grain.</li>
+<li><strong>Parquet</strong> for pipelines (small, fast, typed); JSON
+for raw API data; CSV for people.</li>
 </ul>
-<div class="admonition job">
-<p class="admonition-title">Job-ready check</p>
-<p><strong>Interview question:</strong> <em>"Why do data lakes store data as Parquet rather than CSV?"</em></p>
-<p><strong>Strong answer:</strong> "Parquet is columnar and compressed, so files are several times smaller and queries can read only the columns and row groups they need. It also stores the schema, so types like dates and decimals survive. CSV is still useful for exchanging small tables with people, and raw API responses are often kept as JSON for traceability."</p>
-<p><strong>Mini project:</strong> Scrape the practice catalogue daily into <code>catalog_YYYY-MM-DD.parquet</code>, then write a script that compares two days and lists price and stock changes.</p>
+<div class="admonition job" data-markdown="1">
+<p class="admonition-title">
+Job-ready check
+</p>
+<p><strong>Interview question:</strong> <em>“Why do data lakes store
+data as Parquet rather than CSV?”</em></p>
+<p><strong>Strong answer:</strong> “Parquet is columnar and compressed,
+so files are several times smaller and queries can read only the columns
+and row groups they need. It also stores the schema, so types like dates
+and decimals survive. CSV is still useful for exchanging small tables
+with people, and raw API responses are often kept as JSON for
+traceability.”</p>
+<p><strong>Mini project:</strong> Scrape the practice catalogue daily
+into <code>catalog_YYYY-MM-DD.parquet</code>, then write a script that
+compares two days and lists price and stock changes.</p>
 </div>
+<section class="mentor-prompt"><div class="mentor-head"><div><span class="eyebrow">AI study companion</span><h2 id="ai-mentor-prompt">AI Mentor Prompt</h2></div><button class="btn copy-prompt" type="button" data-copy-target="mentor-prompt-phase-3-data-ingestion-02-scraping-file-formats">Copy prompt</button></div><p>Paste this into ChatGPT, Claude, Gemini, or another capable assistant to turn this tutorial into an interactive mentoring session.</p><pre class="prompt-box"><code id="mentor-prompt-phase-3-data-ingestion-02-scraping-file-formats">You are my hands-on data-engineering mentor.
+
+I am currently studying:
+&quot;Web Scraping and File Formats: HTML, CSV, JSON &amp; Parquet&quot;
+
+My level:
+Intermediate
+
+Teach me this topic interactively rather than giving me a long lecture.
+
+Use this sequence:
+
+1. Check what I already understand with one short diagnostic question.
+2. Explain the concept in simple language and give me the mental model first.
+3. Give me one small task using code, SQL, configuration, data, or architecture as appropriate.
+4. Wait for my attempt before showing a complete solution.
+5. Review my work and explain both what is correct and what needs improvement.
+6. Help me debug errors step by step instead of immediately replacing my work.
+7. Increase the difficulty gradually and connect each new step to the previous one.
+8. Relate what I am learning to real professional data/AI engineering work.
+9. Ask me to explain an important decision in my own words so you can check my understanding.
+10. At the end, ask me to build or modify one small feature independently.
+
+Important rules:
+- Do not do the entire exercise for me unless I explicitly ask.
+- Explain unfamiliar terminology before using it heavily.
+- Prefer current, production-relevant practices over outdated shortcuts.
+- Distinguish clearly between concepts, tool-specific behaviour, and optional alternatives.
+- If a technical fact, API, syntax, version, or best practice may have changed, verify it against current official documentation before teaching it.
+- Never invent command output, test results, benchmark numbers, cloud behaviour, or data results.
+- If something cannot be executed in the current environment, say so and give me the exact command or verification step I should run.
+- Keep me actively coding, querying, configuring, reasoning, or debugging throughout the session.
+- When useful, work from the tutorial practice files (data-engineering-scripts.zip) instead of inventing unrelated examples.
+- For Phase 3 order-data exercises, preserve the established reconciliation targets when relevant: 4,246 orders and net revenue 5,478,357.79. If my result differs, help me debug the cause instead of changing the expected result.
+
+The concepts I need to master are:
+- Scraping
+- CSV, JSON &amp; Parquet
+- web scraping
+- beautifulsoup
+- beautiful soup
+- html
+- css selector
+- robots.txt
+
+Start by asking me one diagnostic question.</code></pre></section>
+
 <div class="terms-box"><div class="files-head"><b>Key terms in this lesson</b><a href="../../../glossary.html">Glossary →</a></div><div class="term-chips"><a class="term-chip" href="../../../glossary.html#csv" title="A plain-text table: one row per line, values separated by commas. Every value is read as text until you convert it.">CSV</a><a class="term-chip" href="../../../glossary.html#json" title="A text format for structured data made of objects (key-value pairs) and arrays. Used by most APIs and LLM tools.">JSON</a><a class="term-chip" href="../../../glossary.html#parquet" title="A compressed, column-based file format for analytics. Smaller and much faster to query than CSV, and it keeps column types.">Parquet</a><a class="term-chip" href="../../../glossary.html#web-scraping" title="Extracting data from web pages&#x27; HTML when there&#x27;s no API, while respecting robots.txt, terms of service and polite request rates.">Web scraping</a></div></div>
 <h2 id="free-resources">Free resources to go deeper</h2><ul class="resources"><li><a href="https://www.crummy.com/software/BeautifulSoup/bs4/doc/">Beautiful Soup documentation</a><span class="r-meta">Beautiful Soup (official) · Parsing HTML, CSS selectors and navigating the tree.</span></li><li><a href="https://parquet.apache.org/docs/">Apache Parquet documentation</a><span class="r-meta">Apache Parquet (official) · How the columnar format stores and compresses data.</span></li><li><a href="https://pandas.pydata.org/docs/user_guide/io.html">pandas: IO tools (CSV, JSON, Parquet)</a><span class="r-meta">pandas official docs · Every read_/to_ function and its options.</span></li></ul>
 <div class="complete-bar"><span>Finished reading and did the exercise?</span>
@@ -398,9 +505,9 @@ every product matched: True | rates: [120.0]
 <p class="reviewed">Last reviewed: 2026-10-09</p>
 
   </div></main>
-  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#part-1-scrape-responsibly">Part 1: scrape responsibly</a><a href="#part-2-csv-vs-json-vs-parquet">Part 2: CSV vs JSON vs Parquet</a><a href="#choosing-a-format">Choosing a format</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#free-resources">Free resources</a></aside>
+  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#part-1-scrape-responsibly">Part 1: scrape responsibly</a><a href="#check-the-rules-first">Check the rules first</a><a href="#pick-values-out-of-the-html">Pick values out of the HTML</a><a href="#part-2-csv-vs-json-vs-parquet">Part 2: CSV vs JSON vs Parquet</a><a href="#types-survive-or-dont">Types survive (or don’t)</a><a href="#read-only-the-columns-you-need">Read only the columns you need</a><a href="#nested-json-a-flat-table">Nested JSON → a flat table</a><a href="#choosing-a-format">Choosing a format</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#ai-mentor-prompt">AI Mentor Prompt</a><a href="#free-resources">Free resources</a></aside>
 </div>
-<footer class="site">Data, AI &amp; Automation Path v0.8 · Applied AI, Data &amp; Automation Lab · Updated October 2026<br>
+<footer class="site"><b>Saiful The Techie</b> · Data, AI &amp; Automation Path v0.9.1 · Updated October 2026<br>
 Lesson text: <a href="../../../license.html">CC BY-NC-SA 4.0</a> · Code: <a href="../../../license.html#code-mit-license">MIT</a> · Free external resources belong to their respective owners.</footer>
 <script src="../../../search-index.js"></script>
 <script src="../../../assets/app.js"></script>

@@ -120,7 +120,7 @@
       var pct = total ? Math.round((done / total) * 100) : 0;
       var bar = el.querySelector("i"); if (bar) bar.style.width = pct + "%";
       var label = el.parentElement && el.parentElement.querySelector("[data-progress-label]");
-      if (label) label.textContent = total ? done + " of " + total + " written lessons done" : "Lessons coming soon";
+      if (label) label.textContent = total ? done + " of " + total + " written lessons done" : "No written lessons yet — see the milestone projection on this page";
     });
     var btn = document.getElementById("completeBtn");
     if (btn) {
@@ -261,6 +261,29 @@
       if (target && target.classList.contains("g-entry")) target.classList.add("g-target");
     }
   }
+
+  /* ---------- AI mentor prompt copy ---------- */
+  document.querySelectorAll(".copy-prompt").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var id = btn.getAttribute("data-copy-target");
+      var node = id && document.getElementById(id);
+      if (!node) return;
+      var text = node.textContent || "";
+      function done() {
+        var old = btn.textContent;
+        btn.textContent = "Copied"; btn.classList.add("copied");
+        setTimeout(function () { btn.textContent = old; btn.classList.remove("copied"); }, 1600);
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done).catch(function () {});
+      } else {
+        var ta = document.createElement("textarea"); ta.value = text; ta.setAttribute("readonly", "");
+        ta.style.position = "fixed"; ta.style.opacity = "0"; document.body.appendChild(ta); ta.select();
+        try { document.execCommand("copy"); done(); } catch (e) {}
+        ta.remove();
+      }
+    });
+  });
 
   /* ---------- on-this-page highlight ---------- */
   var tocLinks = Array.prototype.slice.call(document.querySelectorAll(".toc a"));

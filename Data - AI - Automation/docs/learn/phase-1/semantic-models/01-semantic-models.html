@@ -6,7 +6,7 @@
 <title>Semantic Models: One Trusted Definition for Every KPI — Data, AI &amp; Automation Path</title>
 <meta name="description" content="Why companies need one shared definition of each metric, how to build a semantic model people can trust, and how to reuse it in Power BI, Excel and AI tools.">
 <meta property="og:type" content="article">
-<meta property="og:site_name" content="Data, AI &amp; Automation Path">
+<meta property="og:site_name" content="Saiful The Techie">
 <meta property="og:title" content="Semantic Models: One Trusted Definition for Every KPI">
 <meta property="og:description" content="Why companies need one shared definition of each metric, how to build a semantic model people can trust, and how to reuse it in Power BI, Excel and AI tools.">
 <meta property="og:locale" content="en_US">
@@ -19,13 +19,13 @@ var n=null;try{n=localStorage.getItem('daa-nav')}catch(e){}
 if(n==='open'&&window.matchMedia&&matchMedia('(min-width: 961px)').matches)document.documentElement.setAttribute('data-nav','open');
 document.documentElement.classList.add('no-anim')})();</script>
 <link rel="stylesheet" href="../../../assets/style.css">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233f7d6a'/%3E%3Ctext x='16' y='21' font-family='sans-serif' font-size='13' font-weight='700' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
+
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="topbar">
   <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Open curriculum menu" title="Curriculum menu (press M)" aria-controls="sidebar" aria-expanded="false"><span class="ico-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span class="ico-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></button>
-  <a class="brand" href="../../../index.html"><span class="brand-badge">AI</span><span class="brand-text"><span class="brand-name">Data, AI &amp; Automation Path</span><span class="brand-version">v0.8</span></span></a>
+  <a class="brand" href="../../../index.html"><span class="brand-text"><span class="brand-name">Saiful The Techie</span><span class="brand-version">Data, AI &amp; Automation Path · v0.9.1</span></span></a>
   <nav class="top-links" aria-label="Main">
     <a href="../../../index.html" class="">Home</a><a href="../../../curriculum.html" class="">Curriculum</a><a href="../../../practice-files.html" class="">Practice files</a><a href="../../../glossary.html" class="">Glossary</a><a href="../../../how-to-learn.html" class="">How to learn</a><a href="../../../about.html" class="">About</a>
   </nav>
@@ -41,7 +41,7 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="layout wide">
   <nav class="sidebar" id="sidebar" aria-label="Curriculum">
     <div class="side-title">Curriculum</div>
-    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="77"><i></i></div><span class="bar-label" data-progress-label></span></div>
+    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="85"><i></i></div><span class="bar-label" data-progress-label></span></div>
 <div class="nav-phase"><a href="../../../learn/phase-0/index.html"><span class="nav-num">0</span>Foundations</a>
 </div>
 <div class="nav-phase current open"><a href="../../../learn/phase-1/index.html"><span class="nav-num">1</span>Analytics &amp; BI</a>
@@ -95,41 +95,63 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="admonition note"><p class="admonition-title">Before you start</p><p><a href="../../../learn/phase-1/power-pivot-dax/02-measures-kpi.html">DAX Measures &amp; KPI Logic: Revenue, AOV and Target Achievement</a> · <a href="../../../learn/phase-1/power-bi/04-publish-copilot.html">Publish &amp; Share in the Power BI Service, and Use Copilot Wisely</a></p></div>
 <div class="files-box"><div class="files-head"><b>Practice files for this page</b><a href="../../../practice-files.html">All practice files →</a></div><ul><li><a href="../../../downloads/sales_model.xlsx" download>sales_model.xlsx</a><span class="f-desc">Five Excel Tables (Orders, Customers, Products, Regions, Targets) for the data model · 12 KB</span></li><li><a href="../../../downloads/templates/kpi_dictionary_template.md" download>kpi_dictionary_template.md</a><span class="f-desc">KPI dictionary template (Markdown) · 809 B</span></li></ul></div>
 <h2 id="what-is-it">What is it?</h2>
-<p>A <strong>semantic model</strong> is the shared business layer between raw data and every report: tables, relationships, <strong>measures</strong>, formats, descriptions and security. In Power BI, this used to be called a <strong>dataset</strong>. Microsoft renamed it because "semantic model" better describes a model that carries business meaning.</p>
-<p>The idea is simple: <strong>define each KPI once, and use it everywhere.</strong></p>
-<div class="admonition job">
-<p class="admonition-title">Why it matters at work</p>
-<p>The most expensive BI problem isn't a slow report. It's <strong>two reports showing different revenue</strong> for the same month. Then meetings turn into arguments about numbers instead of decisions. Companies hire analysts and analytics engineers specifically to build and govern trusted semantic models, and the same models now feed AI assistants.</p>
+<p>A <strong>semantic model</strong> is the shared business layer
+between raw data and every report: tables, relationships,
+<strong>measures</strong>, formats, descriptions and security. In Power
+BI, this used to be called a <strong>dataset</strong>. Microsoft renamed
+it because “semantic model” better describes a model that carries
+business meaning.</p>
+<p>The idea is simple: <strong>define each KPI once, and use it
+everywhere.</strong></p>
+<div class="admonition job" data-markdown="1">
+<p class="admonition-title">
+Why it matters at work
+</p>
+<p>The most expensive BI problem isn’t a slow report. It’s <strong>two
+reports showing different revenue</strong> for the same month. Then
+meetings turn into arguments about numbers instead of decisions.
+Companies hire analysts and analytics engineers specifically to build
+and govern trusted semantic models, and the same models now feed AI
+assistants.</p>
 </div>
-<h2 id="part-1-why-one-kpi-definition">Part 1: why one KPI definition</h2>
-<p>Look at what "Q1 revenue" can mean with our data:</p>
+<h2 id="part-1-why-one-kpi-definition">Part 1: why one KPI
+definition</h2>
+<p>Look at what “Q1 revenue” can mean with our data:</p>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>Definition</th>
 <th>Q1 value</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>All orders, including cancelled</td>
 <td>9,315</td>
 </tr>
-<tr>
+<tr class="even">
 <td>All except cancelled (<strong>Net Revenue</strong>)</td>
 <td><strong>9,075</strong></td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Delivered only</td>
 <td>6,670</td>
 </tr>
 </tbody>
 </table>
-<p>Three honest analysts can report three numbers. The fix isn't "be more careful": it's <strong>one agreed definition, written down and built once</strong>.</p>
+<p>Three honest analysts can report three numbers. The fix isn’t “be
+more careful”: it’s <strong>one agreed definition, written down and
+built once</strong>.</p>
 <p>A <strong>KPI dictionary</strong> records each definition:</p>
 <table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>KPI</th>
 <th>Definition</th>
 <th>DAX measure</th>
@@ -137,19 +159,19 @@ document.documentElement.classList.add('no-anim')})();</script>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>Net Revenue</td>
 <td>Value of all orders except status Cancelled</td>
 <td><code>CALCULATE([Revenue], Orders[status] &lt;&gt; "Cancelled")</code></td>
 <td>Head of Sales</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Achievement %</td>
 <td>Net Revenue ÷ Target, at region/month grain</td>
 <td><code>DIVIDE([Net Revenue], [Target])</code></td>
 <td>Head of Sales</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Avg Order Value</td>
 <td>Net Revenue ÷ Net Orders</td>
 <td><code>DIVIDE([Net Revenue], [Net Orders])</code></td>
@@ -157,109 +179,153 @@ document.documentElement.classList.add('no-anim')})();</script>
 </tr>
 </tbody>
 </table>
-<h2 id="part-2-build-a-semantic-model-people-can-trust">Part 2: build a semantic model people can trust</h2>
-<p>Most of this you've already done in the DAX and Power BI lessons. Here is the full checklist:</p>
+<h2 id="part-2-build-a-semantic-model-people-can-trust">Part 2: build a
+semantic model people can trust</h2>
+<p>Most of this you’ve already done in the DAX and Power BI lessons.
+Here is the full checklist:</p>
 <table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Area</th>
 <th>Good practice</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td><strong>Structure</strong></td>
-<td>Star schema, single-direction one-to-many relationships, a marked date table</td>
+<td>Star schema, single-direction one-to-many relationships, a marked
+date table</td>
 </tr>
-<tr>
+<tr class="even">
 <td><strong>Measures</strong></td>
-<td>Explicit measures only. Raw value columns hidden. Measures built from base measures</td>
+<td>Explicit measures only. Raw value columns hidden. Measures built
+from base measures</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><strong>Names</strong></td>
-<td>Business names (<code>Net Revenue</code>, not <code>SumVal2</code>). Consistent units</td>
+<td>Business names (<code>Net Revenue</code>, not <code>SumVal2</code>).
+Consistent units</td>
 </tr>
-<tr>
+<tr class="even">
 <td><strong>Descriptions</strong></td>
-<td>Every measure and important column has a description (shown as a tooltip, and read by AI)</td>
+<td>Every measure and important column has a description (shown as a
+tooltip, and read by AI)</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><strong>Organisation</strong></td>
-<td>Display folders (<code>Sales</code>, <code>Targets</code>, <code>Time</code>), a <code>_Measures</code> table</td>
+<td>Display folders (<code>Sales</code>, <code>Targets</code>,
+<code>Time</code>), a <code>_Measures</code> table</td>
 </tr>
-<tr>
+<tr class="even">
 <td><strong>Formats</strong></td>
-<td>Set on the measure: money as whole numbers, ratios as %, 1 decimal</td>
+<td>Set on the measure: money as whole numbers, ratios as %, 1
+decimal</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><strong>Security</strong></td>
 <td>RLS roles on dimensions, tested</td>
 </tr>
-<tr>
+<tr class="even">
 <td><strong>Trust signals</strong></td>
-<td>In the service, mark the model <strong>Promoted</strong>, or <strong>Certified</strong> if your organisation has a certification process</td>
+<td>In the service, mark the model <strong>Promoted</strong>, or
+<strong>Certified</strong> if your organisation has a certification
+process</td>
 </tr>
 </tbody>
 </table>
-<h2 id="part-3-reuse-the-model-in-reports-excel-and-ai">Part 3: reuse the model in reports, Excel and AI</h2>
-<p>Once the model is published, <strong>don't copy it</strong>. Connect to it.</p>
-<p><strong>1. Thin reports (Power BI).</strong> Other report authors use <strong>Get data → Power BI semantic models</strong> in Desktop and build new pages on the <strong>same</strong> measures. They create reports but don't copy the data. Change <em>Net Revenue</em> once, and every connected report updates.</p>
+<h2 id="part-3-reuse-the-model-in-reports-excel-and-ai">Part 3: reuse
+the model in reports, Excel and AI</h2>
+<p>Once the model is published, <strong>don’t copy it</strong>. Connect
+to it.</p>
+<p><strong>1. Thin reports (Power BI).</strong> Other report authors use
+<strong>Get data → Power BI semantic models</strong> in Desktop and
+build new pages on the <strong>same</strong> measures. They create
+reports but don’t copy the data. Change <em>Net Revenue</em> once, and
+every connected report updates.</p>
 <p><strong>2. Excel.</strong> Finance can stay in Excel:</p>
 <ul>
-<li>In the service, open the semantic model → <strong>… → Analyze in Excel</strong>. You get an Excel file with a <strong>live connection</strong>.</li>
+<li>In the service, open the semantic model → <strong>… → Analyze in
+Excel</strong>. You get an Excel file with a <strong>live
+connection</strong>.</li>
 <li>Or, in Excel: <strong>Data → Get Data → From Power BI</strong>.</li>
 </ul>
-<p>You can then build PivotTables using the <strong>same measures</strong>. Users need <strong>Build</strong> permission on the model (or the Contributor role or higher), and your admin must allow live connections from Excel.</p>
-<p><strong>3. AI tools.</strong> Copilot and similar assistants answer questions <strong>from the semantic model</strong>. The same descriptions and clear names that help people also help AI. Add <strong>Prep data for AI</strong> settings (from the previous lesson), such as instructions that "revenue means Net Revenue".</p>
-<div class="codehilite"><pre><span></span><code>       raw data ──► Power Query ──► SEMANTIC MODEL ──┬──► Power BI reports (thin)
+<p>You can then build PivotTables using the <strong>same
+measures</strong>. Users need <strong>Build</strong> permission on the
+model (or the Contributor role or higher), and your admin must allow
+live connections from Excel.</p>
+<p><strong>3. AI tools.</strong> Copilot and similar assistants answer
+questions <strong>from the semantic model</strong>. The same
+descriptions and clear names that help people also help AI. Add
+<strong>Prep data for AI</strong> settings (from the previous lesson),
+such as instructions that “revenue means Net Revenue”.</p>
+<pre class="text"><code>       raw data ──► Power Query ──► SEMANTIC MODEL ──┬──► Power BI reports (thin)
                                     (measures, RLS,   ├──► Excel PivotTables (live)
-                                     descriptions)    └──► Copilot / AI questions
-</code></pre></div>
-
+                                     descriptions)    └──► Copilot / AI questions</code></pre>
 <h2 id="common-mistakes">Common mistakes</h2>
 <table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Mistake</th>
 <th>What happens</th>
 <th>Fix</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>Every report imports its own copy of the data</td>
 <td>Different numbers, many refreshes</td>
 <td>One shared model, and thin reports connect to it</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Measures without descriptions</td>
 <td>Confusion for people and AI</td>
 <td>Describe every published measure</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Definitions agreed in a meeting but not written down</td>
 <td>Drift over time</td>
 <td>A KPI dictionary with owners</td>
 </tr>
-<tr>
-<td>Exporting the model's data to Excel and editing it</td>
+<tr class="even">
+<td>Exporting the model’s data to Excel and editing it</td>
 <td>Uncontrolled copies</td>
 <td>Analyze in Excel (live connection)</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Renaming or changing a measure without telling anyone</td>
 <td>Downstream reports break or change silently</td>
-<td>Treat measures like an API: announce changes and document versions</td>
+<td>Treat measures like an API: announce changes and document
+versions</td>
 </tr>
 </tbody>
 </table>
 <h2 id="try-it-yourself">Try it yourself</h2>
-<p><strong>Task:</strong> Write the KPI-dictionary row for <strong>Delivered %</strong> (from the CALCULATE lesson). Include its definition, measure, value for Q1, and one sentence on when to use it rather than Net Revenue.</p>
+<p><strong>Task:</strong> Write the KPI-dictionary row for
+<strong>Delivered %</strong> (from the CALCULATE lesson). Include its
+definition, measure, value for Q1, and one sentence on when to use it
+rather than Net Revenue.</p>
 <details>
-<summary>Show a model answer</summary>
+<summary>
+Show a model answer
+</summary>
 <table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>KPI</th>
 <th>Definition</th>
 <th>DAX measure</th>
@@ -267,7 +333,7 @@ document.documentElement.classList.add('no-anim')})();</script>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>Delivered %</td>
 <td>Share of Net Revenue from orders with status Delivered</td>
 <td><code>DIVIDE([Delivered Revenue], [Net Revenue])</code></td>
@@ -275,58 +341,130 @@ document.documentElement.classList.add('no-anim')})();</script>
 </tr>
 </tbody>
 </table>
-<p><em>Use it</em> to track fulfilment: how much of the business won is actually delivered. Net Revenue measures sales won. Delivered % shows operational follow-through.</p>
+<em>Use it</em> to track fulfilment: how much of the business won is
+actually delivered. Net Revenue measures sales won. Delivered % shows
+operational follow-through.
 </details>
 <h2 id="quick-quiz">Quick quiz</h2>
 <div class="quiz-q" data-answer="1">
 <p>1. What was a Power BI semantic model previously called?</p>
-<ol>
+<ol type="1">
 <li>Dataflow</li>
 <li>Dataset</li>
 <li>Datamart</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B — Dataset.</strong></p>
+<summary>
+Show answer
+</summary>
+<strong>B — Dataset.</strong>
 </details>
 </div>
 <div class="quiz-q" data-answer="1">
-<p>2. A second team needs a new report with the same KPIs. What's the best approach?</p>
-<ol>
+<p>2. A second team needs a new report with the same KPIs. What’s the
+best approach?</p>
+<ol type="1">
 <li>Copy the .pbix and modify it</li>
 <li>Build a thin report connected to the published semantic model</li>
 <li>Export the data to Excel</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B.</strong> A single model with many thin reports keeps every KPI consistent.</p>
+<summary>
+Show answer
+</summary>
+<strong>B.</strong> A single model with many thin reports keeps every
+KPI consistent.
 </details>
 </div>
 <div class="quiz-q" data-answer="0">
 <p>3. Why do measure descriptions matter for Copilot?</p>
-<ol>
-<li>Copilot reads model metadata, such as names and descriptions, to choose the right measure</li>
+<ol type="1">
+<li>Copilot reads model metadata, such as names and descriptions, to
+choose the right measure</li>
 <li>Descriptions make the model faster</li>
-<li>They're required to publish</li>
+<li>They’re required to publish</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>A.</strong> Clear metadata helps both people and AI pick the correct definition.</p>
+<summary>
+Show answer
+</summary>
+<strong>A.</strong> Clear metadata helps both people and AI pick the
+correct definition.
 </details>
 </div>
 <h2 id="summary">Summary</h2>
 <ul>
-<li>A <strong>semantic model</strong> is the shared business layer: tables, relationships, measures, descriptions and security.</li>
-<li><strong>One KPI definition</strong> prevents "two revenue numbers". Keep a <strong>KPI dictionary</strong> with owners.</li>
-<li>Build it as a star schema with explicit, described, formatted measures, plus RLS.</li>
-<li><strong>Reuse</strong> it: thin Power BI reports, Analyze in Excel (live) and AI assistants. Don't copy the data.</li>
+<li>A <strong>semantic model</strong> is the shared business layer:
+tables, relationships, measures, descriptions and security.</li>
+<li><strong>One KPI definition</strong> prevents “two revenue numbers”.
+Keep a <strong>KPI dictionary</strong> with owners.</li>
+<li>Build it as a star schema with explicit, described, formatted
+measures, plus RLS.</li>
+<li><strong>Reuse</strong> it: thin Power BI reports, Analyze in Excel
+(live) and AI assistants. Don’t copy the data.</li>
 </ul>
-<div class="admonition job">
-<p class="admonition-title">Job-ready check</p>
-<p><strong>Interview question:</strong> <em>"Two departments report different revenue numbers. How do you fix that permanently?"</em></p>
-<p><strong>Strong answer:</strong> "Agree one definition with the business owner and write it in a KPI dictionary. Implement it once as a measure in a shared, certified semantic model, then connect every report and Excel workbook to that model instead of keeping separate copies. Changes go through the model owner, so every consumer, including Copilot, uses the same number."</p>
-<p><strong>Mini project:</strong> Write a KPI dictionary (8–10 measures) for your sales model as a Markdown table in your repository. This becomes a key part of the Phase 1 milestone project.</p>
+<div class="admonition job" data-markdown="1">
+<p class="admonition-title">
+Job-ready check
+</p>
+<p><strong>Interview question:</strong> <em>“Two departments report
+different revenue numbers. How do you fix that permanently?”</em></p>
+<p><strong>Strong answer:</strong> “Agree one definition with the
+business owner and write it in a KPI dictionary. Implement it once as a
+measure in a shared, certified semantic model, then connect every report
+and Excel workbook to that model instead of keeping separate copies.
+Changes go through the model owner, so every consumer, including
+Copilot, uses the same number.”</p>
+<p><strong>Mini project:</strong> Write a KPI dictionary (8–10 measures)
+for your sales model as a Markdown table in your repository. This
+becomes a key part of the Phase 1 milestone project.</p>
 </div>
+<section class="mentor-prompt"><div class="mentor-head"><div><span class="eyebrow">AI study companion</span><h2 id="ai-mentor-prompt">AI Mentor Prompt</h2></div><button class="btn copy-prompt" type="button" data-copy-target="mentor-prompt-phase-1-semantic-models-01-semantic-models">Copy prompt</button></div><p>Paste this into ChatGPT, Claude, Gemini, or another capable assistant to turn this tutorial into an interactive mentoring session.</p><pre class="prompt-box"><code id="mentor-prompt-phase-1-semantic-models-01-semantic-models">You are my hands-on data-analytics and business-intelligence mentor.
+
+I am currently studying:
+&quot;Semantic Models: One Trusted Definition for Every KPI&quot;
+
+My level:
+Intermediate
+
+Teach me this topic interactively rather than giving me a long lecture.
+
+Use this sequence:
+
+1. Check what I already understand with one short diagnostic question.
+2. Explain the concept in simple language and give me the mental model first.
+3. Give me one small task using code, SQL, configuration, data, or architecture as appropriate.
+4. Wait for my attempt before showing a complete solution.
+5. Review my work and explain both what is correct and what needs improvement.
+6. Help me debug errors step by step instead of immediately replacing my work.
+7. Increase the difficulty gradually and connect each new step to the previous one.
+8. Relate what I am learning to real professional data/AI engineering work.
+9. Ask me to explain an important decision in my own words so you can check my understanding.
+10. At the end, ask me to build or modify one small feature independently.
+
+Important rules:
+- Do not do the entire exercise for me unless I explicitly ask.
+- Explain unfamiliar terminology before using it heavily.
+- Prefer current, production-relevant practices over outdated shortcuts.
+- Distinguish clearly between concepts, tool-specific behaviour, and optional alternatives.
+- If a technical fact, API, syntax, version, or best practice may have changed, verify it against current official documentation before teaching it.
+- Never invent command output, test results, benchmark numbers, cloud behaviour, or data results.
+- If something cannot be executed in the current environment, say so and give me the exact command or verification step I should run.
+- Keep me actively coding, querying, configuring, reasoning, or debugging throughout the session.
+- When useful, work from the tutorial practice files (sales_model.xlsx, kpi_dictionary_template.md) instead of inventing unrelated examples.
+
+The concepts I need to master are:
+- Why one KPI definition
+- Building a semantic model
+- Reusing metrics in reports and AI tools
+- semantic model
+- dataset
+- metrics layer
+- single source of truth
+- kpi definition
+
+Start by asking me one diagnostic question.</code></pre></section>
+
 <div class="terms-box"><div class="files-head"><b>Key terms in this lesson</b><a href="../../../glossary.html">Glossary →</a></div><div class="term-chips"><a class="term-chip" href="../../../glossary.html#kpi" title="A number that shows whether a business goal is being met, such as net revenue or achievement % of target. A good KPI has one agreed definition, an owner and a target.">KPI</a><a class="term-chip" href="../../../glossary.html#semantic-model" title="The shared model behind reports (tables, relationships, measures, descriptions), so every report and tool uses the same KPI definitions. Formerly called a dataset in Power BI.">Semantic model</a></div></div>
 <h2 id="free-resources">Free resources to go deeper</h2><ul class="resources"><li><a href="https://learn.microsoft.com/en-us/power-bi/connect-data/service-datasets-rename">New name for Power BI datasets</a><span class="r-meta">Microsoft Learn · Why datasets were renamed semantic models.</span></li><li><a href="https://learn.microsoft.com/en-us/power-bi/collaborate-share/office-integration/service-connect-power-bi-datasets-excel">Connect Excel to Power BI semantic models</a><span class="r-meta">Microsoft Learn · Analyze in Excel and Get Data → From Power BI, with permissions.</span></li><li><a href="https://learn.microsoft.com/en-us/power-bi/create-reports/copilot-prepare-data-ai">Prepare your data for AI to improve Copilot results</a><span class="r-meta">Microsoft Learn · AI data schemas, verified answers and AI instructions.</span></li><li><a href="https://learn.microsoft.com/en-us/power-bi/create-reports/copilot-evaluate-data">Optimize your semantic model for Copilot</a><span class="r-meta">Microsoft Learn · Naming and modelling tips that help AI.</span></li></ul>
 <div class="complete-bar"><span>Finished reading and did the exercise?</span>
@@ -335,9 +473,9 @@ document.documentElement.classList.add('no-anim')})();</script>
 <p class="reviewed">Last reviewed: 2026-10-09</p>
 
   </div></main>
-  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#part-1-why-one-kpi-definition">Part 1: why one KPI definition</a><a href="#part-2-build-a-semantic-model-people-can-trust">Part 2: build a semantic model people can trust</a><a href="#part-3-reuse-the-model-in-reports-excel-and-ai">Part 3: reuse the model in reports, Excel and AI</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#free-resources">Free resources</a></aside>
+  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#part-1-why-one-kpi-definition">Part 1: why one KPI definition</a><a href="#part-2-build-a-semantic-model-people-can-trust">Part 2: build a semantic model people can trust</a><a href="#part-3-reuse-the-model-in-reports-excel-and-ai">Part 3: reuse the model in reports, Excel and AI</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#ai-mentor-prompt">AI Mentor Prompt</a><a href="#free-resources">Free resources</a></aside>
 </div>
-<footer class="site">Data, AI &amp; Automation Path v0.8 · Applied AI, Data &amp; Automation Lab · Updated October 2026<br>
+<footer class="site"><b>Saiful The Techie</b> · Data, AI &amp; Automation Path v0.9.1 · Updated October 2026<br>
 Lesson text: <a href="../../../license.html">CC BY-NC-SA 4.0</a> · Code: <a href="../../../license.html#code-mit-license">MIT</a> · Free external resources belong to their respective owners.</footer>
 <script src="../../../search-index.js"></script>
 <script src="../../../assets/app.js"></script>

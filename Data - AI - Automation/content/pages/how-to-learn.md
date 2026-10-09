@@ -43,6 +43,12 @@ Employers hire on proof, not on certificates alone. Every phase ends with a **mi
 - the result (numbers, screenshots),
 - what you would improve next.
 
+## Use the AI Mentor Prompt
+
+Every written tutorial includes a professional **AI Mentor Prompt** near the end. Copy it into ChatGPT, Claude, Gemini or another capable assistant when you want an interactive study session. The prompt tells the assistant to diagnose your current understanding, give you a small task, wait for your attempt, review and debug your work, increase difficulty gradually, and verify fast-changing facts against current official documentation.
+
+Treat the prompt as a tutor mode, not an answer generator: keep your editor, terminal, SQL client or notebook open and do the work yourself.
+
 ## Use AI tools the right way
 
 AI assistants are allowed, and you should use them. Follow two rules:
@@ -52,7 +58,7 @@ AI assistants are allowed, and you should use them. Follow two rules:
 
 ## Free resources
 
-Every lesson ends with hand-picked free resources: official documentation, interactive exercises and free courses. Use them to go deeper after the lesson, not instead of it.
+Every lesson ends with hand-picked free resources: official documentation, interactive exercises and free courses. Selected tutorials also include one reviewed **YouTube video companion** in an embedded frame, with a note explaining why it is relevant and, where useful, recommended timestamps. Use these to reinforce the written tutorial, not replace it.
 
 ## Working offline
 

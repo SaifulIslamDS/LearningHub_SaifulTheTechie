@@ -1,27 +1,64 @@
 ---
-title: "Modular, Idempotent Pipelines with Incremental Loads"
+title: Modular, Idempotent Pipelines with Incremental Loads
 order: 1
-summary: "Build a pipeline in small testable steps, load only new orders, and make retries safe without creating duplicates."
+summary: Build a pipeline in small testable steps, load only new orders, and make retries safe without creating duplicates.
 level: Intermediate
-time: "45 min"
-topics: ["Modular pipelines", "Idempotency", "Incremental loads"]
-prerequisites: ["phase-3/data-ingestion/01-rest-apis-auth-pagination", "phase-3/lakehouse/01-delta-lake-medallion"]
-keywords: [etl, elt, data pipeline, idempotent, idempotency, incremental load, watermark, upsert]
+time: 45 min
+topics:
+- Modular pipelines
+- Idempotency
+- Incremental loads
+prerequisites:
+- phase-3/data-ingestion/01-rest-apis-auth-pagination
+- phase-3/lakehouse/01-delta-lake-medallion
+keywords:
+- etl
+- elt
+- data pipeline
+- idempotent
+- idempotency
+- incremental load
+- watermark
+- upsert
 reviewed: 2026-10-09
-files: [phase-3/data-engineering-scripts.zip]
+files:
+- phase-3/data-engineering-scripts.zip
 resources:
-  - title: "Incremental copy in Copy job"
-    url: "https://learn.microsoft.com/en-us/fabric/data-factory/incremental-copy-job"
-    source: "Microsoft Learn"
-    note: "Current explanation of full vs incremental copy, watermarks and CDC."
-  - title: "Incrementally load data from a source data store"
-    url: "https://learn.microsoft.com/en-us/azure/data-factory/tutorial-incremental-copy-overview"
-    source: "Microsoft Learn"
-    note: "Shows the common watermark pattern for database and file sources."
-  - title: "Configure incremental models"
-    url: "https://docs.getdbt.com/docs/build/incremental-models"
-    source: "dbt Developer Hub"
-    note: "Shows how warehouse transformations filter new or changed rows and use a unique key for updates."
+- title: Incremental copy in Copy job
+  url: https://learn.microsoft.com/en-us/fabric/data-factory/incremental-copy-job
+  source: Microsoft Learn
+  note: Current explanation of full vs incremental copy, watermarks and CDC.
+- title: Incrementally load data from a source data store
+  url: https://learn.microsoft.com/en-us/azure/data-factory/tutorial-incremental-copy-overview
+  source: Microsoft Learn
+  note: Shows the common watermark pattern for database and file sources.
+- title: Configure incremental models
+  url: https://docs.getdbt.com/docs/build/incremental-models
+  source: dbt Developer Hub
+  note: Shows how warehouse transformations filter new or changed rows and use a unique key for updates.
+youtube:
+  title: '5-Hour Data Engineering Course: Complete Interview Preparation'
+  creator: Mukul Raina
+  url: https://www.youtube.com/watch?v=JbM4JhBiztM&t=1843s
+  video_id: JbM4JhBiztM
+  start_seconds: 1843
+  duration: ~5 hours (use the selected section)
+  language: English
+  level: Intermediate
+  reviewed: '2026-10-09'
+  why_recommended: The selected section directly reinforces incremental loads, change-detection strategies and idempotency
+    patterns. Watch the focused timestamps, then implement the same ideas with the supplied deterministic local pipeline instead
+    of copying the video stack.
+  timestamps:
+  - label: Incremental load
+    time: '30:43'
+    url: https://www.youtube.com/watch?v=JbM4JhBiztM&t=1843s
+  - label: Change-detection strategies
+    time: '36:43'
+    url: https://www.youtube.com/watch?v=JbM4JhBiztM&t=2203s
+  - label: Idempotency in pipelines
+    time: '38:48'
+    url: https://www.youtube.com/watch?v=JbM4JhBiztM&t=2328s
 ---
 
 ## What is it?

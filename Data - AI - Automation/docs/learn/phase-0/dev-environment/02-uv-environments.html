@@ -6,7 +6,7 @@
 <title>uv, Virtual Environments &amp; Packages: One Project, One Environment — Data, AI &amp; Automation Path</title>
 <meta name="description" content="Create isolated project environments, add and lock packages, and run code reproducibly — with uv, the fast all-in-one Python project tool.">
 <meta property="og:type" content="article">
-<meta property="og:site_name" content="Data, AI &amp; Automation Path">
+<meta property="og:site_name" content="Saiful The Techie">
 <meta property="og:title" content="uv, Virtual Environments &amp; Packages: One Project, One Environment">
 <meta property="og:description" content="Create isolated project environments, add and lock packages, and run code reproducibly — with uv, the fast all-in-one Python project tool.">
 <meta property="og:locale" content="en_US">
@@ -19,13 +19,13 @@ var n=null;try{n=localStorage.getItem('daa-nav')}catch(e){}
 if(n==='open'&&window.matchMedia&&matchMedia('(min-width: 961px)').matches)document.documentElement.setAttribute('data-nav','open');
 document.documentElement.classList.add('no-anim')})();</script>
 <link rel="stylesheet" href="../../../assets/style.css">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233f7d6a'/%3E%3Ctext x='16' y='21' font-family='sans-serif' font-size='13' font-weight='700' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
+
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="topbar">
   <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Open curriculum menu" title="Curriculum menu (press M)" aria-controls="sidebar" aria-expanded="false"><span class="ico-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span class="ico-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></button>
-  <a class="brand" href="../../../index.html"><span class="brand-badge">AI</span><span class="brand-text"><span class="brand-name">Data, AI &amp; Automation Path</span><span class="brand-version">v0.8</span></span></a>
+  <a class="brand" href="../../../index.html"><span class="brand-text"><span class="brand-name">Saiful The Techie</span><span class="brand-version">Data, AI &amp; Automation Path · v0.9.1</span></span></a>
   <nav class="top-links" aria-label="Main">
     <a href="../../../index.html" class="">Home</a><a href="../../../curriculum.html" class="">Curriculum</a><a href="../../../practice-files.html" class="">Practice files</a><a href="../../../glossary.html" class="">Glossary</a><a href="../../../how-to-learn.html" class="">How to learn</a><a href="../../../about.html" class="">About</a>
   </nav>
@@ -41,7 +41,7 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="layout wide">
   <nav class="sidebar" id="sidebar" aria-label="Curriculum">
     <div class="side-title">Curriculum</div>
-    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="77"><i></i></div><span class="bar-label" data-progress-label></span></div>
+    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="85"><i></i></div><span class="bar-label" data-progress-label></span></div>
 <div class="nav-phase current open"><a href="../../../learn/phase-0/index.html"><span class="nav-num">0</span>Foundations</a>
 <ul class="nav-modules">
 <li><a class="current" href="../../../learn/phase-0/dev-environment/index.html">Development Environment</a>
@@ -92,226 +92,335 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="files-box"><div class="files-head"><b>Practice files for this page</b><a href="../../../practice-files.html">All practice files →</a></div><ul><li><a href="../../../downloads/phase-0/csv-cleaner-solution.zip" download>csv-cleaner-solution.zip</a><span class="f-desc">Phase 0 Gate project reference solution (17 passing tests, CI workflow) · 14 KB</span></li></ul></div>
 <h2 id="what-is-it">What is it?</h2>
 <ul>
-<li>A <strong>virtual environment</strong> is a private folder of packages for <strong>one project</strong>. Project A can use pandas 2 and project B pandas 3 without conflict.</li>
-<li><strong>Package management</strong> means adding, updating and <strong>locking</strong> those packages, so that everyone (and every server) installs exactly the same versions.</li>
-<li><strong>uv</strong> does all of it with one fast tool: it installs Python, creates the <code>.venv</code>, adds packages, writes a lock file and runs your code.</li>
+<li>A <strong>virtual environment</strong> is a private folder of
+packages for <strong>one project</strong>. Project A can use pandas 2
+and project B pandas 3 without conflict.</li>
+<li><strong>Package management</strong> means adding, updating and
+<strong>locking</strong> those packages, so that everyone (and every
+server) installs exactly the same versions.</li>
+<li><strong>uv</strong> does all of it with one fast tool: it installs
+Python, creates the <code>.venv</code>, adds packages, writes a lock
+file and runs your code.</li>
 </ul>
-<div class="admonition job">
-<p class="admonition-title">Why it matters at work</p>
-<p>"Works on my machine" bugs are mostly environment bugs. Projects with a <code>pyproject.toml</code> and a lock file can be installed identically on a colleague's laptop, in CI and in production. uv has quickly become a standard tool in Python teams, and you'll see <code>uv sync</code> and <code>uv run</code> in many modern repositories.</p>
+<div class="admonition job" data-markdown="1">
+<p class="admonition-title">
+Why it matters at work
+</p>
+<p>“Works on my machine” bugs are mostly environment bugs. Projects with
+a <code>pyproject.toml</code> and a lock file can be installed
+identically on a colleague’s laptop, in CI and in production. uv has
+quickly become a standard tool in Python teams, and you’ll see
+<code>uv sync</code> and <code>uv run</code> in many modern
+repositories.</p>
 </div>
 <h2 id="install-uv">Install uv</h2>
-<div class="codehilite"><pre><span></span><code><span class="c1"># Windows (PowerShell)</span>
-powershell<span class="w"> </span>-ExecutionPolicy<span class="w"> </span>ByPass<span class="w"> </span>-c<span class="w"> </span><span class="s2">"irm https://astral.sh/uv/install.ps1 | iex"</span>
+<pre class="bash"><code># Windows (PowerShell)
+powershell -ExecutionPolicy ByPass -c &quot;irm https://astral.sh/uv/install.ps1 | iex&quot;
 
-<span class="c1"># Mac / Linux / WSL</span>
-curl<span class="w"> </span>-LsSf<span class="w"> </span>https://astral.sh/uv/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>sh
-</code></pre></div>
-
-<p>Open a <strong>new</strong> terminal, then check: <code>uv --version</code>.</p>
+# Mac / Linux / WSL
+curl -LsSf https://astral.sh/uv/install.sh | sh</code></pre>
+<p>Open a <strong>new</strong> terminal, then check:
+<code>uv --version</code>.</p>
 <h2 id="example-1-create-a-project">Example 1: create a project</h2>
-<div class="codehilite"><pre><span></span><code>uv<span class="w"> </span>init<span class="w"> </span>sales-report
-<span class="nb">cd</span><span class="w"> </span>sales-report
-</code></pre></div>
-
+<pre class="bash"><code>uv init sales-report
+cd sales-report</code></pre>
 <p>uv creates:</p>
-<div class="codehilite"><pre><span></span><code>sales-report/
+<pre class="text"><code>sales-report/
 ├── .git/             ← a Git repository (Git lessons)
 ├── .gitignore
-├── .python-version   ← "3.14": which Python this project uses
+├── .python-version   ← &quot;3.14&quot;: which Python this project uses
 ├── README.md
 ├── main.py           ← a hello-world script
-└── pyproject.toml    ← project name, Python version, dependencies
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code><span class="k">[project]</span>
-<span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"sales-report"</span>
-<span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"0.1.0"</span>
-<span class="n">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Add your description here"</span>
-<span class="n">readme</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"README.md"</span>
-<span class="n">requires-python</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"&gt;=3.14"</span>
-<span class="n">dependencies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[]</span>
-</code></pre></div>
-
+└── pyproject.toml    ← project name, Python version, dependencies</code></pre>
+<pre class="toml"><code>[project]
+name = &quot;sales-report&quot;
+version = &quot;0.1.0&quot;
+description = &quot;Add your description here&quot;
+readme = &quot;README.md&quot;
+requires-python = &quot;&gt;=3.14&quot;
+dependencies = []</code></pre>
 <h2 id="example-2-add-a-package">Example 2: add a package</h2>
-<div class="codehilite"><pre><span></span><code>uv<span class="w"> </span>add<span class="w"> </span>pandas
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>Using CPython 3.14.6
+<pre class="bash"><code>uv add pandas</code></pre>
+<pre class="text"><code>Using CPython 3.14.6
 Creating virtual environment at: .venv
 Resolved 6 packages in 1.10s
 Installed 4 packages in 14ms
  + numpy==2.5.3
  + pandas==3.0.6
  + python-dateutil==2.9.0.post0
- + six==1.17.0
-</code></pre></div>
-
+ + six==1.17.0</code></pre>
 <p>Three things happened:</p>
-<ol>
-<li>A <strong><code>.venv</code></strong> folder was created, holding the project's own Python and packages.</li>
-<li><code>pyproject.toml</code> now lists <code>"pandas&gt;=3.0.6"</code> under <code>dependencies</code>.</li>
-<li>A <strong><code>uv.lock</code></strong> file records the <strong>exact</strong> versions of pandas <strong>and</strong> its dependencies (numpy, dateutil, six).</li>
+<ol type="1">
+<li>A <strong><code>.venv</code></strong> folder was created, holding
+the project’s own Python and packages.</li>
+<li><code>pyproject.toml</code> now lists
+<code>"pandas&gt;=3.0.6"</code> under <code>dependencies</code>.</li>
+<li>A <strong><code>uv.lock</code></strong> file records the
+<strong>exact</strong> versions of pandas <strong>and</strong> its
+dependencies (numpy, dateutil, six).</li>
 </ol>
-<p><em>(Your version numbers will be newer if you run this later. That's fine.)</em></p>
-<h2 id="example-3-run-code-in-the-environment">Example 3: run code in the environment</h2>
-<div class="codehilite"><pre><span></span><code>uv<span class="w"> </span>run<span class="w"> </span>main.py
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>Hello from sales-report!
-</code></pre></div>
-
-<p><code>uv run</code> checks that the environment matches the lock file (installing anything missing), then runs the command <strong>inside</strong> <code>.venv</code>. You don't need to "activate" anything.</p>
-<h2 id="example-4-dev-tools-removing-packages-and-syncing">Example 4: dev tools, removing packages, and syncing</h2>
-<div class="codehilite"><pre><span></span><code>uv<span class="w"> </span>add<span class="w"> </span>--dev<span class="w"> </span>pytest<span class="w">        </span><span class="c1"># a development-only tool (tests): not needed in production</span>
-uv<span class="w"> </span>tree<span class="w"> </span>--depth<span class="w"> </span><span class="m">1</span><span class="w">          </span><span class="c1"># what the project depends on</span>
-uv<span class="w"> </span>remove<span class="w"> </span>pandas<span class="w">           </span><span class="c1"># remove a package (and its now-unused dependencies)</span>
-uv<span class="w"> </span>sync<span class="w">                    </span><span class="c1"># make .venv match uv.lock exactly (e.g. after git pull)</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>sales-report v0.1.0
+<p><em>(Your version numbers will be newer if you run this later. That’s
+fine.)</em></p>
+<h2 id="example-3-run-code-in-the-environment">Example 3: run code in
+the environment</h2>
+<pre class="bash"><code>uv run main.py</code></pre>
+<pre class="text"><code>Hello from sales-report!</code></pre>
+<p><code>uv run</code> checks that the environment matches the lock file
+(installing anything missing), then runs the command
+<strong>inside</strong> <code>.venv</code>. You don’t need to “activate”
+anything.</p>
+<h2 id="example-4-dev-tools-removing-packages-and-syncing">Example 4:
+dev tools, removing packages, and syncing</h2>
+<pre class="bash"><code>uv add --dev pytest        # a development-only tool (tests): not needed in production
+uv tree --depth 1          # what the project depends on
+uv remove pandas           # remove a package (and its now-unused dependencies)
+uv sync                    # make .venv match uv.lock exactly (e.g. after git pull)</code></pre>
+<pre class="text"><code>sales-report v0.1.0
 ├── pandas v3.0.6
-└── pytest v9.1.1 (group: dev)
-</code></pre></div>
-
+└── pytest v9.1.1 (group: dev)</code></pre>
 <p><strong>Which files go into Git?</strong></p>
 <table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>File</th>
 <th>Commit it?</th>
 <th>Why</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td><code>pyproject.toml</code></td>
 <td>✅ Yes</td>
 <td>What the project needs</td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>uv.lock</code></td>
 <td>✅ Yes</td>
 <td>Exact versions, so everyone gets the same</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><code>.python-version</code></td>
 <td>✅ Yes</td>
 <td>Same Python for everyone</td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>.venv/</code></td>
 <td>❌ No</td>
-<td>It's rebuilt by <code>uv sync</code>, and it's big. uv's <code>.gitignore</code> already excludes it</td>
+<td>It’s rebuilt by <code>uv sync</code>, and it’s big. uv’s
+<code>.gitignore</code> already excludes it</td>
 </tr>
 </tbody>
 </table>
-<h2 id="the-classic-way-youll-still-see-it">The classic way (you'll still see it)</h2>
+<h2 id="the-classic-way-youll-still-see-it">The classic way (you’ll
+still see it)</h2>
 <p>Before uv, people used two separate tools:</p>
-<div class="codehilite"><pre><span></span><code>python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>.venv<span class="w">                    </span><span class="c1"># create the environment</span>
-<span class="nb">source</span><span class="w"> </span>.venv/bin/activate<span class="w">               </span><span class="c1"># Mac/Linux   (Windows: .venv\Scripts\activate)</span>
-pip<span class="w"> </span>install<span class="w"> </span>pandas<span class="w">                      </span><span class="c1"># install into it</span>
-pip<span class="w"> </span>freeze<span class="w"> </span>&gt;<span class="w"> </span>requirements.txt<span class="w">           </span><span class="c1"># record versions</span>
-</code></pre></div>
-
-<p>It works, but you manage Python versions, activation and the lock file by hand. Read it, recognise it, and prefer uv for new projects.</p>
+<pre class="bash"><code>python -m venv .venv                    # create the environment
+source .venv/bin/activate               # Mac/Linux   (Windows: .venv\Scripts\activate)
+pip install pandas                      # install into it
+pip freeze &gt; requirements.txt           # record versions</code></pre>
+<p>It works, but you manage Python versions, activation and the lock
+file by hand. Read it, recognise it, and prefer uv for new projects.</p>
 <h2 id="common-mistakes">Common mistakes</h2>
 <table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Mistake</th>
 <th>What happens</th>
 <th>Fix</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td><code>pip install</code> into the global Python</td>
 <td>Version clashes between projects</td>
 <td>One environment per project (<code>uv add</code>)</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Committing <code>.venv</code> to Git</td>
 <td>A huge repository, broken on other computers</td>
-<td>Ignore <code>.venv</code>, and commit <code>uv.lock</code> instead</td>
+<td>Ignore <code>.venv</code>, and commit <code>uv.lock</code>
+instead</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Not committing <code>uv.lock</code></td>
 <td>Colleagues get different versions</td>
 <td>Commit it with every dependency change</td>
 </tr>
-<tr>
-<td>Running <code>python script.py</code> with the wrong interpreter</td>
+<tr class="even">
+<td>Running <code>python script.py</code> with the wrong
+interpreter</td>
 <td><code>ModuleNotFoundError</code></td>
-<td><code>uv run script.py</code>, or select <code>.venv</code> in VS Code</td>
+<td><code>uv run script.py</code>, or select <code>.venv</code> in VS
+Code</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Editing <code>uv.lock</code> by hand</td>
 <td>A broken lock file</td>
-<td>Change dependencies with <code>uv add</code> / <code>uv remove</code> only</td>
+<td>Change dependencies with <code>uv add</code> /
+<code>uv remove</code> only</td>
 </tr>
 </tbody>
 </table>
 <h2 id="try-it-yourself">Try it yourself</h2>
-<p><strong>Task:</strong> Download <a href="../../../downloads/phase-0/csv-cleaner-solution.zip">csv-cleaner-solution.zip</a>, unzip it, and inside the <code>csv-cleaner</code> folder run <code>uv sync --dev</code>, then <code>uv run pytest</code>. How many tests pass, and which Python version did uv use?</p>
+<p><strong>Task:</strong> Download <a
+href="../../../downloads/phase-0/csv-cleaner-solution.zip">csv-cleaner-solution.zip</a>,
+unzip it, and inside the <code>csv-cleaner</code> folder run
+<code>uv sync --dev</code>, then <code>uv run pytest</code>. How many
+tests pass, and which Python version did uv use?</p>
 <details>
-<summary>Show a hint</summary>
-<p>Look at the <code>.python-version</code> file, and at the first lines uv prints during <code>uv sync</code>.</p>
+<summary>
+Show a hint
+</summary>
+Look at the <code>.python-version</code> file, and at the first lines uv
+prints during <code>uv sync</code>.
 </details>
 <details>
-<summary>Show the solution</summary>
-<p><code>uv sync --dev</code> reads <code>.python-version</code> (<strong>3.14</strong>). It downloads that Python if needed, creates <code>.venv</code>, and installs pytest and ruff at the exact locked versions. Then <code>uv run pytest</code> reports <strong>17 passed</strong>. You never installed pytest yourself: the project's files described everything.</p>
+<summary>
+Show the solution
+</summary>
+<code>uv sync --dev</code> reads <code>.python-version</code>
+(<strong>3.14</strong>). It downloads that Python if needed, creates
+<code>.venv</code>, and installs pytest and ruff at the exact locked
+versions. Then <code>uv run pytest</code> reports <strong>17
+passed</strong>. You never installed pytest yourself: the project’s
+files described everything.
 </details>
 <h2 id="quick-quiz">Quick quiz</h2>
 <div class="quiz-q" data-answer="1">
-<p>1. Which file records the <strong>exact</strong> versions of every installed package?</p>
-<ol>
+<p>1. Which file records the <strong>exact</strong> versions of every
+installed package?</p>
+<ol type="1">
 <li><code>pyproject.toml</code></li>
 <li><code>uv.lock</code></li>
 <li><code>.python-version</code></li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B — <code>uv.lock</code>.</strong> <code>pyproject.toml</code> lists what you asked for, and the lock file records exactly what was resolved.</p>
+<summary>
+Show answer
+</summary>
+<strong>B — <code>uv.lock</code>.</strong> <code>pyproject.toml</code>
+lists what you asked for, and the lock file records exactly what was
+resolved.
 </details>
 </div>
 <div class="quiz-q" data-answer="1">
 <p>2. Should <code>.venv</code> be committed to Git?</p>
-<ol>
+<ol type="1">
 <li>Yes, always</li>
-<li>No: commit <code>pyproject.toml</code> and <code>uv.lock</code>, and rebuild it with <code>uv sync</code></li>
+<li>No: commit <code>pyproject.toml</code> and <code>uv.lock</code>, and
+rebuild it with <code>uv sync</code></li>
 <li>Only on Windows</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B.</strong></p>
+<summary>
+Show answer
+</summary>
+<strong>B.</strong>
 </details>
 </div>
 <div class="quiz-q" data-answer="1">
-<p>3. What does <code>uv run main.py</code> do before running the script?</p>
-<ol>
+<p>3. What does <code>uv run main.py</code> do before running the
+script?</p>
+<ol type="1">
 <li>Nothing special</li>
 <li>Makes sure the environment matches the lock file</li>
 <li>Upgrades every package to the latest version</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B.</strong> It keeps the environment in sync, then runs inside it.</p>
+<summary>
+Show answer
+</summary>
+<strong>B.</strong> It keeps the environment in sync, then runs inside
+it.
 </details>
 </div>
 <h2 id="summary">Summary</h2>
 <ul>
-<li>One project = one <strong>virtual environment</strong> (<code>.venv</code>).</li>
-<li><code>uv init</code> → <code>uv add &lt;pkg&gt;</code> → <code>uv run &lt;script&gt;</code>. Use <code>uv sync</code> to rebuild from the lock file.</li>
-<li>Commit <code>pyproject.toml</code>, <code>uv.lock</code> and <code>.python-version</code>. Never commit <code>.venv</code>.</li>
-<li>Recognise the classic <code>venv</code> + <code>pip</code> + <code>requirements.txt</code> workflow, and prefer uv for new projects.</li>
+<li>One project = one <strong>virtual environment</strong>
+(<code>.venv</code>).</li>
+<li><code>uv init</code> → <code>uv add &lt;pkg&gt;</code> →
+<code>uv run &lt;script&gt;</code>. Use <code>uv sync</code> to rebuild
+from the lock file.</li>
+<li>Commit <code>pyproject.toml</code>, <code>uv.lock</code> and
+<code>.python-version</code>. Never commit <code>.venv</code>.</li>
+<li>Recognise the classic <code>venv</code> + <code>pip</code> +
+<code>requirements.txt</code> workflow, and prefer uv for new
+projects.</li>
 </ul>
-<div class="admonition job">
-<p class="admonition-title">Job-ready check</p>
-<p><strong>Interview question:</strong> <em>"How do you make sure a Python project installs the same way on every machine?"</em></p>
-<p><strong>Strong answer:</strong> "Declare dependencies in <code>pyproject.toml</code>, lock exact versions in a lock file (with uv, <code>uv.lock</code>), pin the Python version, and commit all three. Everyone, including CI, runs <code>uv sync</code> to get an identical environment, and dependency changes go through <code>uv add</code> in a reviewed commit."</p>
-<p><strong>Mini project:</strong> Create <code>sales-report</code> with uv, add pandas, and write <code>main.py</code> that reads <code>orders.csv</code> and prints net revenue (9,075). Commit <code>pyproject.toml</code> and <code>uv.lock</code>, and check that <code>.venv</code> is ignored.</p>
+<div class="admonition job" data-markdown="1">
+<p class="admonition-title">
+Job-ready check
+</p>
+<p><strong>Interview question:</strong> <em>“How do you make sure a
+Python project installs the same way on every machine?”</em></p>
+<p><strong>Strong answer:</strong> “Declare dependencies in
+<code>pyproject.toml</code>, lock exact versions in a lock file (with
+uv, <code>uv.lock</code>), pin the Python version, and commit all three.
+Everyone, including CI, runs <code>uv sync</code> to get an identical
+environment, and dependency changes go through <code>uv add</code> in a
+reviewed commit.”</p>
+<p><strong>Mini project:</strong> Create <code>sales-report</code> with
+uv, add pandas, and write <code>main.py</code> that reads
+<code>orders.csv</code> and prints net revenue (9,075). Commit
+<code>pyproject.toml</code> and <code>uv.lock</code>, and check that
+<code>.venv</code> is ignored.</p>
 </div>
+<section class="mentor-prompt"><div class="mentor-head"><div><span class="eyebrow">AI study companion</span><h2 id="ai-mentor-prompt">AI Mentor Prompt</h2></div><button class="btn copy-prompt" type="button" data-copy-target="mentor-prompt-phase-0-dev-environment-02-uv-environments">Copy prompt</button></div><p>Paste this into ChatGPT, Claude, Gemini, or another capable assistant to turn this tutorial into an interactive mentoring session.</p><pre class="prompt-box"><code id="mentor-prompt-phase-0-dev-environment-02-uv-environments">You are my hands-on software-engineering mentor.
+
+I am currently studying:
+&quot;uv, Virtual Environments &amp; Packages: One Project, One Environment&quot;
+
+My level:
+Beginner
+
+Teach me this topic interactively rather than giving me a long lecture.
+
+Use this sequence:
+
+1. Check what I already understand with one short diagnostic question.
+2. Explain the concept in simple language and give me the mental model first.
+3. Give me one small task using code, SQL, configuration, data, or architecture as appropriate.
+4. Wait for my attempt before showing a complete solution.
+5. Review my work and explain both what is correct and what needs improvement.
+6. Help me debug errors step by step instead of immediately replacing my work.
+7. Increase the difficulty gradually and connect each new step to the previous one.
+8. Relate what I am learning to real professional data/AI engineering work.
+9. Ask me to explain an important decision in my own words so you can check my understanding.
+10. At the end, ask me to build or modify one small feature independently.
+
+Important rules:
+- Do not do the entire exercise for me unless I explicitly ask.
+- Explain unfamiliar terminology before using it heavily.
+- Prefer current, production-relevant practices over outdated shortcuts.
+- Distinguish clearly between concepts, tool-specific behaviour, and optional alternatives.
+- If a technical fact, API, syntax, version, or best practice may have changed, verify it against current official documentation before teaching it.
+- Never invent command output, test results, benchmark numbers, cloud behaviour, or data results.
+- If something cannot be executed in the current environment, say so and give me the exact command or verification step I should run.
+- Keep me actively coding, querying, configuring, reasoning, or debugging throughout the session.
+- When useful, work from the tutorial practice files (csv-cleaner-solution.zip) instead of inventing unrelated examples.
+
+The concepts I need to master are:
+- uv / virtual environments
+- Package management
+- uv
+- virtual environment
+- venv
+- .venv
+- pip
+- pyproject.toml
+
+Start by asking me one diagnostic question.</code></pre></section>
+
 <div class="terms-box"><div class="files-head"><b>Key terms in this lesson</b><a href="../../../glossary.html">Glossary →</a></div><div class="term-chips"><a class="term-chip" href="../../../glossary.html#lock-file" title="A file that records the exact version of every installed package, so everyone and every server installs the same set.">Lock file</a><a class="term-chip" href="../../../glossary.html#pyproject-toml" title="The standard settings file of a Python project: name, Python version, dependencies and tool settings (such as ruff).">pyproject.toml</a><a class="term-chip" href="../../../glossary.html#reproducibility" title="Getting exactly the same results from the same data and code: a locked environment, fingerprinted data, fixed random seeds and one command from raw data to results.">Reproducibility</a><a class="term-chip" href="../../../glossary.html#uv" title="A fast all-in-one Python tool that installs Python, creates virtual environments, adds packages, writes a lock file and runs code.">uv</a><a class="term-chip" href="../../../glossary.html#virtual-environment" title="A private folder of packages for one project, so different projects can use different versions without conflicts.">Virtual environment</a></div></div>
 <h2 id="free-resources">Free resources to go deeper</h2><ul class="resources"><li><a href="https://docs.astral.sh/uv/">uv documentation</a><span class="r-meta">Astral (official) · Installation and an overview of every feature.</span></li><li><a href="https://docs.astral.sh/uv/guides/projects/">Working on projects</a><span class="r-meta">Astral (official) · uv init, add, run, sync and the lock file.</span></li><li><a href="https://docs.astral.sh/uv/guides/install-python/">Installing and managing Python</a><span class="r-meta">Astral (official) · Let uv install Python versions for you.</span></li><li><a href="https://code.visualstudio.com/docs/python/environments">Python environments in VS Code</a><span class="r-meta">VS Code docs · How VS Code finds and uses .venv folders.</span></li></ul>
 <div class="complete-bar"><span>Finished reading and did the exercise?</span>
@@ -320,9 +429,9 @@ pip<span class="w"> </span>freeze<span class="w"> </span>&gt;<span class="w"> </
 <p class="reviewed">Last reviewed: 2026-10-09</p>
 
   </div></main>
-  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#install-uv">Install uv</a><a href="#example-1-create-a-project">Example 1: create a project</a><a href="#example-2-add-a-package">Example 2: add a package</a><a href="#example-3-run-code-in-the-environment">Example 3: run code in the environment</a><a href="#example-4-dev-tools-removing-packages-and-syncing">Example 4: dev tools, removing packages, and syncing</a><a href="#the-classic-way-youll-still-see-it">The classic way (you&#x27;ll still see it)</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#free-resources">Free resources</a></aside>
+  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#install-uv">Install uv</a><a href="#example-1-create-a-project">Example 1: create a project</a><a href="#example-2-add-a-package">Example 2: add a package</a><a href="#example-3-run-code-in-the-environment">Example 3: run code in the environment</a><a href="#example-4-dev-tools-removing-packages-and-syncing">Example 4: dev tools, removing packages, and syncing</a><a href="#the-classic-way-youll-still-see-it">The classic way (you’ll still see it)</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#ai-mentor-prompt">AI Mentor Prompt</a><a href="#free-resources">Free resources</a></aside>
 </div>
-<footer class="site">Data, AI &amp; Automation Path v0.8 · Applied AI, Data &amp; Automation Lab · Updated October 2026<br>
+<footer class="site"><b>Saiful The Techie</b> · Data, AI &amp; Automation Path v0.9.1 · Updated October 2026<br>
 Lesson text: <a href="../../../license.html">CC BY-NC-SA 4.0</a> · Code: <a href="../../../license.html#code-mit-license">MIT</a> · Free external resources belong to their respective owners.</footer>
 <script src="../../../search-index.js"></script>
 <script src="../../../assets/app.js"></script>

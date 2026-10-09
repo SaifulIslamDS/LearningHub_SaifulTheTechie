@@ -17,8 +17,8 @@ The deep-tutorial upgrade in `M8-UPGRADE-CONTINUATION.md` supersedes older Templ
 
 ## Current checkpoint
 
-- Stable release: `v0.8`
-- Working milestone: `M8 → v0.9`
+- Current release checkpoint: `v0.9.1`
+- Working milestone: `M8 → v0.9.x` · next approved module: `AI-Ready Data`
 - Completed M8 modules: ETL/ELT, Data Quality, dbt
 - Phase 3: `40/55 topics`
 - Total lesson source count: `85`

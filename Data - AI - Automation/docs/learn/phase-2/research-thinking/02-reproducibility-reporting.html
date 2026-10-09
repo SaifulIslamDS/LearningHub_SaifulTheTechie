@@ -6,7 +6,7 @@
 <title>Reproducibility, Evaluation &amp; Reporting: Results Others Can Trust — Data, AI &amp; Automation Path</title>
 <meta name="description" content="Make an analysis reproducible (environment, data fingerprints, seeds, one-command runs), evaluate results against a baseline with honest uncertainty, and write a report a decision-maker can act on.">
 <meta property="og:type" content="article">
-<meta property="og:site_name" content="Data, AI &amp; Automation Path">
+<meta property="og:site_name" content="Saiful The Techie">
 <meta property="og:title" content="Reproducibility, Evaluation &amp; Reporting: Results Others Can Trust">
 <meta property="og:description" content="Make an analysis reproducible (environment, data fingerprints, seeds, one-command runs), evaluate results against a baseline with honest uncertainty, and write a report a decision-maker can act on.">
 <meta property="og:locale" content="en_US">
@@ -19,13 +19,13 @@ var n=null;try{n=localStorage.getItem('daa-nav')}catch(e){}
 if(n==='open'&&window.matchMedia&&matchMedia('(min-width: 961px)').matches)document.documentElement.setAttribute('data-nav','open');
 document.documentElement.classList.add('no-anim')})();</script>
 <link rel="stylesheet" href="../../../assets/style.css">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233f7d6a'/%3E%3Ctext x='16' y='21' font-family='sans-serif' font-size='13' font-weight='700' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
+
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="topbar">
   <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Open curriculum menu" title="Curriculum menu (press M)" aria-controls="sidebar" aria-expanded="false"><span class="ico-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span class="ico-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></button>
-  <a class="brand" href="../../../index.html"><span class="brand-badge">AI</span><span class="brand-text"><span class="brand-name">Data, AI &amp; Automation Path</span><span class="brand-version">v0.8</span></span></a>
+  <a class="brand" href="../../../index.html"><span class="brand-text"><span class="brand-name">Saiful The Techie</span><span class="brand-version">Data, AI &amp; Automation Path · v0.9.1</span></span></a>
   <nav class="top-links" aria-label="Main">
     <a href="../../../index.html" class="">Home</a><a href="../../../curriculum.html" class="">Curriculum</a><a href="../../../practice-files.html" class="">Practice files</a><a href="../../../glossary.html" class="">Glossary</a><a href="../../../how-to-learn.html" class="">How to learn</a><a href="../../../about.html" class="">About</a>
   </nav>
@@ -41,7 +41,7 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="layout wide">
   <nav class="sidebar" id="sidebar" aria-label="Curriculum">
     <div class="side-title">Curriculum</div>
-    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="77"><i></i></div><span class="bar-label" data-progress-label></span></div>
+    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="85"><i></i></div><span class="bar-label" data-progress-label></span></div>
 <div class="nav-phase"><a href="../../../learn/phase-0/index.html"><span class="nav-num">0</span>Foundations</a>
 </div>
 <div class="nav-phase"><a href="../../../learn/phase-1/index.html"><span class="nav-num">1</span>Analytics &amp; BI</a>
@@ -97,167 +97,204 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="files-box"><div class="files-head"><b>Practice files for this page</b><a href="../../../practice-files.html">All practice files →</a></div><ul><li><a href="../../../downloads/phase-2/data-science-scripts.zip" download>data-science-scripts.zip</a><span class="f-desc">All 21 Phase 2 lesson scripts (NumPy to research thinking), shared chart style, data folder and solutions · 230 KB</span></li><li><a href="../../../downloads/phase-2/orders_2025.csv" download>orders_2025.csv</a><span class="f-desc">4,246 clean orders for 2025 (synthetic, fixed seed): region, segment, channel, product, price, discount, status, delivery days, revenue · 472 KB</span></li><li><a href="../../../downloads/templates/analysis_report_template.md" download>analysis_report_template.md</a><span class="f-desc">Analysis report template: bottom line first, results with CIs, limitations, how to reproduce (Markdown) · 1 KB</span></li></ul></div>
 <h2 id="what-is-it">What is it?</h2>
 <table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Idea</th>
 <th>Question it answers</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td><strong>Reproducibility</strong></td>
-<td>Can someone else (or you in six months) get exactly the same numbers from the same data and code?</td>
+<td>Can someone else (or you in six months) get exactly the same numbers
+from the same data and code?</td>
 </tr>
-<tr>
+<tr class="even">
 <td><strong>Evaluation</strong></td>
-<td>Is the result better than a sensible baseline, by how much, and how certain are we?</td>
+<td>Is the result better than a sensible baseline, by how much, and how
+certain are we?</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><strong>Reporting</strong></td>
-<td>Does the reader get the answer, its uncertainty, its limits and what to do, in that order?</td>
+<td>Does the reader get the answer, its uncertainty, its limits and what
+to do, in that order?</td>
 </tr>
 </tbody>
 </table>
-<div class="admonition job">
-<p class="admonition-title">Why it matters at work</p>
-<p>"I can't get your numbers" is how analyses lose credibility. Reproducible work survives audits, handovers and reviews, and it's increasingly expected for models that affect money or people. Interviewers for data roles often ask how you'd make a project reproducible, and portfolio reviewers notice when a repo "just runs".</p>
+<div class="admonition job" data-markdown="1">
+<p class="admonition-title">
+Why it matters at work
+</p>
+<p>“I can’t get your numbers” is how analyses lose credibility.
+Reproducible work survives audits, handovers and reviews, and it’s
+increasingly expected for models that affect money or people.
+Interviewers for data roles often ask how you’d make a project
+reproducible, and portfolio reviewers notice when a repo “just
+runs”.</p>
 </div>
 <p>The script is <code>21_reproducibility_reporting.py</code>.</p>
-<h2 id="part-1-the-four-ingredients-of-reproducibility">Part 1: the four ingredients of reproducibility</h2>
-<h3 id="1-record-the-environment">1. Record the environment</h3>
-<div class="codehilite"><pre><span></span><code><span class="n">env</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"python"</span><span class="p">:</span> <span class="n">platform</span><span class="o">.</span><span class="n">python_version</span><span class="p">(),</span> <span class="o">**</span><span class="p">{</span><span class="n">p</span><span class="p">:</span> <span class="n">version</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">"numpy"</span><span class="p">,</span> <span class="s2">"pandas"</span><span class="p">,</span> <span class="s2">"scikit-learn"</span><span class="p">]}}</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>environment: {'python': '3.13.16', 'numpy': '2.5.3', 'pandas': '3.0.6', 'scikit-learn': '1.9.1'}
-</code></pre></div>
-
-<p><em>(Your versions will differ.)</em> In a project, the <strong><code>uv.lock</code></strong> file (Phase 0) does this properly: anyone can recreate the exact environment with <code>uv sync</code>.</p>
-<h3 id="2-fingerprint-the-data">2. Fingerprint the data</h3>
-<div class="codehilite"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">sha256</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-    <span class="k">return</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha256</span><span class="p">(</span><span class="n">path</span><span class="o">.</span><span class="n">read_bytes</span><span class="p">())</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()[:</span><span class="mi">12</span><span class="p">]</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>data fingerprints: {'customers_2025.csv': '87f5066eee5b', 'orders_2025.csv': '706b3e132a43', 'products_2025.csv': 'd22bd2e1fdff'}
-</code></pre></div>
-
-<p>A <strong>hash</strong> changes if even one character of the file changes. Store it with your results: if someone gets different numbers, the first check is "same data hash?". Your hashes should match these exactly, since the practice files are generated deterministically.</p>
-<h3 id="3-control-randomness-with-seeds">3. Control randomness with seeds</h3>
-<p>Put the whole analysis in <strong>one function</strong> whose randomness depends only on a seed:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">r1</span><span class="p">,</span> <span class="n">r2</span><span class="p">,</span> <span class="n">r3</span> <span class="o">=</span> <span class="n">analysis</span><span class="p">(</span><span class="n">SEED</span><span class="p">),</span> <span class="n">analysis</span><span class="p">(</span><span class="n">SEED</span><span class="p">),</span> <span class="n">analysis</span><span class="p">(</span><span class="n">SEED</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">"run 1 == run 2:"</span><span class="p">,</span> <span class="n">r1</span> <span class="o">==</span> <span class="n">r2</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">"seed 2025 CI:"</span><span class="p">,</span> <span class="n">r1</span><span class="p">[</span><span class="s2">"auc_ci95"</span><span class="p">],</span> <span class="s2">"| seed 2026 CI:"</span><span class="p">,</span> <span class="n">r3</span><span class="p">[</span><span class="s2">"auc_ci95"</span><span class="p">])</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>run 1 == run 2: True
-seed 2025 CI: [0.573, 0.702] | seed 2026 CI: [0.569, 0.707]
-</code></pre></div>
-
+<h2 id="part-1-the-four-ingredients-of-reproducibility">Part 1: the four
+ingredients of reproducibility</h2>
+<h3 id="record-the-environment">1. Record the environment</h3>
+<pre class="python"><code>env = {&quot;python&quot;: platform.python_version(), **{p: version(p) for p in [&quot;numpy&quot;, &quot;pandas&quot;, &quot;scikit-learn&quot;]}}</code></pre>
+<pre class="text"><code>environment: {&#39;python&#39;: &#39;3.13.16&#39;, &#39;numpy&#39;: &#39;2.5.3&#39;, &#39;pandas&#39;: &#39;3.0.6&#39;, &#39;scikit-learn&#39;: &#39;1.9.1&#39;}</code></pre>
+<p><em>(Your versions will differ.)</em> In a project, the
+<strong><code>uv.lock</code></strong> file (Phase 0) does this properly:
+anyone can recreate the exact environment with <code>uv sync</code>.</p>
+<h3 id="fingerprint-the-data">2. Fingerprint the data</h3>
+<pre class="python"><code>def sha256(path: Path) -&gt; str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()[:12]</code></pre>
+<pre class="text"><code>data fingerprints: {&#39;customers_2025.csv&#39;: &#39;87f5066eee5b&#39;, &#39;orders_2025.csv&#39;: &#39;706b3e132a43&#39;, &#39;products_2025.csv&#39;: &#39;d22bd2e1fdff&#39;}</code></pre>
+<p>A <strong>hash</strong> changes if even one character of the file
+changes. Store it with your results: if someone gets different numbers,
+the first check is “same data hash?”. Your hashes should match these
+exactly, since the practice files are generated deterministically.</p>
+<h3 id="control-randomness-with-seeds">3. Control randomness with
+seeds</h3>
+<p>Put the whole analysis in <strong>one function</strong> whose
+randomness depends only on a seed:</p>
+<pre class="python"><code>r1, r2, r3 = analysis(SEED), analysis(SEED), analysis(SEED + 1)
+print(&quot;run 1 == run 2:&quot;, r1 == r2)
+print(&quot;seed 2025 CI:&quot;, r1[&quot;auc_ci95&quot;], &quot;| seed 2026 CI:&quot;, r3[&quot;auc_ci95&quot;])</code></pre>
+<pre class="text"><code>run 1 == run 2: True
+seed 2025 CI: [0.573, 0.702] | seed 2026 CI: [0.569, 0.707]</code></pre>
 <ul>
 <li>Same seed → <strong>identical</strong> results.</li>
-<li>A different seed changes the bootstrap interval only slightly. If a conclusion changes with the seed, it wasn't a robust conclusion.</li>
+<li>A different seed changes the bootstrap interval only slightly. If a
+conclusion changes with the seed, it wasn’t a robust conclusion.</li>
 </ul>
-<h3 id="4-one-command-from-data-to-results-with-provenance">4. One command from data to results, with provenance</h3>
-<div class="codehilite"><pre><span></span><code><span class="n">report</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"results"</span><span class="p">:</span> <span class="n">r1</span><span class="p">,</span> <span class="s2">"data_sha256"</span><span class="p">:</span> <span class="n">data_files</span><span class="p">,</span> <span class="s2">"environment"</span><span class="p">:</span> <span class="n">env</span><span class="p">,</span> <span class="s2">"script"</span><span class="p">:</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">name</span><span class="p">}</span>
-<span class="p">(</span><span class="n">RESULTS</span> <span class="o">/</span> <span class="s2">"cancellation_model.json"</span><span class="p">)</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">report</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
-</code></pre></div>
-
-<p>Results are saved <strong>with</strong> the data fingerprints, versions and script that produced them. A reviewer can rerun <code>uv run 21_reproducibility_reporting.py</code> and compare.</p>
+<h3 id="one-command-from-data-to-results-with-provenance">4. One command
+from data to results, with provenance</h3>
+<pre class="python"><code>report = {&quot;results&quot;: r1, &quot;data_sha256&quot;: data_files, &quot;environment&quot;: env, &quot;script&quot;: Path(__file__).name}
+(RESULTS / &quot;cancellation_model.json&quot;).write_text(json.dumps(report, indent=2))</code></pre>
+<p>Results are saved <strong>with</strong> the data fingerprints,
+versions and script that produced them. A reviewer can rerun
+<code>uv run 21_reproducibility_reporting.py</code> and compare.</p>
 <table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Habit</th>
 <th>Why</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>Scripts (or notebooks run top-to-bottom)</td>
-<td>Hidden notebook state (cells run out of order) is the #1 cause of irreproducible results</td>
+<td>Hidden notebook state (cells run out of order) is the #1 cause of
+irreproducible results</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Raw data never edited by hand</td>
 <td>Every change is in code, so it can be re-run and reviewed</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Git for code, hashes or versions for data</td>
 <td>You know exactly which code and data made which result</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Relative paths and a config</td>
 <td>Works on any machine</td>
 </tr>
-<tr>
-<td>A README "how to reproduce" section</td>
+<tr class="odd">
+<td>A README “how to reproduce” section</td>
 <td>Others can rerun without asking you</td>
 </tr>
 </tbody>
 </table>
-<h2 id="part-2-evaluate-against-a-baseline-with-uncertainty">Part 2: evaluate against a baseline, with uncertainty</h2>
-<div class="codehilite"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">"question"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Can order-time data rank orders by cancellation risk (Oct-Dec 2025)?"</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"n_train"</span><span class="p">:</span><span class="w"> </span><span class="mi">2899</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"n_test"</span><span class="p">:</span><span class="w"> </span><span class="mi">1302</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"test_cancel_rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0568</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"baseline_auc"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"model_auc"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.639</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"auc_ci95"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mf">0.573</span><span class="p">,</span><span class="w"> </span><span class="mf">0.702</span><span class="p">],</span>
-<span class="w">  </span><span class="nt">"seed"</span><span class="p">:</span><span class="w"> </span><span class="mi">2025</span>
-<span class="p">}</span>
-</code></pre></div>
-
+<h2 id="part-2-evaluate-against-a-baseline-with-uncertainty">Part 2:
+evaluate against a baseline, with uncertainty</h2>
+<pre class="json"><code>{
+  &quot;question&quot;: &quot;Can order-time data rank orders by cancellation risk (Oct-Dec 2025)?&quot;,
+  &quot;n_train&quot;: 2899,
+  &quot;n_test&quot;: 1302,
+  &quot;test_cancel_rate&quot;: 0.0568,
+  &quot;baseline_auc&quot;: 0.5,
+  &quot;model_auc&quot;: 0.639,
+  &quot;auc_ci95&quot;: [0.573, 0.702],
+  &quot;seed&quot;: 2025
+}</code></pre>
 <p>How to evaluate this honestly:</p>
 <ul>
-<li><strong>Against a baseline:</strong> random ranking is 0.5. The model's 0.639 is better, and the whole 95% CI (0.573–0.702) is above 0.5, so the improvement is real.</li>
-<li><strong>With uncertainty:</strong> the interval is wide (±0.065) because the test period has only about 74 cancellations (5.7% of 1,302). Don't promise "0.64": promise "clearly better than random, modest".</li>
-<li><strong>Time-honest:</strong> trained on January–September, tested on October–December.</li>
+<li><strong>Against a baseline:</strong> random ranking is 0.5. The
+model’s 0.639 is better, and the whole 95% CI (0.573–0.702) is above
+0.5, so the improvement is real.</li>
+<li><strong>With uncertainty:</strong> the interval is wide (±0.065)
+because the test period has only about 74 cancellations (5.7% of 1,302).
+Don’t promise “0.64”: promise “clearly better than random, modest”.</li>
+<li><strong>Time-honest:</strong> trained on January–September, tested
+on October–December.</li>
 </ul>
-<h3 id="sensitivity-does-the-conclusion-depend-on-a-choice-you-made">Sensitivity: does the conclusion depend on a choice you made?</h3>
-<div class="codehilite"><pre><span></span><code><span class="k">for</span> <span class="n">cut</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">"2025-09-01"</span><span class="p">,</span> <span class="s2">"2025-10-01"</span><span class="p">,</span> <span class="s2">"2025-11-01"</span><span class="p">]:</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>2025-09-01 1767 0.664
+<h3
+id="sensitivity-does-the-conclusion-depend-on-a-choice-you-made">Sensitivity:
+does the conclusion depend on a choice you made?</h3>
+<pre class="python"><code>for cut in [&quot;2025-09-01&quot;, &quot;2025-10-01&quot;, &quot;2025-11-01&quot;]:</code></pre>
+<pre class="text"><code>2025-09-01 1767 0.664
 2025-10-01 1302 0.639
-2025-11-01 804 0.701
-</code></pre></div>
-
-<p>With different split dates, the AUC moves between 0.64 and 0.70, always clearly above 0.5. <strong>The conclusion ("modest, real signal") is robust; the exact number is not.</strong> Report it that way.</p>
+2025-11-01 804 0.701</code></pre>
+<p>With different split dates, the AUC moves between 0.64 and 0.70,
+always clearly above 0.5. <strong>The conclusion (“modest, real signal”)
+is robust; the exact number is not.</strong> Report it that way.</p>
 <h2 id="part-3-write-the-report">Part 3: write the report</h2>
-<p>Use <code>analysis_report_template.md</code>. The order matters: <strong>answer first</strong>, details later.</p>
+<p>Use <code>analysis_report_template.md</code>. The order matters:
+<strong>answer first</strong>, details later.</p>
 <blockquote>
-<p><strong>Order details can flag cancellation risk, but only modestly.</strong></p>
-<p><strong>Bottom line:</strong> A simple model using segment, channel and credit terms ranks October–December orders by cancellation risk better than chance (ROC AUC 0.64, 95% CI 0.57–0.70; 0.64–0.70 across split dates). Flagging the riskiest 10% of orders would roughly double the cancellation rate among checked orders compared with random checks. We recommend a light-touch credit check on flagged orders, and adding payment-history data before investing in a more complex model.</p>
-<p><strong>Limitations:</strong> one year of data; few cancellations in the test period (≈74); the model shows association, not cause (see the experiment plan for the confirmation-call test).</p>
-<p><strong>Reproduce:</strong> <code>uv sync &amp;&amp; uv run 21_reproducibility_reporting.py</code> · data <code>orders_2025.csv</code> SHA-256 <code>706b3e132a43…</code></p>
+<p><strong>Order details can flag cancellation risk, but only
+modestly.</strong></p>
+<p><strong>Bottom line:</strong> A simple model using segment, channel
+and credit terms ranks October–December orders by cancellation risk
+better than chance (ROC AUC 0.64, 95% CI 0.57–0.70; 0.64–0.70 across
+split dates). Flagging the riskiest 10% of orders would roughly double
+the cancellation rate among checked orders compared with random checks.
+We recommend a light-touch credit check on flagged orders, and adding
+payment-history data before investing in a more complex model.</p>
+<p><strong>Limitations:</strong> one year of data; few cancellations in
+the test period (≈74); the model shows association, not cause (see the
+experiment plan for the confirmation-call test).</p>
+<p><strong>Reproduce:</strong>
+<code>uv sync &amp;&amp; uv run 21_reproducibility_reporting.py</code> ·
+data <code>orders_2025.csv</code> SHA-256 <code>706b3e132a43…</code></p>
 </blockquote>
 <table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Report element</th>
 <th>Why</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>Title = the finding</td>
 <td>Many readers stop at the title</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Estimate + interval + baseline</td>
-<td>Size and certainty, not just "significant"</td>
+<td>Size and certainty, not just “significant”</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Robustness check</td>
-<td>Shows the conclusion doesn't hinge on one choice</td>
+<td>Shows the conclusion doesn’t hinge on one choice</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Limitations</td>
 <td>Builds trust; prevents over-use</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Recommendation + next step</td>
 <td>Turns analysis into action</td>
 </tr>
-<tr>
+<tr class="even">
 <td>How to reproduce</td>
 <td>Lets anyone verify</td>
 </tr>
@@ -265,35 +302,40 @@ seed 2025 CI: [0.573, 0.702] | seed 2026 CI: [0.569, 0.707]
 </table>
 <h2 id="common-mistakes">Common mistakes</h2>
 <table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Mistake</th>
 <th>What happens</th>
 <th>Fix</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>Notebook cells run out of order</td>
 <td>Results nobody (including you) can recreate</td>
 <td>Restart and run all before sharing; or scripts</td>
 </tr>
-<tr>
+<tr class="even">
 <td>No seed, or a different seed every run</td>
 <td>Numbers change on every run</td>
 <td>Fix seeds; report sensitivity to them</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Data edited by hand in Excel</td>
 <td>Changes are invisible and unrepeatable</td>
 <td>All changes in code</td>
 </tr>
-<tr>
+<tr class="even">
 <td>A metric with no baseline or interval</td>
-<td>"0.64" means nothing to the reader</td>
+<td>“0.64” means nothing to the reader</td>
 <td>Baseline, CI and n, always</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Burying the answer on page 5</td>
 <td>Decision-makers miss it</td>
 <td>Bottom line first</td>
@@ -301,65 +343,145 @@ seed 2025 CI: [0.573, 0.702] | seed 2026 CI: [0.569, 0.707]
 </tbody>
 </table>
 <h2 id="try-it-yourself">Try it yourself</h2>
-<p><strong>Task:</strong> Run the "sensitivity to split date" loop yourself. Then answer: if a stakeholder asks "what's the model's accuracy?", what one sentence would you give?</p>
+<p><strong>Task:</strong> Run the “sensitivity to split date” loop
+yourself. Then answer: if a stakeholder asks “what’s the model’s
+accuracy?”, what one sentence would you give?</p>
 <details>
-<summary>Show a model answer</summary>
-<div class="codehilite"><pre><span></span><code>2025-09-01 1767 0.664
+<summary>
+Show a model answer
+</summary>
+<pre class="text"><code>2025-09-01 1767 0.664
 2025-10-01 1302 0.639
-2025-11-01 804 0.701
-</code></pre></div>
-
-<p>"It ranks orders by cancellation risk clearly better than chance, with a ROC AUC of about 0.64 to 0.70 depending on the test period, so it's useful for prioritising credit checks but not for confidently predicting individual cancellations." One sentence: what it can and can't do, a range rather than a falsely precise number, and the metric that fits the use.</p>
+2025-11-01 804 0.701</code></pre>
+“It ranks orders by cancellation risk clearly better than chance, with a
+ROC AUC of about 0.64 to 0.70 depending on the test period, so it’s
+useful for prioritising credit checks but not for confidently predicting
+individual cancellations.” One sentence: what it can and can’t do, a
+range rather than a falsely precise number, and the metric that fits the
+use.
 </details>
 <h2 id="quick-quiz">Quick quiz</h2>
 <div class="quiz-q" data-answer="1">
-<p>1. Two runs of your analysis give different numbers. What's the first thing to check?</p>
-<ol>
+<p>1. Two runs of your analysis give different numbers. What’s the first
+thing to check?</p>
+<ol type="1">
 <li>Buy a faster computer</li>
 <li>Same data (hash), same environment, same seed?</li>
 <li>Use a different model</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B.</strong></p>
+<summary>
+Show answer
+</summary>
+<strong>B.</strong>
 </details>
 </div>
 <div class="quiz-q" data-answer="1">
-<p>2. A model's ROC AUC is 0.64 with a 95% CI of 0.57–0.70. What can you say?</p>
-<ol>
-<li>It's no better than random</li>
-<li>It's better than random (0.5), but the exact performance is uncertain</li>
-<li>It's an excellent model</li>
+<p>2. A model’s ROC AUC is 0.64 with a 95% CI of 0.57–0.70. What can you
+say?</p>
+<ol type="1">
+<li>It’s no better than random</li>
+<li>It’s better than random (0.5), but the exact performance is
+uncertain</li>
+<li>It’s an excellent model</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B.</strong></p>
+<summary>
+Show answer
+</summary>
+<strong>B.</strong>
 </details>
 </div>
 <div class="quiz-q" data-answer="1">
 <p>3. What should come first in an analysis report?</p>
-<ol>
+<ol type="1">
 <li>The data description</li>
-<li>The bottom line: the answer, its uncertainty and the recommendation</li>
+<li>The bottom line: the answer, its uncertainty and the
+recommendation</li>
 <li>The code</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B.</strong></p>
+<summary>
+Show answer
+</summary>
+<strong>B.</strong>
 </details>
 </div>
 <h2 id="summary">Summary</h2>
 <ul>
-<li><strong>Reproducible</strong> = recorded environment (<code>uv.lock</code>), fingerprinted data (hashes), fixed seeds, and one command from raw data to saved results with provenance.</li>
-<li><strong>Evaluate</strong> against a baseline, with a confidence interval, on a time-honest test, and check <strong>sensitivity</strong> to your choices.</li>
-<li><strong>Report</strong> bottom line first: estimate + interval + recommendation, then method, limitations and how to reproduce.</li>
+<li><strong>Reproducible</strong> = recorded environment
+(<code>uv.lock</code>), fingerprinted data (hashes), fixed seeds, and
+one command from raw data to saved results with provenance.</li>
+<li><strong>Evaluate</strong> against a baseline, with a confidence
+interval, on a time-honest test, and check <strong>sensitivity</strong>
+to your choices.</li>
+<li><strong>Report</strong> bottom line first: estimate + interval +
+recommendation, then method, limitations and how to reproduce.</li>
 </ul>
-<div class="admonition job">
-<p class="admonition-title">Job-ready check</p>
-<p><strong>Interview question:</strong> <em>"How do you make sure someone else can reproduce your analysis?"</em></p>
-<p><strong>Strong answer:</strong> "The project is in Git with a lock file for the environment, the raw data is never edited by hand and its hash is recorded, all randomness uses fixed seeds, and a single command runs the analysis from raw data to results, saving the outputs with the data hash and versions. The README explains how to rerun it and what numbers to expect. Before sharing, I rerun it from a clean environment."</p>
-<p><strong>Mini project:</strong> Take one of your Phase 2 analyses and make it reproducible: one script, fixed seeds, a <code>results/</code> JSON with data hashes and versions, and a README "Reproduce" section. Then fill in <code>analysis_report_template.md</code> for it.</p>
+<div class="admonition job" data-markdown="1">
+<p class="admonition-title">
+Job-ready check
+</p>
+<p><strong>Interview question:</strong> <em>“How do you make sure
+someone else can reproduce your analysis?”</em></p>
+<p><strong>Strong answer:</strong> “The project is in Git with a lock
+file for the environment, the raw data is never edited by hand and its
+hash is recorded, all randomness uses fixed seeds, and a single command
+runs the analysis from raw data to results, saving the outputs with the
+data hash and versions. The README explains how to rerun it and what
+numbers to expect. Before sharing, I rerun it from a clean
+environment.”</p>
+<p><strong>Mini project:</strong> Take one of your Phase 2 analyses and
+make it reproducible: one script, fixed seeds, a <code>results/</code>
+JSON with data hashes and versions, and a README “Reproduce” section.
+Then fill in <code>analysis_report_template.md</code> for it.</p>
 </div>
+<section class="mentor-prompt"><div class="mentor-head"><div><span class="eyebrow">AI study companion</span><h2 id="ai-mentor-prompt">AI Mentor Prompt</h2></div><button class="btn copy-prompt" type="button" data-copy-target="mentor-prompt-phase-2-research-thinking-02-reproducibility-reporting">Copy prompt</button></div><p>Paste this into ChatGPT, Claude, Gemini, or another capable assistant to turn this tutorial into an interactive mentoring session.</p><pre class="prompt-box"><code id="mentor-prompt-phase-2-research-thinking-02-reproducibility-reporting">You are my hands-on Python, statistics and data-science mentor.
+
+I am currently studying:
+&quot;Reproducibility, Evaluation &amp; Reporting: Results Others Can Trust&quot;
+
+My level:
+Intermediate
+
+Teach me this topic interactively rather than giving me a long lecture.
+
+Use this sequence:
+
+1. Check what I already understand with one short diagnostic question.
+2. Explain the concept in simple language and give me the mental model first.
+3. Give me one small task using code, SQL, configuration, data, or architecture as appropriate.
+4. Wait for my attempt before showing a complete solution.
+5. Review my work and explain both what is correct and what needs improvement.
+6. Help me debug errors step by step instead of immediately replacing my work.
+7. Increase the difficulty gradually and connect each new step to the previous one.
+8. Relate what I am learning to real professional data/AI engineering work.
+9. Ask me to explain an important decision in my own words so you can check my understanding.
+10. At the end, ask me to build or modify one small feature independently.
+
+Important rules:
+- Do not do the entire exercise for me unless I explicitly ask.
+- Explain unfamiliar terminology before using it heavily.
+- Prefer current, production-relevant practices over outdated shortcuts.
+- Distinguish clearly between concepts, tool-specific behaviour, and optional alternatives.
+- If a technical fact, API, syntax, version, or best practice may have changed, verify it against current official documentation before teaching it.
+- Never invent command output, test results, benchmark numbers, cloud behaviour, or data results.
+- If something cannot be executed in the current environment, say so and give me the exact command or verification step I should run.
+- Keep me actively coding, querying, configuring, reasoning, or debugging throughout the session.
+- When useful, work from the tutorial practice files (data-science-scripts.zip, orders_2025.csv, analysis_report_template.md) instead of inventing unrelated examples.
+
+The concepts I need to master are:
+- Reproducibility
+- Evaluation &amp; reporting
+- reproducible analysis
+- random seed
+- environment
+- uv.lock
+- data versioning
+- sha-256
+
+Start by asking me one diagnostic question.</code></pre></section>
+
 <div class="terms-box"><div class="files-head"><b>Key terms in this lesson</b><a href="../../../glossary.html">Glossary →</a></div><div class="term-chips"><a class="term-chip" href="../../../glossary.html#evaluation" title="Measuring an AI system&#x27;s quality with test sets and metrics (accuracy, groundedness, cost, latency) before and after every change.">Evaluation</a><a class="term-chip" href="../../../glossary.html#lock-file" title="A file that records the exact version of every installed package, so everyone and every server installs the same set.">Lock file</a><a class="term-chip" href="../../../glossary.html#reproducibility" title="Getting exactly the same results from the same data and code: a locked environment, fingerprinted data, fixed random seeds and one command from raw data to results.">Reproducibility</a></div></div>
 <h2 id="free-resources">Free resources to go deeper</h2><ul class="resources"><li><a href="https://book.the-turing-way.org/reproducible-research/reproducible-research">The Turing Way: Guide for Reproducible Research</a><span class="r-meta">The Turing Way (open community handbook) · Version control, environments, data and code sharing, step by step.</span></li><li><a href="https://docs.astral.sh/uv/guides/projects/">Working on projects (uv)</a><span class="r-meta">Astral (official) · Lock files and reproducible environments.</span></li><li><a href="https://scikit-learn.org/stable/common_pitfalls.html#controlling-randomness">Controlling randomness (scikit-learn)</a><span class="r-meta">scikit-learn official docs · How random_state works and how to use it correctly.</span></li></ul>
 <div class="complete-bar"><span>Finished reading and did the exercise?</span>
@@ -368,9 +490,9 @@ seed 2025 CI: [0.573, 0.702] | seed 2026 CI: [0.569, 0.707]
 <p class="reviewed">Last reviewed: 2026-10-09</p>
 
   </div></main>
-  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#part-1-the-four-ingredients-of-reproducibility">Part 1: the four ingredients of reproducibility</a><a href="#part-2-evaluate-against-a-baseline-with-uncertainty">Part 2: evaluate against a baseline, with uncertainty</a><a href="#part-3-write-the-report">Part 3: write the report</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#free-resources">Free resources</a></aside>
+  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#part-1-the-four-ingredients-of-reproducibility">Part 1: the four ingredients of reproducibility</a><a href="#record-the-environment">1. Record the environment</a><a href="#fingerprint-the-data">2. Fingerprint the data</a><a href="#control-randomness-with-seeds">3. Control randomness with seeds</a><a href="#one-command-from-data-to-results-with-provenance">4. One command from data to results, with provenance</a><a href="#part-2-evaluate-against-a-baseline-with-uncertainty">Part 2: evaluate against a baseline, with uncertainty</a><a href="#sensitivity-does-the-conclusion-depend-on-a-choice-you-made">Sensitivity: does the conclusion depend on a choice you made?</a><a href="#part-3-write-the-report">Part 3: write the report</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#ai-mentor-prompt">AI Mentor Prompt</a><a href="#free-resources">Free resources</a></aside>
 </div>
-<footer class="site">Data, AI &amp; Automation Path v0.8 · Applied AI, Data &amp; Automation Lab · Updated October 2026<br>
+<footer class="site"><b>Saiful The Techie</b> · Data, AI &amp; Automation Path v0.9.1 · Updated October 2026<br>
 Lesson text: <a href="../../../license.html">CC BY-NC-SA 4.0</a> · Code: <a href="../../../license.html#code-mit-license">MIT</a> · Free external resources belong to their respective owners.</footer>
 <script src="../../../search-index.js"></script>
 <script src="../../../assets/app.js"></script>

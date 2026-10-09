@@ -6,7 +6,7 @@
 <title>A/B Testing Part 2: Sample Size, Peeking and Causal Pitfalls — Data, AI &amp; Automation Path</title>
 <meta name="description" content="Size an experiment before it starts with a power analysis, see why checking results every day breaks your p-values, and learn the causal traps — confounding, selection and novelty — that fool analyses without randomisation.">
 <meta property="og:type" content="article">
-<meta property="og:site_name" content="Data, AI &amp; Automation Path">
+<meta property="og:site_name" content="Saiful The Techie">
 <meta property="og:title" content="A/B Testing Part 2: Sample Size, Peeking and Causal Pitfalls">
 <meta property="og:description" content="Size an experiment before it starts with a power analysis, see why checking results every day breaks your p-values, and learn the causal traps — confounding, selection and novelty — that fool analyses without randomisation.">
 <meta property="og:locale" content="en_US">
@@ -19,13 +19,13 @@ var n=null;try{n=localStorage.getItem('daa-nav')}catch(e){}
 if(n==='open'&&window.matchMedia&&matchMedia('(min-width: 961px)').matches)document.documentElement.setAttribute('data-nav','open');
 document.documentElement.classList.add('no-anim')})();</script>
 <link rel="stylesheet" href="../../../assets/style.css">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233f7d6a'/%3E%3Ctext x='16' y='21' font-family='sans-serif' font-size='13' font-weight='700' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
+
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="topbar">
   <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Open curriculum menu" title="Curriculum menu (press M)" aria-controls="sidebar" aria-expanded="false"><span class="ico-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span class="ico-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></button>
-  <a class="brand" href="../../../index.html"><span class="brand-badge">AI</span><span class="brand-text"><span class="brand-name">Data, AI &amp; Automation Path</span><span class="brand-version">v0.8</span></span></a>
+  <a class="brand" href="../../../index.html"><span class="brand-text"><span class="brand-name">Saiful The Techie</span><span class="brand-version">Data, AI &amp; Automation Path · v0.9.1</span></span></a>
   <nav class="top-links" aria-label="Main">
     <a href="../../../index.html" class="">Home</a><a href="../../../curriculum.html" class="">Curriculum</a><a href="../../../practice-files.html" class="">Practice files</a><a href="../../../glossary.html" class="">Glossary</a><a href="../../../how-to-learn.html" class="">How to learn</a><a href="../../../about.html" class="">About</a>
   </nav>
@@ -41,7 +41,7 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="layout wide">
   <nav class="sidebar" id="sidebar" aria-label="Curriculum">
     <div class="side-title">Curriculum</div>
-    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="77"><i></i></div><span class="bar-label" data-progress-label></span></div>
+    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="85"><i></i></div><span class="bar-label" data-progress-label></span></div>
 <div class="nav-phase"><a href="../../../learn/phase-0/index.html"><span class="nav-num">0</span>Foundations</a>
 </div>
 <div class="nav-phase"><a href="../../../learn/phase-1/index.html"><span class="nav-num">1</span>Analytics &amp; BI</a>
@@ -97,170 +97,217 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="files-box"><div class="files-head"><b>Practice files for this page</b><a href="../../../practice-files.html">All practice files →</a></div><ul><li><a href="../../../downloads/phase-2/data-science-scripts.zip" download>data-science-scripts.zip</a><span class="f-desc">All 21 Phase 2 lesson scripts (NumPy to research thinking), shared chart style, data folder and solutions · 230 KB</span></li><li><a href="../../../downloads/phase-2/ab_test_checkout.csv" download>ab_test_checkout.csv</a><span class="f-desc">10,836 portal sessions from a November A/B test of a one-page checkout (variant, device, converted, order value) · 377 KB</span></li><li><a href="../../../downloads/phase-2/orders_2025.csv" download>orders_2025.csv</a><span class="f-desc">4,246 clean orders for 2025 (synthetic, fixed seed): region, segment, channel, product, price, discount, status, delivery days, revenue · 472 KB</span></li></ul></div>
 <h2 id="what-is-it">What is it?</h2>
 <table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Topic</th>
 <th>Question</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td><strong>Sample size</strong></td>
-<td>How much data do we need to reliably detect the smallest effect worth acting on?</td>
+<td>How much data do we need to reliably detect the smallest effect
+worth acting on?</td>
 </tr>
-<tr>
+<tr class="even">
 <td><strong>Causal pitfalls</strong></td>
-<td>What can make us believe X causes Y when it doesn't, especially without randomisation, or when we analyse an experiment badly?</td>
+<td>What can make us believe X causes Y when it doesn’t, especially
+without randomisation, or when we analyse an experiment badly?</td>
 </tr>
 </tbody>
 </table>
-<div class="admonition job">
-<p class="admonition-title">Why it matters at work</p>
-<p>Most failed experiments are failed <strong>designs</strong>: too small to detect anything, stopped early on a lucky day, or analysed on whatever metric looked best. And most "insights" from dashboards are correlations that a confounder explains. Spotting these is what makes an analyst's recommendations safe to act on.</p>
+<div class="admonition job" data-markdown="1">
+<p class="admonition-title">
+Why it matters at work
+</p>
+<p>Most failed experiments are failed <strong>designs</strong>: too
+small to detect anything, stopped early on a lucky day, or analysed on
+whatever metric looked best. And most “insights” from dashboards are
+correlations that a confounder explains. Spotting these is what makes an
+analyst’s recommendations safe to act on.</p>
 </div>
 <p>The script is <code>14_ab_sample_size_pitfalls.py</code>.</p>
 <h2 id="part-1-sample-size-and-power">Part 1: sample size and power</h2>
 <p>Four numbers decide the sample size:</p>
 <table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Input</th>
 <th>Our choice</th>
 <th>Meaning</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td><strong>Baseline rate</strong></td>
 <td>6.7%</td>
 <td>Current conversion</td>
 </tr>
-<tr>
+<tr class="even">
 <td><strong>Minimum detectable effect (MDE)</strong></td>
 <td>+1.0 point</td>
 <td>The smallest lift worth shipping</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><strong>α (significance level)</strong></td>
 <td>0.05</td>
 <td>Accepted false-positive rate</td>
 </tr>
-<tr>
+<tr class="even">
 <td><strong>Power (1 − β)</strong></td>
 <td>80%</td>
-<td>Chance of detecting the MDE <em>if it's real</em></td>
+<td>Chance of detecting the MDE <em>if it’s real</em></td>
 </tr>
 </tbody>
 </table>
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">statsmodels.stats.power</span><span class="w"> </span><span class="kn">import</span> <span class="n">NormalIndPower</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">statsmodels.stats.proportion</span><span class="w"> </span><span class="kn">import</span> <span class="n">proportion_effectsize</span>
+<pre class="python"><code>from statsmodels.stats.power import NormalIndPower
+from statsmodels.stats.proportion import proportion_effectsize
 
-<span class="n">baseline</span><span class="p">,</span> <span class="n">mde</span> <span class="o">=</span> <span class="mf">0.067</span><span class="p">,</span> <span class="mf">0.010</span>
-<span class="n">effect</span> <span class="o">=</span> <span class="n">proportion_effectsize</span><span class="p">(</span><span class="n">baseline</span> <span class="o">+</span> <span class="n">mde</span><span class="p">,</span> <span class="n">baseline</span><span class="p">)</span>          <span class="c1"># Cohen's h</span>
-<span class="n">n_per_group</span> <span class="o">=</span> <span class="n">NormalIndPower</span><span class="p">()</span><span class="o">.</span><span class="n">solve_power</span><span class="p">(</span><span class="n">effect_size</span><span class="o">=</span><span class="n">effect</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">power</span><span class="o">=</span><span class="mf">0.80</span><span class="p">,</span> <span class="n">ratio</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Cohen's h = </span><span class="si">{</span><span class="n">effect</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> -&gt; </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">n_per_group</span><span class="p">)</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2"> sessions per variant (80% power, alpha 0.05)"</span><span class="p">)</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>Cohen's h = 0.0387 -&gt; 10477 sessions per variant (80% power, alpha 0.05)
-</code></pre></div>
-
-<p>About <strong>10,500 sessions per variant</strong>, roughly 21,000 in total. The portal gets 387 sessions a day, so:</p>
-<div class="codehilite"><pre><span></span><code>detect +0.5 pt:  40,595 per variant, ~210 days at 387 sessions/day
+baseline, mde = 0.067, 0.010
+effect = proportion_effectsize(baseline + mde, baseline)          # Cohen&#39;s h
+n_per_group = NormalIndPower().solve_power(effect_size=effect, alpha=0.05, power=0.80, ratio=1.0)
+print(f&quot;Cohen&#39;s h = {effect:.4f} -&gt; {np.ceil(n_per_group):.0f} sessions per variant (80% power, alpha 0.05)&quot;)</code></pre>
+<pre class="text"><code>Cohen&#39;s h = 0.0387 -&gt; 10477 sessions per variant (80% power, alpha 0.05)</code></pre>
+<p>About <strong>10,500 sessions per variant</strong>, roughly 21,000 in
+total. The portal gets 387 sessions a day, so:</p>
+<pre class="text"><code>detect +0.5 pt:  40,595 per variant, ~210 days at 387 sessions/day
 detect +1.0 pt:  10,477 per variant, ~55 days at 387 sessions/day
 detect +1.5 pt:   4,799 per variant, ~25 days at 387 sessions/day
-detect +2.0 pt:   2,778 per variant, ~15 days at 387 sessions/day
-</code></pre></div>
-
-<p><img alt="Line chart of sessions needed per variant against the smallest lift worth detecting: about 40,000 at +0.5 points, 10,477 at +1.0, falling to under 3,000 at +2.0." src="../../../images/phase-2/ab_sample_size.png" /></p>
-<p><strong>Halving the effect you want to detect quadruples the sample.</strong> Small effects on low conversion rates need a lot of traffic, so negotiate the MDE with the business before the test, in terms of money ("+1 point ≈ X orders a month").</p>
-<h3 id="was-our-november-test-big-enough">Was our November test big enough?</h3>
-<div class="codehilite"><pre><span></span><code>power of our test for +1.0 pt: 52%
-</code></pre></div>
-
-<p>The 4-week test had only <strong>52% power</strong> for a +1-point lift: a coin flip. It found a significant result because the true effect seems a bit larger (+1.2), but a team planning properly would have run it for about <strong>8 weeks</strong>. Underpowered tests mostly produce "not significant", and the significant ones tend to <strong>overestimate</strong> the effect.</p>
-<h2 id="part-2-peeking-checking-every-day">Part 2: peeking — checking every day</h2>
-<p>What if you check the p-value every day and stop as soon as p &lt; 0.05? The script simulates 2,000 <strong>A/A tests</strong> (both groups get the same experience, so there's no real effect), 28 days each:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_sims</span><span class="p">):</span>
-    <span class="n">a</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">binomial</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="p">(</span><span class="n">days</span><span class="p">,</span> <span class="n">per_day</span><span class="p">))</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">cumsum</span><span class="p">()</span>
-    <span class="n">b</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">binomial</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="p">(</span><span class="n">days</span><span class="p">,</span> <span class="n">per_day</span><span class="p">))</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">cumsum</span><span class="p">()</span>
-    <span class="n">n</span> <span class="o">=</span> <span class="n">per_day</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">days</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-    <span class="n">pvals</span> <span class="o">=</span> <span class="p">[</span><span class="n">proportions_ztest</span><span class="p">([</span><span class="n">b</span><span class="p">[</span><span class="n">d</span><span class="p">],</span> <span class="n">a</span><span class="p">[</span><span class="n">d</span><span class="p">]],</span> <span class="p">[</span><span class="n">n</span><span class="p">[</span><span class="n">d</span><span class="p">],</span> <span class="n">n</span><span class="p">[</span><span class="n">d</span><span class="p">]])[</span><span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="n">a</span><span class="p">[</span><span class="n">d</span><span class="p">]</span> <span class="o">+</span> <span class="n">b</span><span class="p">[</span><span class="n">d</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">days</span><span class="p">)]</span>
-    <span class="n">fp_end</span> <span class="o">+=</span> <span class="n">pvals</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mf">0.05</span>
-    <span class="n">fp_peek</span> <span class="o">+=</span> <span class="nb">min</span><span class="p">(</span><span class="n">pvals</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">0.05</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>A/A tests with no real effect: 'significant' at the end 4.5%, 'significant' on ANY day if you peek daily 26.5%
-</code></pre></div>
-
-<p>Analysed once at the end, about 5% of no-effect tests look significant, as designed. Stopping on the first day with p &lt; 0.05 makes it <strong>26.5%</strong>: more than <strong>five times</strong> the false-positive rate you think you have.</p>
-<p><strong>Fixes:</strong> fix the duration in advance (full weeks); if you must monitor, use methods designed for it (sequential tests, always-valid p-values), which many experimentation platforms provide.</p>
+detect +2.0 pt:   2,778 per variant, ~15 days at 387 sessions/day</code></pre>
+<figure>
+<img src="../../../images/phase-2/ab_sample_size.png"
+alt="Line chart of sessions needed per variant against the smallest lift worth detecting: about 40,000 at +0.5 points, 10,477 at +1.0, falling to under 3,000 at +2.0." />
+<figcaption aria-hidden="true">Line chart of sessions needed per variant
+against the smallest lift worth detecting: about 40,000 at +0.5 points,
+10,477 at +1.0, falling to under 3,000 at +2.0.</figcaption>
+</figure>
+<p><strong>Halving the effect you want to detect quadruples the
+sample.</strong> Small effects on low conversion rates need a lot of
+traffic, so negotiate the MDE with the business before the test, in
+terms of money (“+1 point ≈ X orders a month”).</p>
+<h3 id="was-our-november-test-big-enough">Was our November test big
+enough?</h3>
+<pre class="text"><code>power of our test for +1.0 pt: 52%</code></pre>
+<p>The 4-week test had only <strong>52% power</strong> for a +1-point
+lift: a coin flip. It found a significant result because the true effect
+seems a bit larger (+1.2), but a team planning properly would have run
+it for about <strong>8 weeks</strong>. Underpowered tests mostly produce
+“not significant”, and the significant ones tend to
+<strong>overestimate</strong> the effect.</p>
+<h2 id="part-2-peeking-checking-every-day">Part 2: peeking — checking
+every day</h2>
+<p>What if you check the p-value every day and stop as soon as p &lt;
+0.05? The script simulates 2,000 <strong>A/A tests</strong> (both groups
+get the same experience, so there’s no real effect), 28 days each:</p>
+<pre class="python"><code>for _ in range(n_sims):
+    a = rng.binomial(1, p, (days, per_day)).sum(axis=1).cumsum()
+    b = rng.binomial(1, p, (days, per_day)).sum(axis=1).cumsum()
+    n = per_day * np.arange(1, days + 1)
+    pvals = [proportions_ztest([b[d], a[d]], [n[d], n[d]])[1] if a[d] + b[d] &gt; 0 else 1 for d in range(days)]
+    fp_end += pvals[-1] &lt; 0.05
+    fp_peek += min(pvals) &lt; 0.05</code></pre>
+<pre class="text"><code>A/A tests with no real effect: &#39;significant&#39; at the end 4.5%, &#39;significant&#39; on ANY day if you peek daily 26.5%</code></pre>
+<p>Analysed once at the end, about 5% of no-effect tests look
+significant, as designed. Stopping on the first day with p &lt; 0.05
+makes it <strong>26.5%</strong>: more than <strong>five times</strong>
+the false-positive rate you think you have.</p>
+<p><strong>Fixes:</strong> fix the duration in advance (full weeks); if
+you must monitor, use methods designed for it (sequential tests,
+always-valid p-values), which many experimentation platforms
+provide.</p>
 <h2 id="part-3-causal-pitfalls">Part 3: causal pitfalls</h2>
-<h3 id="confounding-a-third-variable-drives-both">Confounding: a third variable drives both</h3>
-<p>Question from management: <em>"Portal orders are cancelled less often. Should we push every customer to the portal?"</em> This is <strong>observational</strong> data: customers chose their channel, so nothing was randomised.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">overall</span> <span class="o">=</span> <span class="n">orders</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"channel"</span><span class="p">)[</span><span class="s2">"cancelled"</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">mul</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">within</span> <span class="o">=</span> <span class="n">orders</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s2">"segment"</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s2">"channel"</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s2">"cancelled"</span><span class="p">,</span> <span class="n">aggfunc</span><span class="o">=</span><span class="s2">"mean"</span><span class="p">)</span><span class="o">.</span><span class="n">mul</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>cancellation rate by channel (%): {'Phone': 9.5, 'Portal': 5.8, 'Sales rep': 6.3}
+<h3 id="confounding-a-third-variable-drives-both">Confounding: a third
+variable drives both</h3>
+<p>Question from management: <em>“Portal orders are cancelled less
+often. Should we push every customer to the portal?”</em> This is
+<strong>observational</strong> data: customers chose their channel, so
+nothing was randomised.</p>
+<pre class="python"><code>overall = orders.groupby(&quot;channel&quot;)[&quot;cancelled&quot;].mean().mul(100).round(1)
+within = orders.pivot_table(index=&quot;segment&quot;, columns=&quot;channel&quot;, values=&quot;cancelled&quot;, aggfunc=&quot;mean&quot;).mul(100).round(1)</code></pre>
+<pre class="text"><code>cancellation rate by channel (%): {&#39;Phone&#39;: 9.5, &#39;Portal&#39;: 5.8, &#39;Sales rep&#39;: 6.3}
 channel          Phone  Portal  Sales rep
 segment
 Garment Factory    9.6     6.0        5.6
 Knitting Mill      6.7     4.9        8.2
 Retailer          15.2     9.5       11.0
-Trader             8.1     5.1        3.5
-</code></pre></div>
-
-<p>And who uses each channel (% of each channel's orders):</p>
-<div class="codehilite"><pre><span></span><code>segment    Garment Factory  Knitting Mill  Retailer  Trader
+Trader             8.1     5.1        3.5</code></pre>
+<p>And who uses each channel (% of each channel’s orders):</p>
+<pre class="text"><code>segment    Garment Factory  Knitting Mill  Retailer  Trader
 channel
 Phone                 51.0           17.0      13.0    19.0
 Portal                77.0           16.0       2.0     5.0
-Sales rep             53.0           17.0      12.0    19.0
-</code></pre></div>
-
+Sales rep             53.0           17.0      12.0    19.0</code></pre>
 <ul>
-<li><strong>Portal orders come mostly from garment factories (77%)</strong> and almost never from retailers (2%), the segment that cancels most. Part of the portal's lower rate is simply <strong>who uses it</strong>: segment is a <strong>confounder</strong>.</li>
-<li><strong>Within</strong> each segment, portal vs sales rep goes both ways (lower for mills and retailers, higher for factories and traders), and some cells are tiny (only 42 retailer portal orders: 4 cancellations). There's no consistent portal effect.</li>
-<li>Phone orders are consistently worse in every segment. That's worth investigating, but it's still not proof: maybe customers who are unsure phone in.</li>
+<li><strong>Portal orders come mostly from garment factories
+(77%)</strong> and almost never from retailers (2%), the segment that
+cancels most. Part of the portal’s lower rate is simply <strong>who uses
+it</strong>: segment is a <strong>confounder</strong>.</li>
+<li><strong>Within</strong> each segment, portal vs sales rep goes both
+ways (lower for mills and retailers, higher for factories and traders),
+and some cells are tiny (only 42 retailer portal orders: 4
+cancellations). There’s no consistent portal effect.</li>
+<li>Phone orders are consistently worse in every segment. That’s worth
+investigating, but it’s still not proof: maybe customers who are unsure
+phone in.</li>
 </ul>
-<p><strong>Conclusion:</strong> the data can't show that moving customers to the portal would reduce cancellations. To know, <strong>randomise</strong>: for example, offer a portal incentive to a random half of phone customers and compare.</p>
-<p>When the confounding is strong enough, the overall and within-group comparisons point in <strong>opposite directions</strong>. That's called <strong>Simpson's paradox</strong>.</p>
+<p><strong>Conclusion:</strong> the data can’t show that moving
+customers to the portal would reduce cancellations. To know,
+<strong>randomise</strong>: for example, offer a portal incentive to a
+random half of phone customers and compare.</p>
+<p>When the confounding is strong enough, the overall and within-group
+comparisons point in <strong>opposite directions</strong>. That’s called
+<strong>Simpson’s paradox</strong>.</p>
 <h3 id="other-traps">Other traps</h3>
 <table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Pitfall</th>
 <th>Example</th>
 <th>Defence</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td><strong>Selection bias</strong></td>
 <td>Surveying only customers who stayed</td>
 <td>Define the population before collecting data</td>
 </tr>
-<tr>
+<tr class="even">
 <td><strong>Reverse causation</strong></td>
 <td>Big orders get discounts (EDA lesson)</td>
 <td>Check timing and business rules</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><strong>Novelty effect</strong></td>
-<td>Users click a new design because it's new, then it wears off</td>
+<td>Users click a new design because it’s new, then it wears off</td>
 <td>Run full weeks; check the effect over time</td>
 </tr>
-<tr>
+<tr class="even">
 <td><strong>Multiple testing</strong></td>
-<td>Testing 20 metrics or segments: about 1 will be "significant" by chance</td>
+<td>Testing 20 metrics or segments: about 1 will be “significant” by
+chance</td>
 <td>One primary metric; correct for multiple tests</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><strong>Survivorship</strong></td>
 <td>Studying only successful launches</td>
 <td>Include the failures</td>
 </tr>
-<tr>
+<tr class="even">
 <td><strong>Peeking / optional stopping</strong></td>
 <td>Stopping on a lucky day</td>
 <td>Fix the duration; sequential methods</td>
@@ -269,35 +316,40 @@ Sales rep             53.0           17.0      12.0    19.0
 </table>
 <h2 id="common-mistakes">Common mistakes</h2>
 <table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Mistake</th>
 <th>What happens</th>
 <th>Fix</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>No sample size calculation</td>
-<td>Underpowered tests, "no result" after weeks</td>
+<td>Underpowered tests, “no result” after weeks</td>
 <td>Power analysis with an agreed MDE</td>
 </tr>
-<tr>
+<tr class="even">
 <td>MDE chosen to fit the traffic</td>
 <td>A test that can only detect huge effects</td>
 <td>Start from the business value of a lift</td>
 </tr>
-<tr>
-<td>Daily "is it significant yet?"</td>
+<tr class="odd">
+<td>Daily “is it significant yet?”</td>
 <td>Up to 5× more false positives</td>
 <td>Fixed horizon or sequential tests</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Treating observational gaps as effects</td>
 <td>Wrong strategy (push everyone to the portal)</td>
 <td>Compare within groups; randomise to be sure</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Ignoring tiny cells</td>
 <td>4 cancellations driving a conclusion</td>
 <td>Always show counts</td>
@@ -305,68 +357,143 @@ Sales rep             53.0           17.0      12.0    19.0
 </tbody>
 </table>
 <h2 id="try-it-yourself">Try it yourself</h2>
-<p><strong>Task:</strong> The CFO wants more certainty: 95% power instead of 80% for the +1-point lift. How many sessions per variant does that need, and how much longer would the test run?</p>
+<p><strong>Task:</strong> The CFO wants more certainty: 95% power
+instead of 80% for the +1-point lift. How many sessions per variant does
+that need, and how much longer would the test run?</p>
 <details>
-<summary>Show the solution</summary>
-<div class="codehilite"><pre><span></span><code><span class="n">n95</span> <span class="o">=</span> <span class="n">NormalIndPower</span><span class="p">()</span><span class="o">.</span><span class="n">solve_power</span><span class="p">(</span><span class="n">effect_size</span><span class="o">=</span><span class="n">effect</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">power</span><span class="o">=</span><span class="mf">0.95</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"95% power: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">n95</span><span class="p">)</span><span class="si">:</span><span class="s2">,.0f</span><span class="si">}</span><span class="s2"> per variant (</span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">n95</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">n_per_group</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">x the 80% design)"</span><span class="p">)</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>95% power: 17,346 per variant (1.66x the 80% design)
-</code></pre></div>
-
-<p>About <strong>66% more data</strong>: roughly 90 days instead of 55 at 387 sessions a day. A fair trade-off conversation: is lowering the chance of <em>missing</em> a real +1-point lift from 20% to 5% worth five more weeks?</p>
+<summary>
+Show the solution
+</summary>
+<pre class="python"><code>n95 = NormalIndPower().solve_power(effect_size=effect, alpha=0.05, power=0.95)
+print(f&quot;95% power: {np.ceil(n95):,.0f} per variant ({np.ceil(n95) / np.ceil(n_per_group):.2f}x the 80% design)&quot;)</code></pre>
+<pre class="text"><code>95% power: 17,346 per variant (1.66x the 80% design)</code></pre>
+About <strong>66% more data</strong>: roughly 90 days instead of 55 at
+387 sessions a day. A fair trade-off conversation: is lowering the
+chance of <em>missing</em> a real +1-point lift from 20% to 5% worth
+five more weeks?
 </details>
 <h2 id="quick-quiz">Quick quiz</h2>
 <div class="quiz-q" data-answer="1">
-<p>1. You want to detect a lift half as large as before. Roughly how does the sample size change?</p>
-<ol>
+<p>1. You want to detect a lift half as large as before. Roughly how
+does the sample size change?</p>
+<ol type="1">
 <li>It doubles</li>
 <li>It quadruples</li>
 <li>It halves</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B.</strong> Sample size grows with 1 ÷ effect².</p>
+<summary>
+Show answer
+</summary>
+<strong>B.</strong> Sample size grows with 1 ÷ effect².
 </details>
 </div>
 <div class="quiz-q" data-answer="1">
-<p>2. Why does stopping a test on the first day p &lt; 0.05 cause problems?</p>
-<ol>
+<p>2. Why does stopping a test on the first day p &lt; 0.05 cause
+problems?</p>
+<ol type="1">
 <li>It makes tests run too long</li>
 <li>It greatly increases the chance of a false positive</li>
 <li>It reduces the effect size</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B.</strong> In the simulation, from 4.5% to 26.5%.</p>
+<summary>
+Show answer
+</summary>
+<strong>B.</strong> In the simulation, from 4.5% to 26.5%.
 </details>
 </div>
 <div class="quiz-q" data-answer="1">
-<p>3. Portal orders cancel less, but portal users are mostly large factories. What is segment here?</p>
-<ol>
+<p>3. Portal orders cancel less, but portal users are mostly large
+factories. What is segment here?</p>
+<ol type="1">
 <li>The outcome</li>
 <li>A confounder</li>
 <li>The treatment</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B.</strong></p>
+<summary>
+Show answer
+</summary>
+<strong>B.</strong>
 </details>
 </div>
 <h2 id="summary">Summary</h2>
 <ul>
-<li>Size every experiment <strong>before</strong> it starts: baseline, MDE, α and power give the sample; traffic gives the duration.</li>
-<li>Underpowered tests waste time and exaggerate the effects they do find.</li>
-<li><strong>Don't peek and stop</strong>: it multiplies false positives. Fix the horizon or use sequential methods.</li>
-<li>Without randomisation, look for <strong>confounders</strong>, compare within groups, show counts, and recommend an experiment when the decision matters.</li>
+<li>Size every experiment <strong>before</strong> it starts: baseline,
+MDE, α and power give the sample; traffic gives the duration.</li>
+<li>Underpowered tests waste time and exaggerate the effects they do
+find.</li>
+<li><strong>Don’t peek and stop</strong>: it multiplies false positives.
+Fix the horizon or use sequential methods.</li>
+<li>Without randomisation, look for <strong>confounders</strong>,
+compare within groups, show counts, and recommend an experiment when the
+decision matters.</li>
 </ul>
-<div class="admonition job">
-<p class="admonition-title">Job-ready check</p>
-<p><strong>Interview question:</strong> <em>"Our dashboard shows that customers who use feature X spend 30% more. Should we make everyone use it?"</em></p>
-<p><strong>Strong answer:</strong> "Not yet. Users chose feature X, so they probably differ from non-users: larger, more engaged customers. That's confounding, and possibly reverse causation. I'd compare like-for-like segments to see how much of the gap remains, and then propose an A/B test, such as promoting X to a random half of users, sized with a power analysis for the smallest lift worth acting on."</p>
-<p><strong>Mini project:</strong> Write an experiment plan for "portal incentive for phone customers": hypothesis, randomisation unit, primary and guardrail metrics, MDE, sample size and duration, and the pitfalls you'll guard against.</p>
+<div class="admonition job" data-markdown="1">
+<p class="admonition-title">
+Job-ready check
+</p>
+<p><strong>Interview question:</strong> <em>“Our dashboard shows that
+customers who use feature X spend 30% more. Should we make everyone use
+it?”</em></p>
+<p><strong>Strong answer:</strong> “Not yet. Users chose feature X, so
+they probably differ from non-users: larger, more engaged customers.
+That’s confounding, and possibly reverse causation. I’d compare
+like-for-like segments to see how much of the gap remains, and then
+propose an A/B test, such as promoting X to a random half of users,
+sized with a power analysis for the smallest lift worth acting on.”</p>
+<p><strong>Mini project:</strong> Write an experiment plan for “portal
+incentive for phone customers”: hypothesis, randomisation unit, primary
+and guardrail metrics, MDE, sample size and duration, and the pitfalls
+you’ll guard against.</p>
 </div>
+<section class="mentor-prompt"><div class="mentor-head"><div><span class="eyebrow">AI study companion</span><h2 id="ai-mentor-prompt">AI Mentor Prompt</h2></div><button class="btn copy-prompt" type="button" data-copy-target="mentor-prompt-phase-2-ab-testing-02-sample-size-causal-pitfalls">Copy prompt</button></div><p>Paste this into ChatGPT, Claude, Gemini, or another capable assistant to turn this tutorial into an interactive mentoring session.</p><pre class="prompt-box"><code id="mentor-prompt-phase-2-ab-testing-02-sample-size-causal-pitfalls">You are my hands-on Python, statistics and data-science mentor.
+
+I am currently studying:
+&quot;A/B Testing Part 2: Sample Size, Peeking and Causal Pitfalls&quot;
+
+My level:
+Intermediate
+
+Teach me this topic interactively rather than giving me a long lecture.
+
+Use this sequence:
+
+1. Check what I already understand with one short diagnostic question.
+2. Explain the concept in simple language and give me the mental model first.
+3. Give me one small task using code, SQL, configuration, data, or architecture as appropriate.
+4. Wait for my attempt before showing a complete solution.
+5. Review my work and explain both what is correct and what needs improvement.
+6. Help me debug errors step by step instead of immediately replacing my work.
+7. Increase the difficulty gradually and connect each new step to the previous one.
+8. Relate what I am learning to real professional data/AI engineering work.
+9. Ask me to explain an important decision in my own words so you can check my understanding.
+10. At the end, ask me to build or modify one small feature independently.
+
+Important rules:
+- Do not do the entire exercise for me unless I explicitly ask.
+- Explain unfamiliar terminology before using it heavily.
+- Prefer current, production-relevant practices over outdated shortcuts.
+- Distinguish clearly between concepts, tool-specific behaviour, and optional alternatives.
+- If a technical fact, API, syntax, version, or best practice may have changed, verify it against current official documentation before teaching it.
+- Never invent command output, test results, benchmark numbers, cloud behaviour, or data results.
+- If something cannot be executed in the current environment, say so and give me the exact command or verification step I should run.
+- Keep me actively coding, querying, configuring, reasoning, or debugging throughout the session.
+- When useful, work from the tutorial practice files (data-science-scripts.zip, ab_test_checkout.csv, orders_2025.csv) instead of inventing unrelated examples.
+
+The concepts I need to master are:
+- Sample size
+- Causal pitfalls
+- power analysis
+- statistical power
+- minimum detectable effect
+- mde
+- effect size
+- cohen&#x27;s h
+
+Start by asking me one diagnostic question.</code></pre></section>
+
 <div class="terms-box"><div class="files-head"><b>Key terms in this lesson</b><a href="../../../glossary.html">Glossary →</a></div><div class="term-chips"><a class="term-chip" href="../../../glossary.html#confounding" title="When a third variable drives both the supposed cause and the outcome, creating a misleading relationship. Simpson&#x27;s paradox is the extreme case where the direction flips within groups.">Confounding</a><a class="term-chip" href="../../../glossary.html#peeking" title="Checking an experiment repeatedly and stopping as soon as it looks significant. It multiplies false positives; fix the duration or use sequential methods.">Peeking</a><a class="term-chip" href="../../../glossary.html#research-question" title="A specific, measurable, decision-linked question (who, what change, which outcome, how much, by when) that a study is designed to answer.">Research question</a><a class="term-chip" href="../../../glossary.html#statistical-power" title="The chance an experiment detects an effect of a given size if it really exists (usually 80%). A power analysis sets the sample size from the baseline, the minimum effect worth detecting and α.">Statistical power</a></div></div>
 <h2 id="free-resources">Free resources to go deeper</h2><ul class="resources"><li><a href="https://www.statsmodels.org/stable/stats.html#power-and-sample-size-calculations">Power analysis (statsmodels.stats.power)</a><span class="r-meta">statsmodels official docs · NormalIndPower, TTestIndPower and effect-size helpers.</span></li><li><a href="https://experimentguide.com/">Trustworthy Online Controlled Experiments — resources</a><span class="r-meta">Kohavi, Tang &amp; Xu (book site) · Pitfalls such as peeking, sample ratio mismatch and novelty effects.</span></li><li><a href="https://matheusfacure.github.io/python-causality-handbook/landing-page.html">Causal Inference for the Brave and True (free online book)</a><span class="r-meta">Matheus Facure · Confounding, randomisation and causal methods in Python.</span></li></ul>
 <div class="complete-bar"><span>Finished reading and did the exercise?</span>
@@ -375,9 +502,9 @@ Sales rep             53.0           17.0      12.0    19.0
 <p class="reviewed">Last reviewed: 2026-10-09</p>
 
   </div></main>
-  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#part-1-sample-size-and-power">Part 1: sample size and power</a><a href="#part-2-peeking-checking-every-day">Part 2: peeking — checking every day</a><a href="#part-3-causal-pitfalls">Part 3: causal pitfalls</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#free-resources">Free resources</a></aside>
+  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#part-1-sample-size-and-power">Part 1: sample size and power</a><a href="#was-our-november-test-big-enough">Was our November test big enough?</a><a href="#part-2-peeking-checking-every-day">Part 2: peeking — checking every day</a><a href="#part-3-causal-pitfalls">Part 3: causal pitfalls</a><a href="#confounding-a-third-variable-drives-both">Confounding: a third variable drives both</a><a href="#other-traps">Other traps</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#ai-mentor-prompt">AI Mentor Prompt</a><a href="#free-resources">Free resources</a></aside>
 </div>
-<footer class="site">Data, AI &amp; Automation Path v0.8 · Applied AI, Data &amp; Automation Lab · Updated October 2026<br>
+<footer class="site"><b>Saiful The Techie</b> · Data, AI &amp; Automation Path v0.9.1 · Updated October 2026<br>
 Lesson text: <a href="../../../license.html">CC BY-NC-SA 4.0</a> · Code: <a href="../../../license.html#code-mit-license">MIT</a> · Free external resources belong to their respective owners.</footer>
 <script src="../../../search-index.js"></script>
 <script src="../../../assets/app.js"></script>

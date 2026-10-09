@@ -9,6 +9,26 @@ prerequisites: ["phase-3/data-quality/03-data-contracts-freshness-alerting"]
 keywords: [dbt, dbt core, duckdb, model, source, ref, data test, staging, lineage, ELT]
 reviewed: 2026-10-09
 files: [phase-3/dbt-orders-project.zip, phase-3/data-engineering-scripts.zip]
+youtube:
+  title: "dbt (Data Build Tool) crash course for beginners: Zero to Hero"
+  creator: "Data Tech"
+  url: "https://www.youtube.com/watch?v=C6BNAfaeqXY&t=530s"
+  video_id: "C6BNAfaeqXY"
+  start_seconds: 530
+  language: "English"
+  level: "Beginner → Intermediate"
+  reviewed: "2026-10-09"
+  why_recommended: "A practical companion for dbt project structure, model creation and tests. The video uses dbt Cloud/BigQuery, while this lesson uses local dbt Core/DuckDB, so focus on the shared dbt concepts and then apply them to the supplied local practice project."
+  timestamps:
+    - label: "Core concepts and project structure"
+      time: "08:50"
+      url: "https://www.youtube.com/watch?v=C6BNAfaeqXY&t=530s"
+    - label: "Model creation and execution"
+      time: "31:28"
+      url: "https://www.youtube.com/watch?v=C6BNAfaeqXY&t=1888s"
+    - label: "Generic and singular tests"
+      time: "59:04"
+      url: "https://www.youtube.com/watch?v=C6BNAfaeqXY&t=3544s"
 resources:
   - title: "What is dbt?"
     url: "https://docs.getdbt.com/docs/introduction?version=1.12"

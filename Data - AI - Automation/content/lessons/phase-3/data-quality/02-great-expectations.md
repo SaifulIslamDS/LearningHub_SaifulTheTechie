@@ -1,27 +1,48 @@
 ---
-title: "Great Expectations"
+title: Great Expectations
 order: 2
-summary: "Express reusable data-quality assertions as Expectations and validate the 2025 orders through an Expectation Suite."
+summary: Express reusable data-quality assertions as Expectations and validate the 2025 orders through an Expectation Suite.
 level: Intermediate
-time: "45 min"
-topics: ["Great Expectations"]
-prerequisites: ["phase-3/data-quality/01-validation-rules-pytest"]
-keywords: [data quality, great expectations, expectation, expectation suite, validation definition, data tests]
+time: 45 min
+topics:
+- Great Expectations
+prerequisites:
+- phase-3/data-quality/01-validation-rules-pytest
+keywords:
+- data quality
+- great expectations
+- expectation
+- expectation suite
+- validation definition
+- data tests
 reviewed: 2026-10-09
-files: [phase-3/data-engineering-scripts.zip]
+files:
+- phase-3/data-engineering-scripts.zip
 resources:
-  - title: "Define Expectations"
-    url: "https://docs.greatexpectations.io/docs/core/define_expectations/"
-    source: "Great Expectations"
-    note: "Official GX Core guide to Expectations and Expectation Suites."
-  - title: "Connect to dataframe data"
-    url: "https://docs.greatexpectations.io/docs/core/connect_to_data/dataframes/"
-    source: "Great Expectations"
-    note: "Official pattern for a pandas Data Source, Data Asset and whole-dataframe Batch Definition."
-  - title: "Create a Validation Definition"
-    url: "https://docs.greatexpectations.io/docs/core/run_validations/create_a_validation_definition/"
-    source: "Great Expectations"
-    note: "Shows how a Batch Definition and Expectation Suite are linked for validation."
+- title: Define Expectations
+  url: https://docs.greatexpectations.io/docs/core/define_expectations/
+  source: Great Expectations
+  note: Official GX Core guide to Expectations and Expectation Suites.
+- title: Connect to dataframe data
+  url: https://docs.greatexpectations.io/docs/core/connect_to_data/dataframes/
+  source: Great Expectations
+  note: Official pattern for a pandas Data Source, Data Asset and whole-dataframe Batch Definition.
+- title: Create a Validation Definition
+  url: https://docs.greatexpectations.io/docs/core/run_validations/create_a_validation_definition/
+  source: Great Expectations
+  note: Shows how a Batch Definition and Expectation Suite are linked for validation.
+youtube:
+  title: Great Expectations (GX) for DATA Testing - Introduction
+  creator: JoanMedia (Joan Esquivel)
+  url: https://www.youtube.com/watch?v=F3yvXqzkDhU
+  video_id: F3yvXqzkDhU
+  duration: '20:31'
+  language: English
+  level: Intermediate
+  reviewed: '2026-10-09'
+  why_recommended: A focused introduction to GX Core for Python data testing. Use it as a visual companion for expectations
+    and validation, but follow this lesson and the current official GX documentation for the exact API used in the supplied
+    practice script.
 ---
 
 ## What is it?

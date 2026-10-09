@@ -8,11 +8,11 @@ How this site grows from a skeleton to a complete, job-ready tutorial site.
 
 Status key: ✅ done · 🔄 in progress · ⏳ planned
 
-**Current version: v0.8** · Next: **M8 → v0.9**
+**Current release: v0.9.1** · M8 remains in progress · **Next approved module: AI-Ready Data**
 
 **Release rule:**
 
-- Every release is packaged as `data-ai-automation-path-vX.Y.zip`.
+- Every release is packaged as `data-ai-automation-path-vX.Y[.Z].zip`. Patch releases may ship platform/content corrections inside an in-progress milestone.
 - The version shows under the site name in the top bar (set in `site.yml`).
 - When a version is complete, its milestone is marked ✅ here and listed in `CHANGELOG.md`.
 
@@ -30,7 +30,7 @@ Status key: ✅ done · 🔄 in progress · ⏳ planned
 | M5 | Platform upgrade 1 | v0.6 | Glossary (139 terms), scored quizzes, sitemap/robots, Open Graph share cards, link-check issues | ✅ |
 | M6 | Phase 2: Data Science | v0.7 | NumPy → research thinking (21 lessons), Phase 2 project, 2025 practice data | ✅ |
 | M7 | Phase 3A: Data Engineering — storing & serving | v0.8 | Ingestion, advanced SQL, database engineering, warehousing, lakehouse, Docker (13 lessons) | ✅ |
-| M8 | Phase 3B: Data Engineering — moving & trusting | v0.9 | ETL/ELT, data quality, orchestration, dbt, cloud & IaC, AI-ready data, Spark & Kafka, Phase 3 project | 🔄 in progress |
+| M8 | Phase 3B: Data Engineering — moving & trusting | v0.9.x | ETL/ELT, data quality, orchestration, dbt, cloud & IaC, AI-ready data, Spark & Kafka, Phase 3 project | 🔄 in progress |
 | M9 | Phase 5: LLM & RAG | v1.0 | NLP → RAG evaluation, Phase 5 project | ⏳ |
 | M10 | Phase 6: Agents & Automation | v1.1 | Agents, n8n, MCP, frameworks, Phase 6 project | ⏳ |
 | M11 | Phase 4: ML Engineering | v1.2 | Regression → MLOps | ⏳ |
@@ -155,11 +155,11 @@ Phase 3 (13 modules, 55 topics) is split into two releases. 3A covers 6 modules 
 - [x] Every output from a real run: PostgreSQL 16.15, Docker Engine 29.8 / Compose 5.5, deltalake 1.6, PyIceberg 0.12, sqlglot 30, DuckDB 1.5. BigQuery-only commands are shown for reference and marked as not executed.
 - [x] Glossary: 182 terms (14 new). Phase 3A: 25 of 25 topics. Overall: 135 of 371.
 
-## M8: Phase 3B — Data Engineering: moving & trusting data (v0.9) 🔄 in progress
+## M8: Phase 3B — Data Engineering: moving & trusting data (v0.9.x release family) 🔄 in progress
 
 Finishes Phase 3: 7 modules, 30 topics, about **18 lessons**, plus the **Phase 3 milestone project page**.
 
-**Current working checkpoint:** ETL/ELT ✅ · Data Quality ✅ · dbt ✅. Phase 3 is **40/55 topics** with **21 lessons**. **Next approved module: AI-Ready Data.**
+**Current release checkpoint (v0.9.1):** ETL/ELT ✅ · Data Quality ✅ · dbt ✅. Phase 3 is **40/55 topics** with **21 lessons**. v0.9.1 also fixes learner-facing generated pages, adds roadmap projections instead of a generic future-status label, adds a professional AI Mentor Prompt to every written tutorial, and adds reviewed YouTube companions to every M8 tutorial completed so far (ETL/ELT, Data Quality and dbt). **Next approved module: AI-Ready Data.**
 
 **Planned lessons** (topics in brackets must match `curriculum.yml` exactly):
 
@@ -239,11 +239,14 @@ Finishes Phase 3: 7 modules, 30 topics, about **18 lessons**, plus the **Phase 3
 
 ## Rules for every remaining milestone
 
-For each module: write a lesson for every planned topic, run every example and paste the real result, add 3–4 checked free resources, add a `_module.md` intro, and list the module's practice files in `content/downloads/files.yml`. Each phase also gets a milestone project page in `content/projects/<phase-id>.md`. For fast-changing tools (LangGraph, agent SDKs, MCP, Fabric, Langfuse):
+The curriculum remains authoritative for **topic coverage**, but it does not dictate a one-topic/one-page tutorial structure. Split or combine topics when that produces a clearer learning sequence. For each module: cover every approved curriculum topic exactly, add a `_module.md` introduction, teach with the deep-tutorial standard, verify every executable result honestly, synchronize practice files with the written lesson, and list downloadable assets in `content/downloads/files.yml`. Every written tutorial automatically receives the professional **AI Mentor Prompt**. Add one carefully reviewed YouTube companion only when a strong video genuinely reinforces that tutorial; never insert an unreviewed placeholder merely to fill the frame. Resources are curated for usefulness rather than forced to a fixed count. Each phase also gets a milestone project page in `content/projects/<phase-id>.md` when that project is due in the roadmap.
 
-- [ ] Check the official docs on the day you write the lesson.
-- [ ] Put the tool version in the lesson.
-- [ ] Re-review after 6 months, using the `reviewed:` date in each lesson.
+For fast-changing tools (LangGraph, agent SDKs, MCP, Fabric, Langfuse, dbt, orchestration/cloud services):
+
+- [ ] Check current official documentation on the day the tutorial is written or materially revised.
+- [ ] Record the relevant tool/version context where it affects syntax or behaviour.
+- [ ] Re-review time-sensitive material using the lesson `reviewed:` date.
+- [ ] Label execution evidence honestly as RUN-HERE, RUN-BY-OWNER or REFERENCE-ONLY where useful.
 
 ## M14: Platform upgrade 2 (v2.0)
 
@@ -254,14 +257,19 @@ For each module: write a lesson for every planned topic, run every example and p
 
 ---
 
-## Definition of done: one lesson
+## Definition of done: one tutorial
 
-- [ ] Follows the lesson template, including the exercise, 3 quiz questions and the job-ready check.
-- [ ] Every code example was run, and every shown result matches the actual output.
-- [ ] Facts were checked against official docs, and the `reviewed:` date is set.
-- [ ] Free resources were opened and work.
-- [ ] `python build.py` passes with no warnings and no broken links.
-- [ ] Read once on a phone in both light and dark mode.
+- [ ] Covers its declared `curriculum.yml` topic strings exactly and fits a logical learning sequence.
+- [ ] Uses the deep-tutorial structure where appropriate: mental model → explanation → code/data/config → real output → explanation → guided build → completed implementation → practice/resources → next tutorial.
+- [ ] Every shown executable result is real. If the current environment cannot run a tool, the tutorial gives exact owner-side verification steps and does not invent output.
+- [ ] Practice files, when referenced, exist and stay synchronized with the tutorial.
+- [ ] The generated page includes the professional **AI Mentor Prompt** and its copy control.
+- [ ] A YouTube companion is included only when a relevant video has been reviewed; the written tutorial remains complete without it.
+- [ ] Time-sensitive facts were checked against official documentation and the `reviewed:` date is current.
+- [ ] Curated resources were checked and explain why they are useful.
+- [ ] Quiz, common-mistakes, summary and job-ready sections are optional rather than compulsory.
+- [ ] The full source-driven build passes with no warnings and no broken internal links before a release is declared ready.
+- [ ] The generated tutorial is readable at mobile width and in both light and dark appearance.
 
 ## Working rhythm (suggested)
 

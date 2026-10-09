@@ -1,7 +1,7 @@
 # Handover: Saiful The Techie — Software & AI Engineering Learning Hub
 
-> **Current release:** v0.5.0 (2026-10-09)  
-> **Next approved milestone:** **v0.6.0 — Advanced Software Engineering**  
+> **Current release:** v0.5.2 (2026-10-09)  
+> **Next approved milestone:** **v0.6.0 — Complete Level 01: Full Stack Project 2 + AI-Assisted Coding**  
 > **Owner:** Saiful Islam  
 > **Brand:** Saiful The Techie
 
@@ -45,8 +45,8 @@ They may appear only when they genuinely improve a lesson.
 
 ## 3. Page responsibilities
 
-- **Curriculum:** collapsible roadmap and source-topic map.
-- **Module:** concise introduction, learning sequence, tutorial cards, downloads, source coverage.
+- **Curriculum:** collapsible roadmap and topic map.
+- **Module:** concise introduction, learning sequence, tutorial cards, downloads and topic coverage. Do not display source-module bookkeeping.
 - **Tutorial:** the actual teaching product; detailed, code-rich and practical.
 - **Practice:** repetition, executable examples and starter/reference/completed files.
 - **Project:** integrated multi-skill build.
@@ -138,9 +138,28 @@ youtube:
       time: "04:20"
 ```
 
-`build.py` renders a privacy-enhanced `youtube-nocookie.com` iframe, timestamp links and a direct external fallback.
+`build.py` renders video metadata and a direct fallback. `assets/app.js` injects the privacy-enhanced YouTube iframe only over HTTP(S); direct `file://` use intentionally stays on the clean external-link fallback to avoid player identification/referrer errors.
 
 Use one primary companion by default. Verify availability/relevance with web access. Prefer official channels or respected educators. Current official docs remain authoritative for version-sensitive details.
+
+
+## 8.1 Permanent tutorial companion layers (v0.5.1)
+
+Every authored tutorial now renders a **Learn this lesson with AI** block. `build.py` generates the prompt from the tutorial title, level, mapped curriculum topics and practice-file list. The prompt explicitly asks the frontier LLM to diagnose, teach, wait for the learner's attempt, review code, debug rather than replace, and verify version-sensitive claims.
+
+Reviewed YouTube companions can come from either per-lesson `youtube:` front matter or the central `content/youtube.yml` catalogue. Use one strong primary video per suitable tutorial by default; reuse a high-quality long course with different timestamps when that is better than adding many weak videos.
+
+The five-layer learning model is now:
+
+```text
+Read → Build → Watch → Learn with AI → Verify in official docs
+```
+
+The written Saiful The Techie tutorial remains primary.
+
+## 8.2 Roadmap UX + collapsible levels (v0.5.2)
+
+Do not flood the active learner navigation with unavailable lessons. Level pages show **Available learning** first and place future modules in a collapsed **Roadmap**. Level 01 and Level 02 sidebar controls are independently collapsible. A future module page may list its curriculum topics, but it must not create one fake lesson row per topic and must not use “Coming soon” as the dominant learner experience.
 
 ## 9. Saiful The Techie design system
 
@@ -184,27 +203,31 @@ Also delivered:
 
 ## 11. Next approved task — v0.6.0
 
-**Advanced Software Engineering** — Level 02 Modules 01–17:
+**Complete Level 01 — Modules 53–67** before starting Level 02.
 
-- advanced TypeScript / OOP
-- Node runtime and core modules
-- Express + TypeScript
-- PostgreSQL connection and CRUD
-- clean/scalable backend architecture
-- relational modelling and database design
-- normalization
-- PostgreSQL management/data types
-- SQL querying, dates, groups and joins
-- subqueries, views, functions, procedures, triggers and indexing
-- production database assignment
+### Full Stack Project 2 — Modules 53–60
 
-Before writing:
+- requirement analysis, user stories and acceptance criteria
+- Next.js + Node + Express + MongoDB/Mongoose + TypeScript + ShadCN
+- modular architecture
+- auth/RBAC
+- SSLCommerz
+- Ollama/local AI integration
+- AI-assisted review/refactoring/security
+- deployment and final submission
 
-1. Read `ROADMAP.md`, this handover, `CONTRIBUTING.md`, `curriculum.yml` Level 02 Modules 01–17 and the current tutorial template.
-2. Baseline build current v0.5.
-3. Check available PostgreSQL/tooling before claiming runnable output.
-4. Plan a connected backend/database practice project instead of isolated snippets only.
-5. Research current official docs for version-sensitive technology.
+### AI-Assisted Coding — Modules 61–67
+
+- responsible AI-assisted coding workflow
+- PRD/spec/prompt/review
+- design-to-code tools
+- Cursor
+- Claude Code / terminal agentic development
+- AI-assisted testing/review/refactoring/security
+- local models and coding-tool ecosystem
+- final project showcase
+
+The audit found that the previous roadmap skipped these 15 Level 01 modules. Do not begin Level 02 until they are authored. Read `LEARNING_PATH_AUDIT.md` before continuing.
 
 ## 12. Standing conversation workflow
 

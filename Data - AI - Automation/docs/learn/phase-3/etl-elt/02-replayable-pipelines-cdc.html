@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en" data-root="../../../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Replayable Pipelines and Change Data Capture — Data, AI &amp; Automation Path</title>
+<meta name="description" content="Capture inserts, updates and deletes as ordered events, then replay or resume them without losing the source-of-truth sequence.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Saiful The Techie">
+<meta property="og:title" content="Replayable Pipelines and Change Data Capture">
+<meta property="og:description" content="Capture inserts, updates and deletes as ordered events, then replay or resume them without losing the source-of-truth sequence.">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+
+<script>(function(){var t=null;try{t=localStorage.getItem('daa-theme')}catch(e){}
+if(!t)t=(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';
+document.documentElement.setAttribute('data-theme',t);
+var n=null;try{n=localStorage.getItem('daa-nav')}catch(e){}
+if(n==='open'&&window.matchMedia&&matchMedia('(min-width: 961px)').matches)document.documentElement.setAttribute('data-nav','open');
+document.documentElement.classList.add('no-anim')})();</script>
+<link rel="stylesheet" href="../../../assets/style.css">
+
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Open curriculum menu" title="Curriculum menu (press M)" aria-controls="sidebar" aria-expanded="false"><span class="ico-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span class="ico-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></button>
+  <a class="brand" href="../../../index.html"><span class="brand-text"><span class="brand-name">Saiful The Techie</span><span class="brand-version">Data, AI &amp; Automation Path · v0.9.1</span></span></a>
+  <nav class="top-links" aria-label="Main">
+    <a href="../../../index.html" class="">Home</a><a href="../../../curriculum.html" class="">Curriculum</a><a href="../../../practice-files.html" class="">Practice files</a><a href="../../../glossary.html" class="">Glossary</a><a href="../../../how-to-learn.html" class="">How to learn</a><a href="../../../about.html" class="">About</a>
+  </nav>
+  <div class="top-spacer"></div>
+  <div class="search" role="search">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input id="searchInput" type="search" placeholder="Search lessons, tools, topics" aria-label="Search" autocomplete="off">
+    <kbd>/</kbd>
+    <div class="search-results" id="searchResults" role="listbox"></div>
+  </div>
+  <button class="icon-btn theme-toggle" id="themeBtn" aria-label="Toggle light or dark mode" title="Light / dark"><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
+</header>
+<div class="layout wide">
+  <nav class="sidebar" id="sidebar" aria-label="Curriculum">
+    <div class="side-title">Curriculum</div>
+    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="85"><i></i></div><span class="bar-label" data-progress-label></span></div>
+<div class="nav-phase"><a href="../../../learn/phase-0/index.html"><span class="nav-num">0</span>Foundations</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-1/index.html"><span class="nav-num">1</span>Analytics &amp; BI</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-2/index.html"><span class="nav-num">2</span>Data Science</a>
+</div>
+<div class="nav-phase current open"><a href="../../../learn/phase-3/index.html"><span class="nav-num">3</span>Data Engineering</a>
+<ul class="nav-modules">
+<li><a class="" href="../../../learn/phase-3/data-ingestion/index.html">Data Ingestion</a>
+</li>
+<li><a class="" href="../../../learn/phase-3/advanced-sql/index.html">Advanced SQL</a>
+</li>
+<li><a class="" href="../../../learn/phase-3/database-engineering/index.html">Database Engineering</a>
+</li>
+<li><a class="" href="../../../learn/phase-3/data-warehousing/index.html">Data Warehousing</a>
+</li>
+<li><a class="" href="../../../learn/phase-3/lakehouse/index.html">Lakehouse &amp; Open Table Formats</a>
+</li>
+<li><a class="current" href="../../../learn/phase-3/etl-elt/index.html">ETL / ELT</a>
+<ul class="nav-lessons">
+<li><a class="" data-lesson="phase-3/etl-elt/01-modular-idempotent-incremental" href="../../../learn/phase-3/etl-elt/01-modular-idempotent-incremental.html">Modular, Idempotent Pipelines with Incremental Loads</a></li>
+<li><a class="current" data-lesson="phase-3/etl-elt/02-replayable-pipelines-cdc" href="../../../learn/phase-3/etl-elt/02-replayable-pipelines-cdc.html">Replayable Pipelines and Change Data Capture</a></li>
+</ul>
+</li>
+<li><a class="" href="../../../learn/phase-3/data-quality/index.html">Data Quality &amp; Contracts</a>
+</li>
+<li><a class="" href="../../../learn/phase-3/docker/index.html">Docker</a>
+</li>
+<li><a class="" href="../../../learn/phase-3/orchestration/index.html">Orchestration</a>
+</li>
+<li><a class="" href="../../../learn/phase-3/dbt/index.html">dbt</a>
+</li>
+<li><a class="" href="../../../learn/phase-3/cloud-iac/index.html">Cloud &amp; Infrastructure as Code</a>
+</li>
+<li><a class="" href="../../../learn/phase-3/ai-ready-data/index.html">AI-Ready Data</a>
+</li>
+<li><a class="" href="../../../learn/phase-3/big-data-streaming/index.html">Big Data &amp; Streaming</a>
+</li>
+</ul>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-4/index.html"><span class="nav-num">4</span>ML Engineering</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-5/index.html"><span class="nav-num">5</span>LLM &amp; RAG</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-6/index.html"><span class="nav-num">6</span>Agents &amp; Automation</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-7/index.html"><span class="nav-num">7</span>LLMOps &amp; Governance</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-8/index.html"><span class="nav-num">8</span>Capstone</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-9/index.html"><span class="nav-num">9</span>Career</a>
+</div>
+<div class="side-extra"><a href="../../../index.html">Home</a><a href="../../../curriculum.html">Full curriculum map</a><a href="../../../practice-files.html">Practice files</a><a href="../../../glossary.html">Glossary</a><a href="../../../how-to-learn.html">How to learn here</a><a href="../../../about.html">About &amp; contributing</a></div></nav>
+  <main class="main" id="main"><div class="content">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../../index.html">Home</a><span class="sep">/</span><a href="../../../learn/phase-3/index.html">Phase 3</a><span class="sep">/</span><a href="../../../learn/phase-3/etl-elt/index.html">ETL / ELT</a><span class="sep">/</span><span>Replayable Pipelines and Change Data Capture</span></nav>
+<h1>Replayable Pipelines and Change Data Capture</h1>
+<p class="lead">Capture inserts, updates and deletes as ordered events, then replay or resume them without losing the source-of-truth sequence.</p>
+<div class="meta"><span class="pill">Phase <b>3</b> · Data Engineering</span><span class="pill">Level <b>Intermediate</b></span><span class="pill">Time <b>45 min</b></span></div>
+<div class="admonition note"><p class="admonition-title">Before you start</p><p><a href="../../../learn/phase-3/etl-elt/01-modular-idempotent-incremental.html">Modular, Idempotent Pipelines with Incremental Loads</a></p></div>
+<div class="files-box"><div class="files-head"><b>Practice files for this page</b><a href="../../../practice-files.html">All practice files →</a></div><ul><li><a href="../../../downloads/phase-3/data-engineering-scripts.zip" download>data-engineering-scripts.zip</a><span class="f-desc">Phase 3 scripts: ingestion, PostgreSQL, advanced SQL, warehousing, lakehouse, Docker, ETL/CDC, data quality, plus the dbt mini-project and verification scripts · 476 KB</span></li><li><a href="../../../downloads/phase-3/orders_cdc_events.jsonl" download>orders_cdc_events.jsonl</a><span class="f-desc">Six deterministic practice CDC events (create/update/delete) derived from the 2025 orders for replay and recovery exercises · 4 KB</span></li></ul></div>
+<h2 id="what-is-it">What is it?</h2>
+<p>A pipeline is <strong>replayable</strong> when you can rebuild the
+same state from a known starting point plus the same ordered inputs.
+This is useful after a bad deployment, a corrupted target, a changed
+transformation rule, or a partial failure.</p>
+<p><strong>Change data capture (CDC)</strong> records row-level changes
+such as:</p>
+<ul>
+<li><code>c</code> — create / insert</li>
+<li><code>u</code> — update</li>
+<li><code>d</code> — delete</li>
+</ul>
+<p>Instead of repeatedly scanning an entire source table, a CDC system
+reads the change stream and applies those events downstream in
+order.</p>
+<div class="admonition job" data-markdown="1">
+<p class="admonition-title">
+Why it matters at work
+</p>
+<p>Incremental timestamps can miss deletes and can miss updates when the
+source does not maintain a reliable <code>updated_at</code>. CDC
+captures the operations themselves. Production systems such as Debezium
+can read database transaction logs and publish change events for
+downstream pipelines. A data engineer must also know how to recover:
+keep an ordered offset/checkpoint, make consumers safe to resume, and
+preserve enough raw history to replay.</p>
+</div>
+<p>The practice files are <code>15_cdc_replay.py</code> and
+<code>data/orders_cdc_events.jsonl</code>. The tiny event log is
+generated deterministically by
+<code>tools/make_phase3b_etl_data.py</code> with seed
+<strong>2026</strong>.</p>
+<h2 id="step-1-understand-a-cdc-event">Step 1: understand a CDC
+event</h2>
+<p>Our practice events use a simplified shape inspired by production CDC
+envelopes:</p>
+<pre class="json"><code>{
+  &quot;event_id&quot;: &quot;evt-001&quot;,
+  &quot;sequence&quot;: 1,
+  &quot;op&quot;: &quot;u&quot;,
+  &quot;key&quot;: {&quot;order_id&quot;: 10521},
+  &quot;before&quot;: {&quot;status&quot;: &quot;Delivered&quot;, &quot;...&quot;: &quot;...&quot;},
+  &quot;after&quot;: {&quot;status&quot;: &quot;Cancelled&quot;, &quot;...&quot;: &quot;...&quot;}
+}</code></pre>
+<p>The full practice event stores the complete before/after row. The
+important fields are:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Why it exists</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>event_id</code></td>
+<td>Stable identity for deduplication/auditing</td>
+</tr>
+<tr class="even">
+<td><code>sequence</code></td>
+<td>Ordered position used for replay/checkpointing</td>
+</tr>
+<tr class="odd">
+<td><code>op</code></td>
+<td>What happened: create, update or delete</td>
+</tr>
+<tr class="even">
+<td><code>key</code></td>
+<td>Which business row changed</td>
+</tr>
+<tr class="odd">
+<td><code>before</code> / <code>after</code></td>
+<td>Old and new row images</td>
+</tr>
+<tr class="even">
+<td><code>ts_ms</code></td>
+<td>Source/event time metadata</td>
+</tr>
+</tbody>
+</table>
+<p>Real CDC formats vary. Debezium events similarly carry operation
+metadata plus <code>before</code> and <code>after</code> row data for
+changes.</p>
+<h2 id="step-2-apply-each-event-deterministically">Step 2: apply each
+event deterministically</h2>
+<p>The consumer applies events by key:</p>
+<pre class="python"><code>def apply_event(state, event):
+    order_id = int(event[&quot;key&quot;][&quot;order_id&quot;])
+    op = event[&quot;op&quot;]
+
+    if op in {&quot;c&quot;, &quot;u&quot;}:
+        state[order_id] = event[&quot;after&quot;]
+    elif op == &quot;d&quot;:
+        state.pop(order_id, None)
+    else:
+        raise ValueError(f&quot;unsupported CDC op: {op}&quot;)</code></pre>
+<p>Our generated log contains all three operations:</p>
+<pre class="text"><code>CDC log: 6 events | create 1 | update 4 | delete 1</code></pre>
+<p>The six events are intentionally reversible: two temporary
+business-row changes are later restored, and one temporary row is
+inserted then deleted. That lets the final state reconcile exactly to
+the shared 2025 source.</p>
+<h2 id="step-3-replay-from-an-immutable-starting-point">Step 3: replay
+from an immutable starting point</h2>
+<p>A replay starts from the same base snapshot and applies events in
+sequence:</p>
+<pre class="python"><code>def replay(events):
+    state = base_state()
+    for event in events:
+        apply_event(state, event)
+    return state</code></pre>
+<p>Real output:</p>
+<pre class="text"><code>full replay: sequence 6 | rows 4246 | source match True | net revenue 5478357.79</code></pre>
+<p>This is the key property: given the same base snapshot and same
+ordered event log, we can rebuild the same result. The known answers
+still hold: <strong>4,246 orders and BDT 5,478,357.79 net
+revenue</strong>.</p>
+<p>Do not confuse <strong>replayability</strong> with blindly applying
+old events to any current table. A replay needs a defined starting state
+and event range. In production, that might be a snapshot plus a Kafka
+offset, database log sequence number (LSN), or another durable
+position.</p>
+<h2 id="step-4-checkpoint-only-completed-progress">Step 4: checkpoint
+only completed progress</h2>
+<p>Now the script simulates a failure after event 3. At that moment the
+temporary inserted order exists:</p>
+<pre class="text"><code>simulated crash: checkpoint 3 | rows 4247</code></pre>
+<p>The checkpoint says: <em>events 1–3 were applied successfully</em>.
+On restart, the consumer applies only events with a larger sequence:</p>
+<pre class="python"><code>def resume(state, events, after_sequence):
+    for event in events:
+        if int(event[&quot;sequence&quot;]) &gt; after_sequence:
+            apply_event(state, event)
+    return state</code></pre>
+<p>Real output:</p>
+<pre class="text"><code>resume: rows 4246 | matches full replay True | net revenue 5478357.79</code></pre>
+<p>The resumed result equals the full replay. This is why checkpoints
+belong <strong>after successful processing</strong>, just like the
+watermark in the previous lesson.</p>
+<h2 id="step-5-prove-the-run-is-replayable">Step 5: prove the run is
+replayable</h2>
+<p>The script discards the rebuilt state, starts again from the
+immutable base snapshot, and replays the same six events:</p>
+<pre class="text"><code>replay again from immutable base: rows 4246 | identical result True</code></pre>
+<p>A production-quality replay design normally keeps:</p>
+<ul>
+<li>immutable raw/snapshot inputs for the required retention
+period;</li>
+<li>ordered change events or a source log position;</li>
+<li>deterministic transformation code/version;</li>
+<li>a checkpoint/offset committed after successful writes;</li>
+<li>idempotent target writes or processed-event tracking;</li>
+<li>reconciliation checks after recovery.</li>
+</ul>
+<h2 id="cdc-in-a-real-postgresql-pipeline">CDC in a real PostgreSQL
+pipeline</h2>
+<p>PostgreSQL can expose committed row changes through <strong>logical
+decoding</strong> of its write-ahead log (WAL). A tool such as Debezium
+can take an initial consistent snapshot and then continuously capture
+inserts, updates and deletes, tracking its position with PostgreSQL
+replication/log offsets.</p>
+<p>A common architecture is:</p>
+<pre class="text"><code>PostgreSQL WAL
+    ↓ logical decoding
+Debezium connector
+    ↓ change events
+Kafka topic / durable event stream
+    ↓ consumer
+warehouse / lakehouse / search index / cache</code></pre>
+<p>This architecture is <strong>shown for reference; not executed for
+this lesson</strong>. The local exercise focuses on the core
+mechanics—ordered change events, replay and checkpoint recovery—without
+requiring Kafka or a database replication slot.</p>
+<h2 id="common-mistakes">Common mistakes</h2>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Mistake</th>
+<th>What happens</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Treating CDC as “only new rows”</td>
+<td>Updates and deletes are ignored</td>
+<td>Handle create, update and delete operations explicitly</td>
+</tr>
+<tr class="even">
+<td>Saving a checkpoint before target writes finish</td>
+<td>A restart skips uncommitted events</td>
+<td>Commit the checkpoint only after successful processing</td>
+</tr>
+<tr class="odd">
+<td>Replaying events without a defined starting snapshot</td>
+<td>Results depend on whatever target state happens to exist</td>
+<td>Pair replay with a known snapshot/base and event range</td>
+</tr>
+<tr class="even">
+<td>Losing event order for the same business key</td>
+<td>Older values can overwrite newer ones</td>
+<td>Preserve source ordering/offset semantics</td>
+</tr>
+<tr class="odd">
+<td>Dropping the raw event history too early</td>
+<td>You cannot reconstruct or audit past state</td>
+<td>Set a retention policy based on recovery and audit needs</td>
+</tr>
+</tbody>
+</table>
+<h2 id="try-it-yourself">Try it yourself</h2>
+<p><strong>Task:</strong> Extend <code>15_cdc_replay.py</code> with a
+<code>processed_event_ids</code> set. Before applying an event, skip it
+if its <code>event_id</code> was already processed. This models an extra
+idempotency layer for a consumer that can receive duplicate
+deliveries.</p>
+<details>
+<summary>
+Show a hint
+</summary>
+Check <code>event["event_id"]</code> before
+<code>apply_event(...)</code>, then add the ID only after the event has
+been applied successfully.
+</details>
+<details>
+<summary>
+Show the solution
+</summary>
+<pre class="python"><code>processed_event_ids = set()
+
+for event in events:
+    event_id = event[&quot;event_id&quot;]
+    if event_id in processed_event_ids:
+        continue
+    apply_event(state, event)
+    processed_event_ids.add(event_id)</code></pre>
+In a real service, store this state durably or use a transactional
+sink/offset design; an in-memory set disappears on restart.
+</details>
+<h2 id="quick-quiz">Quick quiz</h2>
+<div class="quiz-q" data-answer="0">
+<p>1. What does CDC capture that a simple “new rows after this date”
+filter may miss?</p>
+<ol type="1">
+<li>Updates and deletes</li>
+<li>Python package versions</li>
+<li>Dashboard colours</li>
+</ol>
+<details>
+<summary>
+Show answer
+</summary>
+<strong>A.</strong> CDC represents row-level changes, including updates
+and deletes.
+</details>
+</div>
+<div class="quiz-q" data-answer="0">
+<p>2. What makes a pipeline replayable?</p>
+<ol type="1">
+<li>It can rebuild a deterministic result from a known starting point
+and ordered inputs</li>
+<li>It runs only once</li>
+<li>It never stores checkpoints</li>
+</ol>
+<details>
+<summary>
+Show answer
+</summary>
+<strong>A.</strong> Replay requires defined inputs, ordering and
+deterministic processing.
+</details>
+</div>
+<div class="quiz-q" data-answer="1">
+<p>3. When should a CDC consumer commit its checkpoint or offset?</p>
+<ol type="1">
+<li>Before applying the event</li>
+<li>After the corresponding target work succeeds</li>
+<li>Once per year</li>
+</ol>
+<details>
+<summary>
+Show answer
+</summary>
+<strong>B.</strong> Otherwise the consumer can skip work after a crash.
+</details>
+</div>
+<h2 id="summary">Summary</h2>
+<ul>
+<li><strong>CDC</strong> captures row-level creates, updates and deletes
+instead of repeatedly scanning a whole source.</li>
+<li>A <strong>replayable</strong> pipeline can rebuild the same state
+from a known base plus the same ordered change events.</li>
+<li>Store a durable <strong>checkpoint/offset</strong> only after
+downstream work succeeds.</li>
+<li>Preserve event order, stable keys and enough immutable history to
+recover.</li>
+<li>The local replay and crash/resume both reconcile back to 4,246
+orders and BDT 5,478,357.79 net revenue.</li>
+</ul>
+<div class="admonition job" data-markdown="1">
+<p class="admonition-title">
+Job-ready check
+</p>
+<p><strong>Interview question:</strong> <em>“What is CDC, and how would
+you recover a CDC consumer after a failure?”</em></p>
+<p><strong>Strong answer:</strong> “CDC captures source row
+changes—insert, update and delete—from a change-tracking mechanism or
+transaction log. I would consume events in source order, write them
+idempotently to the target by business key, and commit the source offset
+only after the target write succeeds. If the consumer fails, it resumes
+from the last committed offset. For a full rebuild, I need a known base
+snapshot plus retained events from the corresponding log position, then
+I replay deterministically and reconcile the result.”</p>
+<p><strong>Mini project:</strong> Run PostgreSQL locally, enable logical
+replication, configure a Debezium PostgreSQL connector and capture
+changes from an <code>orders</code> table into Kafka. Insert, update and
+delete one order, then show the three CDC operations. This extension is
+not required for the local lesson because it needs PostgreSQL, Kafka
+Connect and a broker.</p>
+</div>
+<section class="mentor-prompt"><div class="mentor-head"><div><span class="eyebrow">AI study companion</span><h2 id="ai-mentor-prompt">AI Mentor Prompt</h2></div><button class="btn copy-prompt" type="button" data-copy-target="mentor-prompt-phase-3-etl-elt-02-replayable-pipelines-cdc">Copy prompt</button></div><p>Paste this into ChatGPT, Claude, Gemini, or another capable assistant to turn this tutorial into an interactive mentoring session.</p><pre class="prompt-box"><code id="mentor-prompt-phase-3-etl-elt-02-replayable-pipelines-cdc">You are my hands-on data-engineering mentor.
+
+I am currently studying:
+&quot;Replayable Pipelines and Change Data Capture&quot;
+
+My level:
+Intermediate
+
+Teach me this topic interactively rather than giving me a long lecture.
+
+Use this sequence:
+
+1. Check what I already understand with one short diagnostic question.
+2. Explain the concept in simple language and give me the mental model first.
+3. Give me one small task using code, SQL, configuration, data, or architecture as appropriate.
+4. Wait for my attempt before showing a complete solution.
+5. Review my work and explain both what is correct and what needs improvement.
+6. Help me debug errors step by step instead of immediately replacing my work.
+7. Increase the difficulty gradually and connect each new step to the previous one.
+8. Relate what I am learning to real professional data/AI engineering work.
+9. Ask me to explain an important decision in my own words so you can check my understanding.
+10. At the end, ask me to build or modify one small feature independently.
+
+Important rules:
+- Do not do the entire exercise for me unless I explicitly ask.
+- Explain unfamiliar terminology before using it heavily.
+- Prefer current, production-relevant practices over outdated shortcuts.
+- Distinguish clearly between concepts, tool-specific behaviour, and optional alternatives.
+- If a technical fact, API, syntax, version, or best practice may have changed, verify it against current official documentation before teaching it.
+- Never invent command output, test results, benchmark numbers, cloud behaviour, or data results.
+- If something cannot be executed in the current environment, say so and give me the exact command or verification step I should run.
+- Keep me actively coding, querying, configuring, reasoning, or debugging throughout the session.
+- When useful, work from the tutorial practice files (data-engineering-scripts.zip, orders_cdc_events.jsonl) instead of inventing unrelated examples.
+- For Phase 3 order-data exercises, preserve the established reconciliation targets when relevant: 4,246 orders and net revenue 5,478,357.79. If my result differs, help me debug the cause instead of changing the expected result.
+
+The concepts I need to master are:
+- Replayability
+- CDC
+- replayable pipeline
+- change data capture
+- event log
+- checkpoint
+- logical decoding
+- debezium
+
+Start by asking me one diagnostic question.</code></pre></section>
+<section class="video-companion"><h2 id="video-companion">Video companion</h2><div class="video-frame"><iframe src="https://www.youtube-nocookie.com/embed/VGH6TlhEJpM?start=500" title="Change Data Capture and Debezium with Gunnar Morling" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div><h3>Change Data Capture and Debezium with Gunnar Morling</h3><p>Gunnar Morling explains the CDC mental model and Debezium architecture. Use it to understand how database changes become an ordered event stream, then return to this lesson to practise deterministic replay and checkpoint/resume behaviour locally.</p><p class="video-meta">The GeekNarrator (guest: Gunnar Morling) · English · Intermediate</p><div class="video-timestamps"><b>Recommended sections</b><ul><li><a href="https://www.youtube.com/watch?v=VGH6TlhEJpM&amp;t=500s">08:20 — What is Change Data Capture?</a></li><li><a href="https://www.youtube.com/watch?v=VGH6TlhEJpM&amp;t=740s">12:20 — What is Debezium and how does it approach CDC?</a></li><li><a href="https://www.youtube.com/watch?v=VGH6TlhEJpM&amp;t=1080s">18:00 — Debezium architecture</a></li></ul></div><p class="video-reviewed">Video link reviewed: 2026-10-09</p><p><a href="https://www.youtube.com/watch?v=VGH6TlhEJpM&amp;t=500s">Watch on YouTube ↗</a></p></section>
+<div class="terms-box"><div class="files-head"><b>Key terms in this lesson</b><a href="../../../glossary.html">Glossary →</a></div><div class="term-chips"><a class="term-chip" href="../../../glossary.html#change-data-capture" title="Capturing row-level inserts, updates and deletes from a source so downstream systems can process changes without repeatedly scanning the whole table.">Change data capture</a><a class="term-chip" href="../../../glossary.html#replayable-pipeline" title="A pipeline that can rebuild the same state from a known starting snapshot and the same ordered inputs or change events.">Replayable pipeline</a></div></div>
+<h2 id="free-resources">Free resources to go deeper</h2><ul class="resources"><li><a href="https://debezium.io/documentation/reference/stable/">Debezium documentation</a><span class="r-meta">Debezium · Official Debezium 3.6 documentation for row-level change event streams.</span></li><li><a href="https://debezium.io/documentation/reference/stable/connectors/postgresql.html">Debezium connector for PostgreSQL</a><span class="r-meta">Debezium · Explains snapshots, logical decoding, replication slots and insert/update/delete events.</span></li><li><a href="https://www.postgresql.org/docs/current/logicaldecoding-explanation.html">Logical Decoding Concepts</a><span class="r-meta">PostgreSQL · Official PostgreSQL 18 explanation of turning WAL changes into a replayable logical stream.</span></li><li><a href="https://docs.getdbt.com/best-practices/how-we-handle-cdc/1-intro">Change data capture in dbt</a><span class="r-meta">dbt Developer Hub · Shows how new, updated and deleted source rows relate to incremental models and snapshots.</span></li></ul>
+<div class="complete-bar"><span>Finished reading and did the exercise?</span>
+<button class="btn" id="completeBtn" type="button" data-id="phase-3/etl-elt/02-replayable-pipelines-cdc">Mark lesson as complete</button></div>
+<nav class="pager"><a class="prev" href="../../../learn/phase-3/etl-elt/01-modular-idempotent-incremental.html"><small>← Previous</small>Modular, Idempotent Pipelines with Incremental Loads</a><a class="next" href="../../../learn/phase-3/data-quality/01-validation-rules-pytest.html"><small>Next →</small>Validation Rules and pytest for Data</a></nav>
+<p class="reviewed">Last reviewed: 2026-10-09</p>
+
+  </div></main>
+  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#step-1-understand-a-cdc-event">Step 1: understand a CDC event</a><a href="#step-2-apply-each-event-deterministically">Step 2: apply each event deterministically</a><a href="#step-3-replay-from-an-immutable-starting-point">Step 3: replay from an immutable starting point</a><a href="#step-4-checkpoint-only-completed-progress">Step 4: checkpoint only completed progress</a><a href="#step-5-prove-the-run-is-replayable">Step 5: prove the run is replayable</a><a href="#cdc-in-a-real-postgresql-pipeline">CDC in a real PostgreSQL pipeline</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#ai-mentor-prompt">AI Mentor Prompt</a><a href="#video-companion">Video companion</a><a href="#free-resources">Free resources</a></aside>
+</div>
+<footer class="site"><b>Saiful The Techie</b> · Data, AI &amp; Automation Path v0.9.1 · Updated October 2026<br>
+Lesson text: <a href="../../../license.html">CC BY-NC-SA 4.0</a> · Code: <a href="../../../license.html#code-mit-license">MIT</a> · Free external resources belong to their respective owners.</footer>
+<script src="../../../search-index.js"></script>
+<script src="../../../assets/app.js"></script>
+</body>
+</html>

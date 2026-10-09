@@ -1,6 +1,4 @@
-**Source mapping:** Level 01 source curriculum · PDF page 15
-
-This module teaches **React Project — Countries Explorer** as part of the beginner-to-career Software & AI Engineering path. The source topics stay traceable below, while the tutorial pages explain them through connected examples and practice files.
+This module teaches **React Project — Countries Explorer** as part of the beginner-to-career Software & AI Engineering path. The module topics are taught through connected explanations, examples and practice files.
 
 ## What you'll learn
 

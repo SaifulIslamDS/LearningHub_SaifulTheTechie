@@ -1,49 +1,35 @@
-# Working checkpoint — M8 / v0.9
+# Release checkpoint — v0.9.1 / M8 in progress
 
 **Brand:** Saiful The Techie  
-**Checkpoint:** ETL/ELT + Data Quality + dbt complete  
-**Release status:** Working source checkpoint; final v0.9 is not released yet.
+**Product:** Data, AI & Automation Path  
+**Release:** v0.9.1  
+**M8 status:** ETL/ELT + Data Quality + dbt complete; M8 is not complete yet.
 
-## Completed in this checkpoint
+## What v0.9.1 fixes
 
-- ETL/ELT: modular pipelines, idempotency, incremental loads, replayability and CDC.
-- Data Quality: validation, pytest for data, Great Expectations, data contracts, freshness and alerting.
-- dbt: models, tests, snapshots, macros, documentation and marts.
-- Phase 3 source coverage: **40/55 topics**.
-- Phase 3 lessons: **21**.
-- Total lesson source count: **85**.
-- Glossary: **199 terms**.
+- The generated `docs/` site is rebuilt from the current source, so finished dbt tutorials no longer appear as placeholders.
+- Every written tutorial gets a professional **AI Mentor Prompt** with a one-click copy button.
+- All 8 M8 tutorials completed so far (ETL/ELT, Data Quality and dbt) have reviewed **YouTube video companions** in responsive privacy-enhanced frames.
+- Planned curriculum topics show their **projected roadmap milestone/version** instead of a generic future-status label.
+- The site can build with Python-Markdown or, when that package is unavailable, an offline **Pandoc fallback**.
+- The generic temporary ST logo remains removed; the header uses the approved Saiful The Techie text-wordmark fallback until the exact approved circular logo binary is available.
 
-## Tutorial architecture upgrade
+## Current curriculum state
 
-New tutorials use **Template v2**: mental model → deep explanation → verified code/data → real output → step-by-step build → completed implementation → synchronized practice files → professional context → curated resources. Quiz/common-mistake/summary/job-ready blocks are optional rather than compulsory.
+- Total written lessons: **85**
+- Phase 3 written lessons: **21**
+- Phase 3 coverage: **40/55 topics**
+- Glossary: **199 terms**
+- Known Phase 3 reconciliation: **4,246 orders · 5,478,357.79 net revenue**
 
-The generator now supports optional YouTube companion metadata.
+## M8 completed modules
 
-## Saiful The Techie branding
+- ETL / ELT ✅
+- Data Quality ✅
+- dbt ✅
 
-The public identity is **Saiful The Techie — Data, AI & Automation Path**. The UI uses the approved navy/cyan documentation-oriented direction. The exact approved circular logo must be used only when its actual binary is available; otherwise the visible header uses the text wordmark fallback. The generic ST SVG from the previous checkpoint has been removed. Until the exact approved circular logo binary is directly available, the source generator uses the approved Saiful The Techie text-wordmark fallback.
+## Next approved milestone/module
 
-## dbt verification
+**M8 — AI-Ready Data**
 
-- `19_dbt_logic_verification.py`: **RUN-HERE**. Reconciles 4,246 orders and 5,478,357.79 net revenue.
-- `20_dbt_project_audit.py`: **RUN-HERE**. Confirms required project files and dependency references.
-- dbt Core / dbt-duckdb CLI: **RUN-BY-OWNER** in this environment because the packages are unavailable. No CLI output is fabricated.
-
-## Full-site build
-
-**Current sandbox result:** `RUN-BY-OWNER`. The source/package checks pass, but this sandbox cannot install the required Python-Markdown package because outbound PyPI resolution is unavailable. The existing `docs/` folder therefore remains the last generated site snapshot; it is not claimed as a freshly rebuilt dbt checkpoint.
-
-Run locally:
-
-```bash
-pip install -r requirements.txt
-python tools/package_examples.py
-python build.py
-```
-
-Accept the final release build only with no `WARNING:` lines and `Internal links: all OK`.
-
-## Next approved M8 module
-
-**AI-Ready Data** — Unstructured document pipelines + Parsing & chunking → Embedding refresh + Metadata & lineage for RAG.
+Topics: Unstructured document pipelines · Parsing & chunking · Embedding refresh · Metadata & lineage for RAG.

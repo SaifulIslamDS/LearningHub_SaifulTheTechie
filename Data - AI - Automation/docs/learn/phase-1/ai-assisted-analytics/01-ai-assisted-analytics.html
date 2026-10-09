@@ -6,7 +6,7 @@
 <title>AI-Assisted Analytics: Faster Formulas, DAX and SQL — Checked by You — Data, AI &amp; Automation Path</title>
 <meta name="description" content="Use AI assistants to draft Excel formulas, DAX and SQL, give them the right context, and validate every answer before it reaches a report.">
 <meta property="og:type" content="article">
-<meta property="og:site_name" content="Data, AI &amp; Automation Path">
+<meta property="og:site_name" content="Saiful The Techie">
 <meta property="og:title" content="AI-Assisted Analytics: Faster Formulas, DAX and SQL — Checked by You">
 <meta property="og:description" content="Use AI assistants to draft Excel formulas, DAX and SQL, give them the right context, and validate every answer before it reaches a report.">
 <meta property="og:locale" content="en_US">
@@ -19,13 +19,13 @@ var n=null;try{n=localStorage.getItem('daa-nav')}catch(e){}
 if(n==='open'&&window.matchMedia&&matchMedia('(min-width: 961px)').matches)document.documentElement.setAttribute('data-nav','open');
 document.documentElement.classList.add('no-anim')})();</script>
 <link rel="stylesheet" href="../../../assets/style.css">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233f7d6a'/%3E%3Ctext x='16' y='21' font-family='sans-serif' font-size='13' font-weight='700' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
+
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="topbar">
   <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Open curriculum menu" title="Curriculum menu (press M)" aria-controls="sidebar" aria-expanded="false"><span class="ico-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span class="ico-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></button>
-  <a class="brand" href="../../../index.html"><span class="brand-badge">AI</span><span class="brand-text"><span class="brand-name">Data, AI &amp; Automation Path</span><span class="brand-version">v0.8</span></span></a>
+  <a class="brand" href="../../../index.html"><span class="brand-text"><span class="brand-name">Saiful The Techie</span><span class="brand-version">Data, AI &amp; Automation Path · v0.9.1</span></span></a>
   <nav class="top-links" aria-label="Main">
     <a href="../../../index.html" class="">Home</a><a href="../../../curriculum.html" class="">Curriculum</a><a href="../../../practice-files.html" class="">Practice files</a><a href="../../../glossary.html" class="">Glossary</a><a href="../../../how-to-learn.html" class="">How to learn</a><a href="../../../about.html" class="">About</a>
   </nav>
@@ -41,7 +41,7 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="layout wide">
   <nav class="sidebar" id="sidebar" aria-label="Curriculum">
     <div class="side-title">Curriculum</div>
-    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="77"><i></i></div><span class="bar-label" data-progress-label></span></div>
+    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="85"><i></i></div><span class="bar-label" data-progress-label></span></div>
 <div class="nav-phase"><a href="../../../learn/phase-0/index.html"><span class="nav-num">0</span>Foundations</a>
 </div>
 <div class="nav-phase current open"><a href="../../../learn/phase-1/index.html"><span class="nav-num">1</span>Analytics &amp; BI</a>
@@ -95,91 +95,140 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="admonition note"><p class="admonition-title">Before you start</p><p><a href="../../../learn/phase-1/excel-analysis/02-sumifs-countifs.html">Excel SUMIFS &amp; COUNTIFS: Build KPI Summaries</a> · <a href="../../../learn/phase-1/power-pivot-dax/02-measures-kpi.html">DAX Measures &amp; KPI Logic: Revenue, AOV and Target Achievement</a></p></div>
 <div class="files-box"><div class="files-head"><b>Practice files for this page</b><a href="../../../practice-files.html">All practice files →</a></div><ul><li><a href="../../../downloads/known_answers.csv" download>known_answers.csv</a><span class="f-desc">24 key numbers every tool should reproduce, for checking your work (and AI output) · 1 KB</span></li><li><a href="../../../downloads/orders.xlsx" download>orders.xlsx</a><span class="f-desc">Starting workbook: Orders (with value formula), Products, Customers sheets · 8 KB</span></li><li><a href="../../../downloads/sales_model.xlsx" download>sales_model.xlsx</a><span class="f-desc">Five Excel Tables (Orders, Customers, Products, Regions, Targets) for the data model · 12 KB</span></li></ul></div>
 <h2 id="what-is-it">What is it?</h2>
-<p>AI assistants (built-in tools like Copilot, or general chat assistants) can <strong>draft</strong> formulas, DAX measures and SQL queries in seconds, and <strong>explain</strong> code you don't understand. They work like a fast junior colleague: helpful, but sometimes confidently wrong.</p>
-<p><strong>AI-assisted analytics</strong> means using AI for speed while <strong>you</strong> stay responsible for correctness. The key skill is <strong>validation</strong>.</p>
-<div class="admonition job">
-<p class="admonition-title">Why it matters at work</p>
-<p>AI fluency now appears in most data job postings. Employers don't want people who paste AI output into reports. They want people who can <strong>prompt with context, review critically and prove the result is right</strong>. That combination is faster than working alone and safer than trusting AI.</p>
+<p>AI assistants (built-in tools like Copilot, or general chat
+assistants) can <strong>draft</strong> formulas, DAX measures and SQL
+queries in seconds, and <strong>explain</strong> code you don’t
+understand. They work like a fast junior colleague: helpful, but
+sometimes confidently wrong.</p>
+<p><strong>AI-assisted analytics</strong> means using AI for speed while
+<strong>you</strong> stay responsible for correctness. The key skill is
+<strong>validation</strong>.</p>
+<div class="admonition job" data-markdown="1">
+<p class="admonition-title">
+Why it matters at work
+</p>
+<p>AI fluency now appears in most data job postings. Employers don’t
+want people who paste AI output into reports. They want people who can
+<strong>prompt with context, review critically and prove the result is
+right</strong>. That combination is faster than working alone and safer
+than trusting AI.</p>
 </div>
 <h2 id="part-1-prompt-with-context">Part 1: prompt with context</h2>
-<p>A vague prompt gets a generic answer. Give the AI the <strong>data structure</strong>, the <strong>business rule</strong> and the <strong>output format</strong>:</p>
+<p>A vague prompt gets a generic answer. Give the AI the <strong>data
+structure</strong>, the <strong>business rule</strong> and the
+<strong>output format</strong>:</p>
 <table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Weak prompt</th>
 <th>Strong prompt</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td>"Formula for Dhaka revenue"</td>
-<td>"Excel sheet <em>Orders</em>, rows 2–13. Column D = region, I = status, J = value. Write a formula for total value where region is Dhaka and status is <strong>not</strong> Cancelled. Use SUMIFS and absolute references."</td>
+<tr class="odd">
+<td>“Formula for Dhaka revenue”</td>
+<td>“Excel sheet <em>Orders</em>, rows 2–13. Column D = region, I =
+status, J = value. Write a formula for total value where region is Dhaka
+and status is <strong>not</strong> Cancelled. Use SUMIFS and absolute
+references.”</td>
 </tr>
-<tr>
-<td>"DAX for achievement"</td>
-<td>"Power BI model: measures <code>[Net Revenue]</code> (excludes Cancelled) and <code>[Target]</code> (from Targets table, by region and month). Write an Achievement % measure that's safe when Target is blank."</td>
+<tr class="even">
+<td>“DAX for achievement”</td>
+<td>“Power BI model: measures <code>[Net Revenue]</code> (excludes
+Cancelled) and <code>[Target]</code> (from Targets table, by region and
+month). Write an Achievement % measure that’s safe when Target is
+blank.”</td>
 </tr>
-<tr>
-<td>"SQL for customers without orders"</td>
-<td>"Tables <code>customers(customer_name, …)</code> and <code>orders(customer, status, …)</code>. List customers with no orders at all. SQLite. Avoid NOT IN."</td>
+<tr class="odd">
+<td>“SQL for customers without orders”</td>
+<td>“Tables <code>customers(customer_name, …)</code> and
+<code>orders(customer, status, …)</code>. List customers with no orders
+at all. SQLite. Avoid NOT IN.”</td>
 </tr>
 </tbody>
 </table>
-<p>Also tell it what to <strong>avoid</strong> (e.g. "no VLOOKUP", "no volatile functions") and which <strong>version</strong> you use ("Excel 2019", "PostgreSQL").</p>
-<h2 id="part-2-validate-three-real-examples">Part 2: validate — three real examples</h2>
-<p>Each example below shows a plausible AI answer that <strong>looks right</strong> and is wrong. The checks come from numbers you already know.</p>
-<p><strong>1. Excel: the missing condition.</strong> Asked for "Dhaka revenue", an assistant might return:</p>
-<div class="codehilite"><pre><span></span><code>=SUMIF(D2:D13,"Dhaka",J2:J13)
-</code></pre></div>
-
-<p>It gives <strong>3,410</strong>. Your known value is <strong>3,170</strong>. The 240 difference is the cancelled order 4: the formula forgot the business rule. Fix:</p>
-<div class="codehilite"><pre><span></span><code>=SUMIFS($J$2:$J$13,$D$2:$D$13,"Dhaka",$I$2:$I$13,"&lt;&gt;Cancelled")
-</code></pre></div>
-
+<p>Also tell it what to <strong>avoid</strong> (e.g. “no VLOOKUP”, “no
+volatile functions”) and which <strong>version</strong> you use (“Excel
+2019”, “PostgreSQL”).</p>
+<h2 id="part-2-validate-three-real-examples">Part 2: validate — three
+real examples</h2>
+<p>Each example below shows a plausible AI answer that <strong>looks
+right</strong> and is wrong. The checks come from numbers you already
+know.</p>
+<p><strong>1. Excel: the missing condition.</strong> Asked for “Dhaka
+revenue”, an assistant might return:</p>
+<pre class="excel"><code>=SUMIF(D2:D13,&quot;Dhaka&quot;,J2:J13)</code></pre>
+<p>It gives <strong>3,410</strong>. Your known value is
+<strong>3,170</strong>. The 240 difference is the cancelled order 4: the
+formula forgot the business rule. Fix:</p>
+<pre class="excel"><code>=SUMIFS($J$2:$J$13,$D$2:$D$13,&quot;Dhaka&quot;,$I$2:$I$13,&quot;&lt;&gt;Cancelled&quot;)</code></pre>
 <p><strong>2. DAX: the inverted ratio.</strong> A drafted measure:</p>
-<div class="codehilite"><pre><span></span><code>Achievement % = DIVIDE ( SUM ( Targets[target] ), SUM ( Orders[value] ) )
-</code></pre></div>
-
-<p>It returns <strong>103.1%</strong> (9,600 ÷ 9,315), which suggests "we beat target". The correct value is <strong>94.5%</strong> (9,075 ÷ 9,600). There are two errors: the ratio is upside down, and it uses gross revenue instead of Net Revenue. Fix: <code>DIVIDE ( [Net Revenue], [Target] )</code>. Always reuse the agreed measures.</p>
-<p><strong>3. SQL: the LEFT JOIN + COUNT(*) trap.</strong> Asked for "orders per customer, including customers with none":</p>
-<div class="codehilite"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="k">c</span><span class="p">.</span><span class="n">customer_name</span><span class="p">,</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">orders</span>
-<span class="k">FROM</span><span class="w"> </span><span class="n">customers</span><span class="w"> </span><span class="k">c</span><span class="w"> </span><span class="k">LEFT</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">orders</span><span class="w"> </span><span class="n">o</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">o</span><span class="p">.</span><span class="n">customer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">c</span><span class="p">.</span><span class="n">customer_name</span>
-<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="k">c</span><span class="p">.</span><span class="n">customer_name</span><span class="p">;</span>
-</code></pre></div>
-
-<p>Blue Thread Ltd shows <strong>1</strong> order, but it has <strong>none</strong>. The fix is <code>COUNT(o.order_id)</code>, as in the JOINs lesson.</p>
-<h2 id="part-3-the-validation-checklist">Part 3: the validation checklist</h2>
-<p>Before any AI-written formula, measure or query goes into a report:</p>
-<ol>
-<li><strong>Read it.</strong> Can you explain every part? If not, ask the AI to explain, or don't use it.</li>
-<li><strong>Reconcile with a known total.</strong> Net Revenue 9,075, Orders 12, etc. Keep a small "known answers" table for your data.</li>
-<li><strong>Test edge cases.</strong> Blanks, zero targets, cancelled orders, a customer with no orders, a new month.</li>
-<li><strong>Check the business rule.</strong> Does it follow the KPI dictionary definition (e.g. excludes Cancelled)?</li>
-<li><strong>Check the version.</strong> Does the function exist in your tool (e.g. XLOOKUP isn't in Excel 2019)?</li>
-<li><strong>Get a second look</strong> for anything that goes to senior management.</li>
+<pre class="dax"><code>Achievement % = DIVIDE ( SUM ( Targets[target] ), SUM ( Orders[value] ) )</code></pre>
+<p>It returns <strong>103.1%</strong> (9,600 ÷ 9,315), which suggests
+“we beat target”. The correct value is <strong>94.5%</strong> (9,075 ÷
+9,600). There are two errors: the ratio is upside down, and it uses
+gross revenue instead of Net Revenue. Fix:
+<code>DIVIDE ( [Net Revenue], [Target] )</code>. Always reuse the agreed
+measures.</p>
+<p><strong>3. SQL: the LEFT JOIN + COUNT(*) trap.</strong> Asked for
+“orders per customer, including customers with none”:</p>
+<pre class="sql"><code>SELECT c.customer_name, COUNT(*) AS orders
+FROM customers c LEFT JOIN orders o ON o.customer = c.customer_name
+GROUP BY c.customer_name;</code></pre>
+<p>Blue Thread Ltd shows <strong>1</strong> order, but it has
+<strong>none</strong>. The fix is <code>COUNT(o.order_id)</code>, as in
+the JOINs lesson.</p>
+<h2 id="part-3-the-validation-checklist">Part 3: the validation
+checklist</h2>
+<p>Before any AI-written formula, measure or query goes into a
+report:</p>
+<ol type="1">
+<li><strong>Read it.</strong> Can you explain every part? If not, ask
+the AI to explain, or don’t use it.</li>
+<li><strong>Reconcile with a known total.</strong> Net Revenue 9,075,
+Orders 12, etc. Keep a small “known answers” table for your data.</li>
+<li><strong>Test edge cases.</strong> Blanks, zero targets, cancelled
+orders, a customer with no orders, a new month.</li>
+<li><strong>Check the business rule.</strong> Does it follow the KPI
+dictionary definition (e.g. excludes Cancelled)?</li>
+<li><strong>Check the version.</strong> Does the function exist in your
+tool (e.g. XLOOKUP isn’t in Excel 2019)?</li>
+<li><strong>Get a second look</strong> for anything that goes to senior
+management.</li>
 </ol>
-<h2 id="part-4-privacy-and-responsible-use">Part 4: privacy and responsible use</h2>
+<h2 id="part-4-privacy-and-responsible-use">Part 4: privacy and
+responsible use</h2>
 <table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Do</th>
-<th>Don't</th>
+<th>Don’t</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td>Use your organisation's <strong>approved</strong> AI tools</td>
-<td>Paste customer names, salaries or confidential data into public tools</td>
+<tr class="odd">
+<td>Use your organisation’s <strong>approved</strong> AI tools</td>
+<td>Paste customer names, salaries or confidential data into public
+tools</td>
 </tr>
-<tr>
-<td>Share <strong>structure</strong> (column names, sample fake rows)</td>
+<tr class="even">
+<td>Share <strong>structure</strong> (column names, sample fake
+rows)</td>
 <td>Share real exports when structure is enough</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Say in reports or READMEs when AI helped</td>
-<td>Present AI output as verified when it wasn't checked</td>
+<td>Present AI output as verified when it wasn’t checked</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Keep your own judgement on conclusions</td>
 <td>Let AI decide what the business should do</td>
 </tr>
@@ -187,35 +236,40 @@ document.documentElement.classList.add('no-anim')})();</script>
 </table>
 <h2 id="common-mistakes">Common mistakes</h2>
 <table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Mistake</th>
 <th>What happens</th>
 <th>Fix</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>No context in the prompt</td>
 <td>Generic answers that miss business rules</td>
 <td>Give structure + rule + format</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Accepting the first answer</td>
 <td>Hidden errors (like the 3,410 above)</td>
 <td>Reconcile with known totals</td>
 </tr>
-<tr>
-<td>Asking AI to "fix" without understanding</td>
+<tr class="odd">
+<td>Asking AI to “fix” without understanding</td>
 <td>Errors become harder to see</td>
 <td>Ask it to <strong>explain</strong>, then decide</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Pasting real customer data into public tools</td>
 <td>A privacy or policy breach</td>
 <td>Approved tools, fake sample data</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>AI writes a new measure instead of reusing one</td>
 <td>Two definitions of the same KPI</td>
 <td>Tell it which existing measures to use</td>
@@ -223,73 +277,152 @@ document.documentElement.classList.add('no-anim')})();</script>
 </tbody>
 </table>
 <h2 id="try-it-yourself">Try it yourself</h2>
-<p><strong>Task:</strong> An AI assistant suggests this measure for "average order value":</p>
-<div class="codehilite"><pre><span></span><code>AOV = AVERAGE ( Orders[value] )
-</code></pre></div>
-
-<p>Is it correct for our business definition? What value does it return, and what should it be?</p>
+<p><strong>Task:</strong> An AI assistant suggests this measure for
+“average order value”:</p>
+<pre class="dax"><code>AOV = AVERAGE ( Orders[value] )</code></pre>
+<p>Is it correct for our business definition? What value does it return,
+and what should it be?</p>
 <details>
-<summary>Show a hint</summary>
-<p>Check the KPI definition: Net Revenue ÷ Net Orders, excluding Cancelled. <code>AVERAGE</code> looks at every row.</p>
+<summary>
+Show a hint
+</summary>
+Check the KPI definition: Net Revenue ÷ Net Orders, excluding Cancelled.
+<code>AVERAGE</code> looks at every row.
 </details>
 <details>
-<summary>Show the solution</summary>
-<p>It returns <strong>776.25</strong> (9,315 ÷ 12), because it includes the cancelled order. The agreed AOV is <strong>825</strong> (9,075 ÷ 11):</p>
-<div class="codehilite"><pre><span></span><code>Avg Order Value = DIVIDE ( [Net Revenue], [Net Orders] )
-</code></pre></div>
-
-<p>You've seen 776.25 before: it's the same trap as Excel's built-in "Above Average" rule in the conditional-formatting lesson.</p>
+<summary>
+Show the solution
+</summary>
+<p>It returns <strong>776.25</strong> (9,315 ÷ 12), because it includes
+the cancelled order. The agreed AOV is <strong>825</strong> (9,075 ÷
+11):</p>
+<pre class="dax"><code>Avg Order Value = DIVIDE ( [Net Revenue], [Net Orders] )</code></pre>
+You’ve seen 776.25 before: it’s the same trap as Excel’s built-in “Above
+Average” rule in the conditional-formatting lesson.
 </details>
 <h2 id="quick-quiz">Quick quiz</h2>
 <div class="quiz-q" data-answer="1">
-<p>1. What is the most reliable first check of an AI-written revenue formula?</p>
-<ol>
+<p>1. What is the most reliable first check of an AI-written revenue
+formula?</p>
+<ol type="1">
 <li>It runs without an error</li>
 <li>It matches a known, agreed total</li>
-<li>The AI says it's correct</li>
+<li>The AI says it’s correct</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B.</strong> Running without errors doesn't mean the result is right. Reconcile with a known number.</p>
+<summary>
+Show answer
+</summary>
+<strong>B.</strong> Running without errors doesn’t mean the result is
+right. Reconcile with a known number.
 </details>
 </div>
 <div class="quiz-q" data-answer="1">
 <p>2. Which prompt is most likely to get a correct DAX measure?</p>
-<ol>
-<li>"Write a DAX achievement measure"</li>
-<li>"Using existing measures [Net Revenue] and [Target], write Achievement % that returns blank if Target is blank"</li>
-<li>"Make my dashboard better"</li>
+<ol type="1">
+<li>“Write a DAX achievement measure”</li>
+<li>“Using existing measures [Net Revenue] and [Target], write
+Achievement % that returns blank if Target is blank”</li>
+<li>“Make my dashboard better”</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B.</strong> It gives context, reuses agreed measures and states the edge case.</p>
+<summary>
+Show answer
+</summary>
+<strong>B.</strong> It gives context, reuses agreed measures and states
+the edge case.
 </details>
 </div>
 <div class="quiz-q" data-answer="1">
-<p>3. You want AI help with a query on customer data. What should you share with a public AI tool?</p>
-<ol>
+<p>3. You want AI help with a query on customer data. What should you
+share with a public AI tool?</p>
+<ol type="1">
 <li>The full customer export</li>
 <li>Table and column names, with a few made-up rows</li>
 <li>Passwords to the database</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B.</strong> Share the structure, not confidential data. Use approved tools for real data.</p>
+<summary>
+Show answer
+</summary>
+<strong>B.</strong> Share the structure, not confidential data. Use
+approved tools for real data.
 </details>
 </div>
 <h2 id="summary">Summary</h2>
 <ul>
-<li>AI drafts formulas, DAX and SQL fast. <strong>You</strong> own correctness.</li>
-<li>Prompt with <strong>structure + business rule + format + version</strong>, and ask it to reuse existing measures.</li>
-<li>Validate: read it, <strong>reconcile with known totals</strong>, test edge cases, check the rule and the version.</li>
-<li>Protect data: approved tools, structure instead of real records, and say when AI helped.</li>
+<li>AI drafts formulas, DAX and SQL fast. <strong>You</strong> own
+correctness.</li>
+<li>Prompt with <strong>structure + business rule + format +
+version</strong>, and ask it to reuse existing measures.</li>
+<li>Validate: read it, <strong>reconcile with known totals</strong>,
+test edge cases, check the rule and the version.</li>
+<li>Protect data: approved tools, structure instead of real records, and
+say when AI helped.</li>
 </ul>
-<div class="admonition job">
-<p class="admonition-title">Job-ready check</p>
-<p><strong>Interview question:</strong> <em>"How do you use AI tools in your analytics work?"</em></p>
-<p><strong>Strong answer:</strong> "To draft and explain formulas, DAX and SQL faster, always with context such as table structure and business rules. I never ship AI output unchecked: I reconcile it with known totals, test edge cases like cancelled orders and blank targets, and make sure it reuses our agreed KPI measures. I only share structure, not confidential data, with approved tools."</p>
-<p><strong>Mini project:</strong> Create a <strong>known answers</strong> sheet for your project data (10 key numbers). Then ask an AI assistant for three formulas or measures, test each against the sheet, and document what was right or wrong in your README.</p>
+<div class="admonition job" data-markdown="1">
+<p class="admonition-title">
+Job-ready check
+</p>
+<p><strong>Interview question:</strong> <em>“How do you use AI tools in
+your analytics work?”</em></p>
+<p><strong>Strong answer:</strong> “To draft and explain formulas, DAX
+and SQL faster, always with context such as table structure and business
+rules. I never ship AI output unchecked: I reconcile it with known
+totals, test edge cases like cancelled orders and blank targets, and
+make sure it reuses our agreed KPI measures. I only share structure, not
+confidential data, with approved tools.”</p>
+<p><strong>Mini project:</strong> Create a <strong>known
+answers</strong> sheet for your project data (10 key numbers). Then ask
+an AI assistant for three formulas or measures, test each against the
+sheet, and document what was right or wrong in your README.</p>
 </div>
+<section class="mentor-prompt"><div class="mentor-head"><div><span class="eyebrow">AI study companion</span><h2 id="ai-mentor-prompt">AI Mentor Prompt</h2></div><button class="btn copy-prompt" type="button" data-copy-target="mentor-prompt-phase-1-ai-assisted-analytics-01-ai-assisted-analytics">Copy prompt</button></div><p>Paste this into ChatGPT, Claude, Gemini, or another capable assistant to turn this tutorial into an interactive mentoring session.</p><pre class="prompt-box"><code id="mentor-prompt-phase-1-ai-assisted-analytics-01-ai-assisted-analytics">You are my hands-on data-analytics and business-intelligence mentor.
+
+I am currently studying:
+&quot;AI-Assisted Analytics: Faster Formulas, DAX and SQL — Checked by You&quot;
+
+My level:
+Beginner
+
+Teach me this topic interactively rather than giving me a long lecture.
+
+Use this sequence:
+
+1. Check what I already understand with one short diagnostic question.
+2. Explain the concept in simple language and give me the mental model first.
+3. Give me one small task using code, SQL, configuration, data, or architecture as appropriate.
+4. Wait for my attempt before showing a complete solution.
+5. Review my work and explain both what is correct and what needs improvement.
+6. Help me debug errors step by step instead of immediately replacing my work.
+7. Increase the difficulty gradually and connect each new step to the previous one.
+8. Relate what I am learning to real professional data/AI engineering work.
+9. Ask me to explain an important decision in my own words so you can check my understanding.
+10. At the end, ask me to build or modify one small feature independently.
+
+Important rules:
+- Do not do the entire exercise for me unless I explicitly ask.
+- Explain unfamiliar terminology before using it heavily.
+- Prefer current, production-relevant practices over outdated shortcuts.
+- Distinguish clearly between concepts, tool-specific behaviour, and optional alternatives.
+- If a technical fact, API, syntax, version, or best practice may have changed, verify it against current official documentation before teaching it.
+- Never invent command output, test results, benchmark numbers, cloud behaviour, or data results.
+- If something cannot be executed in the current environment, say so and give me the exact command or verification step I should run.
+- Keep me actively coding, querying, configuring, reasoning, or debugging throughout the session.
+- When useful, work from the tutorial practice files (known_answers.csv, orders.xlsx, sales_model.xlsx) instead of inventing unrelated examples.
+
+The concepts I need to master are:
+- AI for formulas
+- AI for DAX &amp; SQL
+- Human validation
+- ai
+- copilot
+- chatgpt
+- claude
+- llm
+
+Start by asking me one diagnostic question.</code></pre></section>
+
 <div class="terms-box"><div class="files-head"><b>Key terms in this lesson</b><a href="../../../glossary.html">Glossary →</a></div><div class="term-chips"><a class="term-chip" href="../../../glossary.html#dax" title="The formula language of Power BI, Power Pivot and Analysis Services, used to write measures and calculated columns.">DAX</a><a class="term-chip" href="../../../glossary.html#hallucination" title="When an AI model states something false or invented with confidence, such as a non-existent function or a wrong number.">Hallucination</a><a class="term-chip" href="../../../glossary.html#known-answer" title="A result you already know is correct (for example, net revenue 9,075 on the practice data). Every new query, formula, dashboard or AI output is checked against it before you trust it.">Known answer</a><a class="term-chip" href="../../../glossary.html#llm" title="Large language model: an AI model trained on huge amounts of text to predict the next token, which lets it write, summarise, answer and code.">LLM</a><a class="term-chip" href="../../../glossary.html#prompt" title="The instructions and context you give an AI model. Good prompts state context, the task, constraints and how the result will be checked.">Prompt</a><a class="term-chip" href="../../../glossary.html#sql" title="The standard language for asking questions of relational databases: select columns, filter rows, join tables and summarise.">SQL</a></div></div>
 <h2 id="free-resources">Free resources to go deeper</h2><ul class="resources"><li><a href="https://learn.microsoft.com/en-us/power-bi/create-reports/copilot-introduction">Copilot for Power BI overview</a><span class="r-meta">Microsoft Learn · What AI can do inside Power BI.</span></li><li><a href="https://learn.microsoft.com/en-us/power-bi/create-reports/copilot-evaluate-data">Optimize your semantic model for Copilot</a><span class="r-meta">Microsoft Learn · How model design affects AI answers.</span></li><li><a href="https://support.microsoft.com/en-us/excel/functions/sumifs-function">SUMIFS function</a><span class="r-meta">Microsoft Support · Check AI-written formulas against the official syntax.</span></li></ul>
 <div class="complete-bar"><span>Finished reading and did the exercise?</span>
@@ -298,9 +431,9 @@ document.documentElement.classList.add('no-anim')})();</script>
 <p class="reviewed">Last reviewed: 2026-10-09</p>
 
   </div></main>
-  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#part-1-prompt-with-context">Part 1: prompt with context</a><a href="#part-2-validate-three-real-examples">Part 2: validate — three real examples</a><a href="#part-3-the-validation-checklist">Part 3: the validation checklist</a><a href="#part-4-privacy-and-responsible-use">Part 4: privacy and responsible use</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#free-resources">Free resources</a></aside>
+  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#part-1-prompt-with-context">Part 1: prompt with context</a><a href="#part-2-validate-three-real-examples">Part 2: validate — three real examples</a><a href="#part-3-the-validation-checklist">Part 3: the validation checklist</a><a href="#part-4-privacy-and-responsible-use">Part 4: privacy and responsible use</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#ai-mentor-prompt">AI Mentor Prompt</a><a href="#free-resources">Free resources</a></aside>
 </div>
-<footer class="site">Data, AI &amp; Automation Path v0.8 · Applied AI, Data &amp; Automation Lab · Updated October 2026<br>
+<footer class="site"><b>Saiful The Techie</b> · Data, AI &amp; Automation Path v0.9.1 · Updated October 2026<br>
 Lesson text: <a href="../../../license.html">CC BY-NC-SA 4.0</a> · Code: <a href="../../../license.html#code-mit-license">MIT</a> · Free external resources belong to their respective owners.</footer>
 <script src="../../../search-index.js"></script>
 <script src="../../../assets/app.js"></script>

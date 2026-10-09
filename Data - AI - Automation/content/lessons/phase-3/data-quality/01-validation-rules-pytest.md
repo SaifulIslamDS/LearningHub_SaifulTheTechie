@@ -1,27 +1,49 @@
 ---
-title: "Validation Rules and pytest for Data"
+title: Validation Rules and pytest for Data
 order: 1
-summary: "Turn assumptions about an orders dataset into executable checks, then test those checks automatically with pytest."
+summary: Turn assumptions about an orders dataset into executable checks, then test those checks automatically with pytest.
 level: Intermediate
-time: "50 min"
-topics: ["Validation", "pytest for data"]
-prerequisites: ["phase-3/etl-elt/01-modular-idempotent-incremental"]
-keywords: [data quality, validation, pytest, data tests, schema, uniqueness, business rule]
+time: 50 min
+topics:
+- Validation
+- pytest for data
+prerequisites:
+- phase-3/etl-elt/01-modular-idempotent-incremental
+keywords:
+- data quality
+- validation
+- pytest
+- data tests
+- schema
+- uniqueness
+- business rule
 reviewed: 2026-10-09
-files: [phase-3/data-engineering-scripts.zip]
+files:
+- phase-3/data-engineering-scripts.zip
 resources:
-  - title: "pytest: how to parametrize fixtures and test functions"
-    url: "https://docs.pytest.org/en/stable/how-to/parametrize.html"
-    source: "pytest documentation"
-    note: "Official guide to running one test against several data-quality cases."
-  - title: "pytest fixtures"
-    url: "https://docs.pytest.org/en/stable/how-to/fixtures.html"
-    source: "pytest documentation"
-    note: "Explains reusable test setup such as loading one practice dataset for several checks."
-  - title: "Pandas duplicate detection"
-    url: "https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.duplicated.html"
-    source: "pandas documentation"
-    note: "Reference for detecting duplicate business keys in a DataFrame."
+- title: 'pytest: how to parametrize fixtures and test functions'
+  url: https://docs.pytest.org/en/stable/how-to/parametrize.html
+  source: pytest documentation
+  note: Official guide to running one test against several data-quality cases.
+- title: pytest fixtures
+  url: https://docs.pytest.org/en/stable/how-to/fixtures.html
+  source: pytest documentation
+  note: Explains reusable test setup such as loading one practice dataset for several checks.
+- title: Pandas duplicate detection
+  url: https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.duplicated.html
+  source: pandas documentation
+  note: Reference for detecting duplicate business keys in a DataFrame.
+youtube:
+  title: How to integrate data quality test in Python ETL pipeline
+  creator: BI Insights Inc
+  url: https://www.youtube.com/watch?v=7FPksG-LYOA
+  video_id: 7FPksG-LYOA
+  duration: '6:03'
+  language: English
+  level: Intermediate
+  reviewed: '2026-10-09'
+  why_recommended: A short practical companion showing data-quality checks inside a Python ETL workflow. Use it after this
+    lesson’s validation functions and pytest tests so you can compare the same engineering idea in another pipeline.
 ---
 
 ## What is it?

@@ -6,7 +6,7 @@
 <title>Docker Images &amp; Containers: Package a Pipeline Once, Run It Anywhere — Data, AI &amp; Automation Path</title>
 <meta name="description" content="Write a Dockerfile for a Python ingestion job, build an image with cached layers, run containers with environment variables, networks and volumes, and debug them with logs and exit codes.">
 <meta property="og:type" content="article">
-<meta property="og:site_name" content="Data, AI &amp; Automation Path">
+<meta property="og:site_name" content="Saiful The Techie">
 <meta property="og:title" content="Docker Images &amp; Containers: Package a Pipeline Once, Run It Anywhere">
 <meta property="og:description" content="Write a Dockerfile for a Python ingestion job, build an image with cached layers, run containers with environment variables, networks and volumes, and debug them with logs and exit codes.">
 <meta property="og:locale" content="en_US">
@@ -19,13 +19,13 @@ var n=null;try{n=localStorage.getItem('daa-nav')}catch(e){}
 if(n==='open'&&window.matchMedia&&matchMedia('(min-width: 961px)').matches)document.documentElement.setAttribute('data-nav','open');
 document.documentElement.classList.add('no-anim')})();</script>
 <link rel="stylesheet" href="../../../assets/style.css">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233f7d6a'/%3E%3Ctext x='16' y='21' font-family='sans-serif' font-size='13' font-weight='700' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
+
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="topbar">
   <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Open curriculum menu" title="Curriculum menu (press M)" aria-controls="sidebar" aria-expanded="false"><span class="ico-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span class="ico-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></button>
-  <a class="brand" href="../../../index.html"><span class="brand-badge">AI</span><span class="brand-text"><span class="brand-name">Data, AI &amp; Automation Path</span><span class="brand-version">v0.8</span></span></a>
+  <a class="brand" href="../../../index.html"><span class="brand-text"><span class="brand-name">Saiful The Techie</span><span class="brand-version">Data, AI &amp; Automation Path · v0.9.1</span></span></a>
   <nav class="top-links" aria-label="Main">
     <a href="../../../index.html" class="">Home</a><a href="../../../curriculum.html" class="">Curriculum</a><a href="../../../practice-files.html" class="">Practice files</a><a href="../../../glossary.html" class="">Glossary</a><a href="../../../how-to-learn.html" class="">How to learn</a><a href="../../../about.html" class="">About</a>
   </nav>
@@ -41,7 +41,7 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="layout wide">
   <nav class="sidebar" id="sidebar" aria-label="Curriculum">
     <div class="side-title">Curriculum</div>
-    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="77"><i></i></div><span class="bar-label" data-progress-label></span></div>
+    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="85"><i></i></div><span class="bar-label" data-progress-label></span></div>
 <div class="nav-phase"><a href="../../../learn/phase-0/index.html"><span class="nav-num">0</span>Foundations</a>
 </div>
 <div class="nav-phase"><a href="../../../learn/phase-1/index.html"><span class="nav-num">1</span>Analytics &amp; BI</a>
@@ -101,345 +101,468 @@ document.documentElement.classList.add('no-anim')})();</script>
 <p class="lead">Write a Dockerfile for a Python ingestion job, build an image with cached layers, run containers with environment variables, networks and volumes, and debug them with logs and exit codes.</p>
 <div class="meta"><span class="pill">Phase <b>3</b> · Data Engineering</span><span class="pill">Level <b>Intermediate</b></span><span class="pill">Time <b>55 min</b></span></div>
 <div class="admonition note"><p class="admonition-title">Before you start</p><p><a href="../../../learn/phase-3/data-ingestion/01-rest-apis-auth-pagination.html">REST APIs, Authentication &amp; Pagination: Pull Data Like a Pro</a> · <a href="../../../learn/phase-0/linux/01-filesystem-terminal.html">Linux Filesystem &amp; Terminal Workflow: Move Around Like an Engineer</a></p></div>
-<div class="files-box"><div class="files-head"><b>Practice files for this page</b><a href="../../../practice-files.html">All practice files →</a></div><ul><li><a href="../../../downloads/phase-3/data-engineering-scripts.zip" download>data-engineering-scripts.zip</a><span class="f-desc">Phase 3A scripts: practice API + website, ingestion, PostgreSQL loader, advanced SQL, indexing, transactions, star schema, SCD, BigQuery dialect, Delta Lake, Iceberg, Dockerfiles and compose.yaml · 270 KB</span></li></ul></div>
+<div class="files-box"><div class="files-head"><b>Practice files for this page</b><a href="../../../practice-files.html">All practice files →</a></div><ul><li><a href="../../../downloads/phase-3/data-engineering-scripts.zip" download>data-engineering-scripts.zip</a><span class="f-desc">Phase 3 scripts: ingestion, PostgreSQL, advanced SQL, warehousing, lakehouse, Docker, ETL/CDC, data quality, plus the dbt mini-project and verification scripts · 476 KB</span></li></ul></div>
 <h2 id="what-is-it">What is it?</h2>
 <table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Term</th>
 <th>Meaning</th>
 <th>Analogy</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td><strong>Dockerfile</strong></td>
 <td>A text recipe for building an image</td>
 <td>The recipe</td>
 </tr>
-<tr>
+<tr class="even">
 <td><strong>Image</strong></td>
 <td>A read-only package: OS files + Python + libraries + code</td>
 <td>The cooked meal, frozen</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><strong>Container</strong></td>
 <td>A running (or stopped) instance of an image</td>
 <td>A plate served from it</td>
 </tr>
-<tr>
+<tr class="even">
 <td><strong>Registry</strong></td>
-<td>Where images are shared (Docker Hub, GitHub Container Registry, cloud registries)</td>
+<td>Where images are shared (Docker Hub, GitHub Container Registry,
+cloud registries)</td>
 <td>The shop</td>
 </tr>
 </tbody>
 </table>
-<p>A container is not a virtual machine: it shares your computer's kernel, so it starts in about a second and uses little memory, but it's isolated from other containers and from your files unless you connect them.</p>
-<div class="admonition job">
-<p class="admonition-title">Why it matters at work</p>
-<p>Pipelines, APIs and databases at most companies run in containers: on a laptop, in CI, on Kubernetes or on cloud services. Orchestrators like Airflow and Dagster (Phase 3B) often run each task in a container. "Can you containerise this?" is a routine request, and Docker appears in a large share of data engineering job adverts.</p>
+<p>A container is not a virtual machine: it shares your computer’s
+kernel, so it starts in about a second and uses little memory, but it’s
+isolated from other containers and from your files unless you connect
+them.</p>
+<div class="admonition job" data-markdown="1">
+<p class="admonition-title">
+Why it matters at work
+</p>
+<p>Pipelines, APIs and databases at most companies run in containers: on
+a laptop, in CI, on Kubernetes or on cloud services. Orchestrators like
+Airflow and Dagster (Phase 3B) often run each task in a container. “Can
+you containerise this?” is a routine request, and Docker appears in a
+large share of data engineering job adverts.</p>
 </div>
-<h2 id="step-1-a-dockerfile-for-the-ingestion-job">Step 1: a Dockerfile for the ingestion job</h2>
-<p><code>docker/ingest_job.py</code> is a non-interactive version of the API ingestion script: it reads its settings from <strong>environment variables</strong>, pulls every page, and writes <code>orders.parquet</code>.</p>
-<div class="codehilite"><pre><span></span><code><span class="c"># Image for the ingestion job: Python + pinned libraries + our script</span>
-<span class="k">FROM</span><span class="w"> </span><span class="s">python:3.14-slim</span>
+<h2 id="step-1-a-dockerfile-for-the-ingestion-job">Step 1: a Dockerfile
+for the ingestion job</h2>
+<p><code>docker/ingest_job.py</code> is a non-interactive version of the
+API ingestion script: it reads its settings from <strong>environment
+variables</strong>, pulls every page, and writes
+<code>orders.parquet</code>.</p>
+<pre class="dockerfile"><code># Image for the ingestion job: Python + pinned libraries + our script
+FROM python:3.14-slim
 
-<span class="k">WORKDIR</span><span class="w"> </span><span class="s">/app</span>
-<span class="c"># print logs immediately, so `docker logs` shows them</span>
-<span class="k">ENV</span><span class="w"> </span><span class="nv">PYTHONUNBUFFERED</span><span class="o">=</span><span class="m">1</span>
+WORKDIR /app
+# print logs immediately, so `docker logs` shows them
+ENV PYTHONUNBUFFERED=1
 
-<span class="c"># 1) dependencies first: this layer is cached until requirements.txt changes</span>
-<span class="k">COPY</span><span class="w"> </span>requirements.txt<span class="w"> </span>.
-<span class="k">RUN</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--no-cache-dir<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+# 1) dependencies first: this layer is cached until requirements.txt changes
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
 
-<span class="c"># 2) then the code, which changes more often</span>
-<span class="k">COPY</span><span class="w"> </span>ingest_job.py<span class="w"> </span>.
+# 2) then the code, which changes more often
+COPY ingest_job.py .
 
-<span class="c"># don't run as root inside the container</span>
-<span class="k">RUN</span><span class="w"> </span>useradd<span class="w"> </span>--create-home<span class="w"> </span>appuser
-<span class="k">USER</span><span class="w"> </span><span class="s">appuser</span>
+# don&#39;t run as root inside the container
+RUN useradd --create-home appuser
+USER appuser
 
-<span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">"python"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ingest_job.py"</span><span class="p">]</span>
-</code></pre></div>
-
+CMD [&quot;python&quot;, &quot;ingest_job.py&quot;]</code></pre>
 <table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Instruction</th>
 <th>Does</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td><code>FROM</code></td>
 <td>Start from a base image (an official Python image here)</td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>WORKDIR</code></td>
 <td>Set the working folder inside the image</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><code>ENV</code></td>
 <td>Set an environment variable</td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>COPY</code></td>
 <td>Copy files from your folder into the image</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><code>RUN</code></td>
-<td>Run a command <strong>at build time</strong> (install packages, create a user)</td>
+<td>Run a command <strong>at build time</strong> (install packages,
+create a user)</td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>USER</code></td>
 <td>Switch to a non-root user for running</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><code>CMD</code></td>
 <td>The default command <strong>when a container starts</strong></td>
 </tr>
 </tbody>
 </table>
-<p><code>requirements.txt</code> pins exact versions (<code>pandas==3.0.6</code>, <code>pyarrow==25.0.1</code>, <code>requests==2.34.2</code>), so every build gets the same libraries.</p>
-<h2 id="step-2-build-and-see-the-layer-cache">Step 2: build, and see the layer cache</h2>
-<div class="codehilite"><pre><span></span><code>docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>orders-ingest:1.0<span class="w"> </span>.
-</code></pre></div>
-
-<p>Each instruction creates a <strong>layer</strong>. Change only <code>ingest_job.py</code> and rebuild:</p>
-<div class="codehilite"><pre><span></span><code>#6 [2/6] WORKDIR /app
+<p><code>requirements.txt</code> pins exact versions
+(<code>pandas==3.0.6</code>, <code>pyarrow==25.0.1</code>,
+<code>requests==2.34.2</code>), so every build gets the same
+libraries.</p>
+<h2 id="step-2-build-and-see-the-layer-cache">Step 2: build, and see the
+layer cache</h2>
+<pre class="bash"><code>docker build -t orders-ingest:1.0 .</code></pre>
+<p>Each instruction creates a <strong>layer</strong>. Change only
+<code>ingest_job.py</code> and rebuild:</p>
+<pre class="text"><code>#6 [2/6] WORKDIR /app
 #6 CACHED
 #7 [3/6] COPY requirements.txt .
 #7 CACHED
 #8 [4/6] RUN pip install --no-cache-dir -r requirements.txt
 #8 CACHED
 #9 [5/6] COPY ingest_job.py .
-#10 [6/6] RUN useradd --create-home appuser
-</code></pre></div>
-
-<p>Steps 2–4 come from the <strong>cache</strong>; only the steps after the changed file run again. That's why dependencies are copied and installed <strong>before</strong> the code: a code edit doesn't reinstall pandas. Put what changes least at the top.</p>
-<p><code>-t orders-ingest:1.0</code> gives the image a <strong>name:tag</strong>. Use meaningful version tags; <code>latest</code> is just a default name, not a guarantee of anything.</p>
-<h2 id="step-3-run-containers-that-talk-to-each-other">Step 3: run containers that talk to each other</h2>
-<p>The ingestion job needs the practice API. Build an image for it too (<code>Dockerfile.api</code>), put both on a <strong>network</strong>, and pass settings with <code>-e</code>:</p>
-<div class="codehilite"><pre><span></span><code>docker<span class="w"> </span>network<span class="w"> </span>create<span class="w"> </span>practice-net
-docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--name<span class="w"> </span>api<span class="w"> </span>--network<span class="w"> </span>practice-net<span class="w"> </span>orders-api:1.0
-docker<span class="w"> </span>ps
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>NAMES     IMAGE            STATUS         PORTS
-api       orders-api:1.0   Up 2 seconds   8765/tcp
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>--network<span class="w"> </span>practice-net<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>-e<span class="w"> </span><span class="nv">ORDERS_API_URL</span><span class="o">=</span>http://api:8765<span class="w"> </span>-e<span class="w"> </span><span class="nv">ORDERS_API_TOKEN</span><span class="o">=</span>practice-token-123<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>-v<span class="w"> </span><span class="s2">"</span><span class="nv">$PWD</span><span class="s2">/output:/out"</span><span class="w"> </span>orders-ingest:1.0
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>ingested 4246 orders (API total 4246) -&gt; /out/orders.parquet
-</code></pre></div>
-
+#10 [6/6] RUN useradd --create-home appuser</code></pre>
+<p>Steps 2–4 come from the <strong>cache</strong>; only the steps after
+the changed file run again. That’s why dependencies are copied and
+installed <strong>before</strong> the code: a code edit doesn’t
+reinstall pandas. Put what changes least at the top.</p>
+<p><code>-t orders-ingest:1.0</code> gives the image a
+<strong>name:tag</strong>. Use meaningful version tags;
+<code>latest</code> is just a default name, not a guarantee of
+anything.</p>
+<h2 id="step-3-run-containers-that-talk-to-each-other">Step 3: run
+containers that talk to each other</h2>
+<p>The ingestion job needs the practice API. Build an image for it too
+(<code>Dockerfile.api</code>), put both on a <strong>network</strong>,
+and pass settings with <code>-e</code>:</p>
+<pre class="bash"><code>docker network create practice-net
+docker run -d --name api --network practice-net orders-api:1.0
+docker ps</code></pre>
+<pre class="text"><code>NAMES     IMAGE            STATUS         PORTS
+api       orders-api:1.0   Up 2 seconds   8765/tcp</code></pre>
+<pre class="bash"><code>docker run --rm --network practice-net \
+  -e ORDERS_API_URL=http://api:8765 -e ORDERS_API_TOKEN=practice-token-123 \
+  -v &quot;$PWD/output:/out&quot; orders-ingest:1.0</code></pre>
+<pre class="text"><code>ingested 4246 orders (API total 4246) -&gt; /out/orders.parquet</code></pre>
 <table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Option</th>
 <th>Meaning</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td><code>-d</code></td>
 <td>Run in the background (detached)</td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>--name api</code></td>
-<td>Container name; on a user-defined network it's also the <strong>host name</strong> (<code>http://api:8765</code>)</td>
+<td>Container name; on a user-defined network it’s also the <strong>host
+name</strong> (<code>http://api:8765</code>)</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><code>--network</code></td>
 <td>Containers on the same network can reach each other by name</td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>-e KEY=value</code></td>
-<td>Environment variable (settings and secrets, not baked into the image)</td>
+<td>Environment variable (settings and secrets, not baked into the
+image)</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><code>-v host_path:container_path</code></td>
-<td><strong>Bind mount</strong>: the container writes <code>/out/orders.parquet</code>, which appears in <code>./output</code> on your machine</td>
+<td><strong>Bind mount</strong>: the container writes
+<code>/out/orders.parquet</code>, which appears in <code>./output</code>
+on your machine</td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>--rm</code></td>
 <td>Delete the container when it exits</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><code>-p 8765:8765</code></td>
-<td>Publish a port to your computer (needed only to reach it from your browser)</td>
+<td>Publish a port to your computer (needed only to reach it from your
+browser)</td>
 </tr>
 </tbody>
 </table>
-<h2 id="step-4-debug-like-a-data-engineer">Step 4: debug like a data engineer</h2>
+<h2 id="step-4-debug-like-a-data-engineer">Step 4: debug like a data
+engineer</h2>
 <p><strong>A wrong token:</strong></p>
-<div class="codehilite"><pre><span></span><code>requests.exceptions.HTTPError: 401 Client Error: Unauthorized for url: http://api:8765/api/v1/orders?page_size=1000
-</code></pre></div>
-
-<p>The job fails loudly and exits with a non-zero code, so a scheduler would mark it failed.</p>
+<pre class="text"><code>requests.exceptions.HTTPError: 401 Client Error: Unauthorized for url: http://api:8765/api/v1/orders?page_size=1000</code></pre>
+<p>The job fails loudly and exits with a non-zero code, so a scheduler
+would mark it failed.</p>
 <p><strong>Look inside an image:</strong></p>
-<div class="codehilite"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>orders-ingest:1.0<span class="w"> </span>python<span class="w"> </span>-c<span class="w"> </span><span class="s2">"import sys, pandas, pyarrow, requests; print(sys.version.split()[0], pandas.__version__, pyarrow.__version__, requests.__version__)"</span>
-docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>orders-ingest:1.0<span class="w"> </span>whoami
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>3.14.6 3.0.6 25.0.1 2.34.2
-appuser
-</code></pre></div>
-
+<pre class="bash"><code>docker run --rm orders-ingest:1.0 python -c &quot;import sys, pandas, pyarrow, requests; print(sys.version.split()[0], pandas.__version__, pyarrow.__version__, requests.__version__)&quot;
+docker run --rm orders-ingest:1.0 whoami</code></pre>
+<pre class="text"><code>3.14.6 3.0.6 25.0.1 2.34.2
+appuser</code></pre>
 <table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Command</th>
 <th>Use</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td><code>docker ps -a</code></td>
 <td>All containers, including stopped ones, with their exit codes</td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>docker logs api</code></td>
 <td>What a container printed (add <code>-f</code> to follow)</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><code>docker exec -it api bash</code></td>
 <td>A shell inside a running container (if the image has bash)</td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>docker run --rm -it image bash</code></td>
 <td>Start a throwaway container to poke around</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><code>docker image inspect image</code></td>
 <td>Configuration: command, user, environment</td>
 </tr>
-<tr>
-<td><code>docker rm -f api</code> / <code>docker network rm practice-net</code></td>
+<tr class="even">
+<td><code>docker rm -f api</code> /
+<code>docker network rm practice-net</code></td>
 <td>Clean up</td>
 </tr>
 </tbody>
 </table>
-<p>The Parquet file in <code>./output</code> is owned by user ID 1000 (the <code>appuser</code> inside the container) on your machine. Bind mounts share files <em>and</em> permissions, a common surprise on Linux.</p>
+<p>The Parquet file in <code>./output</code> is owned by user ID 1000
+(the <code>appuser</code> inside the container) on your machine. Bind
+mounts share files <em>and</em> permissions, a common surprise on
+Linux.</p>
 <h2 id="common-mistakes">Common mistakes</h2>
 <table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Mistake</th>
 <th>What happens</th>
 <th>Fix</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td><code>COPY . .</code> before installing dependencies</td>
 <td>Every code change reinstalls everything</td>
 <td>Copy requirements first, code last</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Secrets in the Dockerfile (<code>ENV TOKEN=…</code>)</td>
 <td>Anyone with the image can read them</td>
 <td>Pass at run time (<code>-e</code>, secrets), never bake in</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Running as root</td>
 <td>A compromised container has more power</td>
 <td><code>USER</code> with a non-root user</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Using <code>localhost</code> between containers</td>
-<td>"Connection refused": localhost is the container itself</td>
+<td>“Connection refused”: localhost is the container itself</td>
 <td>Same network; use the container/service name</td>
 </tr>
-<tr>
-<td>Unpinned versions (<code>pandas</code>, <code>FROM python:latest</code>)</td>
+<tr class="odd">
+<td>Unpinned versions (<code>pandas</code>,
+<code>FROM python:latest</code>)</td>
 <td>Different builds on different days</td>
 <td>Pin library versions and the base image tag</td>
 </tr>
-<tr>
+<tr class="even">
 <td>No <code>.dockerignore</code></td>
 <td>Huge build context, secrets copied into images</td>
-<td>Ignore <code>.venv</code>, outputs, <code>.env</code>, <code>.git</code></td>
+<td>Ignore <code>.venv</code>, outputs, <code>.env</code>,
+<code>.git</code></td>
 </tr>
 </tbody>
 </table>
 <h2 id="try-it-yourself">Try it yourself</h2>
-<p><strong>Task:</strong> Which user does the ingestion image run as, and what command does it run by default? Find out <strong>without</strong> reading the Dockerfile.</p>
+<p><strong>Task:</strong> Which user does the ingestion image run as,
+and what command does it run by default? Find out
+<strong>without</strong> reading the Dockerfile.</p>
 <details>
-<summary>Show the solution</summary>
-<div class="codehilite"><pre><span></span><code>docker<span class="w"> </span>image<span class="w"> </span>inspect<span class="w"> </span>orders-ingest:1.0<span class="w"> </span>--format<span class="w"> </span><span class="s1">'{{.Config.Cmd}} {{.Config.User}} {{.Config.WorkingDir}}'</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>[python ingest_job.py] appuser /app
-</code></pre></div>
-
-<p><code>docker image inspect</code> shows the configuration baked into any image, which is useful when you're given an image someone else built.</p>
+<summary>
+Show the solution
+</summary>
+<pre class="bash"><code>docker image inspect orders-ingest:1.0 --format &#39;{{.Config.Cmd}} {{.Config.User}} {{.Config.WorkingDir}}&#39;</code></pre>
+<pre class="text"><code>[python ingest_job.py] appuser /app</code></pre>
+<code>docker image inspect</code> shows the configuration baked into any
+image, which is useful when you’re given an image someone else built.
 </details>
 <h2 id="quick-quiz">Quick quiz</h2>
 <div class="quiz-q" data-answer="1">
-<p>1. What's the difference between an image and a container?</p>
-<ol>
+<p>1. What’s the difference between an image and a container?</p>
+<ol type="1">
 <li>None</li>
-<li>An image is the read-only package; a container is a running instance of it</li>
+<li>An image is the read-only package; a container is a running instance
+of it</li>
 <li>A container is a stored image</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B.</strong></p>
+<summary>
+Show answer
+</summary>
+<strong>B.</strong>
 </details>
 </div>
 <div class="quiz-q" data-answer="1">
-<p>2. Why copy <code>requirements.txt</code> and install packages before copying the code?</p>
-<ol>
-<li>It's required by Docker</li>
-<li>Code edits then reuse the cached dependency layer, making rebuilds fast</li>
+<p>2. Why copy <code>requirements.txt</code> and install packages before
+copying the code?</p>
+<ol type="1">
+<li>It’s required by Docker</li>
+<li>Code edits then reuse the cached dependency layer, making rebuilds
+fast</li>
 <li>It makes the image smaller</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B.</strong></p>
+<summary>
+Show answer
+</summary>
+<strong>B.</strong>
 </details>
 </div>
 <div class="quiz-q" data-answer="1">
 <p>3. How should the ingestion container reach the API container?</p>
-<ol>
+<ol type="1">
 <li><code>http://localhost:8765</code></li>
-<li><code>http://api:8765</code>, with both on the same Docker network</li>
+<li><code>http://api:8765</code>, with both on the same Docker
+network</li>
 <li>Through a shared file</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B.</strong></p>
+<summary>
+Show answer
+</summary>
+<strong>B.</strong>
 </details>
 </div>
 <h2 id="summary">Summary</h2>
 <ul>
-<li><strong>Dockerfile</strong> → <code>docker build</code> → <strong>image</strong> (layers, cached) → <code>docker run</code> → <strong>container</strong>.</li>
-<li>Order the Dockerfile from least to most frequently changed; pin versions; run as a non-root user.</li>
-<li>Configure with <strong>environment variables</strong>; connect containers with <strong>networks</strong>; share files with <strong>volumes</strong>.</li>
-<li>Debug with <code>docker ps -a</code>, <code>logs</code>, <code>exec</code>, <code>inspect</code>, and fail loudly with exit codes.</li>
+<li><strong>Dockerfile</strong> → <code>docker build</code> →
+<strong>image</strong> (layers, cached) → <code>docker run</code> →
+<strong>container</strong>.</li>
+<li>Order the Dockerfile from least to most frequently changed; pin
+versions; run as a non-root user.</li>
+<li>Configure with <strong>environment variables</strong>; connect
+containers with <strong>networks</strong>; share files with
+<strong>volumes</strong>.</li>
+<li>Debug with <code>docker ps -a</code>, <code>logs</code>,
+<code>exec</code>, <code>inspect</code>, and fail loudly with exit
+codes.</li>
 </ul>
-<div class="admonition job">
-<p class="admonition-title">Job-ready check</p>
-<p><strong>Interview question:</strong> <em>"Walk me through containerising a Python data job."</em></p>
-<p><strong>Strong answer:</strong> "I start from a slim, pinned Python base image, copy the lock or requirements file and install dependencies first so that layer is cached, then copy the code, create a non-root user and set the command. Configuration and secrets come in as environment variables at run time, never baked in. Outputs go to a volume or object storage, the job exits non-zero on failure for the scheduler, and I add a .dockerignore. Then I test it locally with the same image CI and production use."</p>
-<p><strong>Mini project:</strong> Containerise the scraping script from the ingestion module: a Dockerfile, a <code>.dockerignore</code>, settings via environment variables, and output to a mounted folder. Write the exact <code>docker build</code> and <code>docker run</code> commands in a README.</p>
+<div class="admonition job" data-markdown="1">
+<p class="admonition-title">
+Job-ready check
+</p>
+<p><strong>Interview question:</strong> <em>“Walk me through
+containerising a Python data job.”</em></p>
+<p><strong>Strong answer:</strong> “I start from a slim, pinned Python
+base image, copy the lock or requirements file and install dependencies
+first so that layer is cached, then copy the code, create a non-root
+user and set the command. Configuration and secrets come in as
+environment variables at run time, never baked in. Outputs go to a
+volume or object storage, the job exits non-zero on failure for the
+scheduler, and I add a .dockerignore. Then I test it locally with the
+same image CI and production use.”</p>
+<p><strong>Mini project:</strong> Containerise the scraping script from
+the ingestion module: a Dockerfile, a <code>.dockerignore</code>,
+settings via environment variables, and output to a mounted folder.
+Write the exact <code>docker build</code> and <code>docker run</code>
+commands in a README.</p>
 </div>
+<section class="mentor-prompt"><div class="mentor-head"><div><span class="eyebrow">AI study companion</span><h2 id="ai-mentor-prompt">AI Mentor Prompt</h2></div><button class="btn copy-prompt" type="button" data-copy-target="mentor-prompt-phase-3-docker-01-images-containers">Copy prompt</button></div><p>Paste this into ChatGPT, Claude, Gemini, or another capable assistant to turn this tutorial into an interactive mentoring session.</p><pre class="prompt-box"><code id="mentor-prompt-phase-3-docker-01-images-containers">You are my hands-on data-engineering mentor.
+
+I am currently studying:
+&quot;Docker Images &amp; Containers: Package a Pipeline Once, Run It Anywhere&quot;
+
+My level:
+Intermediate
+
+Teach me this topic interactively rather than giving me a long lecture.
+
+Use this sequence:
+
+1. Check what I already understand with one short diagnostic question.
+2. Explain the concept in simple language and give me the mental model first.
+3. Give me one small task using code, SQL, configuration, data, or architecture as appropriate.
+4. Wait for my attempt before showing a complete solution.
+5. Review my work and explain both what is correct and what needs improvement.
+6. Help me debug errors step by step instead of immediately replacing my work.
+7. Increase the difficulty gradually and connect each new step to the previous one.
+8. Relate what I am learning to real professional data/AI engineering work.
+9. Ask me to explain an important decision in my own words so you can check my understanding.
+10. At the end, ask me to build or modify one small feature independently.
+
+Important rules:
+- Do not do the entire exercise for me unless I explicitly ask.
+- Explain unfamiliar terminology before using it heavily.
+- Prefer current, production-relevant practices over outdated shortcuts.
+- Distinguish clearly between concepts, tool-specific behaviour, and optional alternatives.
+- If a technical fact, API, syntax, version, or best practice may have changed, verify it against current official documentation before teaching it.
+- Never invent command output, test results, benchmark numbers, cloud behaviour, or data results.
+- If something cannot be executed in the current environment, say so and give me the exact command or verification step I should run.
+- Keep me actively coding, querying, configuring, reasoning, or debugging throughout the session.
+- When useful, work from the tutorial practice files (data-engineering-scripts.zip) instead of inventing unrelated examples.
+- For Phase 3 order-data exercises, preserve the established reconciliation targets when relevant: 4,246 orders and net revenue 5,478,357.79. If my result differs, help me debug the cause instead of changing the expected result.
+
+The concepts I need to master are:
+- Images
+- Containers
+- docker
+- dockerfile
+- image
+- container
+- docker build
+- docker run
+
+Start by asking me one diagnostic question.</code></pre></section>
+
 <div class="terms-box"><div class="files-head"><b>Key terms in this lesson</b><a href="../../../glossary.html">Glossary →</a></div><div class="term-chips"><a class="term-chip" href="../../../glossary.html#docker" title="A tool that packages an application with everything it needs into a container image, so it runs the same on any machine.">Docker</a><a class="term-chip" href="../../../glossary.html#exit-code" title="The number a program returns when it ends: 0 means success, anything else means a problem. Schedulers and CI decide what to do based on it.">Exit code</a></div></div>
 <h2 id="free-resources">Free resources to go deeper</h2><ul class="resources"><li><a href="https://docs.docker.com/get-started/">Docker: Get started</a><span class="r-meta">Docker official docs · Concepts, a first image and a first container, step by step.</span></li><li><a href="https://docs.docker.com/build/building/best-practices/">Building best practices</a><span class="r-meta">Docker official docs · Layer caching, small images, non-root users, .dockerignore.</span></li><li><a href="https://docs.astral.sh/uv/guides/integration/docker/">Using uv in Docker</a><span class="r-meta">Astral (official) · The recommended pattern for uv-based Python images.</span></li></ul>
 <div class="complete-bar"><span>Finished reading and did the exercise?</span>
 <button class="btn" id="completeBtn" type="button" data-id="phase-3/docker/01-images-containers">Mark lesson as complete</button></div>
-<nav class="pager"><a class="prev" href="../../../learn/phase-3/lakehouse/02-iceberg-lakehouse-platforms.html"><small>← Previous</small>Apache Iceberg &amp; Lakehouse Platforms: Fabric, Databricks, Snowflake</a><a class="next" href="../../../learn/phase-3/docker/02-compose-reproducible.html"><small>Next →</small>Docker Compose &amp; Reproducible Environments: Run the Whole Pipeline With One Command</a></nav>
+<nav class="pager"><a class="prev" href="../../../learn/phase-3/data-quality/03-data-contracts-freshness-alerting.html"><small>← Previous</small>Data Contracts, Freshness and Alerting</a><a class="next" href="../../../learn/phase-3/docker/02-compose-reproducible.html"><small>Next →</small>Docker Compose &amp; Reproducible Environments: Run the Whole Pipeline With One Command</a></nav>
 <p class="reviewed">Last reviewed: 2026-10-09</p>
 
   </div></main>
-  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#step-1-a-dockerfile-for-the-ingestion-job">Step 1: a Dockerfile for the ingestion job</a><a href="#step-2-build-and-see-the-layer-cache">Step 2: build, and see the layer cache</a><a href="#step-3-run-containers-that-talk-to-each-other">Step 3: run containers that talk to each other</a><a href="#step-4-debug-like-a-data-engineer">Step 4: debug like a data engineer</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#free-resources">Free resources</a></aside>
+  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#step-1-a-dockerfile-for-the-ingestion-job">Step 1: a Dockerfile for the ingestion job</a><a href="#step-2-build-and-see-the-layer-cache">Step 2: build, and see the layer cache</a><a href="#step-3-run-containers-that-talk-to-each-other">Step 3: run containers that talk to each other</a><a href="#step-4-debug-like-a-data-engineer">Step 4: debug like a data engineer</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#ai-mentor-prompt">AI Mentor Prompt</a><a href="#free-resources">Free resources</a></aside>
 </div>
-<footer class="site">Data, AI &amp; Automation Path v0.8 · Applied AI, Data &amp; Automation Lab · Updated October 2026<br>
+<footer class="site"><b>Saiful The Techie</b> · Data, AI &amp; Automation Path v0.9.1 · Updated October 2026<br>
 Lesson text: <a href="../../../license.html">CC BY-NC-SA 4.0</a> · Code: <a href="../../../license.html#code-mit-license">MIT</a> · Free external resources belong to their respective owners.</footer>
 <script src="../../../search-index.js"></script>
 <script src="../../../assets/app.js"></script>

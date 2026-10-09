@@ -3,13 +3,13 @@
 > **AI · Data · Web · SaaS · Automation**  
 > Learn · Build · Explain · Share
 
-**Stable release v0.8** · **M8 / v0.9 working checkpoint: ETL/ELT + Data Quality + dbt** · [Roadmap](ROADMAP.md) · [Changelog](CHANGELOG.md)
+**Release v0.9.1** · **M8 correction checkpoint: ETL/ELT + Data Quality + dbt complete; AI-Ready Data next** · [Roadmap](ROADMAP.md) · [Changelog](CHANGELOG.md)
 
 A free, text-first **Saiful The Techie** tutorial website for the **Data, AI & Automation Engineering Curriculum**. It runs from basics to job-ready across 10 phases, from Excel and SQL to RAG, AI agents and LLMOps.
 
 - **Works offline:** open `index.html` (or `docs/index.html`) in any browser.
 - **GitHub Pages ready:** the finished website is in `docs/`.
-- **Features:** toggleable curriculum menu, light/dark mode, offline search, progress tracking, deep code/data tutorials, optional scored quizzes where useful, a glossary linked from lessons, copyable code and curated free resources.
+- **Features:** toggleable curriculum menu, light/dark mode, offline search, progress tracking, deep code/data tutorials, a professional copyable **AI Mentor Prompt on every written tutorial**, curated YouTube companions on reviewed lessons, optional scored quizzes where useful, glossary links, copyable code and curated free resources.
 - **Practice files:** every lesson lists the data, workbooks, scripts and answer keys it uses. The **Practice files** page lists them all, with a one-click bundle.
 
 ## Quick start (no install)
@@ -31,7 +31,7 @@ You need a free GitHub account. Choose **Option A** (no command line) or **Optio
 ### Option A: GitHub Desktop (no command line)
 
 1. Install **GitHub Desktop** from <https://desktop.github.com> and sign in.
-2. Unzip the package. Rename the folder from `data-ai-automation-path-v0.8` to **`data-ai-automation-path`**.
+2. Unzip the package. Rename the folder from `data-ai-automation-path-v0.9.1` to **`data-ai-automation-path`**.
 3. In GitHub Desktop, choose **File → Add local repository**, pick the folder, and click **create a repository** when asked.
 4. Click **Publish repository**.
    - Name: `data-ai-automation-path`
@@ -46,11 +46,11 @@ First create an **empty public** repository named `data-ai-automation-path` on g
 cd data-ai-automation-path        # the unzipped folder, renamed without the version
 git init
 git add .
-git commit -m "Release v0.8: Phase 3A Data Engineering"
+git commit -m "Release v0.9.1: M8 platform correction"
 git branch -M main
 git remote add origin https://github.com/<your-username>/data-ai-automation-path.git
 git push -u origin main
-git tag v0.8 && git push origin v0.8
+git tag v0.9.1 && git push origin v0.9.1
 ```
 
 ### Turn on GitHub Pages
@@ -78,7 +78,7 @@ The build prints `Sitemap: N URLs` when this is on. A GitHub Pages *project* sit
 
 ### Check the live site
 
-- [ ] The home page opens, and the version **v0.8** shows under the site name.
+- [ ] The home page opens, and the version **v0.9.1** shows under the site name.
 - [ ] The ☰ menu, search, dark mode and a lesson page all work.
 - [ ] A made-up address (e.g. `/nothing.html`) shows the "Page not found" page.
 - [ ] The **Actions** tab shows a green **Build check**.
@@ -89,7 +89,7 @@ The build prints `Sitemap: N URLs` when this is on. A GitHub Pages *project* sit
 
 ## Updating to a new version
 
-Each release comes as a zip named `data-ai-automation-path-vX.Y`.
+Each release comes as a zip named `data-ai-automation-path-vX.Y[.Z]`.
 
 1. Unzip it.
 2. Copy **everything inside** the folder into your existing `data-ai-automation-path` repository folder, replacing the old files. Keep the hidden `.git` folder.
@@ -102,7 +102,7 @@ Each release comes as a zip named `data-ai-automation-path-vX.Y`.
 
 ```bash
 pip install -r requirements.txt
-python build.py          # rebuilds docs/ and checks internal links
+python build.py          # rebuilds docs/ and checks internal links; falls back to Pandoc if Python-Markdown is unavailable
 ```
 
 | Edit this | To change |

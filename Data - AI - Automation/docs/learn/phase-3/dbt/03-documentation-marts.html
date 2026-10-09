@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en" data-root="../../../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>dbt Documentation and Marts: Publish BI-Ready Data with Lineage — Data, AI &amp; Automation Path</title>
+<meta name="description" content="Structure staging, intermediate and mart layers, build a monthly revenue mart, document the model graph, and reconcile the result to the Phase 3 known answers.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Saiful The Techie">
+<meta property="og:title" content="dbt Documentation and Marts: Publish BI-Ready Data with Lineage">
+<meta property="og:description" content="Structure staging, intermediate and mart layers, build a monthly revenue mart, document the model graph, and reconcile the result to the Phase 3 known answers.">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+
+<script>(function(){var t=null;try{t=localStorage.getItem('daa-theme')}catch(e){}
+if(!t)t=(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';
+document.documentElement.setAttribute('data-theme',t);
+var n=null;try{n=localStorage.getItem('daa-nav')}catch(e){}
+if(n==='open'&&window.matchMedia&&matchMedia('(min-width: 961px)').matches)document.documentElement.setAttribute('data-nav','open');
+document.documentElement.classList.add('no-anim')})();</script>
+<link rel="stylesheet" href="../../../assets/style.css">
+
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Open curriculum menu" title="Curriculum menu (press M)" aria-controls="sidebar" aria-expanded="false"><span class="ico-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span class="ico-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></button>
+  <a class="brand" href="../../../index.html"><span class="brand-text"><span class="brand-name">Saiful The Techie</span><span class="brand-version">Data, AI &amp; Automation Path · v0.9.1</span></span></a>
+  <nav class="top-links" aria-label="Main">
+    <a href="../../../index.html" class="">Home</a><a href="../../../curriculum.html" class="">Curriculum</a><a href="../../../practice-files.html" class="">Practice files</a><a href="../../../glossary.html" class="">Glossary</a><a href="../../../how-to-learn.html" class="">How to learn</a><a href="../../../about.html" class="">About</a>
+  </nav>
+  <div class="top-spacer"></div>
+  <div class="search" role="search">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input id="searchInput" type="search" placeholder="Search lessons, tools, topics" aria-label="Search" autocomplete="off">
+    <kbd>/</kbd>
+    <div class="search-results" id="searchResults" role="listbox"></div>
+  </div>
+  <button class="icon-btn theme-toggle" id="themeBtn" aria-label="Toggle light or dark mode" title="Light / dark"><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
+</header>
+<div class="layout wide">
+  <nav class="sidebar" id="sidebar" aria-label="Curriculum">
+    <div class="side-title">Curriculum</div>
+    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="85"><i></i></div><span class="bar-label" data-progress-label></span></div>
+<div class="nav-phase"><a href="../../../learn/phase-0/index.html"><span class="nav-num">0</span>Foundations</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-1/index.html"><span class="nav-num">1</span>Analytics &amp; BI</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-2/index.html"><span class="nav-num">2</span>Data Science</a>
+</div>
+<div class="nav-phase current open"><a href="../../../learn/phase-3/index.html"><span class="nav-num">3</span>Data Engineering</a>
+<ul class="nav-modules">
+<li><a class="" href="../../../learn/phase-3/data-ingestion/index.html">Data Ingestion</a>
+</li>
+<li><a class="" href="../../../learn/phase-3/advanced-sql/index.html">Advanced SQL</a>
+</li>
+<li><a class="" href="../../../learn/phase-3/database-engineering/index.html">Database Engineering</a>
+</li>
+<li><a class="" href="../../../learn/phase-3/data-warehousing/index.html">Data Warehousing</a>
+</li>
+<li><a class="" href="../../../learn/phase-3/lakehouse/index.html">Lakehouse &amp; Open Table Formats</a>
+</li>
+<li><a class="" href="../../../learn/phase-3/etl-elt/index.html">ETL / ELT</a>
+</li>
+<li><a class="" href="../../../learn/phase-3/data-quality/index.html">Data Quality &amp; Contracts</a>
+</li>
+<li><a class="" href="../../../learn/phase-3/docker/index.html">Docker</a>
+</li>
+<li><a class="" href="../../../learn/phase-3/orchestration/index.html">Orchestration</a>
+</li>
+<li><a class="current" href="../../../learn/phase-3/dbt/index.html">dbt</a>
+<ul class="nav-lessons">
+<li><a class="" data-lesson="phase-3/dbt/01-models-tests" href="../../../learn/phase-3/dbt/01-models-tests.html">dbt Models and Tests: Turn SQL into a Trusted Transformation Graph</a></li>
+<li><a class="" data-lesson="phase-3/dbt/02-snapshots-macros" href="../../../learn/phase-3/dbt/02-snapshots-macros.html">dbt Snapshots and Macros: Preserve History and Reuse SQL Logic</a></li>
+<li><a class="current" data-lesson="phase-3/dbt/03-documentation-marts" href="../../../learn/phase-3/dbt/03-documentation-marts.html">dbt Documentation and Marts: Publish BI-Ready Data with Lineage</a></li>
+</ul>
+</li>
+<li><a class="" href="../../../learn/phase-3/cloud-iac/index.html">Cloud &amp; Infrastructure as Code</a>
+</li>
+<li><a class="" href="../../../learn/phase-3/ai-ready-data/index.html">AI-Ready Data</a>
+</li>
+<li><a class="" href="../../../learn/phase-3/big-data-streaming/index.html">Big Data &amp; Streaming</a>
+</li>
+</ul>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-4/index.html"><span class="nav-num">4</span>ML Engineering</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-5/index.html"><span class="nav-num">5</span>LLM &amp; RAG</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-6/index.html"><span class="nav-num">6</span>Agents &amp; Automation</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-7/index.html"><span class="nav-num">7</span>LLMOps &amp; Governance</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-8/index.html"><span class="nav-num">8</span>Capstone</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-9/index.html"><span class="nav-num">9</span>Career</a>
+</div>
+<div class="side-extra"><a href="../../../index.html">Home</a><a href="../../../curriculum.html">Full curriculum map</a><a href="../../../practice-files.html">Practice files</a><a href="../../../glossary.html">Glossary</a><a href="../../../how-to-learn.html">How to learn here</a><a href="../../../about.html">About &amp; contributing</a></div></nav>
+  <main class="main" id="main"><div class="content">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../../index.html">Home</a><span class="sep">/</span><a href="../../../learn/phase-3/index.html">Phase 3</a><span class="sep">/</span><a href="../../../learn/phase-3/dbt/index.html">dbt</a><span class="sep">/</span><span>dbt Documentation and Marts: Publish BI-Ready Data with Lineage</span></nav>
+<h1>dbt Documentation and Marts: Publish BI-Ready Data with Lineage</h1>
+<p class="lead">Structure staging, intermediate and mart layers, build a monthly revenue mart, document the model graph, and reconcile the result to the Phase 3 known answers.</p>
+<div class="meta"><span class="pill">Phase <b>3</b> · Data Engineering</span><span class="pill">Level <b>Intermediate</b></span><span class="pill">Time <b>70 min</b></span></div>
+<div class="admonition note"><p class="admonition-title">Before you start</p><p><a href="../../../learn/phase-3/dbt/02-snapshots-macros.html">dbt Snapshots and Macros: Preserve History and Reuse SQL Logic</a></p></div>
+<div class="files-box"><div class="files-head"><b>Practice files for this page</b><a href="../../../practice-files.html">All practice files →</a></div><ul><li><a href="../../../downloads/phase-3/dbt-orders-project.zip" download>dbt-orders-project.zip</a><span class="f-desc">Starter + completed local dbt Core/DuckDB project: sources, staging models, tests, snapshot, macro, docs and BI-ready marts · 192 KB</span></li><li><a href="../../../downloads/phase-3/data-engineering-scripts.zip" download>data-engineering-scripts.zip</a><span class="f-desc">Phase 3 scripts: ingestion, PostgreSQL, advanced SQL, warehousing, lakehouse, Docker, ETL/CDC, data quality, plus the dbt mini-project and verification scripts · 476 KB</span></li></ul></div>
+<h2 id="introduction">Introduction</h2>
+<p>A technically correct transformation is not automatically a good data
+product.</p>
+<p>A teammate still needs to know:</p>
+<ul>
+<li>Which table should a dashboard query?</li>
+<li>What is the row grain?</li>
+<li>Where did a column come from?</li>
+<li>Which upstream model breaks if this one changes?</li>
+<li>What does <code>net_revenue</code> mean?</li>
+<li>Which models are implementation details and which are intended for
+consumers?</li>
+</ul>
+<p>This tutorial finishes the dbt mini-project by creating
+<strong>marts</strong> and making the model graph understandable through
+documentation and lineage.</p>
+<h2 id="what-you-will-learn">What you will learn</h2>
+<p>You will be able to:</p>
+<ul>
+<li>explain staging, intermediate and mart responsibilities;</li>
+<li>build a BI-ready fact table and monthly mart;</li>
+<li>use documentation blocks and model descriptions;</li>
+<li>generate dbt documentation locally;</li>
+<li>understand model lineage from <code>ref()</code> dependencies;</li>
+<li>reconcile the final output to the established Phase 3 business
+totals;</li>
+<li>see how dbt fits into the later Production Analytics Platform
+project.</li>
+</ul>
+<h2 id="mental-model-layers-have-different-audiences">Mental model:
+layers have different audiences</h2>
+<p>A useful dbt project often separates transformation
+responsibilities:</p>
+<pre class="text"><code>RAW SOURCE
+    ↓
+STAGING
+    ↓
+INTERMEDIATE
+    ↓
+MARTS
+    ↓
+BI / ANALYSIS / ML / AI</code></pre>
+<h3 id="staging">Staging</h3>
+<p>Purpose: create clean, typed, consistently named entry points.</p>
+<p>Audience: mostly other dbt models.</p>
+<h3 id="intermediate">Intermediate</h3>
+<p>Purpose: combine reusable business logic without prematurely exposing
+it as an end-user dataset.</p>
+<p>Audience: downstream transformation developers.</p>
+<h3 id="marts">Marts</h3>
+<p>Purpose: present business entities and metrics in a form that
+analysts and BI tools can use directly.</p>
+<p>Audience: data consumers.</p>
+<p>This is conceptually similar to the bronze/silver/gold progression
+you already saw in the lakehouse module, but dbt focuses on the
+<strong>SQL transformation graph</strong> rather than storage-table
+format.</p>
+<h2 id="step-1-build-the-fact-table">Step 1 — build the fact table</h2>
+<p>The reference project creates <code>fct_orders.sql</code> from the
+enriched intermediate model:</p>
+<pre class="sql"><code>select * from {{ ref(&#39;int_orders_enriched&#39;) }}</code></pre>
+<p>That line looks simple because the important cleanup and joins were
+already pushed upstream.</p>
+<p>The fact table keeps <strong>one row per order</strong>.</p>
+<p>Its key calculated fields include:</p>
+<ul>
+<li><code>discount_band</code>;</li>
+<li><code>net_revenue</code> (zero for Cancelled orders);</li>
+<li><code>estimated_margin</code>.</li>
+</ul>
+<p>The grain is protected by <code>not_null</code> + <code>unique</code>
+tests on <code>order_id</code>.</p>
+<h2 id="step-2-build-a-monthly-revenue-mart">Step 2 — build a monthly
+revenue mart</h2>
+<p>Now create a smaller table specifically for monthly reporting:</p>
+<pre class="sql"><code>select
+    cast(date_trunc(&#39;month&#39;, order_date) as date) as order_month,
+    count(*) as order_count,
+    sum(case when status &lt;&gt; &#39;Cancelled&#39; then 1 else 0 end) as active_order_count,
+    round(sum(net_revenue), 2) as net_revenue,
+    round(sum(estimated_margin), 2) as estimated_margin
+from {{ ref(&#39;fct_orders&#39;) }}
+group by 1
+order by 1</code></pre>
+<p>This model has <strong>one row per month</strong> instead of one row
+per order.</p>
+<p>That makes it a good example of a mart built for a specific
+analytical use case.</p>
+<h2 id="run-here-monthly-mart-reconciliation">RUN-HERE — monthly mart
+reconciliation</h2>
+<p>The dbt engine itself is owner-run in this environment, but the exact
+monthly logic was executed independently against the same source
+data.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Month</th>
+<th style="text-align: right;">Orders</th>
+<th style="text-align: right;">Net revenue</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>2025-01</td>
+<td style="text-align: right;">291</td>
+<td style="text-align: right;">330,192.02</td>
+</tr>
+<tr class="even">
+<td>2025-02</td>
+<td style="text-align: right;">248</td>
+<td style="text-align: right;">335,736.27</td>
+</tr>
+<tr class="odd">
+<td>2025-03</td>
+<td style="text-align: right;">280</td>
+<td style="text-align: right;">324,249.14</td>
+</tr>
+<tr class="even">
+<td>2025-04</td>
+<td style="text-align: right;">252</td>
+<td style="text-align: right;">336,681.97</td>
+</tr>
+<tr class="odd">
+<td>2025-05</td>
+<td style="text-align: right;">337</td>
+<td style="text-align: right;">444,537.86</td>
+</tr>
+<tr class="even">
+<td>2025-06</td>
+<td style="text-align: right;">245</td>
+<td style="text-align: right;">324,326.11</td>
+</tr>
+<tr class="odd">
+<td>2025-07</td>
+<td style="text-align: right;">399</td>
+<td style="text-align: right;">547,578.67</td>
+</tr>
+<tr class="even">
+<td>2025-08</td>
+<td style="text-align: right;">382</td>
+<td style="text-align: right;">499,336.45</td>
+</tr>
+<tr class="odd">
+<td>2025-09</td>
+<td style="text-align: right;">465</td>
+<td style="text-align: right;">606,666.32</td>
+</tr>
+<tr class="even">
+<td>2025-10</td>
+<td style="text-align: right;">498</td>
+<td style="text-align: right;">637,896.70</td>
+</tr>
+<tr class="odd">
+<td>2025-11</td>
+<td style="text-align: right;">453</td>
+<td style="text-align: right;">614,878.83</td>
+</tr>
+<tr class="even">
+<td>2025-12</td>
+<td style="text-align: right;">396</td>
+<td style="text-align: right;">476,277.45</td>
+</tr>
+</tbody>
+</table>
+<p>The executed verifier reported:</p>
+<pre class="text"><code>monthly mart: 12 rows | top month 2025-10 | net revenue 637896.70
+known answer: rows 4246 | net revenue 5478357.79</code></pre>
+<p>The month-level table therefore reconciles to the full non-cancelled
+revenue total of <strong>5,478,357.79</strong>.</p>
+<h2 id="step-3-document-the-mart-in-yaml">Step 3 — document the mart in
+YAML</h2>
+<p><code>models/marts/_marts.yml</code> contains model and column
+descriptions:</p>
+<pre class="yaml"><code>version: 2
+
+models:
+  - name: fct_orders
+    description: &quot;BI-ready order fact table at one row per order.&quot;
+    columns:
+      - name: order_id
+        data_tests: [not_null, unique]
+
+  - name: mart_monthly_revenue
+    description: &#39;{{ doc(&quot;mart_monthly_revenue&quot;) }}&#39;
+    columns:
+      - name: order_month
+        description: &quot;First day of the reporting month.&quot;
+        data_tests: [not_null, unique]
+      - name: net_revenue
+        description: &quot;Revenue from all non-cancelled orders in the month.&quot;
+        data_tests: [not_null]</code></pre>
+<p>Documentation belongs close to the code that defines the data
+product.</p>
+<h2 id="step-4-use-a-docs-block-for-longer-explanations">Step 4 — use a
+docs block for longer explanations</h2>
+<p>The reference project contains:</p>
+<pre class="text"><code>models/marts/docs.md</code></pre>
+<p>with:</p>
+<pre class="text"><code>{% docs mart_monthly_revenue %}
+One row per calendar month for 2025. The mart reconciles all
+non-cancelled order revenue into a small BI-ready table.
+{% enddocs %}</code></pre>
+<p>The YAML calls it with:</p>
+<pre class="yaml"><code>description: &#39;{{ doc(&quot;mart_monthly_revenue&quot;) }}&#39;</code></pre>
+<p>A docs block is useful when the description is too substantial to
+keep comfortably inside YAML.</p>
+<h2 id="step-5-understand-lineage">Step 5 — understand lineage</h2>
+<p>Every <code>ref()</code> creates a dependency edge.</p>
+<p>The core graph in this project is:</p>
+<pre class="text"><code>shop.orders_2025
+      ↓
+  stg_orders ─────────────┐
+                         │
+stg_customers ───────┐    │
+                     ↓    ↓
+stg_products ───→ int_orders_enriched
+                         ↓
+                     fct_orders
+                         ↓
+              mart_monthly_revenue</code></pre>
+<p>This lineage is not decorative. It helps answer operational
+questions:</p>
+<ul>
+<li>What will be affected if <code>stg_orders</code> changes?</li>
+<li>Which upstream source feeds this dashboard table?</li>
+<li>Which models can be rebuilt selectively?</li>
+<li>Where should a quality failure be investigated?</li>
+</ul>
+<h2 id="step-6-generate-documentation">Step 6 — generate
+documentation</h2>
+<p>On your machine:</p>
+<pre class="bash"><code>dbt docs generate --profiles-dir .
+dbt docs serve --profiles-dir .</code></pre>
+<p><code>dbt docs generate</code> produces metadata and catalog
+artifacts. <code>dbt docs serve</code> starts a local documentation site
+where you can browse models, descriptions and lineage.</p>
+<p><strong>RUN-BY-OWNER:</strong> this sandbox does not contain dbt, so
+no fake <code>dbt docs</code> output is included.</p>
+<h2 id="step-7-run-the-completed-project">Step 7 — run the completed
+project</h2>
+<p>From <code>completed/</code>:</p>
+<pre class="bash"><code>python -m venv .venv
+# activate the environment
+pip install -r requirements-dbt.txt
+
+dbt debug --profiles-dir .
+dbt seed --full-refresh --profiles-dir .
+dbt build --profiles-dir .
+dbt docs generate --profiles-dir .</code></pre>
+<p>The project includes a singular reconciliation test. Your build
+should fail if the order count is no longer <strong>4,246</strong> or
+net revenue is no longer <strong>5,478,357.79</strong>.</p>
+<p>That turns a business-known answer into a regression guard.</p>
+<h2 id="why-marts-should-not-simply-expose-every-intermediate-model">Why
+marts should not simply expose every intermediate model</h2>
+<p>A common mistake in analytics engineering is to publish every
+transformation table to end users.</p>
+<p>That creates confusion:</p>
+<pre class="text"><code>Which table should I use?
+Which one is stable?
+Which one has the approved KPI definition?</code></pre>
+<p>Marts create a deliberate interface between transformation internals
+and data consumers.</p>
+<p>For this project:</p>
+<ul>
+<li><code>stg_*</code> = source-oriented cleanup;</li>
+<li><code>int_*</code> = reusable implementation logic;</li>
+<li><code>fct_*</code> / <code>dim_*</code> = business entities;</li>
+<li><code>mart_*</code> = reporting-specific outputs.</li>
+</ul>
+<h2 id="build-with-me">Build with me</h2>
+<p>In your <code>starter/</code> project:</p>
+<ol type="1">
+<li>create <code>int_orders_enriched.sql</code>;</li>
+<li>create <code>fct_orders.sql</code> and
+<code>dim_customers.sql</code>;</li>
+<li>create <code>mart_monthly_revenue.sql</code>;</li>
+<li>add model/column descriptions;</li>
+<li>add the reconciliation test;</li>
+<li>run <code>dbt build</code>;</li>
+<li>generate dbt docs;</li>
+<li>inspect lineage from source → staging → intermediate → mart;</li>
+<li>compare your result with <code>completed/</code> and the 12-row
+monthly known-answer table above.</li>
+</ol>
+<h2 id="practice-files">Practice files</h2>
+<p>Key completed files:</p>
+<pre class="text"><code>models/intermediate/int_orders_enriched.sql
+models/marts/fct_orders.sql
+models/marts/dim_customers.sql
+models/marts/mart_monthly_revenue.sql
+models/marts/_marts.yml
+models/marts/docs.md
+tests/assert_fct_orders_reconciles.sql</code></pre>
+<h2 id="professional-context">Professional context</h2>
+<p>A strong dbt project is not just a folder of SQL files. It provides a
+contract for analytical transformation:</p>
+<ul>
+<li>dependencies are explicit;</li>
+<li>tests are executable;</li>
+<li>documentation is versioned;</li>
+<li>model layers have clear responsibilities;</li>
+<li>lineage is visible;</li>
+<li>business totals can be reconciled;</li>
+<li>changes can be reviewed in Git.</li>
+</ul>
+<p>This is why dbt sits naturally between ingestion/storage and BI-ready
+gold tables in the final Phase 3 architecture.</p>
+<h2 id="connection-to-the-phase-3-project">Connection to the Phase 3
+project</h2>
+<p>The final <strong>Production Analytics Platform</strong> will connect
+the pieces you are building across M8:</p>
+<pre class="text"><code>API ingestion
+   ↓
+PostgreSQL / lakehouse
+   ↓
+dbt models + tests
+   ↓
+orchestrated daily run
+   ↓
+BI-ready gold/marts
+   ↓
+document pipeline for AI-ready retrieval</code></pre>
+<p>Your dbt mini-project is therefore not an isolated exercise. It
+becomes the transformation layer of the final Phase 3 system.</p>
+<h2 id="next-tutorial">Next tutorial</h2>
+<p>The next approved M8 milestone after dbt is <strong>AI-Ready
+Data</strong>: unstructured document pipelines, parsing/chunking,
+embedding refresh, and metadata/lineage for RAG.</p>
+<section class="mentor-prompt"><div class="mentor-head"><div><span class="eyebrow">AI study companion</span><h2 id="ai-mentor-prompt">AI Mentor Prompt</h2></div><button class="btn copy-prompt" type="button" data-copy-target="mentor-prompt-phase-3-dbt-03-documentation-marts">Copy prompt</button></div><p>Paste this into ChatGPT, Claude, Gemini, or another capable assistant to turn this tutorial into an interactive mentoring session.</p><pre class="prompt-box"><code id="mentor-prompt-phase-3-dbt-03-documentation-marts">You are my hands-on data-engineering mentor.
+
+I am currently studying:
+&quot;dbt Documentation and Marts: Publish BI-Ready Data with Lineage&quot;
+
+My level:
+Intermediate
+
+Teach me this topic interactively rather than giving me a long lecture.
+
+Use this sequence:
+
+1. Check what I already understand with one short diagnostic question.
+2. Explain the concept in simple language and give me the mental model first.
+3. Give me one small task using code, SQL, configuration, data, or architecture as appropriate.
+4. Wait for my attempt before showing a complete solution.
+5. Review my work and explain both what is correct and what needs improvement.
+6. Help me debug errors step by step instead of immediately replacing my work.
+7. Increase the difficulty gradually and connect each new step to the previous one.
+8. Relate what I am learning to real professional data/AI engineering work.
+9. Ask me to explain an important decision in my own words so you can check my understanding.
+10. At the end, ask me to build or modify one small feature independently.
+
+Important rules:
+- Do not do the entire exercise for me unless I explicitly ask.
+- Explain unfamiliar terminology before using it heavily.
+- Prefer current, production-relevant practices over outdated shortcuts.
+- Distinguish clearly between concepts, tool-specific behaviour, and optional alternatives.
+- If a technical fact, API, syntax, version, or best practice may have changed, verify it against current official documentation before teaching it.
+- Never invent command output, test results, benchmark numbers, cloud behaviour, or data results.
+- If something cannot be executed in the current environment, say so and give me the exact command or verification step I should run.
+- Keep me actively coding, querying, configuring, reasoning, or debugging throughout the session.
+- When useful, work from the tutorial practice files (dbt-orders-project.zip, data-engineering-scripts.zip) instead of inventing unrelated examples.
+- For Phase 3 order-data exercises, preserve the established reconciliation targets when relevant: 4,246 orders and net revenue 5,478,357.79. If my result differs, help me debug the cause instead of changing the expected result.
+
+The concepts I need to master are:
+- Documentation &amp; marts
+- dbt docs
+- mart
+- staging
+- intermediate
+- lineage
+- documentation
+- gold layer
+
+Start by asking me one diagnostic question.</code></pre></section>
+<section class="video-companion"><h2 id="video-companion">Video companion</h2><div class="video-frame"><iframe src="https://www.youtube-nocookie.com/embed/71UPBZmLnBM" title="DBT Tutorial: How to generate automatic documentation in DBT" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div><h3>DBT Tutorial: How to generate automatic documentation in DBT</h3><p>A concise visual companion for dbt documentation, docs blocks and generated docs. Use it after building the lesson&#x27;s staging/intermediate/mart layers so the generated lineage has a concrete model graph to explain.</p><p class="video-meta">Anirvan Decodes · English · Intermediate</p><p class="video-reviewed">Video link reviewed: 2026-10-09</p><p><a href="https://www.youtube.com/watch?v=71UPBZmLnBM">Watch on YouTube ↗</a></p></section>
+<div class="terms-box"><div class="files-head"><b>Key terms in this lesson</b><a href="../../../glossary.html">Glossary →</a></div><div class="term-chips"><a class="term-chip" href="../../../glossary.html#data-lineage" title="The dependency path showing which sources and models feed a downstream dataset, report or data product.">Data lineage</a><a class="term-chip" href="../../../glossary.html#data-mart" title="A business-facing analytical model shaped for a specific entity, metric set or reporting use case.">Data mart</a><a class="term-chip" href="../../../glossary.html#medallion-architecture" title="Organising a lakehouse in layers: bronze (raw, as received), silver (cleaned, conformed), gold (business-ready aggregates and models).">Medallion architecture</a></div></div>
+<h2 id="free-resources">Free resources to go deeper</h2><ul class="resources"><li><a href="https://docs.getdbt.com/docs/build/documentation">About documentation</a><span class="r-meta">dbt Developer Hub · Official guide to model descriptions, docs blocks and generated dbt documentation.</span></li><li><a href="https://docs.getdbt.com/best-practices/how-we-structure/1-guide-overview?version=1.12">How we structure our dbt projects</a><span class="r-meta">dbt Developer Hub · Explains the staging → intermediate → marts pattern used in this practice project.</span></li><li><a href="https://docs.getdbt.com/best-practices/best-practice-workflows">Best practices for workflows</a><span class="r-meta">dbt Developer Hub · Practical guidance on model organization, tests and maintainable analytical workflows.</span></li></ul>
+<div class="complete-bar"><span>Finished reading and did the exercise?</span>
+<button class="btn" id="completeBtn" type="button" data-id="phase-3/dbt/03-documentation-marts">Mark lesson as complete</button></div>
+<nav class="pager"><a class="prev" href="../../../learn/phase-3/dbt/02-snapshots-macros.html"><small>← Previous</small>dbt Snapshots and Macros: Preserve History and Reuse SQL Logic</a><a class="next" href="../../../learn/phase-3/dbt/index.html"><small>Back to module →</small>dbt</a></nav>
+<p class="reviewed">Last reviewed: 2026-10-09</p>
+
+  </div></main>
+  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#introduction">Introduction</a><a href="#what-you-will-learn">What you will learn</a><a href="#mental-model-layers-have-different-audiences">Mental model: layers have different audiences</a><a href="#staging">Staging</a><a href="#intermediate">Intermediate</a><a href="#marts">Marts</a><a href="#step-1-build-the-fact-table">Step 1 — build the fact table</a><a href="#step-2-build-a-monthly-revenue-mart">Step 2 — build a monthly revenue mart</a><a href="#run-here-monthly-mart-reconciliation">RUN-HERE — monthly mart reconciliation</a><a href="#step-3-document-the-mart-in-yaml">Step 3 — document the mart in YAML</a><a href="#step-4-use-a-docs-block-for-longer-explanations">Step 4 — use a docs block for longer explanations</a><a href="#step-5-understand-lineage">Step 5 — understand lineage</a><a href="#step-6-generate-documentation">Step 6 — generate documentation</a><a href="#step-7-run-the-completed-project">Step 7 — run the completed project</a><a href="#why-marts-should-not-simply-expose-every-intermediate-model">Why marts should not simply expose every intermediate model</a><a href="#build-with-me">Build with me</a><a href="#practice-files">Practice files</a><a href="#professional-context">Professional context</a><a href="#connection-to-the-phase-3-project">Connection to the Phase 3 project</a><a href="#next-tutorial">Next tutorial</a><a href="#ai-mentor-prompt">AI Mentor Prompt</a><a href="#video-companion">Video companion</a><a href="#free-resources">Free resources</a></aside>
+</div>
+<footer class="site"><b>Saiful The Techie</b> · Data, AI &amp; Automation Path v0.9.1 · Updated October 2026<br>
+Lesson text: <a href="../../../license.html">CC BY-NC-SA 4.0</a> · Code: <a href="../../../license.html#code-mit-license">MIT</a> · Free external resources belong to their respective owners.</footer>
+<script src="../../../search-index.js"></script>
+<script src="../../../assets/app.js"></script>
+</body>
+</html>

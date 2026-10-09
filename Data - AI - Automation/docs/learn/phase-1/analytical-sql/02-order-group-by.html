@@ -6,7 +6,7 @@
 <title>Sort and Summarise: ORDER BY, GROUP BY &amp; HAVING — Data, AI &amp; Automation Path</title>
 <meta name="description" content="Rank results, calculate totals and averages, and build the revenue-by-region tables behind every sales dashboard.">
 <meta property="og:type" content="article">
-<meta property="og:site_name" content="Data, AI &amp; Automation Path">
+<meta property="og:site_name" content="Saiful The Techie">
 <meta property="og:title" content="Sort and Summarise: ORDER BY, GROUP BY &amp; HAVING">
 <meta property="og:description" content="Rank results, calculate totals and averages, and build the revenue-by-region tables behind every sales dashboard.">
 <meta property="og:locale" content="en_US">
@@ -19,13 +19,13 @@ var n=null;try{n=localStorage.getItem('daa-nav')}catch(e){}
 if(n==='open'&&window.matchMedia&&matchMedia('(min-width: 961px)').matches)document.documentElement.setAttribute('data-nav','open');
 document.documentElement.classList.add('no-anim')})();</script>
 <link rel="stylesheet" href="../../../assets/style.css">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233f7d6a'/%3E%3Ctext x='16' y='21' font-family='sans-serif' font-size='13' font-weight='700' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
+
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="topbar">
   <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Open curriculum menu" title="Curriculum menu (press M)" aria-controls="sidebar" aria-expanded="false"><span class="ico-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span class="ico-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></button>
-  <a class="brand" href="../../../index.html"><span class="brand-badge">AI</span><span class="brand-text"><span class="brand-name">Data, AI &amp; Automation Path</span><span class="brand-version">v0.8</span></span></a>
+  <a class="brand" href="../../../index.html"><span class="brand-text"><span class="brand-name">Saiful The Techie</span><span class="brand-version">Data, AI &amp; Automation Path · v0.9.1</span></span></a>
   <nav class="top-links" aria-label="Main">
     <a href="../../../index.html" class="">Home</a><a href="../../../curriculum.html" class="">Curriculum</a><a href="../../../practice-files.html" class="">Practice files</a><a href="../../../glossary.html" class="">Glossary</a><a href="../../../how-to-learn.html" class="">How to learn</a><a href="../../../about.html" class="">About</a>
   </nav>
@@ -41,7 +41,7 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="layout wide">
   <nav class="sidebar" id="sidebar" aria-label="Curriculum">
     <div class="side-title">Curriculum</div>
-    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="77"><i></i></div><span class="bar-label" data-progress-label></span></div>
+    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="85"><i></i></div><span class="bar-label" data-progress-label></span></div>
 <div class="nav-phase"><a href="../../../learn/phase-0/index.html"><span class="nav-num">0</span>Foundations</a>
 </div>
 <div class="nav-phase current open"><a href="../../../learn/phase-1/index.html"><span class="nav-num">1</span>Analytics &amp; BI</a>
@@ -99,47 +99,59 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="admonition note"><p class="admonition-title">Before you start</p><p><a href="../../../learn/phase-1/analytical-sql/01-select-where.html">SQL SELECT &amp; WHERE: Get Exactly the Rows You Need</a></p></div>
 <div class="files-box"><div class="files-head"><b>Practice files for this page</b><a href="../../../practice-files.html">All practice files →</a></div><ul><li><a href="../../../downloads/orders.sql" download>orders.sql</a><span class="f-desc">Creates the orders (12 rows) and customers (6 rows) tables. Run it once in your SQL tool · 3 KB</span></li><li><a href="../../../downloads/orders.csv" download>orders.csv</a><span class="f-desc">The 12 clean practice orders as CSV · 963 B</span></li><li><a href="../../../downloads/sql-solutions.sql" download>sql-solutions.sql</a><span class="f-desc">Solutions to every SQL exercise, tested in SQLite · 3 KB</span></li></ul></div>
 <h2 id="what-is-it">What is it?</h2>
-<p>So far every query has returned one row for each order. Managers rarely want that. They want <strong>summaries</strong> (<em>"total revenue by region"</em>) and <strong>rankings</strong> (<em>"our top 3 orders"</em>).</p>
+<p>So far every query has returned one row for each order. Managers
+rarely want that. They want <strong>summaries</strong> (<em>“total
+revenue by region”</em>) and <strong>rankings</strong> (<em>“our top 3
+orders”</em>).</p>
 <ul>
-<li><code>ORDER BY</code> <strong>sorts</strong> the result. <code>LIMIT</code> keeps only the first <em>n</em> rows.</li>
-<li><code>GROUP BY</code> <strong>collapses</strong> many rows into one row per group.</li>
-<li><strong>Aggregate functions</strong> such as <code>SUM</code> and <code>COUNT</code> calculate a value for each group.</li>
-<li><code>HAVING</code> <strong>filters groups</strong> after they are calculated.</li>
+<li><code>ORDER BY</code> <strong>sorts</strong> the result.
+<code>LIMIT</code> keeps only the first <em>n</em> rows.</li>
+<li><code>GROUP BY</code> <strong>collapses</strong> many rows into one
+row per group.</li>
+<li><strong>Aggregate functions</strong> such as <code>SUM</code> and
+<code>COUNT</code> calculate a value for each group.</li>
+<li><code>HAVING</code> <strong>filters groups</strong> after they are
+calculated.</li>
 </ul>
-<div class="admonition job">
-<p class="admonition-title">Why it matters at work</p>
-<p>Every KPI on a dashboard is an aggregate: revenue, order count, average order value. The tables behind Power BI reports and the "top 10" lists in management packs are <code>GROUP BY</code> queries. Interviewers test this more than any other SQL topic, especially <strong>WHERE vs HAVING</strong>.</p>
+<div class="admonition job" data-markdown="1">
+<p class="admonition-title">
+Why it matters at work
+</p>
+<p>Every KPI on a dashboard is an aggregate: revenue, order count,
+average order value. The tables behind Power BI reports and the “top 10”
+lists in management packs are <code>GROUP BY</code> queries.
+Interviewers test this more than any other SQL topic, especially
+<strong>WHERE vs HAVING</strong>.</p>
 </div>
-<h2 id="order-by-and-limit-rank-your-results">ORDER BY and LIMIT: rank your results</h2>
+<h2 id="order-by-and-limit-rank-your-results">ORDER BY and LIMIT: rank
+your results</h2>
 <p><em>Question: what are our 3 biggest orders by value?</em></p>
-<div class="codehilite"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">order_id</span><span class="p">,</span>
-<span class="w">       </span><span class="n">customer</span><span class="p">,</span>
-<span class="w">       </span><span class="n">quantity</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">unit_price</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">order_value</span>
-<span class="k">FROM</span><span class="w"> </span><span class="n">orders</span>
-<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">order_value</span><span class="w"> </span><span class="k">DESC</span><span class="p">,</span><span class="w"> </span><span class="n">order_id</span>
-<span class="k">LIMIT</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span>
-</code></pre></div>
-
+<pre class="sql"><code>SELECT order_id,
+       customer,
+       quantity * unit_price AS order_value
+FROM orders
+ORDER BY order_value DESC, order_id
+LIMIT 3;</code></pre>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>order_id</th>
 <th>customer</th>
 <th>order_value</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>3</td>
 <td>Nova Apparel</td>
 <td>1560.00</td>
 </tr>
-<tr>
+<tr class="even">
 <td>12</td>
 <td>Karim Garments</td>
 <td>1275.00</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>5</td>
 <td>Delta Knit</td>
 <td>1260.00</td>
@@ -147,65 +159,81 @@ document.documentElement.classList.add('no-anim')})();</script>
 </tbody>
 </table>
 <ul>
-<li><code>ASC</code> (the default) sorts smallest to largest, or A to Z. <code>DESC</code> sorts largest to smallest.</li>
-<li>You <strong>can</strong> use an alias (<code>order_value</code>) in <code>ORDER BY</code>, because sorting happens after <code>SELECT</code>.</li>
-<li>Sort by several columns, such as <code>ORDER BY region, customer</code>. The second column breaks ties in the first.</li>
-<li>Orders 5 and 8 are both worth 1260.00. Without the tie-breaker <code>order_id</code>, different databases may return either one as the third row. Always add a tie-breaker to a "top n" query.</li>
+<li><code>ASC</code> (the default) sorts smallest to largest, or A to Z.
+<code>DESC</code> sorts largest to smallest.</li>
+<li>You <strong>can</strong> use an alias (<code>order_value</code>) in
+<code>ORDER BY</code>, because sorting happens after
+<code>SELECT</code>.</li>
+<li>Sort by several columns, such as
+<code>ORDER BY region, customer</code>. The second column breaks ties in
+the first.</li>
+<li>Orders 5 and 8 are both worth 1260.00. Without the tie-breaker
+<code>order_id</code>, different databases may return either one as the
+third row. Always add a tie-breaker to a “top n” query.</li>
 </ul>
-<div class="admonition note">
-<p class="admonition-title">LIMIT is not universal</p>
-<p><code>LIMIT</code> works in SQLite, PostgreSQL, MySQL, BigQuery and Snowflake. SQL Server uses <code>SELECT TOP 3 ...</code> instead, and the standard form is <code>FETCH FIRST 3 ROWS ONLY</code>. The idea is the same in each.</p>
+<div class="admonition note" data-markdown="1">
+<p class="admonition-title">
+LIMIT is not universal
+</p>
+<p><code>LIMIT</code> works in SQLite, PostgreSQL, MySQL, BigQuery and
+Snowflake. SQL Server uses <code>SELECT TOP 3 ...</code> instead, and
+the standard form is <code>FETCH FIRST 3 ROWS ONLY</code>. The idea is
+the same in each.</p>
 </div>
 <h2 id="aggregate-functions">Aggregate functions</h2>
 <table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Function</th>
 <th>Returns</th>
 <th>Example</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td><code>COUNT(*)</code></td>
 <td>number of rows</td>
 <td>how many orders</td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>COUNT(DISTINCT col)</code></td>
 <td>number of different values</td>
 <td>how many customers</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><code>SUM(expr)</code></td>
 <td>total</td>
 <td>revenue</td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>AVG(expr)</code></td>
 <td>average</td>
 <td>average order value</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><code>MIN(expr)</code> / <code>MAX(expr)</code></td>
 <td>smallest / largest</td>
 <td>first and last order date</td>
 </tr>
 </tbody>
 </table>
-<p><em>Question: give me the headline numbers for all orders that were not cancelled.</em></p>
-<div class="codehilite"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w">                   </span><span class="k">AS</span><span class="w"> </span><span class="n">orders</span><span class="p">,</span>
-<span class="w">       </span><span class="k">SUM</span><span class="p">(</span><span class="n">quantity</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">unit_price</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">revenue</span><span class="p">,</span>
-<span class="w">       </span><span class="k">AVG</span><span class="p">(</span><span class="n">quantity</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">unit_price</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">avg_order</span><span class="p">,</span>
-<span class="w">       </span><span class="k">MIN</span><span class="p">(</span><span class="n">order_date</span><span class="p">)</span><span class="w">            </span><span class="k">AS</span><span class="w"> </span><span class="n">first_order</span><span class="p">,</span>
-<span class="w">       </span><span class="k">MAX</span><span class="p">(</span><span class="n">order_date</span><span class="p">)</span><span class="w">            </span><span class="k">AS</span><span class="w"> </span><span class="n">last_order</span>
-<span class="k">FROM</span><span class="w"> </span><span class="n">orders</span>
-<span class="k">WHERE</span><span class="w"> </span><span class="n">status</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="s1">'Cancelled'</span><span class="p">;</span>
-</code></pre></div>
-
+<p><em>Question: give me the headline numbers for all orders that were
+not cancelled.</em></p>
+<pre class="sql"><code>SELECT COUNT(*)                   AS orders,
+       SUM(quantity * unit_price) AS revenue,
+       AVG(quantity * unit_price) AS avg_order,
+       MIN(order_date)            AS first_order,
+       MAX(order_date)            AS last_order
+FROM orders
+WHERE status &lt;&gt; &#39;Cancelled&#39;;</code></pre>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>orders</th>
 <th>revenue</th>
 <th>avg_order</th>
@@ -214,7 +242,7 @@ document.documentElement.classList.add('no-anim')})();</script>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>11</td>
 <td>9075.00</td>
 <td>825.00</td>
@@ -223,272 +251,381 @@ document.documentElement.classList.add('no-anim')})();</script>
 </tr>
 </tbody>
 </table>
-<p>Without <code>GROUP BY</code>, the whole filtered table becomes <strong>one group</strong>, so you get one row.</p>
-<div class="admonition tip">
-<p class="admonition-title">Long decimals in your results?</p>
-<p>Some databases (SQLite, for example) store prices as floating-point numbers, so a total can show a long tail of decimals. Wrap the result in <code>ROUND(..., 2)</code>, for example <code>ROUND(SUM(quantity * unit_price), 2)</code>. For real money in production tables, use the <code>DECIMAL</code>/<code>NUMERIC</code> type.</p>
+<p>Without <code>GROUP BY</code>, the whole filtered table becomes
+<strong>one group</strong>, so you get one row.</p>
+<div class="admonition tip" data-markdown="1">
+<p class="admonition-title">
+Long decimals in your results?
+</p>
+<p>Some databases (SQLite, for example) store prices as floating-point
+numbers, so a total can show a long tail of decimals. Wrap the result in
+<code>ROUND(..., 2)</code>, for example
+<code>ROUND(SUM(quantity * unit_price), 2)</code>. For real money in
+production tables, use the <code>DECIMAL</code>/<code>NUMERIC</code>
+type.</p>
 </div>
 <h2 id="group-by-one-row-per-group">GROUP BY: one row per group</h2>
 <p><em>Question: how much revenue did each region bring in?</em></p>
-<div class="codehilite"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">region</span><span class="p">,</span>
-<span class="w">       </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w">                   </span><span class="k">AS</span><span class="w"> </span><span class="n">orders</span><span class="p">,</span>
-<span class="w">       </span><span class="k">SUM</span><span class="p">(</span><span class="n">quantity</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">unit_price</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">revenue</span>
-<span class="k">FROM</span><span class="w"> </span><span class="n">orders</span>
-<span class="k">WHERE</span><span class="w"> </span><span class="n">status</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="s1">'Cancelled'</span>
-<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">region</span>
-<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">revenue</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span>
-</code></pre></div>
-
+<pre class="sql"><code>SELECT region,
+       COUNT(*)                   AS orders,
+       SUM(quantity * unit_price) AS revenue
+FROM orders
+WHERE status &lt;&gt; &#39;Cancelled&#39;
+GROUP BY region
+ORDER BY revenue DESC;</code></pre>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>region</th>
 <th>orders</th>
 <th>revenue</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>Dhaka</td>
 <td>4</td>
 <td>3170.00</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Gazipur</td>
 <td>2</td>
 <td>2520.00</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Chattogram</td>
 <td>3</td>
 <td>2155.00</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Narayanganj</td>
 <td>2</td>
 <td>1230.00</td>
 </tr>
 </tbody>
 </table>
-<p><strong>How it works:</strong> the database removes cancelled rows (<code>WHERE</code>), puts the remaining rows into one bucket per region (<code>GROUP BY</code>), calculates <code>COUNT</code> and <code>SUM</code> for each bucket, and then sorts the buckets (<code>ORDER BY</code>).</p>
-<div class="admonition mistake">
-<p class="admonition-title">The golden rule of GROUP BY</p>
-<p>Every column in <code>SELECT</code> must be <strong>either</strong> in the <code>GROUP BY</code> <strong>or</strong> inside an aggregate function.</p>
-<p><code>SELECT region, customer, SUM(...) ... GROUP BY region</code> is an error in most databases. Each region has several customers, so which one should the database show? Either add <code>customer</code> to the <code>GROUP BY</code> or remove it from the <code>SELECT</code>.</p>
+<p><strong>How it works:</strong> the database removes cancelled rows
+(<code>WHERE</code>), puts the remaining rows into one bucket per region
+(<code>GROUP BY</code>), calculates <code>COUNT</code> and
+<code>SUM</code> for each bucket, and then sorts the buckets
+(<code>ORDER BY</code>).</p>
+<div class="admonition mistake" data-markdown="1">
+<p class="admonition-title">
+The golden rule of GROUP BY
+</p>
+<p>Every column in <code>SELECT</code> must be <strong>either</strong>
+in the <code>GROUP BY</code> <strong>or</strong> inside an aggregate
+function.</p>
+<p><code>SELECT region, customer, SUM(...) ... GROUP BY region</code> is
+an error in most databases. Each region has several customers, so which
+one should the database show? Either add <code>customer</code> to the
+<code>GROUP BY</code> or remove it from the <code>SELECT</code>.</p>
 </div>
 <h2 id="having-filter-the-groups">HAVING: filter the groups</h2>
-<p><em>Question: which customers bought more than 1,500 in total (excluding cancellations)?</em></p>
-<div class="codehilite"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">customer</span><span class="p">,</span>
-<span class="w">       </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w">                   </span><span class="k">AS</span><span class="w"> </span><span class="n">orders</span><span class="p">,</span>
-<span class="w">       </span><span class="k">SUM</span><span class="p">(</span><span class="n">quantity</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">unit_price</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">revenue</span>
-<span class="k">FROM</span><span class="w"> </span><span class="n">orders</span>
-<span class="k">WHERE</span><span class="w"> </span><span class="n">status</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="s1">'Cancelled'</span>
-<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">customer</span>
-<span class="k">HAVING</span><span class="w"> </span><span class="k">SUM</span><span class="p">(</span><span class="n">quantity</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">unit_price</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1500</span>
-<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">revenue</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span>
-</code></pre></div>
-
+<p><em>Question: which customers bought more than 1,500 in total
+(excluding cancellations)?</em></p>
+<pre class="sql"><code>SELECT customer,
+       COUNT(*)                   AS orders,
+       SUM(quantity * unit_price) AS revenue
+FROM orders
+WHERE status &lt;&gt; &#39;Cancelled&#39;
+GROUP BY customer
+HAVING SUM(quantity * unit_price) &gt; 1500
+ORDER BY revenue DESC;</code></pre>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>customer</th>
 <th>orders</th>
 <th>revenue</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>Delta Knit</td>
 <td>2</td>
 <td>2520.00</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Karim Garments</td>
 <td>3</td>
 <td>2155.00</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Nova Apparel</td>
 <td>2</td>
 <td>1880.00</td>
 </tr>
 </tbody>
 </table>
-<p>Rahim Traders (1290) and Sun Fashion (1230) are left out by <code>HAVING</code>.</p>
+<p>Rahim Traders (1290) and Sun Fashion (1230) are left out by
+<code>HAVING</code>.</p>
 <h3 id="where-vs-having">WHERE vs HAVING</h3>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th></th>
 <th><code>WHERE</code></th>
 <th><code>HAVING</code></th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>Filters</td>
 <td>individual <strong>rows</strong></td>
 <td>finished <strong>groups</strong></td>
 </tr>
-<tr>
+<tr class="even">
 <td>Runs</td>
 <td>before grouping</td>
 <td>after grouping</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Can use <code>SUM</code>, <code>COUNT</code>…</td>
 <td>No</td>
 <td>Yes</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Example</td>
 <td><code>status &lt;&gt; 'Cancelled'</code></td>
 <td><code>SUM(...) &gt; 1500</code></td>
 </tr>
 </tbody>
 </table>
-<p>Rule of thumb: if the condition is about <strong>one order</strong>, use <code>WHERE</code>. If it is about a <strong>total</strong>, use <code>HAVING</code>.</p>
+<p>Rule of thumb: if the condition is about <strong>one order</strong>,
+use <code>WHERE</code>. If it is about a <strong>total</strong>, use
+<code>HAVING</code>.</p>
 <h2 id="the-order-sql-runs-a-query">The order SQL runs a query</h2>
-<p>You <strong>write</strong> a query in one order, but the database <strong>runs</strong> it in another. Knowing this order explains most SQL errors.</p>
+<p>You <strong>write</strong> a query in one order, but the database
+<strong>runs</strong> it in another. Knowing this order explains most
+SQL errors.</p>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>Step</th>
 <th>Clause</th>
 <th>What happens</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>1</td>
 <td><code>FROM</code></td>
 <td>pick the table</td>
 </tr>
-<tr>
+<tr class="even">
 <td>2</td>
 <td><code>WHERE</code></td>
 <td>keep matching rows</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>3</td>
 <td><code>GROUP BY</code></td>
 <td>form groups</td>
 </tr>
-<tr>
+<tr class="even">
 <td>4</td>
 <td><code>HAVING</code></td>
 <td>keep matching groups</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>5</td>
 <td><code>SELECT</code></td>
 <td>calculate columns and aliases</td>
 </tr>
-<tr>
+<tr class="even">
 <td>6</td>
 <td><code>ORDER BY</code></td>
 <td>sort</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>7</td>
 <td><code>LIMIT</code></td>
 <td>cut to <em>n</em> rows</td>
 </tr>
 </tbody>
 </table>
-<p>This is why an alias works in <code>ORDER BY</code> (step 6, after <code>SELECT</code>) but not in <code>WHERE</code> (step 2, before <code>SELECT</code>).</p>
+<p>This is why an alias works in <code>ORDER BY</code> (step 6, after
+<code>SELECT</code>) but not in <code>WHERE</code> (step 2, before
+<code>SELECT</code>).</p>
 <h2 id="try-it-yourself">Try it yourself</h2>
-<p><strong>Task:</strong> <em>"For </em><em>delivered</em><em> orders only, show each region's number of orders and total revenue. List only regions with revenue above 2,000, biggest first."</em></p>
+<p><strong>Task:</strong> <em>“For <strong>delivered</strong> orders
+only, show each region’s number of orders and total revenue. List only
+regions with revenue above 2,000, biggest first.”</em></p>
 <details>
-<summary>Show a hint</summary>
-<p>The "delivered only" condition is about single orders, so it goes in <code>WHERE</code>. "Revenue above 2,000" is about a total, so it goes in <code>HAVING</code>.</p>
+<summary>
+Show a hint
+</summary>
+The “delivered only” condition is about single orders, so it goes in
+<code>WHERE</code>. “Revenue above 2,000” is about a total, so it goes
+in <code>HAVING</code>.
 </details>
 <details>
-<summary>Show the solution</summary>
-<div class="codehilite"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">region</span><span class="p">,</span>
-<span class="w">       </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w">                             </span><span class="k">AS</span><span class="w"> </span><span class="n">orders</span><span class="p">,</span>
-<span class="w">       </span><span class="n">ROUND</span><span class="p">(</span><span class="k">SUM</span><span class="p">(</span><span class="n">quantity</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">unit_price</span><span class="p">),</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">revenue</span>
-<span class="k">FROM</span><span class="w"> </span><span class="n">orders</span>
-<span class="k">WHERE</span><span class="w"> </span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'Delivered'</span>
-<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">region</span>
-<span class="k">HAVING</span><span class="w"> </span><span class="k">SUM</span><span class="p">(</span><span class="n">quantity</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">unit_price</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">2000</span>
-<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">revenue</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span>
-</code></pre></div>
-
+<summary>
+Show the solution
+</summary>
+<pre class="sql"><code>SELECT region,
+       COUNT(*)                             AS orders,
+       ROUND(SUM(quantity * unit_price), 2) AS revenue
+FROM orders
+WHERE status = &#39;Delivered&#39;
+GROUP BY region
+HAVING SUM(quantity * unit_price) &gt; 2000
+ORDER BY revenue DESC;</code></pre>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>region</th>
 <th>orders</th>
 <th>revenue</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>Dhaka</td>
 <td>3</td>
 <td>2850.00</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Gazipur</td>
 <td>2</td>
 <td>2520.00</td>
 </tr>
 </tbody>
 </table>
-<p>Dhaka now has 3 orders, not 4: order 7 is <em>Shipped</em>, not <em>Delivered</em>.</p>
+Dhaka now has 3 orders, not 4: order 7 is <em>Shipped</em>, not
+<em>Delivered</em>.
 </details>
 <h2 id="quick-quiz">Quick quiz</h2>
 <div class="quiz-q" data-answer="1">
-<p>1. You want regions whose <strong>total</strong> revenue is above 2,000. Where does that condition go?</p>
-<ol>
+<p>1. You want regions whose <strong>total</strong> revenue is above
+2,000. Where does that condition go?</p>
+<ol type="1">
 <li><code>WHERE</code></li>
 <li><code>HAVING</code></li>
 <li><code>ORDER BY</code></li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B — <code>HAVING</code>.</strong> The condition is about a group total, which only exists after <code>GROUP BY</code>.</p>
+<summary>
+Show answer
+</summary>
+<strong>B — <code>HAVING</code>.</strong> The condition is about a group
+total, which only exists after <code>GROUP BY</code>.
 </details>
 </div>
 <div class="quiz-q" data-answer="0">
-<p>2. What does <code>SELECT COUNT(DISTINCT customer) FROM orders;</code> return for the practice table?</p>
-<ol>
+<p>2. What does
+<code>SELECT COUNT(DISTINCT customer) FROM orders;</code> return for the
+practice table?</p>
+<ol type="1">
 <li>5</li>
 <li>11</li>
 <li>12</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>A — 5.</strong> There are 12 orders but only 5 different customers.</p>
+<summary>
+Show answer
+</summary>
+<strong>A — 5.</strong> There are 12 orders but only 5 different
+customers.
 </details>
 </div>
 <div class="quiz-q" data-answer="1">
-<p>3. Why does <code>SELECT region, customer, SUM(quantity) FROM orders GROUP BY region;</code> fail in most databases?</p>
-<ol>
+<p>3. Why does
+<code>SELECT region, customer, SUM(quantity) FROM orders GROUP BY region;</code>
+fail in most databases?</p>
+<ol type="1">
 <li><code>SUM</code> cannot be used with <code>GROUP BY</code></li>
 <li><code>customer</code> is neither grouped nor aggregated</li>
 <li><code>region</code> must be sorted first</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B.</strong> Each region has several customers, so the database cannot pick one. Add <code>customer</code> to <code>GROUP BY</code> or remove it from <code>SELECT</code>.</p>
+<summary>
+Show answer
+</summary>
+<strong>B.</strong> Each region has several customers, so the database
+cannot pick one. Add <code>customer</code> to <code>GROUP BY</code> or
+remove it from <code>SELECT</code>.
 </details>
 </div>
 <h2 id="summary">Summary</h2>
 <ul>
-<li><code>ORDER BY ... DESC</code> + <code>LIMIT n</code> gives a "top n" list.</li>
-<li><code>COUNT</code>, <code>SUM</code>, <code>AVG</code>, <code>MIN</code> and <code>MAX</code> turn many rows into one number.</li>
-<li><code>GROUP BY</code> gives one result row per group. Every selected column must be grouped or aggregated.</li>
-<li><code>WHERE</code> filters rows <strong>before</strong> grouping, and <code>HAVING</code> filters groups <strong>after</strong>.</li>
-<li>SQL runs <code>FROM → WHERE → GROUP BY → HAVING → SELECT → ORDER BY → LIMIT</code>.</li>
+<li><code>ORDER BY ... DESC</code> + <code>LIMIT n</code> gives a “top
+n” list.</li>
+<li><code>COUNT</code>, <code>SUM</code>, <code>AVG</code>,
+<code>MIN</code> and <code>MAX</code> turn many rows into one
+number.</li>
+<li><code>GROUP BY</code> gives one result row per group. Every selected
+column must be grouped or aggregated.</li>
+<li><code>WHERE</code> filters rows <strong>before</strong> grouping,
+and <code>HAVING</code> filters groups <strong>after</strong>.</li>
+<li>SQL runs
+<code>FROM → WHERE → GROUP BY → HAVING → SELECT → ORDER BY → LIMIT</code>.</li>
 </ul>
-<div class="admonition job">
-<p class="admonition-title">Job-ready check</p>
-<p><strong>Interview question:</strong> <em>"Explain the difference between WHERE and HAVING, with an example."</em></p>
-<p><strong>Strong answer:</strong> <code>WHERE</code> filters individual rows before grouping, for example removing cancelled orders. <code>HAVING</code> filters groups after aggregation, for example keeping only customers whose total revenue is above 1,500. Row-level conditions belong in <code>WHERE</code>, because filtering early means less data to group.</p>
-<p><strong>Mini project:</strong> Build a small "Monthly Sales Pack": revenue by region, revenue by category, and the top 3 customers. Save the three queries in one <code>.sql</code> file and paste the results into a one-page summary with two sentences of insight per table. This becomes a piece of evidence for your portfolio.</p>
+<div class="admonition job" data-markdown="1">
+<p class="admonition-title">
+Job-ready check
+</p>
+<p><strong>Interview question:</strong> <em>“Explain the difference
+between WHERE and HAVING, with an example.”</em></p>
+<p><strong>Strong answer:</strong> <code>WHERE</code> filters individual
+rows before grouping, for example removing cancelled orders.
+<code>HAVING</code> filters groups after aggregation, for example
+keeping only customers whose total revenue is above 1,500. Row-level
+conditions belong in <code>WHERE</code>, because filtering early means
+less data to group.</p>
+<p><strong>Mini project:</strong> Build a small “Monthly Sales Pack”:
+revenue by region, revenue by category, and the top 3 customers. Save
+the three queries in one <code>.sql</code> file and paste the results
+into a one-page summary with two sentences of insight per table. This
+becomes a piece of evidence for your portfolio.</p>
 </div>
+<section class="mentor-prompt"><div class="mentor-head"><div><span class="eyebrow">AI study companion</span><h2 id="ai-mentor-prompt">AI Mentor Prompt</h2></div><button class="btn copy-prompt" type="button" data-copy-target="mentor-prompt-phase-1-analytical-sql-02-order-group-by">Copy prompt</button></div><p>Paste this into ChatGPT, Claude, Gemini, or another capable assistant to turn this tutorial into an interactive mentoring session.</p><pre class="prompt-box"><code id="mentor-prompt-phase-1-analytical-sql-02-order-group-by">You are my hands-on data-analytics and business-intelligence mentor.
+
+I am currently studying:
+&quot;Sort and Summarise: ORDER BY, GROUP BY &amp; HAVING&quot;
+
+My level:
+Beginner
+
+Teach me this topic interactively rather than giving me a long lecture.
+
+Use this sequence:
+
+1. Check what I already understand with one short diagnostic question.
+2. Explain the concept in simple language and give me the mental model first.
+3. Give me one small task using code, SQL, configuration, data, or architecture as appropriate.
+4. Wait for my attempt before showing a complete solution.
+5. Review my work and explain both what is correct and what needs improvement.
+6. Help me debug errors step by step instead of immediately replacing my work.
+7. Increase the difficulty gradually and connect each new step to the previous one.
+8. Relate what I am learning to real professional data/AI engineering work.
+9. Ask me to explain an important decision in my own words so you can check my understanding.
+10. At the end, ask me to build or modify one small feature independently.
+
+Important rules:
+- Do not do the entire exercise for me unless I explicitly ask.
+- Explain unfamiliar terminology before using it heavily.
+- Prefer current, production-relevant practices over outdated shortcuts.
+- Distinguish clearly between concepts, tool-specific behaviour, and optional alternatives.
+- If a technical fact, API, syntax, version, or best practice may have changed, verify it against current official documentation before teaching it.
+- Never invent command output, test results, benchmark numbers, cloud behaviour, or data results.
+- If something cannot be executed in the current environment, say so and give me the exact command or verification step I should run.
+- Keep me actively coding, querying, configuring, reasoning, or debugging throughout the session.
+- When useful, work from the tutorial practice files (orders.sql, orders.csv, sql-solutions.sql) instead of inventing unrelated examples.
+
+The concepts I need to master are:
+- ORDER BY &amp; LIMIT
+- GROUP BY &amp; aggregation
+- order by
+- limit
+- top n
+- group by
+- having
+- count
+
+Start by asking me one diagnostic question.</code></pre></section>
+
 <div class="terms-box"><div class="files-head"><b>Key terms in this lesson</b><a href="../../../glossary.html">Glossary →</a></div><div class="term-chips"><a class="term-chip" href="../../../glossary.html#group-by" title="Collapses rows with the same values into one row per group, so you can SUM, COUNT or AVG each group.">GROUP BY</a><a class="term-chip" href="../../../glossary.html#having" title="Filters groups after GROUP BY, for example customers whose total is above 1,000. WHERE filters rows; HAVING filters groups.">HAVING</a><a class="term-chip" href="../../../glossary.html#kpi" title="A number that shows whether a business goal is being met, such as net revenue or achievement % of target. A good KPI has one agreed definition, an owner and a target.">KPI</a></div></div>
 <h2 id="free-resources">Free resources to go deeper</h2><ul class="resources"><li><a href="https://sqlbolt.com/">SQLBolt — Lessons 10–12 (aggregates and query order)</a><span class="r-meta">SQLBolt · Interactive practice of GROUP BY and HAVING.</span></li><li><a href="https://www.postgresql.org/docs/current/tutorial-agg.html">Aggregate Functions</a><span class="r-meta">PostgreSQL official docs · A clear explanation of WHERE vs HAVING.</span></li><li><a href="https://selectstarsql.com/">Select Star SQL</a><span class="r-meta">Free interactive book · The aggregation chapters use a real dataset.</span></li></ul>
 <div class="complete-bar"><span>Finished reading and did the exercise?</span>
@@ -497,9 +634,9 @@ document.documentElement.classList.add('no-anim')})();</script>
 <p class="reviewed">Last reviewed: 2026-10-09</p>
 
   </div></main>
-  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#order-by-and-limit-rank-your-results">ORDER BY and LIMIT: rank your results</a><a href="#aggregate-functions">Aggregate functions</a><a href="#group-by-one-row-per-group">GROUP BY: one row per group</a><a href="#having-filter-the-groups">HAVING: filter the groups</a><a href="#the-order-sql-runs-a-query">The order SQL runs a query</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#free-resources">Free resources</a></aside>
+  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#order-by-and-limit-rank-your-results">ORDER BY and LIMIT: rank your results</a><a href="#aggregate-functions">Aggregate functions</a><a href="#group-by-one-row-per-group">GROUP BY: one row per group</a><a href="#having-filter-the-groups">HAVING: filter the groups</a><a href="#where-vs-having">WHERE vs HAVING</a><a href="#the-order-sql-runs-a-query">The order SQL runs a query</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#ai-mentor-prompt">AI Mentor Prompt</a><a href="#free-resources">Free resources</a></aside>
 </div>
-<footer class="site">Data, AI &amp; Automation Path v0.8 · Applied AI, Data &amp; Automation Lab · Updated October 2026<br>
+<footer class="site"><b>Saiful The Techie</b> · Data, AI &amp; Automation Path v0.9.1 · Updated October 2026<br>
 Lesson text: <a href="../../../license.html">CC BY-NC-SA 4.0</a> · Code: <a href="../../../license.html#code-mit-license">MIT</a> · Free external resources belong to their respective owners.</footer>
 <script src="../../../search-index.js"></script>
 <script src="../../../assets/app.js"></script>

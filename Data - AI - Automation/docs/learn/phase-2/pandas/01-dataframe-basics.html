@@ -6,7 +6,7 @@
 <title>pandas DataFrame Basics: Load, Explore, Select and Filter — Data, AI &amp; Automation Path</title>
 <meta name="description" content="Load a CSV into a DataFrame, check its shape, types and statistics, select columns and rows with loc and iloc, filter and sort like SQL, and add calculated columns.">
 <meta property="og:type" content="article">
-<meta property="og:site_name" content="Data, AI &amp; Automation Path">
+<meta property="og:site_name" content="Saiful The Techie">
 <meta property="og:title" content="pandas DataFrame Basics: Load, Explore, Select and Filter">
 <meta property="og:description" content="Load a CSV into a DataFrame, check its shape, types and statistics, select columns and rows with loc and iloc, filter and sort like SQL, and add calculated columns.">
 <meta property="og:locale" content="en_US">
@@ -19,13 +19,13 @@ var n=null;try{n=localStorage.getItem('daa-nav')}catch(e){}
 if(n==='open'&&window.matchMedia&&matchMedia('(min-width: 961px)').matches)document.documentElement.setAttribute('data-nav','open');
 document.documentElement.classList.add('no-anim')})();</script>
 <link rel="stylesheet" href="../../../assets/style.css">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233f7d6a'/%3E%3Ctext x='16' y='21' font-family='sans-serif' font-size='13' font-weight='700' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
+
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="topbar">
   <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Open curriculum menu" title="Curriculum menu (press M)" aria-controls="sidebar" aria-expanded="false"><span class="ico-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span class="ico-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></button>
-  <a class="brand" href="../../../index.html"><span class="brand-badge">AI</span><span class="brand-text"><span class="brand-name">Data, AI &amp; Automation Path</span><span class="brand-version">v0.8</span></span></a>
+  <a class="brand" href="../../../index.html"><span class="brand-text"><span class="brand-name">Saiful The Techie</span><span class="brand-version">Data, AI &amp; Automation Path · v0.9.1</span></span></a>
   <nav class="top-links" aria-label="Main">
     <a href="../../../index.html" class="">Home</a><a href="../../../curriculum.html" class="">Curriculum</a><a href="../../../practice-files.html" class="">Practice files</a><a href="../../../glossary.html" class="">Glossary</a><a href="../../../how-to-learn.html" class="">How to learn</a><a href="../../../about.html" class="">About</a>
   </nav>
@@ -41,7 +41,7 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="layout wide">
   <nav class="sidebar" id="sidebar" aria-label="Curriculum">
     <div class="side-title">Curriculum</div>
-    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="77"><i></i></div><span class="bar-label" data-progress-label></span></div>
+    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="85"><i></i></div><span class="bar-label" data-progress-label></span></div>
 <div class="nav-phase"><a href="../../../learn/phase-0/index.html"><span class="nav-num">0</span>Foundations</a>
 </div>
 <div class="nav-phase"><a href="../../../learn/phase-1/index.html"><span class="nav-num">1</span>Analytics &amp; BI</a>
@@ -99,57 +99,68 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="files-box"><div class="files-head"><b>Practice files for this page</b><a href="../../../practice-files.html">All practice files →</a></div><ul><li><a href="../../../downloads/phase-2/data-science-scripts.zip" download>data-science-scripts.zip</a><span class="f-desc">All 21 Phase 2 lesson scripts (NumPy to research thinking), shared chart style, data folder and solutions · 230 KB</span></li><li><a href="../../../downloads/phase-2/orders_2025.csv" download>orders_2025.csv</a><span class="f-desc">4,246 clean orders for 2025 (synthetic, fixed seed): region, segment, channel, product, price, discount, status, delivery days, revenue · 472 KB</span></li></ul></div>
 <h2 id="what-is-it">What is it?</h2>
 <ul>
-<li>A <strong>DataFrame</strong> is a table: rows, named columns, and one data type per column.</li>
-<li>A <strong>Series</strong> is one column (or one row) of a DataFrame.</li>
-<li>pandas sits on top of NumPy, so filters and maths are vectorized.</li>
+<li>A <strong>DataFrame</strong> is a table: rows, named columns, and
+one data type per column.</li>
+<li>A <strong>Series</strong> is one column (or one row) of a
+DataFrame.</li>
+<li>pandas sits on top of NumPy, so filters and maths are
+vectorized.</li>
 </ul>
 <table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>You know</th>
 <th>pandas equivalent</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>Excel sheet / SQL table</td>
 <td><code>DataFrame</code></td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>SELECT region, revenue</code></td>
 <td><code>df[["region", "revenue"]]</code></td>
 </tr>
-<tr>
+<tr class="odd">
 <td><code>WHERE region = 'Dhaka'</code></td>
 <td><code>df[df["region"] == "Dhaka"]</code></td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>ORDER BY revenue DESC</code></td>
 <td><code>df.sort_values("revenue", ascending=False)</code></td>
 </tr>
-<tr>
+<tr class="odd">
 <td><code>COUNT(*) … GROUP BY status</code></td>
 <td><code>df["status"].value_counts()</code></td>
 </tr>
 </tbody>
 </table>
-<div class="admonition job">
-<p class="admonition-title">Why it matters at work</p>
-<p>pandas is the most requested Python skill in data analyst and data scientist job adverts, and it is the usual first step in machine-learning and AI data preparation. Interview coding tasks almost always start with "load this CSV and tell me…".</p>
+<div class="admonition job" data-markdown="1">
+<p class="admonition-title">
+Why it matters at work
+</p>
+<p>pandas is the most requested Python skill in data analyst and data
+scientist job adverts, and it is the usual first step in
+machine-learning and AI data preparation. Interview coding tasks almost
+always start with “load this CSV and tell me…”.</p>
 </div>
-<p>The script is <code>03_pandas_basics.py</code> in <a href="../../../downloads/phase-2/data-science-scripts.zip">data-science-scripts.zip</a>.</p>
+<p>The script is <code>03_pandas_basics.py</code> in <a
+href="../../../downloads/phase-2/data-science-scripts.zip">data-science-scripts.zip</a>.</p>
 <h2 id="example-1-load-and-look">Example 1: load and look</h2>
-<div class="codehilite"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<pre class="python"><code>import pandas as pd
 
-<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s2">"display.width"</span><span class="p">,</span> <span class="mi">120</span><span class="p">)</span>
-<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s2">"display.max_columns"</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+pd.set_option(&quot;display.width&quot;, 120)
+pd.set_option(&quot;display.max_columns&quot;, 10)
 
-<span class="n">orders</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">"data/orders_2025.csv"</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">orders</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">orders</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>(4246, 16)
+orders = pd.read_csv(&quot;data/orders_2025.csv&quot;)
+print(orders.shape)
+print(orders.head(3))</code></pre>
+<pre class="text"><code>(4246, 16)
    order_id  order_date customer_id       region        segment  ... unit_cost     status promised_days  \
 0     10001  2025-01-01        C042   Chattogram  Knitting Mill  ...     0.025  Delivered             5
 1     10002  2025-01-01        C007  Narayanganj  Knitting Mill  ...     2.450  Cancelled             3
@@ -160,15 +171,14 @@ document.documentElement.classList.add('no-anim')})();</script>
 1            NaN   834.56
 2            2.0   248.11
 
-[3 rows x 16 columns]
-</code></pre></div>
-
-<p>4,246 orders × 16 columns. <code>...</code> means columns are hidden to fit the screen. The left-most numbers (0, 1, 2) are the <strong>index</strong>, pandas' row labels.</p>
-<h2 id="example-2-check-the-column-types">Example 2: check the column types</h2>
-<div class="codehilite"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">orders</span><span class="o">.</span><span class="n">dtypes</span><span class="p">)</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>order_id           int64
+[3 rows x 16 columns]</code></pre>
+<p>4,246 orders × 16 columns. <code>...</code> means columns are hidden
+to fit the screen. The left-most numbers (0, 1, 2) are the
+<strong>index</strong>, pandas’ row labels.</p>
+<h2 id="example-2-check-the-column-types">Example 2: check the column
+types</h2>
+<pre class="python"><code>print(orders.dtypes)</code></pre>
+<pre class="text"><code>order_id           int64
 order_date           str
 customer_id          str
 region               str
@@ -184,19 +194,18 @@ status               str
 promised_days      int64
 delivery_days    float64
 revenue          float64
-dtype: object
-</code></pre></div>
-
+dtype: object</code></pre>
 <ul>
-<li>Text columns are <code>str</code> (new in pandas 3; older versions showed <code>object</code>).</li>
-<li><code>order_date</code> is <strong>text</strong>, not a date yet: you'll convert it in the Datetime lesson.</li>
-<li><code>delivery_days</code> is <code>float64</code> because it has missing values (<code>NaN</code>).</li>
+<li>Text columns are <code>str</code> (new in pandas 3; older versions
+showed <code>object</code>).</li>
+<li><code>order_date</code> is <strong>text</strong>, not a date yet:
+you’ll convert it in the Datetime lesson.</li>
+<li><code>delivery_days</code> is <code>float64</code> because it has
+missing values (<code>NaN</code>).</li>
 </ul>
 <h2 id="example-3-summary-statistics">Example 3: summary statistics</h2>
-<div class="codehilite"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">orders</span><span class="p">[[</span><span class="s2">"quantity"</span><span class="p">,</span> <span class="s2">"revenue"</span><span class="p">,</span> <span class="s2">"delivery_days"</span><span class="p">]]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>        quantity   revenue  delivery_days
+<pre class="python"><code>print(orders[[&quot;quantity&quot;, &quot;revenue&quot;, &quot;delivery_days&quot;]].describe().round(2))</code></pre>
+<pre class="text"><code>        quantity   revenue  delivery_days
 count    4246.00   4246.00        3872.00
 mean     3153.99   1389.09           3.44
 std      6814.85   1461.19           2.03
@@ -204,42 +213,45 @@ min        17.00     36.04           1.00
 25%       392.25    554.21           2.00
 50%       823.00   1062.30           3.00
 75%      3122.75   1794.22           4.00
-max    250160.00  44127.55          17.00
-</code></pre></div>
-
-<p>Read it like a detective: <code>delivery_days</code> has 374 fewer values (not delivered yet); revenue's mean (1,389) is well above its median (1,062), so a few big orders pull it up; max quantity 250,160 deserves a look (it's a bulk trims order).</p>
-<h2 id="example-4-select-columns-and-rows">Example 4: select columns and rows</h2>
-<div class="codehilite"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">orders</span><span class="p">[[</span><span class="s2">"order_id"</span><span class="p">,</span> <span class="s2">"region"</span><span class="p">,</span> <span class="s2">"revenue"</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">orders</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="s2">"product"</span><span class="p">],</span> <span class="s2">"|"</span><span class="p">,</span> <span class="n">orders</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">7</span><span class="p">])</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>   order_id       region  revenue
+max    250160.00  44127.55          17.00</code></pre>
+<p>Read it like a detective: <code>delivery_days</code> has 374 fewer
+values (not delivered yet); revenue’s mean (1,389) is well above its
+median (1,062), so a few big orders pull it up; max quantity 250,160
+deserves a look (it’s a bulk trims order).</p>
+<h2 id="example-4-select-columns-and-rows">Example 4: select columns and
+rows</h2>
+<pre class="python"><code>print(orders[[&quot;order_id&quot;, &quot;region&quot;, &quot;revenue&quot;]].head(3))
+print(orders.loc[0, &quot;product&quot;], &quot;|&quot;, orders.iloc[0, 7])</code></pre>
+<pre class="text"><code>   order_id       region  revenue
 0     10001   Chattogram   189.26
 1     10002  Narayanganj   834.56
 2     10003      Gazipur   248.11
-Metal Buttons | Metal Buttons
-</code></pre></div>
-
+Metal Buttons | Metal Buttons</code></pre>
 <table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Accessor</th>
 <th>Selects by</th>
 <th>Example</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td><code>df["col"]</code> / <code>df[["a", "b"]]</code></td>
 <td>Column name(s)</td>
 <td><code>orders["revenue"]</code></td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>df.loc[rows, cols]</code></td>
 <td><strong>Labels</strong> (index values, column names)</td>
 <td><code>orders.loc[0, "product"]</code></td>
 </tr>
-<tr>
+<tr class="odd">
 <td><code>df.iloc[rows, cols]</code></td>
 <td><strong>Positions</strong> (0, 1, 2…)</td>
 <td><code>orders.iloc[0, 7]</code></td>
@@ -247,36 +259,29 @@ Metal Buttons | Metal Buttons
 </tbody>
 </table>
 <h2 id="example-5-filter-rows">Example 5: filter rows</h2>
-<div class="codehilite"><pre><span></span><code><span class="n">dhaka_big</span> <span class="o">=</span> <span class="n">orders</span><span class="p">[(</span><span class="n">orders</span><span class="p">[</span><span class="s2">"region"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"Dhaka"</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">orders</span><span class="p">[</span><span class="s2">"revenue"</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">10000</span><span class="p">)]</span>
-<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dhaka_big</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">dhaka_big</span><span class="p">[[</span><span class="s2">"order_id"</span><span class="p">,</span> <span class="s2">"customer_id"</span><span class="p">,</span> <span class="s2">"product"</span><span class="p">,</span> <span class="s2">"revenue"</span><span class="p">]])</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>5
+<pre class="python"><code>dhaka_big = orders[(orders[&quot;region&quot;] == &quot;Dhaka&quot;) &amp; (orders[&quot;revenue&quot;] &gt; 10000)]
+print(len(dhaka_big))
+print(dhaka_big[[&quot;order_id&quot;, &quot;customer_id&quot;, &quot;product&quot;, &quot;revenue&quot;]])</code></pre>
+<pre class="text"><code>5
       order_id customer_id          product   revenue
 1483     11484        C035       Denim 12oz  10998.34
 2202     12203        C013  Cotton Yarn 30s  11269.07
 2376     12377        C046       Denim 12oz  12581.04
 3269     13270        C039     Viscose Yarn  13091.76
-3824     13825        C059    Sewing Thread  44127.55
-</code></pre></div>
-
-<p>Same rules as NumPy masks: <code>&amp;</code>, <code>|</code>, <code>~</code> and brackets around each condition. <code>query()</code> is a readable alternative:</p>
-<div class="codehilite"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">orders</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">"region == 'Khulna' and status == 'Cancelled'"</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>(16, 17)
-</code></pre></div>
-
+3824     13825        C059    Sewing Thread  44127.55</code></pre>
+<p>Same rules as NumPy masks: <code>&amp;</code>, <code>|</code>,
+<code>~</code> and brackets around each condition. <code>query()</code>
+is a readable alternative:</p>
+<pre class="python"><code>print(orders.query(&quot;region == &#39;Khulna&#39; and status == &#39;Cancelled&#39;&quot;).shape)</code></pre>
+<pre class="text"><code>(16, 17)</code></pre>
 <p>(17 columns, because Example 6 added one.)</p>
-<h2 id="example-6-sort-count-and-add-a-column">Example 6: sort, count and add a column</h2>
-<div class="codehilite"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">orders</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">"revenue"</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)[[</span><span class="s2">"order_id"</span><span class="p">,</span> <span class="s2">"segment"</span><span class="p">,</span> <span class="s2">"revenue"</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">orders</span><span class="p">[</span><span class="s2">"status"</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">())</span>
-<span class="n">orders</span><span class="p">[</span><span class="s2">"is_net"</span><span class="p">]</span> <span class="o">=</span> <span class="n">orders</span><span class="p">[</span><span class="s2">"status"</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">"Cancelled"</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">orders</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">orders</span><span class="p">[</span><span class="s2">"is_net"</span><span class="p">],</span> <span class="s2">"revenue"</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>      order_id          segment   revenue
+<h2 id="example-6-sort-count-and-add-a-column">Example 6: sort, count
+and add a column</h2>
+<pre class="python"><code>print(orders.sort_values(&quot;revenue&quot;, ascending=False)[[&quot;order_id&quot;, &quot;segment&quot;, &quot;revenue&quot;]].head(3))
+print(orders[&quot;status&quot;].value_counts())
+orders[&quot;is_net&quot;] = orders[&quot;status&quot;] != &quot;Cancelled&quot;
+print(orders.loc[orders[&quot;is_net&quot;], &quot;revenue&quot;].sum().round(2))</code></pre>
+<pre class="text"><code>      order_id          segment   revenue
 3824     13825  Garment Factory  44127.55
 2934     12935  Garment Factory  25381.04
 1550     11551    Knitting Mill  13927.33
@@ -286,118 +291,195 @@ Cancelled     283
 Shipped        46
 Pending        45
 Name: count, dtype: int64
-5478357.79
-</code></pre></div>
-
-<p><strong>Known answer for Phase 2:</strong> net revenue for 2025 (excluding cancelled orders) = <strong>5,478,357.79</strong>.</p>
+5478357.79</code></pre>
+<p><strong>Known answer for Phase 2:</strong> net revenue for 2025
+(excluding cancelled orders) = <strong>5,478,357.79</strong>.</p>
 <h2 id="common-mistakes">Common mistakes</h2>
 <table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Mistake</th>
 <th>What happens</th>
 <th>Fix</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td><code>df["region", "revenue"]</code></td>
 <td><code>KeyError</code></td>
 <td>Double brackets: <code>df[["region", "revenue"]]</code></td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>df[df.region == "Dhaka" and df.revenue &gt; 1]</code></td>
 <td><code>ValueError: truth value … ambiguous</code></td>
 <td><code>&amp;</code> with brackets around each condition</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Mixing up <code>loc</code> and <code>iloc</code></td>
 <td>Wrong rows after sorting or filtering</td>
 <td><code>loc</code> = labels, <code>iloc</code> = positions</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Chained assignment: <code>df[df.x &gt; 1]["y"] = 0</code></td>
 <td>No change (pandas 3 never modifies through a chain)</td>
 <td><code>df.loc[df.x &gt; 1, "y"] = 0</code></td>
 </tr>
-<tr>
-<td>Trusting a column's type</td>
+<tr class="odd">
+<td>Trusting a column’s type</td>
 <td>Maths on text, or dates as text</td>
 <td>Check <code>df.dtypes</code> first</td>
 </tr>
 </tbody>
 </table>
 <h2 id="try-it-yourself">Try it yourself</h2>
-<p><strong>Task:</strong> How many <strong>Portal</strong> orders were <strong>cancelled</strong>, and what is the average revenue of non-cancelled Portal orders?</p>
+<p><strong>Task:</strong> How many <strong>Portal</strong> orders were
+<strong>cancelled</strong>, and what is the average revenue of
+non-cancelled Portal orders?</p>
 <details>
-<summary>Show a hint</summary>
-<p>Build two masks, <code>orders["channel"] == "Portal"</code> and <code>orders["status"] == "Cancelled"</code>, and combine them.</p>
+<summary>
+Show a hint
+</summary>
+Build two masks, <code>orders["channel"] == "Portal"</code> and
+<code>orders["status"] == "Cancelled"</code>, and combine them.
 </details>
 <details>
-<summary>Show the solution</summary>
-<div class="codehilite"><pre><span></span><code><span class="n">portal</span> <span class="o">=</span> <span class="n">orders</span><span class="p">[</span><span class="s2">"channel"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"Portal"</span>
-<span class="n">cancelled</span> <span class="o">=</span> <span class="n">orders</span><span class="p">[</span><span class="s2">"status"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"Cancelled"</span>
-<span class="nb">print</span><span class="p">((</span><span class="n">portal</span> <span class="o">&amp;</span> <span class="n">cancelled</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">orders</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">portal</span> <span class="o">&amp;</span> <span class="o">~</span><span class="n">cancelled</span><span class="p">,</span> <span class="s2">"revenue"</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>129
-1463.7
-</code></pre></div>
-
+<summary>
+Show the solution
+</summary>
+<pre class="python"><code>portal = orders[&quot;channel&quot;] == &quot;Portal&quot;
+cancelled = orders[&quot;status&quot;] == &quot;Cancelled&quot;
+print((portal &amp; cancelled).sum())
+print(orders.loc[portal &amp; ~cancelled, &quot;revenue&quot;].mean().round(2))</code></pre>
+<pre class="text"><code>129
+1463.7</code></pre>
 <p>129 cancelled Portal orders; the rest average 1,463.70.</p>
-<p><code>.sum()</code> on a True/False column counts the Trues; <code>~</code> means "not".</p>
+<code>.sum()</code> on a True/False column counts the Trues;
+<code>~</code> means “not”.
 </details>
 <h2 id="quick-quiz">Quick quiz</h2>
 <div class="quiz-q" data-answer="1">
 <p>1. Which selects rows 0–4 <strong>by position</strong>?</p>
-<ol>
+<ol type="1">
 <li><code>df.loc[0:4]</code></li>
 <li><code>df.iloc[0:5]</code></li>
 <li><code>df["0:5"]</code></li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B.</strong> <code>iloc</code> uses positions with an exclusive end. (<code>loc[0:4]</code> uses labels and <em>includes</em> 4, which only matches here by coincidence.)</p>
+<summary>
+Show answer
+</summary>
+<strong>B.</strong> <code>iloc</code> uses positions with an exclusive
+end. (<code>loc[0:4]</code> uses labels and <em>includes</em> 4, which
+only matches here by coincidence.)
 </details>
 </div>
 <div class="quiz-q" data-answer="1">
 <p>2. In pandas 3, a column of text has which dtype?</p>
-<ol>
+<ol type="1">
 <li><code>object</code></li>
 <li><code>str</code></li>
 <li><code>category</code></li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B.</strong></p>
+<summary>
+Show answer
+</summary>
+<strong>B.</strong>
 </details>
 </div>
 <div class="quiz-q" data-answer="0">
 <p>3. What does <code>df["status"].value_counts()</code> do?</p>
-<ol>
+<ol type="1">
 <li>Counts rows per distinct status</li>
 <li>Counts all non-empty cells in the DataFrame</li>
 <li>Sorts the DataFrame by status</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>A.</strong> Like <code>COUNT(*) … GROUP BY status</code>.</p>
+<summary>
+Show answer
+</summary>
+<strong>A.</strong> Like <code>COUNT(*) … GROUP BY status</code>.
 </details>
 </div>
 <h2 id="summary">Summary</h2>
 <ul>
-<li><code>pd.read_csv</code> → check <code>shape</code>, <code>head()</code>, <code>dtypes</code> and <code>describe()</code> first.</li>
-<li>Select with <code>df[[cols]]</code>, <code>loc</code> (labels) and <code>iloc</code> (positions).</li>
-<li>Filter with masks or <code>query()</code>; sort with <code>sort_values</code>; count with <code>value_counts</code>.</li>
-<li>Add columns with vectorized expressions; set values with <code>loc</code>, never chained indexing.</li>
+<li><code>pd.read_csv</code> → check <code>shape</code>,
+<code>head()</code>, <code>dtypes</code> and <code>describe()</code>
+first.</li>
+<li>Select with <code>df[[cols]]</code>, <code>loc</code> (labels) and
+<code>iloc</code> (positions).</li>
+<li>Filter with masks or <code>query()</code>; sort with
+<code>sort_values</code>; count with <code>value_counts</code>.</li>
+<li>Add columns with vectorized expressions; set values with
+<code>loc</code>, never chained indexing.</li>
 </ul>
-<div class="admonition job">
-<p class="admonition-title">Job-ready check</p>
-<p><strong>Interview question:</strong> <em>"You get a new CSV. What do you check in the first five minutes?"</em></p>
-<p><strong>Strong answer:</strong> "Shape, the first rows, the column types, missing values per column and <code>describe()</code> for ranges and outliers. Then the distinct values of key categories, duplicates on the ID column, and one known total I can reconcile with the source, before any analysis."</p>
-<p><strong>Mini project:</strong> For <code>orders_2025.csv</code>, write a short "data profile": row count, columns and types, missing values per column (<code>orders.isna().sum()</code>), the three largest orders, and net revenue. Check that you get 5,478,357.79.</p>
+<div class="admonition job" data-markdown="1">
+<p class="admonition-title">
+Job-ready check
+</p>
+<p><strong>Interview question:</strong> <em>“You get a new CSV. What do
+you check in the first five minutes?”</em></p>
+<p><strong>Strong answer:</strong> “Shape, the first rows, the column
+types, missing values per column and <code>describe()</code> for ranges
+and outliers. Then the distinct values of key categories, duplicates on
+the ID column, and one known total I can reconcile with the source,
+before any analysis.”</p>
+<p><strong>Mini project:</strong> For <code>orders_2025.csv</code>,
+write a short “data profile”: row count, columns and types, missing
+values per column (<code>orders.isna().sum()</code>), the three largest
+orders, and net revenue. Check that you get 5,478,357.79.</p>
 </div>
+<section class="mentor-prompt"><div class="mentor-head"><div><span class="eyebrow">AI study companion</span><h2 id="ai-mentor-prompt">AI Mentor Prompt</h2></div><button class="btn copy-prompt" type="button" data-copy-target="mentor-prompt-phase-2-pandas-01-dataframe-basics">Copy prompt</button></div><p>Paste this into ChatGPT, Claude, Gemini, or another capable assistant to turn this tutorial into an interactive mentoring session.</p><pre class="prompt-box"><code id="mentor-prompt-phase-2-pandas-01-dataframe-basics">You are my hands-on Python, statistics and data-science mentor.
+
+I am currently studying:
+&quot;pandas DataFrame Basics: Load, Explore, Select and Filter&quot;
+
+My level:
+Beginner
+
+Teach me this topic interactively rather than giving me a long lecture.
+
+Use this sequence:
+
+1. Check what I already understand with one short diagnostic question.
+2. Explain the concept in simple language and give me the mental model first.
+3. Give me one small task using code, SQL, configuration, data, or architecture as appropriate.
+4. Wait for my attempt before showing a complete solution.
+5. Review my work and explain both what is correct and what needs improvement.
+6. Help me debug errors step by step instead of immediately replacing my work.
+7. Increase the difficulty gradually and connect each new step to the previous one.
+8. Relate what I am learning to real professional data/AI engineering work.
+9. Ask me to explain an important decision in my own words so you can check my understanding.
+10. At the end, ask me to build or modify one small feature independently.
+
+Important rules:
+- Do not do the entire exercise for me unless I explicitly ask.
+- Explain unfamiliar terminology before using it heavily.
+- Prefer current, production-relevant practices over outdated shortcuts.
+- Distinguish clearly between concepts, tool-specific behaviour, and optional alternatives.
+- If a technical fact, API, syntax, version, or best practice may have changed, verify it against current official documentation before teaching it.
+- Never invent command output, test results, benchmark numbers, cloud behaviour, or data results.
+- If something cannot be executed in the current environment, say so and give me the exact command or verification step I should run.
+- Keep me actively coding, querying, configuring, reasoning, or debugging throughout the session.
+- When useful, work from the tutorial practice files (data-science-scripts.zip, orders_2025.csv) instead of inventing unrelated examples.
+
+The concepts I need to master are:
+- DataFrame basics
+- pandas
+- dataframe
+- series
+- read_csv
+- head
+- shape
+- dtypes
+
+Start by asking me one diagnostic question.</code></pre></section>
+
 <div class="terms-box"><div class="files-head"><b>Key terms in this lesson</b><a href="../../../glossary.html">Glossary →</a></div><div class="term-chips"><a class="term-chip" href="../../../glossary.html#pandas" title="The standard Python library for working with tables (DataFrames): load, clean, join, group and summarise data.">pandas</a></div></div>
 <h2 id="free-resources">Free resources to go deeper</h2><ul class="resources"><li><a href="https://pandas.pydata.org/docs/user_guide/10min.html">10 minutes to pandas</a><span class="r-meta">pandas official docs · The official quick tour of the most-used features.</span></li><li><a href="https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html">Getting started tutorials</a><span class="r-meta">pandas official docs · Short visual tutorials: reading, selecting, plotting, new columns.</span></li><li><a href="https://pandas.pydata.org/docs/getting_started/comparison/comparison_with_sql.html">Comparison with SQL</a><span class="r-meta">pandas official docs · Every common SQL query, written in pandas.</span></li></ul>
 <div class="complete-bar"><span>Finished reading and did the exercise?</span>
@@ -406,9 +488,9 @@ Name: count, dtype: int64
 <p class="reviewed">Last reviewed: 2026-10-09</p>
 
   </div></main>
-  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#example-1-load-and-look">Example 1: load and look</a><a href="#example-2-check-the-column-types">Example 2: check the column types</a><a href="#example-3-summary-statistics">Example 3: summary statistics</a><a href="#example-4-select-columns-and-rows">Example 4: select columns and rows</a><a href="#example-5-filter-rows">Example 5: filter rows</a><a href="#example-6-sort-count-and-add-a-column">Example 6: sort, count and add a column</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#free-resources">Free resources</a></aside>
+  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#example-1-load-and-look">Example 1: load and look</a><a href="#example-2-check-the-column-types">Example 2: check the column types</a><a href="#example-3-summary-statistics">Example 3: summary statistics</a><a href="#example-4-select-columns-and-rows">Example 4: select columns and rows</a><a href="#example-5-filter-rows">Example 5: filter rows</a><a href="#example-6-sort-count-and-add-a-column">Example 6: sort, count and add a column</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#ai-mentor-prompt">AI Mentor Prompt</a><a href="#free-resources">Free resources</a></aside>
 </div>
-<footer class="site">Data, AI &amp; Automation Path v0.8 · Applied AI, Data &amp; Automation Lab · Updated October 2026<br>
+<footer class="site"><b>Saiful The Techie</b> · Data, AI &amp; Automation Path v0.9.1 · Updated October 2026<br>
 Lesson text: <a href="../../../license.html">CC BY-NC-SA 4.0</a> · Code: <a href="../../../license.html#code-mit-license">MIT</a> · Free external resources belong to their respective owners.</footer>
 <script src="../../../search-index.js"></script>
 <script src="../../../assets/app.js"></script>

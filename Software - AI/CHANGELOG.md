@@ -1,5 +1,51 @@
 # Changelog
 
+## v0.5.2 — 2026-10-09 — Navigation, Video & Learning-Path Audit
+
+### Learner UI
+- Made **Level 01** and **Level 02** independent collapsible sidebar buttons with remembered state.
+- Removed learner-facing `Source module` badges and `Source mapping` lines from module pages.
+- Removed duplicate module-title blocks so a module page has one primary H1.
+- Renamed the learner-facing source-coverage disclosure to **Topics in this module**.
+
+### Video companion fix
+- Stopped writing YouTube iframes directly into static HTML.
+- Added protocol-aware player injection: HTTP(S) pages receive the privacy-enhanced iframe; `file://` pages show a clean external-link fallback.
+- This avoids the YouTube Error 153 experience caused by missing client/referrer identification in direct-file contexts.
+
+### Learning-path audit
+- Added `LEARNING_PATH_AUDIT.md`.
+- Confirmed the architecture is suitable for beginner → advanced → career progression, but the current release is not yet career-ready.
+- Found a roadmap gap: Level 01 Modules 53–67 were being skipped before Level 02.
+- Found a second roadmap gap: Level 02 Bonus / professional masterclasses were not explicitly scheduled.
+- Corrected the future sequence so Level 01 is completed first and professional/career material is explicitly delivered before v1.0.
+
+### Verification
+- Build remains deterministic and internal links pass.
+- Added structural checks for collapsible levels, no duplicate module H1s, no learner-facing `Source module`/`Source mapping`, protocol-safe video frames and current version labels.
+
+## v0.5.1 — 2026-10-09 — Tutorial Experience Upgrade
+
+### Learning experience
+- Added an automatically generated, lesson-aware **Learn this lesson with AI** prompt to every authored tutorial.
+- Added copy-to-clipboard behavior and an expandable prompt preview.
+- Expanded curated YouTube companions across suitable tutorials, with timestamp links, review dates, privacy-enhanced embeds and direct external fallback links.
+- Completed the Orientation & AI Mindset block with four full tutorials.
+- Reworked level/sidebar navigation so authored modules form the active learning path and future modules live under a clearly labelled Roadmap.
+- Removed generated “Coming soon” clutter and fake planned lesson rows.
+
+### Platform
+- Added central `content/youtube.yml` metadata catalogue.
+- Added AI tutor/video companion styles aligned with the Saiful The Techie deep-navy/electric-cyan design system.
+- Updated Curriculum, About, How to Learn, README, roadmap and handover documentation.
+
+### Verification
+- Build completed with no warnings and all internal links valid.
+- AI tutor prompt presence, video companion rendering, curriculum coverage and generated HTML were audited.
+- JavaScript syntax, deterministic builds and release ZIP integrity were checked.
+
+---
+
 ## v0.5.0 — 2026-10-09
 
 ### Tutorial architecture upgrade

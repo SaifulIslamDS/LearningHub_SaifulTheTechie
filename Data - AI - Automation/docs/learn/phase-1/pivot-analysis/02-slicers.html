@@ -6,7 +6,7 @@
 <title>Excel Slicers &amp; Timelines: Click-to-Filter Reports — Data, AI &amp; Automation Path</title>
 <meta name="description" content="Add buttons that filter one or many PivotTables at once, so managers can explore the numbers themselves.">
 <meta property="og:type" content="article">
-<meta property="og:site_name" content="Data, AI &amp; Automation Path">
+<meta property="og:site_name" content="Saiful The Techie">
 <meta property="og:title" content="Excel Slicers &amp; Timelines: Click-to-Filter Reports">
 <meta property="og:description" content="Add buttons that filter one or many PivotTables at once, so managers can explore the numbers themselves.">
 <meta property="og:locale" content="en_US">
@@ -19,13 +19,13 @@ var n=null;try{n=localStorage.getItem('daa-nav')}catch(e){}
 if(n==='open'&&window.matchMedia&&matchMedia('(min-width: 961px)').matches)document.documentElement.setAttribute('data-nav','open');
 document.documentElement.classList.add('no-anim')})();</script>
 <link rel="stylesheet" href="../../../assets/style.css">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233f7d6a'/%3E%3Ctext x='16' y='21' font-family='sans-serif' font-size='13' font-weight='700' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
+
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="topbar">
   <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Open curriculum menu" title="Curriculum menu (press M)" aria-controls="sidebar" aria-expanded="false"><span class="ico-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span class="ico-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></button>
-  <a class="brand" href="../../../index.html"><span class="brand-badge">AI</span><span class="brand-text"><span class="brand-name">Data, AI &amp; Automation Path</span><span class="brand-version">v0.8</span></span></a>
+  <a class="brand" href="../../../index.html"><span class="brand-text"><span class="brand-name">Saiful The Techie</span><span class="brand-version">Data, AI &amp; Automation Path · v0.9.1</span></span></a>
   <nav class="top-links" aria-label="Main">
     <a href="../../../index.html" class="">Home</a><a href="../../../curriculum.html" class="">Curriculum</a><a href="../../../practice-files.html" class="">Practice files</a><a href="../../../glossary.html" class="">Glossary</a><a href="../../../how-to-learn.html" class="">How to learn</a><a href="../../../about.html" class="">About</a>
   </nav>
@@ -41,7 +41,7 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="layout wide">
   <nav class="sidebar" id="sidebar" aria-label="Curriculum">
     <div class="side-title">Curriculum</div>
-    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="77"><i></i></div><span class="bar-label" data-progress-label></span></div>
+    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="85"><i></i></div><span class="bar-label" data-progress-label></span></div>
 <div class="nav-phase"><a href="../../../learn/phase-0/index.html"><span class="nav-num">0</span>Foundations</a>
 </div>
 <div class="nav-phase current open"><a href="../../../learn/phase-1/index.html"><span class="nav-num">1</span>Analytics &amp; BI</a>
@@ -97,122 +97,166 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="admonition note"><p class="admonition-title">Before you start</p><p><a href="../../../learn/phase-1/pivot-analysis/01-pivottables-grouping.html">Excel PivotTables &amp; Grouping: Summaries in Seconds</a></p></div>
 <div class="files-box"><div class="files-head"><b>Practice files for this page</b><a href="../../../practice-files.html">All practice files →</a></div><ul><li><a href="../../../downloads/orders.xlsx" download>orders.xlsx</a><span class="f-desc">Starting workbook: Orders (with value formula), Products, Customers sheets · 8 KB</span></li></ul></div>
 <h2 id="what-is-it">What is it?</h2>
-<p>A <strong>slicer</strong> is a set of clickable buttons, one per item (e.g. each region), that filters a PivotTable or an Excel Table. A <strong>timeline</strong> is a slider for dates: click a month or drag across several. Unlike the Filters drop-down, slicers <strong>show</strong> what is selected, so nobody misreads a filtered report.</p>
-<div class="admonition job">
-<p class="admonition-title">Why it matters at work</p>
-<p>Slicers turn a static PivotTable into a small <strong>self-service dashboard</strong>. Managers click "Dhaka" and "Delivered" instead of asking you for another version. One slicer can drive several PivotTables at once, which is the basic idea behind Power BI dashboards in the next modules.</p>
+<p>A <strong>slicer</strong> is a set of clickable buttons, one per item
+(e.g. each region), that filters a PivotTable or an Excel Table. A
+<strong>timeline</strong> is a slider for dates: click a month or drag
+across several. Unlike the Filters drop-down, slicers
+<strong>show</strong> what is selected, so nobody misreads a filtered
+report.</p>
+<div class="admonition job" data-markdown="1">
+<p class="admonition-title">
+Why it matters at work
+</p>
+<p>Slicers turn a static PivotTable into a small <strong>self-service
+dashboard</strong>. Managers click “Dhaka” and “Delivered” instead of
+asking you for another version. One slicer can drive several PivotTables
+at once, which is the basic idea behind Power BI dashboards in the next
+modules.</p>
 </div>
 <h2 id="add-slicers">Add slicers</h2>
-<ol>
-<li>Click inside a PivotTable (e.g. <strong>category</strong> in Rows, <strong>Sum of value</strong> in Values).</li>
-<li>Choose <strong>PivotTable Analyze → Insert Slicer</strong> → tick <strong>region</strong> and <strong>status</strong> → <strong>OK</strong>.</li>
+<ol type="1">
+<li>Click inside a PivotTable (e.g. <strong>category</strong> in Rows,
+<strong>Sum of value</strong> in Values).</li>
+<li>Choose <strong>PivotTable Analyze → Insert Slicer</strong> → tick
+<strong>region</strong> and <strong>status</strong> →
+<strong>OK</strong>.</li>
 <li>Two button panels appear. Click a button to filter by it.
-   - Select several buttons with <strong>Ctrl + click</strong>, or turn on the <strong>Multi-Select</strong> button at the top of the slicer.
-   - Clear a slicer with the <strong>funnel ✕</strong> icon at its top right.</li>
+<ul>
+<li>Select several buttons with <strong>Ctrl + click</strong>, or turn
+on the <strong>Multi-Select</strong> button at the top of the
+slicer.</li>
+<li>Clear a slicer with the <strong>funnel ✕</strong> icon at its top
+right.</li>
+</ul></li>
 </ol>
-<h2 id="example-1-filter-with-two-slicers">Example 1: filter with two slicers</h2>
-<p><em>Question: what has Dhaka received (Delivered) by category?</em> Click <strong>Dhaka</strong> in the region slicer and <strong>Delivered</strong> in the status slicer:</p>
+<h2 id="example-1-filter-with-two-slicers">Example 1: filter with two
+slicers</h2>
+<p><em>Question: what has Dhaka received (Delivered) by category?</em>
+Click <strong>Dhaka</strong> in the region slicer and
+<strong>Delivered</strong> in the status slicer:</p>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>category</th>
 <th>Sum of value</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>Fabric</td>
 <td>1,980</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Yarn</td>
 <td>870</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><strong>Grand Total</strong></td>
 <td><strong>2,850</strong></td>
 </tr>
 </tbody>
 </table>
-<p>Dhaka's delivered revenue is 2,850, matching the SQL CASE lesson. The slicers show at a glance which filters are on.</p>
-<h2 id="example-2-a-timeline-for-dates">Example 2: a timeline for dates</h2>
-<ol>
-<li>Click in the PivotTable → <strong>PivotTable Analyze → Insert Timeline</strong> → tick <strong>order_date</strong> → <strong>OK</strong>.</li>
-<li>Set the timeline to <strong>MONTHS</strong> and click <strong>FEB 2026</strong>. Clear the region and status slicers, and change the Rows field to <strong>region</strong>.</li>
+<p>Dhaka’s delivered revenue is 2,850, matching the SQL CASE lesson. The
+slicers show at a glance which filters are on.</p>
+<h2 id="example-2-a-timeline-for-dates">Example 2: a timeline for
+dates</h2>
+<ol type="1">
+<li>Click in the PivotTable → <strong>PivotTable Analyze → Insert
+Timeline</strong> → tick <strong>order_date</strong> →
+<strong>OK</strong>.</li>
+<li>Set the timeline to <strong>MONTHS</strong> and click <strong>FEB
+2026</strong>. Clear the region and status slicers, and change the Rows
+field to <strong>region</strong>.</li>
 </ol>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>region</th>
 <th>Sum of value</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>Chattogram</td>
 <td>680</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Dhaka</td>
 <td>1,190</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Gazipur</td>
 <td>1,260</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Narayanganj</td>
 <td>810</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><strong>Grand Total</strong></td>
 <td><strong>3,940</strong></td>
 </tr>
 </tbody>
 </table>
-<p>The February total, 3,940, is the same number you got with SUMIFS and a date range, now in two clicks. (February has no cancelled orders, so the status filter doesn't change it.)</p>
-<h2 id="example-3-one-slicer-several-pivottables">Example 3: one slicer, several PivotTables</h2>
-<p>Build a second PivotTable, e.g. <strong>customer</strong> in Rows and Sum of value. Then:</p>
-<ol>
-<li>Click the <strong>region</strong> slicer → <strong>Slicer → Report Connections</strong> (on older Windows versions: <strong>PivotTable Connections</strong>).</li>
+<p>The February total, 3,940, is the same number you got with SUMIFS and
+a date range, now in two clicks. (February has no cancelled orders, so
+the status filter doesn’t change it.)</p>
+<h2 id="example-3-one-slicer-several-pivottables">Example 3: one slicer,
+several PivotTables</h2>
+<p>Build a second PivotTable, e.g. <strong>customer</strong> in Rows and
+Sum of value. Then:</p>
+<ol type="1">
+<li>Click the <strong>region</strong> slicer → <strong>Slicer → Report
+Connections</strong> (on older Windows versions: <strong>PivotTable
+Connections</strong>).</li>
 <li>Tick <strong>both</strong> PivotTables → <strong>OK</strong>.</li>
 </ol>
-<p>Now clicking "Dhaka" filters both tables together. This is how simple Excel dashboards are built.</p>
-<div class="admonition note">
-<p class="admonition-title">Report Connections only lists pivots from the same data</p>
-<p>Slicers can only connect PivotTables built on the <strong>same source</strong>: the same Table or data model. If a PivotTable is missing from the list, it was built from a different range.</p>
+<p>Now clicking “Dhaka” filters both tables together. This is how simple
+Excel dashboards are built.</p>
+<div class="admonition note" data-markdown="1">
+<p class="admonition-title">
+Report Connections only lists pivots from the same data
+</p>
+<p>Slicers can only connect PivotTables built on the <strong>same
+source</strong>: the same Table or data model. If a PivotTable is
+missing from the list, it was built from a different range.</p>
 </div>
 <h2 id="common-mistakes">Common mistakes</h2>
 <table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Mistake</th>
 <th>What happens</th>
 <th>Fix</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>Sharing a report with a slicer still set</td>
 <td>Readers think they see all data</td>
 <td>Clear slicers, or label the filter clearly</td>
 </tr>
-<tr>
-<td>Slicer doesn't affect the second pivot</td>
-<td>It isn't connected</td>
+<tr class="even">
+<td>Slicer doesn’t affect the second pivot</td>
+<td>It isn’t connected</td>
 <td>Report Connections → tick both</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Pivot not in Report Connections</td>
 <td>Built from a different source</td>
 <td>Rebuild both pivots from the same Table</td>
 </tr>
-<tr>
-<td>A timeline can't be added</td>
-<td>The date field isn't real dates</td>
+<tr class="even">
+<td>A timeline can’t be added</td>
+<td>The date field isn’t real dates</td>
 <td>Convert to dates, refresh the pivot</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Too many slicers</td>
 <td>A cluttered, confusing report</td>
 <td>2–4 slicers on the most-asked filters</td>
@@ -220,91 +264,171 @@ document.documentElement.classList.add('no-anim')})();</script>
 </tbody>
 </table>
 <h2 id="try-it-yourself">Try it yourself</h2>
-<p><strong>Task:</strong> Using the <strong>status</strong> slicer, select <strong>Shipped</strong> and <strong>Pending</strong> together, with region in Rows. What is the total open value, and which region has the most?</p>
+<p><strong>Task:</strong> Using the <strong>status</strong> slicer,
+select <strong>Shipped</strong> and <strong>Pending</strong> together,
+with region in Rows. What is the total open value, and which region has
+the most?</p>
 <details>
-<summary>Show a hint</summary>
-<p>Turn on Multi-Select (or Ctrl + click), then click both statuses. Make sure the timeline and the region slicer are cleared.</p>
+<summary>
+Show a hint
+</summary>
+Turn on Multi-Select (or Ctrl + click), then click both statuses. Make
+sure the timeline and the region slicer are cleared.
 </details>
 <details>
-<summary>Show the solution</summary>
+<summary>
+Show the solution
+</summary>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>region</th>
 <th>Sum of value</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>Chattogram</td>
 <td>1,275</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Dhaka</td>
 <td>320</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Narayanganj</td>
 <td>810</td>
 </tr>
-<tr>
+<tr class="even">
 <td><strong>Grand Total</strong></td>
 <td><strong>2,405</strong></td>
 </tr>
 </tbody>
 </table>
-<p><strong>Chattogram</strong> has the most open value (order 12, Karim Garments). Gazipur doesn't appear: it has no open orders.</p>
+<strong>Chattogram</strong> has the most open value (order 12, Karim
+Garments). Gazipur doesn’t appear: it has no open orders.
 </details>
 <h2 id="quick-quiz">Quick quiz</h2>
 <div class="quiz-q" data-answer="1">
-<p>1. What is the main advantage of a slicer over the PivotTable Filters drop-down?</p>
-<ol>
+<p>1. What is the main advantage of a slicer over the PivotTable Filters
+drop-down?</p>
+<ol type="1">
 <li>It calculates faster</li>
 <li>It shows the selected filters visibly, and is easy to click</li>
 <li>It works without a PivotTable or Table</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B.</strong> Visible, clickable filters reduce misreading. Slicers do need a PivotTable or an Excel Table.</p>
+<summary>
+Show answer
+</summary>
+<strong>B.</strong> Visible, clickable filters reduce misreading.
+Slicers do need a PivotTable or an Excel Table.
 </details>
 </div>
 <div class="quiz-q" data-answer="1">
 <p>2. How do you make one slicer filter two PivotTables?</p>
-<ol>
+<ol type="1">
 <li>Copy the slicer</li>
 <li>Report Connections → tick both pivots</li>
 <li>Group the two pivots</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B — Report Connections.</strong> Both pivots must use the same data source.</p>
+<summary>
+Show answer
+</summary>
+<strong>B — Report Connections.</strong> Both pivots must use the same
+data source.
 </details>
 </div>
 <div class="quiz-q" data-answer="1">
-<p>3. Which control is designed for filtering by a date range, such as a month or quarter?</p>
-<ol>
+<p>3. Which control is designed for filtering by a date range, such as a
+month or quarter?</p>
+<ol type="1">
 <li>Slicer</li>
 <li>Timeline</li>
 <li>Data bar</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B — Timeline.</strong></p>
+<summary>
+Show answer
+</summary>
+<strong>B — Timeline.</strong>
 </details>
 </div>
 <h2 id="summary">Summary</h2>
 <ul>
-<li><strong>Slicers</strong> are clickable filter buttons for PivotTables and Tables. <strong>Timelines</strong> filter by date ranges.</li>
-<li>Ctrl + click or Multi-Select chooses several items, and the ✕ clears the slicer.</li>
-<li><strong>Report Connections</strong> lets one slicer drive several pivots built on the same source.</li>
-<li>Keep slicers few and meaningful, and clear them before you share a report.</li>
+<li><strong>Slicers</strong> are clickable filter buttons for
+PivotTables and Tables. <strong>Timelines</strong> filter by date
+ranges.</li>
+<li>Ctrl + click or Multi-Select chooses several items, and the ✕ clears
+the slicer.</li>
+<li><strong>Report Connections</strong> lets one slicer drive several
+pivots built on the same source.</li>
+<li>Keep slicers few and meaningful, and clear them before you share a
+report.</li>
 </ul>
-<div class="admonition job">
-<p class="admonition-title">Job-ready check</p>
-<p><strong>Interview question:</strong> <em>"How would you let a sales manager explore revenue by region and month without asking you every time?"</em></p>
-<p><strong>Strong answer:</strong> "I'd build PivotTables on one Excel Table, add region and status slicers plus a date timeline, and connect them all with Report Connections. The manager clicks to filter, and I make sure the default view shows all data with the slicers cleared."</p>
-<p><strong>Mini project:</strong> On your <strong>Pivot</strong> sheet, add region and status slicers and a timeline, connected to both PivotTables. Take a screenshot of a filtered view for your portfolio.</p>
+<div class="admonition job" data-markdown="1">
+<p class="admonition-title">
+Job-ready check
+</p>
+<p><strong>Interview question:</strong> <em>“How would you let a sales
+manager explore revenue by region and month without asking you every
+time?”</em></p>
+<p><strong>Strong answer:</strong> “I’d build PivotTables on one Excel
+Table, add region and status slicers plus a date timeline, and connect
+them all with Report Connections. The manager clicks to filter, and I
+make sure the default view shows all data with the slicers cleared.”</p>
+<p><strong>Mini project:</strong> On your <strong>Pivot</strong> sheet,
+add region and status slicers and a timeline, connected to both
+PivotTables. Take a screenshot of a filtered view for your
+portfolio.</p>
 </div>
+<section class="mentor-prompt"><div class="mentor-head"><div><span class="eyebrow">AI study companion</span><h2 id="ai-mentor-prompt">AI Mentor Prompt</h2></div><button class="btn copy-prompt" type="button" data-copy-target="mentor-prompt-phase-1-pivot-analysis-02-slicers">Copy prompt</button></div><p>Paste this into ChatGPT, Claude, Gemini, or another capable assistant to turn this tutorial into an interactive mentoring session.</p><pre class="prompt-box"><code id="mentor-prompt-phase-1-pivot-analysis-02-slicers">You are my hands-on data-analytics and business-intelligence mentor.
+
+I am currently studying:
+&quot;Excel Slicers &amp; Timelines: Click-to-Filter Reports&quot;
+
+My level:
+Beginner
+
+Teach me this topic interactively rather than giving me a long lecture.
+
+Use this sequence:
+
+1. Check what I already understand with one short diagnostic question.
+2. Explain the concept in simple language and give me the mental model first.
+3. Give me one small task using code, SQL, configuration, data, or architecture as appropriate.
+4. Wait for my attempt before showing a complete solution.
+5. Review my work and explain both what is correct and what needs improvement.
+6. Help me debug errors step by step instead of immediately replacing my work.
+7. Increase the difficulty gradually and connect each new step to the previous one.
+8. Relate what I am learning to real professional data/AI engineering work.
+9. Ask me to explain an important decision in my own words so you can check my understanding.
+10. At the end, ask me to build or modify one small feature independently.
+
+Important rules:
+- Do not do the entire exercise for me unless I explicitly ask.
+- Explain unfamiliar terminology before using it heavily.
+- Prefer current, production-relevant practices over outdated shortcuts.
+- Distinguish clearly between concepts, tool-specific behaviour, and optional alternatives.
+- If a technical fact, API, syntax, version, or best practice may have changed, verify it against current official documentation before teaching it.
+- Never invent command output, test results, benchmark numbers, cloud behaviour, or data results.
+- If something cannot be executed in the current environment, say so and give me the exact command or verification step I should run.
+- Keep me actively coding, querying, configuring, reasoning, or debugging throughout the session.
+- When useful, work from the tutorial practice files (orders.xlsx) instead of inventing unrelated examples.
+
+The concepts I need to master are:
+- Slicers
+- slicer
+- timeline
+- filter
+- report connections
+- interactive
+- dashboard
+- multi-select
+
+Start by asking me one diagnostic question.</code></pre></section>
+
 <div class="terms-box"><div class="files-head"><b>Key terms in this lesson</b><a href="../../../glossary.html">Glossary →</a></div><div class="term-chips"><a class="term-chip" href="../../../glossary.html#pivottable" title="An interactive summary that groups and totals data by dragging fields into rows, columns, values and filters.">PivotTable</a><a class="term-chip" href="../../../glossary.html#slicer" title="A button panel that filters PivotTables or Power BI visuals with a click. A timeline is a slicer for dates.">Slicer</a></div></div>
 <h2 id="free-resources">Free resources to go deeper</h2><ul class="resources"><li><a href="https://support.microsoft.com/en-us/office/use-slicers-to-filter-data-249f966b-a9d5-4b0f-b31a-12651785d29d">Use slicers to filter data</a><span class="r-meta">Microsoft Support · Inserting, formatting and connecting slicers.</span></li><li><a href="https://support.microsoft.com/en-us/office/create-a-pivottable-timeline-to-filter-dates-d3956083-01be-408c-906d-6fc99d9fadfa">Create a PivotTable timeline to filter dates</a><span class="r-meta">Microsoft Support · The date-range slider for PivotTables.</span></li><li><a href="https://edu.gcfglobal.org/en/excel2016/doing-more-with-pivottables/1/">Excel 2016: Doing More with PivotTables</a><span class="r-meta">GCFGlobal (free) · Slicers and timelines with screenshots.</span></li></ul>
 <div class="complete-bar"><span>Finished reading and did the exercise?</span>
@@ -313,9 +437,9 @@ document.documentElement.classList.add('no-anim')})();</script>
 <p class="reviewed">Last reviewed: 2026-10-09</p>
 
   </div></main>
-  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#add-slicers">Add slicers</a><a href="#example-1-filter-with-two-slicers">Example 1: filter with two slicers</a><a href="#example-2-a-timeline-for-dates">Example 2: a timeline for dates</a><a href="#example-3-one-slicer-several-pivottables">Example 3: one slicer, several PivotTables</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#free-resources">Free resources</a></aside>
+  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#add-slicers">Add slicers</a><a href="#example-1-filter-with-two-slicers">Example 1: filter with two slicers</a><a href="#example-2-a-timeline-for-dates">Example 2: a timeline for dates</a><a href="#example-3-one-slicer-several-pivottables">Example 3: one slicer, several PivotTables</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#ai-mentor-prompt">AI Mentor Prompt</a><a href="#free-resources">Free resources</a></aside>
 </div>
-<footer class="site">Data, AI &amp; Automation Path v0.8 · Applied AI, Data &amp; Automation Lab · Updated October 2026<br>
+<footer class="site"><b>Saiful The Techie</b> · Data, AI &amp; Automation Path v0.9.1 · Updated October 2026<br>
 Lesson text: <a href="../../../license.html">CC BY-NC-SA 4.0</a> · Code: <a href="../../../license.html#code-mit-license">MIT</a> · Free external resources belong to their respective owners.</footer>
 <script src="../../../search-index.js"></script>
 <script src="../../../assets/app.js"></script>

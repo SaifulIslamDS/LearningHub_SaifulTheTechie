@@ -6,7 +6,7 @@
 <title>Reviewing &amp; Testing AI-Written Code: Trust, but Verify — Data, AI &amp; Automation Path</title>
 <meta name="description" content="Review AI-generated code with a checklist, trace it against real data, and prove it right or wrong with known-answer tests — using a function that runs cleanly but returns 5,875 instead of 9,075.">
 <meta property="og:type" content="article">
-<meta property="og:site_name" content="Data, AI &amp; Automation Path">
+<meta property="og:site_name" content="Saiful The Techie">
 <meta property="og:title" content="Reviewing &amp; Testing AI-Written Code: Trust, but Verify">
 <meta property="og:description" content="Review AI-generated code with a checklist, trace it against real data, and prove it right or wrong with known-answer tests — using a function that runs cleanly but returns 5,875 instead of 9,075.">
 <meta property="og:locale" content="en_US">
@@ -19,13 +19,13 @@ var n=null;try{n=localStorage.getItem('daa-nav')}catch(e){}
 if(n==='open'&&window.matchMedia&&matchMedia('(min-width: 961px)').matches)document.documentElement.setAttribute('data-nav','open');
 document.documentElement.classList.add('no-anim')})();</script>
 <link rel="stylesheet" href="../../../assets/style.css">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233f7d6a'/%3E%3Ctext x='16' y='21' font-family='sans-serif' font-size='13' font-weight='700' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
+
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="topbar">
   <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Open curriculum menu" title="Curriculum menu (press M)" aria-controls="sidebar" aria-expanded="false"><span class="ico-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span class="ico-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></button>
-  <a class="brand" href="../../../index.html"><span class="brand-badge">AI</span><span class="brand-text"><span class="brand-name">Data, AI &amp; Automation Path</span><span class="brand-version">v0.8</span></span></a>
+  <a class="brand" href="../../../index.html"><span class="brand-text"><span class="brand-name">Saiful The Techie</span><span class="brand-version">Data, AI &amp; Automation Path · v0.9.1</span></span></a>
   <nav class="top-links" aria-label="Main">
     <a href="../../../index.html" class="">Home</a><a href="../../../curriculum.html" class="">Curriculum</a><a href="../../../practice-files.html" class="">Practice files</a><a href="../../../glossary.html" class="">Glossary</a><a href="../../../how-to-learn.html" class="">How to learn</a><a href="../../../about.html" class="">About</a>
   </nav>
@@ -41,7 +41,7 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="layout wide">
   <nav class="sidebar" id="sidebar" aria-label="Curriculum">
     <div class="side-title">Curriculum</div>
-    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="77"><i></i></div><span class="bar-label" data-progress-label></span></div>
+    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="85"><i></i></div><span class="bar-label" data-progress-label></span></div>
 <div class="nav-phase current open"><a href="../../../learn/phase-0/index.html"><span class="nav-num">0</span>Foundations</a>
 <ul class="nav-modules">
 <li><a class="" href="../../../learn/phase-0/dev-environment/index.html">Development Environment</a>
@@ -91,321 +91,362 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="files-box"><div class="files-head"><b>Practice files for this page</b><a href="../../../practice-files.html">All practice files →</a></div><ul><li><a href="../../../downloads/phase-0/python-refresher.zip" download>python-refresher.zip</a><span class="f-desc">Python refresher scripts, debugging, pytest and ruff examples, an AI-written function to review, with solutions · 12 KB</span></li><li><a href="../../../downloads/orders_raw.csv" download>orders_raw.csv</a><span class="f-desc">Messy export of the 12 orders (14 rows) to clean · 1 KB</span></li><li><a href="../../../downloads/known_answers.csv" download>known_answers.csv</a><span class="f-desc">24 key numbers every tool should reproduce, for checking your work (and AI output) · 1 KB</span></li></ul></div>
 <h2 id="what-is-it">What is it?</h2>
 <ul>
-<li><strong>Reviewing AI-written code</strong> means reading it as critically as a colleague's pull request: is it correct for <em>our</em> data and rules, safe, and maintainable?</li>
-<li><strong>Testing AI-written code</strong> means proving it with tests written from the <strong>specification</strong> (business rules and known answers), not from whatever the code happens to do.</li>
+<li><strong>Reviewing AI-written code</strong> means reading it as
+critically as a colleague’s pull request: is it correct for <em>our</em>
+data and rules, safe, and maintainable?</li>
+<li><strong>Testing AI-written code</strong> means proving it with tests
+written from the <strong>specification</strong> (business rules and
+known answers), not from whatever the code happens to do.</li>
 </ul>
-<p>The dangerous AI bug is not the one that crashes. It's the one that <strong>runs cleanly and gives a believable wrong number</strong>.</p>
-<div class="admonition job">
-<p class="admonition-title">Why it matters at work</p>
-<p>AI makes producing code cheap; checking it is now the valuable skill. Teams expect you to catch wrong assumptions, silent failures and security issues before merge, and reviewers will ask "how do you know it's right?". The answer must be tests and known answers, not "the AI said so".</p>
+<p>The dangerous AI bug is not the one that crashes. It’s the one that
+<strong>runs cleanly and gives a believable wrong number</strong>.</p>
+<div class="admonition job" data-markdown="1">
+<p class="admonition-title">
+Why it matters at work
+</p>
+<p>AI makes producing code cheap; checking it is now the valuable skill.
+Teams expect you to catch wrong assumptions, silent failures and
+security issues before merge, and reviewers will ask “how do you know
+it’s right?”. The answer must be tests and known answers, not “the AI
+said so”.</p>
 </div>
 <h2 id="the-code-to-review">The code to review</h2>
-<p><code>ai-review/ai_suggestion.py</code> in <a href="../../../downloads/phase-0/python-refresher.zip">python-refresher.zip</a> came from the weak prompt in the previous lesson: <em>"Write a Python function that reads orders_raw.csv and returns net revenue by month."</em></p>
-<div class="codehilite"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">csv</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">defaultdict</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span>
+<p><code>ai-review/ai_suggestion.py</code> in <a
+href="../../../downloads/phase-0/python-refresher.zip">python-refresher.zip</a>
+came from the weak prompt in the previous lesson: <em>“Write a Python
+function that reads orders_raw.csv and returns net revenue by
+month.”</em></p>
+<pre class="python"><code>import csv
+from collections import defaultdict
+from datetime import datetime
 
 
-<span class="k">def</span><span class="w"> </span><span class="nf">net_revenue_by_month</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
-    <span class="n">totals</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-        <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictReader</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
-            <span class="k">try</span><span class="p">:</span>
-                <span class="n">qty</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">"Qty"</span><span class="p">])</span>
-                <span class="n">price</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">"Unit Price"</span><span class="p">])</span>
-                <span class="n">month</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">"Order Date"</span><span class="p">],</span> <span class="s2">"%m/</span><span class="si">%d</span><span class="s2">/%Y"</span><span class="p">)</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">"%Y-%m"</span><span class="p">)</span>
-                <span class="n">totals</span><span class="p">[</span><span class="n">month</span><span class="p">]</span> <span class="o">+=</span> <span class="n">qty</span> <span class="o">*</span> <span class="n">price</span>
-            <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
-                <span class="k">continue</span>
-    <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">totals</span><span class="o">.</span><span class="n">items</span><span class="p">()))</span>
-</code></pre></div>
-
+def net_revenue_by_month(path):
+    totals = defaultdict(float)
+    with open(path) as f:
+        for row in csv.DictReader(f):
+            try:
+                qty = int(row[&quot;Qty&quot;])
+                price = float(row[&quot;Unit Price&quot;])
+                month = datetime.strptime(row[&quot;Order Date&quot;], &quot;%m/%d/%Y&quot;).strftime(&quot;%Y-%m&quot;)
+                totals[month] += qty * price
+            except Exception:
+                continue
+    return dict(sorted(totals.items()))</code></pre>
 <p>It looks tidy, and it runs:</p>
-<div class="codehilite"><pre><span></span><code>2026-02 1360.0
+<pre class="text"><code>2026-02 1360.0
 2026-05 420.0
 2026-09 1275.0
 2026-11 1260.0
 2026-12 1560.0
-Total: 5875.0
-</code></pre></div>
-
-<p>The known answer is <strong>9,075</strong> for January–March. Months 05, 09, 11 and 12 don't even exist in the data.</p>
-<h2 id="part-1-review-with-a-checklist">Part 1: review with a checklist</h2>
+Total: 5875.0</code></pre>
+<p>The known answer is <strong>9,075</strong> for January–March. Months
+05, 09, 11 and 12 don’t even exist in the data.</p>
+<h2 id="part-1-review-with-a-checklist">Part 1: review with a
+checklist</h2>
 <table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Check</th>
 <th>Question</th>
 <th>Finding here</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td><strong>Assumptions</strong></td>
-<td>Does it match our data's real format?</td>
-<td>❌ Reads dates as <strong>month-first</strong>; the export is day-first (<code>05/01/2026</code> = 5 January)</td>
+<td>Does it match our data’s real format?</td>
+<td>❌ Reads dates as <strong>month-first</strong>; the export is
+day-first (<code>05/01/2026</code> = 5 January)</td>
 </tr>
-<tr>
+<tr class="even">
 <td><strong>Business rules</strong></td>
-<td>Does "net" mean what we mean?</td>
+<td>Does “net” mean what we mean?</td>
 <td>❌ Cancelled orders are <strong>not</strong> excluded</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><strong>Error handling</strong></td>
 <td>Are failures visible?</td>
-<td>❌ <code>except Exception: continue</code> silently drops every row it can't parse</td>
+<td>❌ <code>except Exception: continue</code> silently drops every row
+it can’t parse</td>
 </tr>
-<tr>
+<tr class="even">
 <td><strong>Data quirks</strong></td>
 <td>Blanks, <code>"5,000"</code>, duplicates, casing?</td>
-<td>❌ <code>"5,000"</code> fails <code>int()</code> and is dropped; the duplicate row is counted twice</td>
+<td>❌ <code>"5,000"</code> fails <code>int()</code> and is dropped; the
+duplicate row is counted twice</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><strong>Security</strong></td>
-<td><code>eval</code>, SQL built from strings, secrets, shell commands?</td>
+<td><code>eval</code>, SQL built from strings, secrets, shell
+commands?</td>
 <td>✅ None here</td>
 </tr>
-<tr>
+<tr class="even">
 <td><strong>Dependencies &amp; APIs</strong></td>
 <td>Do imported packages and functions really exist?</td>
 <td>✅ Standard library only</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><strong>Readability</strong></td>
 <td>Type hints, names, docstring?</td>
-<td>⚠️ No type hints; no <code>encoding</code> or <code>newline=""</code></td>
+<td>⚠️ No type hints; no <code>encoding</code> or
+<code>newline=""</code></td>
 </tr>
 </tbody>
 </table>
 <h3 id="trace-it-against-the-data">Trace it against the data</h3>
-<p>Walking through the 14 raw rows shows exactly where 9,075 became 5,875:</p>
+<p>Walking through the 14 raw rows shows exactly where 9,075 became
+5,875:</p>
 <table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Raw row</th>
 <th>What the AI code did</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td><code>05/01/2026</code> order 1 (420)</td>
 <td>Counted, but in <strong>May</strong></td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>08/01/2026</code> qty <code>"5,000"</code></td>
 <td>Dropped silently (<code>int("5,000")</code> fails)</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><code>12/01/2026</code> order 3 (1,560)</td>
 <td>Counted, but in <strong>December</strong></td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>15/01/2026</code>, <code>20/01/2026</code></td>
-<td>Dropped silently: month 15 and 20 don't exist</td>
+<td>Dropped silently: month 15 and 20 don’t exist</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><code>02/02/2026</code> order 6, <strong>twice</strong></td>
 <td>Counted <strong>twice</strong> (1,360)</td>
 </tr>
-<tr>
-<td><code>06/02</code> <code>"8,000"</code>, <code>03/03</code> <code>"1,500"</code></td>
+<tr class="even">
+<td><code>06/02</code> <code>"8,000"</code>, <code>03/03</code>
+<code>"1,500"</code></td>
 <td>Dropped silently</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><code>11/02/2026</code> order 8 (1,260)</td>
 <td>Counted, but in <strong>November</strong></td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>18/02</code>, <code>25/02</code></td>
 <td>Dropped silently</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><code>09/03/2026</code> order 12 (1,275)</td>
 <td>Counted, but in <strong>September</strong></td>
 </tr>
-<tr>
+<tr class="even">
 <td>Order 4 <code>CANCELLED</code></td>
-<td>Dropped only because <code>15/01</code> failed, <strong>not</strong> because of the rule</td>
+<td>Dropped only because <code>15/01</code> failed, <strong>not</strong>
+because of the rule</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>The blank row</td>
 <td>Dropped, again by accident (<code>int("")</code> fails)</td>
 </tr>
 </tbody>
 </table>
-<p>Six of the eleven orders that should count vanished without a single message, and four of the five that survived landed in the wrong month. That's what the bare <code>except</code> hides.</p>
-<h2 id="part-2-test-from-the-specification">Part 2: test from the specification</h2>
-<p>Write tests from the <strong>rules and known answers</strong>, never by copying the code's current output. <code>ai-review/test_ai_suggestion.py</code>:</p>
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<p>Six of the eleven orders that should count vanished without a single
+message, and four of the five that survived landed in the wrong month.
+That’s what the bare <code>except</code> hides.</p>
+<h2 id="part-2-test-from-the-specification">Part 2: test from the
+specification</h2>
+<p>Write tests from the <strong>rules and known answers</strong>, never
+by copying the code’s current output.
+<code>ai-review/test_ai_suggestion.py</code>:</p>
+<pre class="python"><code>from pathlib import Path
 
-<span class="kn">import</span><span class="w"> </span><span class="nn">pytest</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">ai_suggestion</span><span class="w"> </span><span class="kn">import</span> <span class="n">net_revenue_by_month</span>
+import pytest
+from ai_suggestion import net_revenue_by_month
 
-<span class="n">RAW</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">parent</span> <span class="o">/</span> <span class="s2">"data"</span> <span class="o">/</span> <span class="s2">"orders_raw.csv"</span>
-<span class="n">HEADER</span> <span class="o">=</span> <span class="s2">"Order ID,Order Date,Customer,Region,Category,Product,Qty,Unit Price,Status</span><span class="se">\n</span><span class="s2">"</span>
-
-
-<span class="k">def</span><span class="w"> </span><span class="nf">write_csv</span><span class="p">(</span><span class="n">tmp_path</span><span class="p">,</span> <span class="n">rows</span><span class="p">):</span>
-    <span class="n">f</span> <span class="o">=</span> <span class="n">tmp_path</span> <span class="o">/</span> <span class="s2">"orders.csv"</span>
-    <span class="n">f</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="n">HEADER</span> <span class="o">+</span> <span class="s2">""</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">rows</span><span class="p">),</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">f</span>
-
-
-<span class="k">def</span><span class="w"> </span><span class="nf">test_only_q1_months</span><span class="p">():</span>
-    <span class="k">assert</span> <span class="nb">list</span><span class="p">(</span><span class="n">net_revenue_by_month</span><span class="p">(</span><span class="n">RAW</span><span class="p">))</span> <span class="o">==</span> <span class="p">[</span><span class="s2">"2026-01"</span><span class="p">,</span> <span class="s2">"2026-02"</span><span class="p">,</span> <span class="s2">"2026-03"</span><span class="p">]</span>
+RAW = Path(__file__).parent.parent / &quot;data&quot; / &quot;orders_raw.csv&quot;
+HEADER = &quot;Order ID,Order Date,Customer,Region,Category,Product,Qty,Unit Price,Status\n&quot;
 
 
-<span class="k">def</span><span class="w"> </span><span class="nf">test_known_monthly_totals</span><span class="p">():</span>
-    <span class="n">expected</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"2026-01"</span><span class="p">:</span> <span class="mf">3440.0</span><span class="p">,</span> <span class="s2">"2026-02"</span><span class="p">:</span> <span class="mf">3940.0</span><span class="p">,</span> <span class="s2">"2026-03"</span><span class="p">:</span> <span class="mf">1695.0</span><span class="p">}</span>
-    <span class="k">assert</span> <span class="n">net_revenue_by_month</span><span class="p">(</span><span class="n">RAW</span><span class="p">)</span> <span class="o">==</span> <span class="n">pytest</span><span class="o">.</span><span class="n">approx</span><span class="p">(</span><span class="n">expected</span><span class="p">)</span>
+def write_csv(tmp_path, rows):
+    f = tmp_path / &quot;orders.csv&quot;
+    f.write_text(HEADER + &quot;&quot;.join(rows), encoding=&quot;utf-8&quot;)
+    return f
 
 
-<span class="k">def</span><span class="w"> </span><span class="nf">test_total_matches_known_answer</span><span class="p">():</span>
-    <span class="k">assert</span> <span class="nb">sum</span><span class="p">(</span><span class="n">net_revenue_by_month</span><span class="p">(</span><span class="n">RAW</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">())</span> <span class="o">==</span> <span class="n">pytest</span><span class="o">.</span><span class="n">approx</span><span class="p">(</span><span class="mf">9075.0</span><span class="p">)</span>
+def test_only_q1_months():
+    assert list(net_revenue_by_month(RAW)) == [&quot;2026-01&quot;, &quot;2026-02&quot;, &quot;2026-03&quot;]
 
 
-<span class="k">def</span><span class="w"> </span><span class="nf">test_day_first_dates</span><span class="p">(</span><span class="n">tmp_path</span><span class="p">):</span>
-    <span class="n">f</span> <span class="o">=</span> <span class="n">write_csv</span><span class="p">(</span><span class="n">tmp_path</span><span class="p">,</span> <span class="p">[</span><span class="s2">"1,15/01/2026,A,Dhaka,F,P,10,1.00,Delivered</span><span class="se">\n</span><span class="s2">"</span><span class="p">])</span>
-    <span class="k">assert</span> <span class="n">net_revenue_by_month</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="o">==</span> <span class="n">pytest</span><span class="o">.</span><span class="n">approx</span><span class="p">({</span><span class="s2">"2026-01"</span><span class="p">:</span> <span class="mf">10.0</span><span class="p">})</span>
+def test_known_monthly_totals():
+    expected = {&quot;2026-01&quot;: 3440.0, &quot;2026-02&quot;: 3940.0, &quot;2026-03&quot;: 1695.0}
+    assert net_revenue_by_month(RAW) == pytest.approx(expected)
 
 
-<span class="k">def</span><span class="w"> </span><span class="nf">test_cancelled_excluded</span><span class="p">(</span><span class="n">tmp_path</span><span class="p">):</span>
-    <span class="n">f</span> <span class="o">=</span> <span class="n">write_csv</span><span class="p">(</span><span class="n">tmp_path</span><span class="p">,</span> <span class="p">[</span><span class="s2">"1,05/01/2026,A,Dhaka,F,P,10,1.00,Delivered</span><span class="se">\n</span><span class="s2">"</span><span class="p">,</span>
-                             <span class="s2">"2,06/01/2026,A,Dhaka,F,P,10,1.00,CANCELLED</span><span class="se">\n</span><span class="s2">"</span><span class="p">])</span>
-    <span class="k">assert</span> <span class="n">net_revenue_by_month</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="o">==</span> <span class="n">pytest</span><span class="o">.</span><span class="n">approx</span><span class="p">({</span><span class="s2">"2026-01"</span><span class="p">:</span> <span class="mf">10.0</span><span class="p">})</span>
+def test_total_matches_known_answer():
+    assert sum(net_revenue_by_month(RAW).values()) == pytest.approx(9075.0)
 
 
-<span class="k">def</span><span class="w"> </span><span class="nf">test_quantity_with_thousands_separator</span><span class="p">(</span><span class="n">tmp_path</span><span class="p">):</span>
-    <span class="n">f</span> <span class="o">=</span> <span class="n">write_csv</span><span class="p">(</span><span class="n">tmp_path</span><span class="p">,</span> <span class="p">[</span><span class="s1">'1,05/01/2026,A,Dhaka,F,P,"5,000",0.04,Delivered</span><span class="se">\n</span><span class="s1">'</span><span class="p">])</span>
-    <span class="k">assert</span> <span class="n">net_revenue_by_month</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="o">==</span> <span class="n">pytest</span><span class="o">.</span><span class="n">approx</span><span class="p">({</span><span class="s2">"2026-01"</span><span class="p">:</span> <span class="mf">200.0</span><span class="p">})</span>
-</code></pre></div>
+def test_day_first_dates(tmp_path):
+    f = write_csv(tmp_path, [&quot;1,15/01/2026,A,Dhaka,F,P,10,1.00,Delivered\n&quot;])
+    assert net_revenue_by_month(f) == pytest.approx({&quot;2026-01&quot;: 10.0})
 
+
+def test_cancelled_excluded(tmp_path):
+    f = write_csv(tmp_path, [&quot;1,05/01/2026,A,Dhaka,F,P,10,1.00,Delivered\n&quot;,
+                             &quot;2,06/01/2026,A,Dhaka,F,P,10,1.00,CANCELLED\n&quot;])
+    assert net_revenue_by_month(f) == pytest.approx({&quot;2026-01&quot;: 10.0})
+
+
+def test_quantity_with_thousands_separator(tmp_path):
+    f = write_csv(tmp_path, [&#39;1,05/01/2026,A,Dhaka,F,P,&quot;5,000&quot;,0.04,Delivered\n&#39;])
+    assert net_revenue_by_month(f) == pytest.approx({&quot;2026-01&quot;: 200.0})</code></pre>
 <ul>
-<li><strong>Known-answer tests</strong> use the real file: 3,440 / 3,940 / 1,695 (the same months and MoM changes as the DAX lesson).</li>
-<li><strong>Rule tests</strong> use tiny files made with pytest's <code>tmp_path</code> fixture: one rule per test, so a failure names the broken rule.</li>
+<li><strong>Known-answer tests</strong> use the real file: 3,440 / 3,940
+/ 1,695 (the same months and MoM changes as the DAX lesson).</li>
+<li><strong>Rule tests</strong> use tiny files made with pytest’s
+<code>tmp_path</code> fixture: one rule per test, so a failure names the
+broken rule.</li>
 </ul>
 <p>Run them in the <code>ai-review</code> folder:</p>
-<div class="codehilite"><pre><span></span><code>python<span class="w"> </span>-m<span class="w"> </span>pytest
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>FAILED test_ai_suggestion.py::test_only_q1_months - AssertionError: assert ['...
+<pre class="bash"><code>python -m pytest</code></pre>
+<pre class="text"><code>FAILED test_ai_suggestion.py::test_only_q1_months - AssertionError: assert [&#39;...
 FAILED test_ai_suggestion.py::test_known_monthly_totals - AssertionError: ass...
 FAILED test_ai_suggestion.py::test_total_matches_known_answer - assert 5875.0...
 FAILED test_ai_suggestion.py::test_day_first_dates - AssertionError: assert {...
 FAILED test_ai_suggestion.py::test_cancelled_excluded - AssertionError: asser...
 FAILED test_ai_suggestion.py::test_quantity_with_thousands_separator - Assert...
-============================== 6 failed in 0.07s ===============================
-</code></pre></div>
-
+============================== 6 failed in 0.07s ===============================</code></pre>
 <p>One failure in detail:</p>
-<div class="codehilite"><pre><span></span><code>&gt;       assert sum(net_revenue_by_month(RAW).values()) == pytest.approx(9075.0)
-E       assert 5875.0 == 9075.0 ± 0.009075
-</code></pre></div>
-
+<pre class="text"><code>&gt;       assert sum(net_revenue_by_month(RAW).values()) == pytest.approx(9075.0)
+E       assert 5875.0 == 9075.0 ± 0.009075</code></pre>
 <h2 id="part-3-fix-then-prove-it">Part 3: fix, then prove it</h2>
-<p>Give the failures back to the AI (or fix them yourself) with the rules stated precisely. The reviewed version is <code>solutions/ai_review_fixed.py</code>:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">net_revenue_by_month</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="n">Path</span> <span class="o">|</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
-<span class="w">    </span><span class="sd">"""Net revenue (excluding Cancelled) per month from the raw export."""</span>
-    <span class="n">totals</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
-    <span class="n">seen</span><span class="p">:</span> <span class="nb">set</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="o">...</span><span class="p">]]</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s2">""</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-        <span class="k">for</span> <span class="n">line_no</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">csv</span><span class="o">.</span><span class="n">DictReader</span><span class="p">(</span><span class="n">f</span><span class="p">),</span> <span class="n">start</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
-            <span class="n">values</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">((</span><span class="n">v</span> <span class="ow">or</span> <span class="s2">""</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">row</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="nb">any</span><span class="p">(</span><span class="n">values</span><span class="p">):</span>
-                <span class="k">continue</span>  <span class="c1"># blank row</span>
-            <span class="k">if</span> <span class="n">values</span> <span class="ow">in</span> <span class="n">seen</span><span class="p">:</span>
-                <span class="k">continue</span>  <span class="c1"># exact duplicate</span>
-            <span class="n">seen</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">row</span><span class="p">[</span><span class="s2">"Status"</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">"cancelled"</span><span class="p">:</span>
-                <span class="k">continue</span>
-            <span class="k">try</span><span class="p">:</span>
-                <span class="n">qty</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">"Qty"</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">","</span><span class="p">,</span> <span class="s2">""</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
-                <span class="n">price</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">"Unit Price"</span><span class="p">])</span>
-                <span class="n">when</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">"Order Date"</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">(),</span> <span class="s2">"</span><span class="si">%d</span><span class="s2">/%m/%Y"</span><span class="p">)</span>
-            <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
-                <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">"Line </span><span class="si">%d</span><span class="s2"> rejected: </span><span class="si">%s</span><span class="s2">"</span><span class="p">,</span> <span class="n">line_no</span><span class="p">,</span> <span class="n">exc</span><span class="p">)</span>
-                <span class="k">continue</span>
-            <span class="n">totals</span><span class="p">[</span><span class="n">when</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">"%Y-%m"</span><span class="p">)]</span> <span class="o">+=</span> <span class="n">qty</span> <span class="o">*</span> <span class="n">price</span>
-    <span class="k">return</span> <span class="p">{</span><span class="n">month</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="k">for</span> <span class="n">month</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">totals</span><span class="o">.</span><span class="n">items</span><span class="p">())}</span>
-</code></pre></div>
-
-<p>Copy it over <code>ai_suggestion.py</code> and run the tests again:</p>
-<div class="codehilite"><pre><span></span><code>6 passed in 0.02s
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>2026-01 3440.0
+<p>Give the failures back to the AI (or fix them yourself) with the
+rules stated precisely. The reviewed version is
+<code>solutions/ai_review_fixed.py</code>:</p>
+<pre class="python"><code>def net_revenue_by_month(path: Path | str) -&gt; dict[str, float]:
+    &quot;&quot;&quot;Net revenue (excluding Cancelled) per month from the raw export.&quot;&quot;&quot;
+    totals: dict[str, float] = defaultdict(float)
+    seen: set[tuple[str, ...]] = set()
+    with open(path, newline=&quot;&quot;, encoding=&quot;utf-8&quot;) as f:
+        for line_no, row in enumerate(csv.DictReader(f), start=2):
+            values = tuple((v or &quot;&quot;).strip().lower() for v in row.values())
+            if not any(values):
+                continue  # blank row
+            if values in seen:
+                continue  # exact duplicate
+            seen.add(values)
+            if row[&quot;Status&quot;].strip().lower() == &quot;cancelled&quot;:
+                continue
+            try:
+                qty = int(row[&quot;Qty&quot;].replace(&quot;,&quot;, &quot;&quot;).strip())
+                price = float(row[&quot;Unit Price&quot;])
+                when = datetime.strptime(row[&quot;Order Date&quot;].strip(), &quot;%d/%m/%Y&quot;)
+            except ValueError as exc:
+                log.warning(&quot;Line %d rejected: %s&quot;, line_no, exc)
+                continue
+            totals[when.strftime(&quot;%Y-%m&quot;)] += qty * price
+    return {month: round(value, 2) for month, value in sorted(totals.items())}</code></pre>
+<p>Copy it over <code>ai_suggestion.py</code> and run the tests
+again:</p>
+<pre class="text"><code>6 passed in 0.02s</code></pre>
+<pre class="text"><code>2026-01 3440.0
 2026-02 3940.0
 2026-03 1695.0
-Total: 9075.0
-</code></pre></div>
-
-<p>Every fix maps to a review finding: day-first dates, the Cancelled rule, <code>"5,000"</code>, duplicates, and a <strong>specific</strong> <code>except ValueError</code> that <strong>logs</strong> what it rejects.</p>
+Total: 9075.0</code></pre>
+<p>Every fix maps to a review finding: day-first dates, the Cancelled
+rule, <code>"5,000"</code>, duplicates, and a <strong>specific</strong>
+<code>except ValueError</code> that <strong>logs</strong> what it
+rejects.</p>
 <h2 id="review-red-flags-in-ai-code">Review red flags in AI code</h2>
 <table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Red flag</th>
-<th>Why it's risky</th>
+<th>Why it’s risky</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td><code>except Exception: pass</code> / <code>continue</code></td>
 <td>Silent data loss</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Hard-coded formats, paths or magic numbers</td>
 <td>Wrong assumptions about your environment</td>
 </tr>
-<tr>
-<td><code>eval()</code>, <code>exec()</code>, <code>shell=True</code>, SQL built with f-strings</td>
+<tr class="odd">
+<td><code>eval()</code>, <code>exec()</code>, <code>shell=True</code>,
+SQL built with f-strings</td>
 <td>Security holes (code or SQL injection)</td>
 </tr>
-<tr>
-<td>Imports or functions you've never heard of</td>
+<tr class="even">
+<td>Imports or functions you’ve never heard of</td>
 <td>May not exist, or may be a look-alike malicious package</td>
 </tr>
-<tr>
-<td>Tests that only check the code's own output</td>
+<tr class="odd">
+<td>Tests that only check the code’s own output</td>
 <td>They pass even when the logic is wrong</td>
 </tr>
-<tr>
-<td>Large rewrites of code you didn't ask to change</td>
+<tr class="even">
+<td>Large rewrites of code you didn’t ask to change</td>
 <td>Hidden regressions; ask for a minimal diff</td>
 </tr>
 </tbody>
 </table>
 <h2 id="common-mistakes">Common mistakes</h2>
 <table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Mistake</th>
 <th>What happens</th>
 <th>Fix</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td>"It runs, so it works"</td>
+<tr class="odd">
+<td>“It runs, so it works”</td>
 <td>Wrong numbers in production</td>
 <td>Known-answer tests</td>
 </tr>
-<tr>
-<td>Letting the AI write the tests <strong>and</strong> the code from the same vague prompt</td>
+<tr class="even">
+<td>Letting the AI write the tests <strong>and</strong> the code from
+the same vague prompt</td>
 <td>Tests repeat the same wrong assumption</td>
 <td>Write or review tests from the spec yourself</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Updating expected values until tests pass</td>
-<td>The bug becomes "correct"</td>
+<td>The bug becomes “correct”</td>
 <td>Expected values come from the business, not the code</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Reviewing only the changed lines</td>
 <td>Missed context (callers, config, data)</td>
 <td>Read surrounding code; trace real data</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Merging big AI PRs in one go</td>
 <td>Unreviewable risk</td>
 <td>Ask for small PRs, one concern each</td>
@@ -413,67 +454,148 @@ Total: 9075.0
 </tbody>
 </table>
 <h2 id="try-it-yourself">Try it yourself</h2>
-<p><strong>Task:</strong> Add a <strong>regression test</strong> for the duplicate-row bug: a tiny file with the same order on two identical lines should count it once. Run it against <code>ai_suggestion.py</code> (it should fail) and against the fixed version (it should pass).</p>
+<p><strong>Task:</strong> Add a <strong>regression test</strong> for the
+duplicate-row bug: a tiny file with the same order on two identical
+lines should count it once. Run it against <code>ai_suggestion.py</code>
+(it should fail) and against the fixed version (it should pass).</p>
 <details>
-<summary>Show the solution</summary>
-<div class="codehilite"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">test_exact_duplicates_counted_once</span><span class="p">(</span><span class="n">tmp_path</span><span class="p">):</span>
-    <span class="n">line</span> <span class="o">=</span> <span class="s2">"6,02/02/2026,A,Chattogram,F,P,200,3.40,Delivered</span><span class="se">\n</span><span class="s2">"</span>
-    <span class="n">f</span> <span class="o">=</span> <span class="n">write_csv</span><span class="p">(</span><span class="n">tmp_path</span><span class="p">,</span> <span class="p">[</span><span class="n">line</span><span class="p">,</span> <span class="n">line</span><span class="p">])</span>
-    <span class="k">assert</span> <span class="n">net_revenue_by_month</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="o">==</span> <span class="n">pytest</span><span class="o">.</span><span class="n">approx</span><span class="p">({</span><span class="s2">"2026-02"</span><span class="p">:</span> <span class="mf">680.0</span><span class="p">})</span>
-</code></pre></div>
-
-<p>Against the AI version, <code>02/02/2026</code> happens to parse correctly (day and month are equal), so the failure is purely the duplicate: it returns <code>{'2026-02': 1360.0}</code>. With the fixed version it passes. A good regression test isolates <strong>one</strong> bug.</p>
+<summary>
+Show the solution
+</summary>
+<pre class="python"><code>def test_exact_duplicates_counted_once(tmp_path):
+    line = &quot;6,02/02/2026,A,Chattogram,F,P,200,3.40,Delivered\n&quot;
+    f = write_csv(tmp_path, [line, line])
+    assert net_revenue_by_month(f) == pytest.approx({&quot;2026-02&quot;: 680.0})</code></pre>
+Against the AI version, <code>02/02/2026</code> happens to parse
+correctly (day and month are equal), so the failure is purely the
+duplicate: it returns <code>{'2026-02': 1360.0}</code>. With the fixed
+version it passes. A good regression test isolates <strong>one</strong>
+bug.
 </details>
 <h2 id="quick-quiz">Quick quiz</h2>
 <div class="quiz-q" data-answer="1">
-<p>1. AI-written code runs without errors. What's the right next step?</p>
-<ol>
+<p>1. AI-written code runs without errors. What’s the right next
+step?</p>
+<ol type="1">
 <li>Merge it</li>
 <li>Check it against known answers and rule-based tests</li>
-<li>Ask the AI whether it's correct</li>
+<li>Ask the AI whether it’s correct</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B.</strong> Asking the same model to grade itself is not verification.</p>
+<summary>
+Show answer
+</summary>
+<strong>B.</strong> Asking the same model to grade itself is not
+verification.
 </details>
 </div>
 <div class="quiz-q" data-answer="1">
-<p>2. Why is <code>except Exception: continue</code> a red flag in data code?</p>
-<ol>
-<li>It's slow</li>
-<li>Bad rows disappear silently, so totals are wrong with no warning</li>
-<li>It's not valid Python</li>
+<p>2. Why is <code>except Exception: continue</code> a red flag in data
+code?</p>
+<ol type="1">
+<li>It’s slow</li>
+<li>Bad rows disappear silently, so totals are wrong with no
+warning</li>
+<li>It’s not valid Python</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B.</strong></p>
+<summary>
+Show answer
+</summary>
+<strong>B.</strong>
 </details>
 </div>
 <div class="quiz-q" data-answer="1">
-<p>3. Where should a test's expected values come from?</p>
-<ol>
-<li>The code's current output</li>
+<p>3. Where should a test’s expected values come from?</p>
+<ol type="1">
+<li>The code’s current output</li>
 <li>The specification: business rules and known answers</li>
 <li>Whatever makes the test pass</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B.</strong></p>
+<summary>
+Show answer
+</summary>
+<strong>B.</strong>
 </details>
 </div>
 <h2 id="summary">Summary</h2>
 <ul>
-<li>The worst AI bugs run cleanly and give believable wrong answers.</li>
-<li>Review with a checklist: assumptions, business rules, error handling, data quirks, security, dependencies, readability, and <strong>trace real rows</strong>.</li>
-<li>Test from the spec: known-answer tests on real data plus one-rule tests on tiny files (<code>tmp_path</code>).</li>
-<li>Fix, re-run, and keep the tests as <strong>regression</strong> protection in CI.</li>
+<li>The worst AI bugs run cleanly and give believable wrong
+answers.</li>
+<li>Review with a checklist: assumptions, business rules, error
+handling, data quirks, security, dependencies, readability, and
+<strong>trace real rows</strong>.</li>
+<li>Test from the spec: known-answer tests on real data plus one-rule
+tests on tiny files (<code>tmp_path</code>).</li>
+<li>Fix, re-run, and keep the tests as <strong>regression</strong>
+protection in CI.</li>
 </ul>
-<div class="admonition job">
-<p class="admonition-title">Job-ready check</p>
-<p><strong>Interview question:</strong> <em>"An AI assistant wrote a data transformation for you. How do you decide whether to merge it?"</em></p>
-<p><strong>Strong answer:</strong> "I review it like any PR: check its assumptions against the real data format, the business rules, error handling and security. Then I prove it with tests written from the spec: known totals on a real sample, plus small tests for each rule and edge case. Only when those pass in CI, and I understand every line, does it merge."</p>
-<p><strong>Mini project:</strong> Ask an AI assistant to write a function that returns <strong>revenue by region</strong> from <code>orders_raw.csv</code> using a <em>weak</em> prompt. Review it with the checklist, write known-answer tests (Dhaka 3,170; total 9,075), and document each bug you found in <code>docs/ai-review.md</code>.</p>
+<div class="admonition job" data-markdown="1">
+<p class="admonition-title">
+Job-ready check
+</p>
+<p><strong>Interview question:</strong> <em>“An AI assistant wrote a
+data transformation for you. How do you decide whether to merge
+it?”</em></p>
+<p><strong>Strong answer:</strong> “I review it like any PR: check its
+assumptions against the real data format, the business rules, error
+handling and security. Then I prove it with tests written from the spec:
+known totals on a real sample, plus small tests for each rule and edge
+case. Only when those pass in CI, and I understand every line, does it
+merge.”</p>
+<p><strong>Mini project:</strong> Ask an AI assistant to write a
+function that returns <strong>revenue by region</strong> from
+<code>orders_raw.csv</code> using a <em>weak</em> prompt. Review it with
+the checklist, write known-answer tests (Dhaka 3,170; total 9,075), and
+document each bug you found in <code>docs/ai-review.md</code>.</p>
 </div>
+<section class="mentor-prompt"><div class="mentor-head"><div><span class="eyebrow">AI study companion</span><h2 id="ai-mentor-prompt">AI Mentor Prompt</h2></div><button class="btn copy-prompt" type="button" data-copy-target="mentor-prompt-phase-0-ai-assisted-dev-02-review-test-ai-code">Copy prompt</button></div><p>Paste this into ChatGPT, Claude, Gemini, or another capable assistant to turn this tutorial into an interactive mentoring session.</p><pre class="prompt-box"><code id="mentor-prompt-phase-0-ai-assisted-dev-02-review-test-ai-code">You are my hands-on software-engineering mentor.
+
+I am currently studying:
+&quot;Reviewing &amp; Testing AI-Written Code: Trust, but Verify&quot;
+
+My level:
+Beginner
+
+Teach me this topic interactively rather than giving me a long lecture.
+
+Use this sequence:
+
+1. Check what I already understand with one short diagnostic question.
+2. Explain the concept in simple language and give me the mental model first.
+3. Give me one small task using code, SQL, configuration, data, or architecture as appropriate.
+4. Wait for my attempt before showing a complete solution.
+5. Review my work and explain both what is correct and what needs improvement.
+6. Help me debug errors step by step instead of immediately replacing my work.
+7. Increase the difficulty gradually and connect each new step to the previous one.
+8. Relate what I am learning to real professional data/AI engineering work.
+9. Ask me to explain an important decision in my own words so you can check my understanding.
+10. At the end, ask me to build or modify one small feature independently.
+
+Important rules:
+- Do not do the entire exercise for me unless I explicitly ask.
+- Explain unfamiliar terminology before using it heavily.
+- Prefer current, production-relevant practices over outdated shortcuts.
+- Distinguish clearly between concepts, tool-specific behaviour, and optional alternatives.
+- If a technical fact, API, syntax, version, or best practice may have changed, verify it against current official documentation before teaching it.
+- Never invent command output, test results, benchmark numbers, cloud behaviour, or data results.
+- If something cannot be executed in the current environment, say so and give me the exact command or verification step I should run.
+- Keep me actively coding, querying, configuring, reasoning, or debugging throughout the session.
+- When useful, work from the tutorial practice files (python-refresher.zip, orders_raw.csv, known_answers.csv) instead of inventing unrelated examples.
+
+The concepts I need to master are:
+- Reviewing AI-written code
+- Testing AI-written code
+- code review
+- ai-generated code
+- review checklist
+- silent failure
+- bare except
+- date format
+
+Start by asking me one diagnostic question.</code></pre></section>
+
 <div class="terms-box"><div class="files-head"><b>Key terms in this lesson</b><a href="../../../glossary.html">Glossary →</a></div><div class="term-chips"><a class="term-chip" href="../../../glossary.html#known-answer" title="A result you already know is correct (for example, net revenue 9,075 on the practice data). Every new query, formula, dashboard or AI output is checked against it before you trust it.">Known answer</a><a class="term-chip" href="../../../glossary.html#pull-request" title="A request on GitHub to review a branch&#x27;s changes and merge them. It shows the diff, comments and automated check results.">Pull request</a><a class="term-chip" href="../../../glossary.html#pytest" title="Python&#x27;s most popular testing tool. It runs every function named test_..., and reports which assertions pass or fail.">pytest</a></div></div>
 <h2 id="free-resources">Free resources to go deeper</h2><ul class="resources"><li><a href="https://www.anthropic.com/engineering/claude-code-best-practices">Claude Code: best practices for agentic coding</a><span class="r-meta">Anthropic Engineering · Why giving an agent tests to verify against improves results.</span></li><li><a href="https://docs.pytest.org/en/stable/getting-started.html">Get started with pytest</a><span class="r-meta">pytest docs (official) · Asserts, pytest.approx and the tmp_path fixture.</span></li><li><a href="https://docs.github.com/en/pull-requests/reference/pull-requests">Pull requests documentation</a><span class="r-meta">GitHub Docs · Reviewing and approving changes, including agent-created PRs.</span></li></ul>
 <div class="complete-bar"><span>Finished reading and did the exercise?</span>
@@ -482,9 +604,9 @@ Total: 9075.0
 <p class="reviewed">Last reviewed: 2026-10-09</p>
 
   </div></main>
-  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#the-code-to-review">The code to review</a><a href="#part-1-review-with-a-checklist">Part 1: review with a checklist</a><a href="#part-2-test-from-the-specification">Part 2: test from the specification</a><a href="#part-3-fix-then-prove-it">Part 3: fix, then prove it</a><a href="#review-red-flags-in-ai-code">Review red flags in AI code</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#free-resources">Free resources</a></aside>
+  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#the-code-to-review">The code to review</a><a href="#part-1-review-with-a-checklist">Part 1: review with a checklist</a><a href="#trace-it-against-the-data">Trace it against the data</a><a href="#part-2-test-from-the-specification">Part 2: test from the specification</a><a href="#part-3-fix-then-prove-it">Part 3: fix, then prove it</a><a href="#review-red-flags-in-ai-code">Review red flags in AI code</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#ai-mentor-prompt">AI Mentor Prompt</a><a href="#free-resources">Free resources</a></aside>
 </div>
-<footer class="site">Data, AI &amp; Automation Path v0.8 · Applied AI, Data &amp; Automation Lab · Updated October 2026<br>
+<footer class="site"><b>Saiful The Techie</b> · Data, AI &amp; Automation Path v0.9.1 · Updated October 2026<br>
 Lesson text: <a href="../../../license.html">CC BY-NC-SA 4.0</a> · Code: <a href="../../../license.html#code-mit-license">MIT</a> · Free external resources belong to their respective owners.</footer>
 <script src="../../../search-index.js"></script>
 <script src="../../../assets/app.js"></script>

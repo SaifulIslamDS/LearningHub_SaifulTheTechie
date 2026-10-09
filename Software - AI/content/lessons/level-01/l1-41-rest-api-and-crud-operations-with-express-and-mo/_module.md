@@ -1,5 +1,3 @@
-**Source mapping:** Level 01 source curriculum · PDF page 23
-
 This module turns **REST API & CRUD Operations with Express and MongoDB** into a guided Saiful The Techie learning sequence. Use the tutorials in order: understand the architecture first, then build the matching feature with the downloadable files.
 
 ## What you'll learn

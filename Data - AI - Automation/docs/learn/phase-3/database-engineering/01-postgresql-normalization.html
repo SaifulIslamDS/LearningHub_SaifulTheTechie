@@ -6,7 +6,7 @@
 <title>PostgreSQL &amp; Normalisation: One Fact in One Place — Data, AI &amp; Automation Path</title>
 <meta name="description" content="Load data into PostgreSQL with COPY, see why a flat export causes update anomalies, normalise it into customers, products and orders with keys and constraints, and store money as NUMERIC — not floats.">
 <meta property="og:type" content="article">
-<meta property="og:site_name" content="Data, AI &amp; Automation Path">
+<meta property="og:site_name" content="Saiful The Techie">
 <meta property="og:title" content="PostgreSQL &amp; Normalisation: One Fact in One Place">
 <meta property="og:description" content="Load data into PostgreSQL with COPY, see why a flat export causes update anomalies, normalise it into customers, products and orders with keys and constraints, and store money as NUMERIC — not floats.">
 <meta property="og:locale" content="en_US">
@@ -19,13 +19,13 @@ var n=null;try{n=localStorage.getItem('daa-nav')}catch(e){}
 if(n==='open'&&window.matchMedia&&matchMedia('(min-width: 961px)').matches)document.documentElement.setAttribute('data-nav','open');
 document.documentElement.classList.add('no-anim')})();</script>
 <link rel="stylesheet" href="../../../assets/style.css">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233f7d6a'/%3E%3Ctext x='16' y='21' font-family='sans-serif' font-size='13' font-weight='700' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
+
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="topbar">
   <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Open curriculum menu" title="Curriculum menu (press M)" aria-controls="sidebar" aria-expanded="false"><span class="ico-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span class="ico-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></button>
-  <a class="brand" href="../../../index.html"><span class="brand-badge">AI</span><span class="brand-text"><span class="brand-name">Data, AI &amp; Automation Path</span><span class="brand-version">v0.8</span></span></a>
+  <a class="brand" href="../../../index.html"><span class="brand-text"><span class="brand-name">Saiful The Techie</span><span class="brand-version">Data, AI &amp; Automation Path · v0.9.1</span></span></a>
   <nav class="top-links" aria-label="Main">
     <a href="../../../index.html" class="">Home</a><a href="../../../curriculum.html" class="">Curriculum</a><a href="../../../practice-files.html" class="">Practice files</a><a href="../../../glossary.html" class="">Glossary</a><a href="../../../how-to-learn.html" class="">How to learn</a><a href="../../../about.html" class="">About</a>
   </nav>
@@ -41,7 +41,7 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="layout wide">
   <nav class="sidebar" id="sidebar" aria-label="Curriculum">
     <div class="side-title">Curriculum</div>
-    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="77"><i></i></div><span class="bar-label" data-progress-label></span></div>
+    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="85"><i></i></div><span class="bar-label" data-progress-label></span></div>
 <div class="nav-phase"><a href="../../../learn/phase-0/index.html"><span class="nav-num">0</span>Foundations</a>
 </div>
 <div class="nav-phase"><a href="../../../learn/phase-1/index.html"><span class="nav-num">1</span>Analytics &amp; BI</a>
@@ -102,219 +102,245 @@ document.documentElement.classList.add('no-anim')})();</script>
 <p class="lead">Load data into PostgreSQL with COPY, see why a flat export causes update anomalies, normalise it into customers, products and orders with keys and constraints, and store money as NUMERIC — not floats.</p>
 <div class="meta"><span class="pill">Phase <b>3</b> · Data Engineering</span><span class="pill">Level <b>Intermediate</b></span><span class="pill">Time <b>55 min</b></span></div>
 <div class="admonition note"><p class="admonition-title">Before you start</p><p><a href="../../../learn/phase-3/advanced-sql/01-ctes-recursive.html">CTEs and Recursive CTEs: Readable Multi-Step SQL</a></p></div>
-<div class="files-box"><div class="files-head"><b>Practice files for this page</b><a href="../../../practice-files.html">All practice files →</a></div><ul><li><a href="../../../downloads/phase-3/data-engineering-scripts.zip" download>data-engineering-scripts.zip</a><span class="f-desc">Phase 3A scripts: practice API + website, ingestion, PostgreSQL loader, advanced SQL, indexing, transactions, star schema, SCD, BigQuery dialect, Delta Lake, Iceberg, Dockerfiles and compose.yaml · 270 KB</span></li></ul></div>
+<div class="files-box"><div class="files-head"><b>Practice files for this page</b><a href="../../../practice-files.html">All practice files →</a></div><ul><li><a href="../../../downloads/phase-3/data-engineering-scripts.zip" download>data-engineering-scripts.zip</a><span class="f-desc">Phase 3 scripts: ingestion, PostgreSQL, advanced SQL, warehousing, lakehouse, Docker, ETL/CDC, data quality, plus the dbt mini-project and verification scripts · 476 KB</span></li></ul></div>
 <h2 id="what-is-it">What is it?</h2>
 <ul>
-<li><strong>PostgreSQL</strong> ("Postgres") is a free, open-source relational database: reliable, standards-based and extensible. <code>psql</code> is its command-line client; <code>psycopg</code> is the Python driver.</li>
-<li><strong>Normalisation</strong> is designing tables so that <strong>each fact is stored once</strong>: customers in one table, products in another, orders referencing both by <strong>keys</strong>.</li>
+<li><strong>PostgreSQL</strong> (“Postgres”) is a free, open-source
+relational database: reliable, standards-based and extensible.
+<code>psql</code> is its command-line client; <code>psycopg</code> is
+the Python driver.</li>
+<li><strong>Normalisation</strong> is designing tables so that
+<strong>each fact is stored once</strong>: customers in one table,
+products in another, orders referencing both by
+<strong>keys</strong>.</li>
 </ul>
 <table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Normal form (simplified)</th>
 <th>Rule</th>
 <th>Our example</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td><strong>1NF</strong></td>
 <td>One value per cell, no repeating groups</td>
-<td>No "products: Twill, Denim" in one cell</td>
+<td>No “products: Twill, Denim” in one cell</td>
 </tr>
-<tr>
+<tr class="even">
 <td><strong>2NF</strong></td>
 <td>Every column depends on the whole key</td>
 <td>Product category depends on the product, not on the order</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><strong>3NF</strong></td>
 <td>No column depends on another non-key column</td>
-<td>A customer's region depends on the customer, not on the order</td>
+<td>A customer’s region depends on the customer, not on the order</td>
 </tr>
 </tbody>
 </table>
-<div class="admonition job">
-<p class="admonition-title">Why it matters at work</p>
-<p>Application databases (OLTP) are normalised so that updates stay consistent; warehouses (next module) deliberately denormalise for fast reading. Data engineers move data between the two every day, so they must understand both, and Postgres is one of the most requested database skills in data job adverts.</p>
+<div class="admonition job" data-markdown="1">
+<p class="admonition-title">
+Why it matters at work
+</p>
+<p>Application databases (OLTP) are normalised so that updates stay
+consistent; warehouses (next module) deliberately denormalise for fast
+reading. Data engineers move data between the two every day, so they
+must understand both, and Postgres is one of the most requested database
+skills in data job adverts.</p>
 </div>
-<h2 id="step-1-load-files-with-copy-staging-first">Step 1: load files with COPY (staging first)</h2>
-<p><code>03_load_postgres.py</code> creates two schemas (<strong>schemas</strong> are folders for tables):</p>
+<h2 id="step-1-load-files-with-copy-staging-first">Step 1: load files
+with COPY (staging first)</h2>
+<p><code>03_load_postgres.py</code> creates two schemas
+(<strong>schemas</strong> are folders for tables):</p>
 <ul>
-<li><code>staging</code>: the files loaded <strong>as they are</strong>, with loose types.</li>
+<li><code>staging</code>: the files loaded <strong>as they are</strong>,
+with loose types.</li>
 <li><code>shop</code>: the clean, normalised model.</li>
 </ul>
-<div class="codehilite"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">copy_csv</span><span class="p">(</span><span class="n">cur</span><span class="p">,</span> <span class="n">table</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="n">Path</span><span class="p">):</span>
-    <span class="k">with</span> <span class="n">path</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">"rb"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">,</span> <span class="n">cur</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="sa">f</span><span class="s2">"COPY </span><span class="si">{</span><span class="n">table</span><span class="si">}</span><span class="s2"> FROM STDIN WITH (FORMAT csv, HEADER true)"</span><span class="p">)</span> <span class="k">as</span> <span class="n">cp</span><span class="p">:</span>
-        <span class="k">while</span> <span class="n">chunk</span> <span class="o">:=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">65536</span><span class="p">):</span>
-            <span class="n">cp</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>staging.orders_flat      4246 rows
+<pre class="python"><code>def copy_csv(cur, table: str, path: Path):
+    with path.open(&quot;rb&quot;) as f, cur.copy(f&quot;COPY {table} FROM STDIN WITH (FORMAT csv, HEADER true)&quot;) as cp:
+        while chunk := f.read(65536):
+            cp.write(chunk)</code></pre>
+<pre class="text"><code>staging.orders_flat      4246 rows
 shop.customers             63 rows
 shop.products              12 rows
 shop.orders              4246 rows
-loaded into postgres on PostgreSQL 16
-</code></pre></div>
-
-<p><code>COPY</code> streams a whole file in one command: far faster than thousands of <code>INSERT</code>s. The first run failed on <code>invalid input syntax for type integer: "3.0"</code>: the export writes delivery days as <code>3.0</code>. That's why staging accepts any number (<code>delivery_days numeric</code>) and the move into <code>shop</code> casts it (<code>::integer</code>). <strong>Land loosely, then tighten.</strong></p>
-<h2 id="step-2-the-problem-with-one-wide-table">Step 2: the problem with one wide table</h2>
-<div class="codehilite"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">customer_id</span><span class="p">,</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">order_rows</span><span class="p">,</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">region</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">regions</span><span class="p">,</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">segment</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">segments</span>
-<span class="k">FROM</span><span class="w"> </span><span class="n">staging</span><span class="p">.</span><span class="n">orders_flat</span><span class="w"> </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">customer_id</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">order_rows</span><span class="w"> </span><span class="k">DESC</span><span class="w"> </span><span class="k">LIMIT</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code> customer_id | order_rows | regions | segments
+loaded into postgres on PostgreSQL 16</code></pre>
+<p><code>COPY</code> streams a whole file in one command: far faster
+than thousands of <code>INSERT</code>s. The first run failed on
+<code>invalid input syntax for type integer: "3.0"</code>: the export
+writes delivery days as <code>3.0</code>. That’s why staging accepts any
+number (<code>delivery_days numeric</code>) and the move into
+<code>shop</code> casts it (<code>::integer</code>). <strong>Land
+loosely, then tighten.</strong></p>
+<h2 id="step-2-the-problem-with-one-wide-table">Step 2: the problem with
+one wide table</h2>
+<pre class="sql"><code>SELECT customer_id, count(*) AS order_rows, count(DISTINCT region) AS regions, count(DISTINCT segment) AS segments
+FROM staging.orders_flat GROUP BY customer_id ORDER BY order_rows DESC LIMIT 3;</code></pre>
+<pre class="text"><code> customer_id | order_rows | regions | segments
 -------------+------------+---------+----------
  C010        |        208 |       1 |        1
  C044        |        191 |       1 |        1
- C014        |        165 |       1 |        1
-</code></pre></div>
-
-<p>C010's region is written <strong>208 times</strong>. Now the customer moves, and someone updates only the recent rows:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">BEGIN</span><span class="p">;</span>
-<span class="k">UPDATE</span><span class="w"> </span><span class="n">staging</span><span class="p">.</span><span class="n">orders_flat</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">region</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'Gazipur'</span>
-<span class="k">WHERE</span><span class="w"> </span><span class="n">customer_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'C010'</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">order_date</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="s1">'2025-07-01'</span><span class="p">;</span><span class="w">          </span><span class="c1">-- someone fixed "recent" rows only</span>
-<span class="k">SELECT</span><span class="w"> </span><span class="n">region</span><span class="p">,</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">staging</span><span class="p">.</span><span class="n">orders_flat</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">customer_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'C010'</span><span class="w"> </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">region</span><span class="p">;</span>
-<span class="k">ROLLBACK</span><span class="p">;</span><span class="w">                                                              </span><span class="c1">-- undo the experiment</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code> region  | count
+ C014        |        165 |       1 |        1</code></pre>
+<p>C010’s region is written <strong>208 times</strong>. Now the customer
+moves, and someone updates only the recent rows:</p>
+<pre class="sql"><code>BEGIN;
+UPDATE staging.orders_flat SET region = &#39;Gazipur&#39;
+WHERE customer_id = &#39;C010&#39; AND order_date &gt;= &#39;2025-07-01&#39;;          -- someone fixed &quot;recent&quot; rows only
+SELECT region, count(*) FROM staging.orders_flat WHERE customer_id = &#39;C010&#39; GROUP BY region;
+ROLLBACK;                                                              -- undo the experiment</code></pre>
+<pre class="text"><code> region  | count
 ---------+-------
  Dhaka   |    82
- Gazipur |   126
-</code></pre></div>
-
-<p>The same customer now "lives" in two regions. That's an <strong>update anomaly</strong>, and every report built on this table is now inconsistent. (<code>BEGIN … ROLLBACK</code> let us try it safely; more in the Transactions lesson.)</p>
+ Gazipur |   126</code></pre>
+<p>The same customer now “lives” in two regions. That’s an
+<strong>update anomaly</strong>, and every report built on this table is
+now inconsistent. (<code>BEGIN … ROLLBACK</code> let us try it safely;
+more in the Transactions lesson.)</p>
 <h2 id="step-3-the-normalised-model">Step 3: the normalised model</h2>
-<div class="codehilite"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">shop</span><span class="p">.</span><span class="n">customers</span><span class="w"> </span><span class="p">(</span>
-<span class="w">    </span><span class="n">customer_id</span><span class="w">   </span><span class="nb">text</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
-<span class="w">    </span><span class="n">customer_name</span><span class="w"> </span><span class="nb">text</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="w">    </span><span class="n">segment</span><span class="w">       </span><span class="nb">text</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="w">    </span><span class="n">region</span><span class="w">        </span><span class="nb">text</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="w">    </span><span class="n">signup_date</span><span class="w">   </span><span class="nb">date</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="w">    </span><span class="n">credit_days</span><span class="w">   </span><span class="nb">integer</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">CHECK</span><span class="w"> </span><span class="p">(</span><span class="n">credit_days</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w"> </span><span class="mi">60</span><span class="p">))</span>
-<span class="p">);</span>
-<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">shop</span><span class="p">.</span><span class="n">products</span><span class="w"> </span><span class="p">(</span>
-<span class="w">    </span><span class="n">product_id</span><span class="w">  </span><span class="nb">serial</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
-<span class="w">    </span><span class="n">product</span><span class="w">     </span><span class="nb">text</span><span class="w"> </span><span class="k">UNIQUE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="w">    </span><span class="n">category</span><span class="w">    </span><span class="nb">text</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="w">    </span><span class="n">list_price</span><span class="w">  </span><span class="nb">numeric</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">CHECK</span><span class="w"> </span><span class="p">(</span><span class="n">list_price</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">),</span>
-<span class="w">    </span><span class="n">unit_cost</span><span class="w">   </span><span class="nb">numeric</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span>
-<span class="p">);</span>
-<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">shop</span><span class="p">.</span><span class="n">orders</span><span class="w"> </span><span class="p">(</span>
-<span class="w">    </span><span class="n">order_id</span><span class="w">      </span><span class="nb">integer</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
-<span class="w">    </span><span class="n">order_date</span><span class="w">    </span><span class="nb">date</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="w">    </span><span class="n">customer_id</span><span class="w">   </span><span class="nb">text</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">shop</span><span class="p">.</span><span class="n">customers</span><span class="p">,</span>
-<span class="w">    </span><span class="n">product_id</span><span class="w">    </span><span class="nb">integer</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">shop</span><span class="p">.</span><span class="n">products</span><span class="p">,</span>
-<span class="w">    </span><span class="n">channel</span><span class="w">       </span><span class="nb">text</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="w">    </span><span class="n">quantity</span><span class="w">      </span><span class="nb">integer</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">CHECK</span><span class="w"> </span><span class="p">(</span><span class="n">quantity</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">),</span>
-<span class="w">    </span><span class="n">unit_price</span><span class="w">    </span><span class="nb">numeric</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="w">    </span><span class="n">discount</span><span class="w">      </span><span class="nb">numeric</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
-<span class="w">    </span><span class="n">status</span><span class="w">        </span><span class="nb">text</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">CHECK</span><span class="w"> </span><span class="p">(</span><span class="n">status</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="s1">'Delivered'</span><span class="p">,</span><span class="w"> </span><span class="s1">'Shipped'</span><span class="p">,</span><span class="w"> </span><span class="s1">'Pending'</span><span class="p">,</span><span class="w"> </span><span class="s1">'Cancelled'</span><span class="p">)),</span>
-<span class="w">    </span><span class="n">promised_days</span><span class="w"> </span><span class="nb">integer</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
-<span class="w">    </span><span class="n">delivery_days</span><span class="w"> </span><span class="nb">integer</span>
-<span class="p">);</span>
-</code></pre></div>
-
+<pre class="sql"><code>CREATE TABLE shop.customers (
+    customer_id   text PRIMARY KEY,
+    customer_name text NOT NULL,
+    segment       text NOT NULL,
+    region        text NOT NULL,
+    signup_date   date NOT NULL,
+    credit_days   integer NOT NULL CHECK (credit_days IN (0, 15, 30, 60))
+);
+CREATE TABLE shop.products (
+    product_id  serial PRIMARY KEY,
+    product     text UNIQUE NOT NULL,
+    category    text NOT NULL,
+    list_price  numeric(10,3) NOT NULL CHECK (list_price &gt; 0),
+    unit_cost   numeric(10,3) NOT NULL
+);
+CREATE TABLE shop.orders (
+    order_id      integer PRIMARY KEY,
+    order_date    date NOT NULL,
+    customer_id   text NOT NULL REFERENCES shop.customers,
+    product_id    integer NOT NULL REFERENCES shop.products,
+    channel       text NOT NULL,
+    quantity      integer NOT NULL CHECK (quantity &gt; 0),
+    unit_price    numeric(10,3) NOT NULL,
+    discount      numeric(4,2) NOT NULL DEFAULT 0,
+    status        text NOT NULL CHECK (status IN (&#39;Delivered&#39;, &#39;Shipped&#39;, &#39;Pending&#39;, &#39;Cancelled&#39;)),
+    promised_days integer NOT NULL,
+    delivery_days integer
+);</code></pre>
 <table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Element</th>
 <th>Purpose</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td><code>PRIMARY KEY</code></td>
 <td>Uniquely identifies each row (and is automatically indexed)</td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>REFERENCES</code> (foreign key)</td>
 <td>Every order must point at a real customer and product</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><code>CHECK</code></td>
 <td>Business rules the database enforces itself</td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>NOT NULL</code>, <code>UNIQUE</code></td>
 <td>Required values; no duplicate product names</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><code>serial</code></td>
-<td>An auto-incrementing <strong>surrogate key</strong> (<code>product_id</code>)</td>
+<td>An auto-incrementing <strong>surrogate key</strong>
+(<code>product_id</code>)</td>
 </tr>
 </tbody>
 </table>
 <p>Now a region change is <strong>one</strong> update:</p>
-<div class="codehilite"><pre><span></span><code> region  | count
+<pre class="text"><code> region  | count
 ---------+-------
- Gazipur |   208
-</code></pre></div>
-
-<h3 id="the-database-rejects-bad-data">The database rejects bad data</h3>
-<div class="codehilite"><pre><span></span><code>ERROR:  insert or update on table "orders" violates foreign key constraint "orders_customer_id_fkey"
-DETAIL:  Key (customer_id)=(C999) is not present in table "customers".
-ERROR:  new row for relation "orders" violates check constraint "orders_quantity_check"
-ERROR:  new row for relation "orders" violates check constraint "orders_status_check"
-</code></pre></div>
-
-<p>An unknown customer, a negative quantity and a status of <code>'Lost'</code> are all refused, no matter which application or script tries to insert them. Constraints are the last line of defence for data quality.</p>
-<h3 id="need-the-wide-table-make-a-view">Need the wide table? Make a view</h3>
-<div class="codehilite"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">OR</span><span class="w"> </span><span class="k">REPLACE</span><span class="w"> </span><span class="k">VIEW</span><span class="w"> </span><span class="n">shop</span><span class="p">.</span><span class="n">orders_wide</span><span class="w"> </span><span class="k">AS</span>
-<span class="k">SELECT</span><span class="w"> </span><span class="n">o</span><span class="p">.</span><span class="n">order_id</span><span class="p">,</span><span class="w"> </span><span class="n">o</span><span class="p">.</span><span class="n">order_date</span><span class="p">,</span><span class="w"> </span><span class="n">o</span><span class="p">.</span><span class="n">customer_id</span><span class="p">,</span><span class="w"> </span><span class="k">c</span><span class="p">.</span><span class="n">customer_name</span><span class="p">,</span><span class="w"> </span><span class="k">c</span><span class="p">.</span><span class="n">region</span><span class="p">,</span><span class="w"> </span><span class="k">c</span><span class="p">.</span><span class="n">segment</span><span class="p">,</span><span class="w"> </span><span class="k">c</span><span class="p">.</span><span class="n">credit_days</span><span class="p">,</span>
-<span class="w">       </span><span class="n">p</span><span class="p">.</span><span class="n">product</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">category</span><span class="p">,</span><span class="w"> </span><span class="n">o</span><span class="p">.</span><span class="n">channel</span><span class="p">,</span><span class="w"> </span><span class="n">o</span><span class="p">.</span><span class="n">quantity</span><span class="p">,</span><span class="w"> </span><span class="n">o</span><span class="p">.</span><span class="n">unit_price</span><span class="p">,</span><span class="w"> </span><span class="n">o</span><span class="p">.</span><span class="n">discount</span><span class="p">,</span><span class="w"> </span><span class="n">o</span><span class="p">.</span><span class="n">status</span><span class="p">,</span>
-<span class="w">       </span><span class="n">round</span><span class="p">(</span><span class="n">o</span><span class="p">.</span><span class="n">quantity</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">o</span><span class="p">.</span><span class="n">unit_price</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">o</span><span class="p">.</span><span class="n">discount</span><span class="p">),</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">revenue</span>
-<span class="k">FROM</span><span class="w"> </span><span class="n">shop</span><span class="p">.</span><span class="n">orders</span><span class="w"> </span><span class="n">o</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">shop</span><span class="p">.</span><span class="n">customers</span><span class="w"> </span><span class="k">c</span><span class="w"> </span><span class="k">USING</span><span class="w"> </span><span class="p">(</span><span class="n">customer_id</span><span class="p">)</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">shop</span><span class="p">.</span><span class="n">products</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="k">USING</span><span class="w"> </span><span class="p">(</span><span class="n">product_id</span><span class="p">);</span>
-</code></pre></div>
-
-<p>A <strong>view</strong> is a saved query: analysts get one convenient wide table, while the data is stored once.</p>
-<h2 id="step-4-store-money-as-numeric">Step 4: store money as NUMERIC</h2>
-<div class="codehilite"><pre><span></span><code> net_revenue
+ Gazipur |   208</code></pre>
+<h3 id="the-database-rejects-bad-data">The database rejects bad
+data</h3>
+<pre class="text"><code>ERROR:  insert or update on table &quot;orders&quot; violates foreign key constraint &quot;orders_customer_id_fkey&quot;
+DETAIL:  Key (customer_id)=(C999) is not present in table &quot;customers&quot;.
+ERROR:  new row for relation &quot;orders&quot; violates check constraint &quot;orders_quantity_check&quot;
+ERROR:  new row for relation &quot;orders&quot; violates check constraint &quot;orders_status_check&quot;</code></pre>
+<p>An unknown customer, a negative quantity and a status of
+<code>'Lost'</code> are all refused, no matter which application or
+script tries to insert them. Constraints are the last line of defence
+for data quality.</p>
+<h3 id="need-the-wide-table-make-a-view">Need the wide table? Make a
+view</h3>
+<pre class="sql"><code>CREATE OR REPLACE VIEW shop.orders_wide AS
+SELECT o.order_id, o.order_date, o.customer_id, c.customer_name, c.region, c.segment, c.credit_days,
+       p.product, p.category, o.channel, o.quantity, o.unit_price, o.discount, o.status,
+       round(o.quantity * o.unit_price * (1 - o.discount), 2) AS revenue
+FROM shop.orders o JOIN shop.customers c USING (customer_id) JOIN shop.products p USING (product_id);</code></pre>
+<p>A <strong>view</strong> is a saved query: analysts get one convenient
+wide table, while the data is stored once.</p>
+<h2 id="step-4-store-money-as-numeric">Step 4: store money as
+NUMERIC</h2>
+<pre class="text"><code> net_revenue
 -------------
-  5478359.10
-</code></pre></div>
-
-<p>1.31 <strong>more</strong> than Phase 2's known answer (5,478,357.79). Why?</p>
-<div class="codehilite"><pre><span></span><code> python_float_total | numeric_total | rows_rounded_differently
+  5478359.10</code></pre>
+<p>1.31 <strong>more</strong> than Phase 2’s known answer
+(5,478,357.79). Why?</p>
+<pre class="text"><code> python_float_total | numeric_total | rows_rounded_differently
 --------------------+---------------+--------------------------
          5478357.79 |    5478359.10 |                      131
 
       float_sum      | numeric_sum
 ---------------------+-------------
- 0.30000000000000004 |         0.3
-</code></pre></div>
-
-<p>Python computed revenue with <strong>floating-point</strong> numbers, which can't store most decimals exactly: an amount like 189.255 is really 189.2549999…, so it rounds <strong>down</strong>. PostgreSQL's <code>NUMERIC</code> is exact and rounds 131 such half-cent amounts <strong>up</strong>. Neither is a bug, but for money use exact decimals (<code>NUMERIC</code> in SQL, <code>decimal.Decimal</code> in Python), agree one rounding rule, and document which total is official.</p>
+ 0.30000000000000004 |         0.3</code></pre>
+<p>Python computed revenue with <strong>floating-point</strong> numbers,
+which can’t store most decimals exactly: an amount like 189.255 is
+really 189.2549999…, so it rounds <strong>down</strong>. PostgreSQL’s
+<code>NUMERIC</code> is exact and rounds 131 such half-cent amounts
+<strong>up</strong>. Neither is a bug, but for money use exact decimals
+(<code>NUMERIC</code> in SQL, <code>decimal.Decimal</code> in Python),
+agree one rounding rule, and document which total is official.</p>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>PostgreSQL type</th>
 <th>Use for</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td><code>integer</code>, <code>bigint</code></td>
 <td>Counts, IDs</td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>numeric(p, s)</code></td>
 <td><strong>Money</strong>, quantities that must be exact</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><code>double precision</code></td>
 <td>Measurements, scientific values</td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>text</code></td>
 <td>Strings (no length limit needed)</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><code>date</code>, <code>timestamptz</code></td>
 <td>Dates; timestamps <strong>with time zone</strong></td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>boolean</code>, <code>jsonb</code></td>
 <td>Flags; semi-structured data</td>
 </tr>
@@ -322,35 +348,40 @@ ERROR:  new row for relation "orders" violates check constraint "orders_status_c
 </table>
 <h2 id="common-mistakes">Common mistakes</h2>
 <table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Mistake</th>
 <th>What happens</th>
 <th>Fix</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>One wide table for everything</td>
 <td>Update anomalies, inconsistent reports</td>
 <td>Normalise the source of truth; views for convenience</td>
 </tr>
-<tr>
-<td>No foreign keys "for speed"</td>
+<tr class="even">
+<td>No foreign keys “for speed”</td>
 <td>Orphan orders, broken joins</td>
-<td>Keep FKs; they're cheap at this scale</td>
+<td>Keep FKs; they’re cheap at this scale</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Strict types in staging</td>
 <td>Loads fail on messy exports</td>
 <td>Loose staging, strict model</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Floats for money</td>
 <td>Cent differences that never reconcile</td>
 <td><code>numeric</code> / <code>Decimal</code>; one rounding rule</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Row-by-row INSERTs for big files</td>
 <td>Very slow loads</td>
 <td><code>COPY</code> (or batched inserts)</td>
@@ -358,71 +389,147 @@ ERROR:  new row for relation "orders" violates check constraint "orders_status_c
 </tbody>
 </table>
 <h2 id="try-it-yourself">Try it yourself</h2>
-<p><strong>Task:</strong> Before you trusted the normalised model, did the flat export ever disagree with the customer table (a different region or segment for the same customer on some order)? Write the check.</p>
+<p><strong>Task:</strong> Before you trusted the normalised model, did
+the flat export ever disagree with the customer table (a different
+region or segment for the same customer on some order)? Write the
+check.</p>
 <details>
-<summary>Show the solution</summary>
-<div class="codehilite"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">mismatched_rows</span>
-<span class="k">FROM</span><span class="w"> </span><span class="n">staging</span><span class="p">.</span><span class="n">orders_flat</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">shop</span><span class="p">.</span><span class="n">customers</span><span class="w"> </span><span class="k">c</span><span class="w"> </span><span class="k">USING</span><span class="w"> </span><span class="p">(</span><span class="n">customer_id</span><span class="p">)</span>
-<span class="k">WHERE</span><span class="w"> </span><span class="n">f</span><span class="p">.</span><span class="n">region</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="k">c</span><span class="p">.</span><span class="n">region</span><span class="w"> </span><span class="k">OR</span><span class="w"> </span><span class="n">f</span><span class="p">.</span><span class="n">segment</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="k">c</span><span class="p">.</span><span class="n">segment</span><span class="p">;</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code> mismatched_rows
+<summary>
+Show the solution
+</summary>
+<pre class="sql"><code>SELECT count(*) AS mismatched_rows
+FROM staging.orders_flat f JOIN shop.customers c USING (customer_id)
+WHERE f.region &lt;&gt; c.region OR f.segment &lt;&gt; c.segment;</code></pre>
+<pre class="text"><code> mismatched_rows
 -----------------
-               0
-</code></pre></div>
-
-<p>Zero, so the export is consistent today and normalising loses nothing. Run checks like this <strong>before</strong> dropping columns from a flat source: if they disagree, you have to decide which source is right first.</p>
+               0</code></pre>
+Zero, so the export is consistent today and normalising loses nothing.
+Run checks like this <strong>before</strong> dropping columns from a
+flat source: if they disagree, you have to decide which source is right
+first.
 </details>
 <h2 id="quick-quiz">Quick quiz</h2>
 <div class="quiz-q" data-answer="1">
-<p>1. A customer's region is repeated on 208 order rows. What problem can that cause?</p>
-<ol>
+<p>1. A customer’s region is repeated on 208 order rows. What problem
+can that cause?</p>
+<ol type="1">
 <li>Slower inserts only</li>
-<li>Update anomalies: some rows changed, others not, so the data contradicts itself</li>
+<li>Update anomalies: some rows changed, others not, so the data
+contradicts itself</li>
 <li>None</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B.</strong></p>
+<summary>
+Show answer
+</summary>
+<strong>B.</strong>
 </details>
 </div>
 <div class="quiz-q" data-answer="0">
-<p>2. What does a foreign key on <code>orders.customer_id</code> guarantee?</p>
-<ol>
+<p>2. What does a foreign key on <code>orders.customer_id</code>
+guarantee?</p>
+<ol type="1">
 <li>Every order refers to a customer that exists</li>
-<li>Customers can't have more than one order</li>
+<li>Customers can’t have more than one order</li>
 <li>Orders are sorted by customer</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>A.</strong></p>
+<summary>
+Show answer
+</summary>
+<strong>A.</strong>
 </details>
 </div>
 <div class="quiz-q" data-answer="1">
 <p>3. Which type should store order revenue?</p>
-<ol>
+<ol type="1">
 <li><code>double precision</code></li>
 <li><code>numeric(12,2)</code></li>
 <li><code>text</code></li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B.</strong> Exact decimal arithmetic.</p>
+<summary>
+Show answer
+</summary>
+<strong>B.</strong> Exact decimal arithmetic.
 </details>
 </div>
 <h2 id="summary">Summary</h2>
 <ul>
-<li>Load with <strong>COPY</strong> into a loosely typed <strong>staging</strong> schema, then move into a strict model.</li>
-<li><strong>Normalise</strong> the source of truth: each fact once, linked by primary and foreign keys.</li>
-<li>Let <strong>constraints</strong> (PK, FK, CHECK, NOT NULL, UNIQUE) reject bad data at the database.</li>
-<li>Use <strong>views</strong> for convenient wide tables, and <strong>NUMERIC</strong> for money.</li>
+<li>Load with <strong>COPY</strong> into a loosely typed
+<strong>staging</strong> schema, then move into a strict model.</li>
+<li><strong>Normalise</strong> the source of truth: each fact once,
+linked by primary and foreign keys.</li>
+<li>Let <strong>constraints</strong> (PK, FK, CHECK, NOT NULL, UNIQUE)
+reject bad data at the database.</li>
+<li>Use <strong>views</strong> for convenient wide tables, and
+<strong>NUMERIC</strong> for money.</li>
 </ul>
-<div class="admonition job">
-<p class="admonition-title">Job-ready check</p>
-<p><strong>Interview question:</strong> <em>"What is normalisation, and when would you denormalise?"</em></p>
-<p><strong>Strong answer:</strong> "Normalisation organises tables so each fact is stored once and linked by keys, which avoids update anomalies, so it's right for transactional systems. For analytics I denormalise into star schemas or wide tables, because reads vastly outnumber writes and fewer joins make queries simpler and faster. The normalised system stays the source of truth, and the denormalised copy is rebuilt from it."</p>
-<p><strong>Mini project:</strong> Add a <code>shop.order_lines</code> table so one order can contain several products. Write the CREATE statements with keys and constraints, and a view that rebuilds the wide table.</p>
+<div class="admonition job" data-markdown="1">
+<p class="admonition-title">
+Job-ready check
+</p>
+<p><strong>Interview question:</strong> <em>“What is normalisation, and
+when would you denormalise?”</em></p>
+<p><strong>Strong answer:</strong> “Normalisation organises tables so
+each fact is stored once and linked by keys, which avoids update
+anomalies, so it’s right for transactional systems. For analytics I
+denormalise into star schemas or wide tables, because reads vastly
+outnumber writes and fewer joins make queries simpler and faster. The
+normalised system stays the source of truth, and the denormalised copy
+is rebuilt from it.”</p>
+<p><strong>Mini project:</strong> Add a <code>shop.order_lines</code>
+table so one order can contain several products. Write the CREATE
+statements with keys and constraints, and a view that rebuilds the wide
+table.</p>
 </div>
+<section class="mentor-prompt"><div class="mentor-head"><div><span class="eyebrow">AI study companion</span><h2 id="ai-mentor-prompt">AI Mentor Prompt</h2></div><button class="btn copy-prompt" type="button" data-copy-target="mentor-prompt-phase-3-database-engineering-01-postgresql-normalization">Copy prompt</button></div><p>Paste this into ChatGPT, Claude, Gemini, or another capable assistant to turn this tutorial into an interactive mentoring session.</p><pre class="prompt-box"><code id="mentor-prompt-phase-3-database-engineering-01-postgresql-normalization">You are my hands-on data-engineering mentor.
+
+I am currently studying:
+&quot;PostgreSQL &amp; Normalisation: One Fact in One Place&quot;
+
+My level:
+Intermediate
+
+Teach me this topic interactively rather than giving me a long lecture.
+
+Use this sequence:
+
+1. Check what I already understand with one short diagnostic question.
+2. Explain the concept in simple language and give me the mental model first.
+3. Give me one small task using code, SQL, configuration, data, or architecture as appropriate.
+4. Wait for my attempt before showing a complete solution.
+5. Review my work and explain both what is correct and what needs improvement.
+6. Help me debug errors step by step instead of immediately replacing my work.
+7. Increase the difficulty gradually and connect each new step to the previous one.
+8. Relate what I am learning to real professional data/AI engineering work.
+9. Ask me to explain an important decision in my own words so you can check my understanding.
+10. At the end, ask me to build or modify one small feature independently.
+
+Important rules:
+- Do not do the entire exercise for me unless I explicitly ask.
+- Explain unfamiliar terminology before using it heavily.
+- Prefer current, production-relevant practices over outdated shortcuts.
+- Distinguish clearly between concepts, tool-specific behaviour, and optional alternatives.
+- If a technical fact, API, syntax, version, or best practice may have changed, verify it against current official documentation before teaching it.
+- Never invent command output, test results, benchmark numbers, cloud behaviour, or data results.
+- If something cannot be executed in the current environment, say so and give me the exact command or verification step I should run.
+- Keep me actively coding, querying, configuring, reasoning, or debugging throughout the session.
+- When useful, work from the tutorial practice files (data-engineering-scripts.zip) instead of inventing unrelated examples.
+- For Phase 3 order-data exercises, preserve the established reconciliation targets when relevant: 4,246 orders and net revenue 5,478,357.79. If my result differs, help me debug the cause instead of changing the expected result.
+
+The concepts I need to master are:
+- PostgreSQL
+- Normalization
+- postgres
+- psql
+- psycopg
+- copy
+- schema
+- staging
+
+Start by asking me one diagnostic question.</code></pre></section>
+
 <div class="terms-box"><div class="files-head"><b>Key terms in this lesson</b><a href="../../../glossary.html">Glossary →</a></div><div class="term-chips"><a class="term-chip" href="../../../glossary.html#foreign-key" title="A column that points at the primary key of another table, such as customer_id in orders. It is what you JOIN on.">Foreign key</a><a class="term-chip" href="../../../glossary.html#normalisation" title="Designing tables so each fact is stored once (customers in one table, orders in another), which avoids contradictions when data changes.">Normalisation</a><a class="term-chip" href="../../../glossary.html#postgresql" title="A free, open-source relational database known for reliability and standards support; psql is its command-line client and psycopg its Python driver.">PostgreSQL</a><a class="term-chip" href="../../../glossary.html#primary-key" title="A column (or set of columns) that uniquely identifies each row in a table, such as order_id.">Primary key</a></div></div>
 <h2 id="free-resources">Free resources to go deeper</h2><ul class="resources"><li><a href="https://www.postgresql.org/docs/current/tutorial.html">PostgreSQL Tutorial</a><span class="r-meta">PostgreSQL official docs · Creating tables, querying, joins and the basics of psql.</span></li><li><a href="https://www.postgresql.org/docs/current/ddl-constraints.html">Constraints</a><span class="r-meta">PostgreSQL official docs · Primary keys, foreign keys, CHECK, NOT NULL and UNIQUE.</span></li><li><a href="https://www.postgresql.org/docs/current/sql-copy.html">COPY</a><span class="r-meta">PostgreSQL official docs · The fast way to load files into tables.</span></li></ul>
 <div class="complete-bar"><span>Finished reading and did the exercise?</span>
@@ -431,9 +538,9 @@ ERROR:  new row for relation "orders" violates check constraint "orders_status_c
 <p class="reviewed">Last reviewed: 2026-10-09</p>
 
   </div></main>
-  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#step-1-load-files-with-copy-staging-first">Step 1: load files with COPY (staging first)</a><a href="#step-2-the-problem-with-one-wide-table">Step 2: the problem with one wide table</a><a href="#step-3-the-normalised-model">Step 3: the normalised model</a><a href="#step-4-store-money-as-numeric">Step 4: store money as NUMERIC</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#free-resources">Free resources</a></aside>
+  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#step-1-load-files-with-copy-staging-first">Step 1: load files with COPY (staging first)</a><a href="#step-2-the-problem-with-one-wide-table">Step 2: the problem with one wide table</a><a href="#step-3-the-normalised-model">Step 3: the normalised model</a><a href="#the-database-rejects-bad-data">The database rejects bad data</a><a href="#need-the-wide-table-make-a-view">Need the wide table? Make a view</a><a href="#step-4-store-money-as-numeric">Step 4: store money as NUMERIC</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#ai-mentor-prompt">AI Mentor Prompt</a><a href="#free-resources">Free resources</a></aside>
 </div>
-<footer class="site">Data, AI &amp; Automation Path v0.8 · Applied AI, Data &amp; Automation Lab · Updated October 2026<br>
+<footer class="site"><b>Saiful The Techie</b> · Data, AI &amp; Automation Path v0.9.1 · Updated October 2026<br>
 Lesson text: <a href="../../../license.html">CC BY-NC-SA 4.0</a> · Code: <a href="../../../license.html#code-mit-license">MIT</a> · Free external resources belong to their respective owners.</footer>
 <script src="../../../search-index.js"></script>
 <script src="../../../assets/app.js"></script>

@@ -6,7 +6,7 @@
 <title>Excel for Analysis — Data, AI &amp; Automation Path</title>
 <meta name="description" content="Excel for Analysis: IF &amp; logical functions, FILTER, SUMIFS &amp; COUNTIFS, XLOOKUP &amp; INDEX/MATCH, LET, Conditional formatting">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="Data, AI &amp; Automation Path">
+<meta property="og:site_name" content="Saiful The Techie">
 <meta property="og:title" content="Excel for Analysis">
 <meta property="og:description" content="Excel for Analysis: IF &amp; logical functions, FILTER, SUMIFS &amp; COUNTIFS, XLOOKUP &amp; INDEX/MATCH, LET, Conditional formatting">
 <meta property="og:locale" content="en_US">
@@ -19,13 +19,13 @@ var n=null;try{n=localStorage.getItem('daa-nav')}catch(e){}
 if(n==='open'&&window.matchMedia&&matchMedia('(min-width: 961px)').matches)document.documentElement.setAttribute('data-nav','open');
 document.documentElement.classList.add('no-anim')})();</script>
 <link rel="stylesheet" href="../../../assets/style.css">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233f7d6a'/%3E%3Ctext x='16' y='21' font-family='sans-serif' font-size='13' font-weight='700' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
+
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="topbar">
   <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Open curriculum menu" title="Curriculum menu (press M)" aria-controls="sidebar" aria-expanded="false"><span class="ico-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span class="ico-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></button>
-  <a class="brand" href="../../../index.html"><span class="brand-badge">AI</span><span class="brand-text"><span class="brand-name">Data, AI &amp; Automation Path</span><span class="brand-version">v0.8</span></span></a>
+  <a class="brand" href="../../../index.html"><span class="brand-text"><span class="brand-name">Saiful The Techie</span><span class="brand-version">Data, AI &amp; Automation Path · v0.9.1</span></span></a>
   <nav class="top-links" aria-label="Main">
     <a href="../../../index.html" class="">Home</a><a href="../../../curriculum.html" class="">Curriculum</a><a href="../../../practice-files.html" class="">Practice files</a><a href="../../../glossary.html" class="">Glossary</a><a href="../../../how-to-learn.html" class="">How to learn</a><a href="../../../about.html" class="">About</a>
   </nav>
@@ -41,7 +41,7 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="layout">
   <nav class="sidebar" id="sidebar" aria-label="Curriculum">
     <div class="side-title">Curriculum</div>
-    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="77"><i></i></div><span class="bar-label" data-progress-label></span></div>
+    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="85"><i></i></div><span class="bar-label" data-progress-label></span></div>
 <div class="nav-phase"><a href="../../../learn/phase-0/index.html"><span class="nav-num">0</span>Foundations</a>
 </div>
 <div class="nav-phase current open"><a href="../../../learn/phase-1/index.html"><span class="nav-num">1</span>Analytics &amp; BI</a>
@@ -93,34 +93,56 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="side-extra"><a href="../../../index.html">Home</a><a href="../../../curriculum.html">Full curriculum map</a><a href="../../../practice-files.html">Practice files</a><a href="../../../glossary.html">Glossary</a><a href="../../../how-to-learn.html">How to learn here</a><a href="../../../about.html">About &amp; contributing</a></div></nav>
   <main class="main" id="main"><div class="content">
 <nav class="crumbs" aria-label="Breadcrumb"><a href="../../../index.html">Home</a><span class="sep">/</span><a href="../../../learn/phase-1/index.html">Phase 1</a><span class="sep">/</span><span>Excel for Analysis</span></nav>
+<span class="eyebrow">Phase 1 · Analytics &amp; BI</span>
 <h1>Excel for Analysis</h1>
-<p class="lead">Part of Phase 1 — Data Analytics &amp; Business Intelligence. Topics: IF &amp; logical functions, FILTER, SUMIFS &amp; COUNTIFS, XLOOKUP &amp; INDEX/MATCH, LET, Conditional formatting.</p>
-<p>Excel is still the first analysis tool in almost every company. In this module you work with the <strong>same 12 orders</strong> as the SQL lessons. That way you can compare both tools and see that they give the same answers.</p>
-<div class="admonition tip">
-<p class="admonition-title">Set up once, practise every lesson</p>
-<ol>
-<li>Download the practice workbook <a href="../../../downloads/orders.xlsx">orders.xlsx</a>. It has three sheets: <strong>Orders</strong>, <strong>Products</strong> and <strong>Customers</strong>.</li>
-<li>In the <strong>Orders</strong> sheet, the data is in rows <strong>2–13</strong>. Column <strong>J (value)</strong> already contains <code>=G2*H2</code> (quantity × unit price).</li>
-<li>Write your formulas in the empty columns to the right, starting at column <strong>K</strong>.</li>
+<p class="lead">Turn raw business data into decisions and executive reporting.</p>
+<p>Excel is still the first analysis tool in almost every company. In
+this module you work with the <strong>same 12 orders</strong> as the SQL
+lessons. That way you can compare both tools and see that they give the
+same answers.</p>
+<div class="admonition tip" data-markdown="1">
+<p class="admonition-title">
+Set up once, practise every lesson
+</p>
+<ol type="1">
+<li>Download the practice workbook <a
+href="../../../downloads/orders.xlsx">orders.xlsx</a>. It has three
+sheets: <strong>Orders</strong>, <strong>Products</strong> and
+<strong>Customers</strong>.</li>
+<li>In the <strong>Orders</strong> sheet, the data is in rows
+<strong>2–13</strong>. Column <strong>J (value)</strong> already
+contains <code>=G2*H2</code> (quantity × unit price).</li>
+<li>Write your formulas in the empty columns to the right, starting at
+column <strong>K</strong>.</li>
 </ol>
 </div>
-<div class="admonition note">
-<p class="admonition-title">Which Excel do I need?</p>
+<div class="admonition note" data-markdown="1">
+<p class="admonition-title">
+Which Excel do I need?
+</p>
 <ul>
-<li><strong>IF, SUMIFS, COUNTIFS, INDEX/MATCH</strong> and conditional formatting: every Excel version.</li>
-<li><strong>XLOOKUP, FILTER and LET</strong>: Microsoft 365, Excel 2021 or newer, Excel for the web, or the mobile apps. On Excel 2019 or older, use the alternatives given in those lessons: INDEX/MATCH instead of XLOOKUP, and AutoFilter or a PivotTable instead of FILTER.</li>
+<li><strong>IF, SUMIFS, COUNTIFS, INDEX/MATCH</strong> and conditional
+formatting: every Excel version.</li>
+<li><strong>XLOOKUP, FILTER and LET</strong>: Microsoft 365, Excel 2021
+or newer, Excel for the web, or the mobile apps. On Excel 2019 or older,
+use the alternatives given in those lessons: INDEX/MATCH instead of
+XLOOKUP, and AutoFilter or a PivotTable instead of FILTER.</li>
 </ul>
 </div>
-<p><strong>By the end of this module you can:</strong> label and classify data with logic, build KPI summaries with SUMIFS and COUNTIFS, combine sheets with lookups, pull live filtered lists, and make important rows stand out visually.</p>
+<p><strong>By the end of this module you can:</strong> label and
+classify data with logic, build KPI summaries with SUMIFS and COUNTIFS,
+combine sheets with lookups, pull live filtered lists, and make
+important rows stand out visually.</p>
+<div class="module-topics"><b>Curriculum coverage</b><div class="term-chips"><span class="term-chip">IF &amp; logical functions</span><span class="term-chip">FILTER</span><span class="term-chip">SUMIFS &amp; COUNTIFS</span><span class="term-chip">XLOOKUP &amp; INDEX/MATCH</span><span class="term-chip">LET</span><span class="term-chip">Conditional formatting</span></div></div>
 <div class="files-box"><div class="files-head"><b>Practice files for this page</b><a href="../../../practice-files.html">All practice files →</a></div><ul><li><a href="../../../downloads/orders.xlsx" download>orders.xlsx</a><span class="f-desc">Starting workbook: Orders (with value formula), Products, Customers sheets · 8 KB</span></li><li><a href="../../../downloads/excel-solutions.xlsx" download>excel-solutions.xlsx</a><span class="f-desc">Worked Excel answers: IF, SUMIFS, lookups, conditional formatting, FILTER/LET formulas, What-If model · 14 KB</span></li></ul></div>
-<div class="section-head"><h2>Lessons</h2><p>5 written · 0 planned</p></div>
+<div class="section-head"><h2>Tutorials</h2><p>5 ready · 0 planned</p></div>
 <ul class="lesson-list"><li class="lesson-row" data-lesson="phase-1/excel-analysis/01-if-logical"><span class="n">1</span><span><a href="../../../learn/phase-1/excel-analysis/01-if-logical.html">Excel IF, AND &amp; OR: Let Your Sheet Make Decisions</a><span class="desc">Label rows, build categories and flag the orders that need attention with IF, IFS, AND and OR.</span></span><span class="lesson-state">30 min</span></li><li class="lesson-row" data-lesson="phase-1/excel-analysis/02-sumifs-countifs"><span class="n">2</span><span><a href="../../../learn/phase-1/excel-analysis/02-sumifs-countifs.html">Excel SUMIFS &amp; COUNTIFS: Build KPI Summaries</a><span class="desc">Add up and count only the rows that match your conditions — the formulas behind most Excel reports.</span></span><span class="lesson-state">35 min</span></li><li class="lesson-row" data-lesson="phase-1/excel-analysis/03-xlookup-index-match"><span class="n">3</span><span><a href="../../../learn/phase-1/excel-analysis/03-xlookup-index-match.html">Excel XLOOKUP &amp; INDEX/MATCH: Bring Data Together from Other Sheets</a><span class="desc">Look up prices, segments and suppliers from other sheets — with modern XLOOKUP and the classic INDEX/MATCH that works everywhere.</span></span><span class="lesson-state">40 min</span></li><li class="lesson-row" data-lesson="phase-1/excel-analysis/04-filter-let"><span class="n">4</span><span><a href="../../../learn/phase-1/excel-analysis/04-filter-let.html">Excel FILTER &amp; LET: Live Filtered Lists and Readable Formulas</a><span class="desc">Pull a live list of matching rows with FILTER, sort it, and make long formulas readable by naming their parts with LET.</span></span><span class="lesson-state">35 min</span></li><li class="lesson-row" data-lesson="phase-1/excel-analysis/05-conditional-formatting"><span class="n">5</span><span><a href="../../../learn/phase-1/excel-analysis/05-conditional-formatting.html">Excel Conditional Formatting: Make Important Data Stand Out</a><span class="desc">Highlight cancelled orders, big values and whole rows automatically — with built-in rules, data bars and your own formulas.</span></span><span class="lesson-state">30 min</span></li></ul>
 <nav class="pager"><a class="next" href="../../../learn/phase-1/pivot-analysis/index.html"><small>Next module →</small>Pivot Analysis</a></nav>
 
   </div></main>
   
 </div>
-<footer class="site">Data, AI &amp; Automation Path v0.8 · Applied AI, Data &amp; Automation Lab · Updated October 2026<br>
+<footer class="site"><b>Saiful The Techie</b> · Data, AI &amp; Automation Path v0.9.1 · Updated October 2026<br>
 Lesson text: <a href="../../../license.html">CC BY-NC-SA 4.0</a> · Code: <a href="../../../license.html#code-mit-license">MIT</a> · Free external resources belong to their respective owners.</footer>
 <script src="../../../search-index.js"></script>
 <script src="../../../assets/app.js"></script>

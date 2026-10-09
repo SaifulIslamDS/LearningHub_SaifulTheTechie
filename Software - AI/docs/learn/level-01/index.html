@@ -24,7 +24,7 @@ document.documentElement.classList.add('no-anim')})();</script>
 <a class="skip" href="#main">Skip to content</a>
 <header class="topbar">
   <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Open curriculum menu" title="Curriculum menu (press M)" aria-controls="sidebar" aria-expanded="false"><span class="ico-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span class="ico-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></button>
-  <a class="brand" href="../../index.html"><span class="brand-text"><span class="brand-ecosystem">Saiful The Techie</span><span class="brand-name">Software &amp; AI Engineering Learning Hub</span><span class="brand-version">v0.5.0</span></span></a>
+  <a class="brand" href="../../index.html"><span class="brand-text"><span class="brand-ecosystem">Saiful The Techie</span><span class="brand-name">Software &amp; AI Engineering Learning Hub</span><span class="brand-version">v0.5.2</span></span></a>
   <nav class="top-links" aria-label="Main">
     <a href="../../index.html" class="">Home</a><a href="../../curriculum.html" class="">Curriculum</a><a href="../../practice-files.html" class="">Practice files</a><a href="../../glossary.html" class="">Glossary</a><a href="../../how-to-learn.html" class="">How to learn</a><a href="../../about.html" class="">About</a>
   </nav>
@@ -40,8 +40,11 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="layout">
   <nav class="sidebar" id="sidebar" aria-label="Curriculum">
     <div class="side-title">Curriculum</div>
-    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="66"><i></i></div><span class="bar-label" data-progress-label></span></div>
-<div class="nav-phase current open"><a href="../../learn/level-01/index.html" aria-current="page"><span class="nav-num">01</span>Level 01</a>
+    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="70"><i></i></div><span class="bar-label" data-progress-label></span></div>
+<div class="nav-phase current" data-level="level-01">
+<button class="nav-phase-toggle" type="button" aria-expanded="true" aria-controls="sidebar-level-01" data-default-open="1"><span class="nav-num">01</span><span class="nav-phase-label">Level 01</span><span class="nav-phase-chevron" aria-hidden="true">⌄</span></button>
+<div class="nav-phase-body" id="sidebar-level-01" >
+<a class="nav-level-overview" href="../../learn/level-01/index.html">Level 01 overview →</a>
 <ul class="nav-modules">
 <li><a class="" href="../../learn/level-01/l1-0-welcome-to-the-course/index.html">Welcome to the Course</a>
 </li>
@@ -157,346 +160,402 @@ document.documentElement.classList.add('no-anim')})();</script>
 </li>
 <li><a class="" href="../../learn/level-01/l1-52-assignment-9/index.html">Assignment 9</a>
 </li>
-<li><a class="" href="../../learn/level-01/l1-53-requirement-analysis-prompt-and-prototyping/index.html">Requirement Analysis, Prompt &amp; Prototyping</a>
-</li>
-<li><a class="" href="../../learn/level-01/l1-54-project-setup-modular-architecture/index.html">Project Setup, Modular Architecture</a>
-</li>
-<li><a class="" href="../../learn/level-01/l1-55-core-implementation-backend-with-modular-archite/index.html">Core Implementation — Backend with Modular Architecture</a>
-</li>
-<li><a class="" href="../../learn/level-01/l1-56-core-implementation-frontend/index.html">Core Implementation — Frontend</a>
-</li>
-<li><a class="" href="../../learn/level-01/l1-57-sslcommerz-payment-integration/index.html">SSLCommerz Payment Integration</a>
-</li>
-<li><a class="" href="../../learn/level-01/l1-58-ai-integration-code-review-and-refactoring/index.html">AI Integration, Code Review &amp; Refactoring</a>
-</li>
-<li><a class="" href="../../learn/level-01/l1-59-finalization-checking-and-deployment/index.html">Finalization, Checking and Deployment</a>
-</li>
-<li><a class="" href="../../learn/level-01/l1-60-assignment-10/index.html">Assignment 10</a>
-</li>
-<li><a class="" href="../../learn/level-01/l1-61-ai-assisted-coding-foundations-and-mindset/index.html">AI Assisted Coding Foundations &amp; Mindset</a>
-</li>
-<li><a class="" href="../../learn/level-01/l1-62-design-to-code-figma-mcp-lovable-and-ai-builders/index.html">Design-to-Code — Figma MCP, Lovable &amp; AI Builders</a>
-</li>
-<li><a class="" href="../../learn/level-01/l1-63-cursor-ai-fullstack-agentic-development-mastery/index.html">Cursor AI — Fullstack Agentic Development Mastery</a>
-</li>
-<li><a class="" href="../../learn/level-01/l1-64-terminal-based-agentic-development-with-claude-c/index.html">Terminal-Based Agentic Development with Claude Code</a>
-</li>
-<li><a class="" href="../../learn/level-01/l1-65-code-quality-testing-review-refactoring-and-secu/index.html">Code Quality — Testing, Review, Refactoring &amp; Security</a>
-</li>
-<li><a class="" href="../../learn/level-01/l1-66-ai-ecosystem-deployment-and-final-project-showca/index.html">AI Ecosystem, Deployment &amp; Final Project Showcase</a>
-</li>
-<li><a class="" href="../../learn/level-01/l1-67-assignment-11/index.html">Assignment 11</a>
-</li>
 <li><a class="nav-project " href="../../learn/level-01/project.html">★ Level project</a></li>
 </ul>
-</div>
-<div class="nav-phase"><a href="../../learn/level-02/index.html"><span class="nav-num">02</span>Level 02</a>
-</div>
+<details class="roadmap-nav"><summary>Roadmap · 15 future modules</summary><ul>
+<li><a class="" href="../../learn/level-01/l1-53-requirement-analysis-prompt-and-prototyping/index.html">Requirement Analysis, Prompt &amp; Prototyping <span>Roadmap</span></a></li>
+<li><a class="" href="../../learn/level-01/l1-54-project-setup-modular-architecture/index.html">Project Setup, Modular Architecture <span>Roadmap</span></a></li>
+<li><a class="" href="../../learn/level-01/l1-55-core-implementation-backend-with-modular-archite/index.html">Core Implementation — Backend with Modular Architecture <span>Roadmap</span></a></li>
+<li><a class="" href="../../learn/level-01/l1-56-core-implementation-frontend/index.html">Core Implementation — Frontend <span>Roadmap</span></a></li>
+<li><a class="" href="../../learn/level-01/l1-57-sslcommerz-payment-integration/index.html">SSLCommerz Payment Integration <span>Roadmap</span></a></li>
+<li><a class="" href="../../learn/level-01/l1-58-ai-integration-code-review-and-refactoring/index.html">AI Integration, Code Review &amp; Refactoring <span>Roadmap</span></a></li>
+<li><a class="" href="../../learn/level-01/l1-59-finalization-checking-and-deployment/index.html">Finalization, Checking and Deployment <span>Roadmap</span></a></li>
+<li><a class="" href="../../learn/level-01/l1-60-assignment-10/index.html">Assignment 10 <span>Roadmap</span></a></li>
+<li><a class="" href="../../learn/level-01/l1-61-ai-assisted-coding-foundations-and-mindset/index.html">AI Assisted Coding Foundations &amp; Mindset <span>Roadmap</span></a></li>
+<li><a class="" href="../../learn/level-01/l1-62-design-to-code-figma-mcp-lovable-and-ai-builders/index.html">Design-to-Code — Figma MCP, Lovable &amp; AI Builders <span>Roadmap</span></a></li>
+<li><a class="" href="../../learn/level-01/l1-63-cursor-ai-fullstack-agentic-development-mastery/index.html">Cursor AI — Fullstack Agentic Development Mastery <span>Roadmap</span></a></li>
+<li><a class="" href="../../learn/level-01/l1-64-terminal-based-agentic-development-with-claude-c/index.html">Terminal-Based Agentic Development with Claude Code <span>Roadmap</span></a></li>
+<li><a class="" href="../../learn/level-01/l1-65-code-quality-testing-review-refactoring-and-secu/index.html">Code Quality — Testing, Review, Refactoring &amp; Security <span>Roadmap</span></a></li>
+<li><a class="" href="../../learn/level-01/l1-66-ai-ecosystem-deployment-and-final-project-showca/index.html">AI Ecosystem, Deployment &amp; Final Project Showcase <span>Roadmap</span></a></li>
+<li><a class="" href="../../learn/level-01/l1-67-assignment-11/index.html">Assignment 11 <span>Roadmap</span></a></li>
+</ul></details>
+</div></div>
+<div class="nav-phase" data-level="level-02">
+<button class="nav-phase-toggle" type="button" aria-expanded="false" aria-controls="sidebar-level-02" data-default-open="0"><span class="nav-num">02</span><span class="nav-phase-label">Level 02</span><span class="nav-phase-chevron" aria-hidden="true">⌄</span></button>
+<div class="nav-phase-body" id="sidebar-level-02" hidden>
+<a class="nav-level-overview" href="../../learn/level-02/index.html">Level 02 overview →</a>
+<details class="roadmap-nav"><summary>Roadmap · 63 future modules</summary><ul>
+<li><a class="" href="../../learn/level-02/l2-01-typescript-foundations/index.html">TypeScript Foundations <span>Roadmap</span></a></li>
+<li><a class="" href="../../learn/level-02/l2-02-advanced-typescript-types/index.html">Advanced TypeScript Types <span>Roadmap</span></a></li>
+<li><a class="" href="../../learn/level-02/l2-03-object-oriented-programming-in-typescript/index.html">Object-Oriented Programming in TypeScript <span>Roadmap</span></a></li>
+<li><a class="" href="../../learn/level-02/l2-04-assignment-1/index.html">Assignment 1 <span>Roadmap</span></a></li>
+<li><a class="" href="../../learn/level-02/l2-05-node-js-runtime-and-architecture/index.html">Node.js Runtime &amp; Architecture <span>Roadmap</span></a></li>
+<li><a class="" href="../../learn/level-02/l2-06-node-js-core-modules-and-your-first-server/index.html">Node.js Core Modules &amp; Your First Server <span>Roadmap</span></a></li>
+<li><a class="" href="../../learn/level-02/l2-07-express-fundamentals-and-your-first-rest-api/index.html">Express Fundamentals &amp; Your First REST API <span>Roadmap</span></a></li>
+<li><a class="" href="../../learn/level-02/l2-08-postgresql-essentials-and-connecting-express-wit/index.html">PostgreSQL Essentials &amp; Connecting Express with PG <span>Roadmap</span></a></li>
+<li><a class="" href="../../learn/level-02/l2-09-scalable-backend-architecture-and-clean-code/index.html">Scalable Backend Architecture &amp; Clean Code <span>Roadmap</span></a></li>
+<li><a class="" href="../../learn/level-02/l2-10-assignment-2-small-backend-project/index.html">Assignment 2 — Small Backend Project <span>Roadmap</span></a></li>
+<li><a class="" href="../../learn/level-02/l2-11-database-essentials-and-relational-model/index.html">Database Essentials &amp; Relational Model <span>Roadmap</span></a></li>
+<li><a class="" href="../../learn/level-02/l2-12-database-normalization-and-postgresql-setup/index.html">Database Normalization &amp; PostgreSQL Setup <span>Roadmap</span></a></li>
+<li><a class="" href="../../learn/level-02/l2-13-postgresql-case-study-database-management-and-da/index.html">PostgreSQL Case Study, Database Management &amp; Data Types <span>Roadmap</span></a></li>
+<li><a class="" href="../../learn/level-02/l2-14-postgresql-fundamentals-and-data-manipulation/index.html">PostgreSQL Fundamentals &amp; Data Manipulation <span>Roadmap</span></a></li>
+<li><a class="" href="../../learn/level-02/l2-15-dates-relationships-and-joins-in-postgresql/index.html">Dates, Relationships &amp; Joins in PostgreSQL <span>Roadmap</span></a></li>
+<li><a class="" href="../../learn/level-02/l2-16-advanced-postgresql-queries-and-database-objects/index.html">Advanced PostgreSQL Queries &amp; Database Objects <span>Roadmap</span></a></li>
+<li><a class="" href="../../learn/level-02/l2-17-assignment-3-production-database/index.html">Assignment 3 — Production Database <span>Roadmap</span></a></li>
+<li><a class="" href="../../learn/level-02/l2-18-orm-essentials-drizzle/index.html">ORM Essentials (Drizzle) <span>Roadmap</span></a></li>
+<li><a class="" href="../../learn/level-02/l2-19-relations-and-advanced-query-techniques/index.html">Relations &amp; Advanced Query Techniques <span>Roadmap</span></a></li>
+<li><a class="" href="../../learn/level-02/l2-20-saas-system-design-and-multi-tenant-architecture/index.html">SaaS System Design &amp; Multi-Tenant Architecture <span>Roadmap</span></a></li>
+<li><a class="" href="../../learn/level-02/l2-21-project-setup-data-modeling-and-request-validati/index.html">Project Setup, Data Modeling &amp; Request Validation <span>Roadmap</span></a></li>
+<li><a class="" href="../../learn/level-02/l2-22-authentication-registration-login-and-jwt/index.html">Authentication: Registration, Login &amp; JWT <span>Roadmap</span></a></li>
+<li><a class="" href="../../learn/level-02/l2-23-authorization-middleware-protected-routes-and-rb/index.html">Authorization: Middleware, Protected Routes &amp; RBAC <span>Roadmap</span></a></li>
+<li><a class="" href="../../learn/level-02/l2-24-workspace-team-and-membership-management/index.html">Workspace, Team &amp; Membership Management <span>Roadmap</span></a></li>
+<li><a class="" href="../../learn/level-02/l2-25-data-and-file-management/index.html">Data &amp; File Management <span>Roadmap</span></a></li>
+<li><a class="" href="../../learn/level-02/l2-26-search-filtering-sorting-and-pagination/index.html">Search, Filtering, Sorting &amp; Pagination <span>Roadmap</span></a></li>
+<li><a class="" href="../../learn/level-02/l2-27-production-backend-engineering/index.html">Production Backend Engineering <span>Roadmap</span></a></li>
+<li><a class="" href="../../learn/level-02/l2-28-assignment-4-build-a-saas-backend/index.html">Assignment 4 — Build a SaaS Backend <span>Roadmap</span></a></li>
+<li><a class="" href="../../learn/level-02/l2-29-next-js-fundamentals-and-app-router/index.html">Next.js Fundamentals &amp; App Router <span>Roadmap</span></a></li>
+<li><a class="" href="../../learn/level-02/l2-30-server-components-data-fetching-and-server-actio/index.html">Server Components, Data Fetching &amp; Server Actions <span>Roadmap</span></a></li>
+<li><a class="" href="../../learn/level-02/l2-31-authentication-on-the-frontend/index.html">Authentication on the Frontend <span>Roadmap</span></a></li>
+<li><a class="" href="../../learn/level-02/l2-32-building-the-product-dashboard-layout-and-ui-arc/index.html">Building the Product Dashboard: Layout &amp; UI Architecture <span>Roadmap</span></a></li>
+<li><a class="" href="../../learn/level-02/l2-33-forms-validation-and-file-upload/index.html">Forms, Validation &amp; File Upload <span>Roadmap</span></a></li>
+<li><a class="" href="../../learn/level-02/l2-34-data-tables-search-filtering-and-pagination/index.html">Data Tables, Search, Filtering &amp; Pagination <span>Roadmap</span></a></li>
+<li><a class="" href="../../learn/level-02/l2-35-charts-analytics-and-reporting-ui/index.html">Charts, Analytics &amp; Reporting UI <span>Roadmap</span></a></li>
+<li><a class="" href="../../learn/level-02/l2-36-scalable-frontend-architecture-and-performance/index.html">Scalable Frontend Architecture &amp; Performance <span>Roadmap</span></a></li>
+<li><a class="" href="../../learn/level-02/l2-37-assignment-5-build-a-saas-frontend/index.html">Assignment 5 — Build a SaaS Frontend <span>Roadmap</span></a></li>
+<li><a class="" href="../../learn/level-02/l2-38-introduction-to-docker/index.html">Introduction to Docker <span>Roadmap</span></a></li>
+<li><a class="" href="../../learn/level-02/l2-39-docker-images-and-containers/index.html">Docker Images &amp; Containers <span>Roadmap</span></a></li>
+<li><a class="" href="../../learn/level-02/l2-40-docker-volumes-and-data-management/index.html">Docker Volumes &amp; Data Management <span>Roadmap</span></a></li>
+<li><a class="" href="../../learn/level-02/l2-41-docker-networking-and-cross-container-communicat/index.html">Docker Networking &amp; Cross-Container Communication <span>Roadmap</span></a></li>
+<li><a class="" href="../../learn/level-02/l2-42-building-multi-container-applications/index.html">Building Multi-Container Applications <span>Roadmap</span></a></li>
+<li><a class="" href="../../learn/level-02/l2-43-docker-compose-and-makefile-automation/index.html">Docker Compose &amp; Makefile Automation <span>Roadmap</span></a></li>
+<li><a class="" href="../../learn/level-02/l2-44-vps-deployment-nginx-and-github-actions-ci-cd/index.html">VPS Deployment, NGINX &amp; GitHub Actions CI/CD <span>Roadmap</span></a></li>
+<li><a class="" href="../../learn/level-02/l2-45-llm-application-development-fundamentals/index.html">LLM Application Development Fundamentals <span>Roadmap</span></a></li>
+<li><a class="" href="../../learn/level-02/l2-46-building-a-production-chat-api/index.html">Building a Production Chat API <span>Roadmap</span></a></li>
+<li><a class="" href="../../learn/level-02/l2-47-langchain-application-development/index.html">LangChain Application Development <span>Roadmap</span></a></li>
+<li><a class="" href="../../learn/level-02/l2-48-document-processing-and-embeddings/index.html">Document Processing &amp; Embeddings <span>Roadmap</span></a></li>
+<li><a class="" href="../../learn/level-02/l2-49-vector-databases-pgvector/index.html">Vector Databases: pgvector <span>Roadmap</span></a></li>
+<li><a class="" href="../../learn/level-02/l2-50-building-a-production-rag-system/index.html">Building a Production RAG System <span>Roadmap</span></a></li>
+<li><a class="" href="../../learn/level-02/l2-51-langgraph-and-ai-agents/index.html">LangGraph &amp; AI Agents <span>Roadmap</span></a></li>
+<li><a class="" href="../../learn/level-02/l2-52-advanced-agent-systems/index.html">Advanced Agent Systems <span>Roadmap</span></a></li>
+<li><a class="" href="../../learn/level-02/l2-53-assignment-6-production-ai-application/index.html">Assignment 6 — Production AI Application <span>Roadmap</span></a></li>
+<li><a class="" href="../../learn/level-02/l2-54-service-to-service-communication/index.html">Service-to-Service Communication <span>Roadmap</span></a></li>
+<li><a class="" href="../../learn/level-02/l2-55-api-gateway-and-request-routing/index.html">API Gateway &amp; Request Routing <span>Roadmap</span></a></li>
+<li><a class="" href="../../learn/level-02/l2-56-streaming-background-workers-and-caching/index.html">Streaming, Background Workers &amp; Caching <span>Roadmap</span></a></li>
+<li><a class="" href="../../learn/level-02/l2-57-frontend-integration-ai-features-in-next-js/index.html">Frontend Integration: AI Features in Next.js <span>Roadmap</span></a></li>
+<li><a class="" href="../../learn/level-02/l2-58-frontend-integration-agent-dashboard-and-polish/index.html">Frontend Integration: Agent Dashboard &amp; Polish <span>Roadmap</span></a></li>
+<li><a class="" href="../../learn/level-02/l2-bonus-live-agentic-ai-masterclass/index.html">Live Agentic AI Masterclass <span>Roadmap</span></a></li>
+<li><a class="" href="../../learn/level-02/l2-bonus-reward-course-01-system-design/index.html">Reward Course 01 — System Design <span>Roadmap</span></a></li>
+<li><a class="" href="../../learn/level-02/l2-bonus-reward-course-02-nestjs-backend/index.html">Reward Course 02 — NestJS Backend <span>Roadmap</span></a></li>
+<li><a class="" href="../../learn/level-02/l2-bonus-reward-course-03-testing-and-quality/index.html">Reward Course 03 — Testing &amp; Quality <span>Roadmap</span></a></li>
+<li><a class="" href="../../learn/level-02/l2-bonus-reward-course-04-aws-deployment/index.html">Reward Course 04 — AWS Deployment <span>Roadmap</span></a></li>
+</ul></details>
+</div></div>
 <div class="side-extra"><a href="../../index.html">Home</a><a href="../../curriculum.html">Full curriculum map</a><a href="../../practice-files.html">Practice files</a><a href="../../glossary.html">Glossary</a><a href="../../how-to-learn.html">How to learn here</a><a href="../../about.html">About &amp; contributing</a></div></nav>
   <main class="main" id="main"><div class="content full">
 <nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a><span class="sep">/</span><span>Level 01</span></nav>
 <h1>Level 01 — AI-Driven Full Stack Web Engineering</h1>
 <p class="lead">Build from web foundations through JavaScript, TypeScript, React, Next.js, backend APIs, databases, full-stack projects and AI-assisted development.</p>
-<div class="meta"><span class="pill"><b>72</b> modules</span><span class="pill"><b>66</b> lessons written</span></div>
-<div><div class="bar" data-progress-scope="level-01" data-total="66"><i></i></div><span class="bar-label" data-progress-label></span></div>
+<div class="meta"><span class="pill"><b>72</b> modules</span><span class="pill"><b>70</b> tutorials available</span></div>
+<div><div class="bar" data-progress-scope="level-01" data-total="70"><i></i></div><span class="bar-label" data-progress-label></span></div>
 <div class="milestone"><strong>Level outcome:</strong> A portfolio of production-oriented full-stack projects plus practical AI-assisted development workflows. <a class="milestone-link" href="../../learn/level-01/project.html">Open the project brief →</a></div>
 
-<div class="section-head"><h2>Modules</h2></div>
-<div class="grid cols-2"><a class="card module-tile" href="../../learn/level-01/l1-0-welcome-to-the-course/index.html">
+<div class="section-head"><h2>Available learning</h2><p>Open these modules now; every card contains authored tutorials.</p></div>
+<div class="grid cols-2"><a class="card module-tile " href="../../learn/level-01/l1-0-welcome-to-the-course/index.html">
   <h3>Welcome to the Course</h3>
   <p>Welcome Message</p>
-  <span class="count">Coming soon</span>
-</a><a class="card module-tile" href="../../learn/level-01/l1-0-orientation-install-necessary-tools/index.html">
+  <span class="count">1 tutorial available</span>
+</a><a class="card module-tile " href="../../learn/level-01/l1-0-orientation-install-necessary-tools/index.html">
   <h3>Orientation - Install Necessary Tools</h3>
-  <p>How to access the course, Time management and build your own routine, Everything you need to know about assignments, How to get Support Effectively, Install Visual Studio Code, Node, Git, GitHub, (Only For Mac Users)Install VS Code, Node, Git SCM,, How to use Helpdesk and overall Course Rules, Actionable Dashboard, Certificate, and AI Integration, How to get the best out of this course and SCIC and Mindset, Why is AI advancing so rapidly, and what capabilities and limitations define its current state?, Can AI Replace Developers?, How NOT to Use AI (Common Mistakes), How NOT to Fear AI (Beginner&#x27;s Mindset), Developer vs Engineer Mindset</p>
-  <span class="count">Coming soon</span>
-</a><a class="card module-tile" href="../../learn/level-01/l1-0-5-1-understanding-ai-reality-risks-and-mindset/index.html">
+  <p>How to access the course, Time management and build your own routine, Everything you need to know about assignments, How to get Support Effectively…</p>
+  <span class="count">1 tutorial available</span>
+</a><a class="card module-tile " href="../../learn/level-01/l1-0-5-1-understanding-ai-reality-risks-and-mindset/index.html">
   <h3>Understanding AI: Reality, Risks, and Mindset</h3>
-  <p>Why AI is advancing rapidly; capabilities and limitations, Can AI replace developers?, How NOT to use AI, How NOT to fear AI, Developer vs engineer mindset</p>
-  <span class="count">Coming soon</span>
-</a><a class="card module-tile" href="../../learn/level-01/l1-0-5-2-beyond-the-hype-how-to-actually-use-ai/index.html">
+  <p>Why AI is advancing rapidly; capabilities and limitations, Can AI replace developers?, How NOT to use AI, How NOT to fear AI…</p>
+  <span class="count">1 tutorial available</span>
+</a><a class="card module-tile " href="../../learn/level-01/l1-0-5-2-beyond-the-hype-how-to-actually-use-ai/index.html">
   <h3>Beyond the Hype: How to Actually Use AI</h3>
-  <p>Become an AI-driven developer, AI-native daily workflow, Responsible AI use, Prompt engineering basics, How AI works: conceptual introduction</p>
-  <span class="count">Coming soon</span>
-</a><a class="card module-tile" href="../../learn/level-01/l1-1-frontend-basics-html-and-css/index.html">
+  <p>Become an AI-driven developer, AI-native daily workflow, Responsible AI use, Prompt engineering basics…</p>
+  <span class="count">1 tutorial available</span>
+</a><a class="card module-tile " href="../../learn/level-01/l1-1-frontend-basics-html-and-css/index.html">
   <h3>Frontend Basics: HTML &amp; CSS<span class="tag updated">Updated</span></h3>
-  <p>What you will learn from this Milestone-1 (Animated), Web &amp; HTML: VSCode setup, first HTML file, page structure, HTML Text: Headings, paragraphs, formatting tags, HTML Essentials: Lists, links, images, buttons, HTML Forms: Input types, select, option, form UI, CSS Basics: Inline, internal, external styles, CSS Selectors: Tag, class, id, universal, combined selectors, CSS Box Model: Margin, padding, border, width, height, CSS Styling: Font, background, position, CSS Display: visibility, box-shadow, Module Summary &amp; Practise Task</p>
-  <span class="count">1 lesson written</span>
-</a><a class="card module-tile" href="../../learn/level-01/l1-2-version-control-with-git-and-github/index.html">
+  <p>What you will learn from this Milestone-1 (Animated), Web &amp; HTML: VSCode setup, first HTML file, page structure, HTML Text: Headings, paragraphs, formatting tags, HTML Essentials: Lists, links, images, buttons…</p>
+  <span class="count">1 tutorial available</span>
+</a><a class="card module-tile " href="../../learn/level-01/l1-2-version-control-with-git-and-github/index.html">
   <h3>Version Control with Git and GitHub<span class="tag updated">Updated</span></h3>
-  <p>What is version control system, Git vs GitHub, Create a GitHub repository and explore GitHub, Introduction to basic commands: git init, git add, git, (Mac and Linux only) set GitHub account for the, (optional) VS Code terminal to set basic GitHub and GitHub Desktop, Send small incremental changes to GitHub with git push, Common GitHub-related issues for beginners, Module Summary and basic git workflow, [advanced] Multiple developer workflow contributor on Private Repo, [advanced ] git branch, pull request, merge</p>
-  <span class="count">1 lesson written</span>
-</a><a class="card module-tile" href="../../learn/level-01/l1-3-semantic-html-and-advanced-elements/index.html">
+  <p>What is version control system, Git vs GitHub, Create a GitHub repository and explore GitHub, Introduction to basic commands: git init, git add, git, (Mac and Linux only) set GitHub account for the…</p>
+  <span class="count">1 tutorial available</span>
+</a><a class="card module-tile " href="../../learn/level-01/l1-3-semantic-html-and-advanced-elements/index.html">
   <h3>Semantic HTML &amp; Advanced Elements<span class="tag updated">Updated</span></h3>
-  <p>HTML5 vs HTML, Audio, video, YouTube video, embed, Explore HTML5: nav, main, header, footer, section, article,, HTML Form: label fieldset legend radio checkbox textarea reset submit, HTML Table: Table, tr, th, td, caption, colspan, thead, tbody, tfoot, CSS Flex Layout Basic Overview, Recap CSS Box Model &amp; auto property, Navigation: Simple navbar and internal navigation among files, Hero: Create a Simple Banner with flexbox, Card: Create Some Card sections and style, HTML Overview: Summary, practice task</p>
-  <span class="count">2 lessons written</span>
-</a><a class="card module-tile" href="../../learn/level-01/l1-4-css-layouts-and-advanced-styling/index.html">
+  <p>HTML5 vs HTML, Audio, video, YouTube video, embed, Explore HTML5: nav, main, header, footer, section, article,, HTML Form: label fieldset legend radio checkbox textarea reset submit, HTML Table: Table, tr, th, td, caption, colspan, thead, tbody, tfoot…</p>
+  <span class="count">2 tutorials available</span>
+</a><a class="card module-tile " href="../../learn/level-01/l1-4-css-layouts-and-advanced-styling/index.html">
   <h3>CSS Layouts &amp; Advanced Styling<span class="tag updated">Updated</span></h3>
-  <p>CSS Units &amp; Box Model Recap — px, %, em, rem, auto, Flexbox Fundamentals — Direction, Justify, Align, Flexbox in Practice — Build Navbar &amp; Login Layout, Hero Section Design — Banner using Flexbox, Card Component Design — Layout &amp; Styling, CSS Grid Fundamentals — Columns, Gap, Basic Layout, Grid in Practice — Build a Calendar Layout, Pseudo Classes — Hover, Focus, Visited, Pseudo Elements &amp; Selectors — Before, After, nth-child, CSS Positioning — Static, Relative, Absolute, Fixed, Sticky, z-index</p>
-  <span class="count">3 lessons written</span>
-</a><a class="card module-tile" href="../../learn/level-01/l1-5-build-a-beautiful-portfolio-website/index.html">
+  <p>CSS Units &amp; Box Model Recap — px, %, em, rem, auto, Flexbox Fundamentals — Direction, Justify, Align, Flexbox in Practice — Build Navbar &amp; Login Layout, Hero Section Design — Banner using Flexbox…</p>
+  <span class="count">3 tutorials available</span>
+</a><a class="card module-tile " href="../../learn/level-01/l1-5-build-a-beautiful-portfolio-website/index.html">
   <h3>Build a beautiful portfolio website<span class="tag updated">Updated</span></h3>
-  <p>Module Introduction, project overview, and git setup, Set Google fonts and set navbar and primary colour, Banner content and portfolio image using flex, Simple image background, and about section, Use Flexbox for about info and start the What I am, Technical skills, flex gap, and how to apply flex, Resume section Education and Experience area, Style contact form and GitHub page hosting, live link, Module summary and Font Awesome</p>
-  <span class="count">1 lesson written</span>
-</a><a class="card module-tile" href="../../learn/level-01/l1-6-assignment-1/index.html">
+  <p>Module Introduction, project overview, and git setup, Set Google fonts and set navbar and primary colour, Banner content and portfolio image using flex, Simple image background, and about section…</p>
+  <span class="count">1 tutorial available</span>
+</a><a class="card module-tile " href="../../learn/level-01/l1-6-assignment-1/index.html">
   <h3>Assignment 1<span class="tag updated">Updated</span></h3>
   <p>Rules and Requirement Explanation, Deadline &amp; Submission Guideline</p>
-  <span class="count">1 lesson written</span>
-</a><a class="card module-tile" href="../../learn/level-01/l1-7-introduction-to-javascript/index.html">
+  <span class="count">1 tutorial available</span>
+</a><a class="card module-tile " href="../../learn/level-01/l1-7-introduction-to-javascript/index.html">
   <h3>Introduction to JavaScript<span class="tag updated">Updated</span></h3>
-  <p>Introduction to JavaScript, Run JavaScript in VSCode, Maths Needed to start learning Programming Language, What is a variable? Five things you need to declare a variable, Variable Animated Video [animation], Variable data types, Numeric, String, Boolean, JavaScript Keyword, Variable name, naming convention, Know the fundamentals of JS Numbers, Introduction to arithmetic operators [animation], (advanced) Mathematical operation shorthand, Module Summary and Practice Task</p>
-  <span class="count">2 lessons written</span>
-</a><a class="card module-tile" href="../../learn/level-01/l1-8-fundamental-concepts-of-conditionals/index.html">
+  <p>Introduction to JavaScript, Run JavaScript in VSCode, Maths Needed to start learning Programming Language, What is a variable? Five things you need to declare a variable, Variable Animated Video [animation]…</p>
+  <span class="count">2 tutorials available</span>
+</a><a class="card module-tile " href="../../learn/level-01/l1-8-fundamental-concepts-of-conditionals/index.html">
   <h3>Fundamental Concepts of Conditionals<span class="tag updated">Updated</span></h3>
-  <p>Compare variables and Comparison operator, Introduction to Conditionals,, If_else statement animated, Conditional branching if Else Condition, Multiple condition Logical Operators(&amp;&amp;, ||), Multi-level If-else if-else condition, (optional) Nested if-else condition, (advanced )If-else shorthand Ternary Operator, (advanced) Logical Not Operator, Homework and Making Decisions in your code</p>
-  <span class="count">1 lesson written</span>
-</a><a class="card module-tile" href="../../learn/level-01/l1-9-fundamental-concepts-of-array-part-1/index.html">
+  <p>Compare variables and Comparison operator, Introduction to Conditionals,, If_else statement animated, Conditional branching if Else Condition…</p>
+  <span class="count">1 tutorial available</span>
+</a><a class="card module-tile " href="../../learn/level-01/l1-9-fundamental-concepts-of-array-part-1/index.html">
   <h3>Fundamental Concepts of Array[Part 1]<span class="tag updated">Updated</span></h3>
-  <p>Store more than one value in a variable using Array, Array Animated video, Array length, index, Get and set by index, Add/remove elements from arrays using push, pop, shift &amp; unshift, All about basic array methods, isArray</p>
-  <span class="count">1 lesson written</span>
-</a><a class="card module-tile" href="../../learn/level-01/l1-10-fundamental-concepts-of-loops/index.html">
+  <p>Store more than one value in a variable using Array, Array Animated video, Array length, index, Get and set by index, Add/remove elements from arrays using push, pop, shift &amp; unshift…</p>
+  <span class="count">1 tutorial available</span>
+</a><a class="card module-tile " href="../../learn/level-01/l1-10-fundamental-concepts-of-loops/index.html">
   <h3>Fundamental Concepts of Loops<span class="tag updated">Updated</span></h3>
-  <p>What is a Loop? Explore the for loop, Introduction to While Loop, Problem-solving with While Loop, Introduction to For Loop, Problem-solving with For Loop (Task), Different ways to use loop, When to use a break and continue, (optional) Introduction to Do While Loop, Difference between types of loops Module Summary</p>
-  <span class="count">1 lesson written</span>
-</a><a class="card module-tile" href="../../learn/level-01/l1-11-fundamental-concepts-of-array-part-2/index.html">
+  <p>What is a Loop? Explore the for loop, Introduction to While Loop, Problem-solving with While Loop, Introduction to For Loop…</p>
+  <span class="count">1 tutorial available</span>
+</a><a class="card module-tile " href="../../learn/level-01/l1-11-fundamental-concepts-of-array-part-2/index.html">
   <h3>Fundamental Concepts of Array[Part 2]<span class="tag updated">Updated</span></h3>
   <p>Array Traversal using for and while Loop, Reversing an array with/without reverse method, Sort an array problems and solution, Module Summary and Practice Tasks</p>
-  <span class="count">1 lesson written</span>
-</a><a class="card module-tile" href="../../learn/level-01/l1-12-fundamentals-of-strings-and-objects/index.html">
+  <span class="count">1 tutorial available</span>
+</a><a class="card module-tile " href="../../learn/level-01/l1-12-fundamentals-of-strings-and-objects/index.html">
   <h3>Fundamentals of Strings &amp; Objects<span class="tag updated">Updated</span></h3>
-  <p>Introduction to string and string vs array, String Comparison lowercase, uppercase and trip, String Slice, Join, Concatenate and includes, Reverse a String in Three Different Ways, Introduction to Objects properties, and values, What is Object Animated video, Multiple ways to get &amp; set object properties slide: [11-13], Keys, Values, nested objects and delete, Loop an object and Ways to declare an Object, Module Summary and Practice Tasks</p>
-  <span class="count">1 lesson written</span>
-</a><a class="card module-tile" href="../../learn/level-01/l1-13-fundamentals-of-functions/index.html">
+  <p>Introduction to string and string vs array, String Comparison lowercase, uppercase and trip, String Slice, Join, Concatenate and includes, Reverse a String in Three Different Ways…</p>
+  <span class="count">1 tutorial available</span>
+</a><a class="card module-tile " href="../../learn/level-01/l1-13-fundamentals-of-functions/index.html">
   <h3>Fundamentals of Functions<span class="tag updated">Updated</span></h3>
-  <p>What are functions and function syntax, Function Intro with animation, Function parameter, handle multiple parameters, How Function works and argument vs parameters, Function return and set return value to a variable, Recap and conditional return of odd and even, Different types of parameters for a function, Sum of all numbers in an array using function, Return all the even numbers of an array, Function Summary and Practice Tasks</p>
-  <span class="count">2 lessons written</span>
-</a><a class="card module-tile" href="../../learn/level-01/l1-14-basic-problem-solving-with-javascript/index.html">
+  <p>What are functions and function syntax, Function Intro with animation, Function parameter, handle multiple parameters, How Function works and argument vs parameters…</p>
+  <span class="count">2 tutorials available</span>
+</a><a class="card module-tile " href="../../learn/level-01/l1-14-basic-problem-solving-with-javascript/index.html">
   <h3>Basic Problem Solving with JavaScript<span class="tag updated">Updated</span></h3>
   <p>Practice / assignment specified in the source (no lesson-level breakdown provided).</p>
-  <span class="count">1 lesson written</span>
-</a><a class="card module-tile" href="../../learn/level-01/l1-15-assignment-2-problem-solving/index.html">
+  <span class="count">1 tutorial available</span>
+</a><a class="card module-tile " href="../../learn/level-01/l1-15-assignment-2-problem-solving/index.html">
   <h3>Assignment 2 (Problem solving)<span class="tag updated">Updated</span></h3>
   <p>Practice / assignment specified in the source (no lesson-level breakdown provided).</p>
-  <span class="count">1 lesson written</span>
-</a><a class="card module-tile" href="../../learn/level-01/l1-16-es6-fundamentals/index.html">
+  <span class="count">1 tutorial available</span>
+</a><a class="card module-tile " href="../../learn/level-01/l1-16-es6-fundamentals/index.html">
   <h3>ES6 Fundamentals<span class="tag updated">Updated</span></h3>
-  <p>Milestone Roadmap (Animated), ES6 intro — difference between var, let, and const, Default parameters for not-provided values, Template strings — multiline and dynamic strings, Arrow functions: syntax, params, return, Spread operator, array max, copy arrays, (Advanced) Object and array destructuring, Keys, values, entries, delete, seal, freeze, Nested object, dot vs bracket notation, optional chaining, Looping objects: for…in, for…of, entries, Boost ES6 skills with AI — summary and practice</p>
-  <span class="count">2 lessons written</span>
-</a><a class="card module-tile" href="../../learn/level-01/l1-17-more-es6/index.html">
+  <p>Milestone Roadmap (Animated), ES6 intro — difference between var, let, and const, Default parameters for not-provided values, Template strings — multiline and dynamic strings…</p>
+  <span class="count">2 tutorials available</span>
+</a><a class="card module-tile " href="../../learn/level-01/l1-17-more-es6/index.html">
   <h3>More ES6<span class="tag updated">Updated</span></h3>
-  <p>Module overview — primitive and non-primitive data types, null vs undefined and why undefined happens, Truthy and falsy values in JavaScript, == vs === and implicit conversion, Block scope, global scope, and hoisting, (Advanced) Closure in detail, (Optional) Callback function and passing different functions, (Advanced) Pass by reference vs pass by value, Pass by value and pass by reference (Animated), Pre/post increment and pre/post decrement, Array power methods: map, forEach, filter, find (Part 1), Array power methods: slice, reduce (Part 2), Module summary and interview questions</p>
-  <span class="count">2 lessons written</span>
-</a><a class="card module-tile" href="../../learn/level-01/l1-18-problem-solving-with-javascript-es6-part-1/index.html">
+  <p>Module overview — primitive and non-primitive data types, null vs undefined and why undefined happens, Truthy and falsy values in JavaScript, == vs === and implicit conversion…</p>
+  <span class="count">2 tutorials available</span>
+</a><a class="card module-tile " href="../../learn/level-01/l1-18-problem-solving-with-javascript-es6-part-1/index.html">
   <h3>Problem Solving with JavaScript + ES6 [Part 1]<span class="tag updated">Updated</span></h3>
   <p>Practice / assignment specified in the source (no lesson-level breakdown provided).</p>
-  <span class="count">1 lesson written</span>
-</a><a class="card module-tile" href="../../learn/level-01/l1-19-problem-solving-with-javascript-es6-part-2/index.html">
+  <span class="count">1 tutorial available</span>
+</a><a class="card module-tile " href="../../learn/level-01/l1-19-problem-solving-with-javascript-es6-part-2/index.html">
   <h3>Problem Solving with JavaScript + ES6 [Part 2]<span class="tag updated">Updated</span></h3>
   <p>Practice / assignment specified in the source (no lesson-level breakdown provided).</p>
-  <span class="count">1 lesson written</span>
-</a><a class="card module-tile" href="../../learn/level-01/l1-20-assignment-3-problem-solving/index.html">
+  <span class="count">1 tutorial available</span>
+</a><a class="card module-tile " href="../../learn/level-01/l1-20-assignment-3-problem-solving/index.html">
   <h3>Assignment 3 (Problem solving)<span class="tag updated">Updated</span></h3>
   <p>Practice / assignment specified in the source (no lesson-level breakdown provided).</p>
-  <span class="count">1 lesson written</span>
-</a><a class="card module-tile" href="../../learn/level-01/l1-21-typescript-fundamentals/index.html">
+  <span class="count">1 tutorial available</span>
+</a><a class="card module-tile " href="../../learn/level-01/l1-21-typescript-fundamentals/index.html">
   <h3>Typescript Fundamentals</h3>
-  <p>Introduction to Typescript(What and why), Setting Up and Running TypeScript, Primitive vs Non-Primitive Types, Object Types, Literals, and Optional Properties, Functions in TypeScript: Typing Inputs and Outputs, Rest, Spread, and Destructuring Techniques, Conditional Expressions, Nullish Coalescing &amp; Optional Chaining, Special Types: Nullable, Unknown, and Never, Module Summary</p>
-  <span class="count">2 lessons written</span>
-</a><a class="card module-tile" href="../../learn/level-01/l1-22-more-typescript/index.html">
+  <p>Introduction to Typescript(What and why), Setting Up and Running TypeScript, Primitive vs Non-Primitive Types, Object Types, Literals, and Optional Properties…</p>
+  <span class="count">2 tutorials available</span>
+</a><a class="card module-tile " href="../../learn/level-01/l1-22-more-typescript/index.html">
   <h3>More Typescript</h3>
-  <p>Type Assertions and Type Casting Strategies, Interfaces for Structured Type Definitions, Generics for Reusable and Scalable Types, Enums and as const for Immutable Patterns, Utility Types for Efficient Type Transformations, Module Summary</p>
-  <span class="count">1 lesson written</span>
-</a><a class="card module-tile" href="../../learn/level-01/l1-22-5-optional-advanced-oop-in-typescript/index.html">
+  <p>Type Assertions and Type Casting Strategies, Interfaces for Structured Type Definitions, Generics for Reusable and Scalable Types, Enums and as const for Immutable Patterns…</p>
+  <span class="count">1 tutorial available</span>
+</a><a class="card module-tile " href="../../learn/level-01/l1-22-5-optional-advanced-oop-in-typescript/index.html">
   <h3>(Optional Advanced) OOP in TypeScript</h3>
-  <p>Introduction to OOP, Understanding Classes &amp; Object Modeling, Constructors and Method Design, Inheritance and Code Reusability, Type Narrowing and Type Safety, Access Modifiers and Data Protection, Getters, Setters, and Static Members, Polymorphism in Practice, Abstraction for Scalable Design, Encapsulation and Data Integrity, Module Summary</p>
-  <span class="count">1 lesson written</span>
-</a><a class="card module-tile" href="../../learn/level-01/l1-23-problem-solving-with-typescript/index.html">
+  <p>Introduction to OOP, Understanding Classes &amp; Object Modeling, Constructors and Method Design, Inheritance and Code Reusability…</p>
+  <span class="count">1 tutorial available</span>
+</a><a class="card module-tile " href="../../learn/level-01/l1-23-problem-solving-with-typescript/index.html">
   <h3>Problem Solving with Typescript</h3>
   <p>Practice / assignment specified in the source (no lesson-level breakdown provided).</p>
-  <span class="count">1 lesson written</span>
-</a><a class="card module-tile" href="../../learn/level-01/l1-24-assignment-4-problem-solving/index.html">
+  <span class="count">1 tutorial available</span>
+</a><a class="card module-tile " href="../../learn/level-01/l1-24-assignment-4-problem-solving/index.html">
   <h3>Assignment 4(Problem solving)</h3>
   <p>Practice / assignment specified in the source (no lesson-level breakdown provided).</p>
-  <span class="count">1 lesson written</span>
-</a><a class="card module-tile" href="../../learn/level-01/l1-25-react-core-components-jsx-props-and-rendering/index.html">
+  <span class="count">1 tutorial available</span>
+</a><a class="card module-tile " href="../../learn/level-01/l1-25-react-core-components-jsx-props-and-rendering/index.html">
   <h3>React Core — Components, JSX, Props &amp; Rendering</h3>
-  <p>What you will learn from this Milestone-1 (Animated), What is React, React vs Next JS, What is component, component types, build your first component, JSX, its rules and add dynamic content to JSX, Explore JSX and Props basics, How to pass and read Props in React, Read-only props and introduction to conditional rendering, Six ways to do Conditional Rendering: If, Ternary and AND, (Advanced) Rendering lists of users using map, Module Summary and Recap, React Simplified: AI Shows You What&#x27;s Important</p>
-  <span class="count">2 lessons written</span>
-</a><a class="card module-tile" href="../../learn/level-01/l1-26-state-management-in-react-events-and-data-fetchi/index.html">
+  <p>What you will learn from this Milestone-1 (Animated), What is React, React vs Next JS, What is component, component types, build your first component, JSX, its rules and add dynamic content to JSX…</p>
+  <span class="count">2 tutorials available</span>
+</a><a class="card module-tile " href="../../learn/level-01/l1-26-state-management-in-react-events-and-data-fetchi/index.html">
   <h3>State Management in React, Events &amp; Data Fetching</h3>
-  <p>Vite Project Setup: Folder structure, files, environment overview, Event Handling: onClick, onChange, onSubmit and handling patterns, State in React: Why state matters, how re-rendering works, useState Hook: Declaring state, updating state, reading, use() Hook: Modern data-fetching hook, concept and, API Call with use(): Load and render live data from an API, Async/Await in React: Fetching data with async functions, clean approach, useEffect Hook: Side effects, dependencies, and lifecycle (optional deep dive), Axios in React: Fetching data professionally, Thinking in React: Component mindset, homework</p>
-  <span class="count">2 lessons written</span>
-</a><a class="card module-tile" href="../../learn/level-01/l1-27-react-project-countries-explorer/index.html">
+  <p>Vite Project Setup: Folder structure, files, environment overview, Event Handling: onClick, onChange, onSubmit and handling patterns, State in React: Why state matters, how re-rendering works, useState Hook: Declaring state, updating state, reading…</p>
+  <span class="count">2 tutorials available</span>
+</a><a class="card module-tile " href="../../learn/level-01/l1-27-react-project-countries-explorer/index.html">
   <h3>React Project — Countries Explorer</h3>
-  <p>Project Setup: Countries API integration, project structure and data fetching, UI Rendering: Display country list with basic component, Country Card: Show flags, conditional text, and error handling, React Styling: styling with CSS, Tailwind CSS and DaisyUI, Responsive Grid: Build 3-column layout using Tailwind responsive classes, Interactive UI: Conditional CSS classes and toggle state on user click, State Lifting: Pass state and events between parent and child components, Immutable State: Update arrays without mutation using spread and filter, Data Visualization: Integrate Recharts, process API data, Deployment: Ship to Netlify/Surge/Vercel 15</p>
-  <span class="count">1 lesson written</span>
-</a><a class="card module-tile" href="../../learn/level-01/l1-28-javascript-dom-and-bom-deep-dive-react-bridge/index.html">
+  <p>Project Setup: Countries API integration, project structure and data fetching, UI Rendering: Display country list with basic component, Country Card: Show flags, conditional text, and error handling, React Styling: styling with CSS, Tailwind CSS and DaisyUI…</p>
+  <span class="count">1 tutorial available</span>
+</a><a class="card module-tile " href="../../learn/level-01/l1-28-javascript-dom-and-bom-deep-dive-react-bridge/index.html">
   <h3>JavaScript DOM &amp; BOM Deep Dive (React Bridge)</h3>
-  <p>DOM Basics: Document Object Model and its Tree Structure, DOM Selection: getElement Methods vs querySelector, DOM Manipulation: Changing Text, Attributes, and Styling, Event Handling: addEventListener and Common Event, Event Flow: Bubbling, Capturing, and Event Delegation, BOM Essentials: Window Object, Location, and History API, Timing in JavaScript: setTimeout, setInterval, and clearTimeout, Browser Storage: localStorage, sessionStorage — Read, Write, Delete, Async JavaScript: Promise, fetch API, and the React Connection, Vanilla JS vs React: Virtual DOM, Diffing, and the Component Mindset</p>
-  <span class="count">1 lesson written</span>
-</a><a class="card module-tile" href="../../learn/level-01/l1-29-simple-react-spa-with-bpl-dream/index.html">
+  <p>DOM Basics: Document Object Model and its Tree Structure, DOM Selection: getElement Methods vs querySelector, DOM Manipulation: Changing Text, Attributes, and Styling, Event Handling: addEventListener and Common Event…</p>
+  <span class="count">1 tutorial available</span>
+</a><a class="card module-tile " href="../../learn/level-01/l1-29-simple-react-spa-with-bpl-dream/index.html">
   <h3>Simple React SPA with BPL-DREAM</h3>
-  <p>BPL Dream project setup and include Tailwind and daisiUI, Create navbar and Create Fake Data for the players and load data, Set Layout and make React responsive, Building Player Card Component, State Management &amp; Toggle Functionality, Player Selection &amp; Validation System, Selected Players Component &amp; Remove Functionality, React Toastify Integration and deploy to Surge/Netlify/Vercel</p>
-  <span class="count">1 lesson written</span>
-</a><a class="card module-tile" href="../../learn/level-01/l1-30-assignment-5/index.html">
+  <p>BPL Dream project setup and include Tailwind and daisiUI, Create navbar and Create Fake Data for the players and load data, Set Layout and make React responsive, Building Player Card Component…</p>
+  <span class="count">1 tutorial available</span>
+</a><a class="card module-tile " href="../../learn/level-01/l1-30-assignment-5/index.html">
   <h3>Assignment 5</h3>
   <p>Practice / assignment specified in the source (no lesson-level breakdown provided).</p>
-  <span class="count">1 lesson written</span>
-</a><a class="card module-tile" href="../../learn/level-01/l1-31-next-js-foundation-and-routing/index.html">
+  <span class="count">1 tutorial available</span>
+</a><a class="card module-tile " href="../../learn/level-01/l1-31-next-js-foundation-and-routing/index.html">
   <h3>Next.js Foundation and Routing</h3>
-  <p>What you will learn from this Milestone (Animated), What is Next.js? Why choose Next.js?, Creating a Next.js App and Understanding Project Structure, Create pages, routing in Next.js, and navigation in Next.js, Dynamic Routing in Next.js and Dynamic Route Segments, Creating Multiple Layouts in Next.js, Styling in Next.js: Global CSS, Custom CSS, and Tailwind CSS, Image Optimization in Next.js, not-found, Font Optimization in Next.js, Catch All Segment with Dynamic Segment, Active links, and module summary</p>
-  <span class="count">1 lesson written</span>
-</a><a class="card module-tile" href="../../learn/level-01/l1-32-next-js-rendering-basics/index.html">
+  <p>What you will learn from this Milestone (Animated), What is Next.js? Why choose Next.js?, Creating a Next.js App and Understanding Project Structure, Create pages, routing in Next.js, and navigation in Next.js…</p>
+  <span class="count">1 tutorial available</span>
+</a><a class="card module-tile " href="../../learn/level-01/l1-32-next-js-rendering-basics/index.html">
   <h3>Next.js Rendering Basics</h3>
-  <p>What is Rendering? What is CSR and SSR?, About Hydration. CSR vs. SSR and Next Js Rendering Techniques, Client Components vs. Server Components, Loading Data Using Client Component, Loading Data Using Server Component and Client Component inside Server Component, Displaying All Foods, Food Details and Use of error.js and loading.js, Module Summary</p>
-  <span class="count">1 lesson written</span>
-</a><a class="card module-tile" href="../../learn/level-01/l1-33-advanced-data-fetching-and-ui-integration/index.html">
+  <p>What is Rendering? What is CSR and SSR?, About Hydration. CSR vs. SSR and Next Js Rendering Techniques, Client Components vs. Server Components, Loading Data Using Client Component…</p>
+  <span class="count">1 tutorial available</span>
+</a><a class="card module-tile " href="../../learn/level-01/l1-33-advanced-data-fetching-and-ui-integration/index.html">
   <h3>Advanced Data Fetching &amp; UI Integration</h3>
-  <p>Data Fetching Recap: How data flows in Next.js App Router, Server Components: Fetching real data directly in Server Components, Caching Behavior: Understanding default cache and when it breaks, Caching Behavior: Dynamic Fetching - Using cache: &#x27;no- store&#x27; for always-fresh data, ISR with Revalidate: Incremental Static Regeneration in real projects, generateStaticParams: Optimizing dynamic routes at build, Lazy loading with next/dynamic, Hero UI Setup: Installing and configuring Hero UI in Next.js (theme + config), Hero UI with Data: Rendering fetched data using Hero UI Cards and Lists, Module Summary: Recap, best practices, and practice</p>
-  <span class="count">1 lesson written</span>
-</a><a class="card module-tile" href="../../learn/level-01/l1-34-assignment-6/index.html">
+  <p>Data Fetching Recap: How data flows in Next.js App Router, Server Components: Fetching real data directly in Server Components, Caching Behavior: Understanding default cache and when it breaks, Caching Behavior: Dynamic Fetching - Using cache: &#x27;no- store&#x27; for always-fresh data…</p>
+  <span class="count">1 tutorial available</span>
+</a><a class="card module-tile " href="../../learn/level-01/l1-34-assignment-6/index.html">
   <h3>Assignment 6</h3>
   <p>Practice / assignment specified in the source (no lesson-level breakdown provided).</p>
-  <span class="count">1 lesson written</span>
-</a><a class="card module-tile" href="../../learn/level-01/l1-35-security-and-authentication-in-next-js-with-bett/index.html">
+  <span class="count">1 tutorial available</span>
+</a><a class="card module-tile " href="../../learn/level-01/l1-35-security-and-authentication-in-next-js-with-bett/index.html">
   <h3>Security &amp; Authentication in Next.js with BetterAuth</h3>
-  <p>What you will learn from this Milestone-1 (Animated), BetterAuth Intro: Architecture overview and project setup, MongoDB Adapter: Configure BetterAuth with MongoDB, Auth Client &amp; Register: Create auth client helper and registration page, Login Page: Build login UI and handle credentials sign-in, Session Management: Access session data in Components, Route Protection: Protect routes with proxy, Google OAuth: Config, credentials setup, and callback URLs, GitHub OAuth: GitHub sign-in and save social users to the database, Logout &amp; Deploy: Complete logout system and deployment, Module Summary: auth flow review, and practice task</p>
-  <span class="count">1 lesson written</span>
-</a><a class="card module-tile" href="../../learn/level-01/l1-36-authentication-advanced-profile-password-and-ema/index.html">
+  <p>What you will learn from this Milestone-1 (Animated), BetterAuth Intro: Architecture overview and project setup, MongoDB Adapter: Configure BetterAuth with MongoDB, Auth Client &amp; Register: Create auth client helper and registration page…</p>
+  <span class="count">1 tutorial available</span>
+</a><a class="card module-tile " href="../../learn/level-01/l1-36-authentication-advanced-profile-password-and-ema/index.html">
   <h3>Authentication Advanced — Profile, Password &amp; Email</h3>
-  <p>Module Intro: What we&#x27;ll build — profile update, password, Update Profile: Build profile update form and change, Profile Image Upload: Upload image to server, save URL to database, Change Password: Old password verify, new password set, Forgot Password Flow: Request reset link, generate token, send email, Reset Password Page: Validate token, set new password, Email Verification: Send verification email on registration and verify, Resend Verification Email: Handle resend logic and expiry, Error Handling: Global error messages, edge cases, Module Summary: Full auth system recap, best practices</p>
-  <span class="count">1 lesson written</span>
-</a><a class="card module-tile" href="../../learn/level-01/l1-37-next-js-project-with-authentication-part-1/index.html">
+  <p>Module Intro: What we&#x27;ll build — profile update, password, Update Profile: Build profile update form and change, Profile Image Upload: Upload image to server, save URL to database, Change Password: Old password verify, new password set…</p>
+  <span class="count">1 tutorial available</span>
+</a><a class="card module-tile " href="../../learn/level-01/l1-37-next-js-project-with-authentication-part-1/index.html">
   <h3>Next.js Project with Authentication—Part 1</h3>
-  <p>Project Overview, Setup &amp; Header Design, Font &amp; Date-FNS Integration and not-found page, Implement Marquee &amp; Design Navbar, Recap &amp; Design Grid Layout, Fetch Categories, Display Categories &amp; Design Sidebar, Load News Data &amp; Filter News Based on Category, Display News Card and handle loading, Show all News data and show dynamic news, Module Summary</p>
-  <span class="count">1 lesson written</span>
-</a><a class="card module-tile" href="../../learn/level-01/l1-38-next-js-project-with-authentication-part-2/index.html">
+  <p>Project Overview, Setup &amp; Header Design, Font &amp; Date-FNS Integration and not-found page, Implement Marquee &amp; Design Navbar, Recap &amp; Design Grid Layout, Fetch Categories…</p>
+  <span class="count">1 tutorial available</span>
+</a><a class="card module-tile " href="../../learn/level-01/l1-38-next-js-project-with-authentication-part-2/index.html">
   <h3>Next.js Project with Authentication — Part 2</h3>
-  <p>Integrating BetterAuth in Project, Server Actions — Create Post (Form + Validation ), User-Specific Data (My Posts), Delete Post (Server Action + Optimistic UI), Comments System (Form + Action + UI), Loading Skeleton UX (loading.js + Hero UI Skeleton), Error Handling &amp; Empty State Managing (error.js + Custom, Deployment (Vercel + Environment Variable Setup in Dashboard), Final Testing Checklist + Common Bugs</p>
-  <span class="count">1 lesson written</span>
-</a><a class="card module-tile" href="../../learn/level-01/l1-39-assignment-7/index.html">
+  <p>Integrating BetterAuth in Project, Server Actions — Create Post (Form + Validation ), User-Specific Data (My Posts), Delete Post (Server Action + Optimistic UI)…</p>
+  <span class="count">1 tutorial available</span>
+</a><a class="card module-tile " href="../../learn/level-01/l1-39-assignment-7/index.html">
   <h3>Assignment 7</h3>
   <p>Practice / assignment specified in the source (no lesson-level breakdown provided).</p>
-  <span class="count">1 lesson written</span>
-</a><a class="card module-tile" href="../../learn/level-01/l1-40-node-js-and-express-from-setup-to-first-api/index.html">
+  <span class="count">1 tutorial available</span>
+</a><a class="card module-tile " href="../../learn/level-01/l1-40-node-js-and-express-from-setup-to-first-api/index.html">
   <h3>Node.js &amp; Express — From Setup to First API</h3>
-  <p>What you will learn from this Milestone-1 (Animated), Milestone Roadmap: Introduction to Backend Development, Architecture Planning: Client-Server Architecture, Node.js Internal: How it works?, Introduction to Express.js: Why do we need it?, Database Fundamentals: SQL vs NoSQL &amp; MongoDB, Environment Setup: Installing Node, Express, and Nodemon, Creating your first API: GET method &amp; fetch data, Creating a POST API: Sending Client Data to Server with CORS Setup, Recap: Displaying Server Data on the Client Side, Module Summary</p>
-  <span class="count">2 lessons written</span>
-</a><a class="card module-tile" href="../../learn/level-01/l1-41-rest-api-and-crud-operations-with-express-and-mo/index.html">
+  <p>What you will learn from this Milestone-1 (Animated), Milestone Roadmap: Introduction to Backend Development, Architecture Planning: Client-Server Architecture, Node.js Internal: How it works?…</p>
+  <span class="count">2 tutorials available</span>
+</a><a class="card module-tile " href="../../learn/level-01/l1-41-rest-api-and-crud-operations-with-express-and-mo/index.html">
   <h3>REST API &amp; CRUD Operations with Express and MongoDB</h3>
-  <p>Database Setup: Creating a MongoDB Atlas Account, Connection Logic: Async/Await &amp; Try-Catch Block, Create Operation: Create client-side and set POST operation, Recap POST method and know about insertOne, Display user Data in Client side UI, Delete user from UI and Database &amp; explore ObjectId, Read Operation: Loading Single Item by ID, Update Operation: PUT vs PATCH &amp; Updating Data, Update data and display on UI, (Optional) Running MongoDB Locally (No Internet)</p>
-  <span class="count">1 lesson written</span>
-</a><a class="card module-tile" href="../../learn/level-01/l1-42-deep-dive-into-mongodb-operators-and-queries/index.html">
+  <p>Database Setup: Creating a MongoDB Atlas Account, Connection Logic: Async/Await &amp; Try-Catch Block, Create Operation: Create client-side and set POST operation, Recap POST method and know about insertOne…</p>
+  <span class="count">1 tutorial available</span>
+</a><a class="card module-tile " href="../../learn/level-01/l1-42-deep-dive-into-mongodb-operators-and-queries/index.html">
   <h3>Deep Dive into MongoDB Operators and Queries</h3>
-  <p>Install and setup NoSQL Booster and know more about MongoDB methods, Comparison Operators: $eq, $ne, $gt, $gte, $lt, $lte, Logical Operators: $and, $or, $not, $nor, Element &amp; Type Operators: $exists, $type, Array Query Operators: $in, $nin, $all, $size, $elemMatch, Update Operators: $set, $inc, $push, $pull, $addToSet, Projection &amp; Sorting: Include/Exclude using projection, sort(), limit(), skip(), Aggregation Pipeline: $match, $group, $project, Advanced Aggregation Operators: $lookup, $unwind,, Module Summary</p>
-  <span class="count">1 lesson written</span>
-</a><a class="card module-tile" href="../../learn/level-01/l1-43-project-setup-and-destination-crud/index.html">
+  <p>Install and setup NoSQL Booster and know more about MongoDB methods, Comparison Operators: $eq, $ne, $gt, $gte, $lt, $lte, Logical Operators: $and, $or, $not, $nor, Element &amp; Type Operators: $exists, $type…</p>
+  <span class="count">1 tutorial available</span>
+</a><a class="card module-tile " href="../../learn/level-01/l1-43-project-setup-and-destination-crud/index.html">
   <h3>Project Setup &amp; Destination CRUD</h3>
-  <p>Project Initialization &amp; Dependencies Setup, UI Library Integration (Hero UI) and Navbar &amp; Footer, Database Connection &amp; Server Design, Home Page Design &amp; explore Swiper.js, Feature: Add Destination Form and create Post API, Feature: GET All Destinations &amp; Display, Feature: Destination Details Page, Feature: Edit Destination, Feature: Delete Destination, Module Summary</p>
-  <span class="count">1 lesson written</span>
-</a><a class="card module-tile" href="../../learn/level-01/l1-44-booking-system-and-authentication/index.html">
+  <p>Project Initialization &amp; Dependencies Setup, UI Library Integration (Hero UI) and Navbar &amp; Footer, Database Connection &amp; Server Design, Home Page Design &amp; explore Swiper.js…</p>
+  <span class="count">1 tutorial available</span>
+</a><a class="card module-tile " href="../../learn/level-01/l1-44-booking-system-and-authentication/index.html">
   <h3>Booking System &amp; Authentication</h3>
-  <p>BetterAuth Implementation initialization, MongoDB Adapter Integration, Sign Up Form and Functionalities Implementation, Sign In Implementation with Google Login, Booking System Architecture Overview, Feature: Create Booking Form and Send POST API, Feature: Store Booking in Database, Feature: My Bookings Page &amp; Cancel Booking, Module Recap</p>
-  <span class="count">1 lesson written</span>
-</a><a class="card module-tile" href="../../learn/level-01/l1-45-jwt-security-and-deployment/index.html">
+  <p>BetterAuth Implementation initialization, MongoDB Adapter Integration, Sign Up Form and Functionalities Implementation, Sign In Implementation with Google Login…</p>
+  <span class="count">1 tutorial available</span>
+</a><a class="card module-tile " href="../../learn/level-01/l1-45-jwt-security-and-deployment/index.html">
   <h3>JWT, Security &amp; Deployment</h3>
-  <p>JWT Structure &amp; Token Generation, Token Storage with HTTPOnly Cookies, Session &amp; Logout Management, Protected API Routes, User Profile Page &amp; Update Profile, Feature: Change Password, Error Handling &amp; Polish, Backend Deployment Setup and Deploy, Frontend Deployment to Vercel &amp; Final Review</p>
-  <span class="count">2 lessons written</span>
-</a><a class="card module-tile" href="../../learn/level-01/l1-46-assignment-8/index.html">
+  <p>JWT Structure &amp; Token Generation, Token Storage with HTTPOnly Cookies, Session &amp; Logout Management, Protected API Routes…</p>
+  <span class="count">2 tutorials available</span>
+</a><a class="card module-tile " href="../../learn/level-01/l1-46-assignment-8/index.html">
   <h3>Assignment 8</h3>
   <p>Practice / assignment specified in the source (no lesson-level breakdown provided).</p>
-  <span class="count">1 lesson written</span>
-</a><a class="card module-tile" href="../../learn/level-01/l1-47-requirement-analysis-and-planning/index.html">
+  <span class="count">1 tutorial available</span>
+</a><a class="card module-tile " href="../../learn/level-01/l1-47-requirement-analysis-and-planning/index.html">
   <h3>Requirement Analysis &amp; Planning</h3>
-  <p>What is a PRD and Why It Matters in AI-First Development, Requirement Analysis: Define Problem, Users, and Goals, Writing User Stories and Feature List with AI, Prompt Engineering for Project Planning, Prototyping: Wireframe and UI Planning with AI Tools, Tech Stack Overview: Next.js, Hero UI, Node, Express, MongoDB, TypeScript, Database Planning and Entity Relationship Design, Project Roadmap and Milestone Planning</p>
-  <span class="count">1 lesson written</span>
-</a><a class="card module-tile" href="../../learn/level-01/l1-48-project-setup-and-architecture/index.html">
+  <p>What is a PRD and Why It Matters in AI-First Development, Requirement Analysis: Define Problem, Users, and Goals, Writing User Stories and Feature List with AI, Prompt Engineering for Project Planning…</p>
+  <span class="count">1 tutorial available</span>
+</a><a class="card module-tile " href="../../learn/level-01/l1-48-project-setup-and-architecture/index.html">
   <h3>Project Setup &amp; Architecture</h3>
-  <p>Project Initialization: Next.js + Node + Express Setup, TypeScript Configuration Across Frontend and Backend, Hero UI Integration and Theme Customization, MongoDB Atlas Connection and Database Design, Folder Structure, Naming Conventions, and Code Organization, Environment Variables Setup and .gitignore Configuration, Implement Navbar, Footer and Homepage Hero Section, Homepage Static Sections: Features, Testimonials, and CTA, Connect Frontend and Backend and API Base URL</p>
-  <span class="count">1 lesson written</span>
-</a><a class="card module-tile" href="../../learn/level-01/l1-49-core-implementation/index.html">
+  <p>Project Initialization: Next.js + Node + Express Setup, TypeScript Configuration Across Frontend and Backend, Hero UI Integration and Theme Customization, MongoDB Atlas Connection and Database Design…</p>
+  <span class="count">1 tutorial available</span>
+</a><a class="card module-tile " href="../../learn/level-01/l1-49-core-implementation/index.html">
   <h3>Core Implementation</h3>
-  <p>Building REST API Structure with Node &amp; Express, CRUD API Routes: Create, Read, Update, Delete, Frontend Pages and Layout with Next.js + Hero UI, Authentication System Setup: JWT, Login and Register API, Implement Login and Register UI and Connect with API, Role-Based Access Control (RBAC): Admin, User, and Moderator, Protecting Frontend Routes Based on User Roles, Dashboard Pages for Different Roles, Connecting All Frontend Pages with Backend APIs</p>
-  <span class="count">1 lesson written</span>
-</a><a class="card module-tile" href="../../learn/level-01/l1-50-stripe-payment-and-webhooks-integration/index.html">
+  <p>Building REST API Structure with Node &amp; Express, CRUD API Routes: Create, Read, Update, Delete, Frontend Pages and Layout with Next.js + Hero UI, Authentication System Setup: JWT, Login and Register API…</p>
+  <span class="count">1 tutorial available</span>
+</a><a class="card module-tile " href="../../learn/level-01/l1-50-stripe-payment-and-webhooks-integration/index.html">
   <h3>Stripe Payment &amp; Webhooks Integration</h3>
-  <p>Introduction to Stripe: Payment Flow and Architecture Overview, Stripe Setup: API Keys, Products, and Pricing Configuration, Implementing Stripe Checkout Session in Next.js, Payment Success and Cancel Page Handling, Introduction to Stripe Webhooks: Events and Listeners, Setting Up Webhook Endpoint in Express Backend, Handling Webhook Events: Payment Success, Failure, and, Securing Webhook Endpoint with Stripe Signature Verification, Storing Payment Records in MongoDB, Testing Payment Flow End-to-End in Stripe Test Mode</p>
-  <span class="count">1 lesson written</span>
-</a><a class="card module-tile" href="../../learn/level-01/l1-51-review-ui-ux-check-and-deployment/index.html">
+  <p>Introduction to Stripe: Payment Flow and Architecture Overview, Stripe Setup: API Keys, Products, and Pricing Configuration, Implementing Stripe Checkout Session in Next.js, Payment Success and Cancel Page Handling…</p>
+  <span class="count">1 tutorial available</span>
+</a><a class="card module-tile " href="../../learn/level-01/l1-51-review-ui-ux-check-and-deployment/index.html">
   <h3>Review, UI/UX check and Deployment</h3>
-  <p>End-to-End Feature Checking and UI/UX Review, Bug Fixing: Common Issues and How to Resolve Them, Code Review and Cleanup: Removing Unused Code and Comments, Performance Optimization: API Response and Frontend, Backend Deployment: Setting Up and Deploying to Railway/Render, Environment Variable Configuration in Production Backend, Frontend Deployment to Vercel with Environment Variables, Connect Production Frontend with Production Backend, Final End-to-End Testing on Live Environment, Assignment: Full Stack Project-1 Submission and Guidelines</p>
-  <span class="count">2 lessons written</span>
-</a><a class="card module-tile" href="../../learn/level-01/l1-52-assignment-9/index.html">
+  <p>End-to-End Feature Checking and UI/UX Review, Bug Fixing: Common Issues and How to Resolve Them, Code Review and Cleanup: Removing Unused Code and Comments, Performance Optimization: API Response and Frontend…</p>
+  <span class="count">2 tutorials available</span>
+</a><a class="card module-tile " href="../../learn/level-01/l1-52-assignment-9/index.html">
   <h3>Assignment 9</h3>
   <p>Practice / assignment specified in the source (no lesson-level breakdown provided).</p>
-  <span class="count">1 lesson written</span>
-</a><a class="card module-tile" href="../../learn/level-01/l1-53-requirement-analysis-prompt-and-prototyping/index.html">
+  <span class="count">1 tutorial available</span>
+</a></div>
+<details class="level-roadmap"><summary>Full roadmap · 15 future modules</summary><p class="muted">These future modules are reserved for later approved releases and kept outside the active learning path until tutorials are ready.</p><div class="grid cols-2"><a class="card module-tile roadmap-tile" href="../../learn/level-01/l1-53-requirement-analysis-prompt-and-prototyping/index.html">
   <h3>Requirement Analysis, Prompt &amp; Prototyping</h3>
-  <p>Project Brief and Problem Statement Definition, Requirement Analysis: Users, Features, and Scope, Writing User Stories and Acceptance Criteria with AI, Prompt Engineering for Full Stack Project Planning, UI/UX Prototyping and Wireframing with AI Tools, Tech Stack Overview: Next.js, Node, Express, MongoDB, Mongoose, TypeScript, ShadCN, Project Roadmap, Milestone Planning and Folder Structure, API Endpoint Design and Module Breakdown Planning</p>
-  <span class="count">Coming soon</span>
-</a><a class="card module-tile" href="../../learn/level-01/l1-54-project-setup-modular-architecture/index.html">
+  <p>Project Brief and Problem Statement Definition, Requirement Analysis: Users, Features, and Scope, Writing User Stories and Acceptance Criteria with AI, Prompt Engineering for Full Stack Project Planning…</p>
+  <span class="count">Roadmap</span>
+</a><a class="card module-tile roadmap-tile" href="../../learn/level-01/l1-54-project-setup-modular-architecture/index.html">
   <h3>Project Setup, Modular Architecture</h3>
-  <p>Project Initialization: Next.js + Node + Express Setup, TypeScript Configuration Across Frontend and Backend, ShadCN UI Integration and Theme Setup, Mongoose ODM Setup and MongoDB Atlas Connection, Understanding Modular Pattern: Why and How, Folder Structure: Models, Controllers, Routes, Services, Feature-Based Module Organization: Each Feature as a Standalone Module, Shared Modules: Middleware, Utils, Config and Common Services, Environment Variables and Configuration Management, Connect Frontend and Backend with Axios and API Base URL</p>
-  <span class="count">Coming soon</span>
-</a><a class="card module-tile" href="../../learn/level-01/l1-55-core-implementation-backend-with-modular-archite/index.html">
+  <p>Project Initialization: Next.js + Node + Express Setup, TypeScript Configuration Across Frontend and Backend, ShadCN UI Integration and Theme Setup, Mongoose ODM Setup and MongoDB Atlas Connection…</p>
+  <span class="count">Roadmap</span>
+</a><a class="card module-tile roadmap-tile" href="../../learn/level-01/l1-55-core-implementation-backend-with-modular-archite/index.html">
   <h3>Core Implementation — Backend with Modular Architecture</h3>
-  <p>Building Modular REST API: Each Feature as an Independent, Mongoose Models: Writing Schemas Inside Feature Modules, Controllers and Service Layer Inside Each Module, Modular Route Registration: Plugging Modules into Express App, Authentication Module: Register, Login and JWT Middleware, Role-Based Access Control (RBAC): Admin, User, Moderator, Protecting API Routes Based on User Roles, Error Handling Middleware and Consistent API Response Structure, API Testing and Module-Level Validation</p>
-  <span class="count">Coming soon</span>
-</a><a class="card module-tile" href="../../learn/level-01/l1-56-core-implementation-frontend/index.html">
+  <p>Building Modular REST API: Each Feature as an Independent, Mongoose Models: Writing Schemas Inside Feature Modules, Controllers and Service Layer Inside Each Module, Modular Route Registration: Plugging Modules into Express App…</p>
+  <span class="count">Roadmap</span>
+</a><a class="card module-tile roadmap-tile" href="../../learn/level-01/l1-56-core-implementation-frontend/index.html">
   <h3>Core Implementation — Frontend</h3>
-  <p>Frontend Pages and Layout with Next.js + ShadCN, Feature-Based Frontend Module Organization, Authentication UI: Login, Register and Protected Routes, Role-Based Dashboard Pages for Different Users, Data Fetching and State Management in Next.js, Reusable Component Design with ShadCN, Form Handling and Validation on Frontend, Connecting All Frontend Pages with Backend APIs, Responsive UI and Mobile-First Design</p>
-  <span class="count">Coming soon</span>
-</a><a class="card module-tile" href="../../learn/level-01/l1-57-sslcommerz-payment-integration/index.html">
+  <p>Frontend Pages and Layout with Next.js + ShadCN, Feature-Based Frontend Module Organization, Authentication UI: Login, Register and Protected Routes, Role-Based Dashboard Pages for Different Users…</p>
+  <span class="count">Roadmap</span>
+</a><a class="card module-tile roadmap-tile" href="../../learn/level-01/l1-57-sslcommerz-payment-integration/index.html">
   <h3>SSLCommerz Payment Integration</h3>
-  <p>Introduction to SSLCommerz and Local Payment Flow Overview, SSLCommerz Merchant Account Setup and API Credentials, Payment Initiation: Building the Checkout Flow in Next.js, SSLCommerz Backend Integration as a Standalone Payment, Handling Success, Failure, and Cancel Payment Responses, Validating Payment Response from SSLCommerz, Storing Transaction Records in MongoDB with Mongoose, Testing Payment Flow in SSLCommerz Sandbox Environment</p>
-  <span class="count">Coming soon</span>
-</a><a class="card module-tile" href="../../learn/level-01/l1-58-ai-integration-code-review-and-refactoring/index.html">
+  <p>Introduction to SSLCommerz and Local Payment Flow Overview, SSLCommerz Merchant Account Setup and API Credentials, Payment Initiation: Building the Checkout Flow in Next.js, SSLCommerz Backend Integration as a Standalone Payment…</p>
+  <span class="count">Roadmap</span>
+</a><a class="card module-tile roadmap-tile" href="../../learn/level-01/l1-58-ai-integration-code-review-and-refactoring/index.html">
   <h3>AI Integration, Code Review &amp; Refactoring</h3>
-  <p>Introduction to AI Integration in Full Stack Projects, Ollama Setup: Running Local AI Models, Integrating Ollama API into Express Backend as an AI Module, Building an AI-Powered Feature in the Project, Code Review with AI: Tools, Workflow and Best Practices, Identifying Code Smells and Technical Debt with AI, Refactoring: Splitting Bloated Files into Clean Modules, Ensuring Module Independence: Avoid Tight Coupling, Security Review and Performance Optimization, Final Code Cleanup and Documentation</p>
-  <span class="count">Coming soon</span>
-</a><a class="card module-tile" href="../../learn/level-01/l1-59-finalization-checking-and-deployment/index.html">
+  <p>Introduction to AI Integration in Full Stack Projects, Ollama Setup: Running Local AI Models, Integrating Ollama API into Express Backend as an AI Module, Building an AI-Powered Feature in the Project…</p>
+  <span class="count">Roadmap</span>
+</a><a class="card module-tile roadmap-tile" href="../../learn/level-01/l1-59-finalization-checking-and-deployment/index.html">
   <h3>Finalization, Checking and Deployment</h3>
-  <p>End-to-End Feature Checking and UI/UX Review, Bug Fixing: Common Issues and How to Resolve Them, Backend Deployment: Railway/Render Setup and Configuration, Environment Variable Configuration in Production, Frontend Deployment to Vercel with Environment Variables, Connect Production Frontend with Production Backend, Final End-to-End Testing on Live Environment, Assignment: Full Stack Project-2 Submission and Guidelines</p>
-  <span class="count">Coming soon</span>
-</a><a class="card module-tile" href="../../learn/level-01/l1-60-assignment-10/index.html">
+  <p>End-to-End Feature Checking and UI/UX Review, Bug Fixing: Common Issues and How to Resolve Them, Backend Deployment: Railway/Render Setup and Configuration, Environment Variable Configuration in Production…</p>
+  <span class="count">Roadmap</span>
+</a><a class="card module-tile roadmap-tile" href="../../learn/level-01/l1-60-assignment-10/index.html">
   <h3>Assignment 10</h3>
   <p>Practice / assignment specified in the source (no lesson-level breakdown provided).</p>
-  <span class="count">Coming soon</span>
-</a><a class="card module-tile" href="../../learn/level-01/l1-61-ai-assisted-coding-foundations-and-mindset/index.html">
+  <span class="count">Roadmap</span>
+</a><a class="card module-tile roadmap-tile" href="../../learn/level-01/l1-61-ai-assisted-coding-foundations-and-mindset/index.html">
   <h3>AI Assisted Coding Foundations &amp; Mindset</h3>
-  <p>Vibe Coding Origin, Mindset &amp; Vision, Modern coding workflow: PRD → Spec → Prompt → Review, AI tool landscape 2026, Prompt to context engineering, Prompt patterns for coding, AI-generated PRD, Cursor, Claude Code CLI and GitHub setup, AI-integrated version control, Responsible vibe coding</p>
-  <span class="count">Coming soon</span>
-</a><a class="card module-tile" href="../../learn/level-01/l1-62-design-to-code-figma-mcp-lovable-and-ai-builders/index.html">
+  <p>Vibe Coding Origin, Mindset &amp; Vision, Modern coding workflow: PRD → Spec → Prompt → Review, AI tool landscape 2026, Prompt to context engineering…</p>
+  <span class="count">Roadmap</span>
+</a><a class="card module-tile roadmap-tile" href="../../learn/level-01/l1-62-design-to-code-figma-mcp-lovable-and-ai-builders/index.html">
   <h3>Design-to-Code — Figma MCP, Lovable &amp; AI Builders</h3>
-  <p>Software requirements and user stories, Figma MCP design-to-code, Homepage from Figma MCP, Multi-page app with Figma Make, Full project from Figma specs with Lovable, Bolt.new, V0 by Vercel, Troubleshooting wrong AI outputs, Design → AI → production workflow</p>
-  <span class="count">Coming soon</span>
-</a><a class="card module-tile" href="../../learn/level-01/l1-63-cursor-ai-fullstack-agentic-development-mastery/index.html">
+  <p>Software requirements and user stories, Figma MCP design-to-code, Homepage from Figma MCP, Multi-page app with Figma Make…</p>
+  <span class="count">Roadmap</span>
+</a><a class="card module-tile roadmap-tile" href="../../learn/level-01/l1-63-cursor-ai-fullstack-agentic-development-mastery/index.html">
   <h3>Cursor AI — Fullstack Agentic Development Mastery</h3>
-  <p>Cursor rules, codebase indexing and agent mode, Architecture docs with AI, Frontend generation and styling, Context pinning and @ symbols, Backend APIs and database schemas, GitHub, Supabase and Browser MCP, Browser visual bug fixing, Parallel agents and Git worktrees, Vercel deployment and end-to-end tests</p>
-  <span class="count">Coming soon</span>
-</a><a class="card module-tile" href="../../learn/level-01/l1-64-terminal-based-agentic-development-with-claude-c/index.html">
+  <p>Cursor rules, codebase indexing and agent mode, Architecture docs with AI, Frontend generation and styling, Context pinning and @ symbols…</p>
+  <span class="count">Roadmap</span>
+</a><a class="card module-tile roadmap-tile" href="../../learn/level-01/l1-64-terminal-based-agentic-development-with-claude-c/index.html">
   <h3>Terminal-Based Agentic Development with Claude Code</h3>
-  <p>Claude Code overview, Installation and first run, CLAUDE.md project guidance, Slash commands and skills, Hooks and quality gates, Subagents and agent teams, MCP integration, Plan/Execute/Review, GitHub Copilot vs Claude Code, SaaS feature end-to-end</p>
-  <span class="count">Coming soon</span>
-</a><a class="card module-tile" href="../../learn/level-01/l1-65-code-quality-testing-review-refactoring-and-secu/index.html">
+  <p>Claude Code overview, Installation and first run, CLAUDE.md project guidance, Slash commands and skills…</p>
+  <span class="count">Roadmap</span>
+</a><a class="card module-tile roadmap-tile" href="../../learn/level-01/l1-65-code-quality-testing-review-refactoring-and-secu/index.html">
   <h3>Code Quality — Testing, Review, Refactoring &amp; Security</h3>
-  <p>Why AI code quality matters, CodeRabbit pull-request review, Automated testing with AI, MVC/clean architecture refactoring, Security vulnerability review, Complex multi-file refactoring, Parallel AI agents, Ethical guardrails, Professional workflow</p>
-  <span class="count">Coming soon</span>
-</a><a class="card module-tile" href="../../learn/level-01/l1-66-ai-ecosystem-deployment-and-final-project-showca/index.html">
+  <p>Why AI code quality matters, CodeRabbit pull-request review, Automated testing with AI, MVC/clean architecture refactoring…</p>
+  <span class="count">Roadmap</span>
+</a><a class="card module-tile roadmap-tile" href="../../learn/level-01/l1-66-ai-ecosystem-deployment-and-final-project-showca/index.html">
   <h3>AI Ecosystem, Deployment &amp; Final Project Showcase</h3>
-  <p>OpenCode, Cursor, Antigravity and Z.ai, Ollama local models, Lovable auth, analytics and GitHub sync, Firebase Studio and Google AI Studio, Replit AI Agent, Windsurf IDE, Vercel, Railway and Netlify, Custom domain and SSL, UAT, Real-world app with three AI tools, Project video presentation</p>
-  <span class="count">Coming soon</span>
-</a><a class="card module-tile" href="../../learn/level-01/l1-67-assignment-11/index.html">
+  <p>OpenCode, Cursor, Antigravity and Z.ai, Ollama local models, Lovable auth, analytics and GitHub sync, Firebase Studio and Google AI Studio…</p>
+  <span class="count">Roadmap</span>
+</a><a class="card module-tile roadmap-tile" href="../../learn/level-01/l1-67-assignment-11/index.html">
   <h3>Assignment 11</h3>
   <p>Practice / assignment specified in the source (no lesson-level breakdown provided).</p>
-  <span class="count">Coming soon</span>
-</a></div>
+  <span class="count">Roadmap</span>
+</a></div></details>
 <nav class="pager"><a class="next" href="../../learn/level-02/index.html"><small>Next level →</small>Level 02 — Level 02</a></nav>
 
   </div></main>
   
 </div>
-<footer class="site"><b>Saiful The Techie</b> · Software &amp; AI Engineering Learning Hub v0.5.0 · Compiled &amp; Expanded by Saiful Islam · <a href="https://saifulshuvo.com">saifulshuvo.com</a> · Updated October 2026<br>
+<footer class="site"><b>Saiful The Techie</b> · Software &amp; AI Engineering Learning Hub v0.5.2 · Compiled &amp; Expanded by Saiful Islam · <a href="https://saifulshuvo.com">saifulshuvo.com</a> · Updated October 2026<br>
 Original learning content: <a href="../../license.html">CC BY-NC-SA 4.0</a> · Code: <a href="../../license.html#code-mit-license">MIT</a> · Free external resources belong to their respective owners.</footer>
 <script src="../../search-index.js"></script>
 <script src="../../assets/app.js"></script>

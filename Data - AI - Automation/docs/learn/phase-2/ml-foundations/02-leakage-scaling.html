@@ -6,7 +6,7 @@
 <title>Data Leakage &amp; Scaling: Why Models Look Great, Then Fail — Data, AI &amp; Automation Path</title>
 <meta name="description" content="Recognise the two main kinds of data leakage — target leakage and train/test contamination — and prevent them with pipelines; then learn when feature scaling matters and how to do it safely.">
 <meta property="og:type" content="article">
-<meta property="og:site_name" content="Data, AI &amp; Automation Path">
+<meta property="og:site_name" content="Saiful The Techie">
 <meta property="og:title" content="Data Leakage &amp; Scaling: Why Models Look Great, Then Fail">
 <meta property="og:description" content="Recognise the two main kinds of data leakage — target leakage and train/test contamination — and prevent them with pipelines; then learn when feature scaling matters and how to do it safely.">
 <meta property="og:locale" content="en_US">
@@ -19,13 +19,13 @@ var n=null;try{n=localStorage.getItem('daa-nav')}catch(e){}
 if(n==='open'&&window.matchMedia&&matchMedia('(min-width: 961px)').matches)document.documentElement.setAttribute('data-nav','open');
 document.documentElement.classList.add('no-anim')})();</script>
 <link rel="stylesheet" href="../../../assets/style.css">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233f7d6a'/%3E%3Ctext x='16' y='21' font-family='sans-serif' font-size='13' font-weight='700' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
+
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="topbar">
   <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Open curriculum menu" title="Curriculum menu (press M)" aria-controls="sidebar" aria-expanded="false"><span class="ico-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span class="ico-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></button>
-  <a class="brand" href="../../../index.html"><span class="brand-badge">AI</span><span class="brand-text"><span class="brand-name">Data, AI &amp; Automation Path</span><span class="brand-version">v0.8</span></span></a>
+  <a class="brand" href="../../../index.html"><span class="brand-text"><span class="brand-name">Saiful The Techie</span><span class="brand-version">Data, AI &amp; Automation Path · v0.9.1</span></span></a>
   <nav class="top-links" aria-label="Main">
     <a href="../../../index.html" class="">Home</a><a href="../../../curriculum.html" class="">Curriculum</a><a href="../../../practice-files.html" class="">Practice files</a><a href="../../../glossary.html" class="">Glossary</a><a href="../../../how-to-learn.html" class="">How to learn</a><a href="../../../about.html" class="">About</a>
   </nav>
@@ -41,7 +41,7 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="layout wide">
   <nav class="sidebar" id="sidebar" aria-label="Curriculum">
     <div class="side-title">Curriculum</div>
-    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="77"><i></i></div><span class="bar-label" data-progress-label></span></div>
+    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="85"><i></i></div><span class="bar-label" data-progress-label></span></div>
 <div class="nav-phase"><a href="../../../learn/phase-0/index.html"><span class="nav-num">0</span>Foundations</a>
 </div>
 <div class="nav-phase"><a href="../../../learn/phase-1/index.html"><span class="nav-num">1</span>Analytics &amp; BI</a>
@@ -98,194 +98,229 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="files-box"><div class="files-head"><b>Practice files for this page</b><a href="../../../practice-files.html">All practice files →</a></div><ul><li><a href="../../../downloads/phase-2/data-science-scripts.zip" download>data-science-scripts.zip</a><span class="f-desc">All 21 Phase 2 lesson scripts (NumPy to research thinking), shared chart style, data folder and solutions · 230 KB</span></li><li><a href="../../../downloads/phase-2/orders_2025.csv" download>orders_2025.csv</a><span class="f-desc">4,246 clean orders for 2025 (synthetic, fixed seed): region, segment, channel, product, price, discount, status, delivery days, revenue · 472 KB</span></li><li><a href="../../../downloads/phase-2/customers_2025.csv" download>customers_2025.csv</a><span class="f-desc">63 customers: segment, region, sign-up date, credit terms · 3 KB</span></li></ul></div>
 <h2 id="what-is-it">What is it?</h2>
 <ul>
-<li><strong>Data leakage</strong> = the model gets information during training that it won't have when it's used for real. Scores look excellent in testing, then collapse in production.</li>
-<li><strong>Feature scaling</strong> = putting numeric features on comparable scales (e.g. mean 0, standard deviation 1), so that methods based on distances or penalties treat them fairly.</li>
+<li><strong>Data leakage</strong> = the model gets information during
+training that it won’t have when it’s used for real. Scores look
+excellent in testing, then collapse in production.</li>
+<li><strong>Feature scaling</strong> = putting numeric features on
+comparable scales (e.g. mean 0, standard deviation 1), so that methods
+based on distances or penalties treat them fairly.</li>
 </ul>
 <table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Leakage type</th>
 <th>What happens</th>
 <th>Example</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td><strong>Target leakage</strong></td>
-<td>A feature is only known <em>after</em> the outcome, or is a consequence of it</td>
+<td>A feature is only known <em>after</em> the outcome, or is a
+consequence of it</td>
 <td>Delivery days for predicting cancellation</td>
 </tr>
-<tr>
+<tr class="even">
 <td><strong>Train/test contamination</strong></td>
 <td>Information from the test set influences training</td>
 <td>Statistics computed on all data before the split</td>
 </tr>
 </tbody>
 </table>
-<div class="admonition job">
-<p class="admonition-title">Why it matters at work</p>
-<p>Leakage is the most common reason ML projects fail after a great demo: "98% accuracy" turns into a coin flip in production. Spotting a too-good-to-be-true result, and explaining why, is a skill interviewers probe directly.</p>
+<div class="admonition job" data-markdown="1">
+<p class="admonition-title">
+Why it matters at work
+</p>
+<p>Leakage is the most common reason ML projects fail after a great
+demo: “98% accuracy” turns into a coin flip in production. Spotting a
+too-good-to-be-true result, and explaining why, is a skill interviewers
+probe directly.</p>
 </div>
-<p>The script is <code>18_ml_leakage_scaling.py</code>. The honest model from the previous lesson is the reference:</p>
-<div class="codehilite"><pre><span></span><code>honest model (order-time features only): ROC AUC 0.652
-</code></pre></div>
-
-<h2 id="leak-1-a-column-filled-in-after-the-outcome">Leak 1: a column filled in after the outcome</h2>
-<p>Delivered orders have <code>delivery_days</code>; cancelled orders never do. Someone adds "is delivery known?" as a feature:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">df</span><span class="p">[</span><span class="s2">"delivery_known"</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">"delivery_days"</span><span class="p">]</span><span class="o">.</span><span class="n">notna</span><span class="p">()</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">"delivery_known"</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s2">"cancelled"</span><span class="p">]))</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>cancelled          0    1
+<p>The script is <code>18_ml_leakage_scaling.py</code>. The honest model
+from the previous lesson is the reference:</p>
+<pre class="text"><code>honest model (order-time features only): ROC AUC 0.652</code></pre>
+<h2 id="leak-1-a-column-filled-in-after-the-outcome">Leak 1: a column
+filled in after the outcome</h2>
+<p>Delivered orders have <code>delivery_days</code>; cancelled orders
+never do. Someone adds “is delivery known?” as a feature:</p>
+<pre class="python"><code>df[&quot;delivery_known&quot;] = df[&quot;delivery_days&quot;].notna().astype(int)
+print(pd.crosstab(df[&quot;delivery_known&quot;], df[&quot;cancelled&quot;]))</code></pre>
+<pre class="text"><code>cancelled          0    1
 delivery_known
 0                 46  283
-1               3872    0
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>with delivery_known: ROC AUC 1.000  &lt;- too good to be true
-</code></pre></div>
-
-<p>A <strong>perfect</strong> score. The feature <em>is</em> the answer: every order with a known delivery was not cancelled. But when a new order is placed, nobody knows its delivery days yet, so the model is useless in practice.</p>
-<p><strong>Defence:</strong> for every feature, ask <strong>"would I know this at the moment of prediction?"</strong> Keep a written list of allowed features (that's what <code>ORDER_TIME_FEATURES</code> in <code>ml_data.py</code> is), and treat any big jump in score as a bug until proven otherwise.</p>
-<h2 id="leak-2-an-aggregate-that-includes-the-test-data">Leak 2: an aggregate that includes the test data</h2>
-<p>"Customers who cancelled before will cancel again" is a reasonable idea. But compute the customer's cancellation rate on <strong>all</strong> orders, and the test orders' own outcomes leak into their feature:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">rate_all</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"customer_id"</span><span class="p">)[</span><span class="s2">"cancelled"</span><span class="p">]</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="s2">"mean"</span><span class="p">)</span>      <span class="c1"># includes test orders!</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>customer rate from all data: ROC AUC 0.684
-</code></pre></div>
-
-<p>The honest version learns the rate from <strong>training orders only</strong>, and gives unknown customers the overall training rate:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">train_rate</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">train_idx</span><span class="p">]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"customer_id"</span><span class="p">)[</span><span class="s2">"cancelled"</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
-<span class="n">df</span><span class="p">[</span><span class="s2">"cust_rate"</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">"customer_id"</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">train_rate</span><span class="p">)</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">train_idx</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>customer rate from train only: ROC AUC 0.627
-</code></pre></div>
-
-<p>The leaky version scored 0.684; done correctly, the feature doesn't help at all (0.627, slightly <em>worse</em> than without it). This leak is subtle: no single column looks suspicious, and the score is only a little too good. In production you'd also compute it from <strong>past</strong> orders only, never including the current order.</p>
+1               3872    0</code></pre>
+<pre class="text"><code>with delivery_known: ROC AUC 1.000  &lt;- too good to be true</code></pre>
+<p>A <strong>perfect</strong> score. The feature <em>is</em> the answer:
+every order with a known delivery was not cancelled. But when a new
+order is placed, nobody knows its delivery days yet, so the model is
+useless in practice.</p>
+<p><strong>Defence:</strong> for every feature, ask <strong>“would I
+know this at the moment of prediction?”</strong> Keep a written list of
+allowed features (that’s what <code>ORDER_TIME_FEATURES</code> in
+<code>ml_data.py</code> is), and treat any big jump in score as a bug
+until proven otherwise.</p>
+<h2 id="leak-2-an-aggregate-that-includes-the-test-data">Leak 2: an
+aggregate that includes the test data</h2>
+<p>“Customers who cancelled before will cancel again” is a reasonable
+idea. But compute the customer’s cancellation rate on
+<strong>all</strong> orders, and the test orders’ own outcomes leak into
+their feature:</p>
+<pre class="python"><code>rate_all = df.groupby(&quot;customer_id&quot;)[&quot;cancelled&quot;].transform(&quot;mean&quot;)      # includes test orders!</code></pre>
+<pre class="text"><code>customer rate from all data: ROC AUC 0.684</code></pre>
+<p>The honest version learns the rate from <strong>training orders
+only</strong>, and gives unknown customers the overall training
+rate:</p>
+<pre class="python"><code>train_rate = df.loc[train_idx].groupby(&quot;customer_id&quot;)[&quot;cancelled&quot;].mean()
+df[&quot;cust_rate&quot;] = df[&quot;customer_id&quot;].map(train_rate).fillna(y[train_idx].mean())</code></pre>
+<pre class="text"><code>customer rate from train only: ROC AUC 0.627</code></pre>
+<p>The leaky version scored 0.684; done correctly, the feature doesn’t
+help at all (0.627, slightly <em>worse</em> than without it). This leak
+is subtle: no single column looks suspicious, and the score is only a
+little too good. In production you’d also compute it from
+<strong>past</strong> orders only, never including the current
+order.</p>
 <h2 id="more-places-leakage-hides">More places leakage hides</h2>
 <table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Where</th>
 <th>Leaky</th>
 <th>Safe</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>Scaling / imputing</td>
 <td><code>scaler.fit(all_data)</code> before splitting</td>
 <td><code>Pipeline</code> fitted on the training split</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Duplicates</td>
 <td>The same order in train and test</td>
 <td>De-duplicate before splitting</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Time</td>
 <td>Random split when predicting the future</td>
 <td>Train on past, test on future</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Groups</td>
-<td>One customer's orders in both train and test, when you'll predict <em>new</em> customers</td>
+<td>One customer’s orders in both train and test, when you’ll predict
+<em>new</em> customers</td>
 <td>Group-based split (<code>GroupKFold</code>)</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Target-derived features</td>
-<td>Status, refund flags, "complaint logged"</td>
+<td>Status, refund flags, “complaint logged”</td>
 <td>Exclude anything created after the outcome</td>
 </tr>
 </tbody>
 </table>
 <h2 id="scaling-when-it-matters">Scaling: when it matters</h2>
 <p>Our numeric features live on wildly different scales:</p>
-<div class="codehilite"><pre><span></span><code>       quantity  unit_price  discount  credit_days
+<pre class="text"><code>       quantity  unit_price  discount  credit_days
 mean    3169.25        2.12      0.03        21.92
 std     6842.61        1.73      0.03        20.12
-max   250160.00        5.61      0.08        60.00
-</code></pre></div>
-
-<p><strong>k-nearest neighbours (KNN)</strong> predicts from the most similar past orders, measured by distance. Unscaled, a difference of 1,000 in quantity swamps every other feature:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">knn_raw</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_tr</span><span class="p">,</span> <span class="n">y</span><span class="p">[</span><span class="n">train_idx</span><span class="p">])</span>
-<span class="n">knn_scaled</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s2">"scale"</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">()),</span> <span class="p">(</span><span class="s2">"knn"</span><span class="p">,</span> <span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">50</span><span class="p">))])</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_tr</span><span class="p">,</span> <span class="n">y</span><span class="p">[</span><span class="n">train_idx</span><span class="p">])</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>KNN without scaling: ROC AUC 0.516
-KNN with scaling:    ROC AUC 0.621
-</code></pre></div>
-
-<p>Without scaling, KNN is barely better than random (0.516): it's effectively using quantity alone. Scaling lets credit days and discount count too.</p>
+max   250160.00        5.61      0.08        60.00</code></pre>
+<p><strong>k-nearest neighbours (KNN)</strong> predicts from the most
+similar past orders, measured by distance. Unscaled, a difference of
+1,000 in quantity swamps every other feature:</p>
+<pre class="python"><code>knn_raw = KNeighborsClassifier(n_neighbors=50).fit(X_tr, y[train_idx])
+knn_scaled = Pipeline([(&quot;scale&quot;, StandardScaler()), (&quot;knn&quot;, KNeighborsClassifier(n_neighbors=50))]).fit(X_tr, y[train_idx])</code></pre>
+<pre class="text"><code>KNN without scaling: ROC AUC 0.516
+KNN with scaling:    ROC AUC 0.621</code></pre>
+<p>Without scaling, KNN is barely better than random (0.516): it’s
+effectively using quantity alone. Scaling lets credit days and discount
+count too.</p>
 <table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Method</th>
 <th>Needs scaling?</th>
 <th>Why</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>KNN, k-means, SVM, PCA</td>
 <td><strong>Yes</strong></td>
 <td>Based on distances</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Linear/logistic regression with regularisation</td>
 <td><strong>Yes</strong></td>
-<td>The penalty treats all coefficients alike; also helps the solver converge</td>
+<td>The penalty treats all coefficients alike; also helps the solver
+converge</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Decision trees, random forests, gradient boosting</td>
 <td>No</td>
-<td>Split on one feature at a time; scale doesn't matter</td>
+<td>Split on one feature at a time; scale doesn’t matter</td>
 </tr>
 </tbody>
 </table>
-<p><code>StandardScaler</code> (mean 0, std 1) is the usual default; <code>MinMaxScaler</code> maps to 0–1; for heavy outliers, take logs first or use <code>RobustScaler</code>.</p>
+<p><code>StandardScaler</code> (mean 0, std 1) is the usual default;
+<code>MinMaxScaler</code> maps to 0–1; for heavy outliers, take logs
+first or use <code>RobustScaler</code>.</p>
 <h3 id="scale-inside-the-pipeline">Scale inside the pipeline</h3>
-<div class="codehilite"><pre><span></span><code><span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_tr</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">"scaler learned from TRAIN:"</span><span class="p">,</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">v</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">num_only</span><span class="p">[:</span><span class="mi">2</span><span class="p">],</span> <span class="n">scaler</span><span class="o">.</span><span class="n">mean_</span><span class="p">[:</span><span class="mi">2</span><span class="p">])})</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>scaler learned from TRAIN: {'quantity': 3168.91, 'unit_price': 2.12}
-</code></pre></div>
-
-<p>The scaler's mean and std must come from <strong>training data only</strong>, then be applied unchanged to test and future data. A <code>Pipeline</code> does this automatically.</p>
+<pre class="python"><code>scaler = StandardScaler().fit(X_tr)
+print(&quot;scaler learned from TRAIN:&quot;, {k: round(float(v), 2) for k, v in zip(num_only[:2], scaler.mean_[:2])})</code></pre>
+<pre class="text"><code>scaler learned from TRAIN: {&#39;quantity&#39;: 3168.91, &#39;unit_price&#39;: 2.12}</code></pre>
+<p>The scaler’s mean and std must come from <strong>training data
+only</strong>, then be applied unchanged to test and future data. A
+<code>Pipeline</code> does this automatically.</p>
 <h2 id="common-mistakes">Common mistakes</h2>
 <table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Mistake</th>
 <th>What happens</th>
 <th>Fix</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>Celebrating a near-perfect score</td>
 <td>Shipping a leaky model</td>
 <td>Treat it as a bug; find the leaking feature</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Features created after the outcome</td>
 <td>Model useless in production</td>
-<td>"Known at prediction time?" checklist</td>
+<td>“Known at prediction time?” checklist</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Aggregates or encodings on all data</td>
 <td>Mildly inflated, hard-to-spot scores</td>
 <td>Compute them inside the training fold only</td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>fit_transform</code> on the full dataset</td>
 <td>Test information leaks into preprocessing</td>
 <td>Pipelines; fit on train, transform test</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Scaling for trees, not scaling for KNN</td>
 <td>Wasted effort, or a broken model</td>
 <td>Know which methods are distance/penalty-based</td>
@@ -293,68 +328,142 @@ KNN with scaling:    ROC AUC 0.621
 </tbody>
 </table>
 <h2 id="try-it-yourself">Try it yourself</h2>
-<p><strong>Task:</strong> A colleague says <code>revenue</code> is leakage because revenue is "the result". Is it? Retrain without <code>revenue</code> and compare.</p>
+<p><strong>Task:</strong> A colleague says <code>revenue</code> is
+leakage because revenue is “the result”. Is it? Retrain without
+<code>revenue</code> and compare.</p>
 <details>
-<summary>Show the solution</summary>
-<div class="codehilite"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"without revenue: ROC AUC </span><span class="si">{</span><span class="n">auc</span><span class="p">([</span><span class="n">f</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">ORDER_TIME_FEATURES</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="s1">'revenue'</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="n">n</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">NUMERIC</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="s1">'revenue'</span><span class="p">])</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>without revenue: ROC AUC 0.650
-</code></pre></div>
-
-<p>It's <strong>not</strong> leakage: order revenue (quantity × price × (1 − discount)) is known the moment the order is placed. Removing it barely changes the score (0.652 → 0.650). The test for leakage is about <strong>timing</strong> (is it known at prediction time?), not about whether a column sounds like an outcome.</p>
+<summary>
+Show the solution
+</summary>
+<pre class="python"><code>print(f&quot;without revenue: ROC AUC {auc([f for f in ORDER_TIME_FEATURES if f != &#39;revenue&#39;], [n for n in NUMERIC if n != &#39;revenue&#39;]):.3f}&quot;)</code></pre>
+<pre class="text"><code>without revenue: ROC AUC 0.650</code></pre>
+It’s <strong>not</strong> leakage: order revenue (quantity × price × (1
+− discount)) is known the moment the order is placed. Removing it barely
+changes the score (0.652 → 0.650). The test for leakage is about
+<strong>timing</strong> (is it known at prediction time?), not about
+whether a column sounds like an outcome.
 </details>
 <h2 id="quick-quiz">Quick quiz</h2>
 <div class="quiz-q" data-answer="1">
-<p>1. A new feature raises ROC AUC from 0.65 to 1.00. What's your first reaction?</p>
-<ol>
+<p>1. A new feature raises ROC AUC from 0.65 to 1.00. What’s your first
+reaction?</p>
+<ol type="1">
 <li>Ship it</li>
-<li>Suspect leakage and check whether the feature is known at prediction time</li>
+<li>Suspect leakage and check whether the feature is known at prediction
+time</li>
 <li>Add more features</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B.</strong></p>
+<summary>
+Show answer
+</summary>
+<strong>B.</strong>
 </details>
 </div>
 <div class="quiz-q" data-answer="1">
 <p>2. Which model is most affected by unscaled features?</p>
-<ol>
+<ol type="1">
 <li>Decision tree</li>
 <li>k-nearest neighbours</li>
 <li>Random forest</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B.</strong> It's based on distances.</p>
+<summary>
+Show answer
+</summary>
+<strong>B.</strong> It’s based on distances.
 </details>
 </div>
 <div class="quiz-q" data-answer="1">
-<p>3. Where should a <code>StandardScaler</code> learn its mean and standard deviation?</p>
-<ol>
+<p>3. Where should a <code>StandardScaler</code> learn its mean and
+standard deviation?</p>
+<ol type="1">
 <li>From all the data</li>
 <li>From the training data only</li>
 <li>From the test data</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B.</strong></p>
+<summary>
+Show answer
+</summary>
+<strong>B.</strong>
 </details>
 </div>
 <h2 id="summary">Summary</h2>
 <ul>
-<li><strong>Leakage</strong> = information at training time that won't exist at prediction time. Too-good scores are a warning sign.</li>
-<li>Guard against <strong>target leakage</strong> (features created after the outcome) and <strong>contamination</strong> (statistics using test data).</li>
-<li><strong>Scale</strong> for distance- and penalty-based models (KNN, SVM, PCA, regularised regression); trees don't need it.</li>
-<li>Put all preprocessing in a <strong>Pipeline</strong> fitted on training data only.</li>
+<li><strong>Leakage</strong> = information at training time that won’t
+exist at prediction time. Too-good scores are a warning sign.</li>
+<li>Guard against <strong>target leakage</strong> (features created
+after the outcome) and <strong>contamination</strong> (statistics using
+test data).</li>
+<li><strong>Scale</strong> for distance- and penalty-based models (KNN,
+SVM, PCA, regularised regression); trees don’t need it.</li>
+<li>Put all preprocessing in a <strong>Pipeline</strong> fitted on
+training data only.</li>
 </ul>
-<div class="admonition job">
-<p class="admonition-title">Job-ready check</p>
-<p><strong>Interview question:</strong> <em>"Your model scores 99% in testing but performs poorly in production. What happened?"</em></p>
-<p><strong>Strong answer:</strong> "Most likely leakage: a feature that's only known after the outcome, preprocessing or encodings fitted on all the data, duplicates across train and test, or a random split on time-dependent data. I'd audit each feature for 'known at prediction time?', rebuild preprocessing in a pipeline, use a time-based split, and compare the new score with a simple baseline."</p>
-<p><strong>Mini project:</strong> Write a "feature audit" table for the cancellation model: each column in <code>orders_2025.csv</code>, when it becomes known, and whether it's allowed as a feature, with a reason.</p>
+<div class="admonition job" data-markdown="1">
+<p class="admonition-title">
+Job-ready check
+</p>
+<p><strong>Interview question:</strong> <em>“Your model scores 99% in
+testing but performs poorly in production. What happened?”</em></p>
+<p><strong>Strong answer:</strong> “Most likely leakage: a feature
+that’s only known after the outcome, preprocessing or encodings fitted
+on all the data, duplicates across train and test, or a random split on
+time-dependent data. I’d audit each feature for ‘known at prediction
+time?’, rebuild preprocessing in a pipeline, use a time-based split, and
+compare the new score with a simple baseline.”</p>
+<p><strong>Mini project:</strong> Write a “feature audit” table for the
+cancellation model: each column in <code>orders_2025.csv</code>, when it
+becomes known, and whether it’s allowed as a feature, with a reason.</p>
 </div>
-<div class="terms-box"><div class="files-head"><b>Key terms in this lesson</b><a href="../../../glossary.html">Glossary →</a></div><div class="term-chips"><a class="term-chip" href="../../../glossary.html#data-leakage" title="When a model is trained with information it won&#x27;t have at prediction time (a column filled in after the outcome, or statistics computed on test data). Scores look great, then fail in production.">Data leakage</a><a class="term-chip" href="../../../glossary.html#data-pipeline" title="A repeatable, automated series of steps that moves and transforms data from sources to where it is used.">Data pipeline</a><a class="term-chip" href="../../../glossary.html#feature-scaling" title="Putting numeric features on comparable scales (e.g. mean 0, std 1). Essential for distance-based models such as k-nearest neighbours; unnecessary for trees.">Feature scaling</a><a class="term-chip" href="../../../glossary.html#normalisation" title="Designing tables so each fact is stored once (customers in one table, orders in another), which avoids contradictions when data changes.">Normalisation</a></div></div>
+<section class="mentor-prompt"><div class="mentor-head"><div><span class="eyebrow">AI study companion</span><h2 id="ai-mentor-prompt">AI Mentor Prompt</h2></div><button class="btn copy-prompt" type="button" data-copy-target="mentor-prompt-phase-2-ml-foundations-02-leakage-scaling">Copy prompt</button></div><p>Paste this into ChatGPT, Claude, Gemini, or another capable assistant to turn this tutorial into an interactive mentoring session.</p><pre class="prompt-box"><code id="mentor-prompt-phase-2-ml-foundations-02-leakage-scaling">You are my hands-on Python, statistics and data-science mentor.
+
+I am currently studying:
+&quot;Data Leakage &amp; Scaling: Why Models Look Great, Then Fail&quot;
+
+My level:
+Intermediate
+
+Teach me this topic interactively rather than giving me a long lecture.
+
+Use this sequence:
+
+1. Check what I already understand with one short diagnostic question.
+2. Explain the concept in simple language and give me the mental model first.
+3. Give me one small task using code, SQL, configuration, data, or architecture as appropriate.
+4. Wait for my attempt before showing a complete solution.
+5. Review my work and explain both what is correct and what needs improvement.
+6. Help me debug errors step by step instead of immediately replacing my work.
+7. Increase the difficulty gradually and connect each new step to the previous one.
+8. Relate what I am learning to real professional data/AI engineering work.
+9. Ask me to explain an important decision in my own words so you can check my understanding.
+10. At the end, ask me to build or modify one small feature independently.
+
+Important rules:
+- Do not do the entire exercise for me unless I explicitly ask.
+- Explain unfamiliar terminology before using it heavily.
+- Prefer current, production-relevant practices over outdated shortcuts.
+- Distinguish clearly between concepts, tool-specific behaviour, and optional alternatives.
+- If a technical fact, API, syntax, version, or best practice may have changed, verify it against current official documentation before teaching it.
+- Never invent command output, test results, benchmark numbers, cloud behaviour, or data results.
+- If something cannot be executed in the current environment, say so and give me the exact command or verification step I should run.
+- Keep me actively coding, querying, configuring, reasoning, or debugging throughout the session.
+- When useful, work from the tutorial practice files (data-science-scripts.zip, orders_2025.csv, customers_2025.csv) instead of inventing unrelated examples.
+
+The concepts I need to master are:
+- Leakage
+- Scaling
+- data leakage
+- target leakage
+- train test contamination
+- too good to be true
+- future information
+- target encoding
+
+Start by asking me one diagnostic question.</code></pre></section>
+
+<div class="terms-box"><div class="files-head"><b>Key terms in this lesson</b><a href="../../../glossary.html">Glossary →</a></div><div class="term-chips"><a class="term-chip" href="../../../glossary.html#data-leakage" title="When a model is trained with information it won&#x27;t have at prediction time (a column filled in after the outcome, or statistics computed on test data). Scores look great, then fail in production.">Data leakage</a><a class="term-chip" href="../../../glossary.html#feature-scaling" title="Putting numeric features on comparable scales (e.g. mean 0, std 1). Essential for distance-based models such as k-nearest neighbours; unnecessary for trees.">Feature scaling</a><a class="term-chip" href="../../../glossary.html#normalisation" title="Designing tables so each fact is stored once (customers in one table, orders in another), which avoids contradictions when data changes.">Normalisation</a></div></div>
 <h2 id="free-resources">Free resources to go deeper</h2><ul class="resources"><li><a href="https://scikit-learn.org/stable/common_pitfalls.html">Common pitfalls and recommended practices (data leakage)</a><span class="r-meta">scikit-learn official docs · Inconsistent preprocessing and data leakage, with code examples.</span></li><li><a href="https://scikit-learn.org/stable/auto_examples/preprocessing/plot_scaling_importance.html">Importance of feature scaling</a><span class="r-meta">scikit-learn official docs · How scaling changes KNN and PCA results.</span></li><li><a href="https://www.kaggle.com/learn/intermediate-machine-learning">Kaggle Learn: Intermediate Machine Learning — Data Leakage</a><span class="r-meta">Kaggle (free course) · Short, practical lesson on target leakage and train-test contamination.</span></li></ul>
 <div class="complete-bar"><span>Finished reading and did the exercise?</span>
 <button class="btn" id="completeBtn" type="button" data-id="phase-2/ml-foundations/02-leakage-scaling">Mark lesson as complete</button></div>
@@ -362,9 +471,9 @@ KNN with scaling:    ROC AUC 0.621
 <p class="reviewed">Last reviewed: 2026-10-09</p>
 
   </div></main>
-  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#leak-1-a-column-filled-in-after-the-outcome">Leak 1: a column filled in after the outcome</a><a href="#leak-2-an-aggregate-that-includes-the-test-data">Leak 2: an aggregate that includes the test data</a><a href="#more-places-leakage-hides">More places leakage hides</a><a href="#scaling-when-it-matters">Scaling: when it matters</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#free-resources">Free resources</a></aside>
+  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#leak-1-a-column-filled-in-after-the-outcome">Leak 1: a column filled in after the outcome</a><a href="#leak-2-an-aggregate-that-includes-the-test-data">Leak 2: an aggregate that includes the test data</a><a href="#more-places-leakage-hides">More places leakage hides</a><a href="#scaling-when-it-matters">Scaling: when it matters</a><a href="#scale-inside-the-pipeline">Scale inside the pipeline</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#ai-mentor-prompt">AI Mentor Prompt</a><a href="#free-resources">Free resources</a></aside>
 </div>
-<footer class="site">Data, AI &amp; Automation Path v0.8 · Applied AI, Data &amp; Automation Lab · Updated October 2026<br>
+<footer class="site"><b>Saiful The Techie</b> · Data, AI &amp; Automation Path v0.9.1 · Updated October 2026<br>
 Lesson text: <a href="../../../license.html">CC BY-NC-SA 4.0</a> · Code: <a href="../../../license.html#code-mit-license">MIT</a> · Free external resources belong to their respective owners.</footer>
 <script src="../../../search-index.js"></script>
 <script src="../../../assets/app.js"></script>

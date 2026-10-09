@@ -6,7 +6,7 @@
 <title>A/B Testing Part 1: Hypothesis Tests and Significance — Data, AI &amp; Automation Path</title>
 <meta name="description" content="Analyse a real-shaped A/B test end to end: check the split, test conversion with a two-proportion z-test and confidence interval, check guardrail metrics, and explain p-values and significance in plain business language.">
 <meta property="og:type" content="article">
-<meta property="og:site_name" content="Data, AI &amp; Automation Path">
+<meta property="og:site_name" content="Saiful The Techie">
 <meta property="og:title" content="A/B Testing Part 1: Hypothesis Tests and Significance">
 <meta property="og:description" content="Analyse a real-shaped A/B test end to end: check the split, test conversion with a two-proportion z-test and confidence interval, check guardrail metrics, and explain p-values and significance in plain business language.">
 <meta property="og:locale" content="en_US">
@@ -19,13 +19,13 @@ var n=null;try{n=localStorage.getItem('daa-nav')}catch(e){}
 if(n==='open'&&window.matchMedia&&matchMedia('(min-width: 961px)').matches)document.documentElement.setAttribute('data-nav','open');
 document.documentElement.classList.add('no-anim')})();</script>
 <link rel="stylesheet" href="../../../assets/style.css">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233f7d6a'/%3E%3Ctext x='16' y='21' font-family='sans-serif' font-size='13' font-weight='700' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
+
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="topbar">
   <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Open curriculum menu" title="Curriculum menu (press M)" aria-controls="sidebar" aria-expanded="false"><span class="ico-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span class="ico-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></button>
-  <a class="brand" href="../../../index.html"><span class="brand-badge">AI</span><span class="brand-text"><span class="brand-name">Data, AI &amp; Automation Path</span><span class="brand-version">v0.8</span></span></a>
+  <a class="brand" href="../../../index.html"><span class="brand-text"><span class="brand-name">Saiful The Techie</span><span class="brand-version">Data, AI &amp; Automation Path · v0.9.1</span></span></a>
   <nav class="top-links" aria-label="Main">
     <a href="../../../index.html" class="">Home</a><a href="../../../curriculum.html" class="">Curriculum</a><a href="../../../practice-files.html" class="">Practice files</a><a href="../../../glossary.html" class="">Glossary</a><a href="../../../how-to-learn.html" class="">How to learn</a><a href="../../../about.html" class="">About</a>
   </nav>
@@ -41,7 +41,7 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="layout wide">
   <nav class="sidebar" id="sidebar" aria-label="Curriculum">
     <div class="side-title">Curriculum</div>
-    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="77"><i></i></div><span class="bar-label" data-progress-label></span></div>
+    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="85"><i></i></div><span class="bar-label" data-progress-label></span></div>
 <div class="nav-phase"><a href="../../../learn/phase-0/index.html"><span class="nav-num">0</span>Foundations</a>
 </div>
 <div class="nav-phase"><a href="../../../learn/phase-1/index.html"><span class="nav-num">1</span>Analytics &amp; BI</a>
@@ -96,184 +96,225 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="admonition note"><p class="admonition-title">Before you start</p><p><a href="../../../learn/phase-2/statistics/02-correlation-confidence-intervals.html">Statistics Part 2: Correlation and Confidence Intervals</a></p></div>
 <div class="files-box"><div class="files-head"><b>Practice files for this page</b><a href="../../../practice-files.html">All practice files →</a></div><ul><li><a href="../../../downloads/phase-2/data-science-scripts.zip" download>data-science-scripts.zip</a><span class="f-desc">All 21 Phase 2 lesson scripts (NumPy to research thinking), shared chart style, data folder and solutions · 230 KB</span></li><li><a href="../../../downloads/phase-2/ab_test_checkout.csv" download>ab_test_checkout.csv</a><span class="f-desc">10,836 portal sessions from a November A/B test of a one-page checkout (variant, device, converted, order value) · 377 KB</span></li></ul></div>
 <h2 id="what-is-it">What is it?</h2>
-<p>A <strong>hypothesis test</strong> asks: <em>if there were really no difference, how surprising would our result be?</em></p>
+<p>A <strong>hypothesis test</strong> asks: <em>if there were really no
+difference, how surprising would our result be?</em></p>
 <table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Term</th>
 <th>Meaning in this test</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td><strong>Null hypothesis (H₀)</strong></td>
 <td>The new checkout (B) converts the same as the old one (A)</td>
 </tr>
-<tr>
+<tr class="even">
 <td><strong>Alternative (H₁)</strong></td>
 <td>B converts differently from A</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><strong>p-value</strong></td>
-<td>If H₀ were true, the probability of seeing a difference at least this large by chance</td>
+<td>If H₀ were true, the probability of seeing a difference at least
+this large by chance</td>
 </tr>
-<tr>
+<tr class="even">
 <td><strong>Significance level (α)</strong></td>
 <td>The threshold we chose in advance, usually 0.05</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><strong>Statistically significant</strong></td>
 <td>p &lt; α: the result is unlikely to be chance alone</td>
 </tr>
-<tr>
+<tr class="even">
 <td><strong>Practically significant</strong></td>
 <td>The difference is big enough to matter for the business</td>
 </tr>
 </tbody>
 </table>
-<div class="admonition job">
-<p class="admonition-title">Why it matters at work</p>
-<p>Product, growth and analytics teams decide what to launch with A/B tests. Analysts who can run the test correctly, and explain "significant" without misleading anyone, are trusted with these decisions. Expect an A/B case question in most product data science interviews.</p>
+<div class="admonition job" data-markdown="1">
+<p class="admonition-title">
+Why it matters at work
+</p>
+<p>Product, growth and analytics teams decide what to launch with A/B
+tests. Analysts who can run the test correctly, and explain
+“significant” without misleading anyone, are trusted with these
+decisions. Expect an A/B case question in most product data science
+interviews.</p>
 </div>
 <p>The script is <code>13_ab_hypothesis_tests.py</code>.</p>
-<h2 id="step-0-decide-before-you-look">Step 0: decide before you look</h2>
+<h2 id="step-0-decide-before-you-look">Step 0: decide before you
+look</h2>
 <p>Before the data comes in, the team wrote down:</p>
 <ul>
-<li><strong>Primary metric:</strong> conversion rate (sessions that place an order).</li>
-<li><strong>Guardrail metrics:</strong> order value among buyers; revenue per session. They must not get worse.</li>
-<li><strong>α = 0.05</strong>, two-sided test, run for <strong>4 full weeks</strong>, analysed <strong>once</strong> at the end.</li>
+<li><strong>Primary metric:</strong> conversion rate (sessions that
+place an order).</li>
+<li><strong>Guardrail metrics:</strong> order value among buyers;
+revenue per session. They must not get worse.</li>
+<li><strong>α = 0.05</strong>, two-sided test, run for <strong>4 full
+weeks</strong>, analysed <strong>once</strong> at the end.</li>
 </ul>
-<p>Writing this first stops you from choosing the metric or the end date that happens to look good (see Part 2).</p>
-<h2 id="step-1-health-check-is-the-split-intact">Step 1: health check — is the split intact?</h2>
-<div class="codehilite"><pre><span></span><code><span class="n">counts</span> <span class="o">=</span> <span class="n">ab</span><span class="p">[</span><span class="s2">"variant"</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span>
-<span class="n">srm</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">binomtest</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">counts</span><span class="p">[</span><span class="s2">"A"</span><span class="p">]),</span> <span class="nb">int</span><span class="p">(</span><span class="n">counts</span><span class="o">.</span><span class="n">sum</span><span class="p">()),</span> <span class="mf">0.5</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">counts</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(),</span> <span class="sa">f</span><span class="s2">"| SRM p-value = </span><span class="si">{</span><span class="n">srm</span><span class="o">.</span><span class="n">pvalue</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>{'A': 5489, 'B': 5347} | SRM p-value = 0.176
-</code></pre></div>
-
-<p>A <strong>sample ratio mismatch (SRM)</strong> means the split isn't what was designed, often a bug (e.g. B crashes on some browsers, so those users vanish). 5,489 vs 5,347 is within normal random variation for a 50/50 split (p = 0.18). If this p-value were tiny (say &lt; 0.001), you'd <strong>stop and fix the experiment</strong>, not analyse it.</p>
+<p>Writing this first stops you from choosing the metric or the end date
+that happens to look good (see Part 2).</p>
+<h2 id="step-1-health-check-is-the-split-intact">Step 1: health check —
+is the split intact?</h2>
+<pre class="python"><code>counts = ab[&quot;variant&quot;].value_counts().sort_index()
+srm = stats.binomtest(int(counts[&quot;A&quot;]), int(counts.sum()), 0.5)
+print(counts.to_dict(), f&quot;| SRM p-value = {srm.pvalue:.3f}&quot;)</code></pre>
+<pre class="text"><code>{&#39;A&#39;: 5489, &#39;B&#39;: 5347} | SRM p-value = 0.176</code></pre>
+<p>A <strong>sample ratio mismatch (SRM)</strong> means the split isn’t
+what was designed, often a bug (e.g. B crashes on some browsers, so
+those users vanish). 5,489 vs 5,347 is within normal random variation
+for a 50/50 split (p = 0.18). If this p-value were tiny (say &lt;
+0.001), you’d <strong>stop and fix the experiment</strong>, not analyse
+it.</p>
 <h2 id="step-2-the-primary-metric">Step 2: the primary metric</h2>
-<div class="codehilite"><pre><span></span><code><span class="n">summary</span> <span class="o">=</span> <span class="n">ab</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"variant"</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">sessions</span><span class="o">=</span><span class="p">(</span><span class="s2">"converted"</span><span class="p">,</span> <span class="s2">"size"</span><span class="p">),</span> <span class="n">orders</span><span class="o">=</span><span class="p">(</span><span class="s2">"converted"</span><span class="p">,</span> <span class="s2">"sum"</span><span class="p">),</span>
-                                    <span class="n">conversion</span><span class="o">=</span><span class="p">(</span><span class="s2">"converted"</span><span class="p">,</span> <span class="s2">"mean"</span><span class="p">))</span>
-<span class="n">summary</span><span class="p">[</span><span class="s2">"conversion"</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">summary</span><span class="p">[</span><span class="s2">"conversion"</span><span class="p">]</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">summary</span><span class="p">)</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>         sessions  orders  conversion
+<pre class="python"><code>summary = ab.groupby(&quot;variant&quot;).agg(sessions=(&quot;converted&quot;, &quot;size&quot;), orders=(&quot;converted&quot;, &quot;sum&quot;),
+                                    conversion=(&quot;converted&quot;, &quot;mean&quot;))
+summary[&quot;conversion&quot;] = (summary[&quot;conversion&quot;] * 100).round(2)
+print(summary)</code></pre>
+<pre class="text"><code>         sessions  orders  conversion
 variant
 A            5489     368        6.70
-B            5347     423        7.91
-</code></pre></div>
-
+B            5347     423        7.91</code></pre>
 <p>B converts at 7.91% vs 6.70%. Is that more than chance?</p>
-<h2 id="step-3-the-two-proportion-z-test-with-a-confidence-interval">Step 3: the two-proportion z-test, with a confidence interval</h2>
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">statsmodels.stats.proportion</span><span class="w"> </span><span class="kn">import</span> <span class="n">confint_proportions_2indep</span><span class="p">,</span> <span class="n">proportions_ztest</span>
+<h2
+id="step-3-the-two-proportion-z-test-with-a-confidence-interval">Step 3:
+the two-proportion z-test, with a confidence interval</h2>
+<pre class="python"><code>from statsmodels.stats.proportion import confint_proportions_2indep, proportions_ztest
 
-<span class="n">orders_</span> <span class="o">=</span> <span class="n">summary</span><span class="p">[</span><span class="s2">"orders"</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>          <span class="c1"># [B, A]</span>
-<span class="n">sessions</span> <span class="o">=</span> <span class="n">summary</span><span class="p">[</span><span class="s2">"sessions"</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-<span class="n">z</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">proportions_ztest</span><span class="p">(</span><span class="n">orders_</span><span class="p">,</span> <span class="n">sessions</span><span class="p">)</span>
-<span class="n">low</span><span class="p">,</span> <span class="n">high</span> <span class="o">=</span> <span class="n">confint_proportions_2indep</span><span class="p">(</span><span class="n">orders_</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">sessions</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">orders_</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">sessions</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">compare</span><span class="o">=</span><span class="s2">"diff"</span><span class="p">)</span>
-<span class="n">diff</span> <span class="o">=</span> <span class="n">orders_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">sessions</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">orders_</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="n">sessions</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"difference B - A = </span><span class="si">{</span><span class="n">diff</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">100</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> percentage points, 95% CI </span><span class="si">{</span><span class="n">low</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">100</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> to </span><span class="si">{</span><span class="n">high</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">100</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"z = </span><span class="si">{</span><span class="n">z</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">, p-value = </span><span class="si">{</span><span class="n">p</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"relative lift = </span><span class="si">{</span><span class="n">diff</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">orders_</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">sessions</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="si">:</span><span class="s2">.1%</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>difference B - A = 1.21 percentage points, 95% CI 0.23 to 2.19
+orders_ = summary[&quot;orders&quot;].to_numpy()[::-1]          # [B, A]
+sessions = summary[&quot;sessions&quot;].to_numpy()[::-1]
+z, p = proportions_ztest(orders_, sessions)
+low, high = confint_proportions_2indep(orders_[0], sessions[0], orders_[1], sessions[1], compare=&quot;diff&quot;)
+diff = orders_[0] / sessions[0] - orders_[1] / sessions[1]
+print(f&quot;difference B - A = {diff * 100:.2f} percentage points, 95% CI {low * 100:.2f} to {high * 100:.2f}&quot;)
+print(f&quot;z = {z:.2f}, p-value = {p:.4f}&quot;)
+print(f&quot;relative lift = {diff / (orders_[1] / sessions[1]):.1%}&quot;)</code></pre>
+<pre class="text"><code>difference B - A = 1.21 percentage points, 95% CI 0.23 to 2.19
 z = 2.41, p-value = 0.0158
-relative lift = 18.0%
-</code></pre></div>
-
+relative lift = 18.0%</code></pre>
 <p>How to read it:</p>
 <ul>
-<li><strong>p = 0.016 &lt; 0.05</strong>: if B were truly no better, a gap this large would happen only about 1.6% of the time. <strong>Statistically significant.</strong></li>
-<li>The <strong>CI (0.23 to 2.19 points)</strong> excludes 0, which tells the same story, and also shows the <strong>size</strong>: the true lift could be as small as +0.2 points or as large as +2.2. Report the interval, not just "significant".</li>
-<li><strong>Percentage points vs percent:</strong> +1.21 <em>points</em> (6.70% → 7.91%) is an <strong>18% relative</strong> lift. Say which one you mean.</li>
+<li><strong>p = 0.016 &lt; 0.05</strong>: if B were truly no better, a
+gap this large would happen only about 1.6% of the time.
+<strong>Statistically significant.</strong></li>
+<li>The <strong>CI (0.23 to 2.19 points)</strong> excludes 0, which
+tells the same story, and also shows the <strong>size</strong>: the true
+lift could be as small as +0.2 points or as large as +2.2. Report the
+interval, not just “significant”.</li>
+<li><strong>Percentage points vs percent:</strong> +1.21 <em>points</em>
+(6.70% → 7.91%) is an <strong>18% relative</strong> lift. Say which one
+you mean.</li>
 </ul>
-<p>The same test as a <strong>chi-square test</strong> on the 2×2 table gives an identical p-value (χ² = z²):</p>
-<div class="codehilite"><pre><span></span><code>chi-square = 5.83 (= z squared 5.83), p = 0.0158
-</code></pre></div>
-
-<h2 id="step-4-guardrails-did-anything-get-worse">Step 4: guardrails — did anything get worse?</h2>
-<p>Order value among buyers is skewed, so use <strong>Welch's t-test</strong> (means, unequal variances) and check it with the <strong>Mann-Whitney</strong> test (ranks):</p>
-<div class="codehilite"><pre><span></span><code>mean order value A 754, B 711 | median A 606, B 603
-Welch t-test p = 0.221 | Mann-Whitney p = 0.446
-</code></pre></div>
-
-<p>No evidence that buyers spend less with B: the medians are almost identical and both p-values are large. Now the metric the business really cares about:</p>
-<div class="codehilite"><pre><span></span><code>revenue per session A 50.53, B 56.27 (+11.4%), p = 0.195
-</code></pre></div>
-
-<p>Revenue per session is up 11.4%, but <strong>not significant</strong> (p = 0.20). Revenue per session is very noisy (most sessions are 0, a few are large orders), so this test can't confirm the revenue gain on its own. Honest summary: <em>conversion is clearly up; revenue is probably up, but the test can't confirm it.</em></p>
-<h2 id="step-5-segments-consistent-or-one-group-only">Step 5: segments — consistent, or one group only?</h2>
-<div class="codehilite"><pre><span></span><code>         mean        size
+<p>The same test as a <strong>chi-square test</strong> on the 2×2 table
+gives an identical p-value (χ² = z²):</p>
+<pre class="text"><code>chi-square = 5.83 (= z squared 5.83), p = 0.0158</code></pre>
+<h2 id="step-4-guardrails-did-anything-get-worse">Step 4: guardrails —
+did anything get worse?</h2>
+<p>Order value among buyers is skewed, so use <strong>Welch’s
+t-test</strong> (means, unequal variances) and check it with the
+<strong>Mann-Whitney</strong> test (ranks):</p>
+<pre class="text"><code>mean order value A 754, B 711 | median A 606, B 603
+Welch t-test p = 0.221 | Mann-Whitney p = 0.446</code></pre>
+<p>No evidence that buyers spend less with B: the medians are almost
+identical and both p-values are large. Now the metric the business
+really cares about:</p>
+<pre class="text"><code>revenue per session A 50.53, B 56.27 (+11.4%), p = 0.195</code></pre>
+<p>Revenue per session is up 11.4%, but <strong>not significant</strong>
+(p = 0.20). Revenue per session is very noisy (most sessions are 0, a
+few are large orders), so this test can’t confirm the revenue gain on
+its own. Honest summary: <em>conversion is clearly up; revenue is
+probably up, but the test can’t confirm it.</em></p>
+<h2 id="step-5-segments-consistent-or-one-group-only">Step 5: segments —
+consistent, or one group only?</h2>
+<pre class="text"><code>         mean        size
 variant     A     B     A     B
 device
 desktop  7.49  9.73  2323  2272
-mobile   6.13  6.57  3166  3075
-</code></pre></div>
-
-<p>The lift is large on <strong>desktop</strong> (+2.2 points) and small on <strong>mobile</strong> (+0.4). Treat this as a <strong>hypothesis for the next test</strong> (maybe the one-page form is long on small screens), not a conclusion: slicing results many ways will always find <em>some</em> difference by chance.</p>
-<h2 id="putting-it-together-the-decision">Putting it together: the decision</h2>
+mobile   6.13  6.57  3166  3075</code></pre>
+<p>The lift is large on <strong>desktop</strong> (+2.2 points) and small
+on <strong>mobile</strong> (+0.4). Treat this as a <strong>hypothesis
+for the next test</strong> (maybe the one-page form is long on small
+screens), not a conclusion: slicing results many ways will always find
+<em>some</em> difference by chance.</p>
+<h2 id="putting-it-together-the-decision">Putting it together: the
+decision</h2>
 <blockquote>
-<p><strong>Ship B.</strong> Conversion rose from 6.70% to 7.91% (+1.21 points, 95% CI +0.23 to +2.19; p = 0.016). Order value per buyer was unchanged. Revenue per session rose 11% but this test is too small to confirm it, so we'll track it after launch. The lift is concentrated on desktop; we'll test a mobile-optimised layout next.</p>
+<p><strong>Ship B.</strong> Conversion rose from 6.70% to 7.91% (+1.21
+points, 95% CI +0.23 to +2.19; p = 0.016). Order value per buyer was
+unchanged. Revenue per session rose 11% but this test is too small to
+confirm it, so we’ll track it after launch. The lift is concentrated on
+desktop; we’ll test a mobile-optimised layout next.</p>
 </blockquote>
-<h2 id="p-value-what-it-is-and-isnt">p-value: what it is and isn't</h2>
+<h2 id="p-value-what-it-is-and-isnt">p-value: what it is and isn’t</h2>
 <table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>✅ It is</th>
 <th>❌ It is not</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>How surprising the data would be if there were no effect</td>
 <td>The probability that B is better</td>
 </tr>
-<tr>
+<tr class="even">
 <td>One input to a decision</td>
 <td>Proof, or the size of the effect</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Valid only for the test you planned</td>
-<td>Valid after you've tried many metrics or stop dates</td>
+<td>Valid after you’ve tried many metrics or stop dates</td>
 </tr>
 </tbody>
 </table>
 <h2 id="common-mistakes">Common mistakes</h2>
 <table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Mistake</th>
 <th>What happens</th>
 <th>Fix</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>Skipping the SRM check</td>
 <td>Analysing a broken experiment</td>
 <td>Check the split first</td>
 </tr>
-<tr>
-<td>Reporting only "significant / not significant"</td>
+<tr class="even">
+<td>Reporting only “significant / not significant”</td>
 <td>Hides the size and uncertainty</td>
 <td>Difference + 95% CI + p</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Confusing points and percent</td>
-<td>"18% better" vs "1.2 points better" mix-ups</td>
+<td>“18% better” vs “1.2 points better” mix-ups</td>
 <td>State both explicitly</td>
 </tr>
-<tr>
-<td>Calling p = 0.20 "no effect"</td>
+<tr class="even">
+<td>Calling p = 0.20 “no effect”</td>
 <td>Missing real but under-measured gains</td>
-<td>"Not enough evidence", and say how much data would be needed</td>
+<td>“Not enough evidence”, and say how much data would be needed</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Celebrating the best segment</td>
 <td>False discoveries</td>
 <td>Pre-register segments, or treat them as new hypotheses</td>
@@ -281,75 +322,151 @@ mobile   6.13  6.57  3166  3075
 </tbody>
 </table>
 <h2 id="try-it-yourself">Try it yourself</h2>
-<p><strong>Task:</strong> Run the conversion test for <strong>new customers only</strong> (<code>new_customer == 1</code>). What are the rates, z and p? What do you conclude?</p>
+<p><strong>Task:</strong> Run the conversion test for <strong>new
+customers only</strong> (<code>new_customer == 1</code>). What are the
+rates, z and p? What do you conclude?</p>
 <details>
-<summary>Show the solution</summary>
-<div class="codehilite"><pre><span></span><code><span class="n">new</span> <span class="o">=</span> <span class="n">ab</span><span class="p">[</span><span class="n">ab</span><span class="p">[</span><span class="s2">"new_customer"</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span>
-<span class="n">s_new</span> <span class="o">=</span> <span class="n">new</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"variant"</span><span class="p">)[</span><span class="s2">"converted"</span><span class="p">]</span><span class="o">.</span><span class="n">agg</span><span class="p">([</span><span class="s2">"sum"</span><span class="p">,</span> <span class="s2">"size"</span><span class="p">])</span>
-<span class="n">z_n</span><span class="p">,</span> <span class="n">p_n</span> <span class="o">=</span> <span class="n">proportions_ztest</span><span class="p">(</span><span class="n">s_new</span><span class="p">[</span><span class="s2">"sum"</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()[::</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">s_new</span><span class="p">[</span><span class="s2">"size"</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()[::</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">s_new</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">rate</span><span class="o">=</span><span class="p">(</span><span class="n">s_new</span><span class="p">[</span><span class="s2">"sum"</span><span class="p">]</span> <span class="o">/</span> <span class="n">s_new</span><span class="p">[</span><span class="s2">"size"</span><span class="p">]</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">)))</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"new customers: z = </span><span class="si">{</span><span class="n">z_n</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">, p = </span><span class="si">{</span><span class="n">p_n</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>         sum  size  rate
+<summary>
+Show the solution
+</summary>
+<pre class="python"><code>new = ab[ab[&quot;new_customer&quot;] == 1]
+s_new = new.groupby(&quot;variant&quot;)[&quot;converted&quot;].agg([&quot;sum&quot;, &quot;size&quot;])
+z_n, p_n = proportions_ztest(s_new[&quot;sum&quot;].to_numpy()[::-1], s_new[&quot;size&quot;].to_numpy()[::-1])
+print(s_new.assign(rate=(s_new[&quot;sum&quot;] / s_new[&quot;size&quot;] * 100).round(2)))
+print(f&quot;new customers: z = {z_n:.2f}, p = {p_n:.3f}&quot;)</code></pre>
+<pre class="text"><code>         sum  size  rate
 variant
 A         91  1648  5.52
 B        118  1673  7.05
-new customers: z = 1.82, p = 0.069
-</code></pre></div>
-
-<p>B is ahead for new customers too (+1.5 points), but p = 0.069 &gt; 0.05: with only about 3,300 new-customer sessions, the test can't confirm it. It's consistent with the overall result, not evidence against it. "Not significant" in a subgroup usually means <strong>too little data</strong>, not "no effect".</p>
+new customers: z = 1.82, p = 0.069</code></pre>
+B is ahead for new customers too (+1.5 points), but p = 0.069 &gt; 0.05:
+with only about 3,300 new-customer sessions, the test can’t confirm it.
+It’s consistent with the overall result, not evidence against it. “Not
+significant” in a subgroup usually means <strong>too little
+data</strong>, not “no effect”.
 </details>
 <h2 id="quick-quiz">Quick quiz</h2>
 <div class="quiz-q" data-answer="1">
 <p>1. p = 0.016. Which statement is correct?</p>
-<ol>
-<li>There's a 98.4% chance that B is better</li>
-<li>If there were no real difference, a gap this large would occur about 1.6% of the time</li>
+<ol type="1">
+<li>There’s a 98.4% chance that B is better</li>
+<li>If there were no real difference, a gap this large would occur about
+1.6% of the time</li>
 <li>B is 1.6% better than A</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B.</strong></p>
+<summary>
+Show answer
+</summary>
+<strong>B.</strong>
 </details>
 </div>
 <div class="quiz-q" data-answer="0">
-<p>2. A test shows 5,489 vs 5,347 sessions for a 50/50 split. What does the SRM check tell you?</p>
-<ol>
-<li>The difference is within normal random variation, so the split looks healthy</li>
+<p>2. A test shows 5,489 vs 5,347 sessions for a 50/50 split. What does
+the SRM check tell you?</p>
+<ol type="1">
+<li>The difference is within normal random variation, so the split looks
+healthy</li>
 <li>The test is invalid</li>
 <li>B is better</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>A.</strong> p = 0.18; a tiny p-value would signal a broken split.</p>
+<summary>
+Show answer
+</summary>
+<strong>A.</strong> p = 0.18; a tiny p-value would signal a broken
+split.
 </details>
 </div>
 <div class="quiz-q" data-answer="0">
-<p>3. Conversion went from 6.70% to 7.91%. How do you describe the change?</p>
-<ol>
+<p>3. Conversion went from 6.70% to 7.91%. How do you describe the
+change?</p>
+<ol type="1">
 <li>+1.21 percentage points, an 18% relative lift</li>
 <li>+18 percentage points</li>
 <li>+1.21%, an 18-point lift</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>A.</strong></p>
+<summary>
+Show answer
+</summary>
+<strong>A.</strong>
 </details>
 </div>
 <h2 id="summary">Summary</h2>
 <ul>
-<li>Decide metrics, α and duration <strong>before</strong> the test; check the <strong>split (SRM)</strong> first.</li>
-<li>Conversion: <strong>two-proportion z-test</strong> (= chi-square on a 2×2 table); report the <strong>difference with a 95% CI</strong> and the p-value.</li>
-<li>Check <strong>guardrails</strong> (Welch t-test, Mann-Whitney for skewed values) and the business metric.</li>
-<li>"Significant" = unlikely to be chance; whether it <em>matters</em> depends on the size of the effect.</li>
+<li>Decide metrics, α and duration <strong>before</strong> the test;
+check the <strong>split (SRM)</strong> first.</li>
+<li>Conversion: <strong>two-proportion z-test</strong> (= chi-square on
+a 2×2 table); report the <strong>difference with a 95% CI</strong> and
+the p-value.</li>
+<li>Check <strong>guardrails</strong> (Welch t-test, Mann-Whitney for
+skewed values) and the business metric.</li>
+<li>“Significant” = unlikely to be chance; whether it <em>matters</em>
+depends on the size of the effect.</li>
 </ul>
-<div class="admonition job">
-<p class="admonition-title">Job-ready check</p>
-<p><strong>Interview question:</strong> <em>"Your A/B test gives p = 0.03 for conversion. Do you launch?"</em></p>
-<p><strong>Strong answer:</strong> "First I'd check the experiment is healthy (sample ratio, tracking, full weeks), and that this was the pre-registered primary metric analysed at the planned end. Then I'd look at the size: the difference and its confidence interval, against the cost of the change. And I'd check guardrails like order value and errors. If those hold, yes, and I'd keep monitoring after launch."</p>
-<p><strong>Mini project:</strong> Write a one-page experiment report for the checkout test: hypothesis, design, health check, results table with CIs, guardrails, decision and next test.</p>
+<div class="admonition job" data-markdown="1">
+<p class="admonition-title">
+Job-ready check
+</p>
+<p><strong>Interview question:</strong> <em>“Your A/B test gives p =
+0.03 for conversion. Do you launch?”</em></p>
+<p><strong>Strong answer:</strong> “First I’d check the experiment is
+healthy (sample ratio, tracking, full weeks), and that this was the
+pre-registered primary metric analysed at the planned end. Then I’d look
+at the size: the difference and its confidence interval, against the
+cost of the change. And I’d check guardrails like order value and
+errors. If those hold, yes, and I’d keep monitoring after launch.”</p>
+<p><strong>Mini project:</strong> Write a one-page experiment report for
+the checkout test: hypothesis, design, health check, results table with
+CIs, guardrails, decision and next test.</p>
 </div>
+<section class="mentor-prompt"><div class="mentor-head"><div><span class="eyebrow">AI study companion</span><h2 id="ai-mentor-prompt">AI Mentor Prompt</h2></div><button class="btn copy-prompt" type="button" data-copy-target="mentor-prompt-phase-2-ab-testing-01-hypothesis-tests-significance">Copy prompt</button></div><p>Paste this into ChatGPT, Claude, Gemini, or another capable assistant to turn this tutorial into an interactive mentoring session.</p><pre class="prompt-box"><code id="mentor-prompt-phase-2-ab-testing-01-hypothesis-tests-significance">You are my hands-on Python, statistics and data-science mentor.
+
+I am currently studying:
+&quot;A/B Testing Part 1: Hypothesis Tests and Significance&quot;
+
+My level:
+Intermediate
+
+Teach me this topic interactively rather than giving me a long lecture.
+
+Use this sequence:
+
+1. Check what I already understand with one short diagnostic question.
+2. Explain the concept in simple language and give me the mental model first.
+3. Give me one small task using code, SQL, configuration, data, or architecture as appropriate.
+4. Wait for my attempt before showing a complete solution.
+5. Review my work and explain both what is correct and what needs improvement.
+6. Help me debug errors step by step instead of immediately replacing my work.
+7. Increase the difficulty gradually and connect each new step to the previous one.
+8. Relate what I am learning to real professional data/AI engineering work.
+9. Ask me to explain an important decision in my own words so you can check my understanding.
+10. At the end, ask me to build or modify one small feature independently.
+
+Important rules:
+- Do not do the entire exercise for me unless I explicitly ask.
+- Explain unfamiliar terminology before using it heavily.
+- Prefer current, production-relevant practices over outdated shortcuts.
+- Distinguish clearly between concepts, tool-specific behaviour, and optional alternatives.
+- If a technical fact, API, syntax, version, or best practice may have changed, verify it against current official documentation before teaching it.
+- Never invent command output, test results, benchmark numbers, cloud behaviour, or data results.
+- If something cannot be executed in the current environment, say so and give me the exact command or verification step I should run.
+- Keep me actively coding, querying, configuring, reasoning, or debugging throughout the session.
+- When useful, work from the tutorial practice files (data-science-scripts.zip, ab_test_checkout.csv) instead of inventing unrelated examples.
+
+The concepts I need to master are:
+- Hypothesis tests
+- Significance
+- a/b test
+- ab test
+- experiment
+- hypothesis test
+- null hypothesis
+- alternative hypothesis
+
+Start by asking me one diagnostic question.</code></pre></section>
+
 <div class="terms-box"><div class="files-head"><b>Key terms in this lesson</b><a href="../../../glossary.html">Glossary →</a></div><div class="term-chips"><a class="term-chip" href="../../../glossary.html#a-b-test" title="An experiment that shows two versions (A and B) to random groups and uses statistics to decide whether the difference in results is real or chance.">A/B test</a><a class="term-chip" href="../../../glossary.html#p-value" title="If there were really no effect, the probability of seeing a result at least as extreme as yours. Small p (e.g. &lt; 0.05) = unlikely to be chance alone. It is not the probability that the effect is real.">p-value</a><a class="term-chip" href="../../../glossary.html#sample-ratio-mismatch" title="When an experiment&#x27;s groups are a different size from the planned split (e.g. 50/50) by more than chance allows. It usually signals a bug: fix it before analysing results.">Sample ratio mismatch</a></div></div>
 <h2 id="free-resources">Free resources to go deeper</h2><ul class="resources"><li><a href="https://www.statsmodels.org/stable/generated/statsmodels.stats.proportion.proportions_ztest.html">proportions_ztest (statsmodels)</a><span class="r-meta">statsmodels official docs · The two-proportion test used in this lesson.</span></li><li><a href="https://www.openintro.org/book/os/">OpenIntro Statistics (free textbook)</a><span class="r-meta">OpenIntro · Chapter 5–6: hypothesis testing and inference for proportions.</span></li><li><a href="https://experimentguide.com/">Trustworthy Online Controlled Experiments — resources</a><span class="r-meta">Kohavi, Tang &amp; Xu (book site) · The standard practitioner book on A/B testing; the site has free chapters and slides.</span></li></ul>
 <div class="complete-bar"><span>Finished reading and did the exercise?</span>
@@ -358,9 +475,9 @@ new customers: z = 1.82, p = 0.069
 <p class="reviewed">Last reviewed: 2026-10-09</p>
 
   </div></main>
-  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#step-0-decide-before-you-look">Step 0: decide before you look</a><a href="#step-1-health-check-is-the-split-intact">Step 1: health check — is the split intact?</a><a href="#step-2-the-primary-metric">Step 2: the primary metric</a><a href="#step-3-the-two-proportion-z-test-with-a-confidence-interval">Step 3: the two-proportion z-test, with a confidence interval</a><a href="#step-4-guardrails-did-anything-get-worse">Step 4: guardrails — did anything get worse?</a><a href="#step-5-segments-consistent-or-one-group-only">Step 5: segments — consistent, or one group only?</a><a href="#putting-it-together-the-decision">Putting it together: the decision</a><a href="#p-value-what-it-is-and-isnt">p-value: what it is and isn&#x27;t</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#free-resources">Free resources</a></aside>
+  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#step-0-decide-before-you-look">Step 0: decide before you look</a><a href="#step-1-health-check-is-the-split-intact">Step 1: health check — is the split intact?</a><a href="#step-2-the-primary-metric">Step 2: the primary metric</a><a href="#step-3-the-two-proportion-z-test-with-a-confidence-interval">Step 3: the two-proportion z-test, with a confidence interval</a><a href="#step-4-guardrails-did-anything-get-worse">Step 4: guardrails — did anything get worse?</a><a href="#step-5-segments-consistent-or-one-group-only">Step 5: segments — consistent, or one group only?</a><a href="#putting-it-together-the-decision">Putting it together: the decision</a><a href="#p-value-what-it-is-and-isnt">p-value: what it is and isn’t</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#ai-mentor-prompt">AI Mentor Prompt</a><a href="#free-resources">Free resources</a></aside>
 </div>
-<footer class="site">Data, AI &amp; Automation Path v0.8 · Applied AI, Data &amp; Automation Lab · Updated October 2026<br>
+<footer class="site"><b>Saiful The Techie</b> · Data, AI &amp; Automation Path v0.9.1 · Updated October 2026<br>
 Lesson text: <a href="../../../license.html">CC BY-NC-SA 4.0</a> · Code: <a href="../../../license.html#code-mit-license">MIT</a> · Free external resources belong to their respective owners.</footer>
 <script src="../../../search-index.js"></script>
 <script src="../../../assets/app.js"></script>

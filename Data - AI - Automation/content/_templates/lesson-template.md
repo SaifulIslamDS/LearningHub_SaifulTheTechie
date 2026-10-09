@@ -11,17 +11,23 @@ keywords: []
 reviewed: 2026-10-09
 draft: false
 files: []
-# Optional curated companion; written tutorial must stand on its own.
+# The generator adds a professional AI Mentor Prompt automatically from title, level, topics and keywords.
+# Optional curated YouTube companion; the written tutorial must stand on its own.
 # youtube:
 #   title: "..."
 #   creator: "..."
 #   url: "https://www.youtube.com/watch?v=..."
 #   video_id: "..."
+#   start_seconds: 0
 #   duration: "..."
 #   language: "English"
 #   level: "Beginner"
 #   reviewed: "YYYY-MM-DD"
 #   why_recommended: "..."
+#   timestamps:
+#     - label: "Recommended section"
+#       time: "08:50"
+#       url: "https://www.youtube.com/watch?v=...&t=530s"
 resources:
   - title: "Official resource"
     url: "https://..."

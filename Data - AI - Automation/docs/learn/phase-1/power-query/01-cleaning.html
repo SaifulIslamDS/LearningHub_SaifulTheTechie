@@ -6,7 +6,7 @@
 <title>Power Query Cleaning: From Messy Export to Tidy Table — Data, AI &amp; Automation Path</title>
 <meta name="description" content="Remove blanks and duplicates, fix spaces and capitals, read dates in the right format, and get the same clean table every time you refresh.">
 <meta property="og:type" content="article">
-<meta property="og:site_name" content="Data, AI &amp; Automation Path">
+<meta property="og:site_name" content="Saiful The Techie">
 <meta property="og:title" content="Power Query Cleaning: From Messy Export to Tidy Table">
 <meta property="og:description" content="Remove blanks and duplicates, fix spaces and capitals, read dates in the right format, and get the same clean table every time you refresh.">
 <meta property="og:locale" content="en_US">
@@ -19,13 +19,13 @@ var n=null;try{n=localStorage.getItem('daa-nav')}catch(e){}
 if(n==='open'&&window.matchMedia&&matchMedia('(min-width: 961px)').matches)document.documentElement.setAttribute('data-nav','open');
 document.documentElement.classList.add('no-anim')})();</script>
 <link rel="stylesheet" href="../../../assets/style.css">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233f7d6a'/%3E%3Ctext x='16' y='21' font-family='sans-serif' font-size='13' font-weight='700' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
+
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="topbar">
   <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Open curriculum menu" title="Curriculum menu (press M)" aria-controls="sidebar" aria-expanded="false"><span class="ico-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span class="ico-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></button>
-  <a class="brand" href="../../../index.html"><span class="brand-badge">AI</span><span class="brand-text"><span class="brand-name">Data, AI &amp; Automation Path</span><span class="brand-version">v0.8</span></span></a>
+  <a class="brand" href="../../../index.html"><span class="brand-text"><span class="brand-name">Saiful The Techie</span><span class="brand-version">Data, AI &amp; Automation Path · v0.9.1</span></span></a>
   <nav class="top-links" aria-label="Main">
     <a href="../../../index.html" class="">Home</a><a href="../../../curriculum.html" class="">Curriculum</a><a href="../../../practice-files.html" class="">Practice files</a><a href="../../../glossary.html" class="">Glossary</a><a href="../../../how-to-learn.html" class="">How to learn</a><a href="../../../about.html" class="">About</a>
   </nav>
@@ -41,7 +41,7 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="layout wide">
   <nav class="sidebar" id="sidebar" aria-label="Curriculum">
     <div class="side-title">Curriculum</div>
-    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="77"><i></i></div><span class="bar-label" data-progress-label></span></div>
+    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="85"><i></i></div><span class="bar-label" data-progress-label></span></div>
 <div class="nav-phase"><a href="../../../learn/phase-0/index.html"><span class="nav-num">0</span>Foundations</a>
 </div>
 <div class="nav-phase current open"><a href="../../../learn/phase-1/index.html"><span class="nav-num">1</span>Analytics &amp; BI</a>
@@ -97,195 +97,340 @@ document.documentElement.classList.add('no-anim')})();</script>
 
 <div class="files-box"><div class="files-head"><b>Practice files for this page</b><a href="../../../practice-files.html">All practice files →</a></div><ul><li><a href="../../../downloads/orders_raw.csv" download>orders_raw.csv</a><span class="f-desc">Messy export of the 12 orders (14 rows) to clean · 1 KB</span></li><li><a href="../../../downloads/orders.csv" download>orders.csv</a><span class="f-desc">The 12 clean practice orders as CSV · 963 B</span></li></ul></div>
 <h2 id="what-is-it">What is it?</h2>
-<p><strong>Power Query</strong> is a data-cleaning tool built into Excel and Power BI. You click through cleaning actions such as <em>trim spaces</em>, <em>remove duplicates</em> or <em>change type</em>, and Power Query <strong>records each one as a step</strong>. Next month, you drop in the new file and click <strong>Refresh</strong>: every step runs again automatically.</p>
-<p>Behind the clicks, each step is written in a language called <strong>M</strong>. You don't have to write M, but reading it helps you check and fix queries.</p>
-<div class="admonition job">
-<p class="admonition-title">Why it matters at work</p>
-<p>Analysts often say most of their time goes on cleaning data. Power Query turns that into a repeatable, auditable process instead of a monthly copy-paste routine. "Clean and transform data" is the first skill area of the PL-300 Power BI exam, and a standard interview topic.</p>
+<p><strong>Power Query</strong> is a data-cleaning tool built into Excel
+and Power BI. You click through cleaning actions such as <em>trim
+spaces</em>, <em>remove duplicates</em> or <em>change type</em>, and
+Power Query <strong>records each one as a step</strong>. Next month, you
+drop in the new file and click <strong>Refresh</strong>: every step runs
+again automatically.</p>
+<p>Behind the clicks, each step is written in a language called
+<strong>M</strong>. You don’t have to write M, but reading it helps you
+check and fix queries.</p>
+<div class="admonition job" data-markdown="1">
+<p class="admonition-title">
+Why it matters at work
+</p>
+<p>Analysts often say most of their time goes on cleaning data. Power
+Query turns that into a repeatable, auditable process instead of a
+monthly copy-paste routine. “Clean and transform data” is the first
+skill area of the PL-300 Power BI exam, and a standard interview
+topic.</p>
 </div>
 <h2 id="the-messy-file">The messy file</h2>
-<p>Open <a href="../../../downloads/orders_raw.csv">orders_raw.csv</a>. It has the same 12 orders as before, exported badly:</p>
+<p>Open <a href="../../../downloads/orders_raw.csv">orders_raw.csv</a>.
+It has the same 12 orders as before, exported badly:</p>
 <table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Problem</th>
 <th>Example</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>Extra spaces</td>
 <td><code>"  Rahim Traders"</code>, <code>"Dhaka "</code></td>
 </tr>
-<tr>
+<tr class="even">
 <td>Mixed capitals</td>
-<td><code>chattogram</code>, <code>DHAKA</code>, <code>delivered</code>, <code>CANCELLED</code></td>
+<td><code>chattogram</code>, <code>DHAKA</code>, <code>delivered</code>,
+<code>CANCELLED</code></td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Dates written day/month/year as text</td>
-<td><code>05/01/2026</code> means <strong>5 January</strong>, not 1 May</td>
+<td><code>05/01/2026</code> means <strong>5 January</strong>, not 1
+May</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Numbers with thousand separators, stored as text</td>
 <td><code>"5,000"</code></td>
 </tr>
-<tr>
+<tr class="odd">
 <td>A blank row</td>
 <td><code>,,,,,,,,</code></td>
 </tr>
-<tr>
+<tr class="even">
 <td>A duplicated order</td>
 <td>order 6 appears twice</td>
 </tr>
 </tbody>
 </table>
-<p>That gives <strong>14 data rows</strong>, which should become <strong>12 clean orders</strong>.</p>
+<p>That gives <strong>14 data rows</strong>, which should become
+<strong>12 clean orders</strong>.</p>
 <h2 id="step-by-step-in-the-editor">Step by step in the editor</h2>
-<ol>
-<li>Choose <strong>Data → From Text/CSV</strong> (Excel) or <strong>Get data → Text/CSV</strong> (Power BI), pick the file, and click <strong>Transform Data</strong>.</li>
-<li><strong>Delete the automatic "Changed Type" step</strong> in the <em>Applied Steps</em> list (click the ✕). Power Query guessed the types using your computer's settings, and on a US-style computer it would read <code>05/01/2026</code> as 1 May. You'll set the types correctly yourself.</li>
-<li><strong>Remove the blank row:</strong> <strong>Home → Remove Rows → Remove Blank Rows</strong>. 13 rows remain.</li>
-<li><strong>Trim spaces:</strong> select <em>Customer</em>, <em>Region</em> and <em>Status</em> → <strong>Transform → Format → Trim</strong>.</li>
-<li><strong>Fix capitals:</strong> select <em>Region</em> and <em>Status</em> → <strong>Transform → Format → Capitalize Each Word</strong>. Now <code>DHAKA</code> becomes <code>Dhaka</code> and <code>CANCELLED</code> becomes <code>Cancelled</code>.</li>
-<li><strong>Remove the thousand separators:</strong> select <em>Qty</em> → <strong>Transform → Replace Values</strong> → replace <code>,</code> with nothing.</li>
-<li><strong>Set the types with a locale:</strong> select <em>Order Date</em>, <em>Qty</em> and <em>Unit Price</em> → right-click → <strong>Change Type → Using Locale…</strong>. Choose Date (for Order Date), Whole Number (Qty) or Decimal Number (Unit Price), with locale <strong>English (United Kingdom)</strong>. Set <em>Order ID</em> to <strong>Whole Number</strong>.</li>
-<li><strong>Remove the duplicate:</strong> <strong>Home → Remove Rows → Remove Duplicates</strong> (with all columns selected, or none). <strong>12 rows</strong> remain.</li>
-<li><strong>Rename</strong> the columns to <code>order_id, order_date, customer, region, category, product, quantity, unit_price, status</code>.</li>
-<li><strong>Add the value column:</strong> <strong>Add Column → Custom Column</strong>, name <code>value</code>, formula <code>[quantity] * [unit_price]</code>.</li>
-<li><strong>Home → Close &amp; Load</strong> (Excel) or <strong>Close &amp; Apply</strong> (Power BI).</li>
+<ol type="1">
+<li>Choose <strong>Data → From Text/CSV</strong> (Excel) or <strong>Get
+data → Text/CSV</strong> (Power BI), pick the file, and click
+<strong>Transform Data</strong>.</li>
+<li><strong>Delete the automatic “Changed Type” step</strong> in the
+<em>Applied Steps</em> list (click the ✕). Power Query guessed the types
+using your computer’s settings, and on a US-style computer it would read
+<code>05/01/2026</code> as 1 May. You’ll set the types correctly
+yourself.</li>
+<li><strong>Remove the blank row:</strong> <strong>Home → Remove Rows →
+Remove Blank Rows</strong>. 13 rows remain.</li>
+<li><strong>Trim spaces:</strong> select <em>Customer</em>,
+<em>Region</em> and <em>Status</em> → <strong>Transform → Format →
+Trim</strong>.</li>
+<li><strong>Fix capitals:</strong> select <em>Region</em> and
+<em>Status</em> → <strong>Transform → Format → Capitalize Each
+Word</strong>. Now <code>DHAKA</code> becomes <code>Dhaka</code> and
+<code>CANCELLED</code> becomes <code>Cancelled</code>.</li>
+<li><strong>Remove the thousand separators:</strong> select <em>Qty</em>
+→ <strong>Transform → Replace Values</strong> → replace <code>,</code>
+with nothing.</li>
+<li><strong>Set the types with a locale:</strong> select <em>Order
+Date</em>, <em>Qty</em> and <em>Unit Price</em> → right-click →
+<strong>Change Type → Using Locale…</strong>. Choose Date (for Order
+Date), Whole Number (Qty) or Decimal Number (Unit Price), with locale
+<strong>English (United Kingdom)</strong>. Set <em>Order ID</em> to
+<strong>Whole Number</strong>.</li>
+<li><strong>Remove the duplicate:</strong> <strong>Home → Remove Rows →
+Remove Duplicates</strong> (with all columns selected, or none).
+<strong>12 rows</strong> remain.</li>
+<li><strong>Rename</strong> the columns to
+<code>order_id, order_date, customer, region, category, product, quantity, unit_price, status</code>.</li>
+<li><strong>Add the value column:</strong> <strong>Add Column → Custom
+Column</strong>, name <code>value</code>, formula
+<code>[quantity] * [unit_price]</code>.</li>
+<li><strong>Home → Close &amp; Load</strong> (Excel) or <strong>Close
+&amp; Apply</strong> (Power BI).</li>
 </ol>
-<p><strong>Result:</strong> 12 orders, regions exactly <code>Chattogram / Dhaka / Gazipur / Narayanganj</code>, statuses <code>Cancelled / Delivered / Pending / Shipped</code>, and a total value of <strong>9,315</strong> (9,075 without the cancelled order). That is identical to the clean <code>orders.csv</code> used in earlier lessons.</p>
+<p><strong>Result:</strong> 12 orders, regions exactly
+<code>Chattogram / Dhaka / Gazipur / Narayanganj</code>, statuses
+<code>Cancelled / Delivered / Pending / Shipped</code>, and a total
+value of <strong>9,315</strong> (9,075 without the cancelled order).
+That is identical to the clean <code>orders.csv</code> used in earlier
+lessons.</p>
 <h2 id="the-same-steps-in-m">The same steps in M</h2>
-<p>Open <strong>Home → Advanced Editor</strong> to see the recorded steps. Your version will look similar to this, apart from the file path and some step names:</p>
-<div class="codehilite"><pre><span></span><code>let
-    Source = Csv.Document(File.Contents("C:\Practice\orders_raw.csv"),
-                 [Delimiter = ",", Columns = 9, Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
-    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
-    #"Removed Blank Rows" = Table.SelectRows(#"Promoted Headers",
-                 each not List.IsEmpty(List.RemoveMatchingItems(Record.FieldValues(_), {"", null}))),
-    #"Trimmed Text" = Table.TransformColumns(#"Removed Blank Rows",
-                 {{"Customer", Text.Trim, type text}, {"Region", Text.Trim, type text}, {"Status", Text.Trim, type text}}),
-    #"Capitalized Each Word" = Table.TransformColumns(#"Trimmed Text",
-                 {{"Region", Text.Proper, type text}, {"Status", Text.Proper, type text}}),
-    #"Replaced Value" = Table.ReplaceValue(#"Capitalized Each Word", ",", "", Replacer.ReplaceText, {"Qty"}),
-    #"Changed Type with Locale" = Table.TransformColumnTypes(#"Replaced Value",
-                 {{"Order Date", type date}, {"Qty", Int64.Type}, {"Unit Price", type number}}, "en-GB"),
-    #"Changed Type" = Table.TransformColumnTypes(#"Changed Type with Locale", {{"Order ID", Int64.Type}}),
-    #"Removed Duplicates" = Table.Distinct(#"Changed Type"),
-    #"Renamed Columns" = Table.RenameColumns(#"Removed Duplicates", {
-                 {"Order ID", "order_id"}, {"Order Date", "order_date"}, {"Customer", "customer"},
-                 {"Region", "region"}, {"Category", "category"}, {"Product", "product"},
-                 {"Qty", "quantity"}, {"Unit Price", "unit_price"}, {"Status", "status"}}),
-    #"Added Value" = Table.AddColumn(#"Renamed Columns", "value", each [quantity] * [unit_price], type number)
+<p>Open <strong>Home → Advanced Editor</strong> to see the recorded
+steps. Your version will look similar to this, apart from the file path
+and some step names:</p>
+<pre class="m"><code>let
+    Source = Csv.Document(File.Contents(&quot;C:\Practice\orders_raw.csv&quot;),
+                 [Delimiter = &quot;,&quot;, Columns = 9, Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+    #&quot;Promoted Headers&quot; = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+    #&quot;Removed Blank Rows&quot; = Table.SelectRows(#&quot;Promoted Headers&quot;,
+                 each not List.IsEmpty(List.RemoveMatchingItems(Record.FieldValues(_), {&quot;&quot;, null}))),
+    #&quot;Trimmed Text&quot; = Table.TransformColumns(#&quot;Removed Blank Rows&quot;,
+                 {{&quot;Customer&quot;, Text.Trim, type text}, {&quot;Region&quot;, Text.Trim, type text}, {&quot;Status&quot;, Text.Trim, type text}}),
+    #&quot;Capitalized Each Word&quot; = Table.TransformColumns(#&quot;Trimmed Text&quot;,
+                 {{&quot;Region&quot;, Text.Proper, type text}, {&quot;Status&quot;, Text.Proper, type text}}),
+    #&quot;Replaced Value&quot; = Table.ReplaceValue(#&quot;Capitalized Each Word&quot;, &quot;,&quot;, &quot;&quot;, Replacer.ReplaceText, {&quot;Qty&quot;}),
+    #&quot;Changed Type with Locale&quot; = Table.TransformColumnTypes(#&quot;Replaced Value&quot;,
+                 {{&quot;Order Date&quot;, type date}, {&quot;Qty&quot;, Int64.Type}, {&quot;Unit Price&quot;, type number}}, &quot;en-GB&quot;),
+    #&quot;Changed Type&quot; = Table.TransformColumnTypes(#&quot;Changed Type with Locale&quot;, {{&quot;Order ID&quot;, Int64.Type}}),
+    #&quot;Removed Duplicates&quot; = Table.Distinct(#&quot;Changed Type&quot;),
+    #&quot;Renamed Columns&quot; = Table.RenameColumns(#&quot;Removed Duplicates&quot;, {
+                 {&quot;Order ID&quot;, &quot;order_id&quot;}, {&quot;Order Date&quot;, &quot;order_date&quot;}, {&quot;Customer&quot;, &quot;customer&quot;},
+                 {&quot;Region&quot;, &quot;region&quot;}, {&quot;Category&quot;, &quot;category&quot;}, {&quot;Product&quot;, &quot;product&quot;},
+                 {&quot;Qty&quot;, &quot;quantity&quot;}, {&quot;Unit Price&quot;, &quot;unit_price&quot;}, {&quot;Status&quot;, &quot;status&quot;}}),
+    #&quot;Added Value&quot; = Table.AddColumn(#&quot;Renamed Columns&quot;, &quot;value&quot;, each [quantity] * [unit_price], type number)
 in
-    #"Added Value"
-</code></pre></div>
-
-<p>Each line is one Applied Step, and each step uses the result of the step before it.</p>
-<div class="admonition tip">
-<p class="admonition-title">Order of steps matters</p>
-<p>Remove duplicates <strong>after</strong> trimming and fixing capitals. Before cleaning, <code>"Rahim Traders "</code> and <code>"Rahim Traders"</code> count as different values, so true duplicates can slip through.</p>
+    #&quot;Added Value&quot;</code></pre>
+<p>Each line is one Applied Step, and each step uses the result of the
+step before it.</p>
+<div class="admonition tip" data-markdown="1">
+<p class="admonition-title">
+Order of steps matters
+</p>
+<p>Remove duplicates <strong>after</strong> trimming and fixing
+capitals. Before cleaning, <code>"Rahim Traders "</code> and
+<code>"Rahim Traders"</code> count as different values, so true
+duplicates can slip through.</p>
 </div>
 <h2 id="common-mistakes">Common mistakes</h2>
 <table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Mistake</th>
 <th>What happens</th>
 <th>Fix</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td>Keeping the automatic "Changed Type" step</td>
-<td>Day/month dates are read as month/day: 5 Jan becomes 1 May, and 15/01 gives an error</td>
+<tr class="odd">
+<td>Keeping the automatic “Changed Type” step</td>
+<td>Day/month dates are read as month/day: 5 Jan becomes 1 May, and
+15/01 gives an error</td>
 <td>Delete it, then use <strong>Change Type → Using Locale</strong></td>
 </tr>
-<tr>
+<tr class="even">
 <td>Changing type before removing the <code>,</code> in numbers</td>
 <td>Errors in the Qty column</td>
 <td>Replace <code>,</code> first, or use the right locale</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Removing duplicates before cleaning text</td>
 <td>Real duplicates survive</td>
 <td>Trim and fix capitals first</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Editing the loaded table in the sheet</td>
 <td>Your changes disappear on refresh</td>
 <td>Make every change inside Power Query</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Hard-coded file path on your own PC</td>
-<td>A colleague's refresh fails</td>
+<td>A colleague’s refresh fails</td>
 <td>Use a shared folder, or a parameter for the path</td>
 </tr>
 </tbody>
 </table>
 <h2 id="try-it-yourself">Try it yourself</h2>
-<p><strong>Task:</strong> In your cleaned query, add one more step that keeps only <strong>non-cancelled</strong> orders. How many rows remain, and what is their total value?</p>
+<p><strong>Task:</strong> In your cleaned query, add one more step that
+keeps only <strong>non-cancelled</strong> orders. How many rows remain,
+and what is their total value?</p>
 <details>
-<summary>Show a hint</summary>
-<p>Click the filter arrow on <em>status</em> and untick <strong>Cancelled</strong>. Power Query adds a "Filtered Rows" step.</p>
+<summary>
+Show a hint
+</summary>
+Click the filter arrow on <em>status</em> and untick
+<strong>Cancelled</strong>. Power Query adds a “Filtered Rows” step.
 </details>
 <details>
-<summary>Show the solution</summary>
-<div class="codehilite"><pre><span></span><code>#"Filtered Rows" = Table.SelectRows(#"Added Value", each [status] &lt;&gt; "Cancelled")
-</code></pre></div>
-
-<p><strong>11 rows</strong> with a total value of <strong>9,075</strong>. These match the SQL and Excel results from earlier lessons, so you know the cleaning worked.</p>
+<summary>
+Show the solution
+</summary>
+<pre class="m"><code>#&quot;Filtered Rows&quot; = Table.SelectRows(#&quot;Added Value&quot;, each [status] &lt;&gt; &quot;Cancelled&quot;)</code></pre>
+<strong>11 rows</strong> with a total value of <strong>9,075</strong>.
+These match the SQL and Excel results from earlier lessons, so you know
+the cleaning worked.
 </details>
 <h2 id="quick-quiz">Quick quiz</h2>
 <div class="quiz-q" data-answer="1">
-<p>1. A date column shows <code>05/01/2026</code> and you know it means 5 January. What is the safest way to convert it?</p>
-<ol>
+<p>1. A date column shows <code>05/01/2026</code> and you know it means
+5 January. What is the safest way to convert it?</p>
+<ol type="1">
 <li>Change Type → Date</li>
 <li>Change Type → Using Locale → English (United Kingdom)</li>
 <li>Replace <code>/</code> with <code>-</code></li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B.</strong> "Using Locale" tells Power Query the format is day/month/year, whatever your computer's settings are.</p>
+<summary>
+Show answer
+</summary>
+<strong>B.</strong> “Using Locale” tells Power Query the format is
+day/month/year, whatever your computer’s settings are.
 </details>
 </div>
 <div class="quiz-q" data-answer="1">
-<p>2. Where should you fix a typo that appears in every monthly export?</p>
-<ol>
+<p>2. Where should you fix a typo that appears in every monthly
+export?</p>
+<ol type="1">
 <li>In the loaded Excel table, after each refresh</li>
 <li>As a step in Power Query</li>
 <li>In the source system only</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B</strong> (and report it to the source owner, too). A Power Query step fixes it automatically on every refresh. Edits to the loaded table are overwritten.</p>
+<summary>
+Show answer
+</summary>
+<strong>B</strong> (and report it to the source owner, too). A Power
+Query step fixes it automatically on every refresh. Edits to the loaded
+table are overwritten.
 </details>
 </div>
 <div class="quiz-q" data-answer="1">
 <p>3. Why trim spaces before removing duplicates?</p>
-<ol>
+<ol type="1">
 <li>Trimming makes the query faster</li>
-<li><code>"Dhaka "</code> and <code>"Dhaka"</code> are different values until trimmed</li>
+<li><code>"Dhaka "</code> and <code>"Dhaka"</code> are different values
+until trimmed</li>
 <li>Remove Duplicates trims automatically</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B.</strong> Clean the text first, so that true duplicates actually match.</p>
+<summary>
+Show answer
+</summary>
+<strong>B.</strong> Clean the text first, so that true duplicates
+actually match.
 </details>
 </div>
 <h2 id="summary">Summary</h2>
 <ul>
-<li>Power Query records every cleaning action as an <strong>Applied Step</strong> (written in M) that runs again on <strong>Refresh</strong>.</li>
-<li>Typical cleaning: remove blank rows, Trim, Capitalize Each Word, Replace Values, Change Type <strong>Using Locale</strong>, Remove Duplicates, rename, add columns.</li>
-<li>Delete or check the automatic type step. Dates and numbers depend on the locale.</li>
-<li>Check the result against a known total (here 9,315, or 9,075 non-cancelled).</li>
+<li>Power Query records every cleaning action as an <strong>Applied
+Step</strong> (written in M) that runs again on
+<strong>Refresh</strong>.</li>
+<li>Typical cleaning: remove blank rows, Trim, Capitalize Each Word,
+Replace Values, Change Type <strong>Using Locale</strong>, Remove
+Duplicates, rename, add columns.</li>
+<li>Delete or check the automatic type step. Dates and numbers depend on
+the locale.</li>
+<li>Check the result against a known total (here 9,315, or 9,075
+non-cancelled).</li>
 </ul>
-<div class="admonition job">
-<p class="admonition-title">Job-ready check</p>
-<p><strong>Interview question:</strong> <em>"You receive the same messy sales export every month. How do you handle it?"</em></p>
-<p><strong>Strong answer:</strong> "I build a Power Query once: remove blanks, trim and standardise text, set types with the correct locale, de-duplicate, and add calculated columns. Then each month I replace the file and refresh. I check row counts and totals against the source, and report recurring data-quality issues to the system owner."</p>
-<p><strong>Mini project:</strong> Build the cleaning query, load it to a sheet, and add a small <strong>Checks</strong> table: rows loaded (12), total value (9,315), and distinct regions (4). Save it as <code>clean-orders.xlsx</code>.</p>
+<div class="admonition job" data-markdown="1">
+<p class="admonition-title">
+Job-ready check
+</p>
+<p><strong>Interview question:</strong> <em>“You receive the same messy
+sales export every month. How do you handle it?”</em></p>
+<p><strong>Strong answer:</strong> “I build a Power Query once: remove
+blanks, trim and standardise text, set types with the correct locale,
+de-duplicate, and add calculated columns. Then each month I replace the
+file and refresh. I check row counts and totals against the source, and
+report recurring data-quality issues to the system owner.”</p>
+<p><strong>Mini project:</strong> Build the cleaning query, load it to a
+sheet, and add a small <strong>Checks</strong> table: rows loaded (12),
+total value (9,315), and distinct regions (4). Save it as
+<code>clean-orders.xlsx</code>.</p>
 </div>
+<section class="mentor-prompt"><div class="mentor-head"><div><span class="eyebrow">AI study companion</span><h2 id="ai-mentor-prompt">AI Mentor Prompt</h2></div><button class="btn copy-prompt" type="button" data-copy-target="mentor-prompt-phase-1-power-query-01-cleaning">Copy prompt</button></div><p>Paste this into ChatGPT, Claude, Gemini, or another capable assistant to turn this tutorial into an interactive mentoring session.</p><pre class="prompt-box"><code id="mentor-prompt-phase-1-power-query-01-cleaning">You are my hands-on data-analytics and business-intelligence mentor.
+
+I am currently studying:
+&quot;Power Query Cleaning: From Messy Export to Tidy Table&quot;
+
+My level:
+Beginner
+
+Teach me this topic interactively rather than giving me a long lecture.
+
+Use this sequence:
+
+1. Check what I already understand with one short diagnostic question.
+2. Explain the concept in simple language and give me the mental model first.
+3. Give me one small task using code, SQL, configuration, data, or architecture as appropriate.
+4. Wait for my attempt before showing a complete solution.
+5. Review my work and explain both what is correct and what needs improvement.
+6. Help me debug errors step by step instead of immediately replacing my work.
+7. Increase the difficulty gradually and connect each new step to the previous one.
+8. Relate what I am learning to real professional data/AI engineering work.
+9. Ask me to explain an important decision in my own words so you can check my understanding.
+10. At the end, ask me to build or modify one small feature independently.
+
+Important rules:
+- Do not do the entire exercise for me unless I explicitly ask.
+- Explain unfamiliar terminology before using it heavily.
+- Prefer current, production-relevant practices over outdated shortcuts.
+- Distinguish clearly between concepts, tool-specific behaviour, and optional alternatives.
+- If a technical fact, API, syntax, version, or best practice may have changed, verify it against current official documentation before teaching it.
+- Never invent command output, test results, benchmark numbers, cloud behaviour, or data results.
+- If something cannot be executed in the current environment, say so and give me the exact command or verification step I should run.
+- Keep me actively coding, querying, configuring, reasoning, or debugging throughout the session.
+- When useful, work from the tutorial practice files (orders_raw.csv, orders.csv) instead of inventing unrelated examples.
+
+The concepts I need to master are:
+- Cleaning
+- power query
+- clean data
+- trim
+- capitalize each word
+- remove duplicates
+- remove blank rows
+- data types
+
+Start by asking me one diagnostic question.</code></pre></section>
+
 <div class="terms-box"><div class="files-head"><b>Key terms in this lesson</b><a href="../../../glossary.html">Glossary →</a></div><div class="term-chips"><a class="term-chip" href="../../../glossary.html#power-query" title="The data-preparation tool in Excel and Power BI. It records cleaning steps (in the M language) so they repeat on every refresh.">Power Query</a></div></div>
 <h2 id="free-resources">Free resources to go deeper</h2><ul class="resources"><li><a href="https://learn.microsoft.com/en-us/power-query/power-query-what-is-power-query">What is Power Query?</a><span class="r-meta">Microsoft Learn · The big picture: connect, transform, load, refresh.</span></li><li><a href="https://learn.microsoft.com/en-us/power-query/data-types">Data types in Power Query</a><span class="r-meta">Microsoft Learn · Includes &#x27;Change type using locale&#x27;, which this lesson&#x27;s date fix uses.</span></li><li><a href="https://learn.microsoft.com/en-us/powerquery-m/text-trim">Text.Trim</a><span class="r-meta">Microsoft Learn — M reference · The M function behind Format → Trim.</span></li></ul>
 <div class="complete-bar"><span>Finished reading and did the exercise?</span>
@@ -294,9 +439,9 @@ in
 <p class="reviewed">Last reviewed: 2026-10-09</p>
 
   </div></main>
-  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#the-messy-file">The messy file</a><a href="#step-by-step-in-the-editor">Step by step in the editor</a><a href="#the-same-steps-in-m">The same steps in M</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#free-resources">Free resources</a></aside>
+  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#the-messy-file">The messy file</a><a href="#step-by-step-in-the-editor">Step by step in the editor</a><a href="#the-same-steps-in-m">The same steps in M</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#ai-mentor-prompt">AI Mentor Prompt</a><a href="#free-resources">Free resources</a></aside>
 </div>
-<footer class="site">Data, AI &amp; Automation Path v0.8 · Applied AI, Data &amp; Automation Lab · Updated October 2026<br>
+<footer class="site"><b>Saiful The Techie</b> · Data, AI &amp; Automation Path v0.9.1 · Updated October 2026<br>
 Lesson text: <a href="../../../license.html">CC BY-NC-SA 4.0</a> · Code: <a href="../../../license.html#code-mit-license">MIT</a> · Free external resources belong to their respective owners.</footer>
 <script src="../../../search-index.js"></script>
 <script src="../../../assets/app.js"></script>

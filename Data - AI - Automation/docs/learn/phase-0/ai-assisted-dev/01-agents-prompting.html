@@ -6,7 +6,7 @@
 <title>Coding Agents, Copilots &amp; Prompting for Code — Data, AI &amp; Automation Path</title>
 <meta name="description" content="Understand the range of AI coding tools, from autocomplete to autonomous agents, and write prompts and AGENTS.md instructions that give them the context, constraints and checks they need to produce correct code.">
 <meta property="og:type" content="article">
-<meta property="og:site_name" content="Data, AI &amp; Automation Path">
+<meta property="og:site_name" content="Saiful The Techie">
 <meta property="og:title" content="Coding Agents, Copilots &amp; Prompting for Code">
 <meta property="og:description" content="Understand the range of AI coding tools, from autocomplete to autonomous agents, and write prompts and AGENTS.md instructions that give them the context, constraints and checks they need to produce correct code.">
 <meta property="og:locale" content="en_US">
@@ -19,13 +19,13 @@ var n=null;try{n=localStorage.getItem('daa-nav')}catch(e){}
 if(n==='open'&&window.matchMedia&&matchMedia('(min-width: 961px)').matches)document.documentElement.setAttribute('data-nav','open');
 document.documentElement.classList.add('no-anim')})();</script>
 <link rel="stylesheet" href="../../../assets/style.css">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233f7d6a'/%3E%3Ctext x='16' y='21' font-family='sans-serif' font-size='13' font-weight='700' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
+
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="topbar">
   <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Open curriculum menu" title="Curriculum menu (press M)" aria-controls="sidebar" aria-expanded="false"><span class="ico-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span class="ico-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></button>
-  <a class="brand" href="../../../index.html"><span class="brand-badge">AI</span><span class="brand-text"><span class="brand-name">Data, AI &amp; Automation Path</span><span class="brand-version">v0.8</span></span></a>
+  <a class="brand" href="../../../index.html"><span class="brand-text"><span class="brand-name">Saiful The Techie</span><span class="brand-version">Data, AI &amp; Automation Path · v0.9.1</span></span></a>
   <nav class="top-links" aria-label="Main">
     <a href="../../../index.html" class="">Home</a><a href="../../../curriculum.html" class="">Curriculum</a><a href="../../../practice-files.html" class="">Practice files</a><a href="../../../glossary.html" class="">Glossary</a><a href="../../../how-to-learn.html" class="">How to learn</a><a href="../../../about.html" class="">About</a>
   </nav>
@@ -41,7 +41,7 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="layout wide">
   <nav class="sidebar" id="sidebar" aria-label="Curriculum">
     <div class="side-title">Curriculum</div>
-    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="77"><i></i></div><span class="bar-label" data-progress-label></span></div>
+    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="85"><i></i></div><span class="bar-label" data-progress-label></span></div>
 <div class="nav-phase current open"><a href="../../../learn/phase-0/index.html"><span class="nav-num">0</span>Foundations</a>
 <ul class="nav-modules">
 <li><a class="" href="../../../learn/phase-0/dev-environment/index.html">Development Environment</a>
@@ -90,255 +90,390 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="admonition note"><p class="admonition-title">Before you start</p><p><a href="../../../learn/phase-0/testing-ci/01-pytest-ruff.html">pytest &amp; ruff: Prove Your Code Works and Keep It Clean</a></p></div>
 <div class="files-box"><div class="files-head"><b>Practice files for this page</b><a href="../../../practice-files.html">All practice files →</a></div><ul><li><a href="../../../downloads/phase-0/csv-cleaner-solution.zip" download>csv-cleaner-solution.zip</a><span class="f-desc">Phase 0 Gate project reference solution (17 passing tests, CI workflow) · 14 KB</span></li><li><a href="../../../downloads/phase-0/python-refresher.zip" download>python-refresher.zip</a><span class="f-desc">Python refresher scripts, debugging, pytest and ruff examples, an AI-written function to review, with solutions · 12 KB</span></li><li><a href="../../../downloads/orders.sql" download>orders.sql</a><span class="f-desc">Creates the orders (12 rows) and customers (6 rows) tables. Run it once in your SQL tool · 3 KB</span></li><li><a href="../../../downloads/known_answers.csv" download>known_answers.csv</a><span class="f-desc">24 key numbers every tool should reproduce, for checking your work (and AI output) · 1 KB</span></li></ul></div>
 <h2 id="what-is-it">What is it?</h2>
-<p>AI coding tools range from small suggestions to agents that change many files on their own:</p>
+<p>AI coding tools range from small suggestions to agents that change
+many files on their own:</p>
 <table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Level</th>
 <th>What it does</th>
 <th>You stay in control by…</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td><strong>Autocomplete</strong></td>
 <td>Suggests the next line(s) as you type</td>
 <td>Accepting or ignoring each suggestion</td>
 </tr>
-<tr>
+<tr class="even">
 <td><strong>Chat</strong></td>
 <td>Answers questions, explains code, drafts a function</td>
 <td>Copying in only what you understand</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><strong>Agent in the editor / terminal</strong></td>
-<td>Reads your project, edits several files, runs commands and tests</td>
+<td>Reads your project, edits several files, runs commands and
+tests</td>
 <td>Approving steps and reviewing the diff</td>
 </tr>
-<tr>
+<tr class="even">
 <td><strong>Background agent</strong></td>
-<td>Works on an issue by itself and opens a <strong>pull request</strong></td>
-<td>Reviewing the PR like any colleague's</td>
+<td>Works on an issue by itself and opens a <strong>pull
+request</strong></td>
+<td>Reviewing the PR like any colleague’s</td>
 </tr>
 </tbody>
 </table>
-<p>Examples include GitHub Copilot, Cursor, Claude Code, OpenAI Codex and Gemini CLI. Products change fast; the <strong>skills</strong> in this module don't.</p>
-<p><strong>Prompting for code</strong> means giving the tool what a new colleague would need: context, a precise task, constraints, and a way to check the result.</p>
-<div class="admonition job">
-<p class="admonition-title">Why it matters at work</p>
-<p>Most development teams now use AI assistants daily, and job adverts increasingly ask for experience with them. What separates juniors who benefit from those who cause incidents is <strong>specification and verification</strong>: clear instructions in, reviewed and tested code out. You are responsible for every line you commit, whoever typed it.</p>
+<p>Examples include GitHub Copilot, Cursor, Claude Code, OpenAI Codex
+and Gemini CLI. Products change fast; the <strong>skills</strong> in
+this module don’t.</p>
+<p><strong>Prompting for code</strong> means giving the tool what a new
+colleague would need: context, a precise task, constraints, and a way to
+check the result.</p>
+<div class="admonition job" data-markdown="1">
+<p class="admonition-title">
+Why it matters at work
+</p>
+<p>Most development teams now use AI assistants daily, and job adverts
+increasingly ask for experience with them. What separates juniors who
+benefit from those who cause incidents is <strong>specification and
+verification</strong>: clear instructions in, reviewed and tested code
+out. You are responsible for every line you commit, whoever typed
+it.</p>
 </div>
-<h2 id="part-1-a-weak-prompt-vs-a-strong-prompt">Part 1: a weak prompt vs a strong prompt</h2>
+<h2 id="part-1-a-weak-prompt-vs-a-strong-prompt">Part 1: a weak prompt
+vs a strong prompt</h2>
 <p><strong>Weak:</strong></p>
 <blockquote>
-<p>Write a Python function that reads orders_raw.csv and returns net revenue by month.</p>
+<p>Write a Python function that reads orders_raw.csv and returns net
+revenue by month.</p>
 </blockquote>
-<p>This is the exact prompt behind <code>ai-review/ai_suggestion.py</code> in <a href="../../../downloads/phase-0/python-refresher.zip">python-refresher.zip</a>. The code runs without errors, and reports <strong>5,875</strong> instead of <strong>9,075</strong> (next lesson). The model had to <strong>guess</strong> the date format, the meaning of "net", and what to do with messy rows.</p>
+<p>This is the exact prompt behind
+<code>ai-review/ai_suggestion.py</code> in <a
+href="../../../downloads/phase-0/python-refresher.zip">python-refresher.zip</a>.
+The code runs without errors, and reports <strong>5,875</strong> instead
+of <strong>9,075</strong> (next lesson). The model had to
+<strong>guess</strong> the date format, the meaning of “net”, and what
+to do with messy rows.</p>
 <p><strong>Strong:</strong></p>
-<div class="codehilite"><pre><span></span><code>Context: Python 3.14 project managed with uv. File data/orders_raw.csv is a raw
+<pre class="text"><code>Context: Python 3.14 project managed with uv. File data/orders_raw.csv is a raw
 ERP export: columns Order ID, Order Date, Customer, Region, Category, Product,
 Qty, Unit Price, Status. Dates are DAY-first (dd/mm/yyyy). Qty may contain
-thousands separators ("5,000"). Status casing varies ("CANCELLED", "pending").
+thousands separators (&quot;5,000&quot;). Status casing varies (&quot;CANCELLED&quot;, &quot;pending&quot;).
 The file has blank rows and exact duplicate rows.
 
 Task: write net_revenue_by_month(path) -&gt; dict[str, float] returning
-{"YYYY-MM": revenue}, where revenue = Qty * Unit Price, excluding Cancelled
+{&quot;YYYY-MM&quot;: revenue}, where revenue = Qty * Unit Price, excluding Cancelled
 orders (case-insensitive), skipping blank and duplicate rows.
 
 Constraints: standard library only; type hints; no bare except — log rejected
 rows with their line number; round to 2 decimals.
 
-Check: for this file the answer must be {"2026-01": 3440.0, "2026-02": 3940.0,
-"2026-03": 1695.0} (total 9075.0). Write pytest tests for: day-first dates,
-cancelled excluded, "5,000" quantities. Run them and show me the output.
-</code></pre></div>
-
+Check: for this file the answer must be {&quot;2026-01&quot;: 3440.0, &quot;2026-02&quot;: 3940.0,
+&quot;2026-03&quot;: 1695.0} (total 9075.0). Write pytest tests for: day-first dates,
+cancelled excluded, &quot;5,000&quot; quantities. Run them and show me the output.</code></pre>
 <table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Part</th>
 <th>Why it helps</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td><strong>Context</strong></td>
-<td>Versions, file layout and real data quirks: the model can't see your data</td>
+<td>Versions, file layout and real data quirks: the model can’t see your
+data</td>
 </tr>
-<tr>
+<tr class="even">
 <td><strong>Task</strong></td>
-<td>Exact name, inputs, output shape and definitions ("net" = excluding Cancelled)</td>
+<td>Exact name, inputs, output shape and definitions (“net” = excluding
+Cancelled)</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><strong>Constraints</strong></td>
-<td>Libraries, style, error handling, what <strong>not</strong> to do</td>
+<td>Libraries, style, error handling, what <strong>not</strong> to
+do</td>
 </tr>
-<tr>
+<tr class="even">
 <td><strong>Check</strong></td>
-<td>Known answers and tests turn "looks right" into "proved right"</td>
+<td>Known answers and tests turn “looks right” into “proved right”</td>
 </tr>
 </tbody>
 </table>
-<h2 id="part-2-work-in-small-checked-steps">Part 2: work in small, checked steps</h2>
-<ol>
-<li><strong>Ask for a plan first</strong> ("List the steps and the files you'll change. Don't write code yet"), and correct it while it's cheap.</li>
-<li><strong>One small task per request</strong>: one function, one test file, one bug.</li>
-<li><strong>Make the agent run the checks</strong> (<code>uv run pytest</code>, <code>uv run ruff check .</code>) and show you the output.</li>
-<li><strong>Review the diff</strong> before accepting (<code>git diff</code>), and <strong>commit</strong> after each working step, so you can always go back.</li>
-<li>If it goes in circles, <strong>stop</strong>, reset with <code>git restore .</code>, and give a clearer, smaller prompt.</li>
+<h2 id="part-2-work-in-small-checked-steps">Part 2: work in small,
+checked steps</h2>
+<ol type="1">
+<li><strong>Ask for a plan first</strong> (“List the steps and the files
+you’ll change. Don’t write code yet”), and correct it while it’s
+cheap.</li>
+<li><strong>One small task per request</strong>: one function, one test
+file, one bug.</li>
+<li><strong>Make the agent run the checks</strong>
+(<code>uv run pytest</code>, <code>uv run ruff check .</code>) and show
+you the output.</li>
+<li><strong>Review the diff</strong> before accepting
+(<code>git diff</code>), and <strong>commit</strong> after each working
+step, so you can always go back.</li>
+<li>If it goes in circles, <strong>stop</strong>, reset with
+<code>git restore .</code>, and give a clearer, smaller prompt.</li>
 </ol>
-<h2 id="part-3-agentsmd-instructions-that-stay-with-the-repo">Part 3: AGENTS.md — instructions that stay with the repo</h2>
-<p>Instead of repeating the same context in every prompt, put it in a file the tools read automatically. <strong>AGENTS.md</strong> is an open format supported by many coding agents (some tools also read their own file, such as <code>CLAUDE.md</code> or <code>.github/copilot-instructions.md</code>). The Phase 0 project includes one (in <a href="../../../downloads/phase-0/csv-cleaner-solution.zip">csv-cleaner-solution.zip</a>):</p>
-<div class="codehilite"><pre><span></span><code><span class="gh"># AGENTS.md</span>
+<h2 id="part-3-agents.md-instructions-that-stay-with-the-repo">Part 3:
+AGENTS.md — instructions that stay with the repo</h2>
+<p>Instead of repeating the same context in every prompt, put it in a
+file the tools read automatically. <strong>AGENTS.md</strong> is an open
+format supported by many coding agents (some tools also read their own
+file, such as <code>CLAUDE.md</code> or
+<code>.github/copilot-instructions.md</code>). The Phase 0 project
+includes one (in <a
+href="../../../downloads/phase-0/csv-cleaner-solution.zip">csv-cleaner-solution.zip</a>):</p>
+<pre class="markdown"><code># AGENTS.md
 
-<span class="gu">## Setup and commands</span>
-<span class="k">-</span><span class="w"> </span>Install: <span class="sb">`uv sync --dev`</span>
-<span class="k">-</span><span class="w"> </span>Test: <span class="sb">`uv run pytest`</span>
-<span class="k">-</span><span class="w"> </span>Lint and format: <span class="sb">`uv run ruff check .`</span> and <span class="sb">`uv run ruff format .`</span>
+## Setup and commands
+- Install: `uv sync --dev`
+- Test: `uv run pytest`
+- Lint and format: `uv run ruff check .` and `uv run ruff format .`
 
-<span class="gu">## Rules</span>
-<span class="k">-</span><span class="w"> </span>Python 3.12+ syntax, type hints on every function.
-<span class="k">-</span><span class="w"> </span>Never hard-code paths or column names in code: they belong in <span class="sb">`config.toml`</span>.
-<span class="k">-</span><span class="w"> </span>Never swallow errors with a bare <span class="sb">`except`</span>. Reject the row, log the line number
+## Rules
+- Python 3.12+ syntax, type hints on every function.
+- Never hard-code paths or column names in code: they belong in `config.toml`.
+- Never swallow errors with a bare `except`. Reject the row, log the line number
   and reason, and count it in the report.
-<span class="k">-</span><span class="w"> </span>Every change to cleaning behaviour needs a test in <span class="sb">`tests/`</span>.
-<span class="k">-</span><span class="w"> </span>Known answer: <span class="sb">`data/orders_raw.csv`</span> → 12 rows written. Do not change the
+- Every change to cleaning behaviour needs a test in `tests/`.
+- Known answer: `data/orders_raw.csv` → 12 rows written. Do not change the
   expected file to make a test pass.
-<span class="k">-</span><span class="w"> </span>Don't add new dependencies without asking.
+- Don&#39;t add new dependencies without asking.
 
-<span class="gu">## Before you finish</span>
-Run <span class="sb">`uv run ruff check . &amp;&amp; uv run ruff format --check . &amp;&amp; uv run pytest`</span>.
-</code></pre></div>
-
-<p>Keep it short, specific and <strong>checkable</strong>: commands, rules and known answers, not essays.</p>
+## Before you finish
+Run `uv run ruff check . &amp;&amp; uv run ruff format --check . &amp;&amp; uv run pytest`.</code></pre>
+<p>Keep it short, specific and <strong>checkable</strong>: commands,
+rules and known answers, not essays.</p>
 <h2 id="safe-use-rules">Safe-use rules</h2>
 <table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Never</th>
 <th>Instead</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>Paste secrets, passwords or API keys into a prompt</td>
 <td>Use placeholders; keep secrets in environment variables</td>
 </tr>
-<tr>
-<td>Paste confidential company or customer data into tools your employer hasn't approved</td>
+<tr class="even">
+<td>Paste confidential company or customer data into tools your employer
+hasn’t approved</td>
 <td>Use the approved tool, or anonymised samples</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Trust package names the AI suggests without checking</td>
-<td>Look the package up on PyPI first (invented or look-alike names exist)</td>
+<td>Look the package up on PyPI first (invented or look-alike names
+exist)</td>
 </tr>
-<tr>
-<td>Let an agent run destructive commands unattended (<code>rm -rf</code>, <code>git push --force</code>, database deletes)</td>
+<tr class="even">
+<td>Let an agent run destructive commands unattended
+(<code>rm -rf</code>, <code>git push --force</code>, database
+deletes)</td>
 <td>Approve commands one by one, and work on a branch</td>
 </tr>
 </tbody>
 </table>
 <h2 id="common-mistakes">Common mistakes</h2>
 <table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Mistake</th>
 <th>What happens</th>
 <th>Fix</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>Vague one-line prompts</td>
 <td>Plausible code built on wrong guesses</td>
 <td>Context + task + constraints + check</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Asking for a whole app at once</td>
 <td>Huge, unreviewable output</td>
 <td>Plan first, then small steps</td>
 </tr>
-<tr>
-<td>Accepting code you don't understand</td>
-<td>You can't debug it or defend it in review</td>
+<tr class="odd">
+<td>Accepting code you don’t understand</td>
+<td>You can’t debug it or defend it in review</td>
 <td>Ask the AI to explain it, or rewrite it more simply</td>
 </tr>
-<tr>
+<tr class="even">
 <td>No tests or known answers</td>
 <td>Wrong numbers ship silently</td>
 <td>Put the expected result in the prompt</td>
 </tr>
-<tr>
-<td>Letting the AI "fix" a test by changing the expected value</td>
+<tr class="odd">
+<td>Letting the AI “fix” a test by changing the expected value</td>
 <td>The bug is hidden, not fixed</td>
 <td>Say so explicitly in AGENTS.md, and review test diffs</td>
 </tr>
 </tbody>
 </table>
 <h2 id="try-it-yourself">Try it yourself</h2>
-<p><strong>Task:</strong> Rewrite this weak prompt as a strong one using the four parts: <em>"Write a SQL query for revenue by region."</em> Use the practice database (<code>orders</code> table with <code>quantity</code>, <code>unit_price</code>, <code>status</code>, <code>region</code>).</p>
+<p><strong>Task:</strong> Rewrite this weak prompt as a strong one using
+the four parts: <em>“Write a SQL query for revenue by region.”</em> Use
+the practice database (<code>orders</code> table with
+<code>quantity</code>, <code>unit_price</code>, <code>status</code>,
+<code>region</code>).</p>
 <details>
-<summary>Show a model answer</summary>
-<div class="codehilite"><pre><span></span><code>Context: SQLite database orders.sql. Table orders(order_id, order_date, customer,
+<summary>
+Show a model answer
+</summary>
+<pre class="text"><code>Context: SQLite database orders.sql. Table orders(order_id, order_date, customer,
 region, category, product, quantity, unit_price, status).
-Task: net revenue (quantity * unit_price, excluding status = 'Cancelled') per
+Task: net revenue (quantity * unit_price, excluding status = &#39;Cancelled&#39;) per
 region, highest first, columns region and net_revenue rounded to 2 decimals.
 Constraints: one SELECT, no subqueries needed, SQLite syntax.
-Check: total must be 9075; Dhaka must be 3170. Show the result table.
-</code></pre></div>
-
-<p>Compare the result with <code>known_answers.csv</code>. If Dhaka isn't 3,170, the query is wrong.</p>
+Check: total must be 9075; Dhaka must be 3170. Show the result table.</code></pre>
+Compare the result with <code>known_answers.csv</code>. If Dhaka isn’t
+3,170, the query is wrong.
 </details>
 <h2 id="quick-quiz">Quick quiz</h2>
 <div class="quiz-q" data-answer="1">
-<p>1. What's the most useful thing to add to a code prompt?</p>
-<ol>
-<li>"Please be accurate"</li>
-<li>Context about the data, plus a known answer or test to check against</li>
-<li>The word "expert"</li>
+<p>1. What’s the most useful thing to add to a code prompt?</p>
+<ol type="1">
+<li>“Please be accurate”</li>
+<li>Context about the data, plus a known answer or test to check
+against</li>
+<li>The word “expert”</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B.</strong></p>
+<summary>
+Show answer
+</summary>
+<strong>B.</strong>
 </details>
 </div>
 <div class="quiz-q" data-answer="1">
 <p>2. What is AGENTS.md for?</p>
-<ol>
+<ol type="1">
 <li>Listing the people on the team</li>
-<li>Project instructions (commands, rules, checks) that coding agents read automatically</li>
+<li>Project instructions (commands, rules, checks) that coding agents
+read automatically</li>
 <li>Storing API keys for agents</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B.</strong> And never put secrets in it: it's committed to the repository.</p>
+<summary>
+Show answer
+</summary>
+<strong>B.</strong> And never put secrets in it: it’s committed to the
+repository.
 </details>
 </div>
 <div class="quiz-q" data-answer="1">
 <p>3. A background agent opens a pull request. What do you do?</p>
-<ol>
+<ol type="1">
 <li>Merge it: the AI tested it</li>
-<li>Review it and check CI like any colleague's PR</li>
+<li>Review it and check CI like any colleague’s PR</li>
 <li>Close it without reading</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B.</strong></p>
+<summary>
+Show answer
+</summary>
+<strong>B.</strong>
 </details>
 </div>
 <h2 id="summary">Summary</h2>
 <ul>
-<li>AI tools range from autocomplete and chat to agents that edit files and open PRs. You stay responsible for the result.</li>
-<li>Strong prompts have <strong>context, task, constraints and a check</strong> (known answers, tests).</li>
-<li>Plan first, work in small steps, run the checks, review the diff, commit often.</li>
-<li>Put lasting instructions in <strong>AGENTS.md</strong>; never share secrets or unapproved data.</li>
+<li>AI tools range from autocomplete and chat to agents that edit files
+and open PRs. You stay responsible for the result.</li>
+<li>Strong prompts have <strong>context, task, constraints and a
+check</strong> (known answers, tests).</li>
+<li>Plan first, work in small steps, run the checks, review the diff,
+commit often.</li>
+<li>Put lasting instructions in <strong>AGENTS.md</strong>; never share
+secrets or unapproved data.</li>
 </ul>
-<div class="admonition job">
-<p class="admonition-title">Job-ready check</p>
-<p><strong>Interview question:</strong> <em>"How do you use AI coding assistants in your work?"</em></p>
-<p><strong>Strong answer:</strong> "For well-defined tasks I give the tool context, constraints and a known answer, ask for a plan first, and work in small steps. The repo has an AGENTS.md with our commands and rules. I review every diff, make sure tests and linting pass, and I never paste secrets or confidential data into unapproved tools. The AI speeds me up; the tests and review make it safe."</p>
-<p><strong>Mini project:</strong> Write an AGENTS.md for your <code>sales-report</code> repo, then use any AI assistant to add one small feature with a four-part prompt. Save the prompt, the diff and the test output in <code>docs/ai-log.md</code>.</p>
+<div class="admonition job" data-markdown="1">
+<p class="admonition-title">
+Job-ready check
+</p>
+<p><strong>Interview question:</strong> <em>“How do you use AI coding
+assistants in your work?”</em></p>
+<p><strong>Strong answer:</strong> “For well-defined tasks I give the
+tool context, constraints and a known answer, ask for a plan first, and
+work in small steps. The repo has an AGENTS.md with our commands and
+rules. I review every diff, make sure tests and linting pass, and I
+never paste secrets or confidential data into unapproved tools. The AI
+speeds me up; the tests and review make it safe.”</p>
+<p><strong>Mini project:</strong> Write an AGENTS.md for your
+<code>sales-report</code> repo, then use any AI assistant to add one
+small feature with a four-part prompt. Save the prompt, the diff and the
+test output in <code>docs/ai-log.md</code>.</p>
 </div>
+<section class="mentor-prompt"><div class="mentor-head"><div><span class="eyebrow">AI study companion</span><h2 id="ai-mentor-prompt">AI Mentor Prompt</h2></div><button class="btn copy-prompt" type="button" data-copy-target="mentor-prompt-phase-0-ai-assisted-dev-01-agents-prompting">Copy prompt</button></div><p>Paste this into ChatGPT, Claude, Gemini, or another capable assistant to turn this tutorial into an interactive mentoring session.</p><pre class="prompt-box"><code id="mentor-prompt-phase-0-ai-assisted-dev-01-agents-prompting">You are my hands-on software-engineering mentor.
+
+I am currently studying:
+&quot;Coding Agents, Copilots &amp; Prompting for Code&quot;
+
+My level:
+Beginner
+
+Teach me this topic interactively rather than giving me a long lecture.
+
+Use this sequence:
+
+1. Check what I already understand with one short diagnostic question.
+2. Explain the concept in simple language and give me the mental model first.
+3. Give me one small task using code, SQL, configuration, data, or architecture as appropriate.
+4. Wait for my attempt before showing a complete solution.
+5. Review my work and explain both what is correct and what needs improvement.
+6. Help me debug errors step by step instead of immediately replacing my work.
+7. Increase the difficulty gradually and connect each new step to the previous one.
+8. Relate what I am learning to real professional data/AI engineering work.
+9. Ask me to explain an important decision in my own words so you can check my understanding.
+10. At the end, ask me to build or modify one small feature independently.
+
+Important rules:
+- Do not do the entire exercise for me unless I explicitly ask.
+- Explain unfamiliar terminology before using it heavily.
+- Prefer current, production-relevant practices over outdated shortcuts.
+- Distinguish clearly between concepts, tool-specific behaviour, and optional alternatives.
+- If a technical fact, API, syntax, version, or best practice may have changed, verify it against current official documentation before teaching it.
+- Never invent command output, test results, benchmark numbers, cloud behaviour, or data results.
+- If something cannot be executed in the current environment, say so and give me the exact command or verification step I should run.
+- Keep me actively coding, querying, configuring, reasoning, or debugging throughout the session.
+- When useful, work from the tutorial practice files (csv-cleaner-solution.zip, python-refresher.zip, orders.sql) instead of inventing unrelated examples.
+
+The concepts I need to master are:
+- Coding agents &amp; copilots
+- Prompting for code
+- ai coding assistant
+- copilot
+- github copilot
+- coding agent
+- agent mode
+- claude code
+
+Start by asking me one diagnostic question.</code></pre></section>
+
 <div class="terms-box"><div class="files-head"><b>Key terms in this lesson</b><a href="../../../glossary.html">Glossary →</a></div><div class="term-chips"><a class="term-chip" href="../../../glossary.html#agents-md" title="A file in a repository with instructions for AI coding agents: setup commands, rules and checks to run before finishing.">AGENTS.md</a><a class="term-chip" href="../../../glossary.html#coding-agent" title="An AI assistant that reads a code project, edits files, runs commands and tests, and may open pull requests for review.">Coding agent</a><a class="term-chip" href="../../../glossary.html#hallucination" title="When an AI model states something false or invented with confidence, such as a non-existent function or a wrong number.">Hallucination</a><a class="term-chip" href="../../../glossary.html#known-answer" title="A result you already know is correct (for example, net revenue 9,075 on the practice data). Every new query, formula, dashboard or AI output is checked against it before you trust it.">Known answer</a><a class="term-chip" href="../../../glossary.html#prompt" title="The instructions and context you give an AI model. Good prompts state context, the task, constraints and how the result will be checked.">Prompt</a></div></div>
 <h2 id="free-resources">Free resources to go deeper</h2><ul class="resources"><li><a href="https://agents.md">AGENTS.md — a simple, open format for guiding coding agents</a><span class="r-meta">agents.md (open format) · What to put in the file, with examples.</span></li><li><a href="https://docs.github.com/en/copilot/concepts/agents/coding-agent">About GitHub Copilot coding agent</a><span class="r-meta">GitHub Docs · How an agent works on an issue and opens a pull request for review.</span></li><li><a href="https://www.anthropic.com/engineering/claude-code-best-practices">Claude Code: best practices for agentic coding</a><span class="r-meta">Anthropic Engineering · Plan first, give the agent ways to verify its work, and keep instructions in a project file.</span></li><li><a href="https://addyosmani.com/agents/15-agents-md/">AGENTS.md (Agent patterns)</a><span class="r-meta">Addy Osmani · Practical advice on writing effective agent instruction files.</span></li></ul>
 <div class="complete-bar"><span>Finished reading and did the exercise?</span>
@@ -347,9 +482,9 @@ Check: total must be 9075; Dhaka must be 3170. Show the result table.
 <p class="reviewed">Last reviewed: 2026-10-09</p>
 
   </div></main>
-  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#part-1-a-weak-prompt-vs-a-strong-prompt">Part 1: a weak prompt vs a strong prompt</a><a href="#part-2-work-in-small-checked-steps">Part 2: work in small, checked steps</a><a href="#part-3-agentsmd-instructions-that-stay-with-the-repo">Part 3: AGENTS.md — instructions that stay with the repo</a><a href="#safe-use-rules">Safe-use rules</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#free-resources">Free resources</a></aside>
+  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#part-1-a-weak-prompt-vs-a-strong-prompt">Part 1: a weak prompt vs a strong prompt</a><a href="#part-2-work-in-small-checked-steps">Part 2: work in small, checked steps</a><a href="#part-3-agents.md-instructions-that-stay-with-the-repo">Part 3: AGENTS.md — instructions that stay with the repo</a><a href="#safe-use-rules">Safe-use rules</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#ai-mentor-prompt">AI Mentor Prompt</a><a href="#free-resources">Free resources</a></aside>
 </div>
-<footer class="site">Data, AI &amp; Automation Path v0.8 · Applied AI, Data &amp; Automation Lab · Updated October 2026<br>
+<footer class="site"><b>Saiful The Techie</b> · Data, AI &amp; Automation Path v0.9.1 · Updated October 2026<br>
 Lesson text: <a href="../../../license.html">CC BY-NC-SA 4.0</a> · Code: <a href="../../../license.html#code-mit-license">MIT</a> · Free external resources belong to their respective owners.</footer>
 <script src="../../../search-index.js"></script>
 <script src="../../../assets/app.js"></script>

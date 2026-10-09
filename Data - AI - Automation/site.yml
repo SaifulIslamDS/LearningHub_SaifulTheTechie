@@ -5,7 +5,7 @@ brand_line: "AI · Data · Web · SaaS · Automation"
 short_name: "ST · DAA Path"
 badge: ""
 logo_asset: ""          # exact approved circular logo when available; empty = text wordmark fallback
-version: "v0.8"           # shown under the site name in the top bar; bump on every release
+version: "v0.9.1"           # shown under the site name in the top bar; bump on every release
 tagline: "Hands-on Data, AI & Automation learning — from analytics foundations to production AI systems."
 author: "Saiful The Techie"
 copyright_holder: "Saiful Islam"   # change to your name if you prefer

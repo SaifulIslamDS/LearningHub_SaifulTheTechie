@@ -6,7 +6,7 @@
 <title>CTEs and Recursive CTEs: Readable Multi-Step SQL — Data, AI &amp; Automation Path</title>
 <meta name="description" content="Break complex SQL into named steps with WITH, then use recursive CTEs to generate calendars that keep empty months and to walk hierarchies like an org chart — in PostgreSQL.">
 <meta property="og:type" content="article">
-<meta property="og:site_name" content="Data, AI &amp; Automation Path">
+<meta property="og:site_name" content="Saiful The Techie">
 <meta property="og:title" content="CTEs and Recursive CTEs: Readable Multi-Step SQL">
 <meta property="og:description" content="Break complex SQL into named steps with WITH, then use recursive CTEs to generate calendars that keep empty months and to walk hierarchies like an org chart — in PostgreSQL.">
 <meta property="og:locale" content="en_US">
@@ -19,13 +19,13 @@ var n=null;try{n=localStorage.getItem('daa-nav')}catch(e){}
 if(n==='open'&&window.matchMedia&&matchMedia('(min-width: 961px)').matches)document.documentElement.setAttribute('data-nav','open');
 document.documentElement.classList.add('no-anim')})();</script>
 <link rel="stylesheet" href="../../../assets/style.css">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233f7d6a'/%3E%3Ctext x='16' y='21' font-family='sans-serif' font-size='13' font-weight='700' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
+
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="topbar">
   <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Open curriculum menu" title="Curriculum menu (press M)" aria-controls="sidebar" aria-expanded="false"><span class="ico-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span class="ico-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></button>
-  <a class="brand" href="../../../index.html"><span class="brand-badge">AI</span><span class="brand-text"><span class="brand-name">Data, AI &amp; Automation Path</span><span class="brand-version">v0.8</span></span></a>
+  <a class="brand" href="../../../index.html"><span class="brand-text"><span class="brand-name">Saiful The Techie</span><span class="brand-version">Data, AI &amp; Automation Path · v0.9.1</span></span></a>
   <nav class="top-links" aria-label="Main">
     <a href="../../../index.html" class="">Home</a><a href="../../../curriculum.html" class="">Curriculum</a><a href="../../../practice-files.html" class="">Practice files</a><a href="../../../glossary.html" class="">Glossary</a><a href="../../../how-to-learn.html" class="">How to learn</a><a href="../../../about.html" class="">About</a>
   </nav>
@@ -41,7 +41,7 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="layout wide">
   <nav class="sidebar" id="sidebar" aria-label="Curriculum">
     <div class="side-title">Curriculum</div>
-    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="77"><i></i></div><span class="bar-label" data-progress-label></span></div>
+    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="85"><i></i></div><span class="bar-label" data-progress-label></span></div>
 <div class="nav-phase"><a href="../../../learn/phase-0/index.html"><span class="nav-num">0</span>Foundations</a>
 </div>
 <div class="nav-phase"><a href="../../../learn/phase-1/index.html"><span class="nav-num">1</span>Analytics &amp; BI</a>
@@ -101,83 +101,99 @@ document.documentElement.classList.add('no-anim')})();</script>
 <p class="lead">Break complex SQL into named steps with WITH, then use recursive CTEs to generate calendars that keep empty months and to walk hierarchies like an org chart — in PostgreSQL.</p>
 <div class="meta"><span class="pill">Phase <b>3</b> · Data Engineering</span><span class="pill">Level <b>Intermediate</b></span><span class="pill">Time <b>45 min</b></span></div>
 <div class="admonition note"><p class="admonition-title">Before you start</p><p><a href="../../../learn/phase-1/analytical-sql/05-subqueries.html">SQL Subqueries: Use One Query&#x27;s Answer Inside Another</a></p></div>
-<div class="files-box"><div class="files-head"><b>Practice files for this page</b><a href="../../../practice-files.html">All practice files →</a></div><ul><li><a href="../../../downloads/phase-3/data-engineering-scripts.zip" download>data-engineering-scripts.zip</a><span class="f-desc">Phase 3A scripts: practice API + website, ingestion, PostgreSQL loader, advanced SQL, indexing, transactions, star schema, SCD, BigQuery dialect, Delta Lake, Iceberg, Dockerfiles and compose.yaml · 270 KB</span></li></ul></div>
+<div class="files-box"><div class="files-head"><b>Practice files for this page</b><a href="../../../practice-files.html">All practice files →</a></div><ul><li><a href="../../../downloads/phase-3/data-engineering-scripts.zip" download>data-engineering-scripts.zip</a><span class="f-desc">Phase 3 scripts: ingestion, PostgreSQL, advanced SQL, warehousing, lakehouse, Docker, ETL/CDC, data quality, plus the dbt mini-project and verification scripts · 476 KB</span></li></ul></div>
 <h2 id="what-is-it">What is it?</h2>
 <ul>
-<li>A <strong>CTE</strong> (common table expression) is a named, temporary result defined with <code>WITH name AS (...)</code> at the top of a query. You can chain several, each using the ones before it.</li>
-<li>A <strong>recursive CTE</strong> (<code>WITH RECURSIVE</code>) refers to <strong>itself</strong>: it starts from an <em>anchor</em> row set and keeps adding rows until a stop condition is met. It generates sequences and walks trees.</li>
+<li>A <strong>CTE</strong> (common table expression) is a named,
+temporary result defined with <code>WITH name AS (...)</code> at the top
+of a query. You can chain several, each using the ones before it.</li>
+<li>A <strong>recursive CTE</strong> (<code>WITH RECURSIVE</code>)
+refers to <strong>itself</strong>: it starts from an <em>anchor</em> row
+set and keeps adding rows until a stop condition is met. It generates
+sequences and walks trees.</li>
 </ul>
-<div class="admonition job">
-<p class="admonition-title">Why it matters at work</p>
-<p>Real analytics SQL is long: filter, then aggregate, then compare, then rank. CTEs turn that into readable steps that reviewers can follow and test one at a time, and they're the building blocks of dbt models (Phase 3B). Recursive CTEs answer "who reports to whom", "which parts make up this product" and "show every month, even empty ones": classic interview questions.</p>
+<div class="admonition job" data-markdown="1">
+<p class="admonition-title">
+Why it matters at work
+</p>
+<p>Real analytics SQL is long: filter, then aggregate, then compare,
+then rank. CTEs turn that into readable steps that reviewers can follow
+and test one at a time, and they’re the building blocks of dbt models
+(Phase 3B). Recursive CTEs answer “who reports to whom”, “which parts
+make up this product” and “show every month, even empty ones”: classic
+interview questions.</p>
 </div>
-<p>The script is <code>04_ctes.sql</code>, run against the <code>shop</code> schema created by <code>03_load_postgres.py</code>.</p>
+<p>The script is <code>04_ctes.sql</code>, run against the
+<code>shop</code> schema created by
+<code>03_load_postgres.py</code>.</p>
 <h2 id="part-1-a-cte-as-named-steps">Part 1: a CTE as named steps</h2>
-<p><em>"Which customers beat their own segment's average revenue?"</em> needs three steps. Each gets a name:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">WITH</span><span class="w"> </span><span class="n">net_orders</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span><span class="w">                      </span><span class="c1">-- step 1: only orders that count</span>
-<span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="n">o</span><span class="p">.</span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">o</span><span class="p">.</span><span class="n">quantity</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">o</span><span class="p">.</span><span class="n">unit_price</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">o</span><span class="p">.</span><span class="n">discount</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">revenue</span>
-<span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">shop</span><span class="p">.</span><span class="n">orders</span><span class="w"> </span><span class="n">o</span>
-<span class="w">    </span><span class="k">WHERE</span><span class="w"> </span><span class="n">o</span><span class="p">.</span><span class="n">status</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="s1">'Cancelled'</span>
-<span class="p">),</span>
-<span class="n">customer_revenue</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span><span class="w">                     </span><span class="c1">-- step 2: one row per customer</span>
-<span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="k">c</span><span class="p">.</span><span class="n">customer_id</span><span class="p">,</span><span class="w"> </span><span class="k">c</span><span class="p">.</span><span class="n">customer_name</span><span class="p">,</span><span class="w"> </span><span class="k">c</span><span class="p">.</span><span class="n">segment</span><span class="p">,</span><span class="w"> </span><span class="n">round</span><span class="p">(</span><span class="k">sum</span><span class="p">(</span><span class="n">n</span><span class="p">.</span><span class="n">revenue</span><span class="p">),</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">revenue</span>
-<span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">net_orders</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">shop</span><span class="p">.</span><span class="n">customers</span><span class="w"> </span><span class="k">c</span><span class="w"> </span><span class="k">USING</span><span class="w"> </span><span class="p">(</span><span class="n">customer_id</span><span class="p">)</span>
-<span class="w">    </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="k">c</span><span class="p">.</span><span class="n">customer_id</span><span class="p">,</span><span class="w"> </span><span class="k">c</span><span class="p">.</span><span class="n">customer_name</span><span class="p">,</span><span class="w"> </span><span class="k">c</span><span class="p">.</span><span class="n">segment</span>
-<span class="p">),</span>
-<span class="n">segment_avg</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span><span class="w">                          </span><span class="c1">-- step 3: one row per segment</span>
-<span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="n">segment</span><span class="p">,</span><span class="w"> </span><span class="n">round</span><span class="p">(</span><span class="k">avg</span><span class="p">(</span><span class="n">revenue</span><span class="p">),</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">avg_revenue</span>
-<span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">customer_revenue</span><span class="w"> </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">segment</span>
-<span class="p">)</span>
-<span class="k">SELECT</span><span class="w"> </span><span class="n">cr</span><span class="p">.</span><span class="n">segment</span><span class="p">,</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">customers_above_avg</span><span class="p">,</span><span class="w"> </span><span class="k">max</span><span class="p">(</span><span class="n">sa</span><span class="p">.</span><span class="n">avg_revenue</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">segment_avg</span>
-<span class="k">FROM</span><span class="w"> </span><span class="n">customer_revenue</span><span class="w"> </span><span class="n">cr</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">segment_avg</span><span class="w"> </span><span class="n">sa</span><span class="w"> </span><span class="k">USING</span><span class="w"> </span><span class="p">(</span><span class="n">segment</span><span class="p">)</span>
-<span class="k">WHERE</span><span class="w"> </span><span class="n">cr</span><span class="p">.</span><span class="n">revenue</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">sa</span><span class="p">.</span><span class="n">avg_revenue</span>
-<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">cr</span><span class="p">.</span><span class="n">segment</span>
-<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">cr</span><span class="p">.</span><span class="n">segment</span><span class="p">;</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>     segment     | customers_above_avg | segment_avg
+<p><em>“Which customers beat their own segment’s average revenue?”</em>
+needs three steps. Each gets a name:</p>
+<pre class="sql"><code>WITH net_orders AS (                      -- step 1: only orders that count
+    SELECT o.*, o.quantity * o.unit_price * (1 - o.discount) AS revenue
+    FROM shop.orders o
+    WHERE o.status &lt;&gt; &#39;Cancelled&#39;
+),
+customer_revenue AS (                     -- step 2: one row per customer
+    SELECT c.customer_id, c.customer_name, c.segment, round(sum(n.revenue), 0) AS revenue
+    FROM net_orders n JOIN shop.customers c USING (customer_id)
+    GROUP BY c.customer_id, c.customer_name, c.segment
+),
+segment_avg AS (                          -- step 3: one row per segment
+    SELECT segment, round(avg(revenue), 0) AS avg_revenue
+    FROM customer_revenue GROUP BY segment
+)
+SELECT cr.segment, count(*) AS customers_above_avg, max(sa.avg_revenue) AS segment_avg
+FROM customer_revenue cr JOIN segment_avg sa USING (segment)
+WHERE cr.revenue &gt; sa.avg_revenue
+GROUP BY cr.segment
+ORDER BY cr.segment;</code></pre>
+<pre class="text"><code>     segment     | customers_above_avg | segment_avg
 -----------------+---------------------+-------------
  Garment Factory |                  12 |      169387
  Knitting Mill   |                   4 |       73352
  Retailer        |                   6 |        6390
- Trader          |                   6 |       32160
-</code></pre></div>
-
+ Trader          |                   6 |       32160</code></pre>
 <ul>
-<li>Read it <strong>top to bottom</strong>, like a recipe. Compare that with three nested subqueries read inside-out.</li>
-<li>To debug, temporarily end the query after any step with <code>SELECT * FROM customer_revenue LIMIT 5;</code>.</li>
-<li><code>USING (customer_id)</code> is shorthand for <code>ON a.customer_id = b.customer_id</code> when the column has the same name on both sides.</li>
+<li>Read it <strong>top to bottom</strong>, like a recipe. Compare that
+with three nested subqueries read inside-out.</li>
+<li>To debug, temporarily end the query after any step with
+<code>SELECT * FROM customer_revenue LIMIT 5;</code>.</li>
+<li><code>USING (customer_id)</code> is shorthand for
+<code>ON a.customer_id = b.customer_id</code> when the column has the
+same name on both sides.</li>
 </ul>
 <h3 id="chained-ctes-a-quick-cohort">Chained CTEs: a quick cohort</h3>
-<div class="codehilite"><pre><span></span><code><span class="k">WITH</span><span class="w"> </span><span class="n">first_order</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span>
-<span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="n">customer_id</span><span class="p">,</span><span class="w"> </span><span class="k">min</span><span class="p">(</span><span class="n">order_date</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">first_date</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">shop</span><span class="p">.</span><span class="n">orders</span><span class="w"> </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">customer_id</span>
-<span class="p">)</span>
-<span class="k">SELECT</span><span class="w"> </span><span class="n">to_char</span><span class="p">(</span><span class="n">date_trunc</span><span class="p">(</span><span class="s1">'quarter'</span><span class="p">,</span><span class="w"> </span><span class="n">first_date</span><span class="p">),</span><span class="w"> </span><span class="s1">'YYYY-"Q"Q'</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">first_quarter</span><span class="p">,</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">customers</span>
-<span class="k">FROM</span><span class="w"> </span><span class="n">first_order</span><span class="w"> </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code> first_quarter | customers
+<pre class="sql"><code>WITH first_order AS (
+    SELECT customer_id, min(order_date) AS first_date FROM shop.orders GROUP BY customer_id
+)
+SELECT to_char(date_trunc(&#39;quarter&#39;, first_date), &#39;YYYY-&quot;Q&quot;Q&#39;) AS first_quarter, count(*) AS customers
+FROM first_order GROUP BY 1 ORDER BY 1;</code></pre>
+<pre class="text"><code> first_quarter | customers
 ---------------+-----------
  2025-Q1       |        59
- 2025-Q2       |         1
-</code></pre></div>
-
-<p>59 of the 60 ordering customers placed their first 2025 order in Q1. One started in Q2. That's the start of a <strong>cohort analysis</strong>: group customers by when they started, then track what they do afterwards.</p>
-<h2 id="part-2-recursive-cte-1-a-calendar-date-spine">Part 2: recursive CTE #1, a calendar ("date spine")</h2>
-<p>Customer C053 didn't order every month. A plain <code>GROUP BY month</code> simply <strong>skips</strong> empty months, and a chart of it would quietly join May to July. Generate every month first, then LEFT JOIN the orders:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">WITH</span><span class="w"> </span><span class="k">RECURSIVE</span><span class="w"> </span><span class="n">months</span><span class="p">(</span><span class="n">m</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span>
-<span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="nb">date</span><span class="w"> </span><span class="s1">'2025-01-01'</span><span class="w">                        </span><span class="c1">-- anchor: where to start</span>
-<span class="w">    </span><span class="k">UNION</span><span class="w"> </span><span class="k">ALL</span>
-<span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="p">(</span><span class="n">m</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nb">interval</span><span class="w"> </span><span class="s1">'1 month'</span><span class="p">)::</span><span class="nb">date</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">months</span>
-<span class="w">    </span><span class="k">WHERE</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nb">date</span><span class="w"> </span><span class="s1">'2025-12-01'</span><span class="w">                     </span><span class="c1">-- stop condition</span>
-<span class="p">)</span>
-<span class="k">SELECT</span><span class="w"> </span><span class="n">to_char</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="s1">'Mon'</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="k">month</span><span class="p">,</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="n">o</span><span class="p">.</span><span class="n">order_id</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">orders</span><span class="w">     </span><span class="c1">-- count(column) gives 0 for no match</span>
-<span class="k">FROM</span><span class="w"> </span><span class="n">months</span>
-<span class="k">LEFT</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">shop</span><span class="p">.</span><span class="n">orders</span><span class="w"> </span><span class="n">o</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">date_trunc</span><span class="p">(</span><span class="s1">'month'</span><span class="p">,</span><span class="w"> </span><span class="n">o</span><span class="p">.</span><span class="n">order_date</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">months</span><span class="p">.</span><span class="n">m</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">o</span><span class="p">.</span><span class="n">customer_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'C053'</span>
-<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">m</span><span class="p">;</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code> month | orders
+ 2025-Q2       |         1</code></pre>
+<p>59 of the 60 ordering customers placed their first 2025 order in Q1.
+One started in Q2. That’s the start of a <strong>cohort
+analysis</strong>: group customers by when they started, then track what
+they do afterwards.</p>
+<h2 id="part-2-recursive-cte-1-a-calendar-date-spine">Part 2: recursive
+CTE #1, a calendar (“date spine”)</h2>
+<p>Customer C053 didn’t order every month. A plain
+<code>GROUP BY month</code> simply <strong>skips</strong> empty months,
+and a chart of it would quietly join May to July. Generate every month
+first, then LEFT JOIN the orders:</p>
+<pre class="sql"><code>WITH RECURSIVE months(m) AS (
+    SELECT date &#39;2025-01-01&#39;                        -- anchor: where to start
+    UNION ALL
+    SELECT (m + interval &#39;1 month&#39;)::date FROM months
+    WHERE m &lt; date &#39;2025-12-01&#39;                     -- stop condition
+)
+SELECT to_char(m, &#39;Mon&#39;) AS month, count(o.order_id) AS orders     -- count(column) gives 0 for no match
+FROM months
+LEFT JOIN shop.orders o ON date_trunc(&#39;month&#39;, o.order_date) = months.m AND o.customer_id = &#39;C053&#39;
+GROUP BY m ORDER BY m;</code></pre>
+<pre class="text"><code> month | orders
 -------+--------
  Jan   |      0
  Feb   |      0
@@ -190,32 +206,38 @@ document.documentElement.classList.add('no-anim')})();</script>
  Sep   |      0
  Oct   |      4
  Nov   |      2
- Dec   |      2
-</code></pre></div>
-
+ Dec   |      2</code></pre>
 <p>How recursion runs:</p>
-<ol>
+<ol type="1">
 <li>The <strong>anchor</strong> produces the first row: 1 January.</li>
-<li>The <strong>recursive part</strong> takes the previous rows and produces new ones (1 February), and then again, and again.</li>
-<li>It stops when the <code>WHERE</code> produces no new rows (after 1 December). <strong>Always</strong> have a stop condition, or the query runs until it fails.</li>
+<li>The <strong>recursive part</strong> takes the previous rows and
+produces new ones (1 February), and then again, and again.</li>
+<li>It stops when the <code>WHERE</code> produces no new rows (after 1
+December). <strong>Always</strong> have a stop condition, or the query
+runs until it fails.</li>
 </ol>
-<div class="admonition tip">
-<p class="admonition-title">PostgreSQL shortcut</p>
-<p>PostgreSQL also has <code>generate_series(date '2025-01-01', date '2025-12-01', interval '1 month')</code>. The recursive pattern works in almost every database (SQL Server, Snowflake, BigQuery, DuckDB), so it's worth knowing.</p>
+<div class="admonition tip" data-markdown="1">
+<p class="admonition-title">
+PostgreSQL shortcut
+</p>
+<p>PostgreSQL also has
+<code>generate_series(date '2025-01-01', date '2025-12-01', interval '1 month')</code>.
+The recursive pattern works in almost every database (SQL Server,
+Snowflake, BigQuery, DuckDB), so it’s worth knowing.</p>
 </div>
-<h2 id="part-3-recursive-cte-2-walking-a-hierarchy">Part 3: recursive CTE #2, walking a hierarchy</h2>
-<p><code>shop.staff</code> stores each person's manager in <code>manager_id</code> (a self-reference):</p>
-<div class="codehilite"><pre><span></span><code><span class="k">WITH</span><span class="w"> </span><span class="k">RECURSIVE</span><span class="w"> </span><span class="n">org</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span>
-<span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="n">staff_id</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">title</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="k">level</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">::</span><span class="nb">text</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">path</span>
-<span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">shop</span><span class="p">.</span><span class="n">staff</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">manager_id</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NULL</span><span class="w">                       </span><span class="c1">-- anchor: the top of the tree</span>
-<span class="w">    </span><span class="k">UNION</span><span class="w"> </span><span class="k">ALL</span>
-<span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="n">staff_id</span><span class="p">,</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="n">title</span><span class="p">,</span><span class="w"> </span><span class="n">org</span><span class="p">.</span><span class="k">level</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">org</span><span class="p">.</span><span class="n">path</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="s1">' &gt; '</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="n">name</span>
-<span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">shop</span><span class="p">.</span><span class="n">staff</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">org</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="n">manager_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">org</span><span class="p">.</span><span class="n">staff_id</span><span class="w">     </span><span class="c1">-- recursive step: their reports</span>
-<span class="p">)</span>
-<span class="k">SELECT</span><span class="w"> </span><span class="k">level</span><span class="p">,</span><span class="w"> </span><span class="n">repeat</span><span class="p">(</span><span class="s1">'    '</span><span class="p">,</span><span class="w"> </span><span class="k">level</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">person</span><span class="p">,</span><span class="w"> </span><span class="n">title</span><span class="p">,</span><span class="w"> </span><span class="n">path</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">org</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">path</span><span class="p">;</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code> level |      person       |                 title                 |               path
+<h2 id="part-3-recursive-cte-2-walking-a-hierarchy">Part 3: recursive
+CTE #2, walking a hierarchy</h2>
+<p><code>shop.staff</code> stores each person’s manager in
+<code>manager_id</code> (a self-reference):</p>
+<pre class="sql"><code>WITH RECURSIVE org AS (
+    SELECT staff_id, name, title, 1 AS level, name::text AS path
+    FROM shop.staff WHERE manager_id IS NULL                       -- anchor: the top of the tree
+    UNION ALL
+    SELECT s.staff_id, s.name, s.title, org.level + 1, org.path || &#39; &gt; &#39; || s.name
+    FROM shop.staff s JOIN org ON s.manager_id = org.staff_id     -- recursive step: their reports
+)
+SELECT level, repeat(&#39;    &#39;, level - 1) || name AS person, title, path FROM org ORDER BY path;</code></pre>
+<pre class="text"><code> level |      person       |                 title                 |               path
 -------+-------------------+---------------------------------------+----------------------------------
      1 | Farhana           | Head of Sales                         | Farhana
      2 |     Anika         | Regional Manager, Dhaka &amp; Gazipur     | Farhana &gt; Anika
@@ -224,122 +246,205 @@ document.documentElement.classList.add('no-anim')})();</script>
      2 |     Tanvir        | Regional Manager, Chattogram &amp; Khulna | Farhana &gt; Tanvir
      3 |         Nadia     | Key Account Lead                      | Farhana &gt; Tanvir &gt; Nadia
      4 |             Imran | Sales Rep                             | Farhana &gt; Tanvir &gt; Nadia &gt; Imran
-     3 |         Sohel     | Sales Rep                             | Farhana &gt; Tanvir &gt; Sohel
-</code></pre></div>
-
-<p>Each round of recursion goes one level deeper; <code>level</code> and <code>path</code> are built up as it goes. The same pattern handles product categories, bills of materials and folder trees, at any depth, with no change to the query.</p>
+     3 |         Sohel     | Sales Rep                             | Farhana &gt; Tanvir &gt; Sohel</code></pre>
+<p>Each round of recursion goes one level deeper; <code>level</code> and
+<code>path</code> are built up as it goes. The same pattern handles
+product categories, bills of materials and folder trees, at any depth,
+with no change to the query.</p>
 <h2 id="common-mistakes">Common mistakes</h2>
 <table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Mistake</th>
 <th>What happens</th>
 <th>Fix</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>No stop condition in a recursive CTE</td>
 <td>Runs until memory or a limit is hit</td>
-<td><code>WHERE</code> in the recursive part; cap the depth (<code>level &lt; 20</code>)</td>
+<td><code>WHERE</code> in the recursive part; cap the depth
+(<code>level &lt; 20</code>)</td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>UNION</code> instead of <code>UNION ALL</code></td>
 <td>Slower, and can hide data issues</td>
 <td><code>UNION ALL</code> unless you need de-duplication</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Cycles in hierarchy data (A manages B, B manages A)</td>
 <td>Infinite recursion</td>
-<td>Track the path and stop on repeats (PostgreSQL 14+: <code>CYCLE</code> clause)</td>
+<td>Track the path and stop on repeats (PostgreSQL 14+:
+<code>CYCLE</code> clause)</td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>count(*)</code> after a LEFT JOIN</td>
 <td>Empty months show 1, not 0</td>
 <td><code>count(o.order_id)</code> counts only matches</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>One giant CTE chain nobody can test</td>
 <td>Hard to debug</td>
-<td>Name steps clearly; check each step's row count</td>
+<td>Name steps clearly; check each step’s row count</td>
 </tr>
 </tbody>
 </table>
 <h2 id="try-it-yourself">Try it yourself</h2>
-<p><strong>Task:</strong> List everyone who reports to <strong>Tanvir</strong>, directly or indirectly.</p>
+<p><strong>Task:</strong> List everyone who reports to
+<strong>Tanvir</strong>, directly or indirectly.</p>
 <details>
-<summary>Show a hint</summary>
-<p>Start the anchor at Tanvir instead of at the top of the tree, then remove Tanvir from the final result.</p>
+<summary>
+Show a hint
+</summary>
+Start the anchor at Tanvir instead of at the top of the tree, then
+remove Tanvir from the final result.
 </details>
 <details>
-<summary>Show the solution</summary>
-<div class="codehilite"><pre><span></span><code><span class="k">WITH</span><span class="w"> </span><span class="k">RECURSIVE</span><span class="w"> </span><span class="n">team</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span>
-<span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="n">staff_id</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">shop</span><span class="p">.</span><span class="n">staff</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'Tanvir'</span>
-<span class="w">    </span><span class="k">UNION</span><span class="w"> </span><span class="k">ALL</span>
-<span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="n">staff_id</span><span class="p">,</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="n">name</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">shop</span><span class="p">.</span><span class="n">staff</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">team</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="n">manager_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">t</span><span class="p">.</span><span class="n">staff_id</span>
-<span class="p">)</span>
-<span class="k">SELECT</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">team</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="s1">'Tanvir'</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">name</span><span class="p">;</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code> name
+<summary>
+Show the solution
+</summary>
+<pre class="sql"><code>WITH RECURSIVE team AS (
+    SELECT staff_id, name FROM shop.staff WHERE name = &#39;Tanvir&#39;
+    UNION ALL
+    SELECT s.staff_id, s.name FROM shop.staff s JOIN team t ON s.manager_id = t.staff_id
+)
+SELECT name FROM team WHERE name &lt;&gt; &#39;Tanvir&#39; ORDER BY name;</code></pre>
+<pre class="text"><code> name
 -------
  Imran
  Nadia
- Sohel
-</code></pre></div>
-
-<p>Imran reports to Nadia, who reports to Tanvir, so the recursion finds him at the second level. A simple <code>WHERE manager_id = 3</code> would have missed him.</p>
+ Sohel</code></pre>
+Imran reports to Nadia, who reports to Tanvir, so the recursion finds
+him at the second level. A simple <code>WHERE manager_id = 3</code>
+would have missed him.
 </details>
 <h2 id="quick-quiz">Quick quiz</h2>
 <div class="quiz-q" data-answer="1">
-<p>1. What's the main benefit of a CTE over nested subqueries?</p>
-<ol>
-<li>It's always faster</li>
-<li>The query reads as named steps, top to bottom, which is easier to read, test and review</li>
+<p>1. What’s the main benefit of a CTE over nested subqueries?</p>
+<ol type="1">
+<li>It’s always faster</li>
+<li>The query reads as named steps, top to bottom, which is easier to
+read, test and review</li>
 <li>It stores data permanently</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B.</strong> A CTE lasts only for that one query.</p>
+<summary>
+Show answer
+</summary>
+<strong>B.</strong> A CTE lasts only for that one query.
 </details>
 </div>
 <div class="quiz-q" data-answer="1">
 <p>2. What are the two parts of a recursive CTE?</p>
-<ol>
+<ol type="1">
 <li>SELECT and FROM</li>
 <li>An anchor query and a recursive query joined with UNION ALL</li>
 <li>A table and an index</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B.</strong></p>
+<summary>
+Show answer
+</summary>
+<strong>B.</strong>
 </details>
 </div>
 <div class="quiz-q" data-answer="1">
-<p>3. A monthly report skips months with no orders. What's the fix?</p>
-<ol>
+<p>3. A monthly report skips months with no orders. What’s the fix?</p>
+<ol type="1">
 <li>Use <code>count(*)</code></li>
-<li>Generate all months first (a date spine), then LEFT JOIN the orders</li>
+<li>Generate all months first (a date spine), then LEFT JOIN the
+orders</li>
 <li>Add <code>ORDER BY month</code></li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B.</strong></p>
+<summary>
+Show answer
+</summary>
+<strong>B.</strong>
 </details>
 </div>
 <h2 id="summary">Summary</h2>
 <ul>
-<li><strong>CTEs</strong> (<code>WITH a AS (...), b AS (...)</code>) turn complex SQL into readable, testable steps.</li>
-<li><strong>Recursive CTEs</strong> = anchor + recursive part (<code>UNION ALL</code>) + a stop condition.</li>
-<li>Use them for <strong>date spines</strong> (keep empty periods) and <strong>hierarchies</strong> (org charts, categories, bills of materials).</li>
-<li>After a LEFT JOIN, count a column from the right-hand table to get real zeros.</li>
+<li><strong>CTEs</strong> (<code>WITH a AS (...), b AS (...)</code>)
+turn complex SQL into readable, testable steps.</li>
+<li><strong>Recursive CTEs</strong> = anchor + recursive part
+(<code>UNION ALL</code>) + a stop condition.</li>
+<li>Use them for <strong>date spines</strong> (keep empty periods) and
+<strong>hierarchies</strong> (org charts, categories, bills of
+materials).</li>
+<li>After a LEFT JOIN, count a column from the right-hand table to get
+real zeros.</li>
 </ul>
-<div class="admonition job">
-<p class="admonition-title">Job-ready check</p>
-<p><strong>Interview question:</strong> <em>"An employees table has a manager_id column. How do you find everyone under a given manager at any level?"</em></p>
-<p><strong>Strong answer:</strong> "A recursive CTE: the anchor selects the manager, the recursive part joins employees whose manager_id is in the previous level, combined with UNION ALL. I'd track the level and path, add a depth cap or cycle check in case the data has loops, and exclude the manager from the final result."</p>
-<p><strong>Mini project:</strong> Using a date spine, produce a 12-month × customer table of order counts for the 10 biggest customers (zeros included), and flag customers with two or more consecutive empty months.</p>
+<div class="admonition job" data-markdown="1">
+<p class="admonition-title">
+Job-ready check
+</p>
+<p><strong>Interview question:</strong> <em>“An employees table has a
+manager_id column. How do you find everyone under a given manager at any
+level?”</em></p>
+<p><strong>Strong answer:</strong> “A recursive CTE: the anchor selects
+the manager, the recursive part joins employees whose manager_id is in
+the previous level, combined with UNION ALL. I’d track the level and
+path, add a depth cap or cycle check in case the data has loops, and
+exclude the manager from the final result.”</p>
+<p><strong>Mini project:</strong> Using a date spine, produce a 12-month
+× customer table of order counts for the 10 biggest customers (zeros
+included), and flag customers with two or more consecutive empty
+months.</p>
 </div>
+<section class="mentor-prompt"><div class="mentor-head"><div><span class="eyebrow">AI study companion</span><h2 id="ai-mentor-prompt">AI Mentor Prompt</h2></div><button class="btn copy-prompt" type="button" data-copy-target="mentor-prompt-phase-3-advanced-sql-01-ctes-recursive">Copy prompt</button></div><p>Paste this into ChatGPT, Claude, Gemini, or another capable assistant to turn this tutorial into an interactive mentoring session.</p><pre class="prompt-box"><code id="mentor-prompt-phase-3-advanced-sql-01-ctes-recursive">You are my hands-on data-engineering mentor.
+
+I am currently studying:
+&quot;CTEs and Recursive CTEs: Readable Multi-Step SQL&quot;
+
+My level:
+Intermediate
+
+Teach me this topic interactively rather than giving me a long lecture.
+
+Use this sequence:
+
+1. Check what I already understand with one short diagnostic question.
+2. Explain the concept in simple language and give me the mental model first.
+3. Give me one small task using code, SQL, configuration, data, or architecture as appropriate.
+4. Wait for my attempt before showing a complete solution.
+5. Review my work and explain both what is correct and what needs improvement.
+6. Help me debug errors step by step instead of immediately replacing my work.
+7. Increase the difficulty gradually and connect each new step to the previous one.
+8. Relate what I am learning to real professional data/AI engineering work.
+9. Ask me to explain an important decision in my own words so you can check my understanding.
+10. At the end, ask me to build or modify one small feature independently.
+
+Important rules:
+- Do not do the entire exercise for me unless I explicitly ask.
+- Explain unfamiliar terminology before using it heavily.
+- Prefer current, production-relevant practices over outdated shortcuts.
+- Distinguish clearly between concepts, tool-specific behaviour, and optional alternatives.
+- If a technical fact, API, syntax, version, or best practice may have changed, verify it against current official documentation before teaching it.
+- Never invent command output, test results, benchmark numbers, cloud behaviour, or data results.
+- If something cannot be executed in the current environment, say so and give me the exact command or verification step I should run.
+- Keep me actively coding, querying, configuring, reasoning, or debugging throughout the session.
+- When useful, work from the tutorial practice files (data-engineering-scripts.zip) instead of inventing unrelated examples.
+- For Phase 3 order-data exercises, preserve the established reconciliation targets when relevant: 4,246 orders and net revenue 5,478,357.79. If my result differs, help me debug the cause instead of changing the expected result.
+
+The concepts I need to master are:
+- CTEs
+- Recursive CTEs
+- cte
+- common table expression
+- with clause
+- chained ctes
+- recursive cte
+- with recursive
+
+Start by asking me one diagnostic question.</code></pre></section>
+
 <div class="terms-box"><div class="files-head"><b>Key terms in this lesson</b><a href="../../../glossary.html">Glossary →</a></div><div class="term-chips"><a class="term-chip" href="../../../glossary.html#cte" title="A named, temporary result defined with WITH at the start of a query. It makes multi-step SQL readable.">CTE</a><a class="term-chip" href="../../../glossary.html#postgresql" title="A free, open-source relational database known for reliability and standards support; psql is its command-line client and psycopg its Python driver.">PostgreSQL</a></div></div>
 <h2 id="free-resources">Free resources to go deeper</h2><ul class="resources"><li><a href="https://www.postgresql.org/docs/current/queries-with.html">WITH Queries (Common Table Expressions)</a><span class="r-meta">PostgreSQL official docs · CTEs, recursive queries, cycle detection and materialisation.</span></li><li><a href="https://pgexercises.com/">PostgreSQL Exercises</a><span class="r-meta">pgexercises.com (free) · Interactive practice, including recursive queries.</span></li><li><a href="https://mode.com/sql-tutorial/">SQL Tutorial for Data Analysis</a><span class="r-meta">Mode (free) · Intermediate and advanced SQL with business examples.</span></li></ul>
 <div class="complete-bar"><span>Finished reading and did the exercise?</span>
@@ -348,9 +453,9 @@ document.documentElement.classList.add('no-anim')})();</script>
 <p class="reviewed">Last reviewed: 2026-10-09</p>
 
   </div></main>
-  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#part-1-a-cte-as-named-steps">Part 1: a CTE as named steps</a><a href="#part-2-recursive-cte-1-a-calendar-date-spine">Part 2: recursive CTE #1, a calendar (&quot;date spine&quot;)</a><a href="#part-3-recursive-cte-2-walking-a-hierarchy">Part 3: recursive CTE #2, walking a hierarchy</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#free-resources">Free resources</a></aside>
+  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#part-1-a-cte-as-named-steps">Part 1: a CTE as named steps</a><a href="#chained-ctes-a-quick-cohort">Chained CTEs: a quick cohort</a><a href="#part-2-recursive-cte-1-a-calendar-date-spine">Part 2: recursive CTE #1, a calendar (“date spine”)</a><a href="#part-3-recursive-cte-2-walking-a-hierarchy">Part 3: recursive CTE #2, walking a hierarchy</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#ai-mentor-prompt">AI Mentor Prompt</a><a href="#free-resources">Free resources</a></aside>
 </div>
-<footer class="site">Data, AI &amp; Automation Path v0.8 · Applied AI, Data &amp; Automation Lab · Updated October 2026<br>
+<footer class="site"><b>Saiful The Techie</b> · Data, AI &amp; Automation Path v0.9.1 · Updated October 2026<br>
 Lesson text: <a href="../../../license.html">CC BY-NC-SA 4.0</a> · Code: <a href="../../../license.html#code-mit-license">MIT</a> · Free external resources belong to their respective owners.</footer>
 <script src="../../../search-index.js"></script>
 <script src="../../../assets/app.js"></script>

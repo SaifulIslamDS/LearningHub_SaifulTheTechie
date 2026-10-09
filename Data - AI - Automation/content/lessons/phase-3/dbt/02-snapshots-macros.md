@@ -9,6 +9,15 @@ prerequisites: ["phase-3/dbt/01-models-tests"]
 keywords: [dbt snapshot, slowly changing dimension, SCD2, Jinja, macro, history, check strategy, timestamp strategy]
 reviewed: 2026-10-09
 files: [phase-3/dbt-orders-project.zip, phase-3/data-engineering-scripts.zip]
+youtube:
+  title: "dbt Full Course Part 11 | Snapshots SCD Type 2 and Macros in dbt"
+  creator: "Time Variant"
+  url: "https://www.youtube.com/watch?v=PL1mOo-NZuA"
+  video_id: "PL1mOo-NZuA"
+  language: "English"
+  level: "Intermediate"
+  reviewed: "2026-10-09"
+  why_recommended: "A focused 2026 companion covering the same two ideas as this tutorial: SCD Type 2 snapshots and reusable Jinja macros. Its examples use Snowflake; use the supplied DuckDB practice project for your own hands-on work."
 resources:
   - title: "Add snapshots to your DAG"
     url: "https://docs.getdbt.com/docs/build/snapshots"

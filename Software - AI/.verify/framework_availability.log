@@ -1,8 +1,0 @@
-## Framework/package availability
-next=NOT_INSTALLED
-express=NOT_INSTALLED
-mongodb=NOT_INSTALLED
-better-auth=NOT_INSTALLED
-stripe=NOT_INSTALLED
-mongod=NOT_AVAILABLE
-mongosh=NOT_AVAILABLE

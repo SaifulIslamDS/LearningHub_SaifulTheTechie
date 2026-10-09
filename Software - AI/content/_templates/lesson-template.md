@@ -17,7 +17,7 @@ resources:
     source: "Official docs"
     type: "OFFICIAL"
     note: "Why this is useful."
-# youtube:                           # optional supplementary companion
+# youtube:                           # optional per-lesson override; central content/youtube.yml can also provide the companion
 #   title: "Video title"
 #   creator: "Creator"
 #   url: "https://www.youtube.com/watch?v=VIDEO_ID"
@@ -73,3 +73,5 @@ Tell the learner exactly which download to open, the starter state, the steps to
 Use this only when it adds practical career relevance naturally.
 
 Do **not** mechanically add Common mistakes, Try it yourself, Quick quiz, Summary or Job-ready check. Those sections are optional and should appear only when they materially improve this tutorial.
+
+The generator automatically adds a **Learn this lesson with AI** frontier-LLM tutor prompt to every authored tutorial. A reviewed video companion is rendered when the lesson has `youtube:` front matter or a matching entry in `content/youtube.yml`.

@@ -6,7 +6,7 @@
 <title>DAX Measures &amp; KPI Logic: Revenue, AOV and Target Achievement — Data, AI &amp; Automation Path</title>
 <meta name="description" content="Write reusable measures with SUM, COUNTROWS and DIVIDE, then build KPIs such as average order value, target achievement and status labels.">
 <meta property="og:type" content="article">
-<meta property="og:site_name" content="Data, AI &amp; Automation Path">
+<meta property="og:site_name" content="Saiful The Techie">
 <meta property="og:title" content="DAX Measures &amp; KPI Logic: Revenue, AOV and Target Achievement">
 <meta property="og:description" content="Write reusable measures with SUM, COUNTROWS and DIVIDE, then build KPIs such as average order value, target achievement and status labels.">
 <meta property="og:locale" content="en_US">
@@ -19,13 +19,13 @@ var n=null;try{n=localStorage.getItem('daa-nav')}catch(e){}
 if(n==='open'&&window.matchMedia&&matchMedia('(min-width: 961px)').matches)document.documentElement.setAttribute('data-nav','open');
 document.documentElement.classList.add('no-anim')})();</script>
 <link rel="stylesheet" href="../../../assets/style.css">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233f7d6a'/%3E%3Ctext x='16' y='21' font-family='sans-serif' font-size='13' font-weight='700' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
+
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="topbar">
   <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Open curriculum menu" title="Curriculum menu (press M)" aria-controls="sidebar" aria-expanded="false"><span class="ico-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span class="ico-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></button>
-  <a class="brand" href="../../../index.html"><span class="brand-badge">AI</span><span class="brand-text"><span class="brand-name">Data, AI &amp; Automation Path</span><span class="brand-version">v0.8</span></span></a>
+  <a class="brand" href="../../../index.html"><span class="brand-text"><span class="brand-name">Saiful The Techie</span><span class="brand-version">Data, AI &amp; Automation Path · v0.9.1</span></span></a>
   <nav class="top-links" aria-label="Main">
     <a href="../../../index.html" class="">Home</a><a href="../../../curriculum.html" class="">Curriculum</a><a href="../../../practice-files.html" class="">Practice files</a><a href="../../../glossary.html" class="">Glossary</a><a href="../../../how-to-learn.html" class="">How to learn</a><a href="../../../about.html" class="">About</a>
   </nav>
@@ -41,7 +41,7 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="layout wide">
   <nav class="sidebar" id="sidebar" aria-label="Curriculum">
     <div class="side-title">Curriculum</div>
-    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="77"><i></i></div><span class="bar-label" data-progress-label></span></div>
+    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="85"><i></i></div><span class="bar-label" data-progress-label></span></div>
 <div class="nav-phase"><a href="../../../learn/phase-0/index.html"><span class="nav-num">0</span>Foundations</a>
 </div>
 <div class="nav-phase current open"><a href="../../../learn/phase-1/index.html"><span class="nav-num">1</span>Analytics &amp; BI</a>
@@ -97,108 +97,142 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="admonition note"><p class="admonition-title">Before you start</p><p><a href="../../../learn/phase-1/power-pivot-dax/01-relationships.html">Data Model Relationships: Build a Star Schema</a></p></div>
 <div class="files-box"><div class="files-head"><b>Practice files for this page</b><a href="../../../practice-files.html">All practice files →</a></div><ul><li><a href="../../../downloads/sales_model.xlsx" download>sales_model.xlsx</a><span class="f-desc">Five Excel Tables (Orders, Customers, Products, Regions, Targets) for the data model · 12 KB</span></li><li><a href="../../../downloads/known_answers.csv" download>known_answers.csv</a><span class="f-desc">24 key numbers every tool should reproduce, for checking your work (and AI output) · 1 KB</span></li></ul></div>
 <h2 id="what-is-it">What is it?</h2>
-<p>A <strong>measure</strong> is a named DAX formula that calculates a number <strong>for whatever is on the screen</strong>: the whole company, one region, one month, or one region in one month. You write it once and reuse it in every visual.</p>
+<p>A <strong>measure</strong> is a named DAX formula that calculates a
+number <strong>for whatever is on the screen</strong>: the whole
+company, one region, one month, or one region in one month. You write it
+once and reuse it in every visual.</p>
 <table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th></th>
 <th><strong>Measure</strong></th>
 <th><strong>Calculated column</strong></th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>Calculates</td>
 <td>at query time, for the current filters</td>
 <td>once per row, stored in the table</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Use for</td>
 <td>KPIs: totals, ratios, %</td>
 <td>row labels, categories to slice by</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Example</td>
 <td><code>Revenue = SUM(Orders[value])</code></td>
 <td><code>Size = IF(Orders[value] &gt;= 1000, "Large", "Small")</code></td>
 </tr>
 </tbody>
 </table>
-<p><strong>KPI logic</strong> means turning business definitions into measures. For example: <em>achievement = net revenue ÷ target</em>, and <em>"on target" when achievement ≥ 100%</em>.</p>
-<div class="admonition job">
-<p class="admonition-title">Why it matters at work</p>
-<p>Every number on a dashboard should come from a <strong>named, reviewed measure</strong>, never a quick "Sum of value" dragged into a visual. That is how a company gets one agreed definition of revenue. Measures and KPI design are the heart of BI analyst and analytics engineer roles.</p>
+<p><strong>KPI logic</strong> means turning business definitions into
+measures. For example: <em>achievement = net revenue ÷ target</em>, and
+<em>“on target” when achievement ≥ 100%</em>.</p>
+<div class="admonition job" data-markdown="1">
+<p class="admonition-title">
+Why it matters at work
+</p>
+<p>Every number on a dashboard should come from a <strong>named,
+reviewed measure</strong>, never a quick “Sum of value” dragged into a
+visual. That is how a company gets one agreed definition of revenue.
+Measures and KPI design are the heart of BI analyst and analytics
+engineer roles.</p>
 </div>
 <h2 id="where-to-write-measures">Where to write measures</h2>
 <ul>
-<li><strong>Power BI:</strong> select the <strong>Orders</strong> table → <strong>Home → New measure</strong> → type the formula → set the format (e.g. <em>Whole number</em>, <em>Percentage</em>).</li>
-<li><strong>Excel Power Pivot:</strong> <strong>Power Pivot → Measures → New Measure</strong>, or type <code>Name := formula</code> in the measure grid.</li>
+<li><strong>Power BI:</strong> select the <strong>Orders</strong> table
+→ <strong>Home → New measure</strong> → type the formula → set the
+format (e.g. <em>Whole number</em>, <em>Percentage</em>).</li>
+<li><strong>Excel Power Pivot:</strong> <strong>Power Pivot → Measures →
+New Measure</strong>, or type <code>Name := formula</code> in the
+measure grid.</li>
 </ul>
-<div class="admonition tip">
-<p class="admonition-title">Keep measures in one place</p>
-<p>Many teams create an empty table called <strong>_Measures</strong> (Home → Enter data, one column, no rows) and store every measure there. It is easier to find than spreading measures across fact tables.</p>
+<div class="admonition tip" data-markdown="1">
+<p class="admonition-title">
+Keep measures in one place
+</p>
+<p>Many teams create an empty table called **_Measures** (Home → Enter
+data, one column, no rows) and store every measure there. It is easier
+to find than spreading measures across fact tables.</p>
 </div>
 <h2 id="example-1-the-base-measures">Example 1: the base measures</h2>
-<div class="codehilite"><pre><span></span><code>Revenue = SUM ( Orders[value] )
+<pre class="dax"><code>Revenue = SUM ( Orders[value] )
 
 Orders Count = COUNTROWS ( Orders )
 
 Net Revenue =
-<span class="nf">CALCULATE</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="na">[Revenue]</span><span class="p">,</span><span class="w"> </span><span class="na">Orders[status]</span><span class="w"> </span>&lt;&gt; "Cancelled" )
+CALCULATE ( [Revenue], Orders[status] &lt;&gt; &quot;Cancelled&quot; )
 
 Net Orders =
-<span class="nf">CALCULATE</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="na">[Orders Count]</span><span class="p">,</span><span class="w"> </span><span class="na">Orders[status]</span><span class="w"> </span>&lt;&gt; "Cancelled" )
+CALCULATE ( [Orders Count], Orders[status] &lt;&gt; &quot;Cancelled&quot; )
 
-Avg Order Value = DIVIDE ( [Net Revenue], [Net Orders] )
-</code></pre></div>
-
+Avg Order Value = DIVIDE ( [Net Revenue], [Net Orders] )</code></pre>
 <p>In a card visual, with no filters:</p>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>Measure</th>
 <th>Result</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>Revenue</td>
 <td>9,315</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Orders Count</td>
 <td>12</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Net Revenue</td>
 <td>9,075</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Net Orders</td>
 <td>11</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Avg Order Value</td>
 <td>825</td>
 </tr>
 </tbody>
 </table>
-<p><code>CALCULATE</code> adds a filter: "Revenue, but only rows that are not cancelled". The next lesson explains it in depth. Notice how measures <strong>reuse</strong> other measures: change the definition of <em>Net Revenue</em> once, and every KPI built on it updates.</p>
-<h2 id="example-2-target-and-achievement-kpis">Example 2: target and achievement KPIs</h2>
-<div class="codehilite"><pre><span></span><code>Target = SUM ( Targets[target] )
+<p><code>CALCULATE</code> adds a filter: “Revenue, but only rows that
+are not cancelled”. The next lesson explains it in depth. Notice how
+measures <strong>reuse</strong> other measures: change the definition of
+<em>Net Revenue</em> once, and every KPI built on it updates.</p>
+<h2 id="example-2-target-and-achievement-kpis">Example 2: target and
+achievement KPIs</h2>
+<pre class="dax"><code>Target = SUM ( Targets[target] )
 
 Achievement % = DIVIDE ( [Net Revenue], [Target] )
 
 Gap to Target = [Net Revenue] - [Target]
 
 KPI Status =
-<span class="nf">IF</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="p">[</span>Achievement %] &gt;= 1, "On target", "Below target" )
-</code></pre></div>
-
-<p>Put them in a <strong>matrix</strong> with <code>Regions[region]</code> on rows (format Achievement % as a percentage with 1 decimal):</p>
-<table>
+IF ( [Achievement %] &gt;= 1, &quot;On target&quot;, &quot;Below target&quot; )</code></pre>
+<p>Put them in a <strong>matrix</strong> with
+<code>Regions[region]</code> on rows (format Achievement % as a
+percentage with 1 decimal):</p>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>region</th>
 <th>Net Revenue</th>
 <th>Target</th>
@@ -208,7 +242,7 @@ KPI Status =
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>Chattogram</td>
 <td>2,155</td>
 <td>2,100</td>
@@ -216,7 +250,7 @@ KPI Status =
 <td>55</td>
 <td>On target</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Dhaka</td>
 <td>3,170</td>
 <td>3,600</td>
@@ -224,7 +258,7 @@ KPI Status =
 <td>−430</td>
 <td>Below target</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Gazipur</td>
 <td>2,520</td>
 <td>2,400</td>
@@ -232,7 +266,7 @@ KPI Status =
 <td>120</td>
 <td>On target</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Narayanganj</td>
 <td>1,230</td>
 <td>1,500</td>
@@ -240,7 +274,7 @@ KPI Status =
 <td>−270</td>
 <td>Below target</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><strong>Total</strong></td>
 <td><strong>9,075</strong></td>
 <td><strong>9,600</strong></td>
@@ -250,10 +284,11 @@ KPI Status =
 </tr>
 </tbody>
 </table>
-<p>Swap the rows to <code>Date[Month]</code> and the <strong>same measures</strong> give monthly KPIs:</p>
+<p>Swap the rows to <code>Date[Month]</code> and the <strong>same
+measures</strong> give monthly KPIs:</p>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>Month</th>
 <th>Net Revenue</th>
 <th>Target</th>
@@ -261,19 +296,19 @@ KPI Status =
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>Jan 2026</td>
 <td>3,440</td>
 <td>2,800</td>
 <td>122.9%</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Feb 2026</td>
 <td>3,940</td>
 <td>3,200</td>
 <td>123.1%</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Mar 2026</td>
 <td>1,695</td>
 <td>3,600</td>
@@ -281,44 +316,63 @@ KPI Status =
 </tr>
 </tbody>
 </table>
-<p><strong>Insight:</strong> the quarter is 525 short. January and February beat their targets, but March is far behind. Before raising an alarm, check whether March's data is complete.</p>
-<div class="admonition warning">
-<p class="admonition-title">Why the total row isn't a sum of percentages</p>
-<p>The total Achievement % is <strong>94.5%</strong>, calculated as 9,075 ÷ 9,600. It is <strong>not</strong> the average of the four regional percentages (that would be 94.4%). Measures always recalculate at each level. That's exactly what you want for ratios.</p>
+<p><strong>Insight:</strong> the quarter is 525 short. January and
+February beat their targets, but March is far behind. Before raising an
+alarm, check whether March’s data is complete.</p>
+<div class="admonition warning" data-markdown="1">
+<p class="admonition-title">
+Why the total row isn't a sum of percentages
+</p>
+<p>The total Achievement % is <strong>94.5%</strong>, calculated as
+9,075 ÷ 9,600. It is <strong>not</strong> the average of the four
+regional percentages (that would be 94.4%). Measures always recalculate
+at each level. That’s exactly what you want for ratios.</p>
 </div>
-<h2 id="example-3-why-divide-not">Example 3: why DIVIDE, not <code>/</code></h2>
-<p><code>[Net Revenue] / [Target]</code> returns an <strong>error (∞ or NaN)</strong> when the target is 0 or blank, for example for a region with no target yet. <code>DIVIDE ( [Net Revenue], [Target] )</code> returns <strong>blank</strong> instead, and you can choose your own alternative: <code>DIVIDE ( x, y, 0 )</code>. Use DIVIDE for every KPI ratio.</p>
+<h2 id="example-3-why-divide-not">Example 3: why DIVIDE, not
+<code>/</code></h2>
+<p><code>[Net Revenue] / [Target]</code> returns an <strong>error (∞ or
+NaN)</strong> when the target is 0 or blank, for example for a region
+with no target yet. <code>DIVIDE ( [Net Revenue], [Target] )</code>
+returns <strong>blank</strong> instead, and you can choose your own
+alternative: <code>DIVIDE ( x, y, 0 )</code>. Use DIVIDE for every KPI
+ratio.</p>
 <h2 id="common-mistakes">Common mistakes</h2>
 <table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Mistake</th>
 <th>What happens</th>
 <th>Fix</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td>Dragging columns into visuals ("implicit" Sum of value)</td>
+<tr class="odd">
+<td>Dragging columns into visuals (“implicit” Sum of value)</td>
 <td>Inconsistent definitions, includes cancelled orders</td>
 <td>Use explicit measures only</td>
 </tr>
-<tr>
-<td>Calculated column for a ratio (<code>value / target</code> per row)</td>
+<tr class="even">
+<td>Calculated column for a ratio (<code>value / target</code> per
+row)</td>
 <td>Wrong totals</td>
 <td>Ratios are <strong>measures</strong> (sum first, divide after)</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><code>/</code> instead of <code>DIVIDE</code></td>
 <td>Errors on zero or blank</td>
 <td><code>DIVIDE ( numerator, denominator )</code></td>
 </tr>
-<tr>
+<tr class="even">
 <td>Averaging percentages in the total row</td>
 <td>A misleading KPI</td>
 <td>Let the measure recalculate: total ÷ total</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>No format strings</td>
 <td>0.9453125 instead of 94.5%</td>
 <td>Set the measure format once in the model</td>
@@ -326,16 +380,23 @@ KPI Status =
 </tbody>
 </table>
 <h2 id="try-it-yourself">Try it yourself</h2>
-<p><strong>Task:</strong> Put <code>Avg Order Value</code> in the region matrix. Which region has the <strong>highest</strong> average order value, and why might that be?</p>
+<p><strong>Task:</strong> Put <code>Avg Order Value</code> in the region
+matrix. Which region has the <strong>highest</strong> average order
+value, and why might that be?</p>
 <details>
-<summary>Show a hint</summary>
-<p>No new measure is needed. AOV already uses Net Revenue ÷ Net Orders, and the region rows filter both.</p>
+<summary>
+Show a hint
+</summary>
+No new measure is needed. AOV already uses Net Revenue ÷ Net Orders, and
+the region rows filter both.
 </details>
 <details>
-<summary>Show the solution</summary>
+<summary>
+Show the solution
+</summary>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>region</th>
 <th>Net Revenue</th>
 <th>Net Orders</th>
@@ -343,31 +404,31 @@ KPI Status =
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>Chattogram</td>
 <td>2,155</td>
 <td>3</td>
 <td>718.33</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Dhaka</td>
 <td>3,170</td>
 <td>4</td>
 <td>792.50</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Gazipur</td>
 <td>2,520</td>
 <td>2</td>
 <td>1,260.00</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Narayanganj</td>
 <td>1,230</td>
 <td>2</td>
 <td>615.00</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><strong>Total</strong></td>
 <td><strong>9,075</strong></td>
 <td><strong>11</strong></td>
@@ -375,58 +436,132 @@ KPI Status =
 </tr>
 </tbody>
 </table>
-<p><strong>Gazipur</strong> has the highest AOV: only two orders, both large yarn orders from one knitting mill. Small samples swing averages a lot, so mention the order count next to any average.</p>
+<strong>Gazipur</strong> has the highest AOV: only two orders, both
+large yarn orders from one knitting mill. Small samples swing averages a
+lot, so mention the order count next to any average.
 </details>
 <h2 id="quick-quiz">Quick quiz</h2>
 <div class="quiz-q" data-answer="1">
-<p>1. You need "achievement = revenue ÷ target" that is correct at every level. Measure or calculated column?</p>
-<ol>
+<p>1. You need “achievement = revenue ÷ target” that is correct at every
+level. Measure or calculated column?</p>
+<ol type="1">
 <li>Calculated column</li>
 <li>Measure</li>
 <li>Either</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B — measure.</strong> It sums revenue and target for the current filter, then divides, so the totals stay correct.</p>
+<summary>
+Show answer
+</summary>
+<strong>B — measure.</strong> It sums revenue and target for the current
+filter, then divides, so the totals stay correct.
 </details>
 </div>
 <div class="quiz-q" data-answer="1">
-<p>2. What does <code>DIVIDE ( [Net Revenue], [Target] )</code> return when Target is blank?</p>
-<ol>
+<p>2. What does <code>DIVIDE ( [Net Revenue], [Target] )</code> return
+when Target is blank?</p>
+<ol type="1">
 <li>An error</li>
 <li>Blank (or the optional alternative result)</li>
 <li>Zero always</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B.</strong> DIVIDE handles division by zero or blank safely.</p>
+<summary>
+Show answer
+</summary>
+<strong>B.</strong> DIVIDE handles division by zero or blank safely.
 </details>
 </div>
 <div class="quiz-q" data-answer="1">
-<p>3. Why is the total Achievement % 94.5% and not the average of the region percentages?</p>
-<ol>
+<p>3. Why is the total Achievement % 94.5% and not the average of the
+region percentages?</p>
+<ol type="1">
 <li>Rounding</li>
 <li>The measure recalculates on the totals: 9,075 ÷ 9,600</li>
 <li>Power BI ignores some regions</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B.</strong> Measures are re-evaluated at every level, including the total.</p>
+<summary>
+Show answer
+</summary>
+<strong>B.</strong> Measures are re-evaluated at every level, including
+the total.
 </details>
 </div>
 <h2 id="summary">Summary</h2>
 <ul>
-<li>A <strong>measure</strong> is a reusable formula evaluated for the current filters. A <strong>calculated column</strong> is evaluated row by row and stored.</li>
-<li>Build from base measures (Revenue, Orders Count) to business measures (Net Revenue, AOV, Achievement %).</li>
-<li>Use <code>DIVIDE</code> for ratios, and set number formats on the measure.</li>
-<li>One set of measures answers by region, by month, or both. No new formulas are needed.</li>
+<li>A <strong>measure</strong> is a reusable formula evaluated for the
+current filters. A <strong>calculated column</strong> is evaluated row
+by row and stored.</li>
+<li>Build from base measures (Revenue, Orders Count) to business
+measures (Net Revenue, AOV, Achievement %).</li>
+<li>Use <code>DIVIDE</code> for ratios, and set number formats on the
+measure.</li>
+<li>One set of measures answers by region, by month, or both. No new
+formulas are needed.</li>
 </ul>
-<div class="admonition job">
-<p class="admonition-title">Job-ready check</p>
-<p><strong>Interview question:</strong> <em>"When would you use a measure instead of a calculated column?"</em></p>
-<p><strong>Strong answer:</strong> "Measures for anything aggregated or ratio-based, like revenue, AOV and achievement %, because they respond to filters and total correctly. Calculated columns only for row-level attributes I want to slice or filter by, like an order-size band. I also avoid implicit measures, so every KPI has one reviewed definition."</p>
-<p><strong>Mini project:</strong> Add the nine measures above to your model, plus a <strong>KPI Status</strong> column in the region matrix. Write a definitions table (measure name · formula · business meaning). That's the start of your KPI dictionary for the Phase 1 project.</p>
+<div class="admonition job" data-markdown="1">
+<p class="admonition-title">
+Job-ready check
+</p>
+<p><strong>Interview question:</strong> <em>“When would you use a
+measure instead of a calculated column?”</em></p>
+<p><strong>Strong answer:</strong> “Measures for anything aggregated or
+ratio-based, like revenue, AOV and achievement %, because they respond
+to filters and total correctly. Calculated columns only for row-level
+attributes I want to slice or filter by, like an order-size band. I also
+avoid implicit measures, so every KPI has one reviewed definition.”</p>
+<p><strong>Mini project:</strong> Add the nine measures above to your
+model, plus a <strong>KPI Status</strong> column in the region matrix.
+Write a definitions table (measure name · formula · business meaning).
+That’s the start of your KPI dictionary for the Phase 1 project.</p>
 </div>
+<section class="mentor-prompt"><div class="mentor-head"><div><span class="eyebrow">AI study companion</span><h2 id="ai-mentor-prompt">AI Mentor Prompt</h2></div><button class="btn copy-prompt" type="button" data-copy-target="mentor-prompt-phase-1-power-pivot-dax-02-measures-kpi">Copy prompt</button></div><p>Paste this into ChatGPT, Claude, Gemini, or another capable assistant to turn this tutorial into an interactive mentoring session.</p><pre class="prompt-box"><code id="mentor-prompt-phase-1-power-pivot-dax-02-measures-kpi">You are my hands-on data-analytics and business-intelligence mentor.
+
+I am currently studying:
+&quot;DAX Measures &amp; KPI Logic: Revenue, AOV and Target Achievement&quot;
+
+My level:
+Beginner
+
+Teach me this topic interactively rather than giving me a long lecture.
+
+Use this sequence:
+
+1. Check what I already understand with one short diagnostic question.
+2. Explain the concept in simple language and give me the mental model first.
+3. Give me one small task using code, SQL, configuration, data, or architecture as appropriate.
+4. Wait for my attempt before showing a complete solution.
+5. Review my work and explain both what is correct and what needs improvement.
+6. Help me debug errors step by step instead of immediately replacing my work.
+7. Increase the difficulty gradually and connect each new step to the previous one.
+8. Relate what I am learning to real professional data/AI engineering work.
+9. Ask me to explain an important decision in my own words so you can check my understanding.
+10. At the end, ask me to build or modify one small feature independently.
+
+Important rules:
+- Do not do the entire exercise for me unless I explicitly ask.
+- Explain unfamiliar terminology before using it heavily.
+- Prefer current, production-relevant practices over outdated shortcuts.
+- Distinguish clearly between concepts, tool-specific behaviour, and optional alternatives.
+- If a technical fact, API, syntax, version, or best practice may have changed, verify it against current official documentation before teaching it.
+- Never invent command output, test results, benchmark numbers, cloud behaviour, or data results.
+- If something cannot be executed in the current environment, say so and give me the exact command or verification step I should run.
+- Keep me actively coding, querying, configuring, reasoning, or debugging throughout the session.
+- When useful, work from the tutorial practice files (sales_model.xlsx, known_answers.csv) instead of inventing unrelated examples.
+
+The concepts I need to master are:
+- Measures
+- KPI logic
+- dax
+- measure
+- calculated column
+- sum
+- countrows
+- divide
+
+Start by asking me one diagnostic question.</code></pre></section>
+
 <div class="terms-box"><div class="files-head"><b>Key terms in this lesson</b><a href="../../../glossary.html">Glossary →</a></div><div class="term-chips"><a class="term-chip" href="../../../glossary.html#average-order-value" title="Net revenue divided by the number of net orders. On the practice data, 9,075 ÷ 11 = 825.">Average order value</a><a class="term-chip" href="../../../glossary.html#calculated-column" title="A DAX column computed row by row when data refreshes and stored in the model. Prefer measures for totals.">Calculated column</a><a class="term-chip" href="../../../glossary.html#dax" title="The formula language of Power BI, Power Pivot and Analysis Services, used to write measures and calculated columns.">DAX</a><a class="term-chip" href="../../../glossary.html#kpi" title="A number that shows whether a business goal is being met, such as net revenue or achievement % of target. A good KPI has one agreed definition, an owner and a target.">KPI</a><a class="term-chip" href="../../../glossary.html#measure" title="A DAX calculation that is evaluated for whatever filters are on screen, such as Net Revenue or Achievement %.">Measure</a><a class="term-chip" href="../../../glossary.html#net-revenue" title="In this course: quantity × unit price for all orders except Cancelled ones. On the practice data it is 9,075, while revenue of all statuses is 9,315.">Net revenue</a></div></div>
 <h2 id="free-resources">Free resources to go deeper</h2><ul class="resources"><li><a href="https://learn.microsoft.com/en-us/power-bi/transform-model/desktop-quickstart-learn-dax-basics">Learn DAX basics in Power BI Desktop</a><span class="r-meta">Microsoft Learn · The official first steps with DAX measures.</span></li><li><a href="https://learn.microsoft.com/en-us/dax/best-practices/dax-divide-function-operator">DIVIDE function vs the divide operator (/)</a><span class="r-meta">Microsoft Learn · Why KPI ratios use DIVIDE.</span></li><li><a href="https://learn.microsoft.com/en-us/dax/dax-overview">DAX overview</a><span class="r-meta">Microsoft Learn · Syntax, functions and context, in one place.</span></li></ul>
 <div class="complete-bar"><span>Finished reading and did the exercise?</span>
@@ -435,9 +570,9 @@ KPI Status =
 <p class="reviewed">Last reviewed: 2026-10-09</p>
 
   </div></main>
-  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#where-to-write-measures">Where to write measures</a><a href="#example-1-the-base-measures">Example 1: the base measures</a><a href="#example-2-target-and-achievement-kpis">Example 2: target and achievement KPIs</a><a href="#example-3-why-divide-not">Example 3: why DIVIDE, not /</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#free-resources">Free resources</a></aside>
+  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#where-to-write-measures">Where to write measures</a><a href="#example-1-the-base-measures">Example 1: the base measures</a><a href="#example-2-target-and-achievement-kpis">Example 2: target and achievement KPIs</a><a href="#example-3-why-divide-not">Example 3: why DIVIDE, not /</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#ai-mentor-prompt">AI Mentor Prompt</a><a href="#free-resources">Free resources</a></aside>
 </div>
-<footer class="site">Data, AI &amp; Automation Path v0.8 · Applied AI, Data &amp; Automation Lab · Updated October 2026<br>
+<footer class="site"><b>Saiful The Techie</b> · Data, AI &amp; Automation Path v0.9.1 · Updated October 2026<br>
 Lesson text: <a href="../../../license.html">CC BY-NC-SA 4.0</a> · Code: <a href="../../../license.html#code-mit-license">MIT</a> · Free external resources belong to their respective owners.</footer>
 <script src="../../../search-index.js"></script>
 <script src="../../../assets/app.js"></script>

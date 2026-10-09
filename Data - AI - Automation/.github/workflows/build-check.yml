@@ -1,0 +1,28 @@
+# Checks every push and pull request:
+# 1) the site builds with no broken internal links
+# 2) the committed docs/ folder matches the source (you ran build.py before committing)
+name: Build check
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+      - name: Build site and check internal links
+        run: python build.py
+      - name: Check docs/ is up to date
+        run: |
+          if [ -n "$(git status --porcelain docs)" ]; then
+            echo "docs/ is out of date. Run 'python build.py' locally and commit the result."
+            git status --porcelain docs
+            exit 1
+          fi

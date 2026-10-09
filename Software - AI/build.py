@@ -43,6 +43,8 @@ SITE = yaml.safe_load((ROOT / "site.yml").read_text(encoding="utf-8"))
 CURR = yaml.safe_load((ROOT / "curriculum.yml").read_text(encoding="utf-8"))
 PHASES = CURR["levels"]
 TRACKS = CURR.get("tracks", [])
+YOUTUBE_DATA = yaml.safe_load((CONTENT / "youtube.yml").read_text(encoding="utf-8")) if (CONTENT / "youtube.yml").exists() else {"videos": {}}
+YOUTUBE = YOUTUBE_DATA.get("videos", {}) or {}
 
 esc = html.escape
 class _Renderer(mistune.HTMLRenderer):
@@ -256,9 +258,9 @@ def gloss_target(t):
         m = next((x for x in ph["modules"] if x["id"] == parts[1]), None)
         if m:
             written = bool(by_module[f"{ph['id']}/{m['id']}"])
-            return u_module(ph, m), f"{m['title']} (Level {ph['num']}{'' if written else ', coming soon'})"
+            return u_module(ph, m), f"{m['title']} (Level {ph['num']}{'' if written else ', roadmap'})"
         warnings.append(f"glossary: '{t['term']}' points at unknown module '{see}'")
-    return u_phase(ph), f"Level {ph['num']}: {ph['short']}" + ("" if phase_lesson_count(ph) else " (coming soon)")
+    return u_phase(ph), f"Level {ph['num']}: {ph['short']}" + ("" if phase_lesson_count(ph) else " (roadmap)")
 
 
 def lesson_terms(l) -> list:
@@ -277,7 +279,12 @@ def terms_box(r: str, terms: list) -> str:
 
 
 def youtube_box(video: dict | None) -> str:
-    """Render an optional reviewed YouTube companion. The written tutorial remains primary."""
+    """Render a reviewed YouTube companion without creating a broken file:// embed.
+
+    The static HTML carries video metadata only. assets/app.js injects the iframe when the
+    page is served over HTTP(S), where YouTube receives an origin/referrer. When the hub is
+    opened directly from disk, the same frame becomes a clean external-link fallback.
+    """
     if not video:
         return ""
     vid = str(video.get("video_id", "")).strip()
@@ -316,11 +323,82 @@ def youtube_box(video: dict | None) -> str:
         f'<section class="video-companion" id="video-companion">'
         f'<div class="video-copy"><span class="eyebrow">Optional video companion</span>'
         f'<h2>{esc(title)}</h2>{why_html}<div class="video-meta">{esc(meta)}</div>{stamps_html}'
-        f'<p><a class="btn ghost" href="{esc(url)}">Watch on YouTube ↗</a>{reviewed_html}</p></div>'
-        f'<div class="video-frame"><iframe loading="lazy" src="https://www.youtube-nocookie.com/embed/{esc(vid)}" '
-        f'title="{esc(title)}" referrerpolicy="strict-origin-when-cross-origin" '
-        f'allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" '
-        f'allowfullscreen></iframe></div></section>'
+        f'<p><a class="btn ghost" href="{esc(url)}">Watch on YouTube ↗</a>{reviewed_html}</p>'
+        f'<p class="video-offline-note">Embedded playback is enabled when the hub is served over HTTP(S). '
+        f'When opened directly from disk, use the YouTube link instead.</p></div>'
+        f'<div class="video-frame js-youtube-frame" data-video-id="{esc(vid)}" data-video-title="{esc(title)}" data-video-url="{esc(url)}">'
+        f'<div class="video-placeholder"><span class="yt-mark">▶</span><b>Video companion</b>'
+        f'<span class="video-placeholder-status">Preparing player…</span>'
+        f'<a class="btn ghost video-placeholder-link" href="{esc(url)}">Watch on YouTube ↗</a></div></div></section>'
+    )
+
+
+def _ai_role(l: dict) -> str:
+    """Choose a practical mentor role from the lesson context."""
+    text = " ".join([
+        str(l.get("title", "")), str(l["module"].get("title", "")),
+        " ".join(str(x) for x in (l["meta"].get("keywords") or [])),
+    ]).lower()
+    if any(x in text for x in ["react", "next.js", "frontend", "html", "css", "dom"]):
+        return "senior frontend engineer and patient coding mentor"
+    if any(x in text for x in ["node", "express", "api", "mongodb", "jwt", "backend", "stripe"]):
+        return "senior backend/full-stack engineer and patient coding mentor"
+    if "typescript" in text or "oop" in text:
+        return "senior TypeScript engineer and patient coding mentor"
+    if "git" in text:
+        return "senior software engineer and Git mentor"
+    if "ai" in text or "prompt" in text:
+        return "responsible AI-assisted development mentor"
+    return "senior software engineer and patient coding mentor"
+
+
+def ai_tutor_box(l: dict) -> str:
+    """Generate a learner-facing frontier-LLM study prompt for every authored tutorial."""
+    meta = l["meta"]
+    level = str(meta.get("level") or "Beginner").strip()
+    topics = [str(x).strip() for x in (meta.get("topics") or []) if str(x).strip()]
+    files = [str(x).split("/")[-1] for x in (meta.get("files") or [])]
+    topic_lines = "\n".join(f"- {x}" for x in topics[:12]) or f"- {l['title']}"
+    files_line = ", ".join(files) if files else "No required download for this lesson."
+    prompt = f"""You are my {_ai_role(l)}.
+
+I am studying this Saiful The Techie lesson:
+\"{l['title']}\"
+
+My current level: {level}
+
+The concepts I need to master are:
+{topic_lines}
+
+Practice files for this lesson: {files_line}
+
+Teach me interactively. Use this workflow:
+1. Ask one short diagnostic question to check what I already understand.
+2. Explain the next concept in simple, precise language with a mental model.
+3. Give me a small coding or reasoning task directly related to this lesson.
+4. Wait for my answer or code before revealing a complete solution.
+5. Review what I send. Point out exactly what works, what is wrong, and why.
+6. Help me debug errors instead of immediately replacing my code.
+7. Increase difficulty gradually and connect each step to real software engineering.
+8. Prefer modern, maintainable practices, but do not introduce unnecessary abstraction for my level.
+9. When a framework/library/API may have changed, verify current official documentation before making version-sensitive claims.
+10. Never invent program output. If you show output, derive it from the code or clearly label it as expected/reference output.
+11. If I upload the lesson's starter files, work with those files rather than creating an unrelated project.
+12. Finish by asking me to implement one small feature independently and explain my design choice.
+
+Do not give me a long lecture all at once. Keep me coding, thinking, and explaining throughout the session.
+
+Start with the diagnostic question only."""
+    pid = "ai-prompt-" + slugify(l["id"])
+    return (
+        f'<section class="ai-tutor" id="ai-tutor"><div class="ai-tutor-head">'
+        f'<div><span class="eyebrow">Frontier LLM study companion</span><h2>Learn this lesson with AI</h2>'
+        f'<p>Copy this lesson-aware prompt into ChatGPT, Claude, Gemini or another capable model. '
+        f'It is designed to make the model tutor you rather than simply do the work.</p></div>'
+        f'<button class="btn ai-copy" type="button" data-copy-target="{pid}">Copy prompt</button></div>'
+        f'<details><summary>Preview the prompt</summary><pre id="{pid}" class="ai-prompt"><code>{esc(prompt)}</code></pre></details>'
+        f'<p class="ai-note"><b>Best use:</b> keep the tutorial open beside the AI chat, and upload the starter practice files when available.</p>'
+        f'</section>'
     )
 
 
@@ -378,18 +456,29 @@ document.documentElement.classList.add('no-anim')})();</script>"""
 
 
 def sidebar(r: str, cur_phase=None, cur_module=None, cur_lesson=None) -> str:
+    """Curriculum sidebar with independently collapsible Level sections."""
     out = [
-           f'<div class="side-progress"><div class="bar" data-progress-scope="all" data-total="{len(LESSONS)}"><i></i></div>'
-           f'<span class="bar-label" data-progress-label></span></div>']
+        f'<div class="side-progress"><div class="bar" data-progress-scope="all" data-total="{len(LESSONS)}"><i></i></div>'
+        f'<span class="bar-label" data-progress-label></span></div>'
+    ]
     for ph in PHASES:
         is_cur = cur_phase is ph
-        cls = "nav-phase" + (" current open" if is_cur else "")
-        aria = ' aria-current="page"' if is_cur and not cur_module else ""
-        out.append(f'<div class="{cls}"><a href="{r}{u_phase(ph)}"{aria}>'
-                   f'<span class="nav-num">{ph["num"]}</span>{esc(ph["short"])}</a>')
-        if is_cur:
+        level_id = f"sidebar-{ph['id']}"
+        available = [m for m in ph["modules"] if by_module[f"{ph['id']}/{m['id']}"]]
+        roadmap = [m for m in ph["modules"] if not by_module[f"{ph['id']}/{m['id']}"]]
+        cls = "nav-phase" + (" current" if is_cur else "")
+        out.append(f'<div class="{cls}" data-level="{esc(ph["id"])}">')
+        out.append(
+            f'<button class="nav-phase-toggle" type="button" aria-expanded="{"true" if is_cur else "false"}" '
+            f'aria-controls="{level_id}" data-default-open="{"1" if is_cur else "0"}">'
+            f'<span class="nav-num">{ph["num"]}</span><span class="nav-phase-label">{esc(ph["short"])}</span>'
+            f'<span class="nav-phase-chevron" aria-hidden="true">⌄</span></button>'
+        )
+        out.append(f'<div class="nav-phase-body" id="{level_id}" {"" if is_cur else "hidden"}>')
+        out.append(f'<a class="nav-level-overview" href="{r}{u_phase(ph)}">Level {ph["num"]} overview →</a>')
+        if available:
             out.append('<ul class="nav-modules">')
-            for m in ph["modules"]:
+            for m in available:
                 mcur = cur_module is m
                 out.append(f'<li><a class="{"current" if mcur else ""}" href="{r}{u_module(ph, m)}">{esc(m["title"])}</a>')
                 lessons = by_module[f"{ph['id']}/{m['id']}"]
@@ -398,15 +487,24 @@ def sidebar(r: str, cur_phase=None, cur_module=None, cur_lesson=None) -> str:
                     for l in lessons:
                         c = "current" if l is cur_lesson else ""
                         out.append(f'<li><a class="{c}" data-lesson="{l["id"]}" href="{r}{u_lesson(l)}">{esc(l["title"])}</a></li>')
-                    out.append("</ul>")
-                out.append("</li>")
+                    out.append('</ul>')
+                out.append('</li>')
             if ph["id"] in PROJECTS:
                 pc = "current" if cur_module == "project" else ""
                 out.append(f'<li><a class="nav-project {pc}" href="{r}{u_project(ph)}">★ Level project</a></li>')
-            out.append("</ul>")
-        out.append("</div>")
-    out.append(f'<div class="side-extra"><a href="{r}index.html">Home</a><a href="{r}curriculum.html">Full curriculum map</a><a href="{r}practice-files.html">Practice files</a><a href="{r}glossary.html">Glossary</a>'
-               f'<a href="{r}how-to-learn.html">How to learn here</a><a href="{r}about.html">About &amp; contributing</a></div>')
+            out.append('</ul>')
+        if roadmap:
+            out.append(f'<details class="roadmap-nav"><summary>Roadmap · {len(roadmap)} future modules</summary><ul>')
+            for m in roadmap:
+                mcur = cur_module is m
+                out.append(f'<li><a class="{"current" if mcur else ""}" href="{r}{u_module(ph, m)}">{esc(m["title"])} <span>Roadmap</span></a></li>')
+            out.append('</ul></details>')
+        out.append('</div></div>')
+    out.append(
+        f'<div class="side-extra"><a href="{r}index.html">Home</a><a href="{r}curriculum.html">Full curriculum map</a>'
+        f'<a href="{r}practice-files.html">Practice files</a><a href="{r}glossary.html">Glossary</a>'
+        f'<a href="{r}how-to-learn.html">How to learn here</a><a href="{r}about.html">About &amp; contributing</a></div>'
+    )
     return "\n".join(out)
 
 
@@ -553,7 +651,7 @@ def build_home():
 <div class="grid cols-5">{tracks}</div>
 
 <div class="section-head"><h2>Written lessons</h2><p>Everything you can read today.</p></div>
-<ul class="lesson-list">{latest or '<li class="lesson-row planned">First lessons coming soon.</li>'}</ul>
+<ul class="lesson-list">{latest or '<li class="lesson-row planned">No authored tutorials are available in this release yet.</li>'}</ul>
 """
     write("index.html", page(title=SITE["name"], depth=0, body=body, side=None, active="home", wide_content=True))
     search_index.append({"t": "Home", "p": SITE["name"], "u": "index.html", "k": "Page", "x": SITE["tagline"]})
@@ -564,17 +662,18 @@ def build_phase(ph):
     r = rel(depth)
     project_link = (f' <a class="milestone-link" href="{r}{u_project(ph)}">Open the project brief →</a>'
                     if ph["id"] in PROJECTS else "")
-    tiles = []
+    available_tiles, roadmap_tiles = [], []
     for m in ph["modules"]:
         n = len(by_module[f"{ph['id']}/{m['id']}"])
-        status = f"{n} lesson{'s' if n != 1 else ''} written" if n else "Coming soon"
-        tiles.append(f"""<a class="card module-tile" href="{r}{u_module(ph, m)}">
+        status = f"{n} tutorial{'s' if n != 1 else ''} available" if n else "Roadmap"
+        tile = f"""<a class="card module-tile {'roadmap-tile' if not n else ''}" href="{r}{u_module(ph, m)}">
   <h3>{esc(m['title'])}{tag_html(m.get('tag'))}</h3>
-  <p>{esc(', '.join(m['topics']))}</p>
+  <p>{esc(', '.join(m['topics'][:4]))}{'…' if len(m['topics']) > 4 else ''}</p>
   <span class="count">{status}</span>
-</a>""")
+</a>"""
+        (available_tiles if n else roadmap_tiles).append(tile)
         search_index.append({"t": m["title"], "p": f"Level {ph['num']} · {ph['short']}", "u": u_module(ph, m),
-                             "k": "Module", "x": " ".join(m["topics"])})
+                             "k": "Module" if n else "Roadmap", "x": " ".join(m["topics"])})
     cert = f'<p><b>Optional certification:</b> {esc(ph["cert"])}.</p>' if ph.get("cert") else ""
     n = phase_lesson_count(ph)
     idx = PHASES.index(ph)
@@ -586,21 +685,41 @@ def build_phase(ph):
     if next_ph:
         pager += f'<a class="next" href="{r}{u_phase(next_ph)}"><small>Next level →</small>Level {next_ph["num"]} — {esc(next_ph["short"])}</a>'
     pager += "</nav>"
+    roadmap_html = (f'<details class="level-roadmap"><summary>Full roadmap · {len(roadmap_tiles)} future modules</summary>'
+                    f'<p class="muted">These future modules are reserved for later approved releases and kept outside the active learning path until tutorials are ready.</p>'
+                    f'<div class="grid cols-2">{"".join(roadmap_tiles)}</div></details>') if roadmap_tiles else ''
     body = f"""{crumbs(r, [('Home', 'index.html'), (f"Level {ph['num']}", None)])}
 <h1>Level {ph['num']} — {esc(ph['title'])}</h1>
 <p class="lead">{esc(ph['summary'])}</p>
-<div class="meta"><span class="pill"><b>{len(ph['modules'])}</b> modules</span><span class="pill"><b>{n}</b> lessons written</span></div>
+<div class="meta"><span class="pill"><b>{len(ph['modules'])}</b> modules</span><span class="pill"><b>{n}</b> tutorials available</span></div>
 {progress_block(ph['id'], n)}
 <div class="milestone"><strong>{esc(ph['milestone']['label'])}:</strong> {esc(ph['milestone']['text'])}{project_link}</div>
 {cert}
-<div class="section-head"><h2>Modules</h2></div>
-<div class="grid cols-2">{''.join(tiles)}</div>
+<div class="section-head"><h2>Available learning</h2><p>Open these modules now; every card contains authored tutorials.</p></div>
+<div class="grid cols-2">{''.join(available_tiles) if available_tiles else '<div class="card how">No authored modules in this level yet.</div>'}</div>
+{roadmap_html}
 {pager}
 """
     write(u_phase(ph), page(title=f"Level {ph['num']}: {ph['title']}", depth=depth, body=body,
                             side=sidebar(r, ph), description=ph["summary"], wide_content=True))
     search_index.append({"t": f"Level {ph['num']} — {ph['title']}", "p": "Curriculum", "u": u_phase(ph),
                          "k": "Level", "x": ph["summary"] + " " + ph["milestone"]["text"]})
+
+
+def clean_module_intro(md_text: str, module_title: str) -> str:
+    """Hide source bookkeeping and duplicate H1s from learner-facing module pages."""
+    lines = md_text.splitlines()
+    clean = []
+    heading_removed = False
+    for line in lines:
+        stripped = line.strip()
+        if re.match(r"^\*\*Source mapping:\*\*", stripped, re.I):
+            continue
+        if not heading_removed and re.match(r"^#\s+", stripped):
+            heading_removed = True
+            continue
+        clean.append(line)
+    return "\n".join(clean).strip()
 
 
 def build_module(ph, m):
@@ -616,11 +735,13 @@ def build_module(ph, m):
                     f'<span class="desc">{esc(l["meta"].get("summary", ""))}</span></span>'
                     f'<span class="lesson-state">{esc(l["meta"].get("time", ""))}</span></li>')
     planned = [t for t in m["topics"] if t not in covered]
-    for j, t in enumerate(planned, len(lessons) + 1):
-        rows.append(f'<li class="lesson-row planned"><span class="n">{j}</span><span>{esc(t)}'
-                    f'<span class="desc">Planned lesson</span></span><span class="lesson-state"><span class="tag soon">Coming soon</span></span></li>')
-        search_index.append({"t": t, "p": f"Planned · {m['title']} · Level {ph['num']}", "u": u_module(ph, m),
-                             "k": "Planned", "x": ""})
+    if not lessons and planned:
+        rows.append('<li class="lesson-row planned roadmap-only"><span class="n">↗</span><span><b>Roadmap module</b>'
+                    '<span class="desc">This module belongs to a later approved release. Its topics are listed below, but unavailable tutorials are kept out of the active learning path.</span></span>'
+                    '<span class="lesson-state"><span class="tag soon">Roadmap</span></span></li>')
+        for t in planned:
+            search_index.append({"t": t, "p": f"Roadmap · {m['title']} · Level {ph['num']}", "u": u_module(ph, m),
+                                 "k": "Roadmap", "x": ""})
     mods = ph["modules"]
     i = mods.index(m)
     pager = '<nav class="pager">'
@@ -630,21 +751,21 @@ def build_module(ph, m):
         pager += f'<a class="next" href="{r}{u_module(ph, mods[i+1])}"><small>Next module →</small>{esc(mods[i+1]["title"])}</a>'
     pager += "</nav>"
     intro_file = CONTENT / "lessons" / ph["id"] / m["id"] / "_module.md"
-    intro = render_md(intro_file.read_text(encoding="utf-8"))[0] if intro_file.exists() else ""
+    intro_md = clean_module_intro(intro_file.read_text(encoding="utf-8"), m["title"]) if intro_file.exists() else ""
+    intro = render_md(intro_md)[0] if intro_md else ""
     module_files = []
     for l in lessons:
         for fpath in (l["meta"].get("files") or []):
             if fpath not in module_files:
                 module_files.append(fpath)
     body = f"""{crumbs(r, [('Home', 'index.html'), (f"Level {ph['num']}", u_phase(ph)), (m['title'], None)])}
-<span class="eyebrow">Level {ph['num']} · Source module {esc(str(m.get('number','')))}</span>
+<span class="eyebrow">Level {ph['num']}</span>
 <h1>{esc(m['title'])}{tag_html(m.get('tag'))}</h1>
-<p class="lead">Follow the tutorials below in order. Each tutorial expands the source curriculum into a practical, code-first learning chapter.</p>
-{intro}
-<div class="section-head"><h2>Tutorials</h2><p>{len(lessons)} written · {len(planned)} planned</p></div>
+{intro if intro else '<p class="lead">Follow the tutorials below in order. Each chapter builds practical skill through explanation, code and practice.</p>'}
+<div class="section-head"><h2>{"Tutorials" if lessons else "Roadmap status"}</h2><p>{len(lessons)} available{" · topics reserved for a later release" if not lessons else ""}</p></div>
 <ul class="lesson-list">{''.join(rows)}</ul>
 {files_box(r, module_files, key)}
-<details class="source-map"><summary>Source curriculum coverage ({len(m['topics'])} topics)</summary><ul>{''.join(f'<li>{esc(t)}</li>' for t in m['topics'])}</ul></details>
+<details class="source-map"><summary>Topics in this module ({len(m['topics'])})</summary><ul>{''.join(f'<li>{esc(t)}</li>' for t in m['topics'])}</ul></details>
 {pager}
 """
     write(u_module(ph, m), page(title=m["title"], depth=depth, body=body, side=sidebar(r, ph, m),
@@ -676,7 +797,9 @@ def build_lesson(l):
         res_html = f'<h2 id="free-resources">Free resources to go deeper</h2><ul class="resources">{"".join(items)}</ul>'
         toc_tokens = list(toc_tokens) + [{"id": "free-resources", "name": "Free resources"}]
 
-    video_html = youtube_box(meta.get("youtube"))
+    video_html = youtube_box(meta.get("youtube") or YOUTUBE.get(l["id"]))
+    ai_html = ai_tutor_box(l)
+    toc_tokens = list(toc_tokens) + [{"id": "ai-tutor", "name": "Learn with AI"}]
     if video_html:
         toc_tokens = list(toc_tokens) + [{"id": "video-companion", "name": "Video companion"}]
 
@@ -724,6 +847,7 @@ def build_lesson(l):
 {pre_html}
 {body_html}
 {files_box(r, meta.get('files') or [], l['id'])}
+{ai_html}
 {video_html}
 {terms_box(r, terms)}
 {res_html}
@@ -823,7 +947,7 @@ body{{margin:0;min-height:100vh;display:grid;place-items:center;background:var(-
 h1{{margin:0 0 8px}} p{{color:var(--muted)}} a{{color:var(--accent);font-weight:600}}
 </style></head>
 <body><div class="box"><div style="font-weight:900;color:var(--accent);margin-bottom:10px">Saiful The Techie</div><h1>Page not found</h1>
-<p>This page does not exist (yet). Lessons are added milestone by milestone, so it may be coming soon.</p>
+<p>This page does not exist. The topic may belong to a later roadmap milestone, or the address may be outdated.</p>
 <p><a id="home" href="{esc(home) or 'index.html'}">Go to the home page →</a></p></div>
 <script>(function(){{var h={json.dumps(home)};if(!h){{var seg=location.pathname.split('/').filter(Boolean);
 h=(location.hostname.endsWith('github.io')&&seg.length)?'/'+seg[0]+'/':'/';}}

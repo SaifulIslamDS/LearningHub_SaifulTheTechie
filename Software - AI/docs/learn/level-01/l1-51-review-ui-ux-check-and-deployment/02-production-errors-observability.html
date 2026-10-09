@@ -24,7 +24,7 @@ document.documentElement.classList.add('no-anim')})();</script>
 <a class="skip" href="#main">Skip to content</a>
 <header class="topbar">
   <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Open curriculum menu" title="Curriculum menu (press M)" aria-controls="sidebar" aria-expanded="false"><span class="ico-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span class="ico-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></button>
-  <a class="brand" href="../../../index.html"><span class="brand-text"><span class="brand-ecosystem">Saiful The Techie</span><span class="brand-name">Software &amp; AI Engineering Learning Hub</span><span class="brand-version">v0.5.0</span></span></a>
+  <a class="brand" href="../../../index.html"><span class="brand-text"><span class="brand-ecosystem">Saiful The Techie</span><span class="brand-name">Software &amp; AI Engineering Learning Hub</span><span class="brand-version">v0.5.2</span></span></a>
   <nav class="top-links" aria-label="Main">
     <a href="../../../index.html" class="">Home</a><a href="../../../curriculum.html" class="">Curriculum</a><a href="../../../practice-files.html" class="">Practice files</a><a href="../../../glossary.html" class="">Glossary</a><a href="../../../how-to-learn.html" class="">How to learn</a><a href="../../../about.html" class="">About</a>
   </nav>
@@ -40,8 +40,11 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="layout wide">
   <nav class="sidebar" id="sidebar" aria-label="Curriculum">
     <div class="side-title">Curriculum</div>
-    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="66"><i></i></div><span class="bar-label" data-progress-label></span></div>
-<div class="nav-phase current open"><a href="../../../learn/level-01/index.html"><span class="nav-num">01</span>Level 01</a>
+    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="70"><i></i></div><span class="bar-label" data-progress-label></span></div>
+<div class="nav-phase current" data-level="level-01">
+<button class="nav-phase-toggle" type="button" aria-expanded="true" aria-controls="sidebar-level-01" data-default-open="1"><span class="nav-num">01</span><span class="nav-phase-label">Level 01</span><span class="nav-phase-chevron" aria-hidden="true">⌄</span></button>
+<div class="nav-phase-body" id="sidebar-level-01" >
+<a class="nav-level-overview" href="../../../learn/level-01/index.html">Level 01 overview →</a>
 <ul class="nav-modules">
 <li><a class="" href="../../../learn/level-01/l1-0-welcome-to-the-course/index.html">Welcome to the Course</a>
 </li>
@@ -161,41 +164,96 @@ document.documentElement.classList.add('no-anim')})();</script>
 </li>
 <li><a class="" href="../../../learn/level-01/l1-52-assignment-9/index.html">Assignment 9</a>
 </li>
-<li><a class="" href="../../../learn/level-01/l1-53-requirement-analysis-prompt-and-prototyping/index.html">Requirement Analysis, Prompt &amp; Prototyping</a>
-</li>
-<li><a class="" href="../../../learn/level-01/l1-54-project-setup-modular-architecture/index.html">Project Setup, Modular Architecture</a>
-</li>
-<li><a class="" href="../../../learn/level-01/l1-55-core-implementation-backend-with-modular-archite/index.html">Core Implementation — Backend with Modular Architecture</a>
-</li>
-<li><a class="" href="../../../learn/level-01/l1-56-core-implementation-frontend/index.html">Core Implementation — Frontend</a>
-</li>
-<li><a class="" href="../../../learn/level-01/l1-57-sslcommerz-payment-integration/index.html">SSLCommerz Payment Integration</a>
-</li>
-<li><a class="" href="../../../learn/level-01/l1-58-ai-integration-code-review-and-refactoring/index.html">AI Integration, Code Review &amp; Refactoring</a>
-</li>
-<li><a class="" href="../../../learn/level-01/l1-59-finalization-checking-and-deployment/index.html">Finalization, Checking and Deployment</a>
-</li>
-<li><a class="" href="../../../learn/level-01/l1-60-assignment-10/index.html">Assignment 10</a>
-</li>
-<li><a class="" href="../../../learn/level-01/l1-61-ai-assisted-coding-foundations-and-mindset/index.html">AI Assisted Coding Foundations &amp; Mindset</a>
-</li>
-<li><a class="" href="../../../learn/level-01/l1-62-design-to-code-figma-mcp-lovable-and-ai-builders/index.html">Design-to-Code — Figma MCP, Lovable &amp; AI Builders</a>
-</li>
-<li><a class="" href="../../../learn/level-01/l1-63-cursor-ai-fullstack-agentic-development-mastery/index.html">Cursor AI — Fullstack Agentic Development Mastery</a>
-</li>
-<li><a class="" href="../../../learn/level-01/l1-64-terminal-based-agentic-development-with-claude-c/index.html">Terminal-Based Agentic Development with Claude Code</a>
-</li>
-<li><a class="" href="../../../learn/level-01/l1-65-code-quality-testing-review-refactoring-and-secu/index.html">Code Quality — Testing, Review, Refactoring &amp; Security</a>
-</li>
-<li><a class="" href="../../../learn/level-01/l1-66-ai-ecosystem-deployment-and-final-project-showca/index.html">AI Ecosystem, Deployment &amp; Final Project Showcase</a>
-</li>
-<li><a class="" href="../../../learn/level-01/l1-67-assignment-11/index.html">Assignment 11</a>
-</li>
 <li><a class="nav-project " href="../../../learn/level-01/project.html">★ Level project</a></li>
 </ul>
-</div>
-<div class="nav-phase"><a href="../../../learn/level-02/index.html"><span class="nav-num">02</span>Level 02</a>
-</div>
+<details class="roadmap-nav"><summary>Roadmap · 15 future modules</summary><ul>
+<li><a class="" href="../../../learn/level-01/l1-53-requirement-analysis-prompt-and-prototyping/index.html">Requirement Analysis, Prompt &amp; Prototyping <span>Roadmap</span></a></li>
+<li><a class="" href="../../../learn/level-01/l1-54-project-setup-modular-architecture/index.html">Project Setup, Modular Architecture <span>Roadmap</span></a></li>
+<li><a class="" href="../../../learn/level-01/l1-55-core-implementation-backend-with-modular-archite/index.html">Core Implementation — Backend with Modular Architecture <span>Roadmap</span></a></li>
+<li><a class="" href="../../../learn/level-01/l1-56-core-implementation-frontend/index.html">Core Implementation — Frontend <span>Roadmap</span></a></li>
+<li><a class="" href="../../../learn/level-01/l1-57-sslcommerz-payment-integration/index.html">SSLCommerz Payment Integration <span>Roadmap</span></a></li>
+<li><a class="" href="../../../learn/level-01/l1-58-ai-integration-code-review-and-refactoring/index.html">AI Integration, Code Review &amp; Refactoring <span>Roadmap</span></a></li>
+<li><a class="" href="../../../learn/level-01/l1-59-finalization-checking-and-deployment/index.html">Finalization, Checking and Deployment <span>Roadmap</span></a></li>
+<li><a class="" href="../../../learn/level-01/l1-60-assignment-10/index.html">Assignment 10 <span>Roadmap</span></a></li>
+<li><a class="" href="../../../learn/level-01/l1-61-ai-assisted-coding-foundations-and-mindset/index.html">AI Assisted Coding Foundations &amp; Mindset <span>Roadmap</span></a></li>
+<li><a class="" href="../../../learn/level-01/l1-62-design-to-code-figma-mcp-lovable-and-ai-builders/index.html">Design-to-Code — Figma MCP, Lovable &amp; AI Builders <span>Roadmap</span></a></li>
+<li><a class="" href="../../../learn/level-01/l1-63-cursor-ai-fullstack-agentic-development-mastery/index.html">Cursor AI — Fullstack Agentic Development Mastery <span>Roadmap</span></a></li>
+<li><a class="" href="../../../learn/level-01/l1-64-terminal-based-agentic-development-with-claude-c/index.html">Terminal-Based Agentic Development with Claude Code <span>Roadmap</span></a></li>
+<li><a class="" href="../../../learn/level-01/l1-65-code-quality-testing-review-refactoring-and-secu/index.html">Code Quality — Testing, Review, Refactoring &amp; Security <span>Roadmap</span></a></li>
+<li><a class="" href="../../../learn/level-01/l1-66-ai-ecosystem-deployment-and-final-project-showca/index.html">AI Ecosystem, Deployment &amp; Final Project Showcase <span>Roadmap</span></a></li>
+<li><a class="" href="../../../learn/level-01/l1-67-assignment-11/index.html">Assignment 11 <span>Roadmap</span></a></li>
+</ul></details>
+</div></div>
+<div class="nav-phase" data-level="level-02">
+<button class="nav-phase-toggle" type="button" aria-expanded="false" aria-controls="sidebar-level-02" data-default-open="0"><span class="nav-num">02</span><span class="nav-phase-label">Level 02</span><span class="nav-phase-chevron" aria-hidden="true">⌄</span></button>
+<div class="nav-phase-body" id="sidebar-level-02" hidden>
+<a class="nav-level-overview" href="../../../learn/level-02/index.html">Level 02 overview →</a>
+<details class="roadmap-nav"><summary>Roadmap · 63 future modules</summary><ul>
+<li><a class="" href="../../../learn/level-02/l2-01-typescript-foundations/index.html">TypeScript Foundations <span>Roadmap</span></a></li>
+<li><a class="" href="../../../learn/level-02/l2-02-advanced-typescript-types/index.html">Advanced TypeScript Types <span>Roadmap</span></a></li>
+<li><a class="" href="../../../learn/level-02/l2-03-object-oriented-programming-in-typescript/index.html">Object-Oriented Programming in TypeScript <span>Roadmap</span></a></li>
+<li><a class="" href="../../../learn/level-02/l2-04-assignment-1/index.html">Assignment 1 <span>Roadmap</span></a></li>
+<li><a class="" href="../../../learn/level-02/l2-05-node-js-runtime-and-architecture/index.html">Node.js Runtime &amp; Architecture <span>Roadmap</span></a></li>
+<li><a class="" href="../../../learn/level-02/l2-06-node-js-core-modules-and-your-first-server/index.html">Node.js Core Modules &amp; Your First Server <span>Roadmap</span></a></li>
+<li><a class="" href="../../../learn/level-02/l2-07-express-fundamentals-and-your-first-rest-api/index.html">Express Fundamentals &amp; Your First REST API <span>Roadmap</span></a></li>
+<li><a class="" href="../../../learn/level-02/l2-08-postgresql-essentials-and-connecting-express-wit/index.html">PostgreSQL Essentials &amp; Connecting Express with PG <span>Roadmap</span></a></li>
+<li><a class="" href="../../../learn/level-02/l2-09-scalable-backend-architecture-and-clean-code/index.html">Scalable Backend Architecture &amp; Clean Code <span>Roadmap</span></a></li>
+<li><a class="" href="../../../learn/level-02/l2-10-assignment-2-small-backend-project/index.html">Assignment 2 — Small Backend Project <span>Roadmap</span></a></li>
+<li><a class="" href="../../../learn/level-02/l2-11-database-essentials-and-relational-model/index.html">Database Essentials &amp; Relational Model <span>Roadmap</span></a></li>
+<li><a class="" href="../../../learn/level-02/l2-12-database-normalization-and-postgresql-setup/index.html">Database Normalization &amp; PostgreSQL Setup <span>Roadmap</span></a></li>
+<li><a class="" href="../../../learn/level-02/l2-13-postgresql-case-study-database-management-and-da/index.html">PostgreSQL Case Study, Database Management &amp; Data Types <span>Roadmap</span></a></li>
+<li><a class="" href="../../../learn/level-02/l2-14-postgresql-fundamentals-and-data-manipulation/index.html">PostgreSQL Fundamentals &amp; Data Manipulation <span>Roadmap</span></a></li>
+<li><a class="" href="../../../learn/level-02/l2-15-dates-relationships-and-joins-in-postgresql/index.html">Dates, Relationships &amp; Joins in PostgreSQL <span>Roadmap</span></a></li>
+<li><a class="" href="../../../learn/level-02/l2-16-advanced-postgresql-queries-and-database-objects/index.html">Advanced PostgreSQL Queries &amp; Database Objects <span>Roadmap</span></a></li>
+<li><a class="" href="../../../learn/level-02/l2-17-assignment-3-production-database/index.html">Assignment 3 — Production Database <span>Roadmap</span></a></li>
+<li><a class="" href="../../../learn/level-02/l2-18-orm-essentials-drizzle/index.html">ORM Essentials (Drizzle) <span>Roadmap</span></a></li>
+<li><a class="" href="../../../learn/level-02/l2-19-relations-and-advanced-query-techniques/index.html">Relations &amp; Advanced Query Techniques <span>Roadmap</span></a></li>
+<li><a class="" href="../../../learn/level-02/l2-20-saas-system-design-and-multi-tenant-architecture/index.html">SaaS System Design &amp; Multi-Tenant Architecture <span>Roadmap</span></a></li>
+<li><a class="" href="../../../learn/level-02/l2-21-project-setup-data-modeling-and-request-validati/index.html">Project Setup, Data Modeling &amp; Request Validation <span>Roadmap</span></a></li>
+<li><a class="" href="../../../learn/level-02/l2-22-authentication-registration-login-and-jwt/index.html">Authentication: Registration, Login &amp; JWT <span>Roadmap</span></a></li>
+<li><a class="" href="../../../learn/level-02/l2-23-authorization-middleware-protected-routes-and-rb/index.html">Authorization: Middleware, Protected Routes &amp; RBAC <span>Roadmap</span></a></li>
+<li><a class="" href="../../../learn/level-02/l2-24-workspace-team-and-membership-management/index.html">Workspace, Team &amp; Membership Management <span>Roadmap</span></a></li>
+<li><a class="" href="../../../learn/level-02/l2-25-data-and-file-management/index.html">Data &amp; File Management <span>Roadmap</span></a></li>
+<li><a class="" href="../../../learn/level-02/l2-26-search-filtering-sorting-and-pagination/index.html">Search, Filtering, Sorting &amp; Pagination <span>Roadmap</span></a></li>
+<li><a class="" href="../../../learn/level-02/l2-27-production-backend-engineering/index.html">Production Backend Engineering <span>Roadmap</span></a></li>
+<li><a class="" href="../../../learn/level-02/l2-28-assignment-4-build-a-saas-backend/index.html">Assignment 4 — Build a SaaS Backend <span>Roadmap</span></a></li>
+<li><a class="" href="../../../learn/level-02/l2-29-next-js-fundamentals-and-app-router/index.html">Next.js Fundamentals &amp; App Router <span>Roadmap</span></a></li>
+<li><a class="" href="../../../learn/level-02/l2-30-server-components-data-fetching-and-server-actio/index.html">Server Components, Data Fetching &amp; Server Actions <span>Roadmap</span></a></li>
+<li><a class="" href="../../../learn/level-02/l2-31-authentication-on-the-frontend/index.html">Authentication on the Frontend <span>Roadmap</span></a></li>
+<li><a class="" href="../../../learn/level-02/l2-32-building-the-product-dashboard-layout-and-ui-arc/index.html">Building the Product Dashboard: Layout &amp; UI Architecture <span>Roadmap</span></a></li>
+<li><a class="" href="../../../learn/level-02/l2-33-forms-validation-and-file-upload/index.html">Forms, Validation &amp; File Upload <span>Roadmap</span></a></li>
+<li><a class="" href="../../../learn/level-02/l2-34-data-tables-search-filtering-and-pagination/index.html">Data Tables, Search, Filtering &amp; Pagination <span>Roadmap</span></a></li>
+<li><a class="" href="../../../learn/level-02/l2-35-charts-analytics-and-reporting-ui/index.html">Charts, Analytics &amp; Reporting UI <span>Roadmap</span></a></li>
+<li><a class="" href="../../../learn/level-02/l2-36-scalable-frontend-architecture-and-performance/index.html">Scalable Frontend Architecture &amp; Performance <span>Roadmap</span></a></li>
+<li><a class="" href="../../../learn/level-02/l2-37-assignment-5-build-a-saas-frontend/index.html">Assignment 5 — Build a SaaS Frontend <span>Roadmap</span></a></li>
+<li><a class="" href="../../../learn/level-02/l2-38-introduction-to-docker/index.html">Introduction to Docker <span>Roadmap</span></a></li>
+<li><a class="" href="../../../learn/level-02/l2-39-docker-images-and-containers/index.html">Docker Images &amp; Containers <span>Roadmap</span></a></li>
+<li><a class="" href="../../../learn/level-02/l2-40-docker-volumes-and-data-management/index.html">Docker Volumes &amp; Data Management <span>Roadmap</span></a></li>
+<li><a class="" href="../../../learn/level-02/l2-41-docker-networking-and-cross-container-communicat/index.html">Docker Networking &amp; Cross-Container Communication <span>Roadmap</span></a></li>
+<li><a class="" href="../../../learn/level-02/l2-42-building-multi-container-applications/index.html">Building Multi-Container Applications <span>Roadmap</span></a></li>
+<li><a class="" href="../../../learn/level-02/l2-43-docker-compose-and-makefile-automation/index.html">Docker Compose &amp; Makefile Automation <span>Roadmap</span></a></li>
+<li><a class="" href="../../../learn/level-02/l2-44-vps-deployment-nginx-and-github-actions-ci-cd/index.html">VPS Deployment, NGINX &amp; GitHub Actions CI/CD <span>Roadmap</span></a></li>
+<li><a class="" href="../../../learn/level-02/l2-45-llm-application-development-fundamentals/index.html">LLM Application Development Fundamentals <span>Roadmap</span></a></li>
+<li><a class="" href="../../../learn/level-02/l2-46-building-a-production-chat-api/index.html">Building a Production Chat API <span>Roadmap</span></a></li>
+<li><a class="" href="../../../learn/level-02/l2-47-langchain-application-development/index.html">LangChain Application Development <span>Roadmap</span></a></li>
+<li><a class="" href="../../../learn/level-02/l2-48-document-processing-and-embeddings/index.html">Document Processing &amp; Embeddings <span>Roadmap</span></a></li>
+<li><a class="" href="../../../learn/level-02/l2-49-vector-databases-pgvector/index.html">Vector Databases: pgvector <span>Roadmap</span></a></li>
+<li><a class="" href="../../../learn/level-02/l2-50-building-a-production-rag-system/index.html">Building a Production RAG System <span>Roadmap</span></a></li>
+<li><a class="" href="../../../learn/level-02/l2-51-langgraph-and-ai-agents/index.html">LangGraph &amp; AI Agents <span>Roadmap</span></a></li>
+<li><a class="" href="../../../learn/level-02/l2-52-advanced-agent-systems/index.html">Advanced Agent Systems <span>Roadmap</span></a></li>
+<li><a class="" href="../../../learn/level-02/l2-53-assignment-6-production-ai-application/index.html">Assignment 6 — Production AI Application <span>Roadmap</span></a></li>
+<li><a class="" href="../../../learn/level-02/l2-54-service-to-service-communication/index.html">Service-to-Service Communication <span>Roadmap</span></a></li>
+<li><a class="" href="../../../learn/level-02/l2-55-api-gateway-and-request-routing/index.html">API Gateway &amp; Request Routing <span>Roadmap</span></a></li>
+<li><a class="" href="../../../learn/level-02/l2-56-streaming-background-workers-and-caching/index.html">Streaming, Background Workers &amp; Caching <span>Roadmap</span></a></li>
+<li><a class="" href="../../../learn/level-02/l2-57-frontend-integration-ai-features-in-next-js/index.html">Frontend Integration: AI Features in Next.js <span>Roadmap</span></a></li>
+<li><a class="" href="../../../learn/level-02/l2-58-frontend-integration-agent-dashboard-and-polish/index.html">Frontend Integration: Agent Dashboard &amp; Polish <span>Roadmap</span></a></li>
+<li><a class="" href="../../../learn/level-02/l2-bonus-live-agentic-ai-masterclass/index.html">Live Agentic AI Masterclass <span>Roadmap</span></a></li>
+<li><a class="" href="../../../learn/level-02/l2-bonus-reward-course-01-system-design/index.html">Reward Course 01 — System Design <span>Roadmap</span></a></li>
+<li><a class="" href="../../../learn/level-02/l2-bonus-reward-course-02-nestjs-backend/index.html">Reward Course 02 — NestJS Backend <span>Roadmap</span></a></li>
+<li><a class="" href="../../../learn/level-02/l2-bonus-reward-course-03-testing-and-quality/index.html">Reward Course 03 — Testing &amp; Quality <span>Roadmap</span></a></li>
+<li><a class="" href="../../../learn/level-02/l2-bonus-reward-course-04-aws-deployment/index.html">Reward Course 04 — AWS Deployment <span>Roadmap</span></a></li>
+</ul></details>
+</div></div>
 <div class="side-extra"><a href="../../../index.html">Home</a><a href="../../../curriculum.html">Full curriculum map</a><a href="../../../practice-files.html">Practice files</a><a href="../../../glossary.html">Glossary</a><a href="../../../how-to-learn.html">How to learn here</a><a href="../../../about.html">About &amp; contributing</a></div></nav>
   <main class="main" id="main"><div class="content">
 <nav class="crumbs" aria-label="Breadcrumb"><a href="../../../index.html">Home</a><span class="sep">/</span><a href="../../../learn/level-01/index.html">Level 01</a><span class="sep">/</span><a href="../../../learn/level-01/l1-51-review-ui-ux-check-and-deployment/index.html">Review, UI/UX check and Deployment</a><span class="sep">/</span><span>Production Error Contracts &amp; First Observability Habits</span></nav>
@@ -301,7 +359,36 @@ Every log line carries req_8f21
 <p>Reliability work begins before expensive observability platforms. Consistent errors, request context, safe messages and clear logs are foundational engineering habits that make later monitoring, alerting and incident investigation much easier.</p>
 
 <div class="files-box"><div class="files-head"><b>Downloadable code & practice files</b><a href="../../../practice-files.html">All practice files →</a></div><ul><li><a href="../../../downloads/level-01/backend-mongodb-practice.zip" download>backend-mongodb-practice.zip</a><span class="f-desc">Verified framework-independent Node/CRUD/RBAC/payment examples plus reference Express, MongoDB, Better Auth and Stripe snippets for Modules 40–46. · 5 KB</span></li></ul></div>
+<section class="ai-tutor" id="ai-tutor"><div class="ai-tutor-head"><div><span class="eyebrow">Frontier LLM study companion</span><h2>Learn this lesson with AI</h2><p>Copy this lesson-aware prompt into ChatGPT, Claude, Gemini or another capable model. It is designed to make the model tutor you rather than simply do the work.</p></div><button class="btn ai-copy" type="button" data-copy-target="ai-prompt-level-01-l1-51-review-ui-ux-check-and-deployment-02-production-errors-observability">Copy prompt</button></div><details><summary>Preview the prompt</summary><pre id="ai-prompt-level-01-l1-51-review-ui-ux-check-and-deployment-02-production-errors-observability" class="ai-prompt"><code>You are my senior backend/full-stack engineer and patient coding mentor.
 
+I am studying this Saiful The Techie lesson:
+&quot;Production Error Contracts &amp; First Observability Habits&quot;
+
+My current level: Intermediate
+
+The concepts I need to master are:
+- Production Error Contracts &amp; First Observability Habits
+
+Practice files for this lesson: backend-mongodb-practice.zip
+
+Teach me interactively. Use this workflow:
+1. Ask one short diagnostic question to check what I already understand.
+2. Explain the next concept in simple, precise language with a mental model.
+3. Give me a small coding or reasoning task directly related to this lesson.
+4. Wait for my answer or code before revealing a complete solution.
+5. Review what I send. Point out exactly what works, what is wrong, and why.
+6. Help me debug errors instead of immediately replacing my code.
+7. Increase difficulty gradually and connect each step to real software engineering.
+8. Prefer modern, maintainable practices, but do not introduce unnecessary abstraction for my level.
+9. When a framework/library/API may have changed, verify current official documentation before making version-sensitive claims.
+10. Never invent program output. If you show output, derive it from the code or clearly label it as expected/reference output.
+11. If I upload the lesson&#x27;s starter files, work with those files rather than creating an unrelated project.
+12. Finish by asking me to implement one small feature independently and explain my design choice.
+
+Do not give me a long lecture all at once. Keep me coding, thinking, and explaining throughout the session.
+
+Start with the diagnostic question only.</code></pre></details><p class="ai-note"><b>Best use:</b> keep the tutorial open beside the AI chat, and upload the starter practice files when available.</p></section>
+<section class="video-companion" id="video-companion"><div class="video-copy"><span class="eyebrow">Optional video companion</span><h2>Intro to Backend Web Development — Node.js &amp; Express Tutorial for Beginners</h2><p>A modern backend walkthrough covering Node.js, Express, MongoDB Atlas, environment variables, routing, controllers, authentication, Postman and CRUD.</p><div class="video-meta">freeCodeCamp.org · ≈2 h 25 min · English · Beginner / Intermediate</div><div class="video-stamps"><b>Useful sections</b><a href="https://www.youtube.com/watch?v=KOutPbKc9UM&amp;t=8376s">02:19:36 · Final testing and conclusion</a></div><p><a class="btn ghost" href="https://www.youtube.com/watch?v=KOutPbKc9UM">Watch on YouTube ↗</a><span class="reviewed-inline">Reviewed 2026-10-09</span></p><p class="video-offline-note">Embedded playback is enabled when the hub is served over HTTP(S). When opened directly from disk, use the YouTube link instead.</p></div><div class="video-frame js-youtube-frame" data-video-id="KOutPbKc9UM" data-video-title="Intro to Backend Web Development — Node.js &amp; Express Tutorial for Beginners" data-video-url="https://www.youtube.com/watch?v=KOutPbKc9UM"><div class="video-placeholder"><span class="yt-mark">▶</span><b>Video companion</b><span class="video-placeholder-status">Preparing player…</span><a class="btn ghost video-placeholder-link" href="https://www.youtube.com/watch?v=KOutPbKc9UM">Watch on YouTube ↗</a></div></div></section>
 <div class="terms-box"><div class="files-head"><b>Key terms in this lesson</b><a href="../../../glossary.html">Glossary →</a></div><div class="term-chips"><a class="term-chip" href="../../../glossary.html#api-contract" title="The agreed shape and behavior of an API request and response, including methods, paths, inputs, status codes and response data.">API contract</a><a class="term-chip" href="../../../glossary.html#observability" title="The ability to understand system behavior from signals such as logs, metrics and traces.">Observability</a><a class="term-chip" href="../../../glossary.html#request-id" title="An identifier attached to a request so related logs and errors can be traced through a system.">Request ID</a></div></div>
 <h2 id="free-resources">Free resources to go deeper</h2><ul class="resources"><li><div class="resource-top"><a href="https://expressjs.com/en/guide/error-handling.html">Express error handling</a><span class="resource-type">OFFICIAL</span></div><span class="r-meta">Express</span><span class="r-note">Official guidance for propagating and handling errors in Express applications.</span></li><li><div class="resource-top"><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status">HTTP response status codes</a><span class="resource-type">REFERENCE</span></div><span class="r-meta">MDN</span><span class="r-note">Status-code reference for designing consistent error responses.</span></li></ul>
 <div class="complete-bar"><span>Finished reading and did the exercise?</span>
@@ -310,9 +397,9 @@ Every log line carries req_8f21
 <p class="reviewed">Last reviewed: 2026-10-09</p>
 
   </div></main>
-  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#start-here">Start here</a><a href="#what-you-will-learn">What you will learn</a><a href="#1-design-a-stable-response-shape">1. Design a stable response shape</a><a href="#2-validation-failures-are-expected-failures">2. Validation failures are expected failures</a><a href="#3-log-internal-context-return-safe-context">3. Log internal context, return safe context</a><a href="#4-add-a-request-identifier">4. Add a request identifier</a><a href="#5-what-to-observe-first">5. What to observe first</a><a href="#build-with-the-practice-package">Build with the practice package</a><a href="#professional-context">Professional context</a><a href="#free-resources">Free resources</a></aside>
+  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#start-here">Start here</a><a href="#what-you-will-learn">What you will learn</a><a href="#1-design-a-stable-response-shape">1. Design a stable response shape</a><a href="#2-validation-failures-are-expected-failures">2. Validation failures are expected failures</a><a href="#3-log-internal-context-return-safe-context">3. Log internal context, return safe context</a><a href="#4-add-a-request-identifier">4. Add a request identifier</a><a href="#5-what-to-observe-first">5. What to observe first</a><a href="#build-with-the-practice-package">Build with the practice package</a><a href="#professional-context">Professional context</a><a href="#free-resources">Free resources</a><a href="#ai-tutor">Learn with AI</a><a href="#video-companion">Video companion</a></aside>
 </div>
-<footer class="site"><b>Saiful The Techie</b> · Software &amp; AI Engineering Learning Hub v0.5.0 · Compiled &amp; Expanded by Saiful Islam · <a href="https://saifulshuvo.com">saifulshuvo.com</a> · Updated October 2026<br>
+<footer class="site"><b>Saiful The Techie</b> · Software &amp; AI Engineering Learning Hub v0.5.2 · Compiled &amp; Expanded by Saiful Islam · <a href="https://saifulshuvo.com">saifulshuvo.com</a> · Updated October 2026<br>
 Original learning content: <a href="../../../license.html">CC BY-NC-SA 4.0</a> · Code: <a href="../../../license.html#code-mit-license">MIT</a> · Free external resources belong to their respective owners.</footer>
 <script src="../../../search-index.js"></script>
 <script src="../../../assets/app.js"></script>

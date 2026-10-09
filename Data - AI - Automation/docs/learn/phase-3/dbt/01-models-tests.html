@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en" data-root="../../../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>dbt Models and Tests: Turn SQL into a Trusted Transformation Graph — Data, AI &amp; Automation Path</title>
+<meta name="description" content="Build a local dbt project on DuckDB, transform the 2025 orders through staging models, and make core data assumptions executable with dbt data tests.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Saiful The Techie">
+<meta property="og:title" content="dbt Models and Tests: Turn SQL into a Trusted Transformation Graph">
+<meta property="og:description" content="Build a local dbt project on DuckDB, transform the 2025 orders through staging models, and make core data assumptions executable with dbt data tests.">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+
+<script>(function(){var t=null;try{t=localStorage.getItem('daa-theme')}catch(e){}
+if(!t)t=(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';
+document.documentElement.setAttribute('data-theme',t);
+var n=null;try{n=localStorage.getItem('daa-nav')}catch(e){}
+if(n==='open'&&window.matchMedia&&matchMedia('(min-width: 961px)').matches)document.documentElement.setAttribute('data-nav','open');
+document.documentElement.classList.add('no-anim')})();</script>
+<link rel="stylesheet" href="../../../assets/style.css">
+
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Open curriculum menu" title="Curriculum menu (press M)" aria-controls="sidebar" aria-expanded="false"><span class="ico-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span class="ico-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></button>
+  <a class="brand" href="../../../index.html"><span class="brand-text"><span class="brand-name">Saiful The Techie</span><span class="brand-version">Data, AI &amp; Automation Path · v0.9.1</span></span></a>
+  <nav class="top-links" aria-label="Main">
+    <a href="../../../index.html" class="">Home</a><a href="../../../curriculum.html" class="">Curriculum</a><a href="../../../practice-files.html" class="">Practice files</a><a href="../../../glossary.html" class="">Glossary</a><a href="../../../how-to-learn.html" class="">How to learn</a><a href="../../../about.html" class="">About</a>
+  </nav>
+  <div class="top-spacer"></div>
+  <div class="search" role="search">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input id="searchInput" type="search" placeholder="Search lessons, tools, topics" aria-label="Search" autocomplete="off">
+    <kbd>/</kbd>
+    <div class="search-results" id="searchResults" role="listbox"></div>
+  </div>
+  <button class="icon-btn theme-toggle" id="themeBtn" aria-label="Toggle light or dark mode" title="Light / dark"><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
+</header>
+<div class="layout wide">
+  <nav class="sidebar" id="sidebar" aria-label="Curriculum">
+    <div class="side-title">Curriculum</div>
+    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="85"><i></i></div><span class="bar-label" data-progress-label></span></div>
+<div class="nav-phase"><a href="../../../learn/phase-0/index.html"><span class="nav-num">0</span>Foundations</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-1/index.html"><span class="nav-num">1</span>Analytics &amp; BI</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-2/index.html"><span class="nav-num">2</span>Data Science</a>
+</div>
+<div class="nav-phase current open"><a href="../../../learn/phase-3/index.html"><span class="nav-num">3</span>Data Engineering</a>
+<ul class="nav-modules">
+<li><a class="" href="../../../learn/phase-3/data-ingestion/index.html">Data Ingestion</a>
+</li>
+<li><a class="" href="../../../learn/phase-3/advanced-sql/index.html">Advanced SQL</a>
+</li>
+<li><a class="" href="../../../learn/phase-3/database-engineering/index.html">Database Engineering</a>
+</li>
+<li><a class="" href="../../../learn/phase-3/data-warehousing/index.html">Data Warehousing</a>
+</li>
+<li><a class="" href="../../../learn/phase-3/lakehouse/index.html">Lakehouse &amp; Open Table Formats</a>
+</li>
+<li><a class="" href="../../../learn/phase-3/etl-elt/index.html">ETL / ELT</a>
+</li>
+<li><a class="" href="../../../learn/phase-3/data-quality/index.html">Data Quality &amp; Contracts</a>
+</li>
+<li><a class="" href="../../../learn/phase-3/docker/index.html">Docker</a>
+</li>
+<li><a class="" href="../../../learn/phase-3/orchestration/index.html">Orchestration</a>
+</li>
+<li><a class="current" href="../../../learn/phase-3/dbt/index.html">dbt</a>
+<ul class="nav-lessons">
+<li><a class="current" data-lesson="phase-3/dbt/01-models-tests" href="../../../learn/phase-3/dbt/01-models-tests.html">dbt Models and Tests: Turn SQL into a Trusted Transformation Graph</a></li>
+<li><a class="" data-lesson="phase-3/dbt/02-snapshots-macros" href="../../../learn/phase-3/dbt/02-snapshots-macros.html">dbt Snapshots and Macros: Preserve History and Reuse SQL Logic</a></li>
+<li><a class="" data-lesson="phase-3/dbt/03-documentation-marts" href="../../../learn/phase-3/dbt/03-documentation-marts.html">dbt Documentation and Marts: Publish BI-Ready Data with Lineage</a></li>
+</ul>
+</li>
+<li><a class="" href="../../../learn/phase-3/cloud-iac/index.html">Cloud &amp; Infrastructure as Code</a>
+</li>
+<li><a class="" href="../../../learn/phase-3/ai-ready-data/index.html">AI-Ready Data</a>
+</li>
+<li><a class="" href="../../../learn/phase-3/big-data-streaming/index.html">Big Data &amp; Streaming</a>
+</li>
+</ul>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-4/index.html"><span class="nav-num">4</span>ML Engineering</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-5/index.html"><span class="nav-num">5</span>LLM &amp; RAG</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-6/index.html"><span class="nav-num">6</span>Agents &amp; Automation</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-7/index.html"><span class="nav-num">7</span>LLMOps &amp; Governance</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-8/index.html"><span class="nav-num">8</span>Capstone</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-9/index.html"><span class="nav-num">9</span>Career</a>
+</div>
+<div class="side-extra"><a href="../../../index.html">Home</a><a href="../../../curriculum.html">Full curriculum map</a><a href="../../../practice-files.html">Practice files</a><a href="../../../glossary.html">Glossary</a><a href="../../../how-to-learn.html">How to learn here</a><a href="../../../about.html">About &amp; contributing</a></div></nav>
+  <main class="main" id="main"><div class="content">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../../index.html">Home</a><span class="sep">/</span><a href="../../../learn/phase-3/index.html">Phase 3</a><span class="sep">/</span><a href="../../../learn/phase-3/dbt/index.html">dbt</a><span class="sep">/</span><span>dbt Models and Tests: Turn SQL into a Trusted Transformation Graph</span></nav>
+<h1>dbt Models and Tests: Turn SQL into a Trusted Transformation Graph</h1>
+<p class="lead">Build a local dbt project on DuckDB, transform the 2025 orders through staging models, and make core data assumptions executable with dbt data tests.</p>
+<div class="meta"><span class="pill">Phase <b>3</b> · Data Engineering</span><span class="pill">Level <b>Intermediate</b></span><span class="pill">Time <b>70 min</b></span></div>
+<div class="admonition note"><p class="admonition-title">Before you start</p><p><a href="../../../learn/phase-3/data-quality/03-data-contracts-freshness-alerting.html">Data Contracts, Freshness and Alerting</a></p></div>
+<div class="files-box"><div class="files-head"><b>Practice files for this page</b><a href="../../../practice-files.html">All practice files →</a></div><ul><li><a href="../../../downloads/phase-3/dbt-orders-project.zip" download>dbt-orders-project.zip</a><span class="f-desc">Starter + completed local dbt Core/DuckDB project: sources, staging models, tests, snapshot, macro, docs and BI-ready marts · 192 KB</span></li><li><a href="../../../downloads/phase-3/data-engineering-scripts.zip" download>data-engineering-scripts.zip</a><span class="f-desc">Phase 3 scripts: ingestion, PostgreSQL, advanced SQL, warehousing, lakehouse, Docker, ETL/CDC, data quality, plus the dbt mini-project and verification scripts · 476 KB</span></li></ul></div>
+<h2 id="introduction">Introduction</h2>
+<p>You already know how to write SQL. The problem dbt solves is what
+happens <strong>after the first SQL file works</strong>.</p>
+<p>A real analytics transformation layer quickly needs answers to
+questions like:</p>
+<ul>
+<li>Which query depends on which other query?</li>
+<li>What should run first?</li>
+<li>Which tables are raw sources and which are derived models?</li>
+<li>How do we test primary keys and relationships every run?</li>
+<li>How do teammates review SQL changes in Git?</li>
+<li>How do we generate lineage and documentation from the same
+project?</li>
+</ul>
+<p><strong>dbt</strong> turns SQL transformations into a project with
+dependencies, tests, metadata and repeatable commands.</p>
+<div class="admonition note" data-markdown="1">
+<p class="admonition-title">
+Version choice for this learning project
+</p>
+<p>dbt v2 is the current recommended generation in October 2026. This
+hands-on project deliberately uses <strong>dbt Core v1.12 with
+dbt-duckdb 1.11.x</strong> because it is a transparent, local
+Python-based workflow that works well for learning model files, tests,
+snapshots and Jinja without needing a cloud account.</p>
+</div>
+<h2 id="what-you-will-learn">What you will learn</h2>
+<p>By the end of this tutorial you will be able to:</p>
+<ol type="1">
+<li>explain what a dbt model is;</li>
+<li>understand a local dbt project structure;</li>
+<li>declare raw inputs with <code>source()</code>;</li>
+<li>connect models with <code>ref()</code>;</li>
+<li>understand materializations;</li>
+<li>add built-in dbt data tests;</li>
+<li>distinguish <code>dbt run</code>, <code>dbt test</code> and
+<code>dbt build</code>;</li>
+<li>verify the transformation logic against the Phase 3 known
+answers.</li>
+</ol>
+<h2 id="mental-model-dbt-is-a-transformation-compiler-runner">Mental
+model: dbt is a transformation compiler + runner</h2>
+<p>Think of the ELT flow as:</p>
+<pre class="text"><code>CSV / API / database source
+          ↓
+      raw tables
+          ↓
+     dbt sources
+          ↓
+    staging models
+          ↓
+ intermediate logic
+          ↓
+        marts
+          ↓
+   dashboard / ML / AI</code></pre>
+<p>A <strong>dbt model</strong> is normally a SQL <code>select</code>
+statement stored in a <code>.sql</code> file. dbt compiles that model,
+resolves dependencies, then creates a view/table (depending on its
+materialization) in the target database.</p>
+<p>The important shift is this:</p>
+<blockquote>
+<p>You stop thinking in isolated SQL scripts and start thinking in a
+directed transformation graph.</p>
+</blockquote>
+<h2 id="open-the-practice-project">Open the practice project</h2>
+<p>Download <strong>dbt-orders-project.zip</strong> and extract it.</p>
+<p>You will see:</p>
+<pre class="text"><code>dbt-orders-project/
+├── starter/
+└── completed/</code></pre>
+<p>Use <code>starter/</code> first.</p>
+<p>Inside it, the connection and source data are already prepared:</p>
+<pre class="text"><code>starter/
+├── dbt_project.yml
+├── profiles.yml
+├── requirements-dbt.txt
+├── seeds/
+│   ├── orders_2025.csv
+│   ├── customers_2025.csv
+│   └── products_2025.csv
+└── models/
+    └── staging/
+        └── _sources.yml</code></pre>
+<p>The <code>completed/</code> folder is the reference
+implementation.</p>
+<h2 id="step-1-understand-dbt_project.yml">Step 1 — understand
+<code>dbt_project.yml</code></h2>
+<p>The reference project begins with:</p>
+<pre class="yaml"><code>name: phase3_orders
+version: &quot;1.0.0&quot;
+config-version: 2
+profile: phase3_orders
+
+model-paths: [&quot;models&quot;]
+seed-paths: [&quot;seeds&quot;]
+snapshot-paths: [&quot;snapshots&quot;]
+test-paths: [&quot;tests&quot;]
+macro-paths: [&quot;macros&quot;]</code></pre>
+<p>This file tells dbt <strong>what this project is</strong> and
+<strong>where its resources live</strong>.</p>
+<p>Farther down, we set default materializations:</p>
+<pre class="yaml"><code>models:
+  phase3_orders:
+    staging:
+      +materialized: view
+      +schema: staging
+    intermediate:
+      +materialized: view
+      +schema: intermediate
+    marts:
+      +materialized: table
+      +schema: marts</code></pre>
+<p>The design choice is intentional:</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Layer</th>
+<th>Default</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Staging</td>
+<td>View</td>
+<td>Lightweight one-to-one cleanup of raw sources</td>
+</tr>
+<tr class="even">
+<td>Intermediate</td>
+<td>View</td>
+<td>Reusable logic without creating unnecessary stored tables</td>
+</tr>
+<tr class="odd">
+<td>Marts</td>
+<td>Table</td>
+<td>BI-facing outputs should be fast and stable to query</td>
+</tr>
+</tbody>
+</table>
+<p>A <strong>materialization</strong> is simply the strategy dbt uses to
+turn a model query into a database object.</p>
+<h2 id="step-2-connect-locally-with-duckdb">Step 2 — connect locally
+with DuckDB</h2>
+<p><code>profiles.yml</code> contains the connection:</p>
+<pre class="yaml"><code>phase3_orders:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: data/phase3.duckdb
+      schema: main
+      threads: 4</code></pre>
+<p>After installation, dbt will create a local DuckDB database at:</p>
+<pre class="text"><code>data/phase3.duckdb</code></pre>
+<p>No external database server is required.</p>
+<h2 id="step-3-load-deterministic-raw-data-with-seeds">Step 3 — load
+deterministic raw data with seeds</h2>
+<p>The three CSVs in <code>seeds/</code> are copies of the Phase 3
+practice data.</p>
+<p>Run on your machine:</p>
+<pre class="bash"><code>dbt seed --full-refresh --profiles-dir .</code></pre>
+<p>Because the project config assigns seeds to <code>raw</code>, DuckDB
+receives them under the generated schema <code>main_raw</code>.</p>
+<p>The source declaration then names them explicitly:</p>
+<pre class="yaml"><code>version: 2
+
+sources:
+  - name: shop
+    schema: main_raw
+    tables:
+      - name: orders_2025
+      - name: customers_2025
+      - name: products_2025</code></pre>
+<p>This lets models refer to a source semantically instead of
+hard-coding a physical table name:</p>
+<pre class="sql"><code>from {{ source(&#39;shop&#39;, &#39;orders_2025&#39;) }}</code></pre>
+<h2 id="step-4-create-the-first-staging-model">Step 4 — create the first
+staging model</h2>
+<p>Create <code>models/staging/stg_orders.sql</code>:</p>
+<pre class="sql"><code>select
+    cast(order_id as bigint) as order_id,
+    cast(order_date as date) as order_date,
+    customer_id,
+    region,
+    segment,
+    channel,
+    category,
+    product,
+    cast(quantity as bigint) as quantity,
+    cast(unit_price as decimal(12, 4)) as unit_price,
+    cast(discount as decimal(8, 4)) as discount,
+    cast(unit_cost as decimal(12, 4)) as unit_cost,
+    status,
+    cast(promised_days as integer) as promised_days,
+    cast(delivery_days as integer) as delivery_days,
+    cast(revenue as decimal(18, 2)) as revenue
+from {{ source(&#39;shop&#39;, &#39;orders_2025&#39;) }}</code></pre>
+<p>The staging model does not try to answer a business question. It
+creates a <strong>clean, typed entry point</strong> for downstream
+models.</p>
+<p>Repeat the same pattern for customers and products. The completed
+project contains all three files.</p>
+<h2 id="source-vs-ref"><code>source()</code> vs <code>ref()</code></h2>
+<p>These two functions are central to dbt.</p>
+<p>Use <code>source()</code> when entering the dbt graph from a declared
+external/raw relation:</p>
+<pre class="sql"><code>{{ source(&#39;shop&#39;, &#39;orders_2025&#39;) }}</code></pre>
+<p>Use <code>ref()</code> when depending on another dbt resource:</p>
+<pre class="sql"><code>{{ ref(&#39;stg_orders&#39;) }}</code></pre>
+<p>Why <code>ref()</code> matters:</p>
+<ol type="1">
+<li>it resolves the physical relation name;</li>
+<li>it creates a dependency edge in the DAG;</li>
+<li>it lets dbt build models in the correct order;</li>
+<li>it powers lineage/documentation.</li>
+</ol>
+<h2 id="step-5-add-data-tests">Step 5 — add data tests</h2>
+<p>A transformation can run successfully and still be wrong.</p>
+<p>Create model properties in
+<code>models/staging/_staging.yml</code>:</p>
+<pre class="yaml"><code>version: 2
+
+models:
+  - name: stg_orders
+    columns:
+      - name: order_id
+        data_tests: [not_null, unique]
+
+      - name: customer_id
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref(&#39;stg_customers&#39;)
+                field: customer_id
+
+      - name: status
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [&#39;Delivered&#39;, &#39;Cancelled&#39;, &#39;Shipped&#39;, &#39;Pending&#39;]</code></pre>
+<p>These tests state the grain and business domains in
+machine-executable form.</p>
+<h3 id="what-each-test-protects">What each test protects</h3>
+<table>
+<thead>
+<tr class="header">
+<th>Test</th>
+<th>Protects against</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>not_null</code></td>
+<td>Missing keys or required values</td>
+</tr>
+<tr class="even">
+<td><code>unique</code></td>
+<td>Duplicate business keys</td>
+</tr>
+<tr class="odd">
+<td><code>relationships</code></td>
+<td>Orphan foreign keys</td>
+</tr>
+<tr class="even">
+<td><code>accepted_values</code></td>
+<td>Unexpected categorical values</td>
+</tr>
+</tbody>
+</table>
+<p>In dbt v1.12, <strong>data tests</strong> is the preferred
+terminology because dbt also has unit tests. The older YAML key
+<code>tests:</code> remains accepted, but this project uses
+<code>data_tests:</code>.</p>
+<h2 id="step-6-add-a-reconciliation-test">Step 6 — add a reconciliation
+test</h2>
+<p>Generic tests validate columns. A <strong>singular data test</strong>
+can validate a business result.</p>
+<p>The completed project includes:</p>
+<pre class="sql"><code>-- tests/assert_fct_orders_reconciles.sql
+with totals as (
+    select
+        count(*) as row_count,
+        round(sum(net_revenue), 2) as net_revenue
+    from {{ ref(&#39;fct_orders&#39;) }}
+)
+select *
+from totals
+where row_count &lt;&gt; 4246
+   or abs(net_revenue - 5478357.79) &gt; 0.01</code></pre>
+<p>A dbt data test passes when its query returns <strong>zero failing
+rows</strong>.</p>
+<p>This one protects the two shared Phase 3 known answers.</p>
+<h2 id="step-7-understand-the-commands">Step 7 — understand the
+commands</h2>
+<h3 id="dbt-run"><code>dbt run</code></h3>
+<p>Builds selected models.</p>
+<pre class="bash"><code>dbt run --profiles-dir .</code></pre>
+<h3 id="dbt-test"><code>dbt test</code></h3>
+<p>Runs data tests (and unit tests when present/selected).</p>
+<pre class="bash"><code>dbt test --profiles-dir .</code></pre>
+<h3 id="dbt-build"><code>dbt build</code></h3>
+<p>Builds DAG-selected resources in dependency order and runs tests as
+part of the workflow.</p>
+<pre class="bash"><code>dbt build --profiles-dir .</code></pre>
+<p>For this project, seed the raw CSV data first because the declared
+dbt <code>source()</code> does not itself create those tables:</p>
+<pre class="bash"><code>dbt seed --full-refresh --profiles-dir .
+dbt build --profiles-dir .</code></pre>
+<h2 id="verification-in-this-checkpoint">Verification in this
+checkpoint</h2>
+<p>The actual dbt CLI is not installed in this sandbox, so dbt execution
+is <strong>RUN-BY-OWNER</strong>.</p>
+<p>However, the business logic was independently executed against the
+exact Phase 3 dataset.</p>
+<p>Run-HERE script:</p>
+<pre class="bash"><code>python 19_dbt_logic_verification.py</code></pre>
+<p><strong>RUN-HERE — real output:</strong></p>
+<pre class="text"><code>source rows: orders 4246 | customers 63 | products 12
+grain/tests: duplicate order_id 0 | invalid statuses none
+relationships: missing customers 0 | missing products 0
+known answer: rows 4246 | net revenue 5478357.79
+discount bands: high 2166 | low 504 | none 1576
+monthly mart: 12 rows | top month 2025-10 | net revenue 637896.70
+snapshot demo input: C007 credit_days 30 -&gt; 45</code></pre>
+<p>The project structure was also audited:</p>
+<pre class="bash"><code>python 20_dbt_project_audit.py</code></pre>
+<p><strong>RUN-HERE — real output:</strong></p>
+<pre class="text"><code>dbt project audit: 19/19 required files present
+models: 7 | refs: 5 resolved | source() pairs: 3
+profile: duckdb | path data/phase3.duckdb | target schema main
+snapshot: customer_id | check strategy | 3 tracked columns
+dbt CLI execution: RUN-BY-OWNER (dbt and duckdb packages are not installed in this sandbox)</code></pre>
+<h2 id="build-with-me">Build with me</h2>
+<p>Use <code>starter/</code> and create the project in this order:</p>
+<ol type="1">
+<li>install the requirements;</li>
+<li>run <code>dbt debug --profiles-dir .</code>;</li>
+<li>seed the three CSVs;</li>
+<li>create the three staging models;</li>
+<li>add the staging YAML tests;</li>
+<li>run <code>dbt run --select staging --profiles-dir .</code>;</li>
+<li>run <code>dbt test --select staging --profiles-dir .</code>;</li>
+<li>compare your project with <code>completed/</code>.</li>
+</ol>
+<p>Do not copy the completed files first. The goal is to understand how
+<code>source()</code>, model files and tests connect.</p>
+<h2 id="practice-files">Practice files</h2>
+<p>Inside <strong>dbt-orders-project.zip</strong>:</p>
+<pre class="text"><code>starter/     ← begin here
+completed/   ← reference implementation</code></pre>
+<p>The completed project includes the files used across all three dbt
+tutorials, so you will keep extending the same mini-project rather than
+starting over.</p>
+<h2 id="professional-context">Professional context</h2>
+<p>In a production team, dbt models normally live in Git. A pull request
+can show:</p>
+<ul>
+<li>which SQL model changed;</li>
+<li>which downstream models depend on it;</li>
+<li>which tests pass or fail;</li>
+<li>whether documentation changed;</li>
+<li>whether a business reconciliation broke.</li>
+</ul>
+<p>That is the real benefit: <strong>SQL becomes software-like
+work</strong> with versioning, dependencies and automated checks.</p>
+<h2 id="next-tutorial">Next tutorial</h2>
+<p>Next, you will preserve customer history with a
+<strong>snapshot</strong> and remove repeated SQL logic with a reusable
+<strong>macro</strong>.</p>
+<section class="mentor-prompt"><div class="mentor-head"><div><span class="eyebrow">AI study companion</span><h2 id="ai-mentor-prompt">AI Mentor Prompt</h2></div><button class="btn copy-prompt" type="button" data-copy-target="mentor-prompt-phase-3-dbt-01-models-tests">Copy prompt</button></div><p>Paste this into ChatGPT, Claude, Gemini, or another capable assistant to turn this tutorial into an interactive mentoring session.</p><pre class="prompt-box"><code id="mentor-prompt-phase-3-dbt-01-models-tests">You are my hands-on data-engineering mentor.
+
+I am currently studying:
+&quot;dbt Models and Tests: Turn SQL into a Trusted Transformation Graph&quot;
+
+My level:
+Intermediate
+
+Teach me this topic interactively rather than giving me a long lecture.
+
+Use this sequence:
+
+1. Check what I already understand with one short diagnostic question.
+2. Explain the concept in simple language and give me the mental model first.
+3. Give me one small task using code, SQL, configuration, data, or architecture as appropriate.
+4. Wait for my attempt before showing a complete solution.
+5. Review my work and explain both what is correct and what needs improvement.
+6. Help me debug errors step by step instead of immediately replacing my work.
+7. Increase the difficulty gradually and connect each new step to the previous one.
+8. Relate what I am learning to real professional data/AI engineering work.
+9. Ask me to explain an important decision in my own words so you can check my understanding.
+10. At the end, ask me to build or modify one small feature independently.
+
+Important rules:
+- Do not do the entire exercise for me unless I explicitly ask.
+- Explain unfamiliar terminology before using it heavily.
+- Prefer current, production-relevant practices over outdated shortcuts.
+- Distinguish clearly between concepts, tool-specific behaviour, and optional alternatives.
+- If a technical fact, API, syntax, version, or best practice may have changed, verify it against current official documentation before teaching it.
+- Never invent command output, test results, benchmark numbers, cloud behaviour, or data results.
+- If something cannot be executed in the current environment, say so and give me the exact command or verification step I should run.
+- Keep me actively coding, querying, configuring, reasoning, or debugging throughout the session.
+- When useful, work from the tutorial practice files (dbt-orders-project.zip, data-engineering-scripts.zip) instead of inventing unrelated examples.
+- For Phase 3 order-data exercises, preserve the established reconciliation targets when relevant: 4,246 orders and net revenue 5,478,357.79. If my result differs, help me debug the cause instead of changing the expected result.
+
+The concepts I need to master are:
+- Models
+- Tests
+- dbt
+- dbt core
+- duckdb
+- model
+- source
+- ref
+
+Start by asking me one diagnostic question.</code></pre></section>
+<section class="video-companion"><h2 id="video-companion">Video companion</h2><div class="video-frame"><iframe src="https://www.youtube-nocookie.com/embed/C6BNAfaeqXY?start=530" title="dbt (Data Build Tool) crash course for beginners: Zero to Hero" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div><h3>dbt (Data Build Tool) crash course for beginners: Zero to Hero</h3><p>A practical companion for dbt project structure, model creation and tests. The video uses dbt Cloud/BigQuery, while this lesson uses local dbt Core/DuckDB, so focus on the shared dbt concepts and then apply them to the supplied local practice project.</p><p class="video-meta">Data Tech · English · Beginner → Intermediate</p><div class="video-timestamps"><b>Recommended sections</b><ul><li><a href="https://www.youtube.com/watch?v=C6BNAfaeqXY&amp;t=530s">08:50 — Core concepts and project structure</a></li><li><a href="https://www.youtube.com/watch?v=C6BNAfaeqXY&amp;t=1888s">31:28 — Model creation and execution</a></li><li><a href="https://www.youtube.com/watch?v=C6BNAfaeqXY&amp;t=3544s">59:04 — Generic and singular tests</a></li></ul></div><p class="video-reviewed">Video link reviewed: 2026-10-09</p><p><a href="https://www.youtube.com/watch?v=C6BNAfaeqXY&amp;t=530s">Watch on YouTube ↗</a></p></section>
+<div class="terms-box"><div class="files-head"><b>Key terms in this lesson</b><a href="../../../glossary.html">Glossary →</a></div><div class="term-chips"><a class="term-chip" href="../../../glossary.html#data-lineage" title="The dependency path showing which sources and models feed a downstream dataset, report or data product.">Data lineage</a><a class="term-chip" href="../../../glossary.html#data-test" title="An executable assertion about a dbt resource; it passes when the test query finds no failing rows.">Data test</a><a class="term-chip" href="../../../glossary.html#dbt" title="A tool that turns SQL SELECT statements into tested, documented and version-controlled transformation models in the warehouse.">dbt</a><a class="term-chip" href="../../../glossary.html#dbt-model" title="A SQL select statement that dbt compiles and materializes as part of a dependency graph.">dbt model</a><a class="term-chip" href="../../../glossary.html#duckdb" title="A free, in-process analytical database: run SQL directly on CSV and Parquet files from Python, with no server to install.">DuckDB</a><a class="term-chip" href="../../../glossary.html#etl-elt" title="Ways to move data: extract from sources, transform (clean, join) and load into a target. ELT loads first and transforms inside the warehouse.">ETL / ELT</a><a class="term-chip" href="../../../glossary.html#materialization" title="The strategy dbt uses to persist a model, such as a view, table, incremental model or ephemeral relation.">Materialization</a><a class="term-chip" href="../../../glossary.html#staging-model" title="A source-oriented dbt model that creates a clean, typed and consistently named entry point for downstream transformations.">Staging model</a></div></div>
+<h2 id="free-resources">Free resources to go deeper</h2><ul class="resources"><li><a href="https://docs.getdbt.com/docs/introduction?version=1.12">What is dbt?</a><span class="r-meta">dbt Developer Hub · Official overview of the dbt language, engine, project model and current version generations.</span></li><li><a href="https://docs.getdbt.com/docs/build/data-tests?version=1.12">Add data tests to your DAG</a><span class="r-meta">dbt Developer Hub · Official reference for built-in and custom data tests; in v1.12 the preferred YAML key is data_tests.</span></li><li><a href="https://docs.getdbt.com/best-practices/how-we-structure/2-staging">Staging: preparing atomic building blocks</a><span class="r-meta">dbt Developer Hub · Explains why staging models are normally one-to-one with source tables and where reusable cleanup belongs.</span></li></ul>
+<div class="complete-bar"><span>Finished reading and did the exercise?</span>
+<button class="btn" id="completeBtn" type="button" data-id="phase-3/dbt/01-models-tests">Mark lesson as complete</button></div>
+<nav class="pager"><a class="prev" href="../../../learn/phase-3/docker/02-compose-reproducible.html"><small>← Previous</small>Docker Compose &amp; Reproducible Environments: Run the Whole Pipeline With One Command</a><a class="next" href="../../../learn/phase-3/dbt/02-snapshots-macros.html"><small>Next →</small>dbt Snapshots and Macros: Preserve History and Reuse SQL Logic</a></nav>
+<p class="reviewed">Last reviewed: 2026-10-09</p>
+
+  </div></main>
+  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#introduction">Introduction</a><a href="#what-you-will-learn">What you will learn</a><a href="#mental-model-dbt-is-a-transformation-compiler-runner">Mental model: dbt is a transformation compiler + runner</a><a href="#open-the-practice-project">Open the practice project</a><a href="#step-1-understand-dbt_project.yml">Step 1 — understand dbt_project.yml</a><a href="#step-2-connect-locally-with-duckdb">Step 2 — connect locally with DuckDB</a><a href="#step-3-load-deterministic-raw-data-with-seeds">Step 3 — load deterministic raw data with seeds</a><a href="#step-4-create-the-first-staging-model">Step 4 — create the first staging model</a><a href="#source-vs-ref">source() vs ref()</a><a href="#step-5-add-data-tests">Step 5 — add data tests</a><a href="#what-each-test-protects">What each test protects</a><a href="#step-6-add-a-reconciliation-test">Step 6 — add a reconciliation test</a><a href="#step-7-understand-the-commands">Step 7 — understand the commands</a><a href="#dbt-run">dbt run</a><a href="#dbt-test">dbt test</a><a href="#dbt-build">dbt build</a><a href="#verification-in-this-checkpoint">Verification in this checkpoint</a><a href="#build-with-me">Build with me</a><a href="#practice-files">Practice files</a><a href="#professional-context">Professional context</a><a href="#next-tutorial">Next tutorial</a><a href="#ai-mentor-prompt">AI Mentor Prompt</a><a href="#video-companion">Video companion</a><a href="#free-resources">Free resources</a></aside>
+</div>
+<footer class="site"><b>Saiful The Techie</b> · Data, AI &amp; Automation Path v0.9.1 · Updated October 2026<br>
+Lesson text: <a href="../../../license.html">CC BY-NC-SA 4.0</a> · Code: <a href="../../../license.html#code-mit-license">MIT</a> · Free external resources belong to their respective owners.</footer>
+<script src="../../../search-index.js"></script>
+<script src="../../../assets/app.js"></script>
+</body>
+</html>

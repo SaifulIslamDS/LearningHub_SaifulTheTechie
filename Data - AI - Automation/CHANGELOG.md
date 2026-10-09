@@ -1,6 +1,19 @@
 # Changelog
 
-Each release is packaged as `data-ai-automation-path-vX.Y.zip`, and its version shows under the site name in the top bar.
+Each release is packaged as `data-ai-automation-path-vX.Y[.Z].zip`, and its version shows under the site name in the top bar.
+
+## v0.9.1 — M8 platform correction: ready-to-use generated site, AI Mentor Prompts & roadmap projections (2026-10-09)
+
+This patch-style release fixes the gap between the source tree and the learner-facing product before M8 continues. M8 remains in progress; Phase 3 is still **40/55 topics** with **21 lessons**.
+
+- **Generated site caught up to source:** the dbt tutorials are now present in `docs/` instead of the older placeholder snapshot. `python build.py` can use Python-Markdown when installed and an offline Pandoc fallback in environments where PyPI installation is unavailable.
+- **AI Mentor Prompt on every written tutorial:** all 85 tutorial pages now receive a professional, detailed, lesson-specific interactive mentoring prompt with a copy button. It uses the tutorial title, level, curriculum topics, keywords and practice files; Phase 3 prompts also preserve the established 4,246-order / 5,478,357.79 reconciliation targets where relevant.
+- **Reviewed YouTube companions across completed M8 work:** all 8 ETL/ELT, Data Quality and dbt tutorials now render a relevant privacy-enhanced `youtube-nocookie.com` frame with creator/context metadata; focused timestamps are included where they materially help.
+- **No ambiguous future-status UI:** planned topics now show the roadmap milestone/version in which they are projected to be written (for example `M9 · v1.0` or `M11 · v1.2`).
+- **Roadmap/product audit:** added `handover/v0.9.1-CODEBASE-AUDIT.md` documenting source/product mismatches, roadmap anomalies and the correction status.
+- **Template v2:** documents the automatic mentor prompt and richer YouTube metadata.
+- **Version:** the visible site version is now **v0.9.1**.
+- **Next approved M8 module:** **AI-Ready Data**.
 
 ## v0.9 — M8 working checkpoint: ETL/ELT + Data Quality + dbt (in progress)
 

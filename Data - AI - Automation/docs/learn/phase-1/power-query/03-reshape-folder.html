@@ -6,7 +6,7 @@
 <title>Power Query Reshape &amp; Folder Workflows: Unpivot and Combine Files — Data, AI &amp; Automation Path</title>
 <meta name="description" content="Turn wide month-by-column tables into analysis-ready long tables, and load every file in a folder with one refresh.">
 <meta property="og:type" content="article">
-<meta property="og:site_name" content="Data, AI &amp; Automation Path">
+<meta property="og:site_name" content="Saiful The Techie">
 <meta property="og:title" content="Power Query Reshape &amp; Folder Workflows: Unpivot and Combine Files">
 <meta property="og:description" content="Turn wide month-by-column tables into analysis-ready long tables, and load every file in a folder with one refresh.">
 <meta property="og:locale" content="en_US">
@@ -19,13 +19,13 @@ var n=null;try{n=localStorage.getItem('daa-nav')}catch(e){}
 if(n==='open'&&window.matchMedia&&matchMedia('(min-width: 961px)').matches)document.documentElement.setAttribute('data-nav','open');
 document.documentElement.classList.add('no-anim')})();</script>
 <link rel="stylesheet" href="../../../assets/style.css">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233f7d6a'/%3E%3Ctext x='16' y='21' font-family='sans-serif' font-size='13' font-weight='700' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
+
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="topbar">
   <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Open curriculum menu" title="Curriculum menu (press M)" aria-controls="sidebar" aria-expanded="false"><span class="ico-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span class="ico-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></button>
-  <a class="brand" href="../../../index.html"><span class="brand-badge">AI</span><span class="brand-text"><span class="brand-name">Data, AI &amp; Automation Path</span><span class="brand-version">v0.8</span></span></a>
+  <a class="brand" href="../../../index.html"><span class="brand-text"><span class="brand-name">Saiful The Techie</span><span class="brand-version">Data, AI &amp; Automation Path · v0.9.1</span></span></a>
   <nav class="top-links" aria-label="Main">
     <a href="../../../index.html" class="">Home</a><a href="../../../curriculum.html" class="">Curriculum</a><a href="../../../practice-files.html" class="">Practice files</a><a href="../../../glossary.html" class="">Glossary</a><a href="../../../how-to-learn.html" class="">How to learn</a><a href="../../../about.html" class="">About</a>
   </nav>
@@ -41,7 +41,7 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="layout wide">
   <nav class="sidebar" id="sidebar" aria-label="Curriculum">
     <div class="side-title">Curriculum</div>
-    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="77"><i></i></div><span class="bar-label" data-progress-label></span></div>
+    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="85"><i></i></div><span class="bar-label" data-progress-label></span></div>
 <div class="nav-phase"><a href="../../../learn/phase-0/index.html"><span class="nav-num">0</span>Foundations</a>
 </div>
 <div class="nav-phase current open"><a href="../../../learn/phase-1/index.html"><span class="nav-num">1</span>Analytics &amp; BI</a>
@@ -97,38 +97,51 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="admonition note"><p class="admonition-title">Before you start</p><p><a href="../../../learn/phase-1/power-query/02-merge-append.html">Power Query Merge &amp; Append: Combine Tables Without Formulas</a></p></div>
 <div class="files-box"><div class="files-head"><b>Practice files for this page</b><a href="../../../practice-files.html">All practice files →</a></div><ul><li><a href="../../../downloads/targets_wide.csv" download>targets_wide.csv</a><span class="f-desc">Sales targets with one column per month, to unpivot · 128 B</span></li><li><a href="../../../downloads/targets_long.csv" download>targets_long.csv</a><span class="f-desc">Targets already unpivoted: region × month (12 rows) · 314 B</span></li><li><a href="../../../downloads/monthly/orders_2026-01.csv" download>orders_2026-01.csv</a><span class="f-desc">January orders (5 rows), for append and folder lessons · 434 B</span></li><li><a href="../../../downloads/monthly/orders_2026-02.csv" download>orders_2026-02.csv</a><span class="f-desc">February orders (5 rows) · 441 B</span></li><li><a href="../../../downloads/monthly/orders_2026-03.csv" download>orders_2026-03.csv</a><span class="f-desc">March orders (2 rows) · 226 B</span></li></ul></div>
 <h2 id="what-is-it">What is it?</h2>
-<p><strong>Reshape (unpivot).</strong> Budgets and targets often come <strong>wide</strong>, with one column per month. Analysis tools work best with <strong>long</strong> (tidy) tables: one row per region per month. <strong>Unpivot</strong> turns the month columns into rows.</p>
+<p><strong>Reshape (unpivot).</strong> Budgets and targets often come
+<strong>wide</strong>, with one column per month. Analysis tools work
+best with <strong>long</strong> (tidy) tables: one row per region per
+month. <strong>Unpivot</strong> turns the month columns into rows.</p>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>Wide (hard to analyse)</th>
 <th>→</th>
 <th>Long (tidy)</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>region · Jan · Feb · Mar</td>
 <td></td>
 <td>region · month · target</td>
 </tr>
-<tr>
+<tr class="even">
 <td>4 rows × 4 columns</td>
 <td></td>
 <td>12 rows × 3 columns</td>
 </tr>
 </tbody>
 </table>
-<p><strong>Multiple-file workflow (folder).</strong> Instead of appending files one by one, point Power Query at a <strong>folder</strong>. It combines every file inside, and next month you just drop the new file in and click <strong>Refresh</strong>.</p>
-<div class="admonition job">
-<p class="admonition-title">Why it matters at work</p>
-<p>"Every month I copy 30 branch files into one sheet" is one of the most common automation wins. Folder queries remove that work. Unpivoting is how budget and target sheets get compared with actual sales. Both are everyday tasks for BI analysts.</p>
+<p><strong>Multiple-file workflow (folder).</strong> Instead of
+appending files one by one, point Power Query at a
+<strong>folder</strong>. It combines every file inside, and next month
+you just drop the new file in and click <strong>Refresh</strong>.</p>
+<div class="admonition job" data-markdown="1">
+<p class="admonition-title">
+Why it matters at work
+</p>
+<p>“Every month I copy 30 branch files into one sheet” is one of the
+most common automation wins. Folder queries remove that work. Unpivoting
+is how budget and target sheets get compared with actual sales. Both are
+everyday tasks for BI analysts.</p>
 </div>
-<h2 id="example-1-unpivot-the-targets">Example 1: unpivot the targets</h2>
-<p>Open <a href="../../../downloads/targets_wide.csv">targets_wide.csv</a>:</p>
+<h2 id="example-1-unpivot-the-targets">Example 1: unpivot the
+targets</h2>
+<p>Open <a
+href="../../../downloads/targets_wide.csv">targets_wide.csv</a>:</p>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>region</th>
 <th>2026-01-01</th>
 <th>2026-02-01</th>
@@ -136,25 +149,25 @@ document.documentElement.classList.add('no-anim')})();</script>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>Dhaka</td>
 <td>1100</td>
 <td>1200</td>
 <td>1300</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Gazipur</td>
 <td>700</td>
 <td>800</td>
 <td>900</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Chattogram</td>
 <td>600</td>
 <td>700</td>
 <td>800</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Narayanganj</td>
 <td>400</td>
 <td>500</td>
@@ -162,93 +175,123 @@ document.documentElement.classList.add('no-anim')})();</script>
 </tr>
 </tbody>
 </table>
-<ol>
-<li>Load it into Power Query (<strong>From Text/CSV → Transform Data</strong>).</li>
-<li>Select the <strong>region</strong> column only → <strong>Transform → Unpivot Columns ▾ → Unpivot Other Columns</strong>.</li>
-<li>Rename <strong>Attribute</strong> → <code>month</code> and <strong>Value</strong> → <code>target</code>.</li>
-<li>Set <code>month</code> to <strong>Date</strong> and <code>target</code> to <strong>Whole Number</strong>.</li>
+<ol type="1">
+<li>Load it into Power Query (<strong>From Text/CSV → Transform
+Data</strong>).</li>
+<li>Select the <strong>region</strong> column only → <strong>Transform →
+Unpivot Columns ▾ → Unpivot Other Columns</strong>.</li>
+<li>Rename <strong>Attribute</strong> → <code>month</code> and
+<strong>Value</strong> → <code>target</code>.</li>
+<li>Set <code>month</code> to <strong>Date</strong> and
+<code>target</code> to <strong>Whole Number</strong>.</li>
 </ol>
-<div class="codehilite"><pre><span></span><code>Unpivoted = Table.UnpivotOtherColumns(#"Promoted Headers", {"region"}, "Attribute", "Value"),
-Renamed   = Table.RenameColumns(Unpivoted, {{"Attribute", "month"}, {"Value", "target"}}),
-Typed     = Table.TransformColumnTypes(Renamed, {{"month", type date}, {"target", Int64.Type}})
-</code></pre></div>
-
-<p>Result: <strong>12 rows</strong> (4 regions × 3 months), summing to <strong>9,600</strong>. The first rows:</p>
+<pre class="m"><code>Unpivoted = Table.UnpivotOtherColumns(#&quot;Promoted Headers&quot;, {&quot;region&quot;}, &quot;Attribute&quot;, &quot;Value&quot;),
+Renamed   = Table.RenameColumns(Unpivoted, {{&quot;Attribute&quot;, &quot;month&quot;}, {&quot;Value&quot;, &quot;target&quot;}}),
+Typed     = Table.TransformColumnTypes(Renamed, {{&quot;month&quot;, type date}, {&quot;target&quot;, Int64.Type}})</code></pre>
+<p>Result: <strong>12 rows</strong> (4 regions × 3 months), summing to
+<strong>9,600</strong>. The first rows:</p>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>region</th>
 <th>month</th>
 <th>target</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>Dhaka</td>
 <td>2026-01-01</td>
 <td>1100</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Dhaka</td>
 <td>2026-02-01</td>
 <td>1200</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Dhaka</td>
 <td>2026-03-01</td>
 <td>1300</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Gazipur</td>
 <td>2026-01-01</td>
 <td>700</td>
 </tr>
 </tbody>
 </table>
-<div class="admonition tip">
-<p class="admonition-title">Why Unpivot Other Columns?</p>
-<p>You select the column that should <strong>stay</strong> (region), and everything else is unpivoted. When April's column appears next month, it is unpivoted automatically. "Unpivot Columns" on the three month columns would hard-code their names, and April would be ignored.</p>
+<div class="admonition tip" data-markdown="1">
+<p class="admonition-title">
+Why Unpivot Other Columns?
+</p>
+<p>You select the column that should <strong>stay</strong> (region), and
+everything else is unpivoted. When April’s column appears next month, it
+is unpivoted automatically. “Unpivot Columns” on the three month columns
+would hard-code their names, and April would be ignored.</p>
 </div>
-<p>Long tables like this connect directly to a data model. In the DAX lessons, you'll compare these targets with actual revenue.</p>
-<h2 id="example-2-combine-every-file-in-a-folder">Example 2: combine every file in a folder</h2>
-<p>Put the three monthly files in one folder, e.g. <code>C:\Practice\monthly\</code>.</p>
-<ol>
-<li><strong>Data → Get Data → From File → From Folder</strong> (Power BI: <strong>Get data → Folder</strong>). Pick the folder.</li>
-<li>In the preview, click <strong>Combine → Combine &amp; Transform Data</strong>.</li>
-<li>Choose the <strong>first file</strong> as the sample → <strong>OK</strong>.</li>
+<p>Long tables like this connect directly to a data model. In the DAX
+lessons, you’ll compare these targets with actual revenue.</p>
+<h2 id="example-2-combine-every-file-in-a-folder">Example 2: combine
+every file in a folder</h2>
+<p>Put the three monthly files in one folder,
+e.g. <code>C:\Practice\monthly\</code>.</p>
+<ol type="1">
+<li><strong>Data → Get Data → From File → From Folder</strong> (Power
+BI: <strong>Get data → Folder</strong>). Pick the folder.</li>
+<li>In the preview, click <strong>Combine → Combine &amp; Transform
+Data</strong>.</li>
+<li>Choose the <strong>first file</strong> as the sample →
+<strong>OK</strong>.</li>
 </ol>
-<p>Power Query creates helper queries (a <em>Sample File</em>, a <em>Transform File</em> function and parameters) and a final query with:</p>
+<p>Power Query creates helper queries (a <em>Sample File</em>, a
+<em>Transform File</em> function and parameters) and a final query
+with:</p>
 <ul>
 <li><strong>12 rows</strong>: all orders from all three files.</li>
-<li>A <strong>Source.Name</strong> column showing which file each row came from (<code>orders_2026-01.csv</code> …). Keep it: it's useful for checking the load.</li>
+<li>A <strong>Source.Name</strong> column showing which file each row
+came from (<code>orders_2026-01.csv</code> …). Keep it: it’s useful for
+checking the load.</li>
 </ul>
-<p><strong>Next month:</strong> save <code>orders_2026-04.csv</code> in the folder → <strong>Refresh All</strong>. The new rows appear, with no editing.</p>
-<div class="admonition warning">
-<p class="admonition-title">Any cleaning goes on the sample file</p>
-<p>The steps you add to <strong>Transform Sample File</strong> run on <em>every</em> file. Put cleaning steps (types, trimming) there, so each file is cleaned the same way before combining.</p>
+<p><strong>Next month:</strong> save <code>orders_2026-04.csv</code> in
+the folder → <strong>Refresh All</strong>. The new rows appear, with no
+editing.</p>
+<div class="admonition warning" data-markdown="1">
+<p class="admonition-title">
+Any cleaning goes on the sample file
+</p>
+<p>The steps you add to <strong>Transform Sample File</strong> run on
+<em>every</em> file. Put cleaning steps (types, trimming) there, so each
+file is cleaned the same way before combining.</p>
 </div>
 <h2 id="make-folder-queries-robust">Make folder queries robust</h2>
 <table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Risk</th>
 <th>Fix</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td>Other files in the folder (notes, temporary Excel <code>~$</code> files)</td>
-<td>Filter the <code>Extension</code> column to <code>.csv</code> and exclude names starting with <code>~$</code></td>
+<tr class="odd">
+<td>Other files in the folder (notes, temporary Excel <code>~$</code>
+files)</td>
+<td>Filter the <code>Extension</code> column to <code>.csv</code> and
+exclude names starting with <code>~$</code></td>
 </tr>
-<tr>
+<tr class="even">
 <td>A file with different column names</td>
 <td>Fix the file, or rename the columns in Transform Sample File</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>The folder path is on your laptop</td>
 <td>Use a shared or synced folder (OneDrive, SharePoint)</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Someone saves a file twice</td>
 <td>Check the row count per Source.Name for duplicates</td>
 </tr>
@@ -256,35 +299,42 @@ Typed     = Table.TransformColumnTypes(Renamed, {{"month", type date}, {"target"
 </table>
 <h2 id="common-mistakes">Common mistakes</h2>
 <table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Mistake</th>
 <th>What happens</th>
 <th>Fix</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td>"Unpivot Columns" on the named month columns</td>
+<tr class="odd">
+<td>“Unpivot Columns” on the named month columns</td>
 <td>New months are ignored</td>
-<td>Select the fixed column → <strong>Unpivot Other Columns</strong></td>
+<td>Select the fixed column → <strong>Unpivot Other
+Columns</strong></td>
 </tr>
-<tr>
-<td>Leaving <code>Attribute</code> / <code>Value</code> as column names</td>
+<tr class="even">
+<td>Leaving <code>Attribute</code> / <code>Value</code> as column
+names</td>
 <td>Confusing models and measures</td>
 <td>Rename to business names</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Month stays as text after unpivot</td>
-<td>Can't be linked to a date table</td>
+<td>Can’t be linked to a date table</td>
 <td>Change type to <strong>Date</strong></td>
 </tr>
-<tr>
+<tr class="even">
 <td>Cleaning added to the final combined query only</td>
 <td>Some files fail before combining</td>
 <td>Add per-file cleaning to <strong>Transform Sample File</strong></td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Deleting the helper queries</td>
 <td>The folder query breaks</td>
 <td>Leave them. Put them in a group if they clutter the list</td>
@@ -292,91 +342,177 @@ Typed     = Table.TransformColumnTypes(Renamed, {{"month", type date}, {"target"
 </tbody>
 </table>
 <h2 id="try-it-yourself">Try it yourself</h2>
-<p><strong>Task:</strong> After unpivoting the targets, use <strong>Group By</strong> (region, Sum of target) to get each region's <strong>quarter target</strong>. Which region has the largest target, and what is the total?</p>
+<p><strong>Task:</strong> After unpivoting the targets, use
+<strong>Group By</strong> (region, Sum of target) to get each region’s
+<strong>quarter target</strong>. Which region has the largest target,
+and what is the total?</p>
 <details>
-<summary>Show a hint</summary>
-<p><strong>Transform → Group By</strong> → group by <code>region</code>, new column <code>q1_target</code> = <strong>Sum</strong> of <code>target</code>.</p>
+<summary>
+Show a hint
+</summary>
+<strong>Transform → Group By</strong> → group by <code>region</code>,
+new column <code>q1_target</code> = <strong>Sum</strong> of
+<code>target</code>.
 </details>
 <details>
-<summary>Show the solution</summary>
+<summary>
+Show the solution
+</summary>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>region</th>
 <th>q1_target</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>Dhaka</td>
 <td>3600</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Gazipur</td>
 <td>2400</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Chattogram</td>
 <td>2100</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Narayanganj</td>
 <td>1500</td>
 </tr>
 </tbody>
 </table>
-<p>Dhaka has the largest target. The total is <strong>9,600</strong>. Compare it with actual non-cancelled revenue of 9,075: the business is <strong>525 short</strong> of the quarter target. You'll calculate that properly with DAX next.</p>
+Dhaka has the largest target. The total is <strong>9,600</strong>.
+Compare it with actual non-cancelled revenue of 9,075: the business is
+<strong>525 short</strong> of the quarter target. You’ll calculate that
+properly with DAX next.
 </details>
 <h2 id="quick-quiz">Quick quiz</h2>
 <div class="quiz-q" data-answer="1">
-<p>1. A table has region plus one column per month. Which action makes it long and tidy?</p>
-<ol>
+<p>1. A table has region plus one column per month. Which action makes
+it long and tidy?</p>
+<ol type="1">
 <li>Pivot Column</li>
 <li>Unpivot Other Columns (with region selected)</li>
 <li>Transpose</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B.</strong> It keeps region and turns all the month columns into rows, including future months.</p>
+<summary>
+Show answer
+</summary>
+<strong>B.</strong> It keeps region and turns all the month columns into
+rows, including future months.
 </details>
 </div>
 <div class="quiz-q" data-answer="1">
-<p>2. After setting up a folder query, how do you add April's data?</p>
-<ol>
+<p>2. After setting up a folder query, how do you add April’s data?</p>
+<ol type="1">
 <li>Edit the query to add the file</li>
 <li>Save the file into the folder and Refresh</li>
 <li>Append it manually</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B.</strong> That's the whole point: drop the file in and refresh.</p>
+<summary>
+Show answer
+</summary>
+<strong>B.</strong> That’s the whole point: drop the file in and
+refresh.
 </details>
 </div>
 <div class="quiz-q" data-answer="0">
-<p>3. Where should cleaning steps go so that every file in a folder is cleaned the same way?</p>
-<ol>
+<p>3. Where should cleaning steps go so that every file in a folder is
+cleaned the same way?</p>
+<ol type="1">
 <li>Transform Sample File</li>
 <li>The final combined query only</li>
 <li>In each Excel file</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>A.</strong> Steps on the sample file are applied to every file before they are combined.</p>
+<summary>
+Show answer
+</summary>
+<strong>A.</strong> Steps on the sample file are applied to every file
+before they are combined.
 </details>
 </div>
 <h2 id="summary">Summary</h2>
 <ul>
-<li><strong>Unpivot Other Columns</strong> turns wide tables (one column per month) into long tidy tables, and handles new months automatically.</li>
-<li>Rename <code>Attribute</code>/<code>Value</code> and set proper types after unpivoting.</li>
-<li><strong>Folder → Combine &amp; Transform</strong> loads every file in a folder. New files arrive with one Refresh.</li>
-<li>Put per-file cleaning in <strong>Transform Sample File</strong>, filter out unwanted files, and keep <code>Source.Name</code> for checks.</li>
+<li><strong>Unpivot Other Columns</strong> turns wide tables (one column
+per month) into long tidy tables, and handles new months
+automatically.</li>
+<li>Rename <code>Attribute</code>/<code>Value</code> and set proper
+types after unpivoting.</li>
+<li><strong>Folder → Combine &amp; Transform</strong> loads every file
+in a folder. New files arrive with one Refresh.</li>
+<li>Put per-file cleaning in <strong>Transform Sample File</strong>,
+filter out unwanted files, and keep <code>Source.Name</code> for
+checks.</li>
 </ul>
-<div class="admonition job">
-<p class="admonition-title">Job-ready check</p>
-<p><strong>Interview question:</strong> <em>"Each branch sends a monthly Excel file. How would you automate the consolidation?"</em></p>
-<p><strong>Strong answer:</strong> "A Power Query folder connection: Combine &amp; Transform, with the cleaning steps on the sample file so each file is standardised. I'd filter to the right file type, keep Source.Name for auditing, and store the folder somewhere shared. Monthly work becomes: save the files, refresh, and check the row counts per file."</p>
-<p><strong>Mini project:</strong> Create a folder query for the three monthly files and an unpivoted targets query. Load both to the Data Model, or as connections. You'll use them as the fact tables in the DAX lessons.</p>
+<div class="admonition job" data-markdown="1">
+<p class="admonition-title">
+Job-ready check
+</p>
+<p><strong>Interview question:</strong> <em>“Each branch sends a monthly
+Excel file. How would you automate the consolidation?”</em></p>
+<p><strong>Strong answer:</strong> “A Power Query folder connection:
+Combine &amp; Transform, with the cleaning steps on the sample file so
+each file is standardised. I’d filter to the right file type, keep
+Source.Name for auditing, and store the folder somewhere shared. Monthly
+work becomes: save the files, refresh, and check the row counts per
+file.”</p>
+<p><strong>Mini project:</strong> Create a folder query for the three
+monthly files and an unpivoted targets query. Load both to the Data
+Model, or as connections. You’ll use them as the fact tables in the DAX
+lessons.</p>
 </div>
+<section class="mentor-prompt"><div class="mentor-head"><div><span class="eyebrow">AI study companion</span><h2 id="ai-mentor-prompt">AI Mentor Prompt</h2></div><button class="btn copy-prompt" type="button" data-copy-target="mentor-prompt-phase-1-power-query-03-reshape-folder">Copy prompt</button></div><p>Paste this into ChatGPT, Claude, Gemini, or another capable assistant to turn this tutorial into an interactive mentoring session.</p><pre class="prompt-box"><code id="mentor-prompt-phase-1-power-query-03-reshape-folder">You are my hands-on data-analytics and business-intelligence mentor.
+
+I am currently studying:
+&quot;Power Query Reshape &amp; Folder Workflows: Unpivot and Combine Files&quot;
+
+My level:
+Intermediate
+
+Teach me this topic interactively rather than giving me a long lecture.
+
+Use this sequence:
+
+1. Check what I already understand with one short diagnostic question.
+2. Explain the concept in simple language and give me the mental model first.
+3. Give me one small task using code, SQL, configuration, data, or architecture as appropriate.
+4. Wait for my attempt before showing a complete solution.
+5. Review my work and explain both what is correct and what needs improvement.
+6. Help me debug errors step by step instead of immediately replacing my work.
+7. Increase the difficulty gradually and connect each new step to the previous one.
+8. Relate what I am learning to real professional data/AI engineering work.
+9. Ask me to explain an important decision in my own words so you can check my understanding.
+10. At the end, ask me to build or modify one small feature independently.
+
+Important rules:
+- Do not do the entire exercise for me unless I explicitly ask.
+- Explain unfamiliar terminology before using it heavily.
+- Prefer current, production-relevant practices over outdated shortcuts.
+- Distinguish clearly between concepts, tool-specific behaviour, and optional alternatives.
+- If a technical fact, API, syntax, version, or best practice may have changed, verify it against current official documentation before teaching it.
+- Never invent command output, test results, benchmark numbers, cloud behaviour, or data results.
+- If something cannot be executed in the current environment, say so and give me the exact command or verification step I should run.
+- Keep me actively coding, querying, configuring, reasoning, or debugging throughout the session.
+- When useful, work from the tutorial practice files (targets_wide.csv, targets_long.csv, orders_2026-01.csv) instead of inventing unrelated examples.
+
+The concepts I need to master are:
+- Reshape
+- Multiple-file workflows
+- unpivot
+- unpivot other columns
+- pivot column
+- wide to long
+- tidy data
+- folder
+
+Start by asking me one diagnostic question.</code></pre></section>
+
 <div class="terms-box"><div class="files-head"><b>Key terms in this lesson</b><a href="../../../glossary.html">Glossary →</a></div><div class="term-chips"><a class="term-chip" href="../../../glossary.html#unpivot" title="Turns many columns (Jan, Feb, Mar) into rows (Month, Value), the long shape that models and pivots need.">Unpivot</a></div></div>
 <h2 id="free-resources">Free resources to go deeper</h2><ul class="resources"><li><a href="https://learn.microsoft.com/en-us/power-query/unpivot-column">Unpivot columns</a><span class="r-meta">Microsoft Learn · Unpivot, Unpivot Other Columns and Unpivot Only Selected Columns explained.</span></li><li><a href="https://learn.microsoft.com/en-us/power-query/combine-files-overview">Combine files overview</a><span class="r-meta">Microsoft Learn · How Combine Files builds the sample file and helper queries.</span></li><li><a href="https://learn.microsoft.com/en-us/power-query/connectors/folder">Folder connector</a><span class="r-meta">Microsoft Learn · Connect to a folder and filter its files.</span></li></ul>
 <div class="complete-bar"><span>Finished reading and did the exercise?</span>
@@ -385,9 +521,9 @@ Typed     = Table.TransformColumnTypes(Renamed, {{"month", type date}, {"target"
 <p class="reviewed">Last reviewed: 2026-10-09</p>
 
   </div></main>
-  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#example-1-unpivot-the-targets">Example 1: unpivot the targets</a><a href="#example-2-combine-every-file-in-a-folder">Example 2: combine every file in a folder</a><a href="#make-folder-queries-robust">Make folder queries robust</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#free-resources">Free resources</a></aside>
+  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#example-1-unpivot-the-targets">Example 1: unpivot the targets</a><a href="#example-2-combine-every-file-in-a-folder">Example 2: combine every file in a folder</a><a href="#make-folder-queries-robust">Make folder queries robust</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#ai-mentor-prompt">AI Mentor Prompt</a><a href="#free-resources">Free resources</a></aside>
 </div>
-<footer class="site">Data, AI &amp; Automation Path v0.8 · Applied AI, Data &amp; Automation Lab · Updated October 2026<br>
+<footer class="site"><b>Saiful The Techie</b> · Data, AI &amp; Automation Path v0.9.1 · Updated October 2026<br>
 Lesson text: <a href="../../../license.html">CC BY-NC-SA 4.0</a> · Code: <a href="../../../license.html#code-mit-license">MIT</a> · Free external resources belong to their respective owners.</footer>
 <script src="../../../search-index.js"></script>
 <script src="../../../assets/app.js"></script>

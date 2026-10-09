@@ -6,7 +6,7 @@
 <title>Excel What-If Analysis &amp; Goal Seek: Plan with Numbers — Data, AI &amp; Automation Path</title>
 <meta name="description" content="Test business scenarios with a Data Table, compare plans with Scenario Manager, and work backwards from a target with Goal Seek.">
 <meta property="og:type" content="article">
-<meta property="og:site_name" content="Data, AI &amp; Automation Path">
+<meta property="og:site_name" content="Saiful The Techie">
 <meta property="og:title" content="Excel What-If Analysis &amp; Goal Seek: Plan with Numbers">
 <meta property="og:description" content="Test business scenarios with a Data Table, compare plans with Scenario Manager, and work backwards from a target with Goal Seek.">
 <meta property="og:locale" content="en_US">
@@ -19,13 +19,13 @@ var n=null;try{n=localStorage.getItem('daa-nav')}catch(e){}
 if(n==='open'&&window.matchMedia&&matchMedia('(min-width: 961px)').matches)document.documentElement.setAttribute('data-nav','open');
 document.documentElement.classList.add('no-anim')})();</script>
 <link rel="stylesheet" href="../../../assets/style.css">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233f7d6a'/%3E%3Ctext x='16' y='21' font-family='sans-serif' font-size='13' font-weight='700' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
+
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="topbar">
   <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Open curriculum menu" title="Curriculum menu (press M)" aria-controls="sidebar" aria-expanded="false"><span class="ico-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span class="ico-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></button>
-  <a class="brand" href="../../../index.html"><span class="brand-badge">AI</span><span class="brand-text"><span class="brand-name">Data, AI &amp; Automation Path</span><span class="brand-version">v0.8</span></span></a>
+  <a class="brand" href="../../../index.html"><span class="brand-text"><span class="brand-name">Saiful The Techie</span><span class="brand-version">Data, AI &amp; Automation Path · v0.9.1</span></span></a>
   <nav class="top-links" aria-label="Main">
     <a href="../../../index.html" class="">Home</a><a href="../../../curriculum.html" class="">Curriculum</a><a href="../../../practice-files.html" class="">Practice files</a><a href="../../../glossary.html" class="">Glossary</a><a href="../../../how-to-learn.html" class="">How to learn</a><a href="../../../about.html" class="">About</a>
   </nav>
@@ -41,7 +41,7 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="layout wide">
   <nav class="sidebar" id="sidebar" aria-label="Curriculum">
     <div class="side-title">Curriculum</div>
-    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="77"><i></i></div><span class="bar-label" data-progress-label></span></div>
+    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="85"><i></i></div><span class="bar-label" data-progress-label></span></div>
 <div class="nav-phase"><a href="../../../learn/phase-0/index.html"><span class="nav-num">0</span>Foundations</a>
 </div>
 <div class="nav-phase current open"><a href="../../../learn/phase-1/index.html"><span class="nav-num">1</span>Analytics &amp; BI</a>
@@ -97,82 +97,115 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="admonition note"><p class="admonition-title">Before you start</p><p><a href="../../../learn/phase-1/excel-analysis/02-sumifs-countifs.html">Excel SUMIFS &amp; COUNTIFS: Build KPI Summaries</a></p></div>
 <div class="files-box"><div class="files-head"><b>Practice files for this page</b><a href="../../../practice-files.html">All practice files →</a></div><ul><li><a href="../../../downloads/orders.xlsx" download>orders.xlsx</a><span class="f-desc">Starting workbook: Orders (with value formula), Products, Customers sheets · 8 KB</span></li><li><a href="../../../downloads/excel-solutions.xlsx" download>excel-solutions.xlsx</a><span class="f-desc">Worked Excel answers: IF, SUMIFS, lookups, conditional formatting, FILTER/LET formulas, What-If model · 14 KB</span></li></ul></div>
 <h2 id="what-is-it">What is it?</h2>
-<p><strong>What-If Analysis</strong> answers planning questions by changing inputs and watching the result. Excel has three tools, under <strong>Data → What-If Analysis</strong>:</p>
+<p><strong>What-If Analysis</strong> answers planning questions by
+changing inputs and watching the result. Excel has three tools, under
+<strong>Data → What-If Analysis</strong>:</p>
 <table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Tool</th>
 <th>Question it answers</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td><strong>Data Table</strong></td>
-<td>"What is the result for <em>many</em> different inputs?"</td>
+<td>“What is the result for <em>many</em> different inputs?”</td>
 </tr>
-<tr>
+<tr class="even">
 <td><strong>Scenario Manager</strong></td>
-<td>"How do my <em>named plans</em> (best / base / worst) compare?"</td>
+<td>“How do my <em>named plans</em> (best / base / worst) compare?”</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><strong>Goal Seek</strong></td>
-<td>"What input do I need to <em>hit a target</em>?"</td>
+<td>“What input do I need to <em>hit a target</em>?”</td>
 </tr>
 </tbody>
 </table>
-<div class="admonition job">
-<p class="admonition-title">Why it matters at work</p>
-<p>Price changes, targets and budgets: managers constantly ask <em>"what happens if…?"</em> and <em>"what do we need to reach…?"</em>. Answering with a clean model instead of guesses is what turns a report-builder into an analyst. This is also the foundation for forecasting in Phase 4.</p>
+<div class="admonition job" data-markdown="1">
+<p class="admonition-title">
+Why it matters at work
+</p>
+<p>Price changes, targets and budgets: managers constantly ask <em>“what
+happens if…?”</em> and <em>“what do we need to reach…?”</em>. Answering
+with a clean model instead of guesses is what turns a report-builder
+into an analyst. This is also the foundation for forecasting in Phase
+4.</p>
 </div>
 <h2 id="step-1-build-a-small-model">Step 1: build a small model</h2>
-<p>A good model separates <strong>inputs</strong> (cells you change) from <strong>calculations</strong>. In a new sheet, <strong>Model</strong>:</p>
+<p>A good model separates <strong>inputs</strong> (cells you change)
+from <strong>calculations</strong>. In a new sheet,
+<strong>Model</strong>:</p>
 <table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Cell</th>
 <th>Label</th>
 <th>Value / formula</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>B1</td>
 <td>Base revenue (non-cancelled)</td>
-<td><code>=SUMIFS(Orders!J2:J13,Orders!I2:I13,"&lt;&gt;Cancelled")</code> → <strong>9,075</strong></td>
+<td><code>=SUMIFS(Orders!J2:J13,Orders!I2:I13,"&lt;&gt;Cancelled")</code>
+→ <strong>9,075</strong></td>
 </tr>
-<tr>
+<tr class="even">
 <td>B2</td>
 <td>Price change</td>
 <td><strong>0%</strong> <em>(input)</em></td>
 </tr>
-<tr>
+<tr class="odd">
 <td>B3</td>
 <td>Volume change</td>
 <td><strong>0%</strong> <em>(input)</em></td>
 </tr>
-<tr>
+<tr class="even">
 <td>B4</td>
 <td>Projected revenue</td>
 <td><code>=B1*(1+B2)*(1+B3)</code></td>
 </tr>
 </tbody>
 </table>
-<p>With both inputs at 0%, B4 shows <strong>9,075</strong>. Try a 5% price increase in B2 and B4 becomes <strong>9,528.75</strong>.</p>
-<div class="admonition tip">
-<p class="admonition-title">Colour your inputs</p>
-<p>Give input cells a light fill (e.g. light yellow) so everyone knows which cells may be changed. It's a common convention in financial modelling.</p>
+<p>With both inputs at 0%, B4 shows <strong>9,075</strong>. Try a 5%
+price increase in B2 and B4 becomes <strong>9,528.75</strong>.</p>
+<div class="admonition tip" data-markdown="1">
+<p class="admonition-title">
+Colour your inputs
+</p>
+<p>Give input cells a light fill (e.g. light yellow) so everyone knows
+which cells may be changed. It’s a common convention in financial
+modelling.</p>
 </div>
-<h2 id="example-1-a-two-variable-data-table">Example 1: a two-variable Data Table</h2>
-<p><em>Question: what is projected revenue for price changes of 0%, +5% and +10%, combined with volume changes of 0%, −5% and −10%?</em> Customers may buy less if prices rise.</p>
-<ol>
-<li>In <strong>D2</strong> type <code>=B4</code>. This corner cell links to the result.</li>
-<li>In <strong>E2:G2</strong> type the price changes <strong>0%, 5%, 10%</strong>. In <strong>D3:D5</strong> type the volume changes <strong>0%, −5%, −10%</strong>.</li>
-<li>Select <strong>D2:G5</strong> → <strong>Data → What-If Analysis → Data Table</strong>.</li>
-<li><strong>Row input cell: B2</strong> (price). <strong>Column input cell: B3</strong> (volume). Click <strong>OK</strong>.</li>
+<h2 id="example-1-a-two-variable-data-table">Example 1: a two-variable
+Data Table</h2>
+<p><em>Question: what is projected revenue for price changes of 0%, +5%
+and +10%, combined with volume changes of 0%, −5% and −10%?</em>
+Customers may buy less if prices rise.</p>
+<ol type="1">
+<li>In <strong>D2</strong> type <code>=B4</code>. This corner cell links
+to the result.</li>
+<li>In <strong>E2:G2</strong> type the price changes <strong>0%, 5%,
+10%</strong>. In <strong>D3:D5</strong> type the volume changes
+<strong>0%, −5%, −10%</strong>.</li>
+<li>Select <strong>D2:G5</strong> → <strong>Data → What-If Analysis →
+Data Table</strong>.</li>
+<li><strong>Row input cell: B2</strong> (price). <strong>Column input
+cell: B3</strong> (volume). Click <strong>OK</strong>.</li>
 </ol>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>volume ↓ / price →</th>
 <th>0%</th>
 <th>5%</th>
@@ -180,19 +213,19 @@ document.documentElement.classList.add('no-anim')})();</script>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td><strong>0%</strong></td>
 <td>9,075.00</td>
 <td>9,528.75</td>
 <td>9,982.50</td>
 </tr>
-<tr>
+<tr class="even">
 <td><strong>−5%</strong></td>
 <td>8,621.25</td>
 <td>9,052.31</td>
 <td>9,483.38</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><strong>−10%</strong></td>
 <td>8,167.50</td>
 <td>8,575.88</td>
@@ -200,16 +233,25 @@ document.documentElement.classList.add('no-anim')})();</script>
 </tr>
 </tbody>
 </table>
-<p><strong>Insight:</strong> a 10% price rise that loses 10% of volume (8,984.25) ends up <strong>below</strong> today's revenue (9,075). The price rise only pays off if volume drops by less than about 9%.</p>
-<div class="admonition note">
-<p class="admonition-title">Data Tables recalculate constantly</p>
-<p>A Data Table is a live formula grid. Large ones can slow down a workbook. You can set <strong>Formulas → Calculation Options → Automatic except for Data Tables</strong>.</p>
+<p><strong>Insight:</strong> a 10% price rise that loses 10% of volume
+(8,984.25) ends up <strong>below</strong> today’s revenue (9,075). The
+price rise only pays off if volume drops by less than about 9%.</p>
+<div class="admonition note" data-markdown="1">
+<p class="admonition-title">
+Data Tables recalculate constantly
+</p>
+<p>A Data Table is a live formula grid. Large ones can slow down a
+workbook. You can set <strong>Formulas → Calculation Options → Automatic
+except for Data Tables</strong>.</p>
 </div>
-<h2 id="example-2-scenario-manager-named-plans">Example 2: Scenario Manager (named plans)</h2>
-<p>Choose <strong>Data → What-If Analysis → Scenario Manager → Add</strong>, and create three scenarios that change <strong>B2:B3</strong>:</p>
+<h2 id="example-2-scenario-manager-named-plans">Example 2: Scenario
+Manager (named plans)</h2>
+<p>Choose <strong>Data → What-If Analysis → Scenario Manager →
+Add</strong>, and create three scenarios that change
+<strong>B2:B3</strong>:</p>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>Scenario</th>
 <th>Price change</th>
 <th>Volume change</th>
@@ -217,19 +259,19 @@ document.documentElement.classList.add('no-anim')})();</script>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>Base</td>
 <td>0%</td>
 <td>0%</td>
 <td>9,075.00</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Price push</td>
 <td>10%</td>
 <td>−5%</td>
 <td>9,483.38</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Discount drive</td>
 <td>0%</td>
 <td>−10%</td>
@@ -237,113 +279,214 @@ document.documentElement.classList.add('no-anim')})();</script>
 </tr>
 </tbody>
 </table>
-<p>Click <strong>Show</strong> to apply a scenario, or <strong>Summary</strong> to create a comparison sheet automatically. Scenarios are useful when you present two or three named options to management.</p>
-<h2 id="example-3-goal-seek-work-backwards">Example 3: Goal Seek (work backwards)</h2>
-<p><em>Question: with volume expected to fall 5%, what price increase do we need to reach 10,000 revenue?</em></p>
-<ol>
+<p>Click <strong>Show</strong> to apply a scenario, or
+<strong>Summary</strong> to create a comparison sheet automatically.
+Scenarios are useful when you present two or three named options to
+management.</p>
+<h2 id="example-3-goal-seek-work-backwards">Example 3: Goal Seek (work
+backwards)</h2>
+<p><em>Question: with volume expected to fall 5%, what price increase do
+we need to reach 10,000 revenue?</em></p>
+<ol type="1">
 <li>Set <strong>B3</strong> to <strong>−5%</strong>.</li>
 <li>Choose <strong>Data → What-If Analysis → Goal Seek</strong>.</li>
-<li><strong>Set cell: B4</strong>. <strong>To value: 10000</strong>. <strong>By changing cell: B2</strong>. Click <strong>OK</strong>.</li>
+<li><strong>Set cell: B4</strong>. <strong>To value: 10000</strong>.
+<strong>By changing cell: B2</strong>. Click <strong>OK</strong>.</li>
 </ol>
-<p>Excel finds <strong>B2 ≈ 15.99%</strong>. In other words, a price rise of about 16% is needed, which is a lot. The model has turned a vague target into a concrete, debatable number.</p>
-<p><strong>A second Goal Seek, on one order:</strong> Sun Fashion's Denim order is priced at 5.40 per unit. How many units for a 1,000 order? Set up <code>=quantity*5.40</code>, then Goal Seek it to 1000 by changing the quantity. The result is <strong>185.19</strong>. In practice you'd round <strong>up to 186 units</strong>: Goal Seek gives the exact maths, and you apply the business rule.</p>
+<p>Excel finds <strong>B2 ≈ 15.99%</strong>. In other words, a price
+rise of about 16% is needed, which is a lot. The model has turned a
+vague target into a concrete, debatable number.</p>
+<p><strong>A second Goal Seek, on one order:</strong> Sun Fashion’s
+Denim order is priced at 5.40 per unit. How many units for a 1,000
+order? Set up <code>=quantity*5.40</code>, then Goal Seek it to 1000 by
+changing the quantity. The result is <strong>185.19</strong>. In
+practice you’d round <strong>up to 186 units</strong>: Goal Seek gives
+the exact maths, and you apply the business rule.</p>
 <h2 id="common-mistakes">Common mistakes</h2>
 <table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Mistake</th>
 <th>What happens</th>
 <th>Fix</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>Typing numbers into formulas (<code>=9075*1.05</code>)</td>
 <td>Nothing can vary</td>
 <td>Put inputs in their own cells</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Data Table input cells on another sheet</td>
 <td>Excel refuses</td>
 <td>Keep the input cells on the same sheet as the Data Table</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Swapping row and column input cells</td>
-<td>Labels and results don't match</td>
+<td>Labels and results don’t match</td>
 <td>Row input = the values across the top</td>
 </tr>
-<tr>
-<td>Goal Seek "by changing" a formula cell</td>
+<tr class="even">
+<td>Goal Seek “by changing” a formula cell</td>
 <td>Error</td>
 <td>It must be a plain input value</td>
 </tr>
-<tr>
-<td>Treating Goal Seek's decimal result as final</td>
-<td>185.19 units isn't orderable</td>
+<tr class="odd">
+<td>Treating Goal Seek’s decimal result as final</td>
+<td>185.19 units isn’t orderable</td>
 <td>Apply rounding or business rules afterwards</td>
 </tr>
 </tbody>
 </table>
 <h2 id="try-it-yourself">Try it yourself</h2>
-<p><strong>Task:</strong> Using the same model, find the <strong>volume change</strong> that keeps revenue at exactly <strong>9,075</strong> if the price rises <strong>10%</strong>.</p>
+<p><strong>Task:</strong> Using the same model, find the <strong>volume
+change</strong> that keeps revenue at exactly <strong>9,075</strong> if
+the price rises <strong>10%</strong>.</p>
 <details>
-<summary>Show a hint</summary>
-<p>Set B2 to 10%. Then Goal Seek: set cell <strong>B4</strong>, to value <strong>9075</strong>, by changing <strong>B3</strong>.</p>
+<summary>
+Show a hint
+</summary>
+Set B2 to 10%. Then Goal Seek: set cell <strong>B4</strong>, to value
+<strong>9075</strong>, by changing <strong>B3</strong>.
 </details>
 <details>
-<summary>Show the solution</summary>
-<p>Goal Seek returns <strong>B3 ≈ −9.09%</strong>. You can lose up to about 9.1% of volume after a 10% price rise and still keep today's revenue. That's the break-even point behind the insight in Example 1. (Check: 1 ÷ 1.10 − 1 = −0.0909.)</p>
+<summary>
+Show the solution
+</summary>
+Goal Seek returns <strong>B3 ≈ −9.09%</strong>. You can lose up to about
+9.1% of volume after a 10% price rise and still keep today’s revenue.
+That’s the break-even point behind the insight in Example 1. (Check: 1 ÷
+1.10 − 1 = −0.0909.)
 </details>
 <h2 id="quick-quiz">Quick quiz</h2>
 <div class="quiz-q" data-answer="1">
-<p>1. You need the input value that produces a target result. Which tool do you use?</p>
-<ol>
+<p>1. You need the input value that produces a target result. Which tool
+do you use?</p>
+<ol type="1">
 <li>Data Table</li>
 <li>Goal Seek</li>
 <li>Scenario Manager</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B — Goal Seek.</strong> It works backwards from the target to one input.</p>
+<summary>
+Show answer
+</summary>
+<strong>B — Goal Seek.</strong> It works backwards from the target to
+one input.
 </details>
 </div>
 <div class="quiz-q" data-answer="1">
-<p>2. In a two-variable Data Table, what goes in the top-left corner cell?</p>
-<ol>
+<p>2. In a two-variable Data Table, what goes in the top-left corner
+cell?</p>
+<ol type="1">
 <li>The first input value</li>
-<li>A link to the result formula (e.g. <code>=B4</code>)</li>
+<li>A link to the result formula (e.g. <code>=B4</code>)</li>
 <li>Nothing</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B.</strong> The corner cell links to the result. Excel fills the grid by substituting the row and column inputs.</p>
+<summary>
+Show answer
+</summary>
+<strong>B.</strong> The corner cell links to the result. Excel fills the
+grid by substituting the row and column inputs.
 </details>
 </div>
 <div class="quiz-q" data-answer="1">
-<p>3. Why keep inputs in separate cells instead of typing them into formulas?</p>
-<ol>
+<p>3. Why keep inputs in separate cells instead of typing them into
+formulas?</p>
+<ol type="1">
 <li>Excel requires it</li>
 <li>So What-If tools and colleagues can change them safely</li>
 <li>It makes the file smaller</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B.</strong> Separate input cells make a model testable, transparent and reusable.</p>
+<summary>
+Show answer
+</summary>
+<strong>B.</strong> Separate input cells make a model testable,
+transparent and reusable.
 </details>
 </div>
 <h2 id="summary">Summary</h2>
 <ul>
-<li>Build models with clear <strong>input cells</strong> and <strong>formula cells</strong>.</li>
-<li><strong>Data Table</strong>: results for many input combinations in one grid.</li>
-<li><strong>Scenario Manager</strong>: named plans you can show and summarise.</li>
-<li><strong>Goal Seek</strong>: the input needed to reach a target. Apply business rounding afterwards.</li>
+<li>Build models with clear <strong>input cells</strong> and
+<strong>formula cells</strong>.</li>
+<li><strong>Data Table</strong>: results for many input combinations in
+one grid.</li>
+<li><strong>Scenario Manager</strong>: named plans you can show and
+summarise.</li>
+<li><strong>Goal Seek</strong>: the input needed to reach a target.
+Apply business rounding afterwards.</li>
 </ul>
-<div class="admonition job">
-<p class="admonition-title">Job-ready check</p>
-<p><strong>Interview question:</strong> <em>"Management wants 10,000 in revenue next quarter. How would you show what it takes?"</em></p>
-<p><strong>Strong answer:</strong> "I'd build a simple model, base revenue × (1 + price change) × (1 + volume change), with separate input cells. Then a Data Table to show the range of outcomes, and Goal Seek to find the required price change for a given volume assumption, about 16% if volume drops 5%. Finally I'd present it as two or three named scenarios, so the discussion is about assumptions, not arithmetic."</p>
-<p><strong>Mini project:</strong> Add a <strong>Model</strong> sheet to your workbook with the inputs, a 3×3 Data Table and the Goal Seek answer, written as a one-paragraph recommendation. This completes your Excel portfolio piece for Phase 1A.</p>
+<div class="admonition job" data-markdown="1">
+<p class="admonition-title">
+Job-ready check
+</p>
+<p><strong>Interview question:</strong> <em>“Management wants 10,000 in
+revenue next quarter. How would you show what it takes?”</em></p>
+<p><strong>Strong answer:</strong> “I’d build a simple model, base
+revenue × (1 + price change) × (1 + volume change), with separate input
+cells. Then a Data Table to show the range of outcomes, and Goal Seek to
+find the required price change for a given volume assumption, about 16%
+if volume drops 5%. Finally I’d present it as two or three named
+scenarios, so the discussion is about assumptions, not arithmetic.”</p>
+<p><strong>Mini project:</strong> Add a <strong>Model</strong> sheet to
+your workbook with the inputs, a 3×3 Data Table and the Goal Seek
+answer, written as a one-paragraph recommendation. This completes your
+Excel portfolio piece for Phase 1A.</p>
 </div>
+<section class="mentor-prompt"><div class="mentor-head"><div><span class="eyebrow">AI study companion</span><h2 id="ai-mentor-prompt">AI Mentor Prompt</h2></div><button class="btn copy-prompt" type="button" data-copy-target="mentor-prompt-phase-1-pivot-analysis-03-what-if-goal-seek">Copy prompt</button></div><p>Paste this into ChatGPT, Claude, Gemini, or another capable assistant to turn this tutorial into an interactive mentoring session.</p><pre class="prompt-box"><code id="mentor-prompt-phase-1-pivot-analysis-03-what-if-goal-seek">You are my hands-on data-analytics and business-intelligence mentor.
+
+I am currently studying:
+&quot;Excel What-If Analysis &amp; Goal Seek: Plan with Numbers&quot;
+
+My level:
+Beginner–Intermediate
+
+Teach me this topic interactively rather than giving me a long lecture.
+
+Use this sequence:
+
+1. Check what I already understand with one short diagnostic question.
+2. Explain the concept in simple language and give me the mental model first.
+3. Give me one small task using code, SQL, configuration, data, or architecture as appropriate.
+4. Wait for my attempt before showing a complete solution.
+5. Review my work and explain both what is correct and what needs improvement.
+6. Help me debug errors step by step instead of immediately replacing my work.
+7. Increase the difficulty gradually and connect each new step to the previous one.
+8. Relate what I am learning to real professional data/AI engineering work.
+9. Ask me to explain an important decision in my own words so you can check my understanding.
+10. At the end, ask me to build or modify one small feature independently.
+
+Important rules:
+- Do not do the entire exercise for me unless I explicitly ask.
+- Explain unfamiliar terminology before using it heavily.
+- Prefer current, production-relevant practices over outdated shortcuts.
+- Distinguish clearly between concepts, tool-specific behaviour, and optional alternatives.
+- If a technical fact, API, syntax, version, or best practice may have changed, verify it against current official documentation before teaching it.
+- Never invent command output, test results, benchmark numbers, cloud behaviour, or data results.
+- If something cannot be executed in the current environment, say so and give me the exact command or verification step I should run.
+- Keep me actively coding, querying, configuring, reasoning, or debugging throughout the session.
+- When useful, work from the tutorial practice files (orders.xlsx, excel-solutions.xlsx) instead of inventing unrelated examples.
+
+The concepts I need to master are:
+- What-If Analysis
+- Goal Seek
+- data table
+- scenario manager
+- sensitivity
+- forecast
+- target
+- price change
+
+Start by asking me one diagnostic question.</code></pre></section>
+
 <div class="terms-box"><div class="files-head"><b>Key terms in this lesson</b><a href="../../../glossary.html">Glossary →</a></div><div class="term-chips"><a class="term-chip" href="../../../glossary.html#goal-seek" title="Excel&#x27;s What-If tool that works backwards: it changes one input until a formula reaches the target you set.">Goal Seek</a></div></div>
 <h2 id="free-resources">Free resources to go deeper</h2><ul class="resources"><li><a href="https://support.microsoft.com/en-us/office/introduction-to-what-if-analysis-22bffa5f-e891-4acc-bf7a-e4645c446fb4">Introduction to What-If Analysis</a><span class="r-meta">Microsoft Support · An overview of scenarios, Goal Seek and data tables.</span></li><li><a href="https://support.microsoft.com/en-us/excel/use-goal-seek-to-find-the-result-you-want-by-adjusting-an-input-value">Use Goal Seek to find the result you want by adjusting an input value</a><span class="r-meta">Microsoft Support · Step-by-step Goal Seek.</span></li><li><a href="https://support.microsoft.com/en-us/excel/calculate-multiple-results-by-using-a-data-table">Calculate multiple results by using a data table</a><span class="r-meta">Microsoft Support · One- and two-variable data tables.</span></li><li><a href="https://edu.gcfglobal.org/en/excel2016/whatif-analysis/full">Excel 2016: What-If Analysis</a><span class="r-meta">GCFGlobal (free) · A beginner tutorial with screenshots.</span></li></ul>
 <div class="complete-bar"><span>Finished reading and did the exercise?</span>
@@ -352,9 +495,9 @@ document.documentElement.classList.add('no-anim')})();</script>
 <p class="reviewed">Last reviewed: 2026-10-09</p>
 
   </div></main>
-  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#step-1-build-a-small-model">Step 1: build a small model</a><a href="#example-1-a-two-variable-data-table">Example 1: a two-variable Data Table</a><a href="#example-2-scenario-manager-named-plans">Example 2: Scenario Manager (named plans)</a><a href="#example-3-goal-seek-work-backwards">Example 3: Goal Seek (work backwards)</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#free-resources">Free resources</a></aside>
+  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#step-1-build-a-small-model">Step 1: build a small model</a><a href="#example-1-a-two-variable-data-table">Example 1: a two-variable Data Table</a><a href="#example-2-scenario-manager-named-plans">Example 2: Scenario Manager (named plans)</a><a href="#example-3-goal-seek-work-backwards">Example 3: Goal Seek (work backwards)</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#ai-mentor-prompt">AI Mentor Prompt</a><a href="#free-resources">Free resources</a></aside>
 </div>
-<footer class="site">Data, AI &amp; Automation Path v0.8 · Applied AI, Data &amp; Automation Lab · Updated October 2026<br>
+<footer class="site"><b>Saiful The Techie</b> · Data, AI &amp; Automation Path v0.9.1 · Updated October 2026<br>
 Lesson text: <a href="../../../license.html">CC BY-NC-SA 4.0</a> · Code: <a href="../../../license.html#code-mit-license">MIT</a> · Free external resources belong to their respective owners.</footer>
 <script src="../../../search-index.js"></script>
 <script src="../../../assets/app.js"></script>

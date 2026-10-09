@@ -6,7 +6,7 @@
 <title>Power BI Drill-through &amp; Bookmarks: Guided Detail and Saved Views — Data, AI &amp; Automation Path</title>
 <meta name="description" content="Let users right-click a customer to open a detail page, and give them one-click saved views with bookmarks and buttons.">
 <meta property="og:type" content="article">
-<meta property="og:site_name" content="Data, AI &amp; Automation Path">
+<meta property="og:site_name" content="Saiful The Techie">
 <meta property="og:title" content="Power BI Drill-through &amp; Bookmarks: Guided Detail and Saved Views">
 <meta property="og:description" content="Let users right-click a customer to open a detail page, and give them one-click saved views with bookmarks and buttons.">
 <meta property="og:locale" content="en_US">
@@ -19,13 +19,13 @@ var n=null;try{n=localStorage.getItem('daa-nav')}catch(e){}
 if(n==='open'&&window.matchMedia&&matchMedia('(min-width: 961px)').matches)document.documentElement.setAttribute('data-nav','open');
 document.documentElement.classList.add('no-anim')})();</script>
 <link rel="stylesheet" href="../../../assets/style.css">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233f7d6a'/%3E%3Ctext x='16' y='21' font-family='sans-serif' font-size='13' font-weight='700' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
+
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="topbar">
   <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Open curriculum menu" title="Curriculum menu (press M)" aria-controls="sidebar" aria-expanded="false"><span class="ico-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span class="ico-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></button>
-  <a class="brand" href="../../../index.html"><span class="brand-badge">AI</span><span class="brand-text"><span class="brand-name">Data, AI &amp; Automation Path</span><span class="brand-version">v0.8</span></span></a>
+  <a class="brand" href="../../../index.html"><span class="brand-text"><span class="brand-name">Saiful The Techie</span><span class="brand-version">Data, AI &amp; Automation Path · v0.9.1</span></span></a>
   <nav class="top-links" aria-label="Main">
     <a href="../../../index.html" class="">Home</a><a href="../../../curriculum.html" class="">Curriculum</a><a href="../../../practice-files.html" class="">Practice files</a><a href="../../../glossary.html" class="">Glossary</a><a href="../../../how-to-learn.html" class="">How to learn</a><a href="../../../about.html" class="">About</a>
   </nav>
@@ -41,7 +41,7 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="layout wide">
   <nav class="sidebar" id="sidebar" aria-label="Curriculum">
     <div class="side-title">Curriculum</div>
-    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="77"><i></i></div><span class="bar-label" data-progress-label></span></div>
+    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="85"><i></i></div><span class="bar-label" data-progress-label></span></div>
 <div class="nav-phase"><a href="../../../learn/phase-0/index.html"><span class="nav-num">0</span>Foundations</a>
 </div>
 <div class="nav-phase current open"><a href="../../../learn/phase-1/index.html"><span class="nav-num">1</span>Analytics &amp; BI</a>
@@ -99,25 +99,47 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="files-box"><div class="files-head"><b>Practice files for this page</b><a href="../../../practice-files.html">All practice files →</a></div><ul><li><a href="../../../downloads/sales_model.xlsx" download>sales_model.xlsx</a><span class="f-desc">Five Excel Tables (Orders, Customers, Products, Regions, Targets) for the data model · 12 KB</span></li></ul></div>
 <h2 id="what-is-it">What is it?</h2>
 <ul>
-<li><strong>Drill-through:</strong> from a summary visual, a user right-clicks an item (e.g. a customer) and jumps to a <strong>detail page filtered to that item</strong>. A <strong>Back</strong> button returns them to where they were.</li>
-<li><strong>Bookmarks:</strong> saved <strong>views</strong> of a report page: filters, slicer selections, visible visuals and the current page. Attached to buttons, they give users one-click views like <em>"All orders"</em> and <em>"Open orders only"</em>.</li>
+<li><strong>Drill-through:</strong> from a summary visual, a user
+right-clicks an item (e.g. a customer) and jumps to a <strong>detail
+page filtered to that item</strong>. A <strong>Back</strong> button
+returns them to where they were.</li>
+<li><strong>Bookmarks:</strong> saved <strong>views</strong> of a report
+page: filters, slicer selections, visible visuals and the current page.
+Attached to buttons, they give users one-click views like <em>“All
+orders”</em> and <em>“Open orders only”</em>.</li>
 </ul>
-<div class="admonition job">
-<p class="admonition-title">Why it matters at work</p>
-<p>Overview pages should stay simple, but managers always ask <em>"What's behind that number?"</em>. Drill-through answers that without cluttering the overview. Bookmarks turn a report into a guided story for monthly reviews. Both are standard PL-300 topics and a sign of a polished report.</p>
+<div class="admonition job" data-markdown="1">
+<p class="admonition-title">
+Why it matters at work
+</p>
+<p>Overview pages should stay simple, but managers always ask
+<em>“What’s behind that number?”</em>. Drill-through answers that
+without cluttering the overview. Bookmarks turn a report into a guided
+story for monthly reviews. Both are standard PL-300 topics and a sign of
+a polished report.</p>
 </div>
-<h2 id="example-1-a-customer-drill-through-page">Example 1: a customer drill-through page</h2>
+<h2 id="example-1-a-customer-drill-through-page">Example 1: a customer
+drill-through page</h2>
 <p><strong>Build the target page:</strong></p>
-<ol>
-<li>Add a new page (the <strong>+</strong> at the bottom) and rename it <strong>Customer details</strong>.</li>
-<li>In the <strong>Visualizations</strong> pane, find <strong>Drill through</strong>, and drag <code>Customers[customer_name]</code> into <strong>Add drill-through fields here</strong>.</li>
+<ol type="1">
+<li>Add a new page (the <strong>+</strong> at the bottom) and rename it
+<strong>Customer details</strong>.</li>
+<li>In the <strong>Visualizations</strong> pane, find <strong>Drill
+through</strong>, and drag <code>Customers[customer_name]</code> into
+<strong>Add drill-through fields here</strong>.</li>
 <li>Power BI <strong>adds a Back button automatically</strong>.</li>
-<li>Add a <strong>table</strong> visual: <code>Orders[order_id]</code>, <code>Date[Date]</code>, <code>Products[product]</code>, <code>Orders[status]</code> and <code>Revenue</code>. Add a <strong>card</strong> with <code>Revenue</code>.</li>
+<li>Add a <strong>table</strong> visual: <code>Orders[order_id]</code>,
+<code>Date[Date]</code>, <code>Products[product]</code>,
+<code>Orders[status]</code> and <code>Revenue</code>. Add a
+<strong>card</strong> with <code>Revenue</code>.</li>
 </ol>
-<p><strong>Use it:</strong> on the overview page, add a table with <code>Customers[customer_name]</code> and <code>Net Revenue</code>. Right-click <strong>Karim Garments</strong> → <strong>Drill through → Customer details</strong>:</p>
+<p><strong>Use it:</strong> on the overview page, add a table with
+<code>Customers[customer_name]</code> and <code>Net Revenue</code>.
+Right-click <strong>Karim Garments</strong> → <strong>Drill through →
+Customer details</strong>:</p>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>order_id</th>
 <th>Date</th>
 <th>product</th>
@@ -126,28 +148,28 @@ document.documentElement.classList.add('no-anim')})();</script>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>2</td>
 <td>2026-01-08</td>
 <td>Metal Buttons</td>
 <td>Delivered</td>
 <td>200</td>
 </tr>
-<tr>
+<tr class="even">
 <td>6</td>
 <td>2026-02-02</td>
 <td>Cotton Twill</td>
 <td>Delivered</td>
 <td>680</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>12</td>
 <td>2026-03-09</td>
 <td>Denim 12oz</td>
 <td>Shipped</td>
 <td>1,275</td>
 </tr>
-<tr>
+<tr class="even">
 <td><strong>Total</strong></td>
 <td></td>
 <td></td>
@@ -156,86 +178,123 @@ document.documentElement.classList.add('no-anim')})();</script>
 </tr>
 </tbody>
 </table>
-<p>The page shows only Karim Garments. Click <strong>Back</strong> to return.</p>
-<div class="admonition tip">
-<p class="admonition-title">If Drill through doesn't appear when you right-click</p>
-<p>The visual you right-click must contain the <strong>same field</strong> as the drill-through well, here <code>Customers[customer_name]</code>. A visual built on <code>Orders[customer]</code> won't offer it. That's one more reason to use dimension columns.</p>
+<p>The page shows only Karim Garments. Click <strong>Back</strong> to
+return.</p>
+<div class="admonition tip" data-markdown="1">
+<p class="admonition-title">
+If Drill through doesn't appear when you right-click
+</p>
+<p>The visual you right-click must contain the <strong>same
+field</strong> as the drill-through well, here
+<code>Customers[customer_name]</code>. A visual built on
+<code>Orders[customer]</code> won’t offer it. That’s one more reason to
+use dimension columns.</p>
 </div>
-<h2 id="example-2-bookmarks-for-saved-views">Example 2: bookmarks for saved views</h2>
-<p><em>Goal: two buttons on the overview page, "All orders" and "Open orders only".</em></p>
-<ol>
-<li>Add a <strong>status</strong> slicer (<code>Orders[status]</code>).</li>
+<h2 id="example-2-bookmarks-for-saved-views">Example 2: bookmarks for
+saved views</h2>
+<p><em>Goal: two buttons on the overview page, “All orders” and “Open
+orders only”.</em></p>
+<ol type="1">
+<li>Add a <strong>status</strong> slicer
+(<code>Orders[status]</code>).</li>
 <li>Open the pane: <strong>View → Bookmarks</strong>.</li>
-<li>Clear the status slicer → in the Bookmarks pane click <strong>Add</strong> → rename it <strong>All orders</strong> (… → Rename).</li>
-<li>Select <strong>Shipped</strong> and <strong>Pending</strong> in the slicer → <strong>Add</strong> → rename it <strong>Open orders only</strong>.</li>
-<li>Click each bookmark to test it. With <em>Open orders only</em>, a region table shows <strong>Chattogram 1,275 · Dhaka 320 · Narayanganj 810</strong> (total <strong>2,405</strong>).</li>
+<li>Clear the status slicer → in the Bookmarks pane click
+<strong>Add</strong> → rename it <strong>All orders</strong> (… →
+Rename).</li>
+<li>Select <strong>Shipped</strong> and <strong>Pending</strong> in the
+slicer → <strong>Add</strong> → rename it <strong>Open orders
+only</strong>.</li>
+<li>Click each bookmark to test it. With <em>Open orders only</em>, a
+region table shows <strong>Chattogram 1,275 · Dhaka 320 · Narayanganj
+810</strong> (total <strong>2,405</strong>).</li>
 </ol>
-<p><strong>Add buttons:</strong> <strong>Insert → Buttons → Blank</strong>. In the Format pane, set <strong>Action → On</strong>, <strong>Type → Bookmark</strong>, <strong>Bookmark → All orders</strong>. Do the same for <em>Open orders only</em>. In Desktop, <strong>Ctrl + click</strong> a button to test it. In the published report, a normal click works.</p>
-<p>Shortcut: <strong>Insert → Buttons → Navigator → Bookmark navigator</strong> creates one button per bookmark automatically.</p>
-<h3 id="what-a-bookmark-saves-and-how-to-control-it">What a bookmark saves (and how to control it)</h3>
+<p><strong>Add buttons:</strong> <strong>Insert → Buttons →
+Blank</strong>. In the Format pane, set <strong>Action → On</strong>,
+<strong>Type → Bookmark</strong>, <strong>Bookmark → All
+orders</strong>. Do the same for <em>Open orders only</em>. In Desktop,
+<strong>Ctrl + click</strong> a button to test it. In the published
+report, a normal click works.</p>
+<p>Shortcut: <strong>Insert → Buttons → Navigator → Bookmark
+navigator</strong> creates one button per bookmark automatically.</p>
+<h3 id="what-a-bookmark-saves-and-how-to-control-it">What a bookmark
+saves (and how to control it)</h3>
 <table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Option (… menu on the bookmark)</th>
 <th>Restores</th>
 <th>Turn it off when…</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td><strong>Data</strong></td>
 <td>filters and slicer selections</td>
-<td>the bookmark should only change what's shown, not reset filters</td>
+<td>the bookmark should only change what’s shown, not reset filters</td>
 </tr>
-<tr>
+<tr class="even">
 <td><strong>Display</strong></td>
 <td>which visuals are visible (Selection pane), spotlight</td>
 <td>you only want to change filters</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><strong>Current page</strong></td>
 <td>jumps to the page where it was saved</td>
 <td>the bookmark should work on whichever page the user is on</td>
 </tr>
-<tr>
+<tr class="even">
 <td><strong>All visuals / Selected visuals</strong></td>
 <td>applies to all, or only chosen, visuals</td>
 <td>different bookmarks control different parts of the page</td>
 </tr>
 </tbody>
 </table>
-<p>The <strong>Selection pane</strong> (<strong>View → Selection</strong>) shows or hides visuals. Combined with Display bookmarks, it can switch between a chart and a table in the same spot.</p>
+<p>The <strong>Selection pane</strong> (<strong>View →
+Selection</strong>) shows or hides visuals. Combined with Display
+bookmarks, it can switch between a chart and a table in the same
+spot.</p>
 <h2 id="common-mistakes">Common mistakes</h2>
 <table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Mistake</th>
 <th>What happens</th>
 <th>Fix</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td>Source visual uses a different field than the drill-through well</td>
+<tr class="odd">
+<td>Source visual uses a different field than the drill-through
+well</td>
 <td>No <em>Drill through</em> option</td>
 <td>Use the same dimension field in both</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Deleting the automatic Back button</td>
 <td>Users get stuck on the detail page</td>
 <td>Keep it, or add a page-navigation button</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Bookmarks made, then visuals changed</td>
 <td>The bookmark restores an old state</td>
 <td>Select the bookmark → … → <strong>Update</strong></td>
 </tr>
-<tr>
+<tr class="even">
 <td>Leaving <strong>Data</strong> on for display-only bookmarks</td>
-<td>Clicking resets the user's filters</td>
+<td>Clicking resets the user’s filters</td>
 <td>Turn off <strong>Data</strong> for that bookmark</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Testing buttons in Desktop with a normal click</td>
 <td>Nothing happens</td>
 <td><strong>Ctrl + click</strong> in Desktop</td>
@@ -243,65 +302,149 @@ document.documentElement.classList.add('no-anim')})();</script>
 </tbody>
 </table>
 <h2 id="try-it-yourself">Try it yourself</h2>
-<p><strong>Task:</strong> Create a <strong>Region details</strong> drill-through page (drill-through field <code>Regions[region]</code>) with a card for <code>Net Revenue</code> and <code>Achievement %</code>. Drill into <strong>Narayanganj</strong>. What do the cards show?</p>
+<p><strong>Task:</strong> Create a <strong>Region details</strong>
+drill-through page (drill-through field <code>Regions[region]</code>)
+with a card for <code>Net Revenue</code> and <code>Achievement %</code>.
+Drill into <strong>Narayanganj</strong>. What do the cards show?</p>
 <details>
-<summary>Show a hint</summary>
-<p>Put <code>Regions[region]</code> into the drill-through well. Then right-click Narayanganj in the overview matrix, which uses <code>Regions[region]</code> on rows.</p>
+<summary>
+Show a hint
+</summary>
+Put <code>Regions[region]</code> into the drill-through well. Then
+right-click Narayanganj in the overview matrix, which uses
+<code>Regions[region]</code> on rows.
 </details>
 <details>
-<summary>Show the solution</summary>
-<p>Net Revenue <strong>1,230</strong> and Achievement % <strong>82.0%</strong> (target 1,500). Adding a table of that region's orders (9: Pending 810, and 11: Delivered 420) shows <em>why</em>: one order is still pending.</p>
+<summary>
+Show the solution
+</summary>
+Net Revenue <strong>1,230</strong> and Achievement %
+<strong>82.0%</strong> (target 1,500). Adding a table of that region’s
+orders (9: Pending 810, and 11: Delivered 420) shows <em>why</em>: one
+order is still pending.
 </details>
 <h2 id="quick-quiz">Quick quiz</h2>
 <div class="quiz-q" data-answer="1">
 <p>1. Where do you put the field that defines a drill-through page?</p>
-<ol>
+<ol type="1">
 <li>The Filters on all pages well</li>
 <li>The Drill through well on the target page</li>
 <li>A slicer on the source page</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B.</strong> Add it to <strong>Drill through</strong> on the detail page. The Back button is created automatically.</p>
+<summary>
+Show answer
+</summary>
+<strong>B.</strong> Add it to <strong>Drill through</strong> on the
+detail page. The Back button is created automatically.
 </details>
 </div>
 <div class="quiz-q" data-answer="1">
-<p>2. You want a bookmark that only switches a chart to a table, without resetting the user's slicers. Which option do you turn off?</p>
-<ol>
+<p>2. You want a bookmark that only switches a chart to a table, without
+resetting the user’s slicers. Which option do you turn off?</p>
+<ol type="1">
 <li>Display</li>
 <li>Data</li>
 <li>Current page</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B — Data.</strong> Keep Display on so the visibility changes.</p>
+<summary>
+Show answer
+</summary>
+<strong>B — Data.</strong> Keep Display on so the visibility changes.
 </details>
 </div>
 <div class="quiz-q" data-answer="1">
 <p>3. How do you test a bookmark button in Power BI Desktop?</p>
-<ol>
+<ol type="1">
 <li>Double-click</li>
 <li>Ctrl + click</li>
 <li>Right-click → Run</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B — Ctrl + click</strong> while editing. Readers of the published report just click.</p>
+<summary>
+Show answer
+</summary>
+<strong>B — Ctrl + click</strong> while editing. Readers of the
+published report just click.
 </details>
 </div>
 <h2 id="summary">Summary</h2>
 <ul>
-<li><strong>Drill-through:</strong> a detail page with a field in the <em>Drill through</em> well, an automatic Back button, and right-click on a source visual with the same field.</li>
-<li><strong>Bookmarks:</strong> saved states (Data, Display, Current page) added in the Bookmarks pane, triggered by buttons or a bookmark navigator.</li>
-<li>Use the <strong>Selection pane</strong> to show and hide visuals for bookmark views.</li>
-<li>Update bookmarks after changing visuals, and choose Data/Display options deliberately.</li>
+<li><strong>Drill-through:</strong> a detail page with a field in the
+<em>Drill through</em> well, an automatic Back button, and right-click
+on a source visual with the same field.</li>
+<li><strong>Bookmarks:</strong> saved states (Data, Display, Current
+page) added in the Bookmarks pane, triggered by buttons or a bookmark
+navigator.</li>
+<li>Use the <strong>Selection pane</strong> to show and hide visuals for
+bookmark views.</li>
+<li>Update bookmarks after changing visuals, and choose Data/Display
+options deliberately.</li>
 </ul>
-<div class="admonition job">
-<p class="admonition-title">Job-ready check</p>
-<p><strong>Interview question:</strong> <em>"A manager wants to see the orders behind a customer's total without leaving the dashboard. How?"</em></p>
-<p><strong>Strong answer:</strong> "A customer drill-through page: the customer dimension field in the drill-through well, a table of that customer's orders and a few KPI cards. From any visual showing customers, they right-click and drill through, then use Back to return. For common views, like open orders only, I'd add bookmark buttons."</p>
-<p><strong>Mini project:</strong> Add <strong>Customer details</strong> and <strong>Region details</strong> drill-through pages, and two bookmark buttons on the overview page. Record a short screen video or GIF of using them for your portfolio.</p>
+<div class="admonition job" data-markdown="1">
+<p class="admonition-title">
+Job-ready check
+</p>
+<p><strong>Interview question:</strong> <em>“A manager wants to see the
+orders behind a customer’s total without leaving the dashboard.
+How?”</em></p>
+<p><strong>Strong answer:</strong> “A customer drill-through page: the
+customer dimension field in the drill-through well, a table of that
+customer’s orders and a few KPI cards. From any visual showing
+customers, they right-click and drill through, then use Back to return.
+For common views, like open orders only, I’d add bookmark buttons.”</p>
+<p><strong>Mini project:</strong> Add <strong>Customer details</strong>
+and <strong>Region details</strong> drill-through pages, and two
+bookmark buttons on the overview page. Record a short screen video or
+GIF of using them for your portfolio.</p>
 </div>
+<section class="mentor-prompt"><div class="mentor-head"><div><span class="eyebrow">AI study companion</span><h2 id="ai-mentor-prompt">AI Mentor Prompt</h2></div><button class="btn copy-prompt" type="button" data-copy-target="mentor-prompt-phase-1-power-bi-02-drillthrough-bookmarks">Copy prompt</button></div><p>Paste this into ChatGPT, Claude, Gemini, or another capable assistant to turn this tutorial into an interactive mentoring session.</p><pre class="prompt-box"><code id="mentor-prompt-phase-1-power-bi-02-drillthrough-bookmarks">You are my hands-on data-analytics and business-intelligence mentor.
+
+I am currently studying:
+&quot;Power BI Drill-through &amp; Bookmarks: Guided Detail and Saved Views&quot;
+
+My level:
+Intermediate
+
+Teach me this topic interactively rather than giving me a long lecture.
+
+Use this sequence:
+
+1. Check what I already understand with one short diagnostic question.
+2. Explain the concept in simple language and give me the mental model first.
+3. Give me one small task using code, SQL, configuration, data, or architecture as appropriate.
+4. Wait for my attempt before showing a complete solution.
+5. Review my work and explain both what is correct and what needs improvement.
+6. Help me debug errors step by step instead of immediately replacing my work.
+7. Increase the difficulty gradually and connect each new step to the previous one.
+8. Relate what I am learning to real professional data/AI engineering work.
+9. Ask me to explain an important decision in my own words so you can check my understanding.
+10. At the end, ask me to build or modify one small feature independently.
+
+Important rules:
+- Do not do the entire exercise for me unless I explicitly ask.
+- Explain unfamiliar terminology before using it heavily.
+- Prefer current, production-relevant practices over outdated shortcuts.
+- Distinguish clearly between concepts, tool-specific behaviour, and optional alternatives.
+- If a technical fact, API, syntax, version, or best practice may have changed, verify it against current official documentation before teaching it.
+- Never invent command output, test results, benchmark numbers, cloud behaviour, or data results.
+- If something cannot be executed in the current environment, say so and give me the exact command or verification step I should run.
+- Keep me actively coding, querying, configuring, reasoning, or debugging throughout the session.
+- When useful, work from the tutorial practice files (sales_model.xlsx) instead of inventing unrelated examples.
+
+The concepts I need to master are:
+- Drill-through
+- Bookmarks
+- drillthrough
+- drill through filters
+- back button
+- detail page
+- bookmark
+- bookmarks pane
+
+Start by asking me one diagnostic question.</code></pre></section>
+
 <div class="terms-box"><div class="files-head"><b>Key terms in this lesson</b><a href="../../../glossary.html">Glossary →</a></div><div class="term-chips"><a class="term-chip" href="../../../glossary.html#bookmark" title="A saved view of a Power BI report page (filters, visible visuals) that a button can switch to.">Bookmark</a><a class="term-chip" href="../../../glossary.html#data-storytelling" title="Turning findings into a short sequence (context, finding, evidence, so what, recommendation) with charts designed around one message each.">Data storytelling</a><a class="term-chip" href="../../../glossary.html#drill-through" title="A Power BI feature that opens a detail page filtered to the item you right-clicked, such as one customer.">Drill-through</a></div></div>
 <h2 id="free-resources">Free resources to go deeper</h2><ul class="resources"><li><a href="https://learn.microsoft.com/en-us/power-bi/create-reports/desktop-drillthrough">Drillthrough in Power BI reports</a><span class="r-meta">Microsoft Learn · Setting up drill-through pages step by step.</span></li><li><a href="https://learn.microsoft.com/en-us/power-bi/create-reports/desktop-bookmarks">Create report bookmarks in Power BI</a><span class="r-meta">Microsoft Learn · Bookmark options, the Selection pane and buttons.</span></li><li><a href="https://learn.microsoft.com/en-us/power-bi/guidance/report-drillthrough">Use report page drillthrough (guidance)</a><span class="r-meta">Microsoft Learn · When drill-through is the right design choice.</span></li></ul>
 <div class="complete-bar"><span>Finished reading and did the exercise?</span>
@@ -310,9 +453,9 @@ document.documentElement.classList.add('no-anim')})();</script>
 <p class="reviewed">Last reviewed: 2026-10-09</p>
 
   </div></main>
-  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#example-1-a-customer-drill-through-page">Example 1: a customer drill-through page</a><a href="#example-2-bookmarks-for-saved-views">Example 2: bookmarks for saved views</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#free-resources">Free resources</a></aside>
+  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#example-1-a-customer-drill-through-page">Example 1: a customer drill-through page</a><a href="#example-2-bookmarks-for-saved-views">Example 2: bookmarks for saved views</a><a href="#what-a-bookmark-saves-and-how-to-control-it">What a bookmark saves (and how to control it)</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#ai-mentor-prompt">AI Mentor Prompt</a><a href="#free-resources">Free resources</a></aside>
 </div>
-<footer class="site">Data, AI &amp; Automation Path v0.8 · Applied AI, Data &amp; Automation Lab · Updated October 2026<br>
+<footer class="site"><b>Saiful The Techie</b> · Data, AI &amp; Automation Path v0.9.1 · Updated October 2026<br>
 Lesson text: <a href="../../../license.html">CC BY-NC-SA 4.0</a> · Code: <a href="../../../license.html#code-mit-license">MIT</a> · Free external resources belong to their respective owners.</footer>
 <script src="../../../search-index.js"></script>
 <script src="../../../assets/app.js"></script>

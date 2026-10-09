@@ -6,7 +6,7 @@
 <title>Matplotlib &amp; Seaborn: Charts You Control — Data, AI &amp; Automation Path</title>
 <meta name="description" content="Build clear analytical charts in Python: matplotlib&#x27;s Figure/Axes model, annotations and small multiples, and seaborn&#x27;s one-line statistical charts — bar charts with confidence intervals, box plots and heatmaps.">
 <meta property="og:type" content="article">
-<meta property="og:site_name" content="Data, AI &amp; Automation Path">
+<meta property="og:site_name" content="Saiful The Techie">
 <meta property="og:title" content="Matplotlib &amp; Seaborn: Charts You Control">
 <meta property="og:description" content="Build clear analytical charts in Python: matplotlib&#x27;s Figure/Axes model, annotations and small multiples, and seaborn&#x27;s one-line statistical charts — bar charts with confidence intervals, box plots and heatmaps.">
 <meta property="og:locale" content="en_US">
@@ -19,13 +19,13 @@ var n=null;try{n=localStorage.getItem('daa-nav')}catch(e){}
 if(n==='open'&&window.matchMedia&&matchMedia('(min-width: 961px)').matches)document.documentElement.setAttribute('data-nav','open');
 document.documentElement.classList.add('no-anim')})();</script>
 <link rel="stylesheet" href="../../../assets/style.css">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233f7d6a'/%3E%3Ctext x='16' y='21' font-family='sans-serif' font-size='13' font-weight='700' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
+
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="topbar">
   <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Open curriculum menu" title="Curriculum menu (press M)" aria-controls="sidebar" aria-expanded="false"><span class="ico-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span class="ico-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></button>
-  <a class="brand" href="../../../index.html"><span class="brand-badge">AI</span><span class="brand-text"><span class="brand-name">Data, AI &amp; Automation Path</span><span class="brand-version">v0.8</span></span></a>
+  <a class="brand" href="../../../index.html"><span class="brand-text"><span class="brand-name">Saiful The Techie</span><span class="brand-version">Data, AI &amp; Automation Path · v0.9.1</span></span></a>
   <nav class="top-links" aria-label="Main">
     <a href="../../../index.html" class="">Home</a><a href="../../../curriculum.html" class="">Curriculum</a><a href="../../../practice-files.html" class="">Practice files</a><a href="../../../glossary.html" class="">Glossary</a><a href="../../../how-to-learn.html" class="">How to learn</a><a href="../../../about.html" class="">About</a>
   </nav>
@@ -41,7 +41,7 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="layout wide">
   <nav class="sidebar" id="sidebar" aria-label="Curriculum">
     <div class="side-title">Curriculum</div>
-    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="77"><i></i></div><span class="bar-label" data-progress-label></span></div>
+    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="85"><i></i></div><span class="bar-label" data-progress-label></span></div>
 <div class="nav-phase"><a href="../../../learn/phase-0/index.html"><span class="nav-num">0</span>Foundations</a>
 </div>
 <div class="nav-phase"><a href="../../../learn/phase-1/index.html"><span class="nav-num">1</span>Analytics &amp; BI</a>
@@ -97,139 +97,202 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="files-box"><div class="files-head"><b>Practice files for this page</b><a href="../../../practice-files.html">All practice files →</a></div><ul><li><a href="../../../downloads/phase-2/data-science-scripts.zip" download>data-science-scripts.zip</a><span class="f-desc">All 21 Phase 2 lesson scripts (NumPy to research thinking), shared chart style, data folder and solutions · 230 KB</span></li><li><a href="../../../downloads/phase-2/orders_2025.csv" download>orders_2025.csv</a><span class="f-desc">4,246 clean orders for 2025 (synthetic, fixed seed): region, segment, channel, product, price, discount, status, delivery days, revenue · 472 KB</span></li></ul></div>
 <h2 id="what-is-it">What is it?</h2>
 <table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Library</th>
 <th>Strength</th>
 <th>Use it for</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td><strong>matplotlib</strong></td>
 <td>Total control of every element</td>
 <td>Report charts, custom layouts, annotations</td>
 </tr>
-<tr>
+<tr class="even">
 <td><strong>seaborn</strong></td>
-<td>Statistical charts from a DataFrame in one call, built on matplotlib</td>
+<td>Statistical charts from a DataFrame in one call, built on
+matplotlib</td>
 <td>Comparisons with CIs, distributions, heatmaps</td>
 </tr>
 </tbody>
 </table>
-<div class="admonition job">
-<p class="admonition-title">Why it matters at work</p>
-<p>Notebooks, reports and model evaluations are full of Python charts. A clear chart with an action title gets read; a default chart with a legend of five rainbow colours gets skipped. Python charting is also how you show EDA and model results in interviews and portfolios.</p>
+<div class="admonition job" data-markdown="1">
+<p class="admonition-title">
+Why it matters at work
+</p>
+<p>Notebooks, reports and model evaluations are full of Python charts. A
+clear chart with an action title gets read; a default chart with a
+legend of five rainbow colours gets skipped. Python charting is also how
+you show EDA and model results in interviews and portfolios.</p>
 </div>
-<p>The script is <code>15_viz_matplotlib_seaborn.py</code>. Every chart uses <code>apply_style()</code> and <code>save()</code> from <code>chart_style.py</code>.</p>
-<h2 id="part-1-the-matplotlib-model-figure-and-axes">Part 1: the matplotlib model — Figure and Axes</h2>
+<p>The script is <code>15_viz_matplotlib_seaborn.py</code>. Every chart
+uses <code>apply_style()</code> and <code>save()</code> from
+<code>chart_style.py</code>.</p>
+<h2 id="part-1-the-matplotlib-model-figure-and-axes">Part 1: the
+matplotlib model — Figure and Axes</h2>
 <ul>
-<li>A <strong>Figure</strong> is the whole image. An <strong>Axes</strong> is one chart inside it (with its x-axis and y-axis).</li>
-<li><code>fig, ax = plt.subplots()</code> creates both. Then you call methods <strong>on the Axes</strong>: <code>ax.plot</code>, <code>ax.bar</code>, <code>ax.set_title</code>…</li>
+<li>A <strong>Figure</strong> is the whole image. An
+<strong>Axes</strong> is one chart inside it (with its x-axis and
+y-axis).</li>
+<li><code>fig, ax = plt.subplots()</code> creates both. Then you call
+methods <strong>on the Axes</strong>: <code>ax.plot</code>,
+<code>ax.bar</code>, <code>ax.set_title</code>…</li>
 </ul>
-<div class="codehilite"><pre><span></span><code><span class="n">monthly</span> <span class="o">=</span> <span class="n">net</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"month"</span><span class="p">)[</span><span class="s2">"revenue"</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="mi">1000</span>
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mf">3.6</span><span class="p">))</span>                 <span class="c1"># Figure = the canvas, Axes = one chart</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">monthly</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">monthly</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">"o"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">PALETTE</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"Revenue climbs into the Sep–Nov export season"</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"Net revenue (thousands)"</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>                                     <span class="c1"># bars and totals start at zero</span>
-<span class="n">peak</span> <span class="o">=</span> <span class="n">monthly</span><span class="o">.</span><span class="n">idxmax</span><span class="p">()</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Peak: </span><span class="si">{</span><span class="n">monthly</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2">k in </span><span class="si">{</span><span class="n">peak</span><span class="si">:</span><span class="s2">%B</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="p">(</span><span class="n">peak</span><span class="p">,</span> <span class="n">monthly</span><span class="o">.</span><span class="n">max</span><span class="p">()),</span> <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">85</span><span class="p">),</span> <span class="n">ha</span><span class="o">=</span><span class="s2">"center"</span><span class="p">,</span>
-            <span class="n">textcoords</span><span class="o">=</span><span class="s2">"offset points"</span><span class="p">,</span> <span class="n">arrowprops</span><span class="o">=</span><span class="p">{</span><span class="s2">"arrowstyle"</span><span class="p">:</span> <span class="s2">"-&gt;"</span><span class="p">,</span> <span class="s2">"color"</span><span class="p">:</span> <span class="n">INK_2</span><span class="p">},</span> <span class="n">color</span><span class="o">=</span><span class="n">INK_2</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">dates</span><span class="o">.</span><span class="n">DateFormatter</span><span class="p">(</span><span class="s2">"%b"</span><span class="p">))</span>
-<span class="n">save</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="s2">"viz_monthly_line.png"</span><span class="p">)</span>
-</code></pre></div>
-
-<p><img alt="Line chart of monthly net revenue in 2025: about 330 thousand from January to April, rising from July to a peak of 638 thousand in October, then falling to 476 thousand in December. An arrow labels the October peak." src="../../../images/phase-2/viz_monthly_line.png" /></p>
+<pre class="python"><code>monthly = net.groupby(&quot;month&quot;)[&quot;revenue&quot;].sum() / 1000
+fig, ax = plt.subplots(figsize=(8, 3.6))                 # Figure = the canvas, Axes = one chart
+ax.plot(monthly.index, monthly.values, marker=&quot;o&quot;, color=PALETTE[0])
+ax.set_title(&quot;Revenue climbs into the Sep–Nov export season&quot;)
+ax.set_ylabel(&quot;Net revenue (thousands)&quot;)
+ax.set_ylim(0, None)                                     # bars and totals start at zero
+peak = monthly.idxmax()
+ax.annotate(f&quot;Peak: {monthly.max():.0f}k in {peak:%B}&quot;, (peak, monthly.max()), xytext=(0, -85), ha=&quot;center&quot;,
+            textcoords=&quot;offset points&quot;, arrowprops={&quot;arrowstyle&quot;: &quot;-&gt;&quot;, &quot;color&quot;: INK_2}, color=INK_2)
+ax.xaxis.set_major_formatter(plt.matplotlib.dates.DateFormatter(&quot;%b&quot;))
+save(fig, &quot;viz_monthly_line.png&quot;)</code></pre>
+<figure>
+<img src="../../../images/phase-2/viz_monthly_line.png"
+alt="Line chart of monthly net revenue in 2025: about 330 thousand from January to April, rising from July to a peak of 638 thousand in October, then falling to 476 thousand in December. An arrow labels the October peak." />
+<figcaption aria-hidden="true">Line chart of monthly net revenue in
+2025: about 330 thousand from January to April, rising from July to a
+peak of 638 thousand in October, then falling to 476 thousand in
+December. An arrow labels the October peak.</figcaption>
+</figure>
 <p>Four habits in eight lines:</p>
-<ol>
+<ol type="1">
 <li><strong>Action title</strong> that states the finding.</li>
-<li><strong>Units</strong> in the axis label ("thousands").</li>
-<li><strong>Y-axis from zero</strong> for totals, so differences aren't exaggerated.</li>
+<li><strong>Units</strong> in the axis label (“thousands”).</li>
+<li><strong>Y-axis from zero</strong> for totals, so differences aren’t
+exaggerated.</li>
 <li><strong>One annotation</strong> pointing at what matters.</li>
 </ol>
-<div class="admonition tip">
-<p class="admonition-title">Two styles</p>
-<p>You'll also see <code>plt.plot(...)</code>, <code>plt.title(...)</code> (the "pyplot" style). It's fine for quick looks, but <code>fig, ax</code> scales to several charts and is what the docs recommend for anything you keep.</p>
+<div class="admonition tip" data-markdown="1">
+<p class="admonition-title">
+Two styles
+</p>
+<p>You’ll also see <code>plt.plot(...)</code>,
+<code>plt.title(...)</code> (the “pyplot” style). It’s fine for quick
+looks, but <code>fig, ax</code> scales to several charts and is what the
+docs recommend for anything you keep.</p>
 </div>
 <h2 id="part-2-small-multiples">Part 2: small multiples</h2>
-<p>When five lines on one chart become spaghetti, give each series its own small chart with the <strong>same y-axis</strong>:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">regions</span> <span class="o">=</span> <span class="n">net</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"region"</span><span class="p">)[</span><span class="s2">"revenue"</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">index</span>
-<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">regions</span><span class="p">),</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mf">2.8</span><span class="p">),</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">ax</span><span class="p">,</span> <span class="n">region</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">axes</span><span class="p">,</span> <span class="n">regions</span><span class="p">):</span>
-    <span class="n">m</span> <span class="o">=</span> <span class="n">net</span><span class="p">[</span><span class="n">net</span><span class="p">[</span><span class="s2">"region"</span><span class="p">]</span> <span class="o">==</span> <span class="n">region</span><span class="p">]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"month"</span><span class="p">)[</span><span class="s2">"revenue"</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="mi">1000</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">m</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">PALETTE</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">region</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
-</code></pre></div>
+<p>When five lines on one chart become spaghetti, give each series its
+own small chart with the <strong>same y-axis</strong>:</p>
+<pre class="python"><code>regions = net.groupby(&quot;region&quot;)[&quot;revenue&quot;].sum().sort_values(ascending=False).index
+fig, axes = plt.subplots(1, len(regions), figsize=(12, 2.8), sharey=True)
+for ax, region in zip(axes, regions):
+    m = net[net[&quot;region&quot;] == region].groupby(&quot;month&quot;)[&quot;revenue&quot;].sum() / 1000
+    ax.bar(m.index, m.values, width=20, color=PALETTE[0])
+    ax.set_title(region, fontsize=11)</code></pre>
+<figure>
+<img src="../../../images/phase-2/viz_small_multiples.png"
+alt="Five small bar charts, one per region, on a shared y-axis: Chattogram and Dhaka reach 250 thousand a month in the autumn; Narayanganj, Gazipur and Khulna stay below 80 thousand." />
+<figcaption aria-hidden="true">Five small bar charts, one per region, on
+a shared y-axis: Chattogram and Dhaka reach 250 thousand a month in the
+autumn; Narayanganj, Gazipur and Khulna stay below 80
+thousand.</figcaption>
+</figure>
+<p><code>sharey=True</code> makes the panels comparable at a glance:
+Chattogram and Dhaka are the big regions, and every region has the same
+seasonal shape.</p>
+<h2 id="part-3-seaborn-statistics-built-in">Part 3: seaborn — statistics
+built in</h2>
+<p>Seaborn takes a DataFrame and column names, and does the grouping and
+statistics for you.</p>
+<pre class="python"><code>delivered[&quot;late&quot;] = delivered[&quot;delivery_days&quot;] &gt; delivered[&quot;promised_days&quot;]
+order_regions = delivered.groupby(&quot;region&quot;)[&quot;late&quot;].mean().sort_values().index
 
-<p><img alt="Five small bar charts, one per region, on a shared y-axis: Chattogram and Dhaka reach 250 thousand a month in the autumn; Narayanganj, Gazipur and Khulna stay below 80 thousand." src="../../../images/phase-2/viz_small_multiples.png" /></p>
-<p><code>sharey=True</code> makes the panels comparable at a glance: Chattogram and Dhaka are the big regions, and every region has the same seasonal shape.</p>
-<h2 id="part-3-seaborn-statistics-built-in">Part 3: seaborn — statistics built in</h2>
-<p>Seaborn takes a DataFrame and column names, and does the grouping and statistics for you.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">delivered</span><span class="p">[</span><span class="s2">"late"</span><span class="p">]</span> <span class="o">=</span> <span class="n">delivered</span><span class="p">[</span><span class="s2">"delivery_days"</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">delivered</span><span class="p">[</span><span class="s2">"promised_days"</span><span class="p">]</span>
-<span class="n">order_regions</span> <span class="o">=</span> <span class="n">delivered</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"region"</span><span class="p">)[</span><span class="s2">"late"</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">()</span><span class="o">.</span><span class="n">index</span>
-
-<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mf">3.8</span><span class="p">))</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">delivered</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">"late"</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">"region"</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">order_regions</span><span class="p">,</span> <span class="n">errorbar</span><span class="o">=</span><span class="p">(</span><span class="s2">"ci"</span><span class="p">,</span> <span class="mi">95</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="n">PALETTE</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
-            <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>                                          <span class="c1"># mean of True/False = late rate, with 95% CI</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">delivered</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">"delivery_days"</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">"region"</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">order_regions</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">PALETTE</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
-            <span class="n">fliersize</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-</code></pre></div>
-
-<p><img alt="Left: horizontal bars of late-delivery share by region with 95% confidence interval lines; Dhaka about 0.17, the others 0.26 to 0.28 with overlapping intervals. Right: box plots of delivery days; Khulna has the highest median (5) and widest spread to 17 days." src="../../../images/phase-2/viz_seaborn_late.png" /></p>
+fig, axes = plt.subplots(1, 2, figsize=(12, 3.8))
+sns.barplot(data=delivered, x=&quot;late&quot;, y=&quot;region&quot;, order=order_regions, errorbar=(&quot;ci&quot;, 95), color=PALETTE[0],
+            ax=axes[0])                                          # mean of True/False = late rate, with 95% CI
+sns.boxplot(data=delivered, x=&quot;delivery_days&quot;, y=&quot;region&quot;, order=order_regions, color=PALETTE[0],
+            fliersize=2, ax=axes[1])</code></pre>
+<figure>
+<img src="../../../images/phase-2/viz_seaborn_late.png"
+alt="Left: horizontal bars of late-delivery share by region with 95% confidence interval lines; Dhaka about 0.17, the others 0.26 to 0.28 with overlapping intervals. Right: box plots of delivery days; Khulna has the highest median (5) and widest spread to 17 days." />
+<figcaption aria-hidden="true">Left: horizontal bars of late-delivery
+share by region with 95% confidence interval lines; Dhaka about 0.17,
+the others 0.26 to 0.28 with overlapping intervals. Right: box plots of
+delivery days; Khulna has the highest median (5) and widest spread to 17
+days.</figcaption>
+</figure>
 <ul>
-<li><code>sns.barplot</code> computes the <strong>mean per group</strong> (the mean of True/False is a rate) and draws a <strong>95% confidence interval</strong> (bootstrapped), the same picture as the Statistics lesson, in one call.</li>
-<li><code>sns.boxplot</code> shows the whole distribution per group.</li>
-<li>Passing <code>ax=</code> puts seaborn charts into your own matplotlib layout, so you can mix both libraries.</li>
+<li><code>sns.barplot</code> computes the <strong>mean per
+group</strong> (the mean of True/False is a rate) and draws a
+<strong>95% confidence interval</strong> (bootstrapped), the same
+picture as the Statistics lesson, in one call.</li>
+<li><code>sns.boxplot</code> shows the whole distribution per
+group.</li>
+<li>Passing <code>ax=</code> puts seaborn charts into your own
+matplotlib layout, so you can mix both libraries.</li>
 </ul>
-<h3 id="heatmap-two-categories-one-number">Heatmap: two categories × one number</h3>
-<div class="codehilite"><pre><span></span><code><span class="n">grid</span> <span class="o">=</span> <span class="n">net</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s2">"weekday"</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">net</span><span class="p">[</span><span class="s2">"order_date"</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">month</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s2">"revenue"</span><span class="p">,</span> <span class="n">aggfunc</span><span class="o">=</span><span class="s2">"sum"</span><span class="p">)</span> <span class="o">/</span> <span class="mi">1000</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">"Blues"</span><span class="p">,</span> <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s2">".0f"</span><span class="p">,</span> <span class="n">cbar_kws</span><span class="o">=</span><span class="p">{</span><span class="s2">"label"</span><span class="p">:</span> <span class="s2">"Revenue (k)"</span><span class="p">},</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>order_date   Sep    Oct    Nov
+<h3 id="heatmap-two-categories-one-number">Heatmap: two categories × one
+number</h3>
+<pre class="python"><code>grid = net.pivot_table(index=&quot;weekday&quot;, columns=net[&quot;order_date&quot;].dt.month, values=&quot;revenue&quot;, aggfunc=&quot;sum&quot;) / 1000
+sns.heatmap(grid, cmap=&quot;Blues&quot;, annot=True, fmt=&quot;.0f&quot;, cbar_kws={&quot;label&quot;: &quot;Revenue (k)&quot;}, ax=ax)</code></pre>
+<pre class="text"><code>order_date   Sep    Oct    Nov
 weekday
 Fri          9.0    9.0    5.0
 Sat         52.0   44.0  108.0
-Sun         97.0  111.0   92.0
-</code></pre></div>
-
-<p><img alt="Heatmap of revenue by weekday and month: Friday row is nearly empty all year, Saturdays are lighter than other days except November (108 thousand), and the darkest cell is Thursdays in October (167 thousand)." src="../../../images/phase-2/viz_heatmap_weekday.png" /></p>
-<p>Fridays are empty (the weekly holiday) and Saturdays quieter. One cell breaks the pattern: <strong>Saturdays in November (108k)</strong>. Check before explaining: it contains the single 44,127 bulk order from 29 November. Heatmaps are great at revealing such exceptions; annotations (<code>annot=True</code>) give the exact values.</p>
+Sun         97.0  111.0   92.0</code></pre>
+<figure>
+<img src="../../../images/phase-2/viz_heatmap_weekday.png"
+alt="Heatmap of revenue by weekday and month: Friday row is nearly empty all year, Saturdays are lighter than other days except November (108 thousand), and the darkest cell is Thursdays in October (167 thousand)." />
+<figcaption aria-hidden="true">Heatmap of revenue by weekday and month:
+Friday row is nearly empty all year, Saturdays are lighter than other
+days except November (108 thousand), and the darkest cell is Thursdays
+in October (167 thousand).</figcaption>
+</figure>
+<p>Fridays are empty (the weekly holiday) and Saturdays quieter. One
+cell breaks the pattern: <strong>Saturdays in November (108k)</strong>.
+Check before explaining: it contains the single 44,127 bulk order from
+29 November. Heatmaps are great at revealing such exceptions;
+annotations (<code>annot=True</code>) give the exact values.</p>
 <h2 id="choosing-the-chart">Choosing the chart</h2>
 <table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Question</th>
 <th>Chart</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>Change over time</td>
 <td>Line (few series) or small multiples (many)</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Compare categories</td>
 <td>Sorted horizontal bars</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Rate per group with uncertainty</td>
-<td>Bars or dots with CIs (<code>sns.barplot</code>, <code>sns.pointplot</code>)</td>
+<td>Bars or dots with CIs (<code>sns.barplot</code>,
+<code>sns.pointplot</code>)</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Distribution</td>
 <td>Histogram; box plots to compare groups</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Two categories × a number</td>
 <td>Heatmap</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Two numbers</td>
 <td>Scatter (log scale for money)</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Share of a whole over time</td>
 <td>100% stacked bars (few categories)</td>
 </tr>
@@ -237,35 +300,41 @@ Sun         97.0  111.0   92.0
 </table>
 <h2 id="common-mistakes">Common mistakes</h2>
 <table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Mistake</th>
 <th>What happens</th>
 <th>Fix</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>Bar charts not starting at 0</td>
 <td>Small differences look huge</td>
 <td><code>ax.set_ylim(0, None)</code> for bars and totals</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Five+ colours and a legend</td>
 <td>Readers match colours back and forth</td>
 <td>Small multiples, or highlight one series with direct labels</td>
 </tr>
-<tr>
-<td>Descriptive titles ("Revenue by month")</td>
+<tr class="odd">
+<td>Descriptive titles (“Revenue by month”)</td>
 <td>The point is left to the reader</td>
 <td>Action titles</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Default figure size and dpi</td>
 <td>Blurry or cramped images</td>
-<td><code>figsize=</code> and <code>savefig(dpi=130, bbox_inches="tight")</code></td>
+<td><code>figsize=</code> and
+<code>savefig(dpi=130, bbox_inches="tight")</code></td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Red/green as the only signal</td>
 <td>Unreadable for colour-blind readers</td>
 <td>Colour-blind-safe palette, plus labels</td>
@@ -273,84 +342,162 @@ Sun         97.0  111.0   92.0
 </tbody>
 </table>
 <h2 id="try-it-yourself">Try it yourself</h2>
-<p><strong>Task:</strong> Make a <strong>100% stacked bar chart</strong> of revenue share by category (Fabric, Yarn, Trims) for each month. Is the product mix stable through the year?</p>
+<p><strong>Task:</strong> Make a <strong>100% stacked bar chart</strong>
+of revenue share by category (Fabric, Yarn, Trims) for each month. Is
+the product mix stable through the year?</p>
 <details>
-<summary>Show a hint</summary>
-<p>Pivot to month × category, divide each row by its total, then draw one <code>ax.bar</code> per category with <code>bottom=</code> set to the running total of the previous categories.</p>
+<summary>
+Show a hint
+</summary>
+Pivot to month × category, divide each row by its total, then draw one
+<code>ax.bar</code> per category with <code>bottom=</code> set to the
+running total of the previous categories.
 </details>
 <details>
-<summary>Show the solution</summary>
-<div class="codehilite"><pre><span></span><code><span class="n">share</span> <span class="o">=</span> <span class="n">net</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s2">"month"</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s2">"category"</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s2">"revenue"</span><span class="p">,</span> <span class="n">aggfunc</span><span class="o">=</span><span class="s2">"sum"</span><span class="p">)</span>
-<span class="n">share</span> <span class="o">=</span> <span class="n">share</span><span class="o">.</span><span class="n">div</span><span class="p">(</span><span class="n">share</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mf">3.4</span><span class="p">))</span>
-<span class="n">bottom</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">cat</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">([</span><span class="s2">"Fabric"</span><span class="p">,</span> <span class="s2">"Yarn"</span><span class="p">,</span> <span class="s2">"Trims"</span><span class="p">]):</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">share</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">share</span><span class="p">[</span><span class="n">cat</span><span class="p">],</span> <span class="n">bottom</span><span class="o">=</span><span class="n">bottom</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">PALETTE</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="n">cat</span><span class="p">)</span>
-    <span class="n">bottom</span> <span class="o">=</span> <span class="n">bottom</span> <span class="o">+</span> <span class="n">share</span><span class="p">[</span><span class="n">cat</span><span class="p">]</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"The product mix is stable all year"</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"Share of revenue (%)"</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">ncol</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s2">"upper left"</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.12</span><span class="p">))</span>
-<span class="n">save</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="s2">"viz_mix_stacked.png"</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">share</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">([</span><span class="s2">"min"</span><span class="p">,</span> <span class="s2">"max"</span><span class="p">]))</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>category  Fabric  Trims  Yarn
+<summary>
+Show the solution
+</summary>
+<pre class="python"><code>share = net.pivot_table(index=&quot;month&quot;, columns=&quot;category&quot;, values=&quot;revenue&quot;, aggfunc=&quot;sum&quot;)
+share = share.div(share.sum(axis=1), axis=0) * 100
+fig, ax = plt.subplots(figsize=(9, 3.4))
+bottom = 0
+for i, cat in enumerate([&quot;Fabric&quot;, &quot;Yarn&quot;, &quot;Trims&quot;]):
+    ax.bar(share.index, share[cat], bottom=bottom, width=20, color=PALETTE[i], label=cat)
+    bottom = bottom + share[cat]
+ax.set_title(&quot;The product mix is stable all year&quot;)
+ax.set_ylabel(&quot;Share of revenue (%)&quot;)
+ax.legend(ncol=3, loc=&quot;upper left&quot;, bbox_to_anchor=(0, -0.12))
+save(fig, &quot;viz_mix_stacked.png&quot;)
+print(share.round(1).agg([&quot;min&quot;, &quot;max&quot;]))</code></pre>
+<pre class="text"><code>category  Fabric  Trims  Yarn
 min         37.7   12.7  36.4
-max         47.5   21.2  46.5
-</code></pre></div>
-
-<p>Fairly stable: Fabric and Yarn each stay between about 36% and 48% of monthly revenue, Trims between 13% and 21%. The seasonal peak is driven by volume, not by a change in what customers buy.</p>
+max         47.5   21.2  46.5</code></pre>
+Fairly stable: Fabric and Yarn each stay between about 36% and 48% of
+monthly revenue, Trims between 13% and 21%. The seasonal peak is driven
+by volume, not by a change in what customers buy.
 </details>
 <h2 id="quick-quiz">Quick quiz</h2>
 <div class="quiz-q" data-answer="1">
-<p>1. In <code>fig, ax = plt.subplots()</code>, what is <code>ax</code>?</p>
-<ol>
+<p>1. In <code>fig, ax = plt.subplots()</code>, what is
+<code>ax</code>?</p>
+<ol type="1">
 <li>The whole image</li>
 <li>One chart (with its axes) inside the figure</li>
 <li>The x-axis only</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B.</strong></p>
+<summary>
+Show answer
+</summary>
+<strong>B.</strong>
 </details>
 </div>
 <div class="quiz-q" data-answer="0">
 <p>2. What does <code>sharey=True</code> do in small multiples?</p>
-<ol>
-<li>Uses the same y-axis scale on every panel, so they can be compared</li>
+<ol type="1">
+<li>Uses the same y-axis scale on every panel, so they can be
+compared</li>
 <li>Shares colours between panels</li>
 <li>Hides the y-axis</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>A.</strong></p>
+<summary>
+Show answer
+</summary>
+<strong>A.</strong>
 </details>
 </div>
 <div class="quiz-q" data-answer="1">
-<p>3. Which seaborn chart gives a mean per group with a confidence interval in one call?</p>
-<ol>
+<p>3. Which seaborn chart gives a mean per group with a confidence
+interval in one call?</p>
+<ol type="1">
 <li><code>sns.heatmap</code></li>
 <li><code>sns.barplot</code></li>
 <li><code>sns.boxplot</code></li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B.</strong></p>
+<summary>
+Show answer
+</summary>
+<strong>B.</strong>
 </details>
 </div>
 <h2 id="summary">Summary</h2>
 <ul>
-<li>matplotlib: <code>fig, ax = plt.subplots()</code>, then methods on <code>ax</code>; add an action title, units, a zero baseline and one annotation.</li>
-<li>Use <strong>small multiples</strong> (<code>sharey=True</code>) instead of many-coloured spaghetti charts.</li>
-<li>seaborn: statistical charts from a DataFrame (<code>barplot</code> with CIs, <code>boxplot</code>, <code>heatmap</code>), placed into your own layout with <code>ax=</code>.</li>
-<li>Pick the chart by the question; check exceptions (like November Saturdays) before explaining them.</li>
+<li>matplotlib: <code>fig, ax = plt.subplots()</code>, then methods on
+<code>ax</code>; add an action title, units, a zero baseline and one
+annotation.</li>
+<li>Use <strong>small multiples</strong> (<code>sharey=True</code>)
+instead of many-coloured spaghetti charts.</li>
+<li>seaborn: statistical charts from a DataFrame (<code>barplot</code>
+with CIs, <code>boxplot</code>, <code>heatmap</code>), placed into your
+own layout with <code>ax=</code>.</li>
+<li>Pick the chart by the question; check exceptions (like November
+Saturdays) before explaining them.</li>
 </ul>
-<div class="admonition job">
-<p class="admonition-title">Job-ready check</p>
-<p><strong>Interview question:</strong> <em>"How do you decide which chart to use?"</em></p>
-<p><strong>Strong answer:</strong> "I start from the question and the message: trends over time get a line chart, comparisons get sorted bars, distributions get histograms or box plots, and rates per group get dots or bars with confidence intervals. Then I remove anything that doesn't support the message: a clear action title, units, a zero baseline for totals, and at most one highlight colour."</p>
-<p><strong>Mini project:</strong> Create a 2×2 figure for <code>orders_2025.csv</code>: monthly revenue (line), revenue by segment (sorted bars), order-value distribution (log histogram) and late rate by region (dots with CIs), each with an action title.</p>
+<div class="admonition job" data-markdown="1">
+<p class="admonition-title">
+Job-ready check
+</p>
+<p><strong>Interview question:</strong> <em>“How do you decide which
+chart to use?”</em></p>
+<p><strong>Strong answer:</strong> “I start from the question and the
+message: trends over time get a line chart, comparisons get sorted bars,
+distributions get histograms or box plots, and rates per group get dots
+or bars with confidence intervals. Then I remove anything that doesn’t
+support the message: a clear action title, units, a zero baseline for
+totals, and at most one highlight colour.”</p>
+<p><strong>Mini project:</strong> Create a 2×2 figure for
+<code>orders_2025.csv</code>: monthly revenue (line), revenue by segment
+(sorted bars), order-value distribution (log histogram) and late rate by
+region (dots with CIs), each with an action title.</p>
 </div>
+<section class="mentor-prompt"><div class="mentor-head"><div><span class="eyebrow">AI study companion</span><h2 id="ai-mentor-prompt">AI Mentor Prompt</h2></div><button class="btn copy-prompt" type="button" data-copy-target="mentor-prompt-phase-2-visualization-01-matplotlib-seaborn">Copy prompt</button></div><p>Paste this into ChatGPT, Claude, Gemini, or another capable assistant to turn this tutorial into an interactive mentoring session.</p><pre class="prompt-box"><code id="mentor-prompt-phase-2-visualization-01-matplotlib-seaborn">You are my hands-on Python, statistics and data-science mentor.
+
+I am currently studying:
+&quot;Matplotlib &amp; Seaborn: Charts You Control&quot;
+
+My level:
+Intermediate
+
+Teach me this topic interactively rather than giving me a long lecture.
+
+Use this sequence:
+
+1. Check what I already understand with one short diagnostic question.
+2. Explain the concept in simple language and give me the mental model first.
+3. Give me one small task using code, SQL, configuration, data, or architecture as appropriate.
+4. Wait for my attempt before showing a complete solution.
+5. Review my work and explain both what is correct and what needs improvement.
+6. Help me debug errors step by step instead of immediately replacing my work.
+7. Increase the difficulty gradually and connect each new step to the previous one.
+8. Relate what I am learning to real professional data/AI engineering work.
+9. Ask me to explain an important decision in my own words so you can check my understanding.
+10. At the end, ask me to build or modify one small feature independently.
+
+Important rules:
+- Do not do the entire exercise for me unless I explicitly ask.
+- Explain unfamiliar terminology before using it heavily.
+- Prefer current, production-relevant practices over outdated shortcuts.
+- Distinguish clearly between concepts, tool-specific behaviour, and optional alternatives.
+- If a technical fact, API, syntax, version, or best practice may have changed, verify it against current official documentation before teaching it.
+- Never invent command output, test results, benchmark numbers, cloud behaviour, or data results.
+- If something cannot be executed in the current environment, say so and give me the exact command or verification step I should run.
+- Keep me actively coding, querying, configuring, reasoning, or debugging throughout the session.
+- When useful, work from the tutorial practice files (data-science-scripts.zip, orders_2025.csv) instead of inventing unrelated examples.
+
+The concepts I need to master are:
+- Matplotlib
+- Seaborn
+- pyplot
+- figure
+- axes
+- subplots
+- small multiples
+- annotate
+
+Start by asking me one diagnostic question.</code></pre></section>
+
 <div class="terms-box"><div class="files-head"><b>Key terms in this lesson</b><a href="../../../glossary.html">Glossary →</a></div><div class="term-chips"><a class="term-chip" href="../../../glossary.html#confidence-interval" title="A range of plausible values for something estimated from a sample, e.g. &#x27;late rate 23.7% (95% CI 22.4–25.1%)&#x27;. It narrows as the sample grows.">Confidence interval</a><a class="term-chip" href="../../../glossary.html#data-visualization" title="Showing data as charts. In Python: matplotlib for full control, seaborn for statistical charts, Plotly for interactive ones.">Data visualization</a></div></div>
 <h2 id="free-resources">Free resources to go deeper</h2><ul class="resources"><li><a href="https://matplotlib.org/stable/users/explain/quick_start.html">Matplotlib quick start guide</a><span class="r-meta">Matplotlib official docs · Figures, Axes, the two coding styles, and styling.</span></li><li><a href="https://seaborn.pydata.org/tutorial/introduction.html">An introduction to seaborn</a><span class="r-meta">seaborn official docs · Statistical plots straight from DataFrames.</span></li><li><a href="https://clauswilke.com/dataviz/">Fundamentals of Data Visualization (free online book)</a><span class="r-meta">Claus O. Wilke · Which chart for which question, and why.</span></li></ul>
 <div class="complete-bar"><span>Finished reading and did the exercise?</span>
@@ -359,9 +506,9 @@ max         47.5   21.2  46.5
 <p class="reviewed">Last reviewed: 2026-10-09</p>
 
   </div></main>
-  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#part-1-the-matplotlib-model-figure-and-axes">Part 1: the matplotlib model — Figure and Axes</a><a href="#part-2-small-multiples">Part 2: small multiples</a><a href="#part-3-seaborn-statistics-built-in">Part 3: seaborn — statistics built in</a><a href="#choosing-the-chart">Choosing the chart</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#free-resources">Free resources</a></aside>
+  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#part-1-the-matplotlib-model-figure-and-axes">Part 1: the matplotlib model — Figure and Axes</a><a href="#part-2-small-multiples">Part 2: small multiples</a><a href="#part-3-seaborn-statistics-built-in">Part 3: seaborn — statistics built in</a><a href="#heatmap-two-categories-one-number">Heatmap: two categories × one number</a><a href="#choosing-the-chart">Choosing the chart</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#ai-mentor-prompt">AI Mentor Prompt</a><a href="#free-resources">Free resources</a></aside>
 </div>
-<footer class="site">Data, AI &amp; Automation Path v0.8 · Applied AI, Data &amp; Automation Lab · Updated October 2026<br>
+<footer class="site"><b>Saiful The Techie</b> · Data, AI &amp; Automation Path v0.9.1 · Updated October 2026<br>
 Lesson text: <a href="../../../license.html">CC BY-NC-SA 4.0</a> · Code: <a href="../../../license.html#code-mit-license">MIT</a> · Free external resources belong to their respective owners.</footer>
 <script src="../../../search-index.js"></script>
 <script src="../../../assets/app.js"></script>

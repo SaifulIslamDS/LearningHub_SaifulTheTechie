@@ -6,7 +6,7 @@
 <title>Excel PivotTables &amp; Grouping: Summaries in Seconds — Data, AI &amp; Automation Path</title>
 <meta name="description" content="Turn 12 — or 120,000 — rows into a region-by-category revenue table, show shares of total, and group dates into months and values into bands.">
 <meta property="og:type" content="article">
-<meta property="og:site_name" content="Data, AI &amp; Automation Path">
+<meta property="og:site_name" content="Saiful The Techie">
 <meta property="og:title" content="Excel PivotTables &amp; Grouping: Summaries in Seconds">
 <meta property="og:description" content="Turn 12 — or 120,000 — rows into a region-by-category revenue table, show shares of total, and group dates into months and values into bands.">
 <meta property="og:locale" content="en_US">
@@ -19,13 +19,13 @@ var n=null;try{n=localStorage.getItem('daa-nav')}catch(e){}
 if(n==='open'&&window.matchMedia&&matchMedia('(min-width: 961px)').matches)document.documentElement.setAttribute('data-nav','open');
 document.documentElement.classList.add('no-anim')})();</script>
 <link rel="stylesheet" href="../../../assets/style.css">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233f7d6a'/%3E%3Ctext x='16' y='21' font-family='sans-serif' font-size='13' font-weight='700' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
+
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="topbar">
   <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Open curriculum menu" title="Curriculum menu (press M)" aria-controls="sidebar" aria-expanded="false"><span class="ico-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span class="ico-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></button>
-  <a class="brand" href="../../../index.html"><span class="brand-badge">AI</span><span class="brand-text"><span class="brand-name">Data, AI &amp; Automation Path</span><span class="brand-version">v0.8</span></span></a>
+  <a class="brand" href="../../../index.html"><span class="brand-text"><span class="brand-name">Saiful The Techie</span><span class="brand-version">Data, AI &amp; Automation Path · v0.9.1</span></span></a>
   <nav class="top-links" aria-label="Main">
     <a href="../../../index.html" class="">Home</a><a href="../../../curriculum.html" class="">Curriculum</a><a href="../../../practice-files.html" class="">Practice files</a><a href="../../../glossary.html" class="">Glossary</a><a href="../../../how-to-learn.html" class="">How to learn</a><a href="../../../about.html" class="">About</a>
   </nav>
@@ -41,7 +41,7 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="layout wide">
   <nav class="sidebar" id="sidebar" aria-label="Curriculum">
     <div class="side-title">Curriculum</div>
-    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="77"><i></i></div><span class="bar-label" data-progress-label></span></div>
+    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="85"><i></i></div><span class="bar-label" data-progress-label></span></div>
 <div class="nav-phase"><a href="../../../learn/phase-0/index.html"><span class="nav-num">0</span>Foundations</a>
 </div>
 <div class="nav-phase current open"><a href="../../../learn/phase-1/index.html"><span class="nav-num">1</span>Analytics &amp; BI</a>
@@ -97,53 +97,77 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="admonition note"><p class="admonition-title">Before you start</p><p><a href="../../../learn/phase-1/excel-analysis/02-sumifs-countifs.html">Excel SUMIFS &amp; COUNTIFS: Build KPI Summaries</a></p></div>
 <div class="files-box"><div class="files-head"><b>Practice files for this page</b><a href="../../../practice-files.html">All practice files →</a></div><ul><li><a href="../../../downloads/orders.xlsx" download>orders.xlsx</a><span class="f-desc">Starting workbook: Orders (with value formula), Products, Customers sheets · 8 KB</span></li></ul></div>
 <h2 id="what-is-it">What is it?</h2>
-<p>A <strong>PivotTable</strong> is an interactive summary. You drag fields (columns) into four areas, and Excel groups and totals the data for you. Drag a different field and the summary reshapes instantly. It is the drag-and-drop version of SQL's <code>GROUP BY</code>, or of a SUMIFS summary table.</p>
-<p><strong>Grouping</strong> combines items inside a PivotTable: dates into months or quarters, numbers into bands (0–499, 500–999 …), or chosen items into a custom group.</p>
-<div class="admonition job">
-<p class="admonition-title">Why it matters at work</p>
-<p>PivotTables are the fastest way to explore a new dataset and answer ad-hoc manager questions in a meeting. Nearly every analyst job description lists them, and Excel tests almost always include "build a PivotTable that shows…".</p>
+<p>A <strong>PivotTable</strong> is an interactive summary. You drag
+fields (columns) into four areas, and Excel groups and totals the data
+for you. Drag a different field and the summary reshapes instantly. It
+is the drag-and-drop version of SQL’s <code>GROUP BY</code>, or of a
+SUMIFS summary table.</p>
+<p><strong>Grouping</strong> combines items inside a PivotTable: dates
+into months or quarters, numbers into bands (0–499, 500–999 …), or
+chosen items into a custom group.</p>
+<div class="admonition job" data-markdown="1">
+<p class="admonition-title">
+Why it matters at work
+</p>
+<p>PivotTables are the fastest way to explore a new dataset and answer
+ad-hoc manager questions in a meeting. Nearly every analyst job
+description lists them, and Excel tests almost always include “build a
+PivotTable that shows…”.</p>
 </div>
 <h2 id="the-four-areas">The four areas</h2>
 <table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Area</th>
 <th>Does what</th>
 <th>SQL equivalent</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td><strong>Rows</strong></td>
 <td>One row per item</td>
 <td><code>GROUP BY</code></td>
 </tr>
-<tr>
+<tr class="even">
 <td><strong>Columns</strong></td>
 <td>One column per item</td>
 <td>conditional aggregation (CASE)</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><strong>Values</strong></td>
 <td>The number to calculate (Sum, Count, Average…)</td>
 <td><code>SUM()</code>, <code>COUNT()</code></td>
 </tr>
-<tr>
+<tr class="even">
 <td><strong>Filters</strong></td>
 <td>Limit the whole table</td>
 <td><code>WHERE</code></td>
 </tr>
 </tbody>
 </table>
-<h2 id="example-1-revenue-by-region-and-category">Example 1: revenue by region and category</h2>
-<ol>
-<li>Click any cell in the Orders data → <strong>Insert → PivotTable</strong> → <strong>New Worksheet</strong> → <strong>OK</strong>.</li>
-<li>In the field list, drag <strong>region</strong> to <strong>Rows</strong>, <strong>category</strong> to <strong>Columns</strong> and <strong>value</strong> to <strong>Values</strong> (it shows "Sum of value").</li>
-<li>Drag <strong>status</strong> to <strong>Filters</strong>. In the filter drop-down above the table, tick <strong>Select Multiple Items</strong> and untick <strong>Cancelled</strong>.</li>
+<h2 id="example-1-revenue-by-region-and-category">Example 1: revenue by
+region and category</h2>
+<ol type="1">
+<li>Click any cell in the Orders data → <strong>Insert →
+PivotTable</strong> → <strong>New Worksheet</strong> →
+<strong>OK</strong>.</li>
+<li>In the field list, drag <strong>region</strong> to
+<strong>Rows</strong>, <strong>category</strong> to
+<strong>Columns</strong> and <strong>value</strong> to
+<strong>Values</strong> (it shows “Sum of value”).</li>
+<li>Drag <strong>status</strong> to <strong>Filters</strong>. In the
+filter drop-down above the table, tick <strong>Select Multiple
+Items</strong> and untick <strong>Cancelled</strong>.</li>
 </ol>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>Sum of value</th>
 <th>Fabric</th>
 <th>Trims</th>
@@ -152,35 +176,35 @@ document.documentElement.classList.add('no-anim')})();</script>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>Chattogram</td>
 <td>1,955</td>
 <td>200</td>
 <td></td>
 <td>2,155</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Dhaka</td>
 <td>1,980</td>
 <td>320</td>
 <td>870</td>
 <td>3,170</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Gazipur</td>
 <td></td>
 <td></td>
 <td>2,520</td>
 <td>2,520</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Narayanganj</td>
 <td>810</td>
 <td>420</td>
 <td></td>
 <td>1,230</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><strong>Grand Total</strong></td>
 <td><strong>4,745</strong></td>
 <td><strong>940</strong></td>
@@ -189,207 +213,317 @@ document.documentElement.classList.add('no-anim')})();</script>
 </tr>
 </tbody>
 </table>
-<p>The totals match both the SQL and the SUMIFS lessons. Empty cells mean "no orders": Gazipur only buys yarn.</p>
-<div class="admonition mistake">
-<p class="admonition-title">Forgetting the status filter</p>
-<p>Without the filter, Dhaka shows <strong>3,410</strong> instead of 3,170, because the cancelled 240 order is included. Always check what the PivotTable includes before you share it.</p>
+<p>The totals match both the SQL and the SUMIFS lessons. Empty cells
+mean “no orders”: Gazipur only buys yarn.</p>
+<div class="admonition mistake" data-markdown="1">
+<p class="admonition-title">
+Forgetting the status filter
+</p>
+<p>Without the filter, Dhaka shows <strong>3,410</strong> instead of
+3,170, because the cancelled 240 order is included. Always check what
+the PivotTable includes before you share it.</p>
 </div>
-<h2 id="example-2-show-shares-instead-of-amounts">Example 2: show shares instead of amounts</h2>
-<p>Right-click any number → <strong>Show Values As → % of Grand Total</strong>. With only <strong>region</strong> in Rows (remove category from Columns):</p>
+<h2 id="example-2-show-shares-instead-of-amounts">Example 2: show shares
+instead of amounts</h2>
+<p>Right-click any number → <strong>Show Values As → % of Grand
+Total</strong>. With only <strong>region</strong> in Rows (remove
+category from Columns):</p>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>region</th>
 <th>% of total revenue</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>Dhaka</td>
 <td>34.93%</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Gazipur</td>
 <td>27.77%</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Chattogram</td>
 <td>23.75%</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Narayanganj</td>
 <td>13.55%</td>
 </tr>
 </tbody>
 </table>
-<p>Dhaka brings in about a third of revenue. Shares are often more useful to managers than raw amounts.</p>
-<h2 id="example-3-group-dates-into-months">Example 3: group dates into months</h2>
-<ol>
-<li>Remove region. Drag <strong>order_date</strong> to <strong>Rows</strong>.</li>
-<li>Recent Excel versions group dates automatically. If not, right-click a date → <strong>Group</strong> → select <strong>Months</strong> (and <strong>Years</strong> if the data spans several years) → <strong>OK</strong>.</li>
+<p>Dhaka brings in about a third of revenue. Shares are often more
+useful to managers than raw amounts.</p>
+<h2 id="example-3-group-dates-into-months">Example 3: group dates into
+months</h2>
+<ol type="1">
+<li>Remove region. Drag <strong>order_date</strong> to
+<strong>Rows</strong>.</li>
+<li>Recent Excel versions group dates automatically. If not, right-click
+a date → <strong>Group</strong> → select <strong>Months</strong> (and
+<strong>Years</strong> if the data spans several years) →
+<strong>OK</strong>.</li>
 </ol>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>Month</th>
 <th>Sum of value</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>Jan</td>
 <td>3,440</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Feb</td>
 <td>3,940</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Mar</td>
 <td>1,695</td>
 </tr>
-<tr>
+<tr class="even">
 <td><strong>Grand Total</strong></td>
 <td><strong>9,075</strong></td>
 </tr>
 </tbody>
 </table>
-<p><em>(Cancelled orders are still filtered out.)</em> February was the strongest month. March looks weak, but it only has two orders so far, so check how far into the month the data goes before drawing conclusions.</p>
-<h2 id="example-4-group-values-into-bands">Example 4: group values into bands</h2>
+<p><em>(Cancelled orders are still filtered out.)</em> February was the
+strongest month. March looks weak, but it only has two orders so far, so
+check how far into the month the data goes before drawing
+conclusions.</p>
+<h2 id="example-4-group-values-into-bands">Example 4: group values into
+bands</h2>
 <p><em>Question: how many orders fall into each value band?</em></p>
-<ol>
-<li>Remove the date. Drag <strong>value</strong> to <strong>Rows</strong>, and drag <strong>order_id</strong> to <strong>Values</strong>. Click it → <strong>Value Field Settings → Count</strong>.</li>
-<li>Right-click a value in the Rows area → <strong>Group</strong> → Starting at <strong>0</strong>, Ending at <strong>1999</strong>, By <strong>500</strong> → <strong>OK</strong>.</li>
+<ol type="1">
+<li>Remove the date. Drag <strong>value</strong> to
+<strong>Rows</strong>, and drag <strong>order_id</strong> to
+<strong>Values</strong>. Click it → <strong>Value Field Settings →
+Count</strong>.</li>
+<li>Right-click a value in the Rows area → <strong>Group</strong> →
+Starting at <strong>0</strong>, Ending at <strong>1999</strong>, By
+<strong>500</strong> → <strong>OK</strong>.</li>
 </ol>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>value band</th>
 <th>Count of order_id</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>0–499</td>
 <td>4</td>
 </tr>
-<tr>
+<tr class="even">
 <td>500–999</td>
 <td>3</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>1000–1499</td>
 <td>3</td>
 </tr>
-<tr>
+<tr class="even">
 <td>1500–1999</td>
 <td>1</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><strong>Grand Total</strong></td>
 <td><strong>11</strong></td>
 </tr>
 </tbody>
 </table>
-<p>Most orders are under 1,000, but the four orders of 1,000 or more bring in 5,355 of the 9,075 revenue.</p>
+<p>Most orders are under 1,000, but the four orders of 1,000 or more
+bring in 5,355 of the 9,075 revenue.</p>
 <h2 id="common-mistakes">Common mistakes</h2>
 <table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Mistake</th>
 <th>What happens</th>
 <th>Fix</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>Not refreshing after the data changes</td>
 <td>The PivotTable shows old numbers</td>
 <td><strong>Data → Refresh All</strong> (Ctrl + Alt + F5)</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Source is a fixed range, then new rows are added</td>
 <td>New rows are missing from the pivot</td>
 <td>Build the pivot on an Excel <strong>Table</strong></td>
 </tr>
-<tr>
-<td>Value field shows "Count of value"</td>
+<tr class="odd">
+<td>Value field shows “Count of value”</td>
 <td>The numbers are counts, not sums</td>
 <td>Value Field Settings → <strong>Sum</strong></td>
 </tr>
-<tr>
+<tr class="even">
 <td>Dates stored as text</td>
-<td>Can't group by month</td>
+<td>Can’t group by month</td>
 <td>Convert the column to real dates first</td>
 </tr>
-<tr>
-<td>Grouping fails with "Cannot group that selection"</td>
+<tr class="odd">
+<td>Grouping fails with “Cannot group that selection”</td>
 <td>Blanks or text in a date/number column</td>
 <td>Clean the source column</td>
 </tr>
 </tbody>
 </table>
 <h2 id="try-it-yourself">Try it yourself</h2>
-<p><strong>Task:</strong> Build a PivotTable with <strong>customer</strong> in Rows and <strong>status</strong> in Columns, summing value. <em>No status filter this time.</em> Which customer has the most value that is not yet delivered (Shipped + Pending)?</p>
+<p><strong>Task:</strong> Build a PivotTable with
+<strong>customer</strong> in Rows and <strong>status</strong> in
+Columns, summing value. <em>No status filter this time.</em> Which
+customer has the most value that is not yet delivered (Shipped +
+Pending)?</p>
 <details>
-<summary>Show a hint</summary>
-<p>Look at each customer's Shipped and Pending columns and add them up.</p>
+<summary>
+Show a hint
+</summary>
+Look at each customer’s Shipped and Pending columns and add them up.
 </details>
 <details>
-<summary>Show the solution</summary>
-<p><strong>Karim Garments</strong>, with 1,275 Shipped (order 12). Sun Fashion has 810 Pending, and Nova Apparel 320 Shipped. This matches the SQL CASE lesson's "in progress" column, built here with no formulas.</p>
+<summary>
+Show the solution
+</summary>
+<strong>Karim Garments</strong>, with 1,275 Shipped (order 12). Sun
+Fashion has 810 Pending, and Nova Apparel 320 Shipped. This matches the
+SQL CASE lesson’s “in progress” column, built here with no formulas.
 </details>
 <h2 id="quick-quiz">Quick quiz</h2>
 <div class="quiz-q" data-answer="2">
-<p>1. Which PivotTable area works like SQL's <code>WHERE</code>?</p>
-<ol>
+<p>1. Which PivotTable area works like SQL’s <code>WHERE</code>?</p>
+<ol type="1">
 <li>Rows</li>
 <li>Values</li>
 <li>Filters</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>C — Filters.</strong> Rows works like <code>GROUP BY</code>, and Values like the aggregate.</p>
+<summary>
+Show answer
+</summary>
+<strong>C — Filters.</strong> Rows works like <code>GROUP BY</code>, and
+Values like the aggregate.
 </details>
 </div>
 <div class="quiz-q" data-answer="1">
-<p>2. You added 50 new orders to the data, but the PivotTable totals didn't change. What's the first thing to do?</p>
-<ol>
+<p>2. You added 50 new orders to the data, but the PivotTable totals
+didn’t change. What’s the first thing to do?</p>
+<ol type="1">
 <li>Rebuild the PivotTable</li>
 <li>Refresh it</li>
 <li>Restart Excel</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B — Refresh.</strong> PivotTables don't recalculate automatically. If the new rows are still missing, the source is a fixed range: use an Excel Table.</p>
+<summary>
+Show answer
+</summary>
+<strong>B — Refresh.</strong> PivotTables don’t recalculate
+automatically. If the new rows are still missing, the source is a fixed
+range: use an Excel Table.
 </details>
 </div>
 <div class="quiz-q" data-answer="1">
-<p>3. How do you show each region's revenue as a share of the total?</p>
-<ol>
+<p>3. How do you show each region’s revenue as a share of the total?</p>
+<ol type="1">
 <li>Value Field Settings → Average</li>
 <li>Show Values As → % of Grand Total</li>
 <li>Group → By 100</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B.</strong> "Show Values As" changes how a number is displayed without changing the source data.</p>
+<summary>
+Show answer
+</summary>
+<strong>B.</strong> “Show Values As” changes how a number is displayed
+without changing the source data.
 </details>
 </div>
 <h2 id="summary">Summary</h2>
 <ul>
-<li>A PivotTable summarises data by dragging fields into <strong>Rows, Columns, Values and Filters</strong>.</li>
-<li>Use the <strong>Filters</strong> area for exclusions such as Cancelled, and check what is included.</li>
-<li><strong>Show Values As</strong> turns amounts into shares, running totals and more.</li>
-<li><strong>Group</strong> turns dates into months and quarters, and numbers into bands.</li>
-<li>Build on an Excel Table, and <strong>refresh</strong> after the data changes.</li>
+<li>A PivotTable summarises data by dragging fields into <strong>Rows,
+Columns, Values and Filters</strong>.</li>
+<li>Use the <strong>Filters</strong> area for exclusions such as
+Cancelled, and check what is included.</li>
+<li><strong>Show Values As</strong> turns amounts into shares, running
+totals and more.</li>
+<li><strong>Group</strong> turns dates into months and quarters, and
+numbers into bands.</li>
+<li>Build on an Excel Table, and <strong>refresh</strong> after the data
+changes.</li>
 </ul>
-<div class="admonition job">
-<p class="admonition-title">Job-ready check</p>
-<p><strong>Interview question:</strong> <em>"A manager asks for revenue by region and month in a meeting. What do you do?"</em></p>
-<p><strong>Strong answer:</strong> "Build a PivotTable on the sales table: region in Rows, order date grouped by month in Columns, sum of revenue in Values, with cancelled orders filtered out. It takes under a minute, and I'd cross-check the grand total against the source before sharing."</p>
-<p><strong>Mini project:</strong> Build a <strong>Pivot</strong> sheet with two PivotTables: region × category revenue, and revenue by month. Add a note under each with one insight.</p>
+<div class="admonition job" data-markdown="1">
+<p class="admonition-title">
+Job-ready check
+</p>
+<p><strong>Interview question:</strong> <em>“A manager asks for revenue
+by region and month in a meeting. What do you do?”</em></p>
+<p><strong>Strong answer:</strong> “Build a PivotTable on the sales
+table: region in Rows, order date grouped by month in Columns, sum of
+revenue in Values, with cancelled orders filtered out. It takes under a
+minute, and I’d cross-check the grand total against the source before
+sharing.”</p>
+<p><strong>Mini project:</strong> Build a <strong>Pivot</strong> sheet
+with two PivotTables: region × category revenue, and revenue by month.
+Add a note under each with one insight.</p>
 </div>
+<section class="mentor-prompt"><div class="mentor-head"><div><span class="eyebrow">AI study companion</span><h2 id="ai-mentor-prompt">AI Mentor Prompt</h2></div><button class="btn copy-prompt" type="button" data-copy-target="mentor-prompt-phase-1-pivot-analysis-01-pivottables-grouping">Copy prompt</button></div><p>Paste this into ChatGPT, Claude, Gemini, or another capable assistant to turn this tutorial into an interactive mentoring session.</p><pre class="prompt-box"><code id="mentor-prompt-phase-1-pivot-analysis-01-pivottables-grouping">You are my hands-on data-analytics and business-intelligence mentor.
+
+I am currently studying:
+&quot;Excel PivotTables &amp; Grouping: Summaries in Seconds&quot;
+
+My level:
+Beginner
+
+Teach me this topic interactively rather than giving me a long lecture.
+
+Use this sequence:
+
+1. Check what I already understand with one short diagnostic question.
+2. Explain the concept in simple language and give me the mental model first.
+3. Give me one small task using code, SQL, configuration, data, or architecture as appropriate.
+4. Wait for my attempt before showing a complete solution.
+5. Review my work and explain both what is correct and what needs improvement.
+6. Help me debug errors step by step instead of immediately replacing my work.
+7. Increase the difficulty gradually and connect each new step to the previous one.
+8. Relate what I am learning to real professional data/AI engineering work.
+9. Ask me to explain an important decision in my own words so you can check my understanding.
+10. At the end, ask me to build or modify one small feature independently.
+
+Important rules:
+- Do not do the entire exercise for me unless I explicitly ask.
+- Explain unfamiliar terminology before using it heavily.
+- Prefer current, production-relevant practices over outdated shortcuts.
+- Distinguish clearly between concepts, tool-specific behaviour, and optional alternatives.
+- If a technical fact, API, syntax, version, or best practice may have changed, verify it against current official documentation before teaching it.
+- Never invent command output, test results, benchmark numbers, cloud behaviour, or data results.
+- If something cannot be executed in the current environment, say so and give me the exact command or verification step I should run.
+- Keep me actively coding, querying, configuring, reasoning, or debugging throughout the session.
+- When useful, work from the tutorial practice files (orders.xlsx) instead of inventing unrelated examples.
+
+The concepts I need to master are:
+- PivotTables
+- Grouping
+- pivottable
+- pivot table
+- rows
+- columns
+- values
+- filters
+
+Start by asking me one diagnostic question.</code></pre></section>
+
 <div class="terms-box"><div class="files-head"><b>Key terms in this lesson</b><a href="../../../glossary.html">Glossary →</a></div><div class="term-chips"><a class="term-chip" href="../../../glossary.html#pivottable" title="An interactive summary that groups and totals data by dragging fields into rows, columns, values and filters.">PivotTable</a></div></div>
 <h2 id="free-resources">Free resources to go deeper</h2><ul class="resources"><li><a href="https://support.microsoft.com/en-us/office/create-a-pivottable-to-analyze-worksheet-data-a9a84538-bfe9-40a9-a8e9-f99134456576">Create a PivotTable to analyze worksheet data</a><span class="r-meta">Microsoft Support · The official step-by-step guide.</span></li><li><a href="https://support.microsoft.com/en-us/office/group-or-ungroup-data-in-a-pivottable-c9d1ddd0-6580-47d1-82bc-c84a5a340725">Group or ungroup data in a PivotTable</a><span class="r-meta">Microsoft Support · Grouping dates, numbers and items.</span></li><li><a href="https://edu.gcfglobal.org/en/excel2016/intro-to-pivottables/full">Excel 2016: Intro to PivotTables</a><span class="r-meta">GCFGlobal (free) · A beginner-friendly walk-through with pictures.</span></li></ul>
 <div class="complete-bar"><span>Finished reading and did the exercise?</span>
@@ -398,9 +532,9 @@ document.documentElement.classList.add('no-anim')})();</script>
 <p class="reviewed">Last reviewed: 2026-10-09</p>
 
   </div></main>
-  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#the-four-areas">The four areas</a><a href="#example-1-revenue-by-region-and-category">Example 1: revenue by region and category</a><a href="#example-2-show-shares-instead-of-amounts">Example 2: show shares instead of amounts</a><a href="#example-3-group-dates-into-months">Example 3: group dates into months</a><a href="#example-4-group-values-into-bands">Example 4: group values into bands</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#free-resources">Free resources</a></aside>
+  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#the-four-areas">The four areas</a><a href="#example-1-revenue-by-region-and-category">Example 1: revenue by region and category</a><a href="#example-2-show-shares-instead-of-amounts">Example 2: show shares instead of amounts</a><a href="#example-3-group-dates-into-months">Example 3: group dates into months</a><a href="#example-4-group-values-into-bands">Example 4: group values into bands</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#ai-mentor-prompt">AI Mentor Prompt</a><a href="#free-resources">Free resources</a></aside>
 </div>
-<footer class="site">Data, AI &amp; Automation Path v0.8 · Applied AI, Data &amp; Automation Lab · Updated October 2026<br>
+<footer class="site"><b>Saiful The Techie</b> · Data, AI &amp; Automation Path v0.9.1 · Updated October 2026<br>
 Lesson text: <a href="../../../license.html">CC BY-NC-SA 4.0</a> · Code: <a href="../../../license.html#code-mit-license">MIT</a> · Free external resources belong to their respective owners.</footer>
 <script src="../../../search-index.js"></script>
 <script src="../../../assets/app.js"></script>

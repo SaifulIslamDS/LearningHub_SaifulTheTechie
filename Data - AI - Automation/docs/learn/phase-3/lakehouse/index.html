@@ -6,7 +6,7 @@
 <title>Lakehouse &amp; Open Table Formats — Data, AI &amp; Automation Path</title>
 <meta name="description" content="Lakehouse &amp; Open Table Formats: Delta Lake / Apache Iceberg, Medallion layers, Fabric, Databricks or Snowflake">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="Data, AI &amp; Automation Path">
+<meta property="og:site_name" content="Saiful The Techie">
 <meta property="og:title" content="Lakehouse &amp; Open Table Formats">
 <meta property="og:description" content="Lakehouse &amp; Open Table Formats: Delta Lake / Apache Iceberg, Medallion layers, Fabric, Databricks or Snowflake">
 <meta property="og:locale" content="en_US">
@@ -19,13 +19,13 @@ var n=null;try{n=localStorage.getItem('daa-nav')}catch(e){}
 if(n==='open'&&window.matchMedia&&matchMedia('(min-width: 961px)').matches)document.documentElement.setAttribute('data-nav','open');
 document.documentElement.classList.add('no-anim')})();</script>
 <link rel="stylesheet" href="../../../assets/style.css">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233f7d6a'/%3E%3Ctext x='16' y='21' font-family='sans-serif' font-size='13' font-weight='700' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
+
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="topbar">
   <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Open curriculum menu" title="Curriculum menu (press M)" aria-controls="sidebar" aria-expanded="false"><span class="ico-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span class="ico-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></button>
-  <a class="brand" href="../../../index.html"><span class="brand-badge">AI</span><span class="brand-text"><span class="brand-name">Data, AI &amp; Automation Path</span><span class="brand-version">v0.8</span></span></a>
+  <a class="brand" href="../../../index.html"><span class="brand-text"><span class="brand-name">Saiful The Techie</span><span class="brand-version">Data, AI &amp; Automation Path · v0.9.1</span></span></a>
   <nav class="top-links" aria-label="Main">
     <a href="../../../index.html" class="">Home</a><a href="../../../curriculum.html" class="">Curriculum</a><a href="../../../practice-files.html" class="">Practice files</a><a href="../../../glossary.html" class="">Glossary</a><a href="../../../how-to-learn.html" class="">How to learn</a><a href="../../../about.html" class="">About</a>
   </nav>
@@ -41,7 +41,7 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="layout">
   <nav class="sidebar" id="sidebar" aria-label="Curriculum">
     <div class="side-title">Curriculum</div>
-    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="77"><i></i></div><span class="bar-label" data-progress-label></span></div>
+    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="85"><i></i></div><span class="bar-label" data-progress-label></span></div>
 <div class="nav-phase"><a href="../../../learn/phase-0/index.html"><span class="nav-num">0</span>Foundations</a>
 </div>
 <div class="nav-phase"><a href="../../../learn/phase-1/index.html"><span class="nav-num">1</span>Analytics &amp; BI</a>
@@ -97,23 +97,36 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="side-extra"><a href="../../../index.html">Home</a><a href="../../../curriculum.html">Full curriculum map</a><a href="../../../practice-files.html">Practice files</a><a href="../../../glossary.html">Glossary</a><a href="../../../how-to-learn.html">How to learn here</a><a href="../../../about.html">About &amp; contributing</a></div></nav>
   <main class="main" id="main"><div class="content">
 <nav class="crumbs" aria-label="Breadcrumb"><a href="../../../index.html">Home</a><span class="sep">/</span><a href="../../../learn/phase-3/index.html">Phase 3</a><span class="sep">/</span><span>Lakehouse &amp; Open Table Formats</span></nav>
+<span class="eyebrow">Phase 3 · Data Engineering</span>
 <h1>Lakehouse &amp; Open Table Formats<span class="tag new">New</span></h1>
-<p class="lead">Part of Phase 3 — Data Engineering (AI-ready). Topics: Delta Lake / Apache Iceberg, Medallion layers, Fabric, Databricks or Snowflake.</p>
-<p>A <strong>lakehouse</strong> stores data as open files (usually Parquet) in cheap object storage, like a data lake, but adds what used to need a warehouse: <strong>tables</strong> with schemas, transactions, updates, history and SQL. The magic is an <strong>open table format</strong> (Delta Lake or Apache Iceberg) that keeps a transaction log next to the data files. Microsoft Fabric, Databricks and Snowflake all build on these formats.</p>
-<p>The scripts are <code>12_delta_medallion.py</code> and <code>13_iceberg_tables.py</code> in <a href="../../../downloads/phase-3/data-engineering-scripts.zip">data-engineering-scripts.zip</a>. Both run on your laptop, with no Spark and no cloud account:</p>
-<div class="codehilite"><pre><span></span><code>uv<span class="w"> </span>add<span class="w"> </span>deltalake<span class="w"> </span><span class="s2">"pyiceberg[sql-sqlite,pyarrow]"</span><span class="w"> </span>pandas<span class="w"> </span>pyarrow
-</code></pre></div>
-
-<p><strong>By the end of this module you can:</strong> explain what a table format adds to Parquet files, build bronze/silver/gold (medallion) layers with Delta Lake, use time travel, schema enforcement and MERGE, create and evolve an Iceberg table, and compare how Fabric, Databricks and Snowflake implement the lakehouse.</p>
-<div class="files-box"><div class="files-head"><b>Practice files for this page</b><a href="../../../practice-files.html">All practice files →</a></div><ul><li><a href="../../../downloads/phase-3/data-engineering-scripts.zip" download>data-engineering-scripts.zip</a><span class="f-desc">Phase 3A scripts: practice API + website, ingestion, PostgreSQL loader, advanced SQL, indexing, transactions, star schema, SCD, BigQuery dialect, Delta Lake, Iceberg, Dockerfiles and compose.yaml · 270 KB</span></li></ul></div>
-<div class="section-head"><h2>Lessons</h2><p>2 written · 0 planned</p></div>
+<p class="lead">Build the production data backbone for analytics and AI systems.</p>
+<p>A <strong>lakehouse</strong> stores data as open files (usually
+Parquet) in cheap object storage, like a data lake, but adds what used
+to need a warehouse: <strong>tables</strong> with schemas, transactions,
+updates, history and SQL. The magic is an <strong>open table
+format</strong> (Delta Lake or Apache Iceberg) that keeps a transaction
+log next to the data files. Microsoft Fabric, Databricks and Snowflake
+all build on these formats.</p>
+<p>The scripts are <code>12_delta_medallion.py</code> and
+<code>13_iceberg_tables.py</code> in <a
+href="../../../downloads/phase-3/data-engineering-scripts.zip">data-engineering-scripts.zip</a>.
+Both run on your laptop, with no Spark and no cloud account:</p>
+<pre class="bash"><code>uv add deltalake &quot;pyiceberg[sql-sqlite,pyarrow]&quot; pandas pyarrow</code></pre>
+<p><strong>By the end of this module you can:</strong> explain what a
+table format adds to Parquet files, build bronze/silver/gold (medallion)
+layers with Delta Lake, use time travel, schema enforcement and MERGE,
+create and evolve an Iceberg table, and compare how Fabric, Databricks
+and Snowflake implement the lakehouse.</p>
+<div class="module-topics"><b>Curriculum coverage</b><div class="term-chips"><span class="term-chip">Delta Lake / Apache Iceberg</span><span class="term-chip">Medallion layers</span><span class="term-chip">Fabric, Databricks or Snowflake</span></div></div>
+<div class="files-box"><div class="files-head"><b>Practice files for this page</b><a href="../../../practice-files.html">All practice files →</a></div><ul><li><a href="../../../downloads/phase-3/data-engineering-scripts.zip" download>data-engineering-scripts.zip</a><span class="f-desc">Phase 3 scripts: ingestion, PostgreSQL, advanced SQL, warehousing, lakehouse, Docker, ETL/CDC, data quality, plus the dbt mini-project and verification scripts · 476 KB</span></li></ul></div>
+<div class="section-head"><h2>Tutorials</h2><p>2 ready · 0 planned</p></div>
 <ul class="lesson-list"><li class="lesson-row" data-lesson="phase-3/lakehouse/01-delta-lake-medallion"><span class="n">1</span><span><a href="../../../learn/phase-3/lakehouse/01-delta-lake-medallion.html">Delta Lake &amp; the Medallion Architecture: Bronze, Silver, Gold</a><span class="desc">Build a mini lakehouse on your laptop: land raw data in bronze, clean it into a partitioned silver Delta table, aggregate a gold table for BI, and use schema enforcement, MERGE and time travel.</span></span><span class="lesson-state">55 min</span></li><li class="lesson-row" data-lesson="phase-3/lakehouse/02-iceberg-lakehouse-platforms"><span class="n">2</span><span><a href="../../../learn/phase-3/lakehouse/02-iceberg-lakehouse-platforms.html">Apache Iceberg &amp; Lakehouse Platforms: Fabric, Databricks, Snowflake</a><span class="desc">Create, evolve and time-travel an Apache Iceberg table locally with PyIceberg, then compare how Microsoft Fabric, Databricks and Snowflake implement the lakehouse — and how to choose between them.</span></span><span class="lesson-state">50 min</span></li></ul>
 <nav class="pager"><a class="prev" href="../../../learn/phase-3/data-warehousing/index.html"><small>← Previous module</small>Data Warehousing</a><a class="next" href="../../../learn/phase-3/etl-elt/index.html"><small>Next module →</small>ETL / ELT</a></nav>
 
   </div></main>
   
 </div>
-<footer class="site">Data, AI &amp; Automation Path v0.8 · Applied AI, Data &amp; Automation Lab · Updated October 2026<br>
+<footer class="site"><b>Saiful The Techie</b> · Data, AI &amp; Automation Path v0.9.1 · Updated October 2026<br>
 Lesson text: <a href="../../../license.html">CC BY-NC-SA 4.0</a> · Code: <a href="../../../license.html#code-mit-license">MIT</a> · Free external resources belong to their respective owners.</footer>
 <script src="../../../search-index.js"></script>
 <script src="../../../assets/app.js"></script>

@@ -6,7 +6,7 @@
 <title>Phase 2 Project: Business Analytics Study — Data, AI &amp; Automation Path</title>
 <meta name="description" content="Run a complete, reproducible analytics study on a year of sales: clean the data, explore it, quantify uncertainty, analyse an A/B test, build a simple honest model, and turn it all into recommendations a manager can act on.">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="Data, AI &amp; Automation Path">
+<meta property="og:site_name" content="Saiful The Techie">
 <meta property="og:title" content="Phase 2 Project: Business Analytics Study">
 <meta property="og:description" content="Run a complete, reproducible analytics study on a year of sales: clean the data, explore it, quantify uncertainty, analyse an A/B test, build a simple honest model, and turn it all into recommendations a manager can act on.">
 <meta property="og:locale" content="en_US">
@@ -19,13 +19,13 @@ var n=null;try{n=localStorage.getItem('daa-nav')}catch(e){}
 if(n==='open'&&window.matchMedia&&matchMedia('(min-width: 961px)').matches)document.documentElement.setAttribute('data-nav','open');
 document.documentElement.classList.add('no-anim')})();</script>
 <link rel="stylesheet" href="../../assets/style.css">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233f7d6a'/%3E%3Ctext x='16' y='21' font-family='sans-serif' font-size='13' font-weight='700' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
+
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="topbar">
   <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Open curriculum menu" title="Curriculum menu (press M)" aria-controls="sidebar" aria-expanded="false"><span class="ico-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span class="ico-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></button>
-  <a class="brand" href="../../index.html"><span class="brand-badge">AI</span><span class="brand-text"><span class="brand-name">Data, AI &amp; Automation Path</span><span class="brand-version">v0.8</span></span></a>
+  <a class="brand" href="../../index.html"><span class="brand-text"><span class="brand-name">Saiful The Techie</span><span class="brand-version">Data, AI &amp; Automation Path · v0.9.1</span></span></a>
   <nav class="top-links" aria-label="Main">
     <a href="../../index.html" class="">Home</a><a href="../../curriculum.html" class="">Curriculum</a><a href="../../practice-files.html" class="">Practice files</a><a href="../../glossary.html" class="">Glossary</a><a href="../../how-to-learn.html" class="">How to learn</a><a href="../../about.html" class="">About</a>
   </nav>
@@ -41,7 +41,7 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="layout wide">
   <nav class="sidebar" id="sidebar" aria-label="Curriculum">
     <div class="side-title">Curriculum</div>
-    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="77"><i></i></div><span class="bar-label" data-progress-label></span></div>
+    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="85"><i></i></div><span class="bar-label" data-progress-label></span></div>
 <div class="nav-phase"><a href="../../learn/phase-0/index.html"><span class="nav-num">0</span>Foundations</a>
 </div>
 <div class="nav-phase"><a href="../../learn/phase-1/index.html"><span class="nav-num">1</span>Analytics &amp; BI</a>
@@ -92,176 +92,235 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="meta"><span class="pill">Phase <b>2</b> · Data Science</span><span class="pill">Effort <b>20–30 hours (estimate)</b></span><span class="pill">Level <b>Intermediate</b></span></div>
 <div class="files-box"><div class="files-head"><b>Practice files for this page</b><a href="../../practice-files.html">All practice files →</a></div><ul><li><a href="../../downloads/phase-2/data-science-scripts.zip" download>data-science-scripts.zip</a><span class="f-desc">All 21 Phase 2 lesson scripts (NumPy to research thinking), shared chart style, data folder and solutions · 230 KB</span></li><li><a href="../../downloads/phase-2/orders_2025_raw.csv" download>orders_2025_raw.csv</a><span class="f-desc">The same orders as a messy ERP export (4,264 lines) for the pandas cleaning lesson · 424 KB</span></li><li><a href="../../downloads/phase-2/orders_2025.csv" download>orders_2025.csv</a><span class="f-desc">4,246 clean orders for 2025 (synthetic, fixed seed): region, segment, channel, product, price, discount, status, delivery days, revenue · 472 KB</span></li><li><a href="../../downloads/phase-2/customers_2025.csv" download>customers_2025.csv</a><span class="f-desc">63 customers: segment, region, sign-up date, credit terms · 3 KB</span></li><li><a href="../../downloads/phase-2/products_2025.csv" download>products_2025.csv</a><span class="f-desc">12 products with category, list price and unit cost · 374 B</span></li><li><a href="../../downloads/phase-2/ab_test_checkout.csv" download>ab_test_checkout.csv</a><span class="f-desc">10,836 portal sessions from a November A/B test of a one-page checkout (variant, device, converted, order value) · 377 KB</span></li><li><a href="../../downloads/templates/analysis_report_template.md" download>analysis_report_template.md</a><span class="f-desc">Analysis report template: bottom line first, results with CIs, limitations, how to reproduce (Markdown) · 1 KB</span></li><li><a href="../../downloads/templates/experiment_plan_template.md" download>experiment_plan_template.md</a><span class="f-desc">Experiment plan template: question, unit, metrics, MDE, sample size, stopping rule (Markdown) · 1 KB</span></li></ul></div>
 <h2 id="the-brief">The brief</h2>
-<p>The managing director of the textile supplies wholesaler (the same company as Phase 1, now with a full year of data) writes:</p>
+<p>The managing director of the textile supplies wholesaler (the same
+company as Phase 1, now with a full year of data) writes:</p>
 <blockquote>
-<p><em>"2025 is closed. I want to know what really drove our sales, where we're losing money to cancellations and late deliveries, whether the new one-page checkout should stay, and what we should change next year. Give me evidence, not opinions."</em></p>
+<p><em>“2025 is closed. I want to know what really drove our sales,
+where we’re losing money to cancellations and late deliveries, whether
+the new one-page checkout should stay, and what we should change next
+year. Give me evidence, not opinions.”</em></p>
 </blockquote>
-<p>Deliver a <strong>business analytics study</strong>: a reproducible Python project and a short report. It's your Phase 2 milestone and a strong data science portfolio piece.</p>
-<h2 id="what-youll-prove">What you'll prove</h2>
+<p>Deliver a <strong>business analytics study</strong>: a reproducible
+Python project and a short report. It’s your Phase 2 milestone and a
+strong data science portfolio piece.</p>
+<h2 id="what-youll-prove">What you’ll prove</h2>
 <table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Skill (Phase 2 module)</th>
 <th>Evidence in your project</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>NumPy &amp; pandas</td>
-<td>A cleaning script from <code>orders_2025_raw.csv</code> that reproduces <code>orders_2025.csv</code> exactly</td>
+<td>A cleaning script from <code>orders_2025_raw.csv</code> that
+reproduces <code>orders_2025.csv</code> exactly</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Polars &amp; DuckDB</td>
-<td>One summary query written in DuckDB SQL (or Polars), matching the pandas result</td>
+<td>One summary query written in DuckDB SQL (or Polars), matching the
+pandas result</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>EDA</td>
-<td>4–6 analytical questions, each answered with a number and at most one chart</td>
+<td>4–6 analytical questions, each answered with a number and at most
+one chart</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Statistics</td>
 <td>Key KPIs reported with 95% confidence intervals</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>A/B testing</td>
-<td>A full experiment readout for the checkout test, plus one designed (future) experiment</td>
+<td>A full experiment readout for the checkout test, plus one designed
+(future) experiment</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Visualization</td>
 <td>One before/after chart redesign and a consistent chart style</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>ML foundations</td>
-<td>A leakage-free cancellation-risk model, evaluated against a baseline with a time-based split</td>
+<td>A leakage-free cancellation-risk model, evaluated against a baseline
+with a time-based split</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Research thinking</td>
-<td>A reproducible project (lock file, seeds, data hashes) and a report with limitations</td>
+<td>A reproducible project (lock file, seeds, data hashes) and a report
+with limitations</td>
 </tr>
 </tbody>
 </table>
 <h2 id="data">Data</h2>
-<p>All files are synthetic but realistic (fixed seed, so your numbers can be checked):</p>
+<p>All files are synthetic but realistic (fixed seed, so your numbers
+can be checked):</p>
 <table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>File</th>
 <th>Rows</th>
 <th>What it is</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td><code>orders_2025_raw.csv</code></td>
 <td>4,264</td>
 <td>The messy ERP export (duplicates, typos, mixed formats)</td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>orders_2025.csv</code></td>
 <td>4,246</td>
 <td>The clean reference: use it to check your cleaning</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><code>customers_2025.csv</code></td>
 <td>63</td>
 <td>Segment, region, sign-up date, credit terms</td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>products_2025.csv</code></td>
 <td>12</td>
 <td>List price and unit cost</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><code>ab_test_checkout.csv</code></td>
 <td>10,836</td>
 <td>Portal sessions, 1–28 November, checkout A vs B</td>
 </tr>
 </tbody>
 </table>
-<p><strong>Option B (stronger portfolio):</strong> apply the same study to a public dataset or anonymised data from your work, keeping the same structure of questions.</p>
+<p><strong>Option B (stronger portfolio):</strong> apply the same study
+to a public dataset or anonymised data from your work, keeping the same
+structure of questions.</p>
 <h2 id="requirements">Requirements</h2>
-<h3 id="1-reproducible-project">1. Reproducible project</h3>
-<ul>
-<li>[ ] A repository with <code>pyproject.toml</code> + <code>uv.lock</code>, <code>data/</code>, <code>src/</code> or numbered scripts, <code>results/</code>, <code>reports/</code>, <code>README.md</code>.</li>
-<li>[ ] One command (or a short documented sequence) runs everything from the raw file to the report numbers.</li>
-<li>[ ] Fixed seeds; a <code>results/*.json</code> file with the data SHA-256 hashes and package versions.</li>
+<h3 id="reproducible-project">1. Reproducible project</h3>
+<ul class="task-list">
+<li><label><input type="checkbox" />A repository with
+<code>pyproject.toml</code> + <code>uv.lock</code>, <code>data/</code>,
+<code>src/</code> or numbered scripts, <code>results/</code>,
+<code>reports/</code>, <code>README.md</code>.</label></li>
+<li><label><input type="checkbox" />One command (or a short documented
+sequence) runs everything from the raw file to the report
+numbers.</label></li>
+<li><label><input type="checkbox" />Fixed seeds; a
+<code>results/*.json</code> file with the data SHA-256 hashes and
+package versions.</label></li>
 </ul>
-<h3 id="2-data-preparation">2. Data preparation</h3>
-<ul>
-<li>[ ] Clean <code>orders_2025_raw.csv</code>: types, text tidy-up, duplicates, price typos, negative quantities; every rule documented with counts.</li>
-<li>[ ] A check that your result equals <code>orders_2025.csv</code> (same rows and values).</li>
+<h3 id="data-preparation">2. Data preparation</h3>
+<ul class="task-list">
+<li><label><input type="checkbox" />Clean
+<code>orders_2025_raw.csv</code>: types, text tidy-up, duplicates, price
+typos, negative quantities; every rule documented with
+counts.</label></li>
+<li><label><input type="checkbox" />A check that your result equals
+<code>orders_2025.csv</code> (same rows and values).</label></li>
 </ul>
-<h3 id="3-eda-statistics">3. EDA &amp; statistics</h3>
-<ul>
-<li>[ ] 4–6 analytical questions written <strong>before</strong> the analysis.</li>
-<li>[ ] Distributions (with skew handled), patterns over time (weekly and monthly), relationships (with confounders discussed) and anomalies (classified).</li>
-<li>[ ] Median order value, cancellation rate and late-delivery rate, overall and by segment, each with a 95% CI.</li>
+<h3 id="eda-statistics">3. EDA &amp; statistics</h3>
+<ul class="task-list">
+<li><label><input type="checkbox" />4–6 analytical questions written
+<strong>before</strong> the analysis.</label></li>
+<li><label><input type="checkbox" />Distributions (with skew handled),
+patterns over time (weekly and monthly), relationships (with confounders
+discussed) and anomalies (classified).</label></li>
+<li><label><input type="checkbox" />Median order value, cancellation
+rate and late-delivery rate, overall and by segment, each with a 95%
+CI.</label></li>
 </ul>
-<h3 id="4-experimentation">4. Experimentation</h3>
-<ul>
-<li>[ ] Checkout A/B readout: health check (SRM), conversion test with CI, guardrails, segments, decision.</li>
-<li>[ ] One experiment plan (template) for a 2026 change, including a power analysis and the unit of randomisation.</li>
+<h3 id="experimentation">4. Experimentation</h3>
+<ul class="task-list">
+<li><label><input type="checkbox" />Checkout A/B readout: health check
+(SRM), conversion test with CI, guardrails, segments,
+decision.</label></li>
+<li><label><input type="checkbox" />One experiment plan (template) for a
+2026 change, including a power analysis and the unit of
+randomisation.</label></li>
 </ul>
-<h3 id="5-model">5. Model</h3>
-<ul>
-<li>[ ] Cancellation-risk model with order-time features only, a written feature audit, a pipeline, a time-based split, a baseline, ROC AUC with a bootstrap CI, and a business threshold.</li>
+<h3 id="model">5. Model</h3>
+<ul class="task-list">
+<li><label><input type="checkbox" />Cancellation-risk model with
+order-time features only, a written feature audit, a pipeline, a
+time-based split, a baseline, ROC AUC with a bootstrap CI, and a
+business threshold.</label></li>
 </ul>
-<h3 id="6-communication">6. Communication</h3>
-<ul>
-<li>[ ] <code>reports/ANALYSIS_REPORT.md</code> (template): bottom line first, results table with CIs, 4–6 charts with action titles, limitations, recommendations with owners.</li>
-<li>[ ] One before/after chart redesign.</li>
+<h3 id="communication">6. Communication</h3>
+<ul class="task-list">
+<li><label><input
+type="checkbox" /><code>reports/ANALYSIS_REPORT.md</code> (template):
+bottom line first, results table with CIs, 4–6 charts with action
+titles, limitations, recommendations with owners.</label></li>
+<li><label><input type="checkbox" />One before/after chart
+redesign.</label></li>
 </ul>
 <h2 id="known-answers-practice-data">Known answers (practice data)</h2>
-<p>Your project must reproduce these. If one doesn't match, find out why before you continue.</p>
+<p>Your project must reproduce these. If one doesn’t match, find out why
+before you continue.</p>
 <table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Check</th>
 <th>Expected</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>Clean orders</td>
 <td>4,246 (from 4,264 raw lines: 18 duplicates removed)</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Status counts</td>
 <td>Delivered 3,872 · Cancelled 283 · Shipped 46 · Pending 45</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Net revenue (excluding Cancelled)</td>
 <td>5,478,357.79</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Median order value (excl. Cancelled), 95% bootstrap CI</td>
 <td>1,060 (about 1,023–1,099)</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Late deliveries (delivery days &gt; promised)</td>
 <td>919 of 3,872 = 23.7% (95% CI 22.4–25.1%)</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Cancellation rate by credit terms</td>
 <td>0 days 3.3% · 15 days 4.3% · 30 days 8.1% · 60 days 13.9%</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>A/B conversion A vs B</td>
 <td>6.70% vs 7.91%; +1.21 pts (95% CI 0.23–2.19); p = 0.016</td>
 </tr>
-<tr>
+<tr class="even">
 <td>A/B revenue per session</td>
 <td>50.53 vs 56.27 (+11.4%), p = 0.20 (not significant)</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Cancellation model, time split (segment, channel, credit days)</td>
 <td>ROC AUC 0.639 (bootstrap 95% CI about 0.57–0.70)</td>
 </tr>
 </tbody>
 </table>
-<p><em>(Rates by credit terms use all 4,246 orders; the model and research lessons drop the 45 pending orders, giving 3.3 / 4.4 / 8.2 / 14.1%.)</em></p>
-<h2 id="suggested-repository-structure">Suggested repository structure</h2>
-<div class="codehilite"><pre><span></span><code>phase2-business-analytics/
+<p><em>(Rates by credit terms use all 4,246 orders; the model and
+research lessons drop the 45 pending orders, giving 3.3 / 4.4 / 8.2 /
+14.1%.)</em></p>
+<h2 id="suggested-repository-structure">Suggested repository
+structure</h2>
+<pre class="text"><code>phase2-business-analytics/
 ├── README.md                 ← question, findings, how to reproduce, screenshots
 ├── pyproject.toml / uv.lock
 ├── data/                     ← raw + reference files (or a download script)
@@ -271,62 +330,81 @@ document.documentElement.classList.add('no-anim')})();</script>
 └── reports/
     ├── ANALYSIS_REPORT.md
     ├── EXPERIMENT_PLAN_2026.md
-    └── FEATURE_AUDIT.md
-</code></pre></div>
-
+    └── FEATURE_AUDIT.md</code></pre>
 <h2 id="self-assessment-rubric">Self-assessment rubric</h2>
 <table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Area</th>
 <th>Meets the bar</th>
 <th>Excellent</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>Reproducibility</td>
 <td>Runs from raw data with documented steps</td>
-<td>One command, lock file, seeds, hashes; reviewer gets identical numbers</td>
+<td>One command, lock file, seeds, hashes; reviewer gets identical
+numbers</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Data preparation</td>
 <td>Matches the reference file</td>
 <td>Every rule documented with counts; checks automated (pytest)</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>EDA &amp; statistics</td>
 <td>Correct numbers and charts</td>
-<td>Questions first; CIs everywhere; confounders and anomalies discussed</td>
+<td>Questions first; CIs everywhere; confounders and anomalies
+discussed</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Experimentation</td>
 <td>Correct test and decision</td>
-<td>SRM, guardrails, segments as hypotheses; a sized, realistic 2026 plan</td>
+<td>SRM, guardrails, segments as hypotheses; a sized, realistic 2026
+plan</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Model</td>
 <td>Leakage-free, beats baseline</td>
-<td>Feature audit, time split, CI, threshold tied to business capacity</td>
+<td>Feature audit, time split, CI, threshold tied to business
+capacity</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Communication</td>
 <td>Report with findings</td>
-<td>Bottom line first; action titles; limitations; clear owners and next steps</td>
+<td>Bottom line first; action titles; limitations; clear owners and next
+steps</td>
 </tr>
 </tbody>
 </table>
-<p><strong>Done when:</strong> every requirement is checked, the known answers match, and a reviewer can clone your repository, run it, and reach the same conclusions without asking you anything.</p>
-<div class="admonition tip">
-<p class="admonition-title">Interview story</p>
-<p>"I ran a full analytics study on a year of sales: a reproducible cleaning pipeline, EDA with confidence intervals, an A/B test readout that recommended keeping the new checkout (+1.2 points conversion, CI 0.2–2.2) while flagging that revenue per session wasn't yet significant, and a leakage-free cancellation-risk model with an honest ROC AUC of 0.64. I also showed that a proposed credit-terms experiment wasn't feasible with only seven customers, and designed a per-order alternative instead."</p>
+<p><strong>Done when:</strong> every requirement is checked, the known
+answers match, and a reviewer can clone your repository, run it, and
+reach the same conclusions without asking you anything.</p>
+<div class="admonition tip" data-markdown="1">
+<p class="admonition-title">
+Interview story
+</p>
+<p>“I ran a full analytics study on a year of sales: a reproducible
+cleaning pipeline, EDA with confidence intervals, an A/B test readout
+that recommended keeping the new checkout (+1.2 points conversion, CI
+0.2–2.2) while flagging that revenue per session wasn’t yet significant,
+and a leakage-free cancellation-risk model with an honest ROC AUC of
+0.64. I also showed that a proposed credit-terms experiment wasn’t
+feasible with only seven customers, and designed a per-order alternative
+instead.”</p>
 </div>
 <nav class="pager"><a class="prev" href="../../learn/phase-2/index.html"><small>← Back to phase</small>Phase 2 — Data Science</a></nav>
 <p class="reviewed">Last reviewed: 2026-10-09</p>
   </div></main>
-  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#the-brief">The brief</a><a href="#what-youll-prove">What you&#x27;ll prove</a><a href="#data">Data</a><a href="#requirements">Requirements</a><a href="#known-answers-practice-data">Known answers (practice data)</a><a href="#suggested-repository-structure">Suggested repository structure</a><a href="#self-assessment-rubric">Self-assessment rubric</a></aside>
+  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#the-brief">The brief</a><a href="#what-youll-prove">What you’ll prove</a><a href="#data">Data</a><a href="#requirements">Requirements</a><a href="#reproducible-project">1. Reproducible project</a><a href="#data-preparation">2. Data preparation</a><a href="#eda-statistics">3. EDA &amp; statistics</a><a href="#experimentation">4. Experimentation</a><a href="#model">5. Model</a><a href="#communication">6. Communication</a><a href="#known-answers-practice-data">Known answers (practice data)</a><a href="#suggested-repository-structure">Suggested repository structure</a><a href="#self-assessment-rubric">Self-assessment rubric</a></aside>
 </div>
-<footer class="site">Data, AI &amp; Automation Path v0.8 · Applied AI, Data &amp; Automation Lab · Updated October 2026<br>
+<footer class="site"><b>Saiful The Techie</b> · Data, AI &amp; Automation Path v0.9.1 · Updated October 2026<br>
 Lesson text: <a href="../../license.html">CC BY-NC-SA 4.0</a> · Code: <a href="../../license.html#code-mit-license">MIT</a> · Free external resources belong to their respective owners.</footer>
 <script src="../../search-index.js"></script>
 <script src="../../assets/app.js"></script>

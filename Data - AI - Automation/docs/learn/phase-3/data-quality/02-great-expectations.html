@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en" data-root="../../../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Great Expectations — Data, AI &amp; Automation Path</title>
+<meta name="description" content="Express reusable data-quality assertions as Expectations and validate the 2025 orders through an Expectation Suite.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Saiful The Techie">
+<meta property="og:title" content="Great Expectations">
+<meta property="og:description" content="Express reusable data-quality assertions as Expectations and validate the 2025 orders through an Expectation Suite.">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+
+<script>(function(){var t=null;try{t=localStorage.getItem('daa-theme')}catch(e){}
+if(!t)t=(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';
+document.documentElement.setAttribute('data-theme',t);
+var n=null;try{n=localStorage.getItem('daa-nav')}catch(e){}
+if(n==='open'&&window.matchMedia&&matchMedia('(min-width: 961px)').matches)document.documentElement.setAttribute('data-nav','open');
+document.documentElement.classList.add('no-anim')})();</script>
+<link rel="stylesheet" href="../../../assets/style.css">
+
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Open curriculum menu" title="Curriculum menu (press M)" aria-controls="sidebar" aria-expanded="false"><span class="ico-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span class="ico-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></button>
+  <a class="brand" href="../../../index.html"><span class="brand-text"><span class="brand-name">Saiful The Techie</span><span class="brand-version">Data, AI &amp; Automation Path · v0.9.1</span></span></a>
+  <nav class="top-links" aria-label="Main">
+    <a href="../../../index.html" class="">Home</a><a href="../../../curriculum.html" class="">Curriculum</a><a href="../../../practice-files.html" class="">Practice files</a><a href="../../../glossary.html" class="">Glossary</a><a href="../../../how-to-learn.html" class="">How to learn</a><a href="../../../about.html" class="">About</a>
+  </nav>
+  <div class="top-spacer"></div>
+  <div class="search" role="search">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input id="searchInput" type="search" placeholder="Search lessons, tools, topics" aria-label="Search" autocomplete="off">
+    <kbd>/</kbd>
+    <div class="search-results" id="searchResults" role="listbox"></div>
+  </div>
+  <button class="icon-btn theme-toggle" id="themeBtn" aria-label="Toggle light or dark mode" title="Light / dark"><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
+</header>
+<div class="layout wide">
+  <nav class="sidebar" id="sidebar" aria-label="Curriculum">
+    <div class="side-title">Curriculum</div>
+    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="85"><i></i></div><span class="bar-label" data-progress-label></span></div>
+<div class="nav-phase"><a href="../../../learn/phase-0/index.html"><span class="nav-num">0</span>Foundations</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-1/index.html"><span class="nav-num">1</span>Analytics &amp; BI</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-2/index.html"><span class="nav-num">2</span>Data Science</a>
+</div>
+<div class="nav-phase current open"><a href="../../../learn/phase-3/index.html"><span class="nav-num">3</span>Data Engineering</a>
+<ul class="nav-modules">
+<li><a class="" href="../../../learn/phase-3/data-ingestion/index.html">Data Ingestion</a>
+</li>
+<li><a class="" href="../../../learn/phase-3/advanced-sql/index.html">Advanced SQL</a>
+</li>
+<li><a class="" href="../../../learn/phase-3/database-engineering/index.html">Database Engineering</a>
+</li>
+<li><a class="" href="../../../learn/phase-3/data-warehousing/index.html">Data Warehousing</a>
+</li>
+<li><a class="" href="../../../learn/phase-3/lakehouse/index.html">Lakehouse &amp; Open Table Formats</a>
+</li>
+<li><a class="" href="../../../learn/phase-3/etl-elt/index.html">ETL / ELT</a>
+</li>
+<li><a class="current" href="../../../learn/phase-3/data-quality/index.html">Data Quality &amp; Contracts</a>
+<ul class="nav-lessons">
+<li><a class="" data-lesson="phase-3/data-quality/01-validation-rules-pytest" href="../../../learn/phase-3/data-quality/01-validation-rules-pytest.html">Validation Rules and pytest for Data</a></li>
+<li><a class="current" data-lesson="phase-3/data-quality/02-great-expectations" href="../../../learn/phase-3/data-quality/02-great-expectations.html">Great Expectations</a></li>
+<li><a class="" data-lesson="phase-3/data-quality/03-data-contracts-freshness-alerting" href="../../../learn/phase-3/data-quality/03-data-contracts-freshness-alerting.html">Data Contracts, Freshness and Alerting</a></li>
+</ul>
+</li>
+<li><a class="" href="../../../learn/phase-3/docker/index.html">Docker</a>
+</li>
+<li><a class="" href="../../../learn/phase-3/orchestration/index.html">Orchestration</a>
+</li>
+<li><a class="" href="../../../learn/phase-3/dbt/index.html">dbt</a>
+</li>
+<li><a class="" href="../../../learn/phase-3/cloud-iac/index.html">Cloud &amp; Infrastructure as Code</a>
+</li>
+<li><a class="" href="../../../learn/phase-3/ai-ready-data/index.html">AI-Ready Data</a>
+</li>
+<li><a class="" href="../../../learn/phase-3/big-data-streaming/index.html">Big Data &amp; Streaming</a>
+</li>
+</ul>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-4/index.html"><span class="nav-num">4</span>ML Engineering</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-5/index.html"><span class="nav-num">5</span>LLM &amp; RAG</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-6/index.html"><span class="nav-num">6</span>Agents &amp; Automation</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-7/index.html"><span class="nav-num">7</span>LLMOps &amp; Governance</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-8/index.html"><span class="nav-num">8</span>Capstone</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-9/index.html"><span class="nav-num">9</span>Career</a>
+</div>
+<div class="side-extra"><a href="../../../index.html">Home</a><a href="../../../curriculum.html">Full curriculum map</a><a href="../../../practice-files.html">Practice files</a><a href="../../../glossary.html">Glossary</a><a href="../../../how-to-learn.html">How to learn here</a><a href="../../../about.html">About &amp; contributing</a></div></nav>
+  <main class="main" id="main"><div class="content">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../../index.html">Home</a><span class="sep">/</span><a href="../../../learn/phase-3/index.html">Phase 3</a><span class="sep">/</span><a href="../../../learn/phase-3/data-quality/index.html">Data Quality &amp; Contracts</a><span class="sep">/</span><span>Great Expectations</span></nav>
+<h1>Great Expectations</h1>
+<p class="lead">Express reusable data-quality assertions as Expectations and validate the 2025 orders through an Expectation Suite.</p>
+<div class="meta"><span class="pill">Phase <b>3</b> · Data Engineering</span><span class="pill">Level <b>Intermediate</b></span><span class="pill">Time <b>45 min</b></span></div>
+<div class="admonition note"><p class="admonition-title">Before you start</p><p><a href="../../../learn/phase-3/data-quality/01-validation-rules-pytest.html">Validation Rules and pytest for Data</a></p></div>
+<div class="files-box"><div class="files-head"><b>Practice files for this page</b><a href="../../../practice-files.html">All practice files →</a></div><ul><li><a href="../../../downloads/phase-3/data-engineering-scripts.zip" download>data-engineering-scripts.zip</a><span class="f-desc">Phase 3 scripts: ingestion, PostgreSQL, advanced SQL, warehousing, lakehouse, Docker, ETL/CDC, data quality, plus the dbt mini-project and verification scripts · 476 KB</span></li></ul></div>
+<h2 id="what-is-it">What is it?</h2>
+<p><strong>Great Expectations (GX)</strong> is a data-quality framework
+that expresses checks as <strong>Expectations</strong>. An Expectation
+is a verifiable assertion such as <em>“<code>order_id</code> values are
+unique.”</em> An <strong>Expectation Suite</strong> groups related
+assertions for a dataset.</p>
+<p>GX then connects the Suite to a particular batch of data and produces
+a structured Validation Result instead of only a custom print
+statement.</p>
+<p>The official documentation checked on <strong>2026-10-09</strong>
+shows GX Core <strong>1.24.0</strong>. The practice script is written
+for that API.</p>
+<div class="admonition job" data-markdown="1">
+<p class="admonition-title">
+Why it matters at work
+</p>
+<p>Hand-written validation functions are excellent for learning and for
+highly custom business logic. A framework becomes useful when a team
+wants a shared vocabulary, reusable suites, structured validation
+results, checkpoints, documentation and integrations. The trade-off is
+an extra dependency and framework concepts that the team must operate
+well.</p>
+</div>
+<h2 id="step-1-create-an-ephemeral-gx-context">Step 1: create an
+ephemeral GX context</h2>
+<p>For this lesson we do not need to persist a GX project directory. An
+ephemeral context keeps the example self-contained:</p>
+<pre class="python"><code>import great_expectations as gx
+
+context = gx.get_context(mode=&quot;ephemeral&quot;)</code></pre>
+<p>GX 1.24.0 supports ephemeral contexts for temporary or CI-style
+validation work.</p>
+<h2 id="step-2-connect-an-in-memory-pandas-dataframe">Step 2: connect an
+in-memory pandas DataFrame</h2>
+<p>GX organizes the connection as <strong>Data Source → Data Asset →
+Batch Definition</strong>:</p>
+<pre class="python"><code>data_source = context.data_sources.add_pandas(name=&quot;orders_pandas&quot;)
+data_asset = data_source.add_dataframe_asset(name=&quot;orders_2025&quot;)
+batch_definition = data_asset.add_batch_definition_whole_dataframe(&quot;whole_orders&quot;)</code></pre>
+<p>The DataFrame itself is passed later as a runtime batch
+parameter.</p>
+<h2 id="step-3-build-an-expectation-suite">Step 3: build an Expectation
+Suite</h2>
+<p>The practice suite encodes six high-value rules:</p>
+<pre class="python"><code>suite = gx.ExpectationSuite(name=&quot;orders_quality_suite&quot;)
+suite = context.suites.add(suite)
+
+suite.add_expectation(gx.expectations.ExpectTableRowCountToEqual(value=4246))
+suite.add_expectation(gx.expectations.ExpectColumnValuesToNotBeNull(column=&quot;order_id&quot;))
+suite.add_expectation(gx.expectations.ExpectColumnValuesToBeUnique(column=&quot;order_id&quot;))
+suite.add_expectation(
+    gx.expectations.ExpectColumnValuesToBeInSet(
+        column=&quot;status&quot;,
+        value_set=[&quot;Delivered&quot;, &quot;Cancelled&quot;, &quot;Shipped&quot;, &quot;Pending&quot;],
+    )
+)
+suite.add_expectation(
+    gx.expectations.ExpectColumnValuesToBeBetween(
+        column=&quot;quantity&quot;, min_value=1, strict_min=False
+    )
+)
+suite.add_expectation(
+    gx.expectations.ExpectColumnValuesToBeBetween(
+        column=&quot;discount&quot;, min_value=0, max_value=0.08
+    )
+)</code></pre>
+<p>Notice the separation of concerns: the Suite says what good data
+looks like, while the Batch Definition says which data to validate.</p>
+<h2 id="step-4-link-the-suite-to-data-with-a-validation-definition">Step
+4: link the Suite to data with a Validation Definition</h2>
+<pre class="python"><code>validation_definition = gx.ValidationDefinition(
+    data=batch_definition,
+    suite=suite,
+    name=&quot;orders_2025_validation&quot;,
+)
+validation_definition = context.validation_definitions.add(validation_definition)
+
+result = validation_definition.run(
+    batch_parameters={&quot;dataframe&quot;: df}
+)</code></pre>
+<p>That is the core pattern you can later place behind a checkpoint or
+pipeline task.</p>
+<h2 id="verification-status-for-this-lesson">Verification status for
+this lesson</h2>
+<p><strong>RUN-BY-OWNER.</strong> GX Core is not installed in this
+execution environment, and the environment cannot currently install new
+packages from PyPI. I therefore compiled the Python script for syntax
+but did <strong>not</strong> invent a GX validation result.</p>
+<p>The complete script is <code>17_great_expectations_orders.py</code>.
+Run it locally with:</p>
+<pre class="bash"><code>python -m pip install &quot;great_expectations==1.24.0&quot;
+python 17_great_expectations_orders.py</code></pre>
+<p>The script prints the actual <code>success</code> value and the
+successful/evaluated Expectation counts from the returned Validation
+Result. Treat that local output as the authoritative lesson run until GX
+becomes available in this environment.</p>
+<h2 id="when-should-you-use-custom-pytest-rules-vs-gx">When should you
+use custom pytest rules vs GX?</h2>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Approach</th>
+<th>Strength</th>
+<th>Good fit</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Plain Python + pytest</td>
+<td>Transparent, flexible, easy to unit-test</td>
+<td>Custom business logic and small engineering projects</td>
+</tr>
+<tr class="even">
+<td>Great Expectations</td>
+<td>Declarative rules, Suites, structured results and broader quality
+workflow</td>
+<td>Shared team standards and repeatable validation across data
+assets</td>
+</tr>
+<tr class="odd">
+<td>Both</td>
+<td>Custom logic plus framework-level expectations</td>
+<td>Production systems where some rules are simple and some are
+domain-specific</td>
+</tr>
+</tbody>
+</table>
+<p>The tools are complementary. pytest can also test your GX
+configuration helpers or custom Expectations.</p>
+<h2 id="common-mistakes">Common mistakes</h2>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Mistake</th>
+<th>What happens</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Treating GX as a replacement for understanding the data</td>
+<td>Teams create many checks without knowing which ones protect business
+decisions</td>
+<td>Start from the table grain and real failure modes</td>
+</tr>
+<tr class="even">
+<td>Adding dozens of low-value Expectations</td>
+<td>Alert fatigue grows and important failures are ignored</td>
+<td>Prioritize critical schema, key, domain and business rules</td>
+</tr>
+<tr class="odd">
+<td>Pinning no version in a learning or production environment</td>
+<td>Framework API changes can make examples irreproducible</td>
+<td>Record and pin the verified GX version</td>
+</tr>
+<tr class="even">
+<td>Showing framework output that was never run</td>
+<td>Learners cannot know whether the example actually works</td>
+<td>Label owner-run/reference-only code honestly</td>
+</tr>
+<tr class="odd">
+<td>Putting all rules at the same severity</td>
+<td>Minor drift can block critical pipelines</td>
+<td>Design severity and response with the data owner</td>
+</tr>
+</tbody>
+</table>
+<h2 id="try-it-yourself">Try it yourself</h2>
+<p><strong>Task:</strong> Add an Expectation that
+<code>promised_days</code> stays between 3 and 6 inclusive. Then run the
+Validation Definition locally.</p>
+<details>
+<summary>
+Show a hint
+</summary>
+Use another <code>ExpectColumnValuesToBeBetween</code> Expectation
+before creating the Validation Definition.
+</details>
+<details>
+<summary>
+Show the solution
+</summary>
+<pre class="python"><code>suite.add_expectation(
+    gx.expectations.ExpectColumnValuesToBeBetween(
+        column=&quot;promised_days&quot;, min_value=3, max_value=6
+    )
+)</code></pre>
+Rerun the script and read the counts from the real Validation Result
+rather than hard-coding an expected message.
+</details>
+<h2 id="quick-quiz">Quick quiz</h2>
+<div class="quiz-q" data-answer="0">
+<p>1. What is an Expectation Suite?</p>
+<ol type="1">
+<li>A collection of Expectations describing the desired state of
+data</li>
+<li>A replacement for the source database</li>
+<li>A Python virtual environment</li>
+</ol>
+<details>
+<summary>
+Show answer
+</summary>
+<strong>A.</strong> A Suite groups the assertions that should hold for a
+data asset.
+</details>
+</div>
+<div class="quiz-q" data-answer="1">
+<p>2. What does a Validation Definition link in this lesson?</p>
+<ol type="1">
+<li>A dashboard to a CSS file</li>
+<li>A Batch Definition to an Expectation Suite</li>
+<li>A pytest fixture to a Docker container</li>
+</ol>
+<details>
+<summary>
+Show answer
+</summary>
+<strong>B.</strong> The Validation Definition connects the data
+selection with the rules to evaluate.
+</details>
+</div>
+<div class="quiz-q" data-answer="2">
+<p>3. Why is there no GX output block in this lesson?</p>
+<ol type="1">
+<li>GX never returns validation output</li>
+<li>The dataset contains no quality rules</li>
+<li>GX could not be executed in this environment, so fabricated output
+would violate the verification rule</li>
+</ol>
+<details>
+<summary>
+Show answer
+</summary>
+<strong>C.</strong> Reference or owner-run code must be labelled
+honestly when it cannot be executed here.
+</details>
+</div>
+<h2 id="summary">Summary</h2>
+<ul>
+<li>GX expresses reusable assertions as <strong>Expectations</strong>
+and groups them in an <strong>Expectation Suite</strong>.</li>
+<li>A pandas Data Source, Data Asset and Batch Definition describe the
+data GX will validate.</li>
+<li>A Validation Definition connects that Batch Definition to the
+Suite.</li>
+<li><code>17_great_expectations_orders.py</code> contains six rules for
+the 2025 orders.</li>
+<li>The script is <strong>RUN-BY-OWNER</strong> because GX 1.24.0 is
+unavailable in this execution environment; no validation output has been
+fabricated.</li>
+</ul>
+<div class="admonition job" data-markdown="1">
+<p class="admonition-title">
+Job-ready check
+</p>
+<p><strong>Interview question:</strong> <em>“Why might a data team use
+Great Expectations instead of only writing <code>if</code>
+statements?”</em></p>
+<p><strong>Strong answer:</strong> “Plain Python checks are useful and I
+still use them for custom business logic. Great Expectations adds a
+declarative quality vocabulary, reusable Expectation Suites, structured
+validation results and workflow components that are easier to
+standardize across assets. I would choose the framework when those
+team-level capabilities justify the dependency, and I would still
+unit-test critical custom logic.”</p>
+<p><strong>Mini project:</strong> Run
+<code>17_great_expectations_orders.py</code> locally, save the real
+Validation Result summary, then add one new business-relevant
+Expectation and document whether it should warn or block the
+pipeline.</p>
+</div>
+<section class="mentor-prompt"><div class="mentor-head"><div><span class="eyebrow">AI study companion</span><h2 id="ai-mentor-prompt">AI Mentor Prompt</h2></div><button class="btn copy-prompt" type="button" data-copy-target="mentor-prompt-phase-3-data-quality-02-great-expectations">Copy prompt</button></div><p>Paste this into ChatGPT, Claude, Gemini, or another capable assistant to turn this tutorial into an interactive mentoring session.</p><pre class="prompt-box"><code id="mentor-prompt-phase-3-data-quality-02-great-expectations">You are my hands-on data-engineering mentor.
+
+I am currently studying:
+&quot;Great Expectations&quot;
+
+My level:
+Intermediate
+
+Teach me this topic interactively rather than giving me a long lecture.
+
+Use this sequence:
+
+1. Check what I already understand with one short diagnostic question.
+2. Explain the concept in simple language and give me the mental model first.
+3. Give me one small task using code, SQL, configuration, data, or architecture as appropriate.
+4. Wait for my attempt before showing a complete solution.
+5. Review my work and explain both what is correct and what needs improvement.
+6. Help me debug errors step by step instead of immediately replacing my work.
+7. Increase the difficulty gradually and connect each new step to the previous one.
+8. Relate what I am learning to real professional data/AI engineering work.
+9. Ask me to explain an important decision in my own words so you can check my understanding.
+10. At the end, ask me to build or modify one small feature independently.
+
+Important rules:
+- Do not do the entire exercise for me unless I explicitly ask.
+- Explain unfamiliar terminology before using it heavily.
+- Prefer current, production-relevant practices over outdated shortcuts.
+- Distinguish clearly between concepts, tool-specific behaviour, and optional alternatives.
+- If a technical fact, API, syntax, version, or best practice may have changed, verify it against current official documentation before teaching it.
+- Never invent command output, test results, benchmark numbers, cloud behaviour, or data results.
+- If something cannot be executed in the current environment, say so and give me the exact command or verification step I should run.
+- Keep me actively coding, querying, configuring, reasoning, or debugging throughout the session.
+- When useful, work from the tutorial practice files (data-engineering-scripts.zip) instead of inventing unrelated examples.
+- For Phase 3 order-data exercises, preserve the established reconciliation targets when relevant: 4,246 orders and net revenue 5,478,357.79. If my result differs, help me debug the cause instead of changing the expected result.
+
+The concepts I need to master are:
+- Great Expectations
+- data quality
+- expectation
+- expectation suite
+- validation definition
+- data tests
+
+Start by asking me one diagnostic question.</code></pre></section>
+<section class="video-companion"><h2 id="video-companion">Video companion</h2><div class="video-frame"><iframe src="https://www.youtube-nocookie.com/embed/F3yvXqzkDhU" title="Great Expectations (GX) for DATA Testing - Introduction" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div><h3>Great Expectations (GX) for DATA Testing - Introduction</h3><p>A focused introduction to GX Core for Python data testing. Use it as a visual companion for expectations and validation, but follow this lesson and the current official GX documentation for the exact API used in the supplied practice script.</p><p class="video-meta">JoanMedia (Joan Esquivel) · 20:31 · English · Intermediate</p><p class="video-reviewed">Video link reviewed: 2026-10-09</p><p><a href="https://www.youtube.com/watch?v=F3yvXqzkDhU">Watch on YouTube ↗</a></p></section>
+<div class="terms-box"><div class="files-head"><b>Key terms in this lesson</b><a href="../../../glossary.html">Glossary →</a></div><div class="term-chips"><a class="term-chip" href="../../../glossary.html#data-quality" title="How fit data is for use: complete, valid, unique, consistent and on time. Checked with automated tests in pipelines.">Data quality</a><a class="term-chip" href="../../../glossary.html#great-expectations" title="A data-quality framework that expresses verifiable assertions as Expectations, groups them in Suites, and returns structured validation results.">Great Expectations</a></div></div>
+<h2 id="free-resources">Free resources to go deeper</h2><ul class="resources"><li><a href="https://docs.greatexpectations.io/docs/core/define_expectations/">Define Expectations</a><span class="r-meta">Great Expectations · Official GX Core guide to Expectations and Expectation Suites.</span></li><li><a href="https://docs.greatexpectations.io/docs/core/connect_to_data/dataframes/">Connect to dataframe data</a><span class="r-meta">Great Expectations · Official pattern for a pandas Data Source, Data Asset and whole-dataframe Batch Definition.</span></li><li><a href="https://docs.greatexpectations.io/docs/core/run_validations/create_a_validation_definition/">Create a Validation Definition</a><span class="r-meta">Great Expectations · Shows how a Batch Definition and Expectation Suite are linked for validation.</span></li></ul>
+<div class="complete-bar"><span>Finished reading and did the exercise?</span>
+<button class="btn" id="completeBtn" type="button" data-id="phase-3/data-quality/02-great-expectations">Mark lesson as complete</button></div>
+<nav class="pager"><a class="prev" href="../../../learn/phase-3/data-quality/01-validation-rules-pytest.html"><small>← Previous</small>Validation Rules and pytest for Data</a><a class="next" href="../../../learn/phase-3/data-quality/03-data-contracts-freshness-alerting.html"><small>Next →</small>Data Contracts, Freshness and Alerting</a></nav>
+<p class="reviewed">Last reviewed: 2026-10-09</p>
+
+  </div></main>
+  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#step-1-create-an-ephemeral-gx-context">Step 1: create an ephemeral GX context</a><a href="#step-2-connect-an-in-memory-pandas-dataframe">Step 2: connect an in-memory pandas DataFrame</a><a href="#step-3-build-an-expectation-suite">Step 3: build an Expectation Suite</a><a href="#step-4-link-the-suite-to-data-with-a-validation-definition">Step 4: link the Suite to data with a Validation Definition</a><a href="#verification-status-for-this-lesson">Verification status for this lesson</a><a href="#when-should-you-use-custom-pytest-rules-vs-gx">When should you use custom pytest rules vs GX?</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#ai-mentor-prompt">AI Mentor Prompt</a><a href="#video-companion">Video companion</a><a href="#free-resources">Free resources</a></aside>
+</div>
+<footer class="site"><b>Saiful The Techie</b> · Data, AI &amp; Automation Path v0.9.1 · Updated October 2026<br>
+Lesson text: <a href="../../../license.html">CC BY-NC-SA 4.0</a> · Code: <a href="../../../license.html#code-mit-license">MIT</a> · Free external resources belong to their respective owners.</footer>
+<script src="../../../search-index.js"></script>
+<script src="../../../assets/app.js"></script>
+</body>
+</html>

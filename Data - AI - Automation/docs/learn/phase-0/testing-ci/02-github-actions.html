@@ -6,7 +6,7 @@
 <title>GitHub Actions: Run Lint and Tests on Every Push — Data, AI &amp; Automation Path</title>
 <meta name="description" content="Write a CI workflow that installs your project with uv, runs ruff and pytest on every push and pull request, and read the results on GitHub — plus scheduled workflows with cron.">
 <meta property="og:type" content="article">
-<meta property="og:site_name" content="Data, AI &amp; Automation Path">
+<meta property="og:site_name" content="Saiful The Techie">
 <meta property="og:title" content="GitHub Actions: Run Lint and Tests on Every Push">
 <meta property="og:description" content="Write a CI workflow that installs your project with uv, runs ruff and pytest on every push and pull request, and read the results on GitHub — plus scheduled workflows with cron.">
 <meta property="og:locale" content="en_US">
@@ -19,13 +19,13 @@ var n=null;try{n=localStorage.getItem('daa-nav')}catch(e){}
 if(n==='open'&&window.matchMedia&&matchMedia('(min-width: 961px)').matches)document.documentElement.setAttribute('data-nav','open');
 document.documentElement.classList.add('no-anim')})();</script>
 <link rel="stylesheet" href="../../../assets/style.css">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233f7d6a'/%3E%3Ctext x='16' y='21' font-family='sans-serif' font-size='13' font-weight='700' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
+
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="topbar">
   <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Open curriculum menu" title="Curriculum menu (press M)" aria-controls="sidebar" aria-expanded="false"><span class="ico-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span class="ico-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></button>
-  <a class="brand" href="../../../index.html"><span class="brand-badge">AI</span><span class="brand-text"><span class="brand-name">Data, AI &amp; Automation Path</span><span class="brand-version">v0.8</span></span></a>
+  <a class="brand" href="../../../index.html"><span class="brand-text"><span class="brand-name">Saiful The Techie</span><span class="brand-version">Data, AI &amp; Automation Path · v0.9.1</span></span></a>
   <nav class="top-links" aria-label="Main">
     <a href="../../../index.html" class="">Home</a><a href="../../../curriculum.html" class="">Curriculum</a><a href="../../../practice-files.html" class="">Practice files</a><a href="../../../glossary.html" class="">Glossary</a><a href="../../../how-to-learn.html" class="">How to learn</a><a href="../../../about.html" class="">About</a>
   </nav>
@@ -41,7 +41,7 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="layout wide">
   <nav class="sidebar" id="sidebar" aria-label="Curriculum">
     <div class="side-title">Curriculum</div>
-    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="77"><i></i></div><span class="bar-label" data-progress-label></span></div>
+    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="85"><i></i></div><span class="bar-label" data-progress-label></span></div>
 <div class="nav-phase current open"><a href="../../../learn/phase-0/index.html"><span class="nav-num">0</span>Foundations</a>
 <ul class="nav-modules">
 <li><a class="" href="../../../learn/phase-0/dev-environment/index.html">Development Environment</a>
@@ -91,152 +91,190 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="files-box"><div class="files-head"><b>Practice files for this page</b><a href="../../../practice-files.html">All practice files →</a></div><ul><li><a href="../../../downloads/phase-0/csv-cleaner-solution.zip" download>csv-cleaner-solution.zip</a><span class="f-desc">Phase 0 Gate project reference solution (17 passing tests, CI workflow) · 14 KB</span></li></ul></div>
 <h2 id="what-is-it">What is it?</h2>
 <ul>
-<li><strong>CI (continuous integration)</strong> means every change is automatically checked (lint, format, tests) on a clean machine, not just on your laptop.</li>
-<li><strong>GitHub Actions</strong> is GitHub's built-in CI. You describe a <strong>workflow</strong> in a YAML file inside <code>.github/workflows/</code>, and GitHub runs it on a fresh virtual machine (a <strong>runner</strong>) whenever something happens (a push, a pull request, a schedule).</li>
+<li><strong>CI (continuous integration)</strong> means every change is
+automatically checked (lint, format, tests) on a clean machine, not just
+on your laptop.</li>
+<li><strong>GitHub Actions</strong> is GitHub’s built-in CI. You
+describe a <strong>workflow</strong> in a YAML file inside
+<code>.github/workflows/</code>, and GitHub runs it on a fresh virtual
+machine (a <strong>runner</strong>) whenever something happens (a push,
+a pull request, a schedule).</li>
 </ul>
-<div class="codehilite"><pre><span></span><code>git push ──► GitHub ──► runner (fresh Ubuntu)
+<pre class="text"><code>git push ──► GitHub ──► runner (fresh Ubuntu)
                          1. get the code
                          2. install uv + Python
                          3. install exact dependencies (uv.lock)
                          4. ruff check · ruff format --check · pytest
-                         ──► ✅ or ❌ shown on the commit and the PR
-</code></pre></div>
-
-<div class="admonition job">
-<p class="admonition-title">Why it matters at work</p>
-<p>In professional teams a PR cannot merge until CI is green. CI catches "works on my machine" problems, forgotten files and broken tests before review. A green CI badge in a portfolio repository shows employers you work like an engineer. The same Actions platform is also used to schedule data jobs and deploy apps.</p>
+                         ──► ✅ or ❌ shown on the commit and the PR</code></pre>
+<div class="admonition job" data-markdown="1">
+<p class="admonition-title">
+Why it matters at work
+</p>
+<p>In professional teams a PR cannot merge until CI is green. CI catches
+“works on my machine” problems, forgotten files and broken tests before
+review. A green CI badge in a portfolio repository shows employers you
+work like an engineer. The same Actions platform is also used to
+schedule data jobs and deploy apps.</p>
 </div>
-<h2 id="example-the-csv-cleaner-workflow">Example: the csv-cleaner workflow</h2>
-<p>From <a href="../../../downloads/phase-0/csv-cleaner-solution.zip">csv-cleaner-solution.zip</a>, file <code>.github/workflows/ci.yml</code>:</p>
-<div class="codehilite"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CI</span>
+<h2 id="example-the-csv-cleaner-workflow">Example: the csv-cleaner
+workflow</h2>
+<p>From <a
+href="../../../downloads/phase-0/csv-cleaner-solution.zip">csv-cleaner-solution.zip</a>,
+file <code>.github/workflows/ci.yml</code>:</p>
+<pre class="yaml"><code>name: CI
 
-<span class="nt">on</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">push</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">main</span><span class="p p-Indicator">]</span>
-<span class="w">  </span><span class="nt">pull_request</span><span class="p">:</span>
+on:
+  push:
+    branches: [main]
+  pull_request:
 
-<span class="nt">jobs</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">test</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
-<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v7</span>
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
 
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Install uv</span>
-<span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">astral-sh/setup-uv@v9</span>
+      - name: Install uv
+        uses: astral-sh/setup-uv@v9
 
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Install Python (version from .python-version)</span>
-<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uv python install</span>
+      - name: Install Python (version from .python-version)
+        run: uv python install
 
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Install the project and dev tools</span>
-<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uv sync --locked --dev</span>
+      - name: Install the project and dev tools
+        run: uv sync --locked --dev
 
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Lint</span>
-<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uv run ruff check .</span>
+      - name: Lint
+        run: uv run ruff check .
 
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Check formatting</span>
-<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uv run ruff format --check .</span>
+      - name: Check formatting
+        run: uv run ruff format --check .
 
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Run tests</span>
-<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uv run pytest</span>
-</code></pre></div>
-
+      - name: Run tests
+        run: uv run pytest</code></pre>
 <table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Part</th>
 <th>Meaning</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td><code>on:</code></td>
-<td><strong>When</strong> to run: pushes to <code>main</code>, and every pull request</td>
+<td><strong>When</strong> to run: pushes to <code>main</code>, and every
+pull request</td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>jobs: test:</code></td>
-<td>One job called <code>test</code> (jobs run in parallel by default)</td>
+<td>One job called <code>test</code> (jobs run in parallel by
+default)</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><code>runs-on: ubuntu-latest</code></td>
 <td>A fresh Linux machine for every run</td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>uses:</code></td>
-<td>A ready-made <strong>action</strong> from the marketplace (<code>owner/name@version</code>)</td>
+<td>A ready-made <strong>action</strong> from the marketplace
+(<code>owner/name@version</code>)</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><code>run:</code></td>
-<td>A shell command, exactly as you'd type it in the terminal</td>
+<td>A shell command, exactly as you’d type it in the terminal</td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>--locked</code></td>
-<td>Fail if <code>uv.lock</code> is out of date, instead of silently changing versions</td>
+<td>Fail if <code>uv.lock</code> is out of date, instead of silently
+changing versions</td>
 </tr>
 </tbody>
 </table>
-<p>If any step fails (exit code not 0), the job stops and turns <strong>red ❌</strong>.</p>
-<h2 id="run-the-same-checks-locally-first">Run the same checks locally first</h2>
-<p>CI should never surprise you. Run the same commands before pushing:</p>
-<div class="codehilite"><pre><span></span><code>uv<span class="w"> </span>sync<span class="w"> </span>--locked<span class="w"> </span>--dev
-uv<span class="w"> </span>run<span class="w"> </span>ruff<span class="w"> </span>check<span class="w"> </span>.
-uv<span class="w"> </span>run<span class="w"> </span>ruff<span class="w"> </span>format<span class="w"> </span>--check<span class="w"> </span>.
-uv<span class="w"> </span>run<span class="w"> </span>pytest
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>All checks passed!
+<p>If any step fails (exit code not 0), the job stops and turns
+<strong>red ❌</strong>.</p>
+<h2 id="run-the-same-checks-locally-first">Run the same checks locally
+first</h2>
+<p>CI should never surprise you. Run the same commands before
+pushing:</p>
+<pre class="bash"><code>uv sync --locked --dev
+uv run ruff check .
+uv run ruff format --check .
+uv run pytest</code></pre>
+<pre class="text"><code>All checks passed!
 8 files already formatted
 .................                                                        [100%]
-17 passed in 0.05s
-</code></pre></div>
-
+17 passed in 0.05s</code></pre>
 <h2 id="see-it-on-github">See it on GitHub</h2>
-<ol>
+<ol type="1">
 <li>Push the project to a new GitHub repository (Git module).</li>
-<li>Open the <strong>Actions</strong> tab: you'll see a run called <strong>CI</strong> with a yellow dot (running), then ✅ or ❌.</li>
-<li>Click the run → the <code>test</code> job → expand any step to read its log. A failed step shows the same pytest or ruff output you'd see locally.</li>
-<li>On a pull request, the result appears as a <strong>status check</strong> at the bottom. With <strong>branch protection</strong> (Settings → Branches), you can require it to pass before merging.</li>
+<li>Open the <strong>Actions</strong> tab: you’ll see a run called
+<strong>CI</strong> with a yellow dot (running), then ✅ or ❌.</li>
+<li>Click the run → the <code>test</code> job → expand any step to read
+its log. A failed step shows the same pytest or ruff output you’d see
+locally.</li>
+<li>On a pull request, the result appears as a <strong>status
+check</strong> at the bottom. With <strong>branch protection</strong>
+(Settings → Branches), you can require it to pass before merging.</li>
 </ol>
-<div class="admonition tip">
-<p class="admonition-title">Add a badge to your README</p>
-<p><code>![CI](https://github.com/&lt;user&gt;/&lt;repo&gt;/actions/workflows/ci.yml/badge.svg)</code> shows a live green/red badge on your project page.</p>
+<div class="admonition tip" data-markdown="1">
+<p class="admonition-title">
+Add a badge to your README
+</p>
+<p><code>![CI](https://github.com/&lt;user&gt;/&lt;repo&gt;/actions/workflows/ci.yml/badge.svg)</code>
+shows a live green/red badge on your project page.</p>
 </div>
 <h2 id="keep-actions-up-to-date">Keep actions up to date</h2>
-<p>Actions run on Node.js inside GitHub's runners. GitHub removed Node 20 from runners on 23 September 2026, so workflows pinned to old major versions (for example <code>actions/checkout@v4</code>) can fail. Use current major versions (<code>actions/checkout@v7</code>, <code>astral-sh/setup-uv@v9</code>, <code>actions/setup-python@v7</code>), and let <strong>Dependabot</strong> propose updates.</p>
-<h2 id="scheduled-workflows-cron-in-the-cloud">Scheduled workflows (cron in the cloud)</h2>
+<p>Actions run on Node.js inside GitHub’s runners. GitHub removed Node
+20 from runners on 23 September 2026, so workflows pinned to old major
+versions (for example <code>actions/checkout@v4</code>) can fail. Use
+current major versions (<code>actions/checkout@v7</code>,
+<code>astral-sh/setup-uv@v9</code>,
+<code>actions/setup-python@v7</code>), and let
+<strong>Dependabot</strong> propose updates.</p>
+<h2 id="scheduled-workflows-cron-in-the-cloud">Scheduled workflows (cron
+in the cloud)</h2>
 <p>The same 5-field cron syntax from the Linux lesson, in UTC:</p>
-<div class="codehilite"><pre><span></span><code><span class="nt">on</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">schedule</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">cron</span><span class="p">:</span><span class="w"> </span><span class="s">"0</span><span class="nv"> </span><span class="s">6</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">1-5"</span><span class="w">     </span><span class="c1"># 06:00 UTC, Monday–Friday</span>
-<span class="w">  </span><span class="nt">workflow_dispatch</span><span class="p">:</span><span class="w">          </span><span class="c1"># also allow a manual "Run workflow" button</span>
-</code></pre></div>
-
-<p>Useful for nightly data refreshes or link checks. (This website's own repository runs a weekly link check this way.) Scheduled runs can start a few minutes late at busy times.</p>
+<pre class="yaml"><code>on:
+  schedule:
+    - cron: &quot;0 6 * * 1-5&quot;     # 06:00 UTC, Monday–Friday
+  workflow_dispatch:          # also allow a manual &quot;Run workflow&quot; button</code></pre>
+<p>Useful for nightly data refreshes or link checks. (This website’s own
+repository runs a weekly link check this way.) Scheduled runs can start
+a few minutes late at busy times.</p>
 <h2 id="more-useful-features">More useful features</h2>
 <table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Feature</th>
 <th>What for</th>
 <th>Snippet</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td><strong>Matrix</strong></td>
 <td>Test several Python versions</td>
 <td><code>strategy: matrix: python: ["3.13", "3.14"]</code></td>
 </tr>
-<tr>
+<tr class="even">
 <td><strong>Secrets</strong></td>
 <td>API keys and passwords, never in the YAML</td>
 <td><code>${{ secrets.API_KEY }}</code></td>
 </tr>
-<tr>
+<tr class="odd">
 <td><strong>Artifacts</strong></td>
 <td>Keep output files (reports, coverage)</td>
 <td><code>actions/upload-artifact</code></td>
 </tr>
-<tr>
+<tr class="even">
 <td><strong>Caching</strong></td>
 <td>Faster runs</td>
 <td><code>setup-uv</code> with <code>enable-cache: true</code></td>
@@ -245,40 +283,45 @@ uv<span class="w"> </span>run<span class="w"> </span>pytest
 </table>
 <h2 id="common-mistakes">Common mistakes</h2>
 <table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Mistake</th>
 <th>What happens</th>
 <th>Fix</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>Wrong folder (<code>.github/workflow/</code>)</td>
 <td>Nothing runs</td>
 <td>Exactly <code>.github/workflows/*.yml</code></td>
 </tr>
-<tr>
+<tr class="even">
 <td>YAML indentation errors</td>
-<td>"Invalid workflow file"</td>
+<td>“Invalid workflow file”</td>
 <td>Spaces, not tabs; check the Actions tab error</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Not committing <code>uv.lock</code></td>
 <td><code>--locked</code> fails, or versions differ</td>
 <td>Commit it with dependency changes</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Secrets pasted in the workflow</td>
 <td>Leaked keys in public history</td>
 <td>Repository <strong>Settings → Secrets</strong></td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Old action versions</td>
 <td>Failures after runner updates</td>
 <td>Current major versions + Dependabot</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Pushing without running checks locally</td>
 <td>A red CI, and a noisy history</td>
 <td>Run the four commands first</td>
@@ -286,11 +329,17 @@ uv<span class="w"> </span>run<span class="w"> </span>pytest
 </tbody>
 </table>
 <h2 id="try-it-yourself">Try it yourself</h2>
-<p><strong>Task:</strong> Break the csv-cleaner formatting on purpose (add the line <code>x=1</code> to the end of <code>src/csv_cleaner/cli.py</code>), then run the CI commands locally. Which step fails, and what would GitHub show?</p>
+<p><strong>Task:</strong> Break the csv-cleaner formatting on purpose
+(add the line <code>x=1</code> to the end of
+<code>src/csv_cleaner/cli.py</code>), then run the CI commands locally.
+Which step fails, and what would GitHub show?</p>
 <details>
-<summary>Show the solution</summary>
-<p>Lint passes (<code>All checks passed!</code>): <code>x=1</code> is valid code. The <strong>Check formatting</strong> step fails:</p>
-<div class="codehilite"><pre><span></span><code>unformatted: File would be reformatted
+<summary>
+Show the solution
+</summary>
+<p>Lint passes (<code>All checks passed!</code>): <code>x=1</code> is
+valid code. The <strong>Check formatting</strong> step fails:</p>
+<pre class="text"><code>unformatted: File would be reformatted
   --&gt; src/csv_cleaner/cli.py:84:2
    |
 83 |     sys.exit(main())
@@ -298,61 +347,130 @@ uv<span class="w"> </span>run<span class="w"> </span>pytest
 84 + x = 1
    |
 
-1 file would be reformatted, 7 files already formatted
-</code></pre></div>
-
-<p>It exits with code 1, so on GitHub the run turns ❌ at <strong>Check formatting</strong>, the <strong>Run tests</strong> step is skipped, and the PR shows a failed status check. Fix it (delete the line, or run <code>uv run ruff format .</code>), commit and push: the PR updates and CI reruns automatically.</p>
+1 file would be reformatted, 7 files already formatted</code></pre>
+It exits with code 1, so on GitHub the run turns ❌ at <strong>Check
+formatting</strong>, the <strong>Run tests</strong> step is skipped, and
+the PR shows a failed status check. Fix it (delete the line, or run
+<code>uv run ruff format .</code>), commit and push: the PR updates and
+CI reruns automatically.
 </details>
 <h2 id="quick-quiz">Quick quiz</h2>
 <div class="quiz-q" data-answer="1">
 <p>1. Where do workflow files live?</p>
-<ol>
+<ol type="1">
 <li><code>workflows/</code> in the repository root</li>
 <li><code>.github/workflows/</code></li>
 <li>Anywhere, as long as the file ends in <code>.yml</code></li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B.</strong></p>
+<summary>
+Show answer
+</summary>
+<strong>B.</strong>
 </details>
 </div>
 <div class="quiz-q" data-answer="0">
 <p>2. What does <code>on: pull_request</code> mean?</p>
-<ol>
+<ol type="1">
 <li>Run when someone opens or updates a PR</li>
 <li>Run only after the PR is merged</li>
 <li>Create a pull request automatically</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>A.</strong></p>
+<summary>
+Show answer
+</summary>
+<strong>A.</strong>
 </details>
 </div>
 <div class="quiz-q" data-answer="1">
 <p>3. Where should an API key used by a workflow be stored?</p>
-<ol>
+<ol type="1">
 <li>In the YAML file</li>
 <li>In repository secrets, used as <code>${{ secrets.NAME }}</code></li>
 <li>In the README</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B.</strong></p>
+<summary>
+Show answer
+</summary>
+<strong>B.</strong>
 </details>
 </div>
 <h2 id="summary">Summary</h2>
 <ul>
-<li>CI runs your checks on a clean machine for every push and PR; GitHub Actions does it with YAML in <code>.github/workflows/</code>.</li>
-<li>A Python CI job: checkout → setup-uv → <code>uv sync --locked --dev</code> → ruff check → ruff format --check → pytest.</li>
-<li>Read failures in the Actions tab; require green checks with branch protection.</li>
-<li>Use <code>schedule</code> (UTC cron) for recurring jobs, secrets for keys, and current action versions.</li>
+<li>CI runs your checks on a clean machine for every push and PR; GitHub
+Actions does it with YAML in <code>.github/workflows/</code>.</li>
+<li>A Python CI job: checkout → setup-uv →
+<code>uv sync --locked --dev</code> → ruff check → ruff format –check →
+pytest.</li>
+<li>Read failures in the Actions tab; require green checks with branch
+protection.</li>
+<li>Use <code>schedule</code> (UTC cron) for recurring jobs, secrets for
+keys, and current action versions.</li>
 </ul>
-<div class="admonition job">
-<p class="admonition-title">Job-ready check</p>
-<p><strong>Interview question:</strong> <em>"What does your CI pipeline check, and why?"</em></p>
-<p><strong>Strong answer:</strong> "On every push and PR, a clean runner installs the exact locked dependencies with uv, then runs ruff lint, a format check and the pytest suite. That proves the project installs from scratch and the rules still hold. The PR can't merge until it's green, so <code>main</code> always works."</p>
-<p><strong>Mini project:</strong> Add a CI workflow to your own <code>sales-report</code> repository (lesson 3 of the Git module), make it fail once on purpose, fix it, and add the CI badge to your README.</p>
+<div class="admonition job" data-markdown="1">
+<p class="admonition-title">
+Job-ready check
+</p>
+<p><strong>Interview question:</strong> <em>“What does your CI pipeline
+check, and why?”</em></p>
+<p><strong>Strong answer:</strong> “On every push and PR, a clean runner
+installs the exact locked dependencies with uv, then runs ruff lint, a
+format check and the pytest suite. That proves the project installs from
+scratch and the rules still hold. The PR can’t merge until it’s green,
+so <code>main</code> always works.”</p>
+<p><strong>Mini project:</strong> Add a CI workflow to your own
+<code>sales-report</code> repository (lesson 3 of the Git module), make
+it fail once on purpose, fix it, and add the CI badge to your
+README.</p>
 </div>
+<section class="mentor-prompt"><div class="mentor-head"><div><span class="eyebrow">AI study companion</span><h2 id="ai-mentor-prompt">AI Mentor Prompt</h2></div><button class="btn copy-prompt" type="button" data-copy-target="mentor-prompt-phase-0-testing-ci-02-github-actions">Copy prompt</button></div><p>Paste this into ChatGPT, Claude, Gemini, or another capable assistant to turn this tutorial into an interactive mentoring session.</p><pre class="prompt-box"><code id="mentor-prompt-phase-0-testing-ci-02-github-actions">You are my hands-on software-engineering mentor.
+
+I am currently studying:
+&quot;GitHub Actions: Run Lint and Tests on Every Push&quot;
+
+My level:
+Beginner
+
+Teach me this topic interactively rather than giving me a long lecture.
+
+Use this sequence:
+
+1. Check what I already understand with one short diagnostic question.
+2. Explain the concept in simple language and give me the mental model first.
+3. Give me one small task using code, SQL, configuration, data, or architecture as appropriate.
+4. Wait for my attempt before showing a complete solution.
+5. Review my work and explain both what is correct and what needs improvement.
+6. Help me debug errors step by step instead of immediately replacing my work.
+7. Increase the difficulty gradually and connect each new step to the previous one.
+8. Relate what I am learning to real professional data/AI engineering work.
+9. Ask me to explain an important decision in my own words so you can check my understanding.
+10. At the end, ask me to build or modify one small feature independently.
+
+Important rules:
+- Do not do the entire exercise for me unless I explicitly ask.
+- Explain unfamiliar terminology before using it heavily.
+- Prefer current, production-relevant practices over outdated shortcuts.
+- Distinguish clearly between concepts, tool-specific behaviour, and optional alternatives.
+- If a technical fact, API, syntax, version, or best practice may have changed, verify it against current official documentation before teaching it.
+- Never invent command output, test results, benchmark numbers, cloud behaviour, or data results.
+- If something cannot be executed in the current environment, say so and give me the exact command or verification step I should run.
+- Keep me actively coding, querying, configuring, reasoning, or debugging throughout the session.
+- When useful, work from the tutorial practice files (csv-cleaner-solution.zip) instead of inventing unrelated examples.
+
+The concepts I need to master are:
+- GitHub Actions
+- ci
+- continuous integration
+- workflow
+- yaml
+- .github/workflows
+- on push
+- pull_request
+
+Start by asking me one diagnostic question.</code></pre></section>
+
 <div class="terms-box"><div class="files-head"><b>Key terms in this lesson</b><a href="../../../glossary.html">Glossary →</a></div><div class="term-chips"><a class="term-chip" href="../../../glossary.html#ci" title="Continuous integration: every push and pull request is automatically installed, linted and tested on a clean machine.">CI</a><a class="term-chip" href="../../../glossary.html#cron" title="A scheduler that runs commands at set times using five time fields, such as 0 6 * * 1-5 for 06:00 on weekdays.">cron</a><a class="term-chip" href="../../../glossary.html#github-actions" title="GitHub&#x27;s built-in automation. Workflows written in YAML (in .github/workflows/) run on events like push, pull request or a schedule.">GitHub Actions</a><a class="term-chip" href="../../../glossary.html#yaml" title="A human-readable settings format based on indentation, used for CI workflows, configs and this site&#x27;s curriculum.">YAML</a></div></div>
 <h2 id="free-resources">Free resources to go deeper</h2><ul class="resources"><li><a href="https://docs.github.com/en/actions/get-started/quickstart">Quickstart for GitHub Actions</a><span class="r-meta">GitHub Docs · Create and run your first workflow.</span></li><li><a href="https://docs.astral.sh/uv/guides/integration/github/">Using uv in GitHub Actions</a><span class="r-meta">Astral (official) · The setup-uv action, caching and Python versions.</span></li><li><a href="https://crontab.guru">crontab.guru</a><span class="r-meta">crontab.guru · Check schedule expressions for scheduled workflows.</span></li></ul>
 <div class="complete-bar"><span>Finished reading and did the exercise?</span>
@@ -361,9 +479,9 @@ uv<span class="w"> </span>run<span class="w"> </span>pytest
 <p class="reviewed">Last reviewed: 2026-10-09</p>
 
   </div></main>
-  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#example-the-csv-cleaner-workflow">Example: the csv-cleaner workflow</a><a href="#run-the-same-checks-locally-first">Run the same checks locally first</a><a href="#see-it-on-github">See it on GitHub</a><a href="#keep-actions-up-to-date">Keep actions up to date</a><a href="#scheduled-workflows-cron-in-the-cloud">Scheduled workflows (cron in the cloud)</a><a href="#more-useful-features">More useful features</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#free-resources">Free resources</a></aside>
+  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#example-the-csv-cleaner-workflow">Example: the csv-cleaner workflow</a><a href="#run-the-same-checks-locally-first">Run the same checks locally first</a><a href="#see-it-on-github">See it on GitHub</a><a href="#keep-actions-up-to-date">Keep actions up to date</a><a href="#scheduled-workflows-cron-in-the-cloud">Scheduled workflows (cron in the cloud)</a><a href="#more-useful-features">More useful features</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#ai-mentor-prompt">AI Mentor Prompt</a><a href="#free-resources">Free resources</a></aside>
 </div>
-<footer class="site">Data, AI &amp; Automation Path v0.8 · Applied AI, Data &amp; Automation Lab · Updated October 2026<br>
+<footer class="site"><b>Saiful The Techie</b> · Data, AI &amp; Automation Path v0.9.1 · Updated October 2026<br>
 Lesson text: <a href="../../../license.html">CC BY-NC-SA 4.0</a> · Code: <a href="../../../license.html#code-mit-license">MIT</a> · Free external resources belong to their respective owners.</footer>
 <script src="../../../search-index.js"></script>
 <script src="../../../assets/app.js"></script>

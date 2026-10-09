@@ -6,7 +6,7 @@
 <title>Python Basics: Variables, Conditions, Loops &amp; Functions — Data, AI &amp; Automation Path</title>
 <meta name="description" content="Store values in variables, make decisions with if/elif/else, repeat work with for and while loops, and package logic into reusable functions — using real order data.">
 <meta property="og:type" content="article">
-<meta property="og:site_name" content="Data, AI &amp; Automation Path">
+<meta property="og:site_name" content="Saiful The Techie">
 <meta property="og:title" content="Python Basics: Variables, Conditions, Loops &amp; Functions">
 <meta property="og:description" content="Store values in variables, make decisions with if/elif/else, repeat work with for and while loops, and package logic into reusable functions — using real order data.">
 <meta property="og:locale" content="en_US">
@@ -19,13 +19,13 @@ var n=null;try{n=localStorage.getItem('daa-nav')}catch(e){}
 if(n==='open'&&window.matchMedia&&matchMedia('(min-width: 961px)').matches)document.documentElement.setAttribute('data-nav','open');
 document.documentElement.classList.add('no-anim')})();</script>
 <link rel="stylesheet" href="../../../assets/style.css">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233f7d6a'/%3E%3Ctext x='16' y='21' font-family='sans-serif' font-size='13' font-weight='700' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
+
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="topbar">
   <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Open curriculum menu" title="Curriculum menu (press M)" aria-controls="sidebar" aria-expanded="false"><span class="ico-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span class="ico-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></button>
-  <a class="brand" href="../../../index.html"><span class="brand-badge">AI</span><span class="brand-text"><span class="brand-name">Data, AI &amp; Automation Path</span><span class="brand-version">v0.8</span></span></a>
+  <a class="brand" href="../../../index.html"><span class="brand-text"><span class="brand-name">Saiful The Techie</span><span class="brand-version">Data, AI &amp; Automation Path · v0.9.1</span></span></a>
   <nav class="top-links" aria-label="Main">
     <a href="../../../index.html" class="">Home</a><a href="../../../curriculum.html" class="">Curriculum</a><a href="../../../practice-files.html" class="">Practice files</a><a href="../../../glossary.html" class="">Glossary</a><a href="../../../how-to-learn.html" class="">How to learn</a><a href="../../../about.html" class="">About</a>
   </nav>
@@ -41,7 +41,7 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="layout wide">
   <nav class="sidebar" id="sidebar" aria-label="Curriculum">
     <div class="side-title">Curriculum</div>
-    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="77"><i></i></div><span class="bar-label" data-progress-label></span></div>
+    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="85"><i></i></div><span class="bar-label" data-progress-label></span></div>
 <div class="nav-phase current open"><a href="../../../learn/phase-0/index.html"><span class="nav-num">0</span>Foundations</a>
 <ul class="nav-modules">
 <li><a class="" href="../../../learn/phase-0/dev-environment/index.html">Development Environment</a>
@@ -94,204 +94,215 @@ document.documentElement.classList.add('no-anim')})();</script>
 <h2 id="what-is-it">What is it?</h2>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>Building block</th>
 <th>What it does</th>
 <th>Example</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td><strong>Variable</strong></td>
 <td>A name pointing at a value</td>
 <td><code>region = "Dhaka"</code></td>
 </tr>
-<tr>
+<tr class="even">
 <td><strong>Condition</strong></td>
 <td>Choose what to do</td>
 <td><code>if value &gt;= 1000:</code></td>
 </tr>
-<tr>
+<tr class="odd">
 <td><strong>Loop</strong></td>
 <td>Repeat for each item</td>
 <td><code>for v in values:</code></td>
 </tr>
-<tr>
+<tr class="even">
 <td><strong>Function</strong></td>
 <td>Named, reusable logic</td>
 <td><code>def size_band(value):</code></td>
 </tr>
 </tbody>
 </table>
-<p>These four ideas are behind every data pipeline, API and AI agent you'll write.</p>
-<div class="admonition job">
-<p class="admonition-title">Why it matters at work</p>
-<p>Business rules ("cancelled orders don't count", "orders over 1,000 are Large") become conditions and functions. Interviews for data and AI roles almost always include a short coding task built from exactly these pieces, and you need them to review AI-written code confidently.</p>
+<p>These four ideas are behind every data pipeline, API and AI agent
+you’ll write.</p>
+<div class="admonition job" data-markdown="1">
+<p class="admonition-title">
+Why it matters at work
+</p>
+<p>Business rules (“cancelled orders don’t count”, “orders over 1,000
+are Large”) become conditions and functions. Interviews for data and AI
+roles almost always include a short coding task built from exactly these
+pieces, and you need them to review AI-written code confidently.</p>
 </div>
-<p>Open <code>01_basics.py</code> from <a href="../../../downloads/phase-0/python-refresher.zip">python-refresher.zip</a>.</p>
-<h2 id="example-1-variables-and-types">Example 1: variables and types</h2>
-<div class="codehilite"><pre><span></span><code><span class="n">region</span> <span class="o">=</span> <span class="s2">"Dhaka"</span>          <span class="c1"># str  (text)</span>
-<span class="n">quantity</span> <span class="o">=</span> <span class="mi">300</span>            <span class="c1"># int  (whole number)</span>
-<span class="n">unit_price</span> <span class="o">=</span> <span class="mf">5.20</span>         <span class="c1"># float (decimal)</span>
-<span class="n">value</span> <span class="o">=</span> <span class="n">quantity</span> <span class="o">*</span> <span class="n">unit_price</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">region</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">quantity</span><span class="si">}</span><span class="s2"> x </span><span class="si">{</span><span class="n">unit_price</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> = </span><span class="si">{</span><span class="n">value</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>Dhaka: 300 x 5.20 = 1560.00
-</code></pre></div>
-
+<p>Open <code>01_basics.py</code> from <a
+href="../../../downloads/phase-0/python-refresher.zip">python-refresher.zip</a>.</p>
+<h2 id="example-1-variables-and-types">Example 1: variables and
+types</h2>
+<pre class="python"><code>region = &quot;Dhaka&quot;          # str  (text)
+quantity = 300            # int  (whole number)
+unit_price = 5.20         # float (decimal)
+value = quantity * unit_price
+print(f&quot;{region}: {quantity} x {unit_price:.2f} = {value:.2f}&quot;)</code></pre>
+<pre class="text"><code>Dhaka: 300 x 5.20 = 1560.00</code></pre>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>Type</th>
 <th>Examples</th>
 <th>Convert with</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td><code>int</code></td>
 <td><code>300</code>, <code>-5</code></td>
 <td><code>int("300")</code></td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>float</code></td>
 <td><code>5.2</code>, <code>0.04</code></td>
 <td><code>float("5.20")</code></td>
 </tr>
-<tr>
+<tr class="odd">
 <td><code>str</code></td>
 <td><code>"Dhaka"</code></td>
 <td><code>str(300)</code></td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>bool</code></td>
 <td><code>True</code>, <code>False</code></td>
 <td><code>bool(...)</code></td>
 </tr>
 </tbody>
 </table>
-<div class="admonition tip">
-<p class="admonition-title">f-strings format numbers</p>
-<p><code>{value:.2f}</code> → 2 decimals; <code>{n:,}</code> → thousands separator (9,075); <code>{share:.1%}</code> → percentage (94.5%); <code>{v:&gt;6}</code> → right-align in 6 characters.</p>
+<div class="admonition tip" data-markdown="1">
+<p class="admonition-title">
+f-strings format numbers
+</p>
+<p><code>{value:.2f}</code> → 2 decimals; <code>{n:,}</code> → thousands
+separator (9,075); <code>{share:.1%}</code> → percentage (94.5%);
+<code>{v:&gt;6}</code> → right-align in 6 characters.</p>
 </div>
-<h2 id="example-2-conditions-inside-a-function">Example 2: conditions inside a function</h2>
+<h2 id="example-2-conditions-inside-a-function">Example 2: conditions
+inside a function</h2>
 <p>The same rule as the SQL <code>CASE</code> lesson:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">size_band</span><span class="p">(</span><span class="n">order_value</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-    <span class="k">if</span> <span class="n">order_value</span> <span class="o">&gt;=</span> <span class="mi">1000</span><span class="p">:</span>
-        <span class="k">return</span> <span class="s2">"Large"</span>
-    <span class="k">elif</span> <span class="n">order_value</span> <span class="o">&gt;=</span> <span class="mi">500</span><span class="p">:</span>
-        <span class="k">return</span> <span class="s2">"Medium"</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="s2">"Small"</span>
+<pre class="python"><code>def size_band(order_value: float) -&gt; str:
+    if order_value &gt;= 1000:
+        return &quot;Large&quot;
+    elif order_value &gt;= 500:
+        return &quot;Medium&quot;
+    else:
+        return &quot;Small&quot;
 
 
-<span class="nb">print</span><span class="p">(</span><span class="n">size_band</span><span class="p">(</span><span class="n">value</span><span class="p">),</span> <span class="n">size_band</span><span class="p">(</span><span class="mi">680</span><span class="p">),</span> <span class="n">size_band</span><span class="p">(</span><span class="mi">200</span><span class="p">))</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>Large Medium Small
-</code></pre></div>
-
+print(size_band(value), size_band(680), size_band(200))</code></pre>
+<pre class="text"><code>Large Medium Small</code></pre>
 <ul>
-<li>Conditions are checked <strong>top to bottom</strong>, and the first true one wins. That's why <code>&gt;= 1000</code> comes before <code>&gt;= 500</code>.</li>
-<li><strong>Indentation</strong> (4 spaces) defines the block. There are no braces in Python.</li>
-<li>Combine tests with <code>and</code>, <code>or</code> and <code>not</code>: <code>if region == "Dhaka" and status != "Cancelled":</code>.</li>
+<li>Conditions are checked <strong>top to bottom</strong>, and the first
+true one wins. That’s why <code>&gt;= 1000</code> comes before
+<code>&gt;= 500</code>.</li>
+<li><strong>Indentation</strong> (4 spaces) defines the block. There are
+no braces in Python.</li>
+<li>Combine tests with <code>and</code>, <code>or</code> and
+<code>not</code>:
+<code>if region == "Dhaka" and status != "Cancelled":</code>.</li>
 <li><code>return</code> sends the result back to the caller.</li>
 </ul>
 <h2 id="example-3-loops">Example 3: loops</h2>
-<div class="codehilite"><pre><span></span><code><span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="mi">420</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">1560</span><span class="p">,</span> <span class="mi">240</span><span class="p">,</span> <span class="mi">1260</span><span class="p">]</span>
-<span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">values</span><span class="p">:</span>
-    <span class="n">total</span> <span class="o">+=</span> <span class="n">v</span>                      <span class="c1"># same as total = total + v</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">v</span><span class="si">:</span><span class="s2">&gt;6</span><span class="si">}</span><span class="s2"> -&gt; </span><span class="si">{</span><span class="n">size_band</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">"Total:"</span><span class="p">,</span> <span class="n">total</span><span class="p">)</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>   420 -&gt; Small
+<pre class="python"><code>values = [420, 200, 1560, 240, 1260]
+total = 0
+for v in values:
+    total += v                      # same as total = total + v
+    print(f&quot;{v:&gt;6} -&gt; {size_band(v)}&quot;)
+print(&quot;Total:&quot;, total)</code></pre>
+<pre class="text"><code>   420 -&gt; Small
    200 -&gt; Small
   1560 -&gt; Large
    240 -&gt; Small
   1260 -&gt; Large
-Total: 3680
-</code></pre></div>
-
+Total: 3680</code></pre>
 <p>A loop with a condition counts items:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">large</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">values</span><span class="p">:</span>
-    <span class="k">if</span> <span class="n">v</span> <span class="o">&gt;=</span> <span class="mi">1000</span><span class="p">:</span>
-        <span class="n">large</span> <span class="o">+=</span> <span class="mi">1</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">"Large orders:"</span><span class="p">,</span> <span class="n">large</span><span class="p">)</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>Large orders: 2
-</code></pre></div>
-
+<pre class="python"><code>large = 0
+for v in values:
+    if v &gt;= 1000:
+        large += 1
+print(&quot;Large orders:&quot;, large)</code></pre>
+<pre class="text"><code>Large orders: 2</code></pre>
 <table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Tool</th>
 <th>Use</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td><code>for x in items:</code></td>
 <td>Each item in a list, file, dict… (most common)</td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>for i in range(3):</code></td>
 <td>0, 1, 2</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><code>while condition:</code></td>
-<td>Repeat until something changes (e.g. retry a download)</td>
+<td>Repeat until something changes (e.g. retry a download)</td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>break</code> / <code>continue</code></td>
 <td>Leave the loop / skip to the next item</td>
 </tr>
 </tbody>
 </table>
-<h2 id="functions-with-default-arguments">Functions with default arguments</h2>
-<div class="codehilite"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">net_value</span><span class="p">(</span><span class="n">quantity</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">unit_price</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">discount</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-    <span class="k">return</span> <span class="n">quantity</span> <span class="o">*</span> <span class="n">unit_price</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">discount</span><span class="p">)</span>
+<h2 id="functions-with-default-arguments">Functions with default
+arguments</h2>
+<pre class="python"><code>def net_value(quantity: int, unit_price: float, discount: float = 0.0) -&gt; float:
+    return quantity * unit_price * (1 - discount)
 
-<span class="n">net_value</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span> <span class="mf">5.20</span><span class="p">)</span>          <span class="c1"># 1560.0</span>
-<span class="n">net_value</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span> <span class="mf">5.20</span><span class="p">,</span> <span class="mf">0.10</span><span class="p">)</span>    <span class="c1"># 1404.0  (10% discount)</span>
-</code></pre></div>
-
-<p>One function, one job, a clear name. If you copy-paste code a third time, make it a function.</p>
+net_value(300, 5.20)          # 1560.0
+net_value(300, 5.20, 0.10)    # 1404.0  (10% discount)</code></pre>
+<p>One function, one job, a clear name. If you copy-paste code a third
+time, make it a function.</p>
 <h2 id="common-mistakes">Common mistakes</h2>
 <table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Mistake</th>
 <th>What happens</th>
 <th>Fix</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td><code>=</code> instead of <code>==</code> in a condition</td>
 <td><code>SyntaxError</code></td>
 <td><code>=</code> assigns, <code>==</code> compares</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Wrong condition order (<code>&gt;= 500</code> first)</td>
-<td>1560 becomes "Medium"</td>
+<td>1560 becomes “Medium”</td>
 <td>Most specific/biggest first</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Mixed or wrong indentation</td>
 <td><code>IndentationError</code>, or code in the wrong block</td>
 <td>4 spaces; let VS Code format</td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>print</code> instead of <code>return</code> in a function</td>
 <td>The caller gets <code>None</code></td>
 <td>Return values, print outside</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Comparing text to numbers (<code>"300" &gt; 200</code>)</td>
 <td><code>TypeError</code></td>
 <td>Convert with <code>int()</code> / <code>float()</code> first</td>
@@ -299,85 +310,157 @@ Total: 3680
 </tbody>
 </table>
 <h2 id="try-it-yourself">Try it yourself</h2>
-<p><strong>Task:</strong> Write <code>status_group(status)</code> that returns <code>"Closed"</code> for Delivered or Cancelled and <code>"Open"</code> otherwise. Then loop over the 12 statuses below and count the open orders.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">statuses</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Delivered"</span><span class="p">,</span> <span class="s2">"Delivered"</span><span class="p">,</span> <span class="s2">"Delivered"</span><span class="p">,</span> <span class="s2">"Cancelled"</span><span class="p">,</span> <span class="s2">"Delivered"</span><span class="p">,</span> <span class="s2">"Delivered"</span><span class="p">,</span>
-            <span class="s2">"Shipped"</span><span class="p">,</span> <span class="s2">"Delivered"</span><span class="p">,</span> <span class="s2">"Pending"</span><span class="p">,</span> <span class="s2">"Delivered"</span><span class="p">,</span> <span class="s2">"Delivered"</span><span class="p">,</span> <span class="s2">"Shipped"</span><span class="p">]</span>
-</code></pre></div>
-
+<p><strong>Task:</strong> Write <code>status_group(status)</code> that
+returns <code>"Closed"</code> for Delivered or Cancelled and
+<code>"Open"</code> otherwise. Then loop over the 12 statuses below and
+count the open orders.</p>
+<pre class="python"><code>statuses = [&quot;Delivered&quot;, &quot;Delivered&quot;, &quot;Delivered&quot;, &quot;Cancelled&quot;, &quot;Delivered&quot;, &quot;Delivered&quot;,
+            &quot;Shipped&quot;, &quot;Delivered&quot;, &quot;Pending&quot;, &quot;Delivered&quot;, &quot;Delivered&quot;, &quot;Shipped&quot;]</code></pre>
 <details>
-<summary>Show a hint</summary>
-<p><code>if status in ("Delivered", "Cancelled"):</code> checks against several values at once.</p>
+<summary>
+Show a hint
+</summary>
+<code>if status in ("Delivered", "Cancelled"):</code> checks against
+several values at once.
 </details>
 <details>
-<summary>Show the solution</summary>
-<div class="codehilite"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">status_group</span><span class="p">(</span><span class="n">status</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-    <span class="k">if</span> <span class="n">status</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">"Delivered"</span><span class="p">,</span> <span class="s2">"Cancelled"</span><span class="p">):</span>
-        <span class="k">return</span> <span class="s2">"Closed"</span>
-    <span class="k">return</span> <span class="s2">"Open"</span>
+<summary>
+Show the solution
+</summary>
+<pre class="python"><code>def status_group(status: str) -&gt; str:
+    if status in (&quot;Delivered&quot;, &quot;Cancelled&quot;):
+        return &quot;Closed&quot;
+    return &quot;Open&quot;
 
 
-<span class="n">open_count</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">statuses</span><span class="p">:</span>
-    <span class="k">if</span> <span class="n">status_group</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">==</span> <span class="s2">"Open"</span><span class="p">:</span>
-        <span class="n">open_count</span> <span class="o">+=</span> <span class="mi">1</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">"Open orders:"</span><span class="p">,</span> <span class="n">open_count</span><span class="p">)</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>Open orders: 3
-</code></pre></div>
-
-<p>Orders 7, 9 and 12, the same open orders as in the Power BI bookmark lesson. (File: <code>solutions/ex01_status_group.py</code>.)</p>
+open_count = 0
+for s in statuses:
+    if status_group(s) == &quot;Open&quot;:
+        open_count += 1
+print(&quot;Open orders:&quot;, open_count)</code></pre>
+<pre class="text"><code>Open orders: 3</code></pre>
+Orders 7, 9 and 12, the same open orders as in the Power BI bookmark
+lesson. (File: <code>solutions/ex01_status_group.py</code>.)
 </details>
 <h2 id="quick-quiz">Quick quiz</h2>
 <div class="quiz-q" data-answer="1">
 <p>1. What does <code>size_band(1000)</code> return?</p>
-<ol>
-<li>"Medium"</li>
-<li>"Large"</li>
-<li>"Small"</li>
+<ol type="1">
+<li>“Medium”</li>
+<li>“Large”</li>
+<li>“Small”</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B.</strong> <code>1000 &gt;= 1000</code> is true, so the first branch wins.</p>
+<summary>
+Show answer
+</summary>
+<strong>B.</strong> <code>1000 &gt;= 1000</code> is true, so the first
+branch wins.
 </details>
 </div>
 <div class="quiz-q" data-answer="1">
 <p>2. What does <code>f"{0.945:.1%}"</code> produce?</p>
-<ol>
+<ol type="1">
 <li><code>0.9%</code></li>
 <li><code>94.5%</code></li>
 <li><code>0.945%</code></li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B.</strong></p>
+<summary>
+Show answer
+</summary>
+<strong>B.</strong>
 </details>
 </div>
 <div class="quiz-q" data-answer="1">
-<p>3. A function prints its result but has no <code>return</code>. What does <code>x = f()</code> store?</p>
-<ol>
+<p>3. A function prints its result but has no <code>return</code>. What
+does <code>x = f()</code> store?</p>
+<ol type="1">
 <li>The printed value</li>
 <li><code>None</code></li>
 <li>An error</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B.</strong></p>
+<summary>
+Show answer
+</summary>
+<strong>B.</strong>
 </details>
 </div>
 <h2 id="summary">Summary</h2>
 <ul>
-<li><strong>Variables</strong> hold values of a <strong>type</strong> (<code>int</code>, <code>float</code>, <code>str</code>, <code>bool</code>); convert with <code>int()</code>, <code>float()</code>, <code>str()</code>.</li>
-<li><strong>Conditions</strong> (<code>if/elif/else</code>) run top to bottom: put the most specific test first.</li>
-<li><strong>Loops</strong> (<code>for</code>, <code>while</code>) repeat work; combine them with conditions to count and total.</li>
-<li><strong>Functions</strong> (<code>def … return</code>) name your business rules so you can reuse and test them.</li>
+<li><strong>Variables</strong> hold values of a <strong>type</strong>
+(<code>int</code>, <code>float</code>, <code>str</code>,
+<code>bool</code>); convert with <code>int()</code>,
+<code>float()</code>, <code>str()</code>.</li>
+<li><strong>Conditions</strong> (<code>if/elif/else</code>) run top to
+bottom: put the most specific test first.</li>
+<li><strong>Loops</strong> (<code>for</code>, <code>while</code>) repeat
+work; combine them with conditions to count and total.</li>
+<li><strong>Functions</strong> (<code>def … return</code>) name your
+business rules so you can reuse and test them.</li>
 </ul>
-<div class="admonition job">
-<p class="admonition-title">Job-ready check</p>
-<p><strong>Interview question:</strong> <em>"Write a function that classifies an order value into Small, Medium or Large, and count how many are Large in a list."</em></p>
-<p><strong>Strong answer:</strong> Write <code>size_band()</code> as in Example 2 with the biggest threshold first, then a loop or <code>sum(1 for v in values if size_band(v) == "Large")</code>. Mention the edge case (exactly 1000) and how you'd test it.</p>
-<p><strong>Mini project:</strong> Extend <code>01_basics.py</code> with <code>net_value()</code> (with an optional discount), and print every order's value, band and discounted value in an aligned table.</p>
+<div class="admonition job" data-markdown="1">
+<p class="admonition-title">
+Job-ready check
+</p>
+<p><strong>Interview question:</strong> <em>“Write a function that
+classifies an order value into Small, Medium or Large, and count how
+many are Large in a list.”</em></p>
+<p><strong>Strong answer:</strong> Write <code>size_band()</code> as in
+Example 2 with the biggest threshold first, then a loop or
+<code>sum(1 for v in values if size_band(v) == "Large")</code>. Mention
+the edge case (exactly 1000) and how you’d test it.</p>
+<p><strong>Mini project:</strong> Extend <code>01_basics.py</code> with
+<code>net_value()</code> (with an optional discount), and print every
+order’s value, band and discounted value in an aligned table.</p>
 </div>
+<section class="mentor-prompt"><div class="mentor-head"><div><span class="eyebrow">AI study companion</span><h2 id="ai-mentor-prompt">AI Mentor Prompt</h2></div><button class="btn copy-prompt" type="button" data-copy-target="mentor-prompt-phase-0-programming-refresher-01-basics">Copy prompt</button></div><p>Paste this into ChatGPT, Claude, Gemini, or another capable assistant to turn this tutorial into an interactive mentoring session.</p><pre class="prompt-box"><code id="mentor-prompt-phase-0-programming-refresher-01-basics">You are my hands-on software-engineering mentor.
+
+I am currently studying:
+&quot;Python Basics: Variables, Conditions, Loops &amp; Functions&quot;
+
+My level:
+Beginner
+
+Teach me this topic interactively rather than giving me a long lecture.
+
+Use this sequence:
+
+1. Check what I already understand with one short diagnostic question.
+2. Explain the concept in simple language and give me the mental model first.
+3. Give me one small task using code, SQL, configuration, data, or architecture as appropriate.
+4. Wait for my attempt before showing a complete solution.
+5. Review my work and explain both what is correct and what needs improvement.
+6. Help me debug errors step by step instead of immediately replacing my work.
+7. Increase the difficulty gradually and connect each new step to the previous one.
+8. Relate what I am learning to real professional data/AI engineering work.
+9. Ask me to explain an important decision in my own words so you can check my understanding.
+10. At the end, ask me to build or modify one small feature independently.
+
+Important rules:
+- Do not do the entire exercise for me unless I explicitly ask.
+- Explain unfamiliar terminology before using it heavily.
+- Prefer current, production-relevant practices over outdated shortcuts.
+- Distinguish clearly between concepts, tool-specific behaviour, and optional alternatives.
+- If a technical fact, API, syntax, version, or best practice may have changed, verify it against current official documentation before teaching it.
+- Never invent command output, test results, benchmark numbers, cloud behaviour, or data results.
+- If something cannot be executed in the current environment, say so and give me the exact command or verification step I should run.
+- Keep me actively coding, querying, configuring, reasoning, or debugging throughout the session.
+- When useful, work from the tutorial practice files (python-refresher.zip) instead of inventing unrelated examples.
+
+The concepts I need to master are:
+- Variables &amp; conditions
+- Loops &amp; functions
+- python
+- variable
+- int
+- float
+- str
+- bool
+
+Start by asking me one diagnostic question.</code></pre></section>
+
 <div class="terms-box"><div class="files-head"><b>Key terms in this lesson</b><a href="../../../glossary.html">Glossary →</a></div><div class="term-chips"><a class="term-chip" href="../../../glossary.html#f-string" title="A Python string starting with f that inserts and formats values: f&quot;{revenue:,}&quot; shows 9,075.">f-string</a><a class="term-chip" href="../../../glossary.html#function" title="A named, reusable block of code that takes inputs (parameters) and returns a result.">Function</a><a class="term-chip" href="../../../glossary.html#if-function" title="Excel&#x27;s decision function: IF(test, value if true, value if false). IFS checks several conditions in order; AND and OR combine tests.">IF function</a><a class="term-chip" href="../../../glossary.html#python" title="A general-purpose programming language and the standard language of data engineering, data science and AI.">Python</a></div></div>
 <h2 id="free-resources">Free resources to go deeper</h2><ul class="resources"><li><a href="https://docs.python.org/3/tutorial/">The Python Tutorial — An Informal Introduction &amp; More Control Flow Tools</a><span class="r-meta">Python official docs · Sections 3 and 4 cover everything in this lesson.</span></li><li><a href="https://code.visualstudio.com/docs/python/python-quick-start">Quick Start Guide for Python in VS Code</a><span class="r-meta">VS Code docs · Run and debug the practice scripts.</span></li></ul>
 <div class="complete-bar"><span>Finished reading and did the exercise?</span>
@@ -386,9 +469,9 @@ Total: 3680
 <p class="reviewed">Last reviewed: 2026-10-09</p>
 
   </div></main>
-  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#example-1-variables-and-types">Example 1: variables and types</a><a href="#example-2-conditions-inside-a-function">Example 2: conditions inside a function</a><a href="#example-3-loops">Example 3: loops</a><a href="#functions-with-default-arguments">Functions with default arguments</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#free-resources">Free resources</a></aside>
+  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#example-1-variables-and-types">Example 1: variables and types</a><a href="#example-2-conditions-inside-a-function">Example 2: conditions inside a function</a><a href="#example-3-loops">Example 3: loops</a><a href="#functions-with-default-arguments">Functions with default arguments</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#ai-mentor-prompt">AI Mentor Prompt</a><a href="#free-resources">Free resources</a></aside>
 </div>
-<footer class="site">Data, AI &amp; Automation Path v0.8 · Applied AI, Data &amp; Automation Lab · Updated October 2026<br>
+<footer class="site"><b>Saiful The Techie</b> · Data, AI &amp; Automation Path v0.9.1 · Updated October 2026<br>
 Lesson text: <a href="../../../license.html">CC BY-NC-SA 4.0</a> · Code: <a href="../../../license.html#code-mit-license">MIT</a> · Free external resources belong to their respective owners.</footer>
 <script src="../../../search-index.js"></script>
 <script src="../../../assets/app.js"></script>

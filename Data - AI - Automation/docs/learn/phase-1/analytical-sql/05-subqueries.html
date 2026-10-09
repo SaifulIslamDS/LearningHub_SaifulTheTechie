@@ -6,7 +6,7 @@
 <title>SQL Subqueries: Use One Query&#x27;s Answer Inside Another — Data, AI &amp; Automation Path</title>
 <meta name="description" content="Compare against averages, filter by a list from another table, and build totals-of-totals — with subqueries and a first look at CTEs.">
 <meta property="og:type" content="article">
-<meta property="og:site_name" content="Data, AI &amp; Automation Path">
+<meta property="og:site_name" content="Saiful The Techie">
 <meta property="og:title" content="SQL Subqueries: Use One Query&#x27;s Answer Inside Another">
 <meta property="og:description" content="Compare against averages, filter by a list from another table, and build totals-of-totals — with subqueries and a first look at CTEs.">
 <meta property="og:locale" content="en_US">
@@ -19,13 +19,13 @@ var n=null;try{n=localStorage.getItem('daa-nav')}catch(e){}
 if(n==='open'&&window.matchMedia&&matchMedia('(min-width: 961px)').matches)document.documentElement.setAttribute('data-nav','open');
 document.documentElement.classList.add('no-anim')})();</script>
 <link rel="stylesheet" href="../../../assets/style.css">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233f7d6a'/%3E%3Ctext x='16' y='21' font-family='sans-serif' font-size='13' font-weight='700' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
+
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="topbar">
   <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Open curriculum menu" title="Curriculum menu (press M)" aria-controls="sidebar" aria-expanded="false"><span class="ico-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span class="ico-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></button>
-  <a class="brand" href="../../../index.html"><span class="brand-badge">AI</span><span class="brand-text"><span class="brand-name">Data, AI &amp; Automation Path</span><span class="brand-version">v0.8</span></span></a>
+  <a class="brand" href="../../../index.html"><span class="brand-text"><span class="brand-name">Saiful The Techie</span><span class="brand-version">Data, AI &amp; Automation Path · v0.9.1</span></span></a>
   <nav class="top-links" aria-label="Main">
     <a href="../../../index.html" class="">Home</a><a href="../../../curriculum.html" class="">Curriculum</a><a href="../../../practice-files.html" class="">Practice files</a><a href="../../../glossary.html" class="">Glossary</a><a href="../../../how-to-learn.html" class="">How to learn</a><a href="../../../about.html" class="">About</a>
   </nav>
@@ -41,7 +41,7 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="layout wide">
   <nav class="sidebar" id="sidebar" aria-label="Curriculum">
     <div class="side-title">Curriculum</div>
-    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="77"><i></i></div><span class="bar-label" data-progress-label></span></div>
+    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="85"><i></i></div><span class="bar-label" data-progress-label></span></div>
 <div class="nav-phase"><a href="../../../learn/phase-0/index.html"><span class="nav-num">0</span>Foundations</a>
 </div>
 <div class="nav-phase current open"><a href="../../../learn/phase-1/index.html"><span class="nav-num">1</span>Analytics &amp; BI</a>
@@ -99,285 +99,330 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="admonition note"><p class="admonition-title">Before you start</p><p><a href="../../../learn/phase-1/analytical-sql/04-joins.html">SQL JOINs: Combine Data from Several Tables</a></p></div>
 <div class="files-box"><div class="files-head"><b>Practice files for this page</b><a href="../../../practice-files.html">All practice files →</a></div><ul><li><a href="../../../downloads/orders.sql" download>orders.sql</a><span class="f-desc">Creates the orders (12 rows) and customers (6 rows) tables. Run it once in your SQL tool · 3 KB</span></li><li><a href="../../../downloads/customers.csv" download>customers.csv</a><span class="f-desc">6 customers with segment, city and account manager · 319 B</span></li><li><a href="../../../downloads/sql-solutions.sql" download>sql-solutions.sql</a><span class="f-desc">Solutions to every SQL exercise, tested in SQLite · 3 KB</span></li></ul></div>
 <h2 id="what-is-it">What is it?</h2>
-<p>A <strong>subquery</strong> is a query inside another query, written in brackets. The inner query runs first, and its answer is used by the outer query.</p>
-<p>You need one when a question has two steps, like <em>"Which orders are </em><em>above average</em><em>?"</em> First you calculate the average, then you compare each order with it. A subquery does both steps in one statement.</p>
-<div class="admonition job">
-<p class="admonition-title">Why it matters at work</p>
-<p>"Above average", "customers in segment X", "customers who never ordered", "average of the customer totals": these two-step questions come up in every analytics job. Subqueries and their cleaner cousin, the <strong>CTE</strong>, are standard interview topics, and they lead into Advanced SQL in Phase 3.</p>
+<p>A <strong>subquery</strong> is a query inside another query, written
+in brackets. The inner query runs first, and its answer is used by the
+outer query.</p>
+<p>You need one when a question has two steps, like <em>“Which orders
+are <strong>above average</strong>?”</em> First you calculate the
+average, then you compare each order with it. A subquery does both steps
+in one statement.</p>
+<div class="admonition job" data-markdown="1">
+<p class="admonition-title">
+Why it matters at work
+</p>
+<p>“Above average”, “customers in segment X”, “customers who never
+ordered”, “average of the customer totals”: these two-step questions
+come up in every analytics job. Subqueries and their cleaner cousin, the
+<strong>CTE</strong>, are standard interview topics, and they lead into
+Advanced SQL in Phase 3.</p>
 </div>
 <h2 id="where-a-subquery-can-go">Where a subquery can go</h2>
 <table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Position</th>
 <th>Returns</th>
 <th>Typical use</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td>In <code>WHERE</code> with <code>&gt;</code>, <code>=</code>, <code>&lt;</code></td>
+<tr class="odd">
+<td>In <code>WHERE</code> with <code>&gt;</code>, <code>=</code>,
+<code>&lt;</code></td>
 <td>one value</td>
 <td>compare with an average or maximum</td>
 </tr>
-<tr>
+<tr class="even">
 <td>In <code>WHERE ... IN (...)</code></td>
 <td>a list</td>
 <td>filter by values from another table</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>In <code>FROM (...) AS name</code></td>
 <td>a whole table</td>
 <td>aggregate the results of an aggregation</td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>WHERE EXISTS (...)</code></td>
 <td>true / false</td>
 <td>check whether related rows exist</td>
 </tr>
 </tbody>
 </table>
-<h2 id="example-1-compare-with-an-average-single-value">Example 1: compare with an average (single value)</h2>
-<p><em>Question: which non-cancelled orders are above the average order value?</em></p>
-<div class="codehilite"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">order_id</span><span class="p">,</span>
-<span class="w">       </span><span class="n">customer</span><span class="p">,</span>
-<span class="w">       </span><span class="n">quantity</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">unit_price</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">order_value</span>
-<span class="k">FROM</span><span class="w"> </span><span class="n">orders</span>
-<span class="k">WHERE</span><span class="w"> </span><span class="n">status</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="s1">'Cancelled'</span>
-<span class="w">  </span><span class="k">AND</span><span class="w"> </span><span class="n">quantity</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">unit_price</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="p">(</span>
-<span class="w">        </span><span class="k">SELECT</span><span class="w"> </span><span class="k">AVG</span><span class="p">(</span><span class="n">quantity</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">unit_price</span><span class="p">)</span>
-<span class="w">        </span><span class="k">FROM</span><span class="w"> </span><span class="n">orders</span>
-<span class="w">        </span><span class="k">WHERE</span><span class="w"> </span><span class="n">status</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="s1">'Cancelled'</span>
-<span class="w">      </span><span class="p">)</span>
-<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">order_value</span><span class="w"> </span><span class="k">DESC</span><span class="p">,</span><span class="w"> </span><span class="n">order_id</span><span class="p">;</span>
-</code></pre></div>
-
-<p>The inner query returns <strong>825.00</strong>, the average from the earlier lesson. The outer query keeps orders above it:</p>
+<h2 id="example-1-compare-with-an-average-single-value">Example 1:
+compare with an average (single value)</h2>
+<p><em>Question: which non-cancelled orders are above the average order
+value?</em></p>
+<pre class="sql"><code>SELECT order_id,
+       customer,
+       quantity * unit_price AS order_value
+FROM orders
+WHERE status &lt;&gt; &#39;Cancelled&#39;
+  AND quantity * unit_price &gt; (
+        SELECT AVG(quantity * unit_price)
+        FROM orders
+        WHERE status &lt;&gt; &#39;Cancelled&#39;
+      )
+ORDER BY order_value DESC, order_id;</code></pre>
+<p>The inner query returns <strong>825.00</strong>, the average from the
+earlier lesson. The outer query keeps orders above it:</p>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>order_id</th>
 <th>customer</th>
 <th>order_value</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>3</td>
 <td>Nova Apparel</td>
 <td>1560.00</td>
 </tr>
-<tr>
+<tr class="even">
 <td>12</td>
 <td>Karim Garments</td>
 <td>1275.00</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>5</td>
 <td>Delta Knit</td>
 <td>1260.00</td>
 </tr>
-<tr>
+<tr class="even">
 <td>8</td>
 <td>Delta Knit</td>
 <td>1260.00</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>10</td>
 <td>Rahim Traders</td>
 <td>870.00</td>
 </tr>
 </tbody>
 </table>
-<div class="admonition tip">
-<p class="admonition-title">Why not just <code>WHERE value &gt; AVG(value)</code>?</p>
-<p>Aggregates such as <code>AVG</code> aren't allowed in <code>WHERE</code>, because <code>WHERE</code> runs before any grouping. The subquery calculates the average separately, so the comparison works.</p>
+<div class="admonition tip" data-markdown="1">
+<p class="admonition-title">
+Why not just <code>WHERE value &amp;gt; AVG(value)</code>?
+</p>
+<p>Aggregates such as <code>AVG</code> aren’t allowed in
+<code>WHERE</code>, because <code>WHERE</code> runs before any grouping.
+The subquery calculates the average separately, so the comparison
+works.</p>
 </div>
-<h2 id="example-2-filter-by-a-list-from-another-table-in">Example 2: filter by a list from another table (IN)</h2>
-<p><em>Question: show all orders from Garment Factory customers.</em></p>
-<div class="codehilite"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">order_id</span><span class="p">,</span><span class="w"> </span><span class="n">customer</span><span class="p">,</span><span class="w"> </span><span class="n">product</span>
-<span class="k">FROM</span><span class="w"> </span><span class="n">orders</span>
-<span class="k">WHERE</span><span class="w"> </span><span class="n">customer</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span>
-<span class="w">        </span><span class="k">SELECT</span><span class="w"> </span><span class="n">customer_name</span>
-<span class="w">        </span><span class="k">FROM</span><span class="w"> </span><span class="n">customers</span>
-<span class="w">        </span><span class="k">WHERE</span><span class="w"> </span><span class="n">segment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'Garment Factory'</span>
-<span class="w">      </span><span class="p">)</span>
-<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">order_id</span><span class="p">;</span>
-</code></pre></div>
-
+<h2 id="example-2-filter-by-a-list-from-another-table-in">Example 2:
+filter by a list from another table (IN)</h2>
+<p><em>Question: show all orders from Garment Factory
+customers.</em></p>
+<pre class="sql"><code>SELECT order_id, customer, product
+FROM orders
+WHERE customer IN (
+        SELECT customer_name
+        FROM customers
+        WHERE segment = &#39;Garment Factory&#39;
+      )
+ORDER BY order_id;</code></pre>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>order_id</th>
 <th>customer</th>
 <th>product</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>2</td>
 <td>Karim Garments</td>
 <td>Metal Buttons</td>
 </tr>
-<tr>
+<tr class="even">
 <td>3</td>
 <td>Nova Apparel</td>
 <td>Denim 12oz</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>6</td>
 <td>Karim Garments</td>
 <td>Cotton Twill</td>
 </tr>
-<tr>
+<tr class="even">
 <td>7</td>
 <td>Nova Apparel</td>
 <td>Metal Buttons</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>9</td>
 <td>Sun Fashion</td>
 <td>Denim 12oz</td>
 </tr>
-<tr>
+<tr class="even">
 <td>11</td>
 <td>Sun Fashion</td>
 <td>Zippers</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>12</td>
 <td>Karim Garments</td>
 <td>Denim 12oz</td>
 </tr>
 </tbody>
 </table>
-<p>The inner query returns the list <em>Karim Garments, Nova Apparel, Sun Fashion</em>. A JOIN could give the same result. Use <code>IN</code> when you only <strong>filter</strong> by the other table and don't need its columns.</p>
-<h2 id="example-3-a-subquery-in-from-totals-of-totals">Example 3: a subquery in FROM (totals of totals)</h2>
-<p><em>Question: what is the average revenue per customer, and what is the top customer's revenue?</em></p>
-<p>You can't nest aggregates like <code>AVG(SUM(...))</code>. Instead, build a small table of customer totals first, then aggregate it:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">ROUND</span><span class="p">(</span><span class="k">AVG</span><span class="p">(</span><span class="n">revenue</span><span class="p">),</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">avg_revenue_per_customer</span><span class="p">,</span>
-<span class="w">       </span><span class="k">MAX</span><span class="p">(</span><span class="n">revenue</span><span class="p">)</span><span class="w">           </span><span class="k">AS</span><span class="w"> </span><span class="n">top_customer_revenue</span>
-<span class="k">FROM</span><span class="w"> </span><span class="p">(</span>
-<span class="w">        </span><span class="k">SELECT</span><span class="w"> </span><span class="n">customer</span><span class="p">,</span>
-<span class="w">               </span><span class="k">SUM</span><span class="p">(</span><span class="n">quantity</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">unit_price</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">revenue</span>
-<span class="w">        </span><span class="k">FROM</span><span class="w"> </span><span class="n">orders</span>
-<span class="w">        </span><span class="k">WHERE</span><span class="w"> </span><span class="n">status</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="s1">'Cancelled'</span>
-<span class="w">        </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">customer</span>
-<span class="w">     </span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">customer_totals</span><span class="p">;</span>
-</code></pre></div>
-
+<p>The inner query returns the list <em>Karim Garments, Nova Apparel,
+Sun Fashion</em>. A JOIN could give the same result. Use <code>IN</code>
+when you only <strong>filter</strong> by the other table and don’t need
+its columns.</p>
+<h2 id="example-3-a-subquery-in-from-totals-of-totals">Example 3: a
+subquery in FROM (totals of totals)</h2>
+<p><em>Question: what is the average revenue per customer, and what is
+the top customer’s revenue?</em></p>
+<p>You can’t nest aggregates like <code>AVG(SUM(...))</code>. Instead,
+build a small table of customer totals first, then aggregate it:</p>
+<pre class="sql"><code>SELECT ROUND(AVG(revenue), 2) AS avg_revenue_per_customer,
+       MAX(revenue)           AS top_customer_revenue
+FROM (
+        SELECT customer,
+               SUM(quantity * unit_price) AS revenue
+        FROM orders
+        WHERE status &lt;&gt; &#39;Cancelled&#39;
+        GROUP BY customer
+     ) AS customer_totals;</code></pre>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>avg_revenue_per_customer</th>
 <th>top_customer_revenue</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>1815.00</td>
 <td>2520.00</td>
 </tr>
 </tbody>
 </table>
-<p>The inner query is a <strong>derived table</strong>. It must have a name (<code>AS customer_totals</code>) in most databases.</p>
-<h2 id="example-4-exists-and-not-exists">Example 4: EXISTS and NOT EXISTS</h2>
-<p><em>Question: which customers have never ordered?</em> (You solved this with a LEFT JOIN in the previous lesson. Here is another way.)</p>
-<div class="codehilite"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">customer_name</span>
-<span class="k">FROM</span><span class="w"> </span><span class="n">customers</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="k">c</span>
-<span class="k">WHERE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="p">(</span>
-<span class="w">        </span><span class="k">SELECT</span><span class="w"> </span><span class="mi">1</span>
-<span class="w">        </span><span class="k">FROM</span><span class="w"> </span><span class="n">orders</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">o</span>
-<span class="w">        </span><span class="k">WHERE</span><span class="w"> </span><span class="n">o</span><span class="p">.</span><span class="n">customer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">c</span><span class="p">.</span><span class="n">customer_name</span>
-<span class="w">      </span><span class="p">);</span>
-</code></pre></div>
-
+<p>The inner query is a <strong>derived table</strong>. It must have a
+name (<code>AS customer_totals</code>) in most databases.</p>
+<h2 id="example-4-exists-and-not-exists">Example 4: EXISTS and NOT
+EXISTS</h2>
+<p><em>Question: which customers have never ordered?</em> (You solved
+this with a LEFT JOIN in the previous lesson. Here is another way.)</p>
+<pre class="sql"><code>SELECT customer_name
+FROM customers AS c
+WHERE NOT EXISTS (
+        SELECT 1
+        FROM orders AS o
+        WHERE o.customer = c.customer_name
+      );</code></pre>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>customer_name</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>Blue Thread Ltd</td>
 </tr>
 </tbody>
 </table>
-<p>This is a <strong>correlated</strong> subquery: it refers to <code>c</code> from the outer query, so it is checked once for each customer. <code>SELECT 1</code> is a convention, because <code>EXISTS</code> only cares whether any row exists.</p>
-<div class="admonition mistake">
-<p class="admonition-title">The NOT IN trap</p>
-<p><code>WHERE customer_name NOT IN (SELECT customer FROM orders)</code> gives the right answer here. But if the inner list ever contains a <code>NULL</code>, <code>NOT IN</code> returns <strong>no rows at all</strong>, with no error. <code>NOT EXISTS</code> doesn't have this problem, so prefer it.</p>
+<p>This is a <strong>correlated</strong> subquery: it refers to
+<code>c</code> from the outer query, so it is checked once for each
+customer. <code>SELECT 1</code> is a convention, because
+<code>EXISTS</code> only cares whether any row exists.</p>
+<div class="admonition mistake" data-markdown="1">
+<p class="admonition-title">
+The NOT IN trap
+</p>
+<p><code>WHERE customer_name NOT IN (SELECT customer FROM orders)</code>
+gives the right answer here. But if the inner list ever contains a
+<code>NULL</code>, <code>NOT IN</code> returns <strong>no rows at
+all</strong>, with no error. <code>NOT EXISTS</code> doesn’t have this
+problem, so prefer it.</p>
 </div>
 <h2 id="a-cleaner-way-ctes-with">A cleaner way: CTEs (WITH)</h2>
-<p>Nested brackets get hard to read. A <strong>CTE</strong> (Common Table Expression) gives the inner query a name <strong>at the top</strong>:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">WITH</span><span class="w"> </span><span class="n">customer_totals</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span>
-<span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="n">customer</span><span class="p">,</span>
-<span class="w">           </span><span class="k">SUM</span><span class="p">(</span><span class="n">quantity</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">unit_price</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">revenue</span>
-<span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">orders</span>
-<span class="w">    </span><span class="k">WHERE</span><span class="w"> </span><span class="n">status</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="s1">'Cancelled'</span>
-<span class="w">    </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">customer</span>
-<span class="p">)</span>
-<span class="k">SELECT</span><span class="w"> </span><span class="n">customer</span><span class="p">,</span><span class="w"> </span><span class="n">revenue</span>
-<span class="k">FROM</span><span class="w"> </span><span class="n">customer_totals</span>
-<span class="k">WHERE</span><span class="w"> </span><span class="n">revenue</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="k">AVG</span><span class="p">(</span><span class="n">revenue</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">customer_totals</span><span class="p">)</span>
-<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">revenue</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span>
-</code></pre></div>
-
+<p>Nested brackets get hard to read. A <strong>CTE</strong> (Common
+Table Expression) gives the inner query a name <strong>at the
+top</strong>:</p>
+<pre class="sql"><code>WITH customer_totals AS (
+    SELECT customer,
+           SUM(quantity * unit_price) AS revenue
+    FROM orders
+    WHERE status &lt;&gt; &#39;Cancelled&#39;
+    GROUP BY customer
+)
+SELECT customer, revenue
+FROM customer_totals
+WHERE revenue &gt; (SELECT AVG(revenue) FROM customer_totals)
+ORDER BY revenue DESC;</code></pre>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>customer</th>
 <th>revenue</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>Delta Knit</td>
 <td>2520.00</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Karim Garments</td>
 <td>2155.00</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Nova Apparel</td>
 <td>1880.00</td>
 </tr>
 </tbody>
 </table>
-<p>The query reads top to bottom: <em>build customer totals → keep the ones above average</em>. CTEs are covered in depth in Phase 3 (Advanced SQL). Most analysts prefer them for anything with more than one step.</p>
+<p>The query reads top to bottom: <em>build customer totals → keep the
+ones above average</em>. CTEs are covered in depth in Phase 3 (Advanced
+SQL). Most analysts prefer them for anything with more than one
+step.</p>
 <h2 id="common-mistakes">Common mistakes</h2>
 <table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Mistake</th>
 <th>What happens</th>
 <th>Fix</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td><code>WHERE value &gt; AVG(value)</code></td>
-<td>Error: aggregates aren't allowed in <code>WHERE</code></td>
+<td>Error: aggregates aren’t allowed in <code>WHERE</code></td>
 <td>Calculate the average in a subquery</td>
 </tr>
-<tr>
+<tr class="even">
 <td>A subquery after <code>=</code> returns several rows</td>
-<td>Error ("more than one row")</td>
+<td>Error (“more than one row”)</td>
 <td>Use <code>IN</code>, or make the subquery return one value</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>No name for a subquery in <code>FROM</code></td>
 <td>Error in most databases</td>
 <td>Add <code>AS some_name</code></td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>NOT IN</code> with a list that contains <code>NULL</code></td>
 <td>Returns no rows, silently</td>
 <td>Use <code>NOT EXISTS</code></td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Three levels of nested brackets</td>
 <td>Hard to read and debug</td>
 <td>Rewrite as a CTE</td>
@@ -385,104 +430,187 @@ document.documentElement.classList.add('no-anim')})();</script>
 </tbody>
 </table>
 <h2 id="try-it-yourself">Try it yourself</h2>
-<p><strong>Task:</strong> <em>"Which customers have total (non-cancelled) revenue above the average customer revenue?"</em> Write it <strong>with a subquery</strong>, not a CTE.</p>
+<p><strong>Task:</strong> <em>“Which customers have total
+(non-cancelled) revenue above the average customer revenue?”</em> Write
+it <strong>with a subquery</strong>, not a CTE.</p>
 <details>
-<summary>Show a hint</summary>
-<p>Group orders by customer, then use <code>HAVING SUM(...) &gt; (subquery)</code>. The subquery itself needs a derived table of customer totals (Example 3) to calculate their average.</p>
+<summary>
+Show a hint
+</summary>
+Group orders by customer, then use
+<code>HAVING SUM(...) &gt; (subquery)</code>. The subquery itself needs
+a derived table of customer totals (Example 3) to calculate their
+average.
 </details>
 <details>
-<summary>Show the solution</summary>
-<div class="codehilite"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">customer</span><span class="p">,</span>
-<span class="w">       </span><span class="k">SUM</span><span class="p">(</span><span class="n">quantity</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">unit_price</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">revenue</span>
-<span class="k">FROM</span><span class="w"> </span><span class="n">orders</span>
-<span class="k">WHERE</span><span class="w"> </span><span class="n">status</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="s1">'Cancelled'</span>
-<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">customer</span>
-<span class="k">HAVING</span><span class="w"> </span><span class="k">SUM</span><span class="p">(</span><span class="n">quantity</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">unit_price</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="p">(</span>
-<span class="w">        </span><span class="k">SELECT</span><span class="w"> </span><span class="k">AVG</span><span class="p">(</span><span class="n">revenue</span><span class="p">)</span>
-<span class="w">        </span><span class="k">FROM</span><span class="w"> </span><span class="p">(</span>
-<span class="w">               </span><span class="k">SELECT</span><span class="w"> </span><span class="n">customer</span><span class="p">,</span><span class="w"> </span><span class="k">SUM</span><span class="p">(</span><span class="n">quantity</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">unit_price</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">revenue</span>
-<span class="w">               </span><span class="k">FROM</span><span class="w"> </span><span class="n">orders</span>
-<span class="w">               </span><span class="k">WHERE</span><span class="w"> </span><span class="n">status</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="s1">'Cancelled'</span>
-<span class="w">               </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">customer</span>
-<span class="w">             </span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">t</span>
-<span class="w">      </span><span class="p">)</span>
-<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">revenue</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span>
-</code></pre></div>
-
+<summary>
+Show the solution
+</summary>
+<pre class="sql"><code>SELECT customer,
+       SUM(quantity * unit_price) AS revenue
+FROM orders
+WHERE status &lt;&gt; &#39;Cancelled&#39;
+GROUP BY customer
+HAVING SUM(quantity * unit_price) &gt; (
+        SELECT AVG(revenue)
+        FROM (
+               SELECT customer, SUM(quantity * unit_price) AS revenue
+               FROM orders
+               WHERE status &lt;&gt; &#39;Cancelled&#39;
+               GROUP BY customer
+             ) AS t
+      )
+ORDER BY revenue DESC;</code></pre>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>customer</th>
 <th>revenue</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>Delta Knit</td>
 <td>2520.00</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Karim Garments</td>
 <td>2155.00</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Nova Apparel</td>
 <td>1880.00</td>
 </tr>
 </tbody>
 </table>
-<p>The average customer revenue is 1,815. Compare this with the CTE version: same result, much easier to read.</p>
+The average customer revenue is 1,815. Compare this with the CTE
+version: same result, much easier to read.
 </details>
 <h2 id="quick-quiz">Quick quiz</h2>
 <div class="quiz-q" data-answer="1">
-<p>1. Why can't you write <code>WHERE quantity * unit_price &gt; AVG(quantity * unit_price)</code>?</p>
-<ol>
-<li>AVG doesn't work on calculated values</li>
-<li>Aggregates aren't allowed in WHERE</li>
+<p>1. Why can’t you write
+<code>WHERE quantity * unit_price &gt; AVG(quantity * unit_price)</code>?</p>
+<ol type="1">
+<li>AVG doesn’t work on calculated values</li>
+<li>Aggregates aren’t allowed in WHERE</li>
 <li>You need DISTINCT first</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B.</strong> <code>WHERE</code> filters single rows before any aggregation. Calculate the average in a subquery instead.</p>
+<summary>
+Show answer
+</summary>
+<strong>B.</strong> <code>WHERE</code> filters single rows before any
+aggregation. Calculate the average in a subquery instead.
 </details>
 </div>
 <div class="quiz-q" data-answer="1">
-<p>2. Which is safest for "customers who never ordered" when the orders table may contain NULL customer values?</p>
-<ol>
+<p>2. Which is safest for “customers who never ordered” when the orders
+table may contain NULL customer values?</p>
+<ol type="1">
 <li><code>NOT IN (subquery)</code></li>
 <li><code>NOT EXISTS (subquery)</code></li>
 <li><code>&lt;&gt; ANY (subquery)</code></li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B — NOT EXISTS.</strong> <code>NOT IN</code> returns nothing if the list contains a NULL.</p>
+<summary>
+Show answer
+</summary>
+<strong>B — NOT EXISTS.</strong> <code>NOT IN</code> returns nothing if
+the list contains a NULL.
 </details>
 </div>
 <div class="quiz-q" data-answer="1">
-<p>3. What is the main benefit of a CTE (<code>WITH ...</code>) over a nested subquery?</p>
-<ol>
+<p>3. What is the main benefit of a CTE (<code>WITH ...</code>) over a
+nested subquery?</p>
+<ol type="1">
 <li>It is always faster</li>
 <li>It is easier to read, and you can reuse its name in the query</li>
 <li>It works without SELECT</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B.</strong> CTEs name each step so the query reads top to bottom. Speed is usually similar.</p>
+<summary>
+Show answer
+</summary>
+<strong>B.</strong> CTEs name each step so the query reads top to
+bottom. Speed is usually similar.
 </details>
 </div>
 <h2 id="summary">Summary</h2>
 <ul>
-<li>A subquery is a query in brackets whose answer feeds the outer query.</li>
-<li><strong>One value</strong> → compare with <code>&gt;</code>, <code>=</code>. <strong>A list</strong> → <code>IN</code>. <strong>A table</strong> → <code>FROM (...) AS name</code>.</li>
-<li><code>EXISTS</code> / <code>NOT EXISTS</code> check whether related rows exist. Prefer <code>NOT EXISTS</code> over <code>NOT IN</code>.</li>
-<li>For multi-step logic, a <strong>CTE</strong> (<code>WITH name AS (...)</code>) is clearer than nesting.</li>
+<li>A subquery is a query in brackets whose answer feeds the outer
+query.</li>
+<li><strong>One value</strong> → compare with <code>&gt;</code>,
+<code>=</code>. <strong>A list</strong> → <code>IN</code>. <strong>A
+table</strong> → <code>FROM (...) AS name</code>.</li>
+<li><code>EXISTS</code> / <code>NOT EXISTS</code> check whether related
+rows exist. Prefer <code>NOT EXISTS</code> over
+<code>NOT IN</code>.</li>
+<li>For multi-step logic, a <strong>CTE</strong>
+(<code>WITH name AS (...)</code>) is clearer than nesting.</li>
 </ul>
-<div class="admonition job">
-<p class="admonition-title">Job-ready check</p>
-<p><strong>Interview question:</strong> <em>"Find customers whose revenue is above the average customer revenue."</em></p>
-<p><strong>Strong answer:</strong> "First I build customer totals, then compare each total with their average. I'd write it as a CTE, <code>WITH customer_totals AS (...)</code>, then select from it with <code>WHERE revenue &gt; (SELECT AVG(revenue) FROM customer_totals)</code>. That keeps each step readable and testable."</p>
-<p><strong>Mini project:</strong> Finish your <strong>Monthly Sales Pack</strong> with an "Above-average customers" section written as a CTE. Put the whole pack, five or more queries with comments, into a GitHub repository with a README that states each business question and its answer. That is your first SQL portfolio piece.</p>
+<div class="admonition job" data-markdown="1">
+<p class="admonition-title">
+Job-ready check
+</p>
+<p><strong>Interview question:</strong> <em>“Find customers whose
+revenue is above the average customer revenue.”</em></p>
+<p><strong>Strong answer:</strong> “First I build customer totals, then
+compare each total with their average. I’d write it as a CTE,
+<code>WITH customer_totals AS (...)</code>, then select from it with
+<code>WHERE revenue &gt; (SELECT AVG(revenue) FROM customer_totals)</code>.
+That keeps each step readable and testable.”</p>
+<p><strong>Mini project:</strong> Finish your <strong>Monthly Sales
+Pack</strong> with an “Above-average customers” section written as a
+CTE. Put the whole pack, five or more queries with comments, into a
+GitHub repository with a README that states each business question and
+its answer. That is your first SQL portfolio piece.</p>
 </div>
+<section class="mentor-prompt"><div class="mentor-head"><div><span class="eyebrow">AI study companion</span><h2 id="ai-mentor-prompt">AI Mentor Prompt</h2></div><button class="btn copy-prompt" type="button" data-copy-target="mentor-prompt-phase-1-analytical-sql-05-subqueries">Copy prompt</button></div><p>Paste this into ChatGPT, Claude, Gemini, or another capable assistant to turn this tutorial into an interactive mentoring session.</p><pre class="prompt-box"><code id="mentor-prompt-phase-1-analytical-sql-05-subqueries">You are my hands-on data-analytics and business-intelligence mentor.
+
+I am currently studying:
+&quot;SQL Subqueries: Use One Query&#x27;s Answer Inside Another&quot;
+
+My level:
+Beginner–Intermediate
+
+Teach me this topic interactively rather than giving me a long lecture.
+
+Use this sequence:
+
+1. Check what I already understand with one short diagnostic question.
+2. Explain the concept in simple language and give me the mental model first.
+3. Give me one small task using code, SQL, configuration, data, or architecture as appropriate.
+4. Wait for my attempt before showing a complete solution.
+5. Review my work and explain both what is correct and what needs improvement.
+6. Help me debug errors step by step instead of immediately replacing my work.
+7. Increase the difficulty gradually and connect each new step to the previous one.
+8. Relate what I am learning to real professional data/AI engineering work.
+9. Ask me to explain an important decision in my own words so you can check my understanding.
+10. At the end, ask me to build or modify one small feature independently.
+
+Important rules:
+- Do not do the entire exercise for me unless I explicitly ask.
+- Explain unfamiliar terminology before using it heavily.
+- Prefer current, production-relevant practices over outdated shortcuts.
+- Distinguish clearly between concepts, tool-specific behaviour, and optional alternatives.
+- If a technical fact, API, syntax, version, or best practice may have changed, verify it against current official documentation before teaching it.
+- Never invent command output, test results, benchmark numbers, cloud behaviour, or data results.
+- If something cannot be executed in the current environment, say so and give me the exact command or verification step I should run.
+- Keep me actively coding, querying, configuring, reasoning, or debugging throughout the session.
+- When useful, work from the tutorial practice files (orders.sql, customers.csv, sql-solutions.sql) instead of inventing unrelated examples.
+
+The concepts I need to master are:
+- Subqueries
+- subquery
+- nested query
+- in
+- exists
+- not exists
+- derived table
+- cte
+
+Start by asking me one diagnostic question.</code></pre></section>
+
 <div class="terms-box"><div class="files-head"><b>Key terms in this lesson</b><a href="../../../glossary.html">Glossary →</a></div><div class="term-chips"><a class="term-chip" href="../../../glossary.html#cte" title="A named, temporary result defined with WITH at the start of a query. It makes multi-step SQL readable.">CTE</a><a class="term-chip" href="../../../glossary.html#subquery" title="A query inside another query, used in WHERE (with IN or EXISTS) or FROM, so one answer can feed the next.">Subquery</a></div></div>
 <h2 id="free-resources">Free resources to go deeper</h2><ul class="resources"><li><a href="https://sqlbolt.com/topic/subqueries">SQLBolt — SQL Topic: Subqueries</a><span class="r-meta">SQLBolt · A short intro to the different kinds of subqueries.</span></li><li><a href="https://www.postgresql.org/docs/current/functions-subquery.html">Subquery Expressions</a><span class="r-meta">PostgreSQL official docs · Reference for EXISTS, IN, NOT IN and comparisons with subqueries.</span></li><li><a href="https://www.postgresql.org/docs/current/queries-with.html">WITH Queries (Common Table Expressions)</a><span class="r-meta">PostgreSQL official docs · Read the first section for the basics of CTEs.</span></li><li><a href="https://selectstarsql.com/">Select Star SQL</a><span class="r-meta">Free interactive book · Uses subqueries for real analytical questions.</span></li></ul>
 <div class="complete-bar"><span>Finished reading and did the exercise?</span>
@@ -491,9 +619,9 @@ document.documentElement.classList.add('no-anim')})();</script>
 <p class="reviewed">Last reviewed: 2026-10-09</p>
 
   </div></main>
-  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#where-a-subquery-can-go">Where a subquery can go</a><a href="#example-1-compare-with-an-average-single-value">Example 1: compare with an average (single value)</a><a href="#example-2-filter-by-a-list-from-another-table-in">Example 2: filter by a list from another table (IN)</a><a href="#example-3-a-subquery-in-from-totals-of-totals">Example 3: a subquery in FROM (totals of totals)</a><a href="#example-4-exists-and-not-exists">Example 4: EXISTS and NOT EXISTS</a><a href="#a-cleaner-way-ctes-with">A cleaner way: CTEs (WITH)</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#free-resources">Free resources</a></aside>
+  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#where-a-subquery-can-go">Where a subquery can go</a><a href="#example-1-compare-with-an-average-single-value">Example 1: compare with an average (single value)</a><a href="#example-2-filter-by-a-list-from-another-table-in">Example 2: filter by a list from another table (IN)</a><a href="#example-3-a-subquery-in-from-totals-of-totals">Example 3: a subquery in FROM (totals of totals)</a><a href="#example-4-exists-and-not-exists">Example 4: EXISTS and NOT EXISTS</a><a href="#a-cleaner-way-ctes-with">A cleaner way: CTEs (WITH)</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#ai-mentor-prompt">AI Mentor Prompt</a><a href="#free-resources">Free resources</a></aside>
 </div>
-<footer class="site">Data, AI &amp; Automation Path v0.8 · Applied AI, Data &amp; Automation Lab · Updated October 2026<br>
+<footer class="site"><b>Saiful The Techie</b> · Data, AI &amp; Automation Path v0.9.1 · Updated October 2026<br>
 Lesson text: <a href="../../../license.html">CC BY-NC-SA 4.0</a> · Code: <a href="../../../license.html#code-mit-license">MIT</a> · Free external resources belong to their respective owners.</footer>
 <script src="../../../search-index.js"></script>
 <script src="../../../assets/app.js"></script>

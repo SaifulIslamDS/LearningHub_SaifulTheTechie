@@ -1,85 +1,78 @@
 # Saiful The Techie — Software & AI Engineering Learning Hub
 
-**Current release:** v0.5.0  
-**Milestone:** Next.js + Full-Stack  
+**Current release:** v0.5.2  
+**Milestone:** Navigation, Video & Learning-Path Audit  
 **Compiled & Expanded by:** Saiful Islam  
 **Brand:** Saiful The Techie  
 **Website:** https://saifulshuvo.com
 
-A free, offline-capable, source-driven tutorial site for learning software engineering from web foundations through full-stack, production systems and AI engineering.
+A free, offline-capable, source-driven tutorial site designed to progress from absolute beginner through professional software and AI engineering.
 
-The supplied Level 01 and Level 02 curricula remain the **coverage backbone**. The public learning experience is reorganized under Saiful The Techie as deep tutorials, connected code, practice packages, projects, glossary links, curated resources and optional video companions.
+The supplied Level 01 and Level 02 curricula remain the coverage backbone. Saiful The Techie reorganizes them into deep tutorials, connected code, practice packages, projects, glossary links, curated resources, video companions and AI tutor prompts.
 
-## v0.5.0 highlights
+## v0.5.2 highlights
 
-- Completed source-curriculum tutorial coverage through **Level 01 Module 52**.
-- Added Next.js App Router, rendering, data fetching/caching, Better Auth, authenticated projects, Node/Express, MongoDB CRUD/querying, JWT/security, Stripe Checkout/webhooks and the first major full-stack project sequence.
-- Applied the **post-v0.4 tutorial architecture upgrade**: module pages introduce the sequence; tutorial pages teach; curriculum pages remain roadmap/source maps.
-- Removed the former compulsory `Common mistakes`, `Try it yourself`, `Quick quiz`, `Summary` and `Job-ready check` sections from the default lesson architecture.
-- Deepened representative earlier tutorials and gave learner-facing tutorial titles that differ from their source-module titles.
-- Added three **ST Recommended** professional bridge tutorials: API testing/HTTP contracts, environment variables/secrets, and production error contracts/observability.
-- Added an optional **YouTube companion system** with structured metadata, responsive privacy-enhanced embeds, timestamps and fallback “Watch on YouTube” links.
-- Added curated companions to selected Next.js, Better Auth, Express/MongoDB and Stripe tutorials.
-- Expanded resource cards so structured resource types such as `OFFICIAL` and `REFERENCE` can be displayed.
-- Added/expanded deterministic practice bundles for Next.js/authentication, Node/MongoDB and Full-Stack Project 1.
+- Level 01 and Level 02 in the left curriculum menu are now **independently collapsible buttons**.
+- Removed learner-facing **Source module** badges and **Source mapping** lines from module pages while keeping internal curriculum traceability in `curriculum.yml`.
+- Removed duplicate module-title blocks so each module page has one primary H1.
+- Fixed the YouTube **Error 153** experience for downloaded `file://` use: the static page now shows a clean video fallback, and the iframe is injected only when the hub is served over HTTP(S).
+- Preserved the direct **Watch on YouTube** link on every video companion.
+- Added `LEARNING_PATH_AUDIT.md`, a full beginner → advanced → career-readiness audit.
+- Corrected the future release sequence after discovering that the previous roadmap skipped Level 01 Modules 53–67 and did not explicitly schedule the Level 02 professional/bonus modules.
+
+## Current size
+
+- **216 generated HTML pages**
+- **70 authored tutorials** — 57 curriculum tutorials + 13 ST Recommended
+- **70 AI tutor prompts**
+- **61 reviewed YouTube companions**
+- **135 curriculum/module entries**
+- **7 deterministic practice ZIPs**
+- **0 generated `Coming soon` labels**
 
 ## Learning architecture
 
 ```text
-Curriculum page
-  roadmap + source topics
-        ↓
-Module page
-  purpose + sequence + downloads + source map
-        ↓
-Tutorial page
-  mental model + detailed explanation + code + build trail
-        ↓
+Curriculum
+  ↓
+Module learning map
+  ↓
+Deep tutorial
+  ↓
+Code / build
+  ↓
 Practice package
-  starter / runnable / reference / completed material
-        ↓
-Project
-  integrated implementation
+  ↓
+Optional video companion
+  ↓
+AI tutor prompt
+  ↓
+Glossary + official/free resources
+  ↓
+Project / stage gate
 ```
 
-Optional external learning sits alongside the tutorial:
-
-```text
-Saiful The Techie written tutorial
-+ verified/reference code
-+ synchronized practice files
-+ optional YouTube companion
-+ glossary
-+ official/free resources
-```
+The written tutorial remains primary. Video and AI are reinforcement layers, not substitutes.
 
 ## Source architecture
 
 ```text
-site.yml                         site identity, version, release metadata
-curriculum.yml                   two levels, exact source modules/topics, role tracks
-build.py                         Markdown/YAML -> static HTML generator
-assets/                          Saiful The Techie UI CSS/JS + social image
+site.yml
+curriculum.yml
+build.py
+assets/
 content/
-  lessons/<level>/<module>/      tutorial Markdown; _module.md = module intro
-  projects/                      level project briefs
-  pages/                         About / How to learn
-  glossary.yml                   central glossary
-  downloads/                     practice files + files.yml catalogue
-  _templates/                    current tutorial-authoring template
-examples/                        runnable/reference source examples
-tools/                          deterministic packaging helpers
-docs/                            GENERATED site; do not hand-edit
-handover/                        continuation context + governing prompt
-.github/workflows/               build and external-link checking
-ROADMAP.md                       milestone plan
-CHANGELOG.md                     release history
-CONTRIBUTING.md                  authoring rules
+examples/
+tools/
+docs/          GENERATED — never hand-edit
+handover/
+ROADMAP.md
+CHANGELOG.md
+CONTRIBUTING.md
+LEARNING_PATH_AUDIT.md
 ```
 
 ## Build locally
-
-Requirements: Python 3.13+ and the packages in `requirements.txt`. Node.js is used to verify executable JavaScript/Node examples. TypeScript compiler access is used for TypeScript regression verification.
 
 ```bash
 pip install -r requirements.txt
@@ -87,36 +80,35 @@ python tools/package_examples.py
 python build.py
 ```
 
-Open `docs/index.html` directly for offline use. Embedded YouTube companions naturally require internet access; the written tutorials remain available offline.
+Basic navigation and tutorial content work by opening `docs/index.html` directly.
+
+For embedded YouTube playback, serve the folder over HTTP so the browser can provide the page identity/referrer expected by YouTube:
+
+```bash
+cd docs
+python -m http.server 8000
+```
+
+Then open `http://localhost:8000/`. If the hub is opened through `file://`, the video section intentionally shows a clean external-link fallback instead of a broken player.
 
 ## Verification philosophy
 
-Never fabricate executable output.
+Never fabricate output.
 
-- **RUN-HERE** — executed in the release environment; shown output is real.
-- **RUN-BY-OWNER** — requires an owner/local/cloud environment; provide a precise verification step.
-- **REFERENCE-ONLY** — shown for teaching, but not claimed as executed.
-
-Next.js, Better Auth, MongoDB Atlas, Stripe and deployment integrations include reference material where the release environment could not responsibly install/use the external service stack. Framework-independent Node examples are executed locally.
-
-## Editorial labels
-
-- **Source curriculum** — maps exactly to topic text in the supplied curricula.
-- **Tutorial expansion** — Saiful The Techie teaching/implementation expansion.
-- **ST Recommended** — professional bridge material beyond the source curriculum.
+- **RUN-HERE** — actually executed here.
+- **RUN-BY-OWNER** — requires the learner/owner environment.
+- **REFERENCE-ONLY** — useful teaching code, but not claimed as executed.
 
 ## Branding
 
-The public product is **Saiful The Techie — Software & AI Engineering Learning Hub**. The interface uses the ecosystem-aligned deep-navy / electric-cyan technology language in light and dark modes.
+The public product is **Saiful The Techie — Software & AI Engineering Learning Hub**. The interface uses the ecosystem-aligned deep-navy / electric-cyan technical design system in light and dark modes.
 
-The exact approved circular Saiful The Techie logo asset from earlier ecosystem work is still not available as an original binary in this runtime. The project therefore keeps the approved text/wordmark fallback rather than inventing or redrawing a substitute. When the original logo asset becomes available, add it centrally under `assets/` and regenerate `docs/`.
+The exact approved circular Saiful The Techie logo binary is still unavailable in this build runtime, so the approved wordmark fallback remains in use rather than fabricating a replacement.
 
-## Publishing
+## Learning-path audit
 
-The generated `docs/` folder is GitHub Pages-ready. Set `site_url` and `github_repo` in `site.yml` once the deployment target is chosen. Until then, canonical absolute URLs and `sitemap.xml` are intentionally omitted.
-
-See `handover/HANDOVER.md` for the full continuation protocol.
+Read `LEARNING_PATH_AUDIT.md` before expanding the curriculum further. The audit concludes that the architecture and curriculum direction can support an absolute-beginner-to-career path, but the current release must not yet be described as career-ready because Level 01 completion, Level 02, production engineering, AI engineering and explicit career preparation are still pending.
 
 ## Next approved milestone
 
-**v0.6.0 — Advanced Software Engineering**
+**v0.6.0 — Complete Level 01: Full Stack Project 2 + AI-Assisted Coding (Modules 53–67)**

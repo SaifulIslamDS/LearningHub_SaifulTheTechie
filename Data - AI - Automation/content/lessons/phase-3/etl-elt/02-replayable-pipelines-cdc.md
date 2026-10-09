@@ -1,31 +1,67 @@
 ---
-title: "Replayable Pipelines and Change Data Capture"
+title: Replayable Pipelines and Change Data Capture
 order: 2
-summary: "Capture inserts, updates and deletes as ordered events, then replay or resume them without losing the source-of-truth sequence."
+summary: Capture inserts, updates and deletes as ordered events, then replay or resume them without losing the source-of-truth
+  sequence.
 level: Intermediate
-time: "45 min"
-topics: ["Replayability", "CDC"]
-prerequisites: ["phase-3/etl-elt/01-modular-idempotent-incremental"]
-keywords: [replayable pipeline, replayability, cdc, change data capture, event log, checkpoint, logical decoding, debezium]
+time: 45 min
+topics:
+- Replayability
+- CDC
+prerequisites:
+- phase-3/etl-elt/01-modular-idempotent-incremental
+keywords:
+- replayable pipeline
+- replayability
+- cdc
+- change data capture
+- event log
+- checkpoint
+- logical decoding
+- debezium
 reviewed: 2026-10-09
-files: [phase-3/data-engineering-scripts.zip, phase-3/orders_cdc_events.jsonl]
+files:
+- phase-3/data-engineering-scripts.zip
+- phase-3/orders_cdc_events.jsonl
 resources:
-  - title: "Debezium documentation"
-    url: "https://debezium.io/documentation/reference/stable/"
-    source: "Debezium"
-    note: "Official Debezium 3.6 documentation for row-level change event streams."
-  - title: "Debezium connector for PostgreSQL"
-    url: "https://debezium.io/documentation/reference/stable/connectors/postgresql.html"
-    source: "Debezium"
-    note: "Explains snapshots, logical decoding, replication slots and insert/update/delete events."
-  - title: "Logical Decoding Concepts"
-    url: "https://www.postgresql.org/docs/current/logicaldecoding-explanation.html"
-    source: "PostgreSQL"
-    note: "Official PostgreSQL 18 explanation of turning WAL changes into a replayable logical stream."
-  - title: "Change data capture in dbt"
-    url: "https://docs.getdbt.com/best-practices/how-we-handle-cdc/1-intro"
-    source: "dbt Developer Hub"
-    note: "Shows how new, updated and deleted source rows relate to incremental models and snapshots."
+- title: Debezium documentation
+  url: https://debezium.io/documentation/reference/stable/
+  source: Debezium
+  note: Official Debezium 3.6 documentation for row-level change event streams.
+- title: Debezium connector for PostgreSQL
+  url: https://debezium.io/documentation/reference/stable/connectors/postgresql.html
+  source: Debezium
+  note: Explains snapshots, logical decoding, replication slots and insert/update/delete events.
+- title: Logical Decoding Concepts
+  url: https://www.postgresql.org/docs/current/logicaldecoding-explanation.html
+  source: PostgreSQL
+  note: Official PostgreSQL 18 explanation of turning WAL changes into a replayable logical stream.
+- title: Change data capture in dbt
+  url: https://docs.getdbt.com/best-practices/how-we-handle-cdc/1-intro
+  source: dbt Developer Hub
+  note: Shows how new, updated and deleted source rows relate to incremental models and snapshots.
+youtube:
+  title: Change Data Capture and Debezium with Gunnar Morling
+  creator: 'The GeekNarrator (guest: Gunnar Morling)'
+  url: https://www.youtube.com/watch?v=VGH6TlhEJpM&t=500s
+  video_id: VGH6TlhEJpM
+  start_seconds: 500
+  language: English
+  level: Intermediate
+  reviewed: '2026-10-09'
+  why_recommended: Gunnar Morling explains the CDC mental model and Debezium architecture. Use it to understand how database
+    changes become an ordered event stream, then return to this lesson to practise deterministic replay and checkpoint/resume
+    behaviour locally.
+  timestamps:
+  - label: What is Change Data Capture?
+    time: 08:20
+    url: https://www.youtube.com/watch?v=VGH6TlhEJpM&t=500s
+  - label: What is Debezium and how does it approach CDC?
+    time: '12:20'
+    url: https://www.youtube.com/watch?v=VGH6TlhEJpM&t=740s
+  - label: Debezium architecture
+    time: '18:00'
+    url: https://www.youtube.com/watch?v=VGH6TlhEJpM&t=1080s
 ---
 
 ## What is it?

@@ -9,6 +9,15 @@ prerequisites: ["phase-3/dbt/02-snapshots-macros"]
 keywords: [dbt docs, mart, staging, intermediate, lineage, documentation, gold layer, analytics engineering]
 reviewed: 2026-10-09
 files: [phase-3/dbt-orders-project.zip, phase-3/data-engineering-scripts.zip]
+youtube:
+  title: "DBT Tutorial: How to generate automatic documentation in DBT"
+  creator: "Anirvan Decodes"
+  url: "https://www.youtube.com/watch?v=71UPBZmLnBM"
+  video_id: "71UPBZmLnBM"
+  language: "English"
+  level: "Intermediate"
+  reviewed: "2026-10-09"
+  why_recommended: "A concise visual companion for dbt documentation, docs blocks and generated docs. Use it after building the lesson's staging/intermediate/mart layers so the generated lineage has a concrete model graph to explain."
 resources:
   - title: "About documentation"
     url: "https://docs.getdbt.com/docs/build/documentation"

@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en" data-root="../../../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>dbt Snapshots and Macros: Preserve History and Reuse SQL Logic — Data, AI &amp; Automation Path</title>
+<meta name="description" content="Track slowly changing customer attributes with a dbt snapshot, then use Jinja macros to keep repeated transformation logic readable and reusable.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Saiful The Techie">
+<meta property="og:title" content="dbt Snapshots and Macros: Preserve History and Reuse SQL Logic">
+<meta property="og:description" content="Track slowly changing customer attributes with a dbt snapshot, then use Jinja macros to keep repeated transformation logic readable and reusable.">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+
+<script>(function(){var t=null;try{t=localStorage.getItem('daa-theme')}catch(e){}
+if(!t)t=(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';
+document.documentElement.setAttribute('data-theme',t);
+var n=null;try{n=localStorage.getItem('daa-nav')}catch(e){}
+if(n==='open'&&window.matchMedia&&matchMedia('(min-width: 961px)').matches)document.documentElement.setAttribute('data-nav','open');
+document.documentElement.classList.add('no-anim')})();</script>
+<link rel="stylesheet" href="../../../assets/style.css">
+
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Open curriculum menu" title="Curriculum menu (press M)" aria-controls="sidebar" aria-expanded="false"><span class="ico-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span class="ico-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></button>
+  <a class="brand" href="../../../index.html"><span class="brand-text"><span class="brand-name">Saiful The Techie</span><span class="brand-version">Data, AI &amp; Automation Path · v0.9.1</span></span></a>
+  <nav class="top-links" aria-label="Main">
+    <a href="../../../index.html" class="">Home</a><a href="../../../curriculum.html" class="">Curriculum</a><a href="../../../practice-files.html" class="">Practice files</a><a href="../../../glossary.html" class="">Glossary</a><a href="../../../how-to-learn.html" class="">How to learn</a><a href="../../../about.html" class="">About</a>
+  </nav>
+  <div class="top-spacer"></div>
+  <div class="search" role="search">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input id="searchInput" type="search" placeholder="Search lessons, tools, topics" aria-label="Search" autocomplete="off">
+    <kbd>/</kbd>
+    <div class="search-results" id="searchResults" role="listbox"></div>
+  </div>
+  <button class="icon-btn theme-toggle" id="themeBtn" aria-label="Toggle light or dark mode" title="Light / dark"><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
+</header>
+<div class="layout wide">
+  <nav class="sidebar" id="sidebar" aria-label="Curriculum">
+    <div class="side-title">Curriculum</div>
+    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="85"><i></i></div><span class="bar-label" data-progress-label></span></div>
+<div class="nav-phase"><a href="../../../learn/phase-0/index.html"><span class="nav-num">0</span>Foundations</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-1/index.html"><span class="nav-num">1</span>Analytics &amp; BI</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-2/index.html"><span class="nav-num">2</span>Data Science</a>
+</div>
+<div class="nav-phase current open"><a href="../../../learn/phase-3/index.html"><span class="nav-num">3</span>Data Engineering</a>
+<ul class="nav-modules">
+<li><a class="" href="../../../learn/phase-3/data-ingestion/index.html">Data Ingestion</a>
+</li>
+<li><a class="" href="../../../learn/phase-3/advanced-sql/index.html">Advanced SQL</a>
+</li>
+<li><a class="" href="../../../learn/phase-3/database-engineering/index.html">Database Engineering</a>
+</li>
+<li><a class="" href="../../../learn/phase-3/data-warehousing/index.html">Data Warehousing</a>
+</li>
+<li><a class="" href="../../../learn/phase-3/lakehouse/index.html">Lakehouse &amp; Open Table Formats</a>
+</li>
+<li><a class="" href="../../../learn/phase-3/etl-elt/index.html">ETL / ELT</a>
+</li>
+<li><a class="" href="../../../learn/phase-3/data-quality/index.html">Data Quality &amp; Contracts</a>
+</li>
+<li><a class="" href="../../../learn/phase-3/docker/index.html">Docker</a>
+</li>
+<li><a class="" href="../../../learn/phase-3/orchestration/index.html">Orchestration</a>
+</li>
+<li><a class="current" href="../../../learn/phase-3/dbt/index.html">dbt</a>
+<ul class="nav-lessons">
+<li><a class="" data-lesson="phase-3/dbt/01-models-tests" href="../../../learn/phase-3/dbt/01-models-tests.html">dbt Models and Tests: Turn SQL into a Trusted Transformation Graph</a></li>
+<li><a class="current" data-lesson="phase-3/dbt/02-snapshots-macros" href="../../../learn/phase-3/dbt/02-snapshots-macros.html">dbt Snapshots and Macros: Preserve History and Reuse SQL Logic</a></li>
+<li><a class="" data-lesson="phase-3/dbt/03-documentation-marts" href="../../../learn/phase-3/dbt/03-documentation-marts.html">dbt Documentation and Marts: Publish BI-Ready Data with Lineage</a></li>
+</ul>
+</li>
+<li><a class="" href="../../../learn/phase-3/cloud-iac/index.html">Cloud &amp; Infrastructure as Code</a>
+</li>
+<li><a class="" href="../../../learn/phase-3/ai-ready-data/index.html">AI-Ready Data</a>
+</li>
+<li><a class="" href="../../../learn/phase-3/big-data-streaming/index.html">Big Data &amp; Streaming</a>
+</li>
+</ul>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-4/index.html"><span class="nav-num">4</span>ML Engineering</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-5/index.html"><span class="nav-num">5</span>LLM &amp; RAG</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-6/index.html"><span class="nav-num">6</span>Agents &amp; Automation</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-7/index.html"><span class="nav-num">7</span>LLMOps &amp; Governance</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-8/index.html"><span class="nav-num">8</span>Capstone</a>
+</div>
+<div class="nav-phase"><a href="../../../learn/phase-9/index.html"><span class="nav-num">9</span>Career</a>
+</div>
+<div class="side-extra"><a href="../../../index.html">Home</a><a href="../../../curriculum.html">Full curriculum map</a><a href="../../../practice-files.html">Practice files</a><a href="../../../glossary.html">Glossary</a><a href="../../../how-to-learn.html">How to learn here</a><a href="../../../about.html">About &amp; contributing</a></div></nav>
+  <main class="main" id="main"><div class="content">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="../../../index.html">Home</a><span class="sep">/</span><a href="../../../learn/phase-3/index.html">Phase 3</a><span class="sep">/</span><a href="../../../learn/phase-3/dbt/index.html">dbt</a><span class="sep">/</span><span>dbt Snapshots and Macros: Preserve History and Reuse SQL Logic</span></nav>
+<h1>dbt Snapshots and Macros: Preserve History and Reuse SQL Logic</h1>
+<p class="lead">Track slowly changing customer attributes with a dbt snapshot, then use Jinja macros to keep repeated transformation logic readable and reusable.</p>
+<div class="meta"><span class="pill">Phase <b>3</b> · Data Engineering</span><span class="pill">Level <b>Intermediate</b></span><span class="pill">Time <b>65 min</b></span></div>
+<div class="admonition note"><p class="admonition-title">Before you start</p><p><a href="../../../learn/phase-3/dbt/01-models-tests.html">dbt Models and Tests: Turn SQL into a Trusted Transformation Graph</a></p></div>
+<div class="files-box"><div class="files-head"><b>Practice files for this page</b><a href="../../../practice-files.html">All practice files →</a></div><ul><li><a href="../../../downloads/phase-3/dbt-orders-project.zip" download>dbt-orders-project.zip</a><span class="f-desc">Starter + completed local dbt Core/DuckDB project: sources, staging models, tests, snapshot, macro, docs and BI-ready marts · 192 KB</span></li><li><a href="../../../downloads/phase-3/data-engineering-scripts.zip" download>data-engineering-scripts.zip</a><span class="f-desc">Phase 3 scripts: ingestion, PostgreSQL, advanced SQL, warehousing, lakehouse, Docker, ETL/CDC, data quality, plus the dbt mini-project and verification scripts · 476 KB</span></li></ul></div>
+<h2 id="introduction">Introduction</h2>
+<p>A current-state table answers:</p>
+<blockquote>
+<p>What is the customer’s credit term <strong>now</strong>?</p>
+</blockquote>
+<p>But business analysis often needs a second question:</p>
+<blockquote>
+<p>What was the customer’s credit term <strong>when an older event
+happened</strong>?</p>
+</blockquote>
+<p>If a source system overwrites <code>30</code> credit days with
+<code>45</code>, the old value disappears unless your analytical system
+preserves history.</p>
+<p>This tutorial solves that with a <strong>dbt snapshot</strong>, then
+introduces a second dbt capability: <strong>Jinja macros</strong> for
+reusable SQL logic.</p>
+<h2 id="what-you-will-learn">What you will learn</h2>
+<p>You will be able to:</p>
+<ul>
+<li>explain why snapshots exist;</li>
+<li>distinguish current-state tables from historical versions;</li>
+<li>understand the timestamp and check strategies;</li>
+<li>configure a snapshot in modern dbt YAML;</li>
+<li>run a deterministic customer-change demo;</li>
+<li>understand Jinja inside dbt SQL;</li>
+<li>write and document a reusable macro;</li>
+<li>inspect compiled SQL when macro logic becomes confusing.</li>
+</ul>
+<h2 id="mental-model-a-snapshot-turns-overwrites-into-versions">Mental
+model: a snapshot turns overwrites into versions</h2>
+<p>Suppose customer <code>C007</code> starts like this:</p>
+<pre class="text"><code>customer_id = C007
+credit_days = 30</code></pre>
+<p>Later the ERP changes the same record:</p>
+<pre class="text"><code>customer_id = C007
+credit_days = 45</code></pre>
+<p>A normal table keeps only <code>45</code>.</p>
+<p>A snapshot keeps history conceptually like this:</p>
+<pre class="text"><code>C007 | 30 | valid from T1 | valid to T2
+C007 | 45 | valid from T2 | still current</code></pre>
+<p>That is the analytical idea behind a <strong>slowly changing
+dimension Type 2</strong> pattern.</p>
+<h2 id="timestamp-vs-check-strategy">Timestamp vs check strategy</h2>
+<p>A dbt snapshot needs a way to decide whether a source row
+changed.</p>
+<h3 id="timestamp-strategy">Timestamp strategy</h3>
+<p>Best when the source provides a trustworthy <code>updated_at</code>
+column.</p>
+<p>Conceptually:</p>
+<pre class="yaml"><code>strategy: timestamp
+updated_at: updated_at</code></pre>
+<p>This is normally the preferred approach because the source explicitly
+tells you when the row changed.</p>
+<h3 id="check-strategy">Check strategy</h3>
+<p>Useful when no reliable update timestamp exists.</p>
+<p>You tell dbt which columns to compare:</p>
+<pre class="yaml"><code>strategy: check
+check_cols: [&#39;segment&#39;, &#39;region&#39;, &#39;credit_days&#39;]</code></pre>
+<p>Our customer CSV has no <code>updated_at</code>, so the practice
+project deliberately uses <strong>check</strong>.</p>
+<h2 id="step-1-configure-the-snapshot">Step 1 — configure the
+snapshot</h2>
+<p>Open:</p>
+<pre class="text"><code>completed/snapshots/customers_snapshot.yml</code></pre>
+<p>It contains:</p>
+<pre class="yaml"><code>version: 2
+
+snapshots:
+  - name: customers_snapshot
+    description: &quot;History of customer segment, region and credit-term changes.&quot;
+    relation: source(&#39;shop&#39;, &#39;customers_2025&#39;)
+    config:
+      schema: snapshots
+      unique_key: customer_id
+      strategy: check
+      check_cols: [&#39;segment&#39;, &#39;region&#39;, &#39;credit_days&#39;]</code></pre>
+<p>Important pieces:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Setting</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>unique_key</code></td>
+<td>Which source value identifies one business entity</td>
+</tr>
+<tr class="even">
+<td><code>strategy</code></td>
+<td>How dbt detects change</td>
+</tr>
+<tr class="odd">
+<td><code>check_cols</code></td>
+<td>Which values matter for change detection</td>
+</tr>
+<tr class="even">
+<td><code>schema</code></td>
+<td>Where snapshot history is stored</td>
+</tr>
+</tbody>
+</table>
+<p>On the first run, dbt stores the current customer rows plus snapshot
+metadata such as validity timestamps.</p>
+<p>On later runs, changed entities receive a new version while the
+previous version is closed.</p>
+<h2 id="step-2-run-the-first-snapshot">Step 2 — run the first
+snapshot</h2>
+<p>On your machine:</p>
+<pre class="bash"><code>cd completed
+python scripts/reset_snapshot_demo.py
+dbt seed --select customers_2025 --full-refresh --profiles-dir .
+dbt snapshot --select customers_snapshot --profiles-dir .</code></pre>
+<p><strong>RUN-BY-OWNER:</strong> dbt is unavailable in this sandbox, so
+no dbt terminal output is pasted here.</p>
+<h2 id="step-3-change-one-source-row-deterministically">Step 3 — change
+one source row deterministically</h2>
+<p>The project includes:</p>
+<pre class="text"><code>scripts/apply_snapshot_change.py</code></pre>
+<p>It changes only <code>C007</code>:</p>
+<pre class="python"><code>mask = df[&quot;customer_id&quot;].eq(&quot;C007&quot;)
+old = int(df.loc[mask, &quot;credit_days&quot;].iloc[0])
+df.loc[mask, &quot;credit_days&quot;] = 45</code></pre>
+<p>The baseline data was executed here and confirms:</p>
+<pre class="text"><code>snapshot demo input: C007 credit_days 30 -&gt; 45</code></pre>
+<p>Now run:</p>
+<pre class="bash"><code>python scripts/apply_snapshot_change.py
+dbt seed --select customers_2025 --full-refresh --profiles-dir .
+dbt snapshot --select customers_snapshot --profiles-dir .
+python scripts/inspect_snapshot.py</code></pre>
+<p>The final command queries the local DuckDB snapshot table and should
+show two historical versions for <code>C007</code> after the second
+successful snapshot run.</p>
+<p>When you finish, restore the deterministic seed:</p>
+<pre class="bash"><code>python scripts/reset_snapshot_demo.py</code></pre>
+<h2 id="why-snapshots-are-not-backups">Why snapshots are not
+backups</h2>
+<p>A snapshot is analytical row history.</p>
+<p>It is <strong>not</strong> a substitute for:</p>
+<ul>
+<li>database backups;</li>
+<li>point-in-time recovery;</li>
+<li>object-storage versioning;</li>
+<li>disaster recovery.</li>
+</ul>
+<p>Snapshots help answer historical business questions. Backups help
+restore systems after loss or failure.</p>
+<hr />
+<h2 id="mental-model-a-macro-is-a-function-that-writes-sql">Mental
+model: a macro is a function that writes SQL</h2>
+<p>Now look at repeated transformation logic.</p>
+<p>Suppose several models classify discounts:</p>
+<pre class="sql"><code>case
+    when discount = 0 then &#39;none&#39;
+    when discount &lt;= 0.03 then &#39;low&#39;
+    else &#39;high&#39;
+end</code></pre>
+<p>Copying that block into five models creates five places to maintain
+it.</p>
+<p>A dbt <strong>macro</strong> lets you describe the reusable
+SQL-generating logic once.</p>
+<h2 id="step-4-create-discount_band">Step 4 — create
+<code>discount_band</code></h2>
+<p>Open:</p>
+<pre class="text"><code>completed/macros/discount_band.sql</code></pre>
+<pre class="sql"><code>{% macro discount_band(discount_column) -%}
+case
+    when {{ discount_column }} = 0 then &#39;none&#39;
+    when {{ discount_column }} &lt;= 0.03 then &#39;low&#39;
+    else &#39;high&#39;
+end
+{%- endmacro %}</code></pre>
+<p>Then call it from a model:</p>
+<pre class="sql"><code>{{ discount_band(&#39;o.discount&#39;) }} as discount_band</code></pre>
+<p>The macro does not create a database table by itself. During
+compilation, Jinja produces SQL that the database engine can
+execute.</p>
+<h2 id="step-5-see-the-macro-inside-a-real-model">Step 5 — see the macro
+inside a real model</h2>
+<p><code>int_orders_enriched.sql</code> uses the macro while joining
+staged data:</p>
+<pre class="sql"><code>select
+    o.*,
+    c.customer_name,
+    p.list_price,
+    {{ discount_band(&#39;o.discount&#39;) }} as discount_band,
+    case
+        when o.status = &#39;Cancelled&#39; then cast(0 as decimal(18, 2))
+        else o.revenue
+    end as net_revenue
+from {{ ref(&#39;stg_orders&#39;) }} as o
+left join {{ ref(&#39;stg_customers&#39;) }} as c using (customer_id)
+left join {{ ref(&#39;stg_products&#39;) }} as p using (product)</code></pre>
+<p>Our independent RUN-HERE verification found these actual
+discount-band counts:</p>
+<pre class="text"><code>high 2166 | low 504 | none 1576</code></pre>
+<p>That gives you a concrete result to compare after running the dbt
+model locally.</p>
+<h2 id="step-6-compile-when-jinja-feels-invisible">Step 6 — compile when
+Jinja feels invisible</h2>
+<p>One challenge with Jinja is that the SQL file you write is not always
+the final SQL the database sees.</p>
+<p>Use:</p>
+<pre class="bash"><code>dbt compile --select int_orders_enriched --profiles-dir .</code></pre>
+<p>Then inspect the compiled SQL under
+<code>target/compiled/</code>.</p>
+<p>That is one of the best debugging habits in dbt: when a macro or
+<code>ref()</code> behaves unexpectedly, inspect the generated SQL
+rather than guessing.</p>
+<p>Starting with dbt v1.12, snapshot SQL can also be inspected through
+compilation, which makes snapshot behavior easier to debug.</p>
+<h2 id="step-7-document-the-macro-arguments">Step 7 — document the macro
+arguments</h2>
+<p>The project includes <code>macros/schema.yml</code>:</p>
+<pre class="yaml"><code>version: 2
+
+macros:
+  - name: discount_band
+    description: &quot;Convert a numeric discount expression into none, low or high.&quot;
+    arguments:
+      - name: discount_column
+        type: string
+        description: &quot;A SQL expression or column name containing a decimal discount.&quot;</code></pre>
+<p>In dbt v1.12, macro-argument validation is stricter by default, so
+documented argument names should agree with the macro definition.</p>
+<h2 id="build-with-me">Build with me</h2>
+<p>In <code>starter/</code>:</p>
+<ol type="1">
+<li>create <code>snapshots/customers_snapshot.yml</code>;</li>
+<li>seed and snapshot the baseline customers;</li>
+<li>run the deterministic change script;</li>
+<li>reseed and snapshot again;</li>
+<li>inspect the history;</li>
+<li>create <code>macros/discount_band.sql</code>;</li>
+<li>call the macro from an intermediate model;</li>
+<li>compile that model and inspect the generated SQL;</li>
+<li>compare your files with <code>completed/</code>.</li>
+</ol>
+<h2 id="practice-files">Practice files</h2>
+<p>The same <strong>dbt-orders-project.zip</strong> continues through
+this lesson.</p>
+<p>Useful files:</p>
+<pre class="text"><code>completed/snapshots/customers_snapshot.yml
+completed/macros/discount_band.sql
+completed/macros/schema.yml
+completed/scripts/apply_snapshot_change.py
+completed/scripts/reset_snapshot_demo.py
+completed/scripts/inspect_snapshot.py</code></pre>
+<h2 id="professional-context">Professional context</h2>
+<p>Snapshots are most valuable when analysts need to reproduce history
+consistently—for example:</p>
+<ul>
+<li>customer segment at the time of an order;</li>
+<li>account owner before a reassignment;</li>
+<li>supplier terms before renegotiation;</li>
+<li>subscription plan before an upgrade.</li>
+</ul>
+<p>Macros are valuable when logic is repeated and truly belongs in one
+abstraction. Do not turn every three-line SQL expression into Jinja.
+dbt’s own guidance emphasizes <strong>readability over aggressive DRY
+abstraction</strong>.</p>
+<h2 id="next-tutorial">Next tutorial</h2>
+<p>Next, you will organize the project into <strong>marts</strong>,
+document the outputs, generate lineage, and build a small monthly
+revenue table that reconciles to the full Phase 3 dataset.</p>
+<section class="mentor-prompt"><div class="mentor-head"><div><span class="eyebrow">AI study companion</span><h2 id="ai-mentor-prompt">AI Mentor Prompt</h2></div><button class="btn copy-prompt" type="button" data-copy-target="mentor-prompt-phase-3-dbt-02-snapshots-macros">Copy prompt</button></div><p>Paste this into ChatGPT, Claude, Gemini, or another capable assistant to turn this tutorial into an interactive mentoring session.</p><pre class="prompt-box"><code id="mentor-prompt-phase-3-dbt-02-snapshots-macros">You are my hands-on data-engineering mentor.
+
+I am currently studying:
+&quot;dbt Snapshots and Macros: Preserve History and Reuse SQL Logic&quot;
+
+My level:
+Intermediate
+
+Teach me this topic interactively rather than giving me a long lecture.
+
+Use this sequence:
+
+1. Check what I already understand with one short diagnostic question.
+2. Explain the concept in simple language and give me the mental model first.
+3. Give me one small task using code, SQL, configuration, data, or architecture as appropriate.
+4. Wait for my attempt before showing a complete solution.
+5. Review my work and explain both what is correct and what needs improvement.
+6. Help me debug errors step by step instead of immediately replacing my work.
+7. Increase the difficulty gradually and connect each new step to the previous one.
+8. Relate what I am learning to real professional data/AI engineering work.
+9. Ask me to explain an important decision in my own words so you can check my understanding.
+10. At the end, ask me to build or modify one small feature independently.
+
+Important rules:
+- Do not do the entire exercise for me unless I explicitly ask.
+- Explain unfamiliar terminology before using it heavily.
+- Prefer current, production-relevant practices over outdated shortcuts.
+- Distinguish clearly between concepts, tool-specific behaviour, and optional alternatives.
+- If a technical fact, API, syntax, version, or best practice may have changed, verify it against current official documentation before teaching it.
+- Never invent command output, test results, benchmark numbers, cloud behaviour, or data results.
+- If something cannot be executed in the current environment, say so and give me the exact command or verification step I should run.
+- Keep me actively coding, querying, configuring, reasoning, or debugging throughout the session.
+- When useful, work from the tutorial practice files (dbt-orders-project.zip, data-engineering-scripts.zip) instead of inventing unrelated examples.
+- For Phase 3 order-data exercises, preserve the established reconciliation targets when relevant: 4,246 orders and net revenue 5,478,357.79. If my result differs, help me debug the cause instead of changing the expected result.
+
+The concepts I need to master are:
+- Snapshots
+- Macros
+- dbt snapshot
+- slowly changing dimension
+- SCD2
+- Jinja
+- macro
+- history
+
+Start by asking me one diagnostic question.</code></pre></section>
+<section class="video-companion"><h2 id="video-companion">Video companion</h2><div class="video-frame"><iframe src="https://www.youtube-nocookie.com/embed/PL1mOo-NZuA" title="dbt Full Course Part 11 | Snapshots SCD Type 2 and Macros in dbt" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div><h3>dbt Full Course Part 11 | Snapshots SCD Type 2 and Macros in dbt</h3><p>A focused 2026 companion covering the same two ideas as this tutorial: SCD Type 2 snapshots and reusable Jinja macros. Its examples use Snowflake; use the supplied DuckDB practice project for your own hands-on work.</p><p class="video-meta">Time Variant · English · Intermediate</p><p class="video-reviewed">Video link reviewed: 2026-10-09</p><p><a href="https://www.youtube.com/watch?v=PL1mOo-NZuA">Watch on YouTube ↗</a></p></section>
+<div class="terms-box"><div class="files-head"><b>Key terms in this lesson</b><a href="../../../glossary.html">Glossary →</a></div><div class="term-chips"><a class="term-chip" href="../../../glossary.html#dbt-snapshot" title="A dbt resource that records versions of changing source rows over time so overwritten business attributes can be reconstructed historically.">dbt snapshot</a><a class="term-chip" href="../../../glossary.html#jinja-macro" title="Reusable templating logic that generates SQL during dbt compilation, similar to a function that writes SQL.">Jinja macro</a><a class="term-chip" href="../../../glossary.html#slowly-changing-dimension" title="A dimension whose attributes change over time. Type 1 overwrites the old value; type 2 adds a new version row with valid-from and valid-to dates, keeping history.">Slowly changing dimension</a></div></div>
+<h2 id="free-resources">Free resources to go deeper</h2><ul class="resources"><li><a href="https://docs.getdbt.com/docs/build/snapshots">Add snapshots to your DAG</a><span class="r-meta">dbt Developer Hub · Official guide to snapshot configuration, strategies and version-history columns.</span></li><li><a href="https://docs.getdbt.com/docs/build/jinja-macros">Jinja and macros</a><span class="r-meta">dbt Developer Hub · Explains reusable macros, Jinja expressions, compilation and debugging.</span></li></ul>
+<div class="complete-bar"><span>Finished reading and did the exercise?</span>
+<button class="btn" id="completeBtn" type="button" data-id="phase-3/dbt/02-snapshots-macros">Mark lesson as complete</button></div>
+<nav class="pager"><a class="prev" href="../../../learn/phase-3/dbt/01-models-tests.html"><small>← Previous</small>dbt Models and Tests: Turn SQL into a Trusted Transformation Graph</a><a class="next" href="../../../learn/phase-3/dbt/03-documentation-marts.html"><small>Next →</small>dbt Documentation and Marts: Publish BI-Ready Data with Lineage</a></nav>
+<p class="reviewed">Last reviewed: 2026-10-09</p>
+
+  </div></main>
+  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#introduction">Introduction</a><a href="#what-you-will-learn">What you will learn</a><a href="#mental-model-a-snapshot-turns-overwrites-into-versions">Mental model: a snapshot turns overwrites into versions</a><a href="#timestamp-vs-check-strategy">Timestamp vs check strategy</a><a href="#timestamp-strategy">Timestamp strategy</a><a href="#check-strategy">Check strategy</a><a href="#step-1-configure-the-snapshot">Step 1 — configure the snapshot</a><a href="#step-2-run-the-first-snapshot">Step 2 — run the first snapshot</a><a href="#step-3-change-one-source-row-deterministically">Step 3 — change one source row deterministically</a><a href="#why-snapshots-are-not-backups">Why snapshots are not backups</a><a href="#mental-model-a-macro-is-a-function-that-writes-sql">Mental model: a macro is a function that writes SQL</a><a href="#step-4-create-discount_band">Step 4 — create discount_band</a><a href="#step-5-see-the-macro-inside-a-real-model">Step 5 — see the macro inside a real model</a><a href="#step-6-compile-when-jinja-feels-invisible">Step 6 — compile when Jinja feels invisible</a><a href="#step-7-document-the-macro-arguments">Step 7 — document the macro arguments</a><a href="#build-with-me">Build with me</a><a href="#practice-files">Practice files</a><a href="#professional-context">Professional context</a><a href="#next-tutorial">Next tutorial</a><a href="#ai-mentor-prompt">AI Mentor Prompt</a><a href="#video-companion">Video companion</a><a href="#free-resources">Free resources</a></aside>
+</div>
+<footer class="site"><b>Saiful The Techie</b> · Data, AI &amp; Automation Path v0.9.1 · Updated October 2026<br>
+Lesson text: <a href="../../../license.html">CC BY-NC-SA 4.0</a> · Code: <a href="../../../license.html#code-mit-license">MIT</a> · Free external resources belong to their respective owners.</footer>
+<script src="../../../search-index.js"></script>
+<script src="../../../assets/app.js"></script>
+</body>
+</html>

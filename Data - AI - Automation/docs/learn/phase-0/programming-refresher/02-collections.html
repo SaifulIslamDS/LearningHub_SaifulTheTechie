@@ -6,7 +6,7 @@
 <title>Python Collections: Lists, Dictionaries, Sets &amp; Tuples — Data, AI &amp; Automation Path</title>
 <meta name="description" content="Hold many values with lists, tuples, dictionaries and sets; filter with comprehensions; and group and sort data the way SQL GROUP BY does.">
 <meta property="og:type" content="article">
-<meta property="og:site_name" content="Data, AI &amp; Automation Path">
+<meta property="og:site_name" content="Saiful The Techie">
 <meta property="og:title" content="Python Collections: Lists, Dictionaries, Sets &amp; Tuples">
 <meta property="og:description" content="Hold many values with lists, tuples, dictionaries and sets; filter with comprehensions; and group and sort data the way SQL GROUP BY does.">
 <meta property="og:locale" content="en_US">
@@ -19,13 +19,13 @@ var n=null;try{n=localStorage.getItem('daa-nav')}catch(e){}
 if(n==='open'&&window.matchMedia&&matchMedia('(min-width: 961px)').matches)document.documentElement.setAttribute('data-nav','open');
 document.documentElement.classList.add('no-anim')})();</script>
 <link rel="stylesheet" href="../../../assets/style.css">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233f7d6a'/%3E%3Ctext x='16' y='21' font-family='sans-serif' font-size='13' font-weight='700' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
+
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="topbar">
   <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Open curriculum menu" title="Curriculum menu (press M)" aria-controls="sidebar" aria-expanded="false"><span class="ico-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span class="ico-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></button>
-  <a class="brand" href="../../../index.html"><span class="brand-badge">AI</span><span class="brand-text"><span class="brand-name">Data, AI &amp; Automation Path</span><span class="brand-version">v0.8</span></span></a>
+  <a class="brand" href="../../../index.html"><span class="brand-text"><span class="brand-name">Saiful The Techie</span><span class="brand-version">Data, AI &amp; Automation Path · v0.9.1</span></span></a>
   <nav class="top-links" aria-label="Main">
     <a href="../../../index.html" class="">Home</a><a href="../../../curriculum.html" class="">Curriculum</a><a href="../../../practice-files.html" class="">Practice files</a><a href="../../../glossary.html" class="">Glossary</a><a href="../../../how-to-learn.html" class="">How to learn</a><a href="../../../about.html" class="">About</a>
   </nav>
@@ -41,7 +41,7 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="layout wide">
   <nav class="sidebar" id="sidebar" aria-label="Curriculum">
     <div class="side-title">Curriculum</div>
-    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="77"><i></i></div><span class="bar-label" data-progress-label></span></div>
+    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="85"><i></i></div><span class="bar-label" data-progress-label></span></div>
 <div class="nav-phase current open"><a href="../../../learn/phase-0/index.html"><span class="nav-num">0</span>Foundations</a>
 <ul class="nav-modules">
 <li><a class="" href="../../../learn/phase-0/dev-environment/index.html">Development Environment</a>
@@ -93,8 +93,15 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="files-box"><div class="files-head"><b>Practice files for this page</b><a href="../../../practice-files.html">All practice files →</a></div><ul><li><a href="../../../downloads/phase-0/python-refresher.zip" download>python-refresher.zip</a><span class="f-desc">Python refresher scripts, debugging, pytest and ruff examples, an AI-written function to review, with solutions · 12 KB</span></li></ul></div>
 <h2 id="what-is-it">What is it?</h2>
 <table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Collection</th>
 <th>Looks like</th>
 <th>Ordered?</th>
@@ -103,28 +110,28 @@ document.documentElement.classList.add('no-anim')})();</script>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td><strong>list</strong></td>
 <td><code>[420, 200, 1560]</code></td>
 <td>✅</td>
 <td>✅</td>
 <td>A sequence of items: rows, values</td>
 </tr>
-<tr>
+<tr class="even">
 <td><strong>tuple</strong></td>
 <td><code>(1, "Rahim Traders", 420.0)</code></td>
 <td>✅</td>
 <td>❌</td>
 <td>A fixed record</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><strong>dict</strong></td>
 <td><code>{"Dhaka": 3170.0}</code></td>
 <td>✅ (insertion)</td>
 <td>✅</td>
 <td>Look-ups by key; totals per group</td>
 </tr>
-<tr>
+<tr class="even">
 <td><strong>set</strong></td>
 <td><code>{"Dhaka", "Gazipur"}</code></td>
 <td>❌</td>
@@ -133,138 +140,149 @@ document.documentElement.classList.add('no-anim')})();</script>
 </tr>
 </tbody>
 </table>
-<div class="admonition job">
-<p class="admonition-title">Why it matters at work</p>
-<p>JSON from APIs is dictionaries and lists. Rows from a CSV are dictionaries. LLM API messages are a list of dictionaries. Grouping, de-duplicating and sorting with these collections is daily work, and a classic interview task ("revenue per customer, sorted").</p>
+<div class="admonition job" data-markdown="1">
+<p class="admonition-title">
+Why it matters at work
+</p>
+<p>JSON from APIs is dictionaries and lists. Rows from a CSV are
+dictionaries. LLM API messages are a list of dictionaries. Grouping,
+de-duplicating and sorting with these collections is daily work, and a
+classic interview task (“revenue per customer, sorted”).</p>
 </div>
-<p>Open <code>02_collections.py</code> from <a href="../../../downloads/phase-0/python-refresher.zip">python-refresher.zip</a>. It holds the 12 practice orders as tuples: <code>(order_id, customer, region, value, status)</code>.</p>
-<h2 id="example-1-filter-a-list-with-a-comprehension">Example 1: filter a list with a comprehension</h2>
-<div class="codehilite"><pre><span></span><code><span class="n">net</span> <span class="o">=</span> <span class="p">[</span><span class="n">o</span> <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="n">orders</span> <span class="k">if</span> <span class="n">o</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">"Cancelled"</span><span class="p">]</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">"Net orders:"</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">net</span><span class="p">))</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>Net orders: 11
-</code></pre></div>
-
-<p>A <strong>list comprehension</strong> reads: <em>"a list of <code>o</code>, for each <code>o</code> in <code>orders</code>, if the status isn't Cancelled"</em>. It's the Python version of <code>SELECT … WHERE</code>.</p>
+<p>Open <code>02_collections.py</code> from <a
+href="../../../downloads/phase-0/python-refresher.zip">python-refresher.zip</a>.
+It holds the 12 practice orders as tuples:
+<code>(order_id, customer, region, value, status)</code>.</p>
+<h2 id="example-1-filter-a-list-with-a-comprehension">Example 1: filter
+a list with a comprehension</h2>
+<pre class="python"><code>net = [o for o in orders if o[4] != &quot;Cancelled&quot;]
+print(&quot;Net orders:&quot;, len(net))</code></pre>
+<pre class="text"><code>Net orders: 11</code></pre>
+<p>A <strong>list comprehension</strong> reads: <em>“a list of
+<code>o</code>, for each <code>o</code> in <code>orders</code>, if the
+status isn’t Cancelled”</em>. It’s the Python version of
+<code>SELECT … WHERE</code>.</p>
 <h2 id="example-2-tuple-unpacking">Example 2: tuple unpacking</h2>
-<div class="codehilite"><pre><span></span><code><span class="n">order_id</span><span class="p">,</span> <span class="n">customer</span><span class="p">,</span> <span class="n">region</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">status</span> <span class="o">=</span> <span class="n">orders</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">order_id</span><span class="p">,</span> <span class="n">customer</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>1 Rahim Traders 420.0
-</code></pre></div>
-
-<p>Use <code>_</code> for values you don't need: <code>for _, _, region, value, _ in net:</code>.</p>
-<h2 id="example-3-a-dictionary-as-group-by">Example 3: a dictionary as GROUP BY</h2>
-<div class="codehilite"><pre><span></span><code><span class="n">revenue_by_region</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
-<span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">region</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">net</span><span class="p">:</span>
-    <span class="n">revenue_by_region</span><span class="p">[</span><span class="n">region</span><span class="p">]</span> <span class="o">=</span> <span class="n">revenue_by_region</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">region</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="n">value</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">revenue_by_region</span><span class="p">)</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>{'Dhaka': 3170.0, 'Chattogram': 2155.0, 'Gazipur': 2520.0, 'Narayanganj': 1230.0}
-</code></pre></div>
-
-<p><code>.get(region, 0)</code> returns the current total, or 0 the first time a region appears. These are the same totals as <code>SUM(...) GROUP BY region</code> in SQL.</p>
+<pre class="python"><code>order_id, customer, region, value, status = orders[0]
+print(order_id, customer, value)</code></pre>
+<pre class="text"><code>1 Rahim Traders 420.0</code></pre>
+<p>Use <code>_</code> for values you don’t need:
+<code>for _, _, region, value, _ in net:</code>.</p>
+<h2 id="example-3-a-dictionary-as-group-by">Example 3: a dictionary as
+GROUP BY</h2>
+<pre class="python"><code>revenue_by_region: dict[str, float] = {}
+for _, _, region, value, _ in net:
+    revenue_by_region[region] = revenue_by_region.get(region, 0) + value
+print(revenue_by_region)</code></pre>
+<pre class="text"><code>{&#39;Dhaka&#39;: 3170.0, &#39;Chattogram&#39;: 2155.0, &#39;Gazipur&#39;: 2520.0, &#39;Narayanganj&#39;: 1230.0}</code></pre>
+<p><code>.get(region, 0)</code> returns the current total, or 0 the
+first time a region appears. These are the same totals as
+<code>SUM(...) GROUP BY region</code> in SQL.</p>
 <h2 id="example-4-sort-by-value">Example 4: sort by value</h2>
-<div class="codehilite"><pre><span></span><code><span class="k">for</span> <span class="n">region</span><span class="p">,</span> <span class="n">rev</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">revenue_by_region</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">kv</span><span class="p">:</span> <span class="n">kv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">region</span><span class="si">:</span><span class="s2">&lt;12</span><span class="si">}{</span><span class="n">rev</span><span class="si">:</span><span class="s2">&gt;8.2f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>Dhaka        3170.00
+<pre class="python"><code>for region, rev in sorted(revenue_by_region.items(), key=lambda kv: kv[1], reverse=True):
+    print(f&quot;{region:&lt;12}{rev:&gt;8.2f}&quot;)</code></pre>
+<pre class="text"><code>Dhaka        3170.00
 Gazipur      2520.00
 Chattogram   2155.00
-Narayanganj  1230.00
-</code></pre></div>
-
+Narayanganj  1230.00</code></pre>
 <ul>
 <li><code>.items()</code> gives <code>(key, value)</code> pairs.</li>
-<li><code>key=lambda kv: kv[1]</code> says "sort by the value". <code>reverse=True</code> = descending (<code>ORDER BY … DESC</code>).</li>
+<li><code>key=lambda kv: kv[1]</code> says “sort by the value”.
+<code>reverse=True</code> = descending
+(<code>ORDER BY … DESC</code>).</li>
 </ul>
-<h2 id="example-5-sets-and-dict-comprehensions">Example 5: sets and dict comprehensions</h2>
-<div class="codehilite"><pre><span></span><code><span class="n">customers</span> <span class="o">=</span> <span class="p">{</span><span class="n">o</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="n">orders</span><span class="p">}</span>                       <span class="c1"># set comprehension</span>
-<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">customers</span><span class="p">),</span> <span class="s2">"customers:"</span><span class="p">,</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">customers</span><span class="p">))</span>
+<h2 id="example-5-sets-and-dict-comprehensions">Example 5: sets and dict
+comprehensions</h2>
+<pre class="python"><code>customers = {o[1] for o in orders}                       # set comprehension
+print(len(customers), &quot;customers:&quot;, sorted(customers))
 
-<span class="n">counts</span> <span class="o">=</span> <span class="p">{</span><span class="n">c</span><span class="p">:</span> <span class="nb">sum</span><span class="p">(</span><span class="mi">1</span> <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="n">orders</span> <span class="k">if</span> <span class="n">o</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">customers</span><span class="p">)}</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">counts</span><span class="p">)</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>5 customers: ['Delta Knit', 'Karim Garments', 'Nova Apparel', 'Rahim Traders', 'Sun Fashion']
-{'Delta Knit': 2, 'Karim Garments': 3, 'Nova Apparel': 2, 'Rahim Traders': 3, 'Sun Fashion': 2}
-</code></pre></div>
-
-<p>A set removes duplicates automatically (12 orders → 5 customers), just like <code>COUNT(DISTINCT customer)</code>.</p>
+counts = {c: sum(1 for o in orders if o[1] == c) for c in sorted(customers)}
+print(counts)</code></pre>
+<pre class="text"><code>5 customers: [&#39;Delta Knit&#39;, &#39;Karim Garments&#39;, &#39;Nova Apparel&#39;, &#39;Rahim Traders&#39;, &#39;Sun Fashion&#39;]
+{&#39;Delta Knit&#39;: 2, &#39;Karim Garments&#39;: 3, &#39;Nova Apparel&#39;: 2, &#39;Rahim Traders&#39;: 3, &#39;Sun Fashion&#39;: 2}</code></pre>
+<p>A set removes duplicates automatically (12 orders → 5 customers),
+just like <code>COUNT(DISTINCT customer)</code>.</p>
 <h2 id="handy-operations">Handy operations</h2>
 <table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Task</th>
 <th>Code</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>Add to a list</td>
 <td><code>values.append(810)</code></td>
 </tr>
-<tr>
+<tr class="even">
 <td>Is it in there?</td>
 <td><code>"Dhaka" in regions</code> (fast for sets and dict keys)</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Count items</td>
 <td><code>len(orders)</code></td>
 </tr>
-<tr>
+<tr class="even">
 <td>Sum, min, max</td>
-<td><code>sum(values)</code>, <code>min(values)</code>, <code>max(values, key=...)</code></td>
+<td><code>sum(values)</code>, <code>min(values)</code>,
+<code>max(values, key=...)</code></td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Loop with a position</td>
 <td><code>for i, row in enumerate(rows, start=1):</code></td>
 </tr>
-<tr>
+<tr class="even">
 <td>Missing key safely</td>
 <td><code>d.get("key", default)</code></td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Set maths</td>
-<td><code>a | b</code> (union), <code>a &amp; b</code> (in both), <code>a - b</code> (in a, not b)</td>
+<td><code>a | b</code> (union), <code>a &amp; b</code> (in both),
+<code>a - b</code> (in a, not b)</td>
 </tr>
 </tbody>
 </table>
 <h2 id="common-mistakes">Common mistakes</h2>
 <table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Mistake</th>
 <th>What happens</th>
 <th>Fix</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td><code>d[key] += v</code> for a new key</td>
 <td><code>KeyError</code></td>
 <td><code>d[key] = d.get(key, 0) + v</code></td>
 </tr>
-<tr>
+<tr class="even">
 <td>Changing a list while looping over it</td>
 <td>Skipped items</td>
 <td>Build a new list with a comprehension</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><code>sorted(d)</code> expecting values</td>
 <td>Sorted <strong>keys</strong> only</td>
 <td><code>sorted(d.items(), key=lambda kv: kv[1])</code></td>
 </tr>
-<tr>
+<tr class="even">
 <td>Using a list for membership checks on big data</td>
 <td>Slow</td>
 <td>Use a set</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Positional tuples everywhere (<code>o[4]</code>)</td>
 <td>Hard to read</td>
 <td>Dicts or dataclasses (lesson 4)</td>
@@ -272,81 +290,153 @@ Narayanganj  1230.00
 </tbody>
 </table>
 <h2 id="try-it-yourself">Try it yourself</h2>
-<p><strong>Task:</strong> Using <code>orders</code>, print <strong>net revenue per customer</strong> (excluding Cancelled), biggest first, aligned in two columns.</p>
+<p><strong>Task:</strong> Using <code>orders</code>, print <strong>net
+revenue per customer</strong> (excluding Cancelled), biggest first,
+aligned in two columns.</p>
 <details>
-<summary>Show a hint</summary>
-<p>The same pattern as Example 3, keyed on <code>customer</code> with an <code>if status != "Cancelled"</code> check, then sort as in Example 4.</p>
+<summary>
+Show a hint
+</summary>
+The same pattern as Example 3, keyed on <code>customer</code> with an
+<code>if status != "Cancelled"</code> check, then sort as in Example 4.
 </details>
 <details>
-<summary>Show the solution</summary>
-<div class="codehilite"><pre><span></span><code><span class="n">revenue</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
-<span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">customer</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">status</span> <span class="ow">in</span> <span class="n">orders</span><span class="p">:</span>
-    <span class="k">if</span> <span class="n">status</span> <span class="o">!=</span> <span class="s2">"Cancelled"</span><span class="p">:</span>
-        <span class="n">revenue</span><span class="p">[</span><span class="n">customer</span><span class="p">]</span> <span class="o">=</span> <span class="n">revenue</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">customer</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="n">value</span>
+<summary>
+Show the solution
+</summary>
+<pre class="python"><code>revenue: dict[str, float] = {}
+for _, customer, _, value, status in orders:
+    if status != &quot;Cancelled&quot;:
+        revenue[customer] = revenue.get(customer, 0) + value
 
-<span class="k">for</span> <span class="n">customer</span><span class="p">,</span> <span class="n">total</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">revenue</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">kv</span><span class="p">:</span> <span class="n">kv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">customer</span><span class="si">:</span><span class="s2">&lt;16</span><span class="si">}{</span><span class="n">total</span><span class="si">:</span><span class="s2">&gt;8.2f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>Delta Knit       2520.00
+for customer, total in sorted(revenue.items(), key=lambda kv: kv[1], reverse=True):
+    print(f&quot;{customer:&lt;16}{total:&gt;8.2f}&quot;)</code></pre>
+<pre class="text"><code>Delta Knit       2520.00
 Karim Garments   2155.00
 Nova Apparel     1880.00
 Rahim Traders    1290.00
-Sun Fashion      1230.00
-</code></pre></div>
-
-<p>The total is 9,075, as everywhere else. (File: <code>solutions/ex02_revenue_by_customer.py</code>.)</p>
+Sun Fashion      1230.00</code></pre>
+The total is 9,075, as everywhere else. (File:
+<code>solutions/ex02_revenue_by_customer.py</code>.)
 </details>
 <h2 id="quick-quiz">Quick quiz</h2>
 <div class="quiz-q" data-answer="1">
 <p>1. Which collection removes duplicates automatically?</p>
-<ol>
+<ol type="1">
 <li>list</li>
 <li>set</li>
 <li>tuple</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B.</strong></p>
+<summary>
+Show answer
+</summary>
+<strong>B.</strong>
 </details>
 </div>
 <div class="quiz-q" data-answer="1">
 <p>2. What does <code>{"a": 1}.get("b", 0)</code> return?</p>
-<ol>
+<ol type="1">
 <li><code>KeyError</code></li>
 <li><code>0</code></li>
 <li><code>None</code></li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B.</strong> The default you passed.</p>
+<summary>
+Show answer
+</summary>
+<strong>B.</strong> The default you passed.
 </details>
 </div>
 <div class="quiz-q" data-answer="0">
-<p>3. Which SQL idea matches <code>[o for o in orders if o[4] != "Cancelled"]</code>?</p>
-<ol>
+<p>3. Which SQL idea matches
+<code>[o for o in orders if o[4] != "Cancelled"]</code>?</p>
+<ol type="1">
 <li><code>WHERE</code></li>
 <li><code>JOIN</code></li>
 <li><code>ORDER BY</code></li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>A.</strong></p>
+<summary>
+Show answer
+</summary>
+<strong>A.</strong>
 </details>
 </div>
 <h2 id="summary">Summary</h2>
 <ul>
-<li><strong>list</strong> = ordered items; <strong>tuple</strong> = fixed record; <strong>dict</strong> = key → value; <strong>set</strong> = unique values.</li>
-<li>Comprehensions filter and transform in one readable line (<code>WHERE</code>).</li>
-<li>A dict with <code>.get(key, 0) + value</code> is a GROUP BY; <code>sorted(..., key=..., reverse=True)</code> is ORDER BY.</li>
-<li>Sets give unique counts (<code>COUNT DISTINCT</code>) and fast membership checks.</li>
+<li><strong>list</strong> = ordered items; <strong>tuple</strong> =
+fixed record; <strong>dict</strong> = key → value; <strong>set</strong>
+= unique values.</li>
+<li>Comprehensions filter and transform in one readable line
+(<code>WHERE</code>).</li>
+<li>A dict with <code>.get(key, 0) + value</code> is a GROUP BY;
+<code>sorted(..., key=..., reverse=True)</code> is ORDER BY.</li>
+<li>Sets give unique counts (<code>COUNT DISTINCT</code>) and fast
+membership checks.</li>
 </ul>
-<div class="admonition job">
-<p class="admonition-title">Job-ready check</p>
-<p><strong>Interview question:</strong> <em>"Given a list of order records, return the top 3 customers by revenue."</em></p>
-<p><strong>Strong answer:</strong> Accumulate totals in a dict with <code>.get()</code> (or <code>collections.Counter</code> / <code>defaultdict</code>), then <code>sorted(totals.items(), key=lambda kv: kv[1], reverse=True)[:3]</code>. Mention ties and excluded statuses, and that for large data you'd use SQL or pandas.</p>
-<p><strong>Mini project:</strong> Add revenue <strong>per region and status</strong> to <code>02_collections.py</code>, using tuple keys like <code>("Dhaka", "Delivered")</code>, and print it sorted.</p>
+<div class="admonition job" data-markdown="1">
+<p class="admonition-title">
+Job-ready check
+</p>
+<p><strong>Interview question:</strong> <em>“Given a list of order
+records, return the top 3 customers by revenue.”</em></p>
+<p><strong>Strong answer:</strong> Accumulate totals in a dict with
+<code>.get()</code> (or <code>collections.Counter</code> /
+<code>defaultdict</code>), then
+<code>sorted(totals.items(), key=lambda kv: kv[1], reverse=True)[:3]</code>.
+Mention ties and excluded statuses, and that for large data you’d use
+SQL or pandas.</p>
+<p><strong>Mini project:</strong> Add revenue <strong>per region and
+status</strong> to <code>02_collections.py</code>, using tuple keys like
+<code>("Dhaka", "Delivered")</code>, and print it sorted.</p>
 </div>
+<section class="mentor-prompt"><div class="mentor-head"><div><span class="eyebrow">AI study companion</span><h2 id="ai-mentor-prompt">AI Mentor Prompt</h2></div><button class="btn copy-prompt" type="button" data-copy-target="mentor-prompt-phase-0-programming-refresher-02-collections">Copy prompt</button></div><p>Paste this into ChatGPT, Claude, Gemini, or another capable assistant to turn this tutorial into an interactive mentoring session.</p><pre class="prompt-box"><code id="mentor-prompt-phase-0-programming-refresher-02-collections">You are my hands-on software-engineering mentor.
+
+I am currently studying:
+&quot;Python Collections: Lists, Dictionaries, Sets &amp; Tuples&quot;
+
+My level:
+Beginner
+
+Teach me this topic interactively rather than giving me a long lecture.
+
+Use this sequence:
+
+1. Check what I already understand with one short diagnostic question.
+2. Explain the concept in simple language and give me the mental model first.
+3. Give me one small task using code, SQL, configuration, data, or architecture as appropriate.
+4. Wait for my attempt before showing a complete solution.
+5. Review my work and explain both what is correct and what needs improvement.
+6. Help me debug errors step by step instead of immediately replacing my work.
+7. Increase the difficulty gradually and connect each new step to the previous one.
+8. Relate what I am learning to real professional data/AI engineering work.
+9. Ask me to explain an important decision in my own words so you can check my understanding.
+10. At the end, ask me to build or modify one small feature independently.
+
+Important rules:
+- Do not do the entire exercise for me unless I explicitly ask.
+- Explain unfamiliar terminology before using it heavily.
+- Prefer current, production-relevant practices over outdated shortcuts.
+- Distinguish clearly between concepts, tool-specific behaviour, and optional alternatives.
+- If a technical fact, API, syntax, version, or best practice may have changed, verify it against current official documentation before teaching it.
+- Never invent command output, test results, benchmark numbers, cloud behaviour, or data results.
+- If something cannot be executed in the current environment, say so and give me the exact command or verification step I should run.
+- Keep me actively coding, querying, configuring, reasoning, or debugging throughout the session.
+- When useful, work from the tutorial practice files (python-refresher.zip) instead of inventing unrelated examples.
+
+The concepts I need to master are:
+- Collections
+- list
+- tuple
+- dict
+- dictionary
+- set
+- comprehension
+- list comprehension
+
+Start by asking me one diagnostic question.</code></pre></section>
+
 <div class="terms-box"><div class="files-head"><b>Key terms in this lesson</b><a href="../../../glossary.html">Glossary →</a></div><div class="term-chips"><a class="term-chip" href="../../../glossary.html#dictionary" title="A Python collection of key → value pairs, such as {&quot;Dhaka&quot;: 3170}. JSON objects and CSV rows are usually read as dictionaries.">Dictionary</a><a class="term-chip" href="../../../glossary.html#list-comprehension" title="A one-line way to build a list from another: [o for o in orders if o.status != &quot;Cancelled&quot;].">List comprehension</a></div></div>
 <h2 id="free-resources">Free resources to go deeper</h2><ul class="resources"><li><a href="https://docs.python.org/3/tutorial/">Data Structures (Python tutorial)</a><span class="r-meta">Python official docs · Section 5: lists, tuples, sets, dictionaries and comprehensions.</span></li></ul>
 <div class="complete-bar"><span>Finished reading and did the exercise?</span>
@@ -355,9 +445,9 @@ Sun Fashion      1230.00
 <p class="reviewed">Last reviewed: 2026-10-09</p>
 
   </div></main>
-  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#example-1-filter-a-list-with-a-comprehension">Example 1: filter a list with a comprehension</a><a href="#example-2-tuple-unpacking">Example 2: tuple unpacking</a><a href="#example-3-a-dictionary-as-group-by">Example 3: a dictionary as GROUP BY</a><a href="#example-4-sort-by-value">Example 4: sort by value</a><a href="#example-5-sets-and-dict-comprehensions">Example 5: sets and dict comprehensions</a><a href="#handy-operations">Handy operations</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#free-resources">Free resources</a></aside>
+  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#example-1-filter-a-list-with-a-comprehension">Example 1: filter a list with a comprehension</a><a href="#example-2-tuple-unpacking">Example 2: tuple unpacking</a><a href="#example-3-a-dictionary-as-group-by">Example 3: a dictionary as GROUP BY</a><a href="#example-4-sort-by-value">Example 4: sort by value</a><a href="#example-5-sets-and-dict-comprehensions">Example 5: sets and dict comprehensions</a><a href="#handy-operations">Handy operations</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#ai-mentor-prompt">AI Mentor Prompt</a><a href="#free-resources">Free resources</a></aside>
 </div>
-<footer class="site">Data, AI &amp; Automation Path v0.8 · Applied AI, Data &amp; Automation Lab · Updated October 2026<br>
+<footer class="site"><b>Saiful The Techie</b> · Data, AI &amp; Automation Path v0.9.1 · Updated October 2026<br>
 Lesson text: <a href="../../../license.html">CC BY-NC-SA 4.0</a> · Code: <a href="../../../license.html#code-mit-license">MIT</a> · Free external resources belong to their respective owners.</footer>
 <script src="../../../search-index.js"></script>
 <script src="../../../assets/app.js"></script>

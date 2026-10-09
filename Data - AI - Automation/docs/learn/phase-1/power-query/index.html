@@ -6,7 +6,7 @@
 <title>Power Query — Data, AI &amp; Automation Path</title>
 <meta name="description" content="Power Query: Cleaning, Merge, Append, Reshape, Multiple-file workflows">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="Data, AI &amp; Automation Path">
+<meta property="og:site_name" content="Saiful The Techie">
 <meta property="og:title" content="Power Query">
 <meta property="og:description" content="Power Query: Cleaning, Merge, Append, Reshape, Multiple-file workflows">
 <meta property="og:locale" content="en_US">
@@ -19,13 +19,13 @@ var n=null;try{n=localStorage.getItem('daa-nav')}catch(e){}
 if(n==='open'&&window.matchMedia&&matchMedia('(min-width: 961px)').matches)document.documentElement.setAttribute('data-nav','open');
 document.documentElement.classList.add('no-anim')})();</script>
 <link rel="stylesheet" href="../../../assets/style.css">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233f7d6a'/%3E%3Ctext x='16' y='21' font-family='sans-serif' font-size='13' font-weight='700' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
+
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="topbar">
   <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Open curriculum menu" title="Curriculum menu (press M)" aria-controls="sidebar" aria-expanded="false"><span class="ico-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span class="ico-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></button>
-  <a class="brand" href="../../../index.html"><span class="brand-badge">AI</span><span class="brand-text"><span class="brand-name">Data, AI &amp; Automation Path</span><span class="brand-version">v0.8</span></span></a>
+  <a class="brand" href="../../../index.html"><span class="brand-text"><span class="brand-name">Saiful The Techie</span><span class="brand-version">Data, AI &amp; Automation Path · v0.9.1</span></span></a>
   <nav class="top-links" aria-label="Main">
     <a href="../../../index.html" class="">Home</a><a href="../../../curriculum.html" class="">Curriculum</a><a href="../../../practice-files.html" class="">Practice files</a><a href="../../../glossary.html" class="">Glossary</a><a href="../../../how-to-learn.html" class="">How to learn</a><a href="../../../about.html" class="">About</a>
   </nav>
@@ -41,7 +41,7 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="layout">
   <nav class="sidebar" id="sidebar" aria-label="Curriculum">
     <div class="side-title">Curriculum</div>
-    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="77"><i></i></div><span class="bar-label" data-progress-label></span></div>
+    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="85"><i></i></div><span class="bar-label" data-progress-label></span></div>
 <div class="nav-phase"><a href="../../../learn/phase-0/index.html"><span class="nav-num">0</span>Foundations</a>
 </div>
 <div class="nav-phase current open"><a href="../../../learn/phase-1/index.html"><span class="nav-num">1</span>Analytics &amp; BI</a>
@@ -91,36 +91,64 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="side-extra"><a href="../../../index.html">Home</a><a href="../../../curriculum.html">Full curriculum map</a><a href="../../../practice-files.html">Practice files</a><a href="../../../glossary.html">Glossary</a><a href="../../../how-to-learn.html">How to learn here</a><a href="../../../about.html">About &amp; contributing</a></div></nav>
   <main class="main" id="main"><div class="content">
 <nav class="crumbs" aria-label="Breadcrumb"><a href="../../../index.html">Home</a><span class="sep">/</span><a href="../../../learn/phase-1/index.html">Phase 1</a><span class="sep">/</span><span>Power Query</span></nav>
+<span class="eyebrow">Phase 1 · Analytics &amp; BI</span>
 <h1>Power Query</h1>
-<p class="lead">Part of Phase 1 — Data Analytics &amp; Business Intelligence. Topics: Cleaning, Merge, Append, Reshape, Multiple-file workflows.</p>
-<p>Real data arrives messy: extra spaces, mixed capitals, dates in the wrong format, duplicates, and one file per month. <strong>Power Query</strong> cleans and combines it with recorded steps that you set up <strong>once</strong> and then refresh every month, with no manual copy-pasting.</p>
-<div class="admonition tip">
-<p class="admonition-title">Where to find Power Query</p>
+<p class="lead">Turn raw business data into decisions and executive reporting.</p>
+<p>Real data arrives messy: extra spaces, mixed capitals, dates in the
+wrong format, duplicates, and one file per month. <strong>Power
+Query</strong> cleans and combines it with recorded steps that you set
+up <strong>once</strong> and then refresh every month, with no manual
+copy-pasting.</p>
+<div class="admonition tip" data-markdown="1">
+<p class="admonition-title">
+Where to find Power Query
+</p>
 <ul>
-<li><strong>Excel (Windows):</strong> <strong>Data → Get Data</strong>, or <strong>Data → From Text/CSV</strong>. The editor opens with <strong>Transform Data</strong>.</li>
-<li><strong>Power BI Desktop:</strong> <strong>Home → Get data</strong>, then <strong>Transform data</strong>. It is the same Power Query engine and the same M language.</li>
-<li><strong>Excel for Mac</strong> also includes Power Query, with fewer options. The steps in these lessons are shown for Windows.</li>
+<li><strong>Excel (Windows):</strong> <strong>Data → Get Data</strong>,
+or <strong>Data → From Text/CSV</strong>. The editor opens with
+<strong>Transform Data</strong>.</li>
+<li><strong>Power BI Desktop:</strong> <strong>Home → Get data</strong>,
+then <strong>Transform data</strong>. It is the same Power Query engine
+and the same M language.</li>
+<li><strong>Excel for Mac</strong> also includes Power Query, with fewer
+options. The steps in these lessons are shown for Windows.</li>
 </ul>
 </div>
-<div class="admonition note">
-<p class="admonition-title">Practice files for this module</p>
+<div class="admonition note" data-markdown="1">
+<p class="admonition-title">
+Practice files for this module
+</p>
 <ul>
-<li><a href="../../../downloads/orders_raw.csv">orders_raw.csv</a>: a messy export of the same 12 orders (14 rows).</li>
-<li><a href="../../../downloads/customers.csv">customers.csv</a> and <a href="../../../downloads/orders.csv">orders.csv</a>: for merging.</li>
-<li><a href="../../../downloads/monthly/orders_2026-01.csv">orders_2026-01.csv</a>, <a href="../../../downloads/monthly/orders_2026-02.csv">orders_2026-02.csv</a>, <a href="../../../downloads/monthly/orders_2026-03.csv">orders_2026-03.csv</a>: one file per month. Put them in one folder, e.g. <code>C:\Practice\monthly\</code>.</li>
-<li><a href="../../../downloads/targets_wide.csv">targets_wide.csv</a>: sales targets with one column per month.</li>
+<li><a href="../../../downloads/orders_raw.csv">orders_raw.csv</a>: a
+messy export of the same 12 orders (14 rows).</li>
+<li><a href="../../../downloads/customers.csv">customers.csv</a> and <a
+href="../../../downloads/orders.csv">orders.csv</a>: for merging.</li>
+<li><a
+href="../../../downloads/monthly/orders_2026-01.csv">orders_2026-01.csv</a>,
+<a
+href="../../../downloads/monthly/orders_2026-02.csv">orders_2026-02.csv</a>,
+<a
+href="../../../downloads/monthly/orders_2026-03.csv">orders_2026-03.csv</a>:
+one file per month. Put them in one folder,
+e.g. <code>C:\Practice\monthly\</code>.</li>
+<li><a href="../../../downloads/targets_wide.csv">targets_wide.csv</a>:
+sales targets with one column per month.</li>
 </ul>
 </div>
-<p><strong>By the end of this module you can:</strong> clean a messy export into a tidy table, combine tables side by side (merge) and on top of each other (append), turn wide tables into long ones (unpivot), and load a whole folder of monthly files with one refresh.</p>
+<p><strong>By the end of this module you can:</strong> clean a messy
+export into a tidy table, combine tables side by side (merge) and on top
+of each other (append), turn wide tables into long ones (unpivot), and
+load a whole folder of monthly files with one refresh.</p>
+<div class="module-topics"><b>Curriculum coverage</b><div class="term-chips"><span class="term-chip">Cleaning</span><span class="term-chip">Merge</span><span class="term-chip">Append</span><span class="term-chip">Reshape</span><span class="term-chip">Multiple-file workflows</span></div></div>
 <div class="files-box"><div class="files-head"><b>Practice files for this page</b><a href="../../../practice-files.html">All practice files →</a></div><ul><li><a href="../../../downloads/orders_raw.csv" download>orders_raw.csv</a><span class="f-desc">Messy export of the 12 orders (14 rows) to clean · 1 KB</span></li><li><a href="../../../downloads/orders.csv" download>orders.csv</a><span class="f-desc">The 12 clean practice orders as CSV · 963 B</span></li><li><a href="../../../downloads/customers.csv" download>customers.csv</a><span class="f-desc">6 customers with segment, city and account manager · 319 B</span></li><li><a href="../../../downloads/products.csv" download>products.csv</a><span class="f-desc">6 products with category, list price and supplier · 259 B</span></li><li><a href="../../../downloads/monthly/orders_2026-01.csv" download>orders_2026-01.csv</a><span class="f-desc">January orders (5 rows), for append and folder lessons · 434 B</span></li><li><a href="../../../downloads/monthly/orders_2026-02.csv" download>orders_2026-02.csv</a><span class="f-desc">February orders (5 rows) · 441 B</span></li><li><a href="../../../downloads/monthly/orders_2026-03.csv" download>orders_2026-03.csv</a><span class="f-desc">March orders (2 rows) · 226 B</span></li><li><a href="../../../downloads/targets_wide.csv" download>targets_wide.csv</a><span class="f-desc">Sales targets with one column per month, to unpivot · 128 B</span></li><li><a href="../../../downloads/targets_long.csv" download>targets_long.csv</a><span class="f-desc">Targets already unpivoted: region × month (12 rows) · 314 B</span></li></ul></div>
-<div class="section-head"><h2>Lessons</h2><p>3 written · 0 planned</p></div>
+<div class="section-head"><h2>Tutorials</h2><p>3 ready · 0 planned</p></div>
 <ul class="lesson-list"><li class="lesson-row" data-lesson="phase-1/power-query/01-cleaning"><span class="n">1</span><span><a href="../../../learn/phase-1/power-query/01-cleaning.html">Power Query Cleaning: From Messy Export to Tidy Table</a><span class="desc">Remove blanks and duplicates, fix spaces and capitals, read dates in the right format, and get the same clean table every time you refresh.</span></span><span class="lesson-state">45 min</span></li><li class="lesson-row" data-lesson="phase-1/power-query/02-merge-append"><span class="n">2</span><span><a href="../../../learn/phase-1/power-query/02-merge-append.html">Power Query Merge &amp; Append: Combine Tables Without Formulas</a><span class="desc">Add customer details to orders with Merge (like a SQL JOIN), and stack monthly tables with Append (like UNION).</span></span><span class="lesson-state">35 min</span></li><li class="lesson-row" data-lesson="phase-1/power-query/03-reshape-folder"><span class="n">3</span><span><a href="../../../learn/phase-1/power-query/03-reshape-folder.html">Power Query Reshape &amp; Folder Workflows: Unpivot and Combine Files</a><span class="desc">Turn wide month-by-column tables into analysis-ready long tables, and load every file in a folder with one refresh.</span></span><span class="lesson-state">40 min</span></li></ul>
 <nav class="pager"><a class="prev" href="../../../learn/phase-1/pivot-analysis/index.html"><small>← Previous module</small>Pivot Analysis</a><a class="next" href="../../../learn/phase-1/power-pivot-dax/index.html"><small>Next module →</small>Power Pivot &amp; DAX</a></nav>
 
   </div></main>
   
 </div>
-<footer class="site">Data, AI &amp; Automation Path v0.8 · Applied AI, Data &amp; Automation Lab · Updated October 2026<br>
+<footer class="site"><b>Saiful The Techie</b> · Data, AI &amp; Automation Path v0.9.1 · Updated October 2026<br>
 Lesson text: <a href="../../../license.html">CC BY-NC-SA 4.0</a> · Code: <a href="../../../license.html#code-mit-license">MIT</a> · Free external resources belong to their respective owners.</footer>
 <script src="../../../search-index.js"></script>
 <script src="../../../assets/app.js"></script>

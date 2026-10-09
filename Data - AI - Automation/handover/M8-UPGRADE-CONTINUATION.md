@@ -1,17 +1,17 @@
 # Saiful The Techie — Data, AI & Automation Path
-## M8 / v0.9 Post–Data Quality Upgrade Approval & Continuation Handover
+## M8 / v0.9.x Upgrade Approval & Continuation Handover
 
 **Prepared for:** future ChatGPT / frontier-LLM continuation  
 **Project owner:** Saiful Islam  
 **Brand:** Saiful The Techie  
 **Product:** Data, AI & Automation Path  
 **Website:** saifulshuvo.com  
-**Current stable release:** `v0.8 — Phase 3A: Data Engineering — storing & serving`  
-**Current working checkpoint:** `v0.9 / M8 — ETL/ELT + Data Quality complete`  
-**Current Phase 3 coverage:** `35 / 55 topics`  
-**Current lesson source count:** `82 lessons`  
-**Next approved M8 module:** `dbt`  
-**Final target for this milestone:** `v0.9 — Phase 3B complete`  
+**Current release:** `v0.9.1 — M8 platform correction checkpoint`  
+**Current working checkpoint:** `v0.9.1 / M8 — ETL/ELT + Data Quality + dbt complete`  
+**Current Phase 3 coverage:** `40 / 55 topics`  
+**Current lesson source count:** `85 lessons`  
+**Next approved M8 module:** `AI-Ready Data`  
+**Release family for this milestone:** `v0.9.x — Phase 3B complete when all M8 scope is done`  
 **Date:** 2026-10-09
 
 ---
@@ -26,7 +26,7 @@ The central change is:
 
 > Do not merely cover a topic. Turn each topic into a complete learning experience with explanation, verified examples, hands-on implementation, synchronized practice files, professional context, curated resources and a clear progression to the next tutorial.
 
-This upgrade applies to all new M8 work beginning with **dbt** and progressively to previously written lessons.
+This upgrade applies to all new M8 work and progressively to previously written lessons. ETL/ELT, Data Quality and dbt are complete at the v0.9.1 correction checkpoint; AI-Ready Data is next.
 
 ---
 
@@ -180,22 +180,21 @@ Do not change the established Phase 2 data generator. If M8 needs new determinis
 
 # 5. Next approved M8 module
 
-# dbt
+# AI-Ready Data
 
 The approved tutorials are:
 
 ```text
-01. dbt Models and Tests
-    Topics: Models · Tests
+01. Document Pipelines: Parsing and Chunking
+    Topics: Unstructured document pipelines · Parsing & chunking
 
-02. Snapshots and Macros
-    Topics: Snapshots · Macros
-
-03. Documentation and Marts
-    Topic: Documentation & marts
+02. Embedding Refresh, Metadata and Lineage for RAG
+    Topics: Embedding refresh · Metadata & lineage for RAG
 ```
 
 Exact topic strings in lesson front matter must continue matching `curriculum.yml`.
+
+The module should build a deterministic local document-processing mini-pipeline first, then connect that output to embedding-refresh and RAG metadata/lineage concepts. Real embedding execution is RUN-HERE only if a suitable local embedding dependency is actually available; otherwise provide exact RUN-BY-OWNER verification and never fabricate vectors or model output.
 
 ---
 
@@ -909,7 +908,7 @@ data-ai-automation-path-v0.9.zip
 
 when all M8 scope is complete and validated.
 
-The stable site version may remain `v0.8` during working checkpoints and should be bumped to `v0.9` for the actual M8 release.
+As of v0.9.1, M8 may ship patch-style correction checkpoints while the milestone remains in progress. The visible product version must match the packaged checkpoint, and the roadmap must clearly say M8 is not yet complete.
 
 Do not label an incomplete working checkpoint as the final release.
 
@@ -979,18 +978,19 @@ Current completed checkpoint:
 ```text
 ETL / ELT ✅
 Data Quality ✅
+dbt ✅
+v0.9.1 platform correction ✅
 ```
 
 Next:
 
 ```text
-dbt ← NEXT
-AI-Ready Data
+AI-Ready Data ← NEXT
 Orchestration
 Big Data & Streaming
 Cloud & IaC
 Phase 3 Project — Production Analytics Platform
-Final v0.9 audit + release
+Final M8 v0.9.x audit + release
 ```
 
 The roadmap's complete M8 topic set remains authoritative even when implementation order is optimized for tools that are easier to run locally first.
@@ -1001,90 +1001,63 @@ The roadmap's complete M8 topic set remains authoritative even when implementati
 
 The next build is:
 
-# M8 — dbt
-
-Before and during dbt development, apply the approved platform upgrade.
+# M8 — AI-Ready Data
 
 Implementation sequence:
 
 ```text
-1. Open the latest full merged Data Quality checkpoint.
-2. Re-read ROADMAP.md and curriculum.yml.
-3. Upgrade the tutorial template so old compulsory blocks are optional.
-4. Update build.py only as needed to support the new deep-tutorial structure safely.
-5. Add optional YouTube companion metadata/rendering support.
-6. Improve module-page hierarchy and reduce title repetition.
-7. Correct logo handling:
-   - exact approved logo if directly available;
-   - otherwise text wordmark fallback;
-   - do not use the generic ST substitute as final branding.
-8. Keep the Saiful The Techie navy/cyan design system coherent in light and dark mode.
-9. Refactor the completed M8 ETL/ELT and Data Quality lessons to the upgraded structure where needed.
-10. Build the dbt module:
-    - Models and Tests
-    - Snapshots and Macros
-    - Documentation and Marts
-11. Build synchronized dbt practice material.
-12. Execute dbt for real if the environment supports it.
-13. If dbt cannot run here, mark it RUN-BY-OWNER and provide exact commands; never invent output.
-14. Update glossary/download metadata.
-15. Run structural verification.
-16. Run the full site build if dependencies are available.
-17. Package the entire merged working project.
-18. State the next approved milestone.
+1. Open the latest full merged v0.9.1 correction release.
+2. Re-read ROADMAP.md, curriculum.yml and this handover.
+3. Preserve the v0.9.1 platform corrections: generated docs must never lag source, every written tutorial gets the professional AI Mentor Prompt, planned topics show projected milestones, and curated YouTube companions render only after review.
+4. Build tutorial 01: Unstructured document pipelines + Parsing & chunking.
+5. Build tutorial 02: Embedding refresh + Metadata & lineage for RAG.
+6. Add deterministic starter/completed practice material and any new fixed-seed local data/generator needed; do not alter the established Phase 2 generator.
+7. Execute parsing/chunking logic locally.
+8. Execute real embedding generation only if a suitable local dependency is available; otherwise mark the embedding step RUN-BY-OWNER and provide exact commands.
+9. Preserve known Phase 3 reconciliation answers where the order dataset is reused.
+10. Add/review one relevant YouTube companion per tutorial when a strong match exists.
+11. Update glossary and download catalogue.
+12. Run tools/audit_project.py, relevant tests, package_examples.py and build.py.
+13. Require no WARNING lines and Internal links: all OK before packaging.
+14. Package the entire merged working project.
+15. State the next approved milestone.
 ```
 
 ---
 
-# 28. dbt quality target
+# 28. AI-Ready Data quality target
 
-The dbt module must not be three short definition pages.
-
-It should take the learner through a coherent mini-project.
-
-A preferred practical sequence is:
+The module must teach a coherent pipeline, not isolated definitions:
 
 ```text
-raw 2025 orders
+local documents
    ↓
-dbt source
+parse text + metadata
    ↓
-staging model
+normalize / clean
    ↓
-cleaned / intermediate logic
+deterministic chunking
    ↓
-tests
+chunk IDs + source metadata
    ↓
-snapshot
+change detection / embedding-refresh decision
    ↓
-macro
+embedding step (RUN-HERE or RUN-BY-OWNER)
    ↓
-documented marts
-   ↓
-BI-ready output
+lineage metadata for retrieval / RAG
 ```
 
 The learner should understand:
 
-- what dbt is and is not;
-- why transformation belongs in version-controlled SQL;
-- project structure;
-- `dbt_project.yml`;
-- profiles/connections;
-- sources;
-- models;
-- materializations;
-- refs and dependency graph;
-- generic/data tests;
-- build vs run vs test;
-- snapshots;
-- macros/Jinja;
-- documentation;
-- lineage;
-- marts;
-- how this connects to the final Phase 3 Production Analytics Platform.
-
-Use the project's known answers for reconciliation.
+- why unstructured documents require an ingestion pipeline;
+- parsing vs chunking;
+- chunk size, overlap and boundary trade-offs;
+- deterministic chunk IDs and reproducibility;
+- metadata required to trace a retrieved chunk back to its source;
+- when an embedding should be refreshed;
+- how content hashes/change detection can avoid unnecessary re-embedding;
+- document/version/chunk lineage;
+- how this becomes the document side of the final Phase 3 Production Analytics Platform.
 
 ---
 
@@ -1153,8 +1126,8 @@ Before the next module:
 ---
 
 **Current stable release:** `v0.8 — Phase 3A`  
-**Current working checkpoint:** `v0.9 / M8 — ETL/ELT + Data Quality complete`  
-**Next approved milestone:** `M8 — dbt`  
+**Current working checkpoint:** `v0.9.1 / M8 — ETL/ELT + Data Quality + dbt complete`  
+**Next approved milestone:** `M8 — AI-Ready Data`  
 **Brand:** Saiful The Techie  
 **Product:** Data, AI & Automation Path  
 **Compiled & Expanded by:** Saiful Islam  

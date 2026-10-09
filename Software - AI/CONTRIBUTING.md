@@ -90,3 +90,21 @@ Run every executable example you can. Then build a second time and compare `docs
 ## Brand / interface
 
 The product brand is **Saiful The Techie**. Preserve the ecosystem's deep-navy/electric-cyan/white technology language and the `AI · Data · Web · SaaS · Automation` / `Learn · Build · Explain · Share` brand cues. Do not invent a replacement portrait/logo if the approved circular asset is unavailable; use the text lockup until the approved binary is supplied.
+
+## v0.5.1 tutorial companion rules
+
+- Do not hand-write a generic AI prompt in each tutorial. `build.py` generates the lesson-aware **Learn this lesson with AI** prompt automatically from lesson metadata. Improve the generator when the tutoring behavior needs to change.
+- Add reviewed YouTube companions in `content/youtube.yml` by lesson ID. Use lesson front matter only when a tutorial needs a specific override.
+- One strong video per suitable tutorial is the default. Assignment/submission pages may intentionally have no video.
+- Prefer a timestamp into a strong long course over adding a weaker video merely to make every page unique.
+- The written tutorial must remain complete without YouTube or an AI model.
+- Future curriculum modules belong to the Roadmap; do not create fake planned lesson rows or “Coming soon” clutter in the active learning path.
+
+
+## v0.5.2 learner-facing module/navigation rules
+
+- Level 01 and Level 02 sidebar headers are collapsible controls; do not revert them to navigation-only links.
+- Learner-facing module pages must not display `Source module` numbers or `Source mapping` bookkeeping. Keep traceability in `curriculum.yml` and internal metadata.
+- A module page should have one primary H1. `_module.md` must not recreate the same H1.
+- YouTube iframes are injected only over HTTP(S). Direct `file://` mode must show the clean external fallback rather than a broken player.
+- Read `LEARNING_PATH_AUDIT.md` before adding a new milestone. Broad modules may become multiple tutorials.

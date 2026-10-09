@@ -6,7 +6,7 @@
 <title>Linux Filesystem &amp; Terminal Workflow: Move Around Like an Engineer — Data, AI &amp; Automation Path</title>
 <meta name="description" content="Navigate the Linux filesystem, create, copy, move and inspect files, understand paths and permissions, and build fast terminal habits (on Windows, through WSL).">
 <meta property="og:type" content="article">
-<meta property="og:site_name" content="Data, AI &amp; Automation Path">
+<meta property="og:site_name" content="Saiful The Techie">
 <meta property="og:title" content="Linux Filesystem &amp; Terminal Workflow: Move Around Like an Engineer">
 <meta property="og:description" content="Navigate the Linux filesystem, create, copy, move and inspect files, understand paths and permissions, and build fast terminal habits (on Windows, through WSL).">
 <meta property="og:locale" content="en_US">
@@ -19,13 +19,13 @@ var n=null;try{n=localStorage.getItem('daa-nav')}catch(e){}
 if(n==='open'&&window.matchMedia&&matchMedia('(min-width: 961px)').matches)document.documentElement.setAttribute('data-nav','open');
 document.documentElement.classList.add('no-anim')})();</script>
 <link rel="stylesheet" href="../../../assets/style.css">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233f7d6a'/%3E%3Ctext x='16' y='21' font-family='sans-serif' font-size='13' font-weight='700' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
+
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="topbar">
   <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Open curriculum menu" title="Curriculum menu (press M)" aria-controls="sidebar" aria-expanded="false"><span class="ico-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span class="ico-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></button>
-  <a class="brand" href="../../../index.html"><span class="brand-badge">AI</span><span class="brand-text"><span class="brand-name">Data, AI &amp; Automation Path</span><span class="brand-version">v0.8</span></span></a>
+  <a class="brand" href="../../../index.html"><span class="brand-text"><span class="brand-name">Saiful The Techie</span><span class="brand-version">Data, AI &amp; Automation Path · v0.9.1</span></span></a>
   <nav class="top-links" aria-label="Main">
     <a href="../../../index.html" class="">Home</a><a href="../../../curriculum.html" class="">Curriculum</a><a href="../../../practice-files.html" class="">Practice files</a><a href="../../../glossary.html" class="">Glossary</a><a href="../../../how-to-learn.html" class="">How to learn</a><a href="../../../about.html" class="">About</a>
   </nav>
@@ -41,7 +41,7 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="layout wide">
   <nav class="sidebar" id="sidebar" aria-label="Curriculum">
     <div class="side-title">Curriculum</div>
-    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="77"><i></i></div><span class="bar-label" data-progress-label></span></div>
+    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="85"><i></i></div><span class="bar-label" data-progress-label></span></div>
 <div class="nav-phase current open"><a href="../../../learn/phase-0/index.html"><span class="nav-num">0</span>Foundations</a>
 <ul class="nav-modules">
 <li><a class="" href="../../../learn/phase-0/dev-environment/index.html">Development Environment</a>
@@ -88,275 +88,290 @@ document.documentElement.classList.add('no-anim')})();</script>
 <p class="lead">Navigate the Linux filesystem, create, copy, move and inspect files, understand paths and permissions, and build fast terminal habits (on Windows, through WSL).</p>
 <div class="meta"><span class="pill">Phase <b>0</b> · Foundations</span><span class="pill">Level <b>Beginner</b></span><span class="pill">Time <b>45 min</b></span></div>
 <div class="admonition note"><p class="admonition-title">Before you start</p><p><a href="../../../learn/phase-0/dev-environment/01-vscode-python.html">Set Up Python and VS Code: Your Daily Workbench</a></p></div>
-<div class="files-box"><div class="files-head"><b>Practice files for this page</b><a href="../../../practice-files.html">All practice files →</a></div><ul><li><a href="../../../downloads/phase-0/linux-practice.zip" download>linux-practice.zip</a><span class="f-desc">Practice folder for the Linux lessons: data, a cleaner log file, a cron script · 4 KB</span></li></ul></div>
+<div class="files-box"><div class="files-head"><b>Practice files for this page</b><a href="../../../practice-files.html">All practice files →</a></div><ul><li><a href="../../../downloads/phase-0/linux-practice.zip" download>linux-practice.zip</a><span class="f-desc">Practice folder for the Linux lessons: data, a cleaner log file, a cron script · 3 KB</span></li></ul></div>
 <h2 id="what-is-it">What is it?</h2>
 <ul>
-<li>The <strong>terminal</strong> (also called the shell; usually <strong>bash</strong>) lets you control a computer by typing commands instead of clicking.</li>
-<li>The <strong>filesystem</strong> is the tree of folders and files, starting at <code>/</code> (the <strong>root</strong>). Your personal folder is your <strong>home</strong>, written <code>~</code> (for example <code>/home/learner</code>).</li>
+<li>The <strong>terminal</strong> (also called the shell; usually
+<strong>bash</strong>) lets you control a computer by typing commands
+instead of clicking.</li>
+<li>The <strong>filesystem</strong> is the tree of folders and files,
+starting at <code>/</code> (the <strong>root</strong>). Your personal
+folder is your <strong>home</strong>, written <code>~</code> (for
+example <code>/home/learner</code>).</li>
 </ul>
-<div class="codehilite"><pre><span></span><code>/
+<pre class="text"><code>/
 ├── home/
 │   └── learner/        ← ~  (your home)
 │       └── practice/
 │           ├── data/
 │           └── logs/
 ├── etc/                ← system settings
-└── tmp/                ← temporary files
-</code></pre></div>
-
-<div class="admonition job">
-<p class="admonition-title">Why it matters at work</p>
-<p>Servers, cloud machines, Docker containers and CI runners almost all run Linux, usually with <strong>no graphical interface</strong>. Data engineers check logs, move files and schedule jobs from the terminal every day, and AI coding agents run terminal commands that you must be able to read and verify.</p>
+└── tmp/                ← temporary files</code></pre>
+<div class="admonition job" data-markdown="1">
+<p class="admonition-title">
+Why it matters at work
+</p>
+<p>Servers, cloud machines, Docker containers and CI runners almost all
+run Linux, usually with <strong>no graphical interface</strong>. Data
+engineers check logs, move files and schedule jobs from the terminal
+every day, and AI coding agents run terminal commands that you must be
+able to read and verify.</p>
 </div>
 <h2 id="get-a-linux-terminal">Get a Linux terminal</h2>
 <table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Your computer</th>
 <th>Do this</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td><strong>Windows</strong></td>
-<td>Open PowerShell as admin and run <code>wsl --install</code>, then restart. You get <strong>Ubuntu</strong> inside Windows. In VS Code, install the <strong>WSL</strong> extension to edit files there</td>
+<td>Open PowerShell as admin and run <code>wsl --install</code>, then
+restart. You get <strong>Ubuntu</strong> inside Windows. In VS Code,
+install the <strong>WSL</strong> extension to edit files there</td>
 </tr>
-<tr>
+<tr class="even">
 <td><strong>Mac</strong></td>
-<td>Open <strong>Terminal</strong>. macOS uses zsh, which is almost identical for these lessons</td>
+<td>Open <strong>Terminal</strong>. macOS uses zsh, which is almost
+identical for these lessons</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><strong>Linux</strong></td>
 <td>Open <strong>Terminal</strong></td>
 </tr>
 </tbody>
 </table>
-<p>Then download <a href="../../../downloads/phase-0/linux-practice.zip">linux-practice.zip</a> and unzip it into your home folder as <code>~/practice</code>. (In WSL, Windows downloads are under <code>/mnt/c/Users/&lt;you&gt;/Downloads/</code>.)</p>
-<div class="codehilite"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>~
-unzip<span class="w"> </span>/mnt/c/Users/&lt;you&gt;/Downloads/linux-practice.zip<span class="w">   </span><span class="c1"># WSL example</span>
-</code></pre></div>
-
-<h2 id="example-1-where-am-i-and-whats-here">Example 1: where am I, and what's here?</h2>
-<div class="codehilite"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>~/practice
-<span class="nb">pwd</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>/home/learner/practice
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>ls
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>README.md
+<p>Then download <a
+href="../../../downloads/phase-0/linux-practice.zip">linux-practice.zip</a>
+and unzip it into your home folder as <code>~/practice</code>. (In WSL,
+Windows downloads are under
+<code>/mnt/c/Users/&lt;you&gt;/Downloads/</code>.)</p>
+<pre class="bash"><code>cd ~
+unzip /mnt/c/Users/&lt;you&gt;/Downloads/linux-practice.zip   # WSL example</code></pre>
+<h2 id="example-1-where-am-i-and-whats-here">Example 1: where am I, and
+what’s here?</h2>
+<pre class="bash"><code>cd ~/practice
+pwd</code></pre>
+<pre class="text"><code>/home/learner/practice</code></pre>
+<pre class="bash"><code>ls</code></pre>
+<pre class="text"><code>README.md
 data
 logs
 reports
-scripts
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>ls<span class="w"> </span>-lh<span class="w"> </span>data<span class="w">        </span><span class="c1"># -l long format, -h human-readable sizes</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>total 12K
+scripts</code></pre>
+<pre class="bash"><code>ls -lh data        # -l long format, -h human-readable sizes</code></pre>
+<pre class="text"><code>total 12K
 drwxr-xr-x 2 learner learner 4.0K Oct  9 09:52 monthly
 -rw-r--r-- 1 learner learner  963 Oct  9 09:52 orders.csv
--rw-r--r-- 1 learner learner 1.1K Oct  9 09:52 orders_raw.csv
-</code></pre></div>
-
-<p>The first column starts with <code>d</code> for a directory and <code>-</code> for a file, followed by the <strong>permissions</strong> (see below).</p>
+-rw-r--r-- 1 learner learner 1.1K Oct  9 09:52 orders_raw.csv</code></pre>
+<p>The first column starts with <code>d</code> for a directory and
+<code>-</code> for a file, followed by the <strong>permissions</strong>
+(see below).</p>
 <h2 id="paths-absolute-vs-relative">Paths: absolute vs relative</h2>
 <table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Path</th>
 <th>Meaning</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td><code>/home/learner/practice/data</code></td>
-<td><strong>Absolute</strong>: starts at <code>/</code>, works from anywhere</td>
+<td><strong>Absolute</strong>: starts at <code>/</code>, works from
+anywhere</td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>data/orders.csv</code></td>
 <td><strong>Relative</strong>: from the current folder</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><code>.</code></td>
 <td>The current folder</td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>..</code></td>
 <td>The parent folder</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><code>~</code></td>
 <td>Your home folder</td>
 </tr>
 </tbody>
 </table>
-<div class="codehilite"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>data<span class="w">        </span><span class="c1"># go into data</span>
-<span class="nb">cd</span><span class="w"> </span>..<span class="w">          </span><span class="c1"># back up one level</span>
-<span class="nb">cd</span><span class="w"> </span>~<span class="w">           </span><span class="c1"># home (or just: cd)</span>
-<span class="nb">cd</span><span class="w"> </span>-<span class="w">           </span><span class="c1"># back to the previous folder</span>
-</code></pre></div>
-
-<h2 id="example-2-create-copy-move-and-delete">Example 2: create, copy, move and delete</h2>
-<div class="codehilite"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span>reports/2026/q1<span class="w">              </span><span class="c1"># -p creates all missing parent folders</span>
-cp<span class="w"> </span>data/orders.csv<span class="w"> </span>reports/2026/q1/<span class="w">   </span><span class="c1"># copy</span>
-mv<span class="w"> </span>reports/2026/q1/orders.csv<span class="w"> </span>reports/2026/q1/orders_q1.csv<span class="w">   </span><span class="c1"># move = rename</span>
-ls<span class="w"> </span>-R<span class="w"> </span>reports<span class="w">                          </span><span class="c1"># -R lists sub-folders too</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>reports:
+<pre class="bash"><code>cd data        # go into data
+cd ..          # back up one level
+cd ~           # home (or just: cd)
+cd -           # back to the previous folder</code></pre>
+<h2 id="example-2-create-copy-move-and-delete">Example 2: create, copy,
+move and delete</h2>
+<pre class="bash"><code>mkdir -p reports/2026/q1              # -p creates all missing parent folders
+cp data/orders.csv reports/2026/q1/   # copy
+mv reports/2026/q1/orders.csv reports/2026/q1/orders_q1.csv   # move = rename
+ls -R reports                          # -R lists sub-folders too</code></pre>
+<pre class="text"><code>reports:
 2026
 
 reports/2026:
 q1
 
 reports/2026/q1:
-orders_q1.csv
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>rm<span class="w"> </span>reports/2026/q1/orders_q1.csv<span class="w">      </span><span class="c1"># delete a file</span>
-rm<span class="w"> </span>-r<span class="w"> </span>reports/2026<span class="w">                    </span><span class="c1"># delete a folder and everything in it</span>
-</code></pre></div>
-
-<div class="admonition warning">
-<p class="admonition-title">There is no recycle bin</p>
-<p><code>rm</code> deletes immediately and permanently. Double-check the path, never run <code>rm -rf</code> on a path built from a variable you haven't printed, and use <code>ls</code> on the same path first.</p>
+orders_q1.csv</code></pre>
+<pre class="bash"><code>rm reports/2026/q1/orders_q1.csv      # delete a file
+rm -r reports/2026                    # delete a folder and everything in it</code></pre>
+<div class="admonition warning" data-markdown="1">
+<p class="admonition-title">
+There is no recycle bin
+</p>
+<p><code>rm</code> deletes immediately and permanently. Double-check the
+path, never run <code>rm -rf</code> on a path built from a variable you
+haven’t printed, and use <code>ls</code> on the same path first.</p>
 </div>
 <h2 id="example-3-look-inside-files">Example 3: look inside files</h2>
-<div class="codehilite"><pre><span></span><code>head<span class="w"> </span>-3<span class="w"> </span>data/orders.csv<span class="w">     </span><span class="c1"># first 3 lines</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>order_id,order_date,customer,region,category,product,quantity,unit_price,status
+<pre class="bash"><code>head -3 data/orders.csv     # first 3 lines</code></pre>
+<pre class="text"><code>order_id,order_date,customer,region,category,product,quantity,unit_price,status
 1,2026-01-05,Rahim Traders,Dhaka,Fabric,Cotton Twill,120,3.50,Delivered
-2,2026-01-08,Karim Garments,Chattogram,Trims,Metal Buttons,5000,0.04,Delivered
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>tail<span class="w"> </span>-2<span class="w"> </span>data/orders.csv<span class="w">     </span><span class="c1"># last 2 lines</span>
-wc<span class="w"> </span>-l<span class="w"> </span>data/orders.csv<span class="w"> </span>data/orders_raw.csv<span class="w">   </span><span class="c1"># count lines</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>11,2026-03-03,Sun Fashion,Narayanganj,Trims,Zippers,1500,0.28,Delivered
+2,2026-01-08,Karim Garments,Chattogram,Trims,Metal Buttons,5000,0.04,Delivered</code></pre>
+<pre class="bash"><code>tail -2 data/orders.csv     # last 2 lines
+wc -l data/orders.csv data/orders_raw.csv   # count lines</code></pre>
+<pre class="text"><code>11,2026-03-03,Sun Fashion,Narayanganj,Trims,Zippers,1500,0.28,Delivered
 12,2026-03-09,Karim Garments,Chattogram,Fabric,Denim 12oz,250,5.10,Shipped
   13 data/orders.csv
   15 data/orders_raw.csv
-  28 total
-</code></pre></div>
-
-<p>13 lines = 1 header + <strong>12 orders</strong>, the same 12 as in SQL, Excel and Power BI.</p>
+  28 total</code></pre>
+<p>13 lines = 1 header + <strong>12 orders</strong>, the same 12 as in
+SQL, Excel and Power BI.</p>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>Command</th>
 <th>Use it for</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td><code>cat file</code></td>
 <td>Print a small file</td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>less file</code></td>
-<td>Scroll a big file (<code>q</code> to quit, <code>/word</code> to search)</td>
+<td>Scroll a big file (<code>q</code> to quit, <code>/word</code> to
+search)</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><code>head -n 20</code> / <code>tail -n 20</code></td>
 <td>Start or end of a file</td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>tail -f app.log</code></td>
 <td>Watch a log grow live (Ctrl+C to stop)</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><code>wc -l</code></td>
 <td>Count lines (rows)</td>
 </tr>
 </tbody>
 </table>
 <h2 id="permissions-in-one-minute">Permissions in one minute</h2>
-<p><code>-rw-r--r--</code> = <strong>owner</strong> can read/write, <strong>group</strong> can read, <strong>others</strong> can read. A script needs <strong>x</strong> (execute) to run:</p>
-<div class="codehilite"><pre><span></span><code>chmod<span class="w"> </span>+x<span class="w"> </span>scripts/daily_clean.sh
-ls<span class="w"> </span>-l<span class="w"> </span>scripts
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>total 4
--rwxr-xr-x 1 learner learner 492 Oct  9 09:52 daily_clean.sh
-</code></pre></div>
-
+<p><code>-rw-r--r--</code> = <strong>owner</strong> can read/write,
+<strong>group</strong> can read, <strong>others</strong> can read. A
+script needs <strong>x</strong> (execute) to run:</p>
+<pre class="bash"><code>chmod +x scripts/daily_clean.sh
+ls -l scripts</code></pre>
+<pre class="text"><code>total 4
+-rwxr-xr-x 1 learner learner 492 Oct  9 09:52 daily_clean.sh</code></pre>
 <h2 id="terminal-workflow-habits">Terminal workflow habits</h2>
 <table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Habit</th>
 <th>How</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td><strong>Tab completion</strong></td>
-<td>Type <code>cd da</code> + <strong>Tab</strong> → <code>cd data/</code>. Fewer typos</td>
+<td>Type <code>cd da</code> + <strong>Tab</strong> →
+<code>cd data/</code>. Fewer typos</td>
 </tr>
-<tr>
+<tr class="even">
 <td><strong>History</strong></td>
-<td><strong>↑</strong> repeats previous commands; <strong>Ctrl+R</strong> searches them</td>
+<td><strong>↑</strong> repeats previous commands;
+<strong>Ctrl+R</strong> searches them</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><strong>Stop a command</strong></td>
 <td><strong>Ctrl+C</strong></td>
 </tr>
-<tr>
+<tr class="even">
 <td><strong>Clear the screen</strong></td>
 <td><strong>Ctrl+L</strong> or <code>clear</code></td>
 </tr>
-<tr>
+<tr class="odd">
 <td><strong>Help</strong></td>
 <td><code>man ls</code>, or <code>ls --help</code></td>
 </tr>
-<tr>
+<tr class="even">
 <td><strong>Open the folder in VS Code</strong></td>
 <td><code>code .</code></td>
 </tr>
-<tr>
+<tr class="odd">
 <td><strong>Chain commands</strong></td>
-<td><code>mkdir out &amp;&amp; cd out</code> (the second runs only if the first succeeds)</td>
+<td><code>mkdir out &amp;&amp; cd out</code> (the second runs only if
+the first succeeds)</td>
 </tr>
 </tbody>
 </table>
 <h2 id="common-mistakes">Common mistakes</h2>
 <table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Mistake</th>
 <th>What happens</th>
 <th>Fix</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>Spaces in file names (<code>my file.csv</code>)</td>
 <td>Commands treat it as two files</td>
 <td>Use quotes (<code>"my file.csv"</code>), or better, no spaces</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Working in Windows folders from WSL (<code>/mnt/c/...</code>)</td>
 <td>Slow, permission oddities</td>
 <td>Keep projects in your Linux home (<code>~/</code>)</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Using <code>rm -rf</code> casually</td>
 <td>Data lost forever</td>
 <td><code>ls</code> the path first; delete specific files</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Lost in folders</td>
-<td>Commands fail with "No such file"</td>
+<td>Commands fail with “No such file”</td>
 <td><code>pwd</code>, then use absolute paths or <code>cd ~</code></td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Case mistakes (<code>Data</code> vs <code>data</code>)</td>
 <td>Linux is case-sensitive</td>
 <td>Use Tab completion</td>
@@ -364,77 +379,151 @@ ls<span class="w"> </span>-l<span class="w"> </span>scripts
 </tbody>
 </table>
 <h2 id="try-it-yourself">Try it yourself</h2>
-<p><strong>Task:</strong> From <code>~/practice</code>, create <code>reports/monthly-copy</code>, copy all three files from <code>data/monthly</code> into it, and show how many lines each copy has.</p>
+<p><strong>Task:</strong> From <code>~/practice</code>, create
+<code>reports/monthly-copy</code>, copy all three files from
+<code>data/monthly</code> into it, and show how many lines each copy
+has.</p>
 <details>
-<summary>Show a hint</summary>
-<p><code>*</code> matches any characters: <code>data/monthly/*.csv</code> means "every CSV in that folder".</p>
+<summary>
+Show a hint
+</summary>
+<code>*</code> matches any characters: <code>data/monthly/*.csv</code>
+means “every CSV in that folder”.
 </details>
 <details>
-<summary>Show the solution</summary>
-<div class="codehilite"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span>reports/monthly-copy
-cp<span class="w"> </span>data/monthly/*.csv<span class="w"> </span>reports/monthly-copy/
-wc<span class="w"> </span>-l<span class="w"> </span>reports/monthly-copy/*.csv
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>   6 reports/monthly-copy/orders_2026-01.csv
+<summary>
+Show the solution
+</summary>
+<pre class="bash"><code>mkdir -p reports/monthly-copy
+cp data/monthly/*.csv reports/monthly-copy/
+wc -l reports/monthly-copy/*.csv</code></pre>
+<pre class="text"><code>   6 reports/monthly-copy/orders_2026-01.csv
    6 reports/monthly-copy/orders_2026-02.csv
    3 reports/monthly-copy/orders_2026-03.csv
-  15 total
-</code></pre></div>
-
-<p>Each file has 1 header line, so January and February have 5 orders each and March has 2: the same 12 orders as <code>orders.csv</code>.</p>
+  15 total</code></pre>
+Each file has 1 header line, so January and February have 5 orders each
+and March has 2: the same 12 orders as <code>orders.csv</code>.
 </details>
 <h2 id="quick-quiz">Quick quiz</h2>
 <div class="quiz-q" data-answer="1">
 <p>1. What does <code>cd ..</code> do?</p>
-<ol>
+<ol type="1">
 <li>Goes to the home folder</li>
 <li>Goes up one folder, to the parent</li>
 <li>Deletes the current folder</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B.</strong></p>
+<summary>
+Show answer
+</summary>
+<strong>B.</strong>
 </details>
 </div>
 <div class="quiz-q" data-answer="2">
 <p>2. Which is an <strong>absolute</strong> path?</p>
-<ol>
+<ol type="1">
 <li><code>data/orders.csv</code></li>
 <li><code>../logs</code></li>
 <li><code>/home/learner/practice/data/orders.csv</code></li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>C.</strong> It starts at the root <code>/</code>.</p>
+<summary>
+Show answer
+</summary>
+<strong>C.</strong> It starts at the root <code>/</code>.
 </details>
 </div>
 <div class="quiz-q" data-answer="1">
 <p>3. How do you watch a log file as new lines are written?</p>
-<ol>
+<ol type="1">
 <li><code>head log</code></li>
 <li><code>tail -f log</code></li>
 <li><code>wc -l log</code></li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B.</strong></p>
+<summary>
+Show answer
+</summary>
+<strong>B.</strong>
 </details>
 </div>
 <h2 id="summary">Summary</h2>
 <ul>
-<li>The filesystem is a tree from <code>/</code>; your home is <code>~</code>. Use <code>pwd</code>, <code>ls</code> and <code>cd</code> to move around.</li>
-<li><code>mkdir -p</code>, <code>cp</code>, <code>mv</code>, <code>rm</code> (carefully) manage files; <code>head</code>, <code>tail</code>, <code>less</code> and <code>wc -l</code> inspect them.</li>
-<li>Permissions decide who can read, write and execute: <code>chmod +x</code> makes a script runnable.</li>
-<li>On Windows, use <strong>WSL</strong> and keep projects in your Linux home.</li>
-<li>Tab completion, history (↑, Ctrl+R) and Ctrl+C make you fast and safe.</li>
+<li>The filesystem is a tree from <code>/</code>; your home is
+<code>~</code>. Use <code>pwd</code>, <code>ls</code> and
+<code>cd</code> to move around.</li>
+<li><code>mkdir -p</code>, <code>cp</code>, <code>mv</code>,
+<code>rm</code> (carefully) manage files; <code>head</code>,
+<code>tail</code>, <code>less</code> and <code>wc -l</code> inspect
+them.</li>
+<li>Permissions decide who can read, write and execute:
+<code>chmod +x</code> makes a script runnable.</li>
+<li>On Windows, use <strong>WSL</strong> and keep projects in your Linux
+home.</li>
+<li>Tab completion, history (↑, Ctrl+R) and Ctrl+C make you fast and
+safe.</li>
 </ul>
-<div class="admonition job">
-<p class="admonition-title">Job-ready check</p>
-<p><strong>Interview question:</strong> <em>"A file arrived on a Linux server. How do you quickly check it before loading it?"</em></p>
-<p><strong>Strong answer:</strong> "I check that it's there and its size with <code>ls -lh</code>, look at the header and first rows with <code>head</code>, the last rows with <code>tail</code> to catch truncation, and count rows with <code>wc -l</code> to compare with what the source system says it sent."</p>
-<p><strong>Mini project:</strong> Write the five commands you'd use to check <code>orders_raw.csv</code> (exists, size, header, last rows, row count) in a <code>notes.md</code>, with their outputs.</p>
+<div class="admonition job" data-markdown="1">
+<p class="admonition-title">
+Job-ready check
+</p>
+<p><strong>Interview question:</strong> <em>“A file arrived on a Linux
+server. How do you quickly check it before loading it?”</em></p>
+<p><strong>Strong answer:</strong> “I check that it’s there and its size
+with <code>ls -lh</code>, look at the header and first rows with
+<code>head</code>, the last rows with <code>tail</code> to catch
+truncation, and count rows with <code>wc -l</code> to compare with what
+the source system says it sent.”</p>
+<p><strong>Mini project:</strong> Write the five commands you’d use to
+check <code>orders_raw.csv</code> (exists, size, header, last rows, row
+count) in a <code>notes.md</code>, with their outputs.</p>
 </div>
+<section class="mentor-prompt"><div class="mentor-head"><div><span class="eyebrow">AI study companion</span><h2 id="ai-mentor-prompt">AI Mentor Prompt</h2></div><button class="btn copy-prompt" type="button" data-copy-target="mentor-prompt-phase-0-linux-01-filesystem-terminal">Copy prompt</button></div><p>Paste this into ChatGPT, Claude, Gemini, or another capable assistant to turn this tutorial into an interactive mentoring session.</p><pre class="prompt-box"><code id="mentor-prompt-phase-0-linux-01-filesystem-terminal">You are my hands-on software-engineering mentor.
+
+I am currently studying:
+&quot;Linux Filesystem &amp; Terminal Workflow: Move Around Like an Engineer&quot;
+
+My level:
+Beginner
+
+Teach me this topic interactively rather than giving me a long lecture.
+
+Use this sequence:
+
+1. Check what I already understand with one short diagnostic question.
+2. Explain the concept in simple language and give me the mental model first.
+3. Give me one small task using code, SQL, configuration, data, or architecture as appropriate.
+4. Wait for my attempt before showing a complete solution.
+5. Review my work and explain both what is correct and what needs improvement.
+6. Help me debug errors step by step instead of immediately replacing my work.
+7. Increase the difficulty gradually and connect each new step to the previous one.
+8. Relate what I am learning to real professional data/AI engineering work.
+9. Ask me to explain an important decision in my own words so you can check my understanding.
+10. At the end, ask me to build or modify one small feature independently.
+
+Important rules:
+- Do not do the entire exercise for me unless I explicitly ask.
+- Explain unfamiliar terminology before using it heavily.
+- Prefer current, production-relevant practices over outdated shortcuts.
+- Distinguish clearly between concepts, tool-specific behaviour, and optional alternatives.
+- If a technical fact, API, syntax, version, or best practice may have changed, verify it against current official documentation before teaching it.
+- Never invent command output, test results, benchmark numbers, cloud behaviour, or data results.
+- If something cannot be executed in the current environment, say so and give me the exact command or verification step I should run.
+- Keep me actively coding, querying, configuring, reasoning, or debugging throughout the session.
+- When useful, work from the tutorial practice files (linux-practice.zip) instead of inventing unrelated examples.
+
+The concepts I need to master are:
+- Filesystem
+- Terminal workflow
+- linux
+- bash
+- terminal
+- shell
+- wsl
+- ubuntu
+
+Start by asking me one diagnostic question.</code></pre></section>
+
 <div class="terms-box"><div class="files-head"><b>Key terms in this lesson</b><a href="../../../glossary.html">Glossary →</a></div><div class="term-chips"><a class="term-chip" href="../../../glossary.html#path" title="The address of a file or folder. Absolute paths start from the root (/home/learner/...); relative paths start from the current folder.">Path</a><a class="term-chip" href="../../../glossary.html#terminal" title="A text window where you type commands to control the computer. On Linux the usual shell is bash.">Terminal</a><a class="term-chip" href="../../../glossary.html#wsl" title="Windows Subsystem for Linux: runs a real Linux (usually Ubuntu) inside Windows, installed with wsl --install.">WSL</a></div></div>
 <h2 id="free-resources">Free resources to go deeper</h2><ul class="resources"><li><a href="https://learn.microsoft.com/en-us/windows/wsl/install">Install Linux on Windows with WSL</a><span class="r-meta">Microsoft Learn · One command: wsl --install.</span></li><li><a href="https://missing.csail.mit.edu/2026/course-shell/">The Shell (Missing Semester)</a><span class="r-meta">MIT — The Missing Semester of Your CS Education · Free lecture notes and video on shell basics.</span></li><li><a href="https://ubuntu.com/tutorials/command-line-for-beginners">The Linux command line for beginners</a><span class="r-meta">Ubuntu (Canonical) · A gentle, step-by-step tutorial.</span></li></ul>
 <div class="complete-bar"><span>Finished reading and did the exercise?</span>
@@ -443,9 +532,9 @@ wc<span class="w"> </span>-l<span class="w"> </span>reports/monthly-copy/*.csv
 <p class="reviewed">Last reviewed: 2026-10-09</p>
 
   </div></main>
-  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#get-a-linux-terminal">Get a Linux terminal</a><a href="#example-1-where-am-i-and-whats-here">Example 1: where am I, and what&#x27;s here?</a><a href="#paths-absolute-vs-relative">Paths: absolute vs relative</a><a href="#example-2-create-copy-move-and-delete">Example 2: create, copy, move and delete</a><a href="#example-3-look-inside-files">Example 3: look inside files</a><a href="#permissions-in-one-minute">Permissions in one minute</a><a href="#terminal-workflow-habits">Terminal workflow habits</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#free-resources">Free resources</a></aside>
+  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#get-a-linux-terminal">Get a Linux terminal</a><a href="#example-1-where-am-i-and-whats-here">Example 1: where am I, and what’s here?</a><a href="#paths-absolute-vs-relative">Paths: absolute vs relative</a><a href="#example-2-create-copy-move-and-delete">Example 2: create, copy, move and delete</a><a href="#example-3-look-inside-files">Example 3: look inside files</a><a href="#permissions-in-one-minute">Permissions in one minute</a><a href="#terminal-workflow-habits">Terminal workflow habits</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#ai-mentor-prompt">AI Mentor Prompt</a><a href="#free-resources">Free resources</a></aside>
 </div>
-<footer class="site">Data, AI &amp; Automation Path v0.8 · Applied AI, Data &amp; Automation Lab · Updated October 2026<br>
+<footer class="site"><b>Saiful The Techie</b> · Data, AI &amp; Automation Path v0.9.1 · Updated October 2026<br>
 Lesson text: <a href="../../../license.html">CC BY-NC-SA 4.0</a> · Code: <a href="../../../license.html#code-mit-license">MIT</a> · Free external resources belong to their respective owners.</footer>
 <script src="../../../search-index.js"></script>
 <script src="../../../assets/app.js"></script>

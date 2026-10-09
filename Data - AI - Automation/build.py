@@ -30,10 +30,18 @@ from datetime import date
 from pathlib import Path
 
 try:
-    import markdown
     import yaml
 except ImportError:
-    sys.exit("Missing packages. Run:  pip install -r requirements.txt")
+    sys.exit("Missing package: pyyaml. Run:  pip install -r requirements.txt")
+
+try:
+    import markdown as _py_markdown
+except ImportError:
+    _py_markdown = None
+
+import subprocess
+
+PANDOC = shutil.which("pandoc")
 
 ROOT = Path(__file__).resolve().parent
 CONTENT = ROOT / "content"
@@ -70,10 +78,66 @@ def read_front_matter(path: Path) -> tuple[dict, str]:
     return {}, text
 
 
+def _pandoc_admonitions(text: str) -> str:
+    """Convert Python-Markdown admonition blocks into raw HTML that Pandoc can parse."""
+    lines = text.splitlines()
+    out: list[str] = []
+    i = 0
+    rx = re.compile(r"^!!!\s+([\w-]+)(?:\s+[\"'](.*?)[\"'])?\s*$")
+    while i < len(lines):
+        m = rx.match(lines[i])
+        if not m:
+            out.append(lines[i])
+            i += 1
+            continue
+        kind = m.group(1)
+        title = m.group(2) or kind.replace('-', ' ').title()
+        i += 1
+        block: list[str] = []
+        while i < len(lines):
+            line = lines[i]
+            if line.startswith('    '):
+                block.append(line[4:])
+                i += 1
+                continue
+            if line.strip() == '':
+                if i + 1 < len(lines) and lines[i + 1].startswith('    '):
+                    block.append('')
+                    i += 1
+                    continue
+            break
+        out.append(f'<div class="admonition {html.escape(kind)}" markdown="1">')
+        out.append(f'<p class="admonition-title">{html.escape(title)}</p>')
+        out.extend(block)
+        out.append('</div>')
+    return "\n".join(out)
+
+
+def _toc_from_html(body: str) -> list[dict]:
+    """Extract level-2/3 headings from rendered HTML for the right-side TOC."""
+    rows = []
+    for m in re.finditer(r'<h([23])\s+id="([^"]+)"[^>]*>(.*?)</h\1>', body, flags=re.S):
+        rows.append({"level": int(m.group(1)), "id": html.unescape(m.group(2)), "name": strip_tags(m.group(3))})
+    return rows
+
+
 def render_md(text: str) -> tuple[str, list]:
-    md = markdown.Markdown(extensions=MD_EXT, extension_configs=MD_CFG)
-    body = md.convert(text)
-    return body, getattr(md, "toc_tokens", [])
+    """Render Markdown with Python-Markdown, or Pandoc as an offline fallback."""
+    if _py_markdown is not None:
+        md = _py_markdown.Markdown(extensions=MD_EXT, extension_configs=MD_CFG)
+        body = md.convert(text)
+        return body, getattr(md, "toc_tokens", [])
+    if not PANDOC:
+        sys.exit("Missing Markdown renderer. Install requirements.txt or install pandoc.")
+    prepared = _pandoc_admonitions(text)
+    proc = subprocess.run(
+        [PANDOC, "-f", "markdown+raw_html", "-t", "html", "--no-highlight"],
+        input=prepared, text=True, capture_output=True, encoding="utf-8"
+    )
+    if proc.returncode:
+        sys.exit("Pandoc Markdown rendering failed:\n" + proc.stderr)
+    body = proc.stdout.strip()
+    return body, _toc_from_html(body)
 
 
 def strip_tags(s: str) -> str:
@@ -180,6 +244,106 @@ def files_box(r: str, paths: list, where: str) -> str:
             f'<a href="{r}practice-files.html">All practice files →</a></div><ul>{"".join(items)}</ul></div>')
 
 
+# ------------------------------------------------------------------ roadmap projections + mentor prompts
+MILESTONE_BY_PHASE = {
+    "phase-3": ("M8", "v0.9.x", "Phase 3B — Data Engineering: moving & trusting data"),
+    "phase-5": ("M9", "v1.0", "NLP, LLM & RAG Engineering"),
+    "phase-6": ("M10", "v1.1", "AI Agents & Intelligent Automation"),
+    "phase-4": ("M11", "v1.2", "ML & Deep Learning Engineering"),
+    "phase-7": ("M12", "v1.3", "Production AI, LLMOps & Governance"),
+    "phase-8": ("M13", "v1.4", "Integrated Capstone, Career & Commercialisation"),
+    "phase-9": ("M13", "v1.4", "Integrated Capstone, Career & Commercialisation"),
+}
+
+MENTOR_ROLE_BY_PHASE = {
+    "phase-0": "hands-on software-engineering mentor",
+    "phase-1": "hands-on data-analytics and business-intelligence mentor",
+    "phase-2": "hands-on Python, statistics and data-science mentor",
+    "phase-3": "hands-on data-engineering mentor",
+    "phase-4": "hands-on machine-learning engineering mentor",
+    "phase-5": "hands-on LLM and RAG engineering mentor",
+    "phase-6": "hands-on AI-agent and automation engineering mentor",
+    "phase-7": "hands-on production-AI and LLMOps mentor",
+    "phase-8": "hands-on technical capstone architect and mentor",
+    "phase-9": "hands-on data/AI career and portfolio mentor",
+}
+
+
+def milestone_for_phase(ph: dict) -> tuple[str, str, str] | None:
+    return MILESTONE_BY_PHASE.get(ph["id"])
+
+
+def milestone_label(ph: dict, compact: bool = False) -> str:
+    m = milestone_for_phase(ph)
+    if not m:
+        return "Already delivered"
+    code, version, name = m
+    return f"{code} · {version}" if compact else f"{code} · {version} — {name}"
+
+
+def mentor_prompt_text(l: dict) -> str:
+    """Professional reusable AI-study prompt generated from lesson metadata."""
+    meta, ph = l["meta"], l["phase"]
+    role = MENTOR_ROLE_BY_PHASE.get(ph["id"], "hands-on technical mentor")
+    level = str(meta.get("level") or "Intermediate")
+    concepts = []
+    seen = set()
+    for x in list(meta.get("topics") or []) + list(meta.get("keywords") or []):
+        x = str(x).strip()
+        if x and x.lower() not in seen:
+            concepts.append(x)
+            seen.add(x.lower())
+        if len(concepts) >= 8:
+            break
+    concept_lines = "\n".join(f"- {x}" for x in concepts) or "- The core concepts demonstrated in this tutorial"
+    practice = meta.get("files") or []
+    practice_rule = ""
+    if practice:
+        names = ", ".join(Path(x).name for x in practice[:3])
+        practice_rule = f"\n- When useful, work from the tutorial practice files ({names}) instead of inventing unrelated examples."
+    known = ""
+    if ph["id"] == "phase-3":
+        known = "\n- For Phase 3 order-data exercises, preserve the established reconciliation targets when relevant: 4,246 orders and net revenue 5,478,357.79. If my result differs, help me debug the cause instead of changing the expected result."
+    return (
+        f"You are my {role}.\n\n"
+        f"I am currently studying:\n\"{l['title']}\"\n\n"
+        f"My level:\n{level}\n\n"
+        "Teach me this topic interactively rather than giving me a long lecture.\n\n"
+        "Use this sequence:\n\n"
+        "1. Check what I already understand with one short diagnostic question.\n"
+        "2. Explain the concept in simple language and give me the mental model first.\n"
+        "3. Give me one small task using code, SQL, configuration, data, or architecture as appropriate.\n"
+        "4. Wait for my attempt before showing a complete solution.\n"
+        "5. Review my work and explain both what is correct and what needs improvement.\n"
+        "6. Help me debug errors step by step instead of immediately replacing my work.\n"
+        "7. Increase the difficulty gradually and connect each new step to the previous one.\n"
+        "8. Relate what I am learning to real professional data/AI engineering work.\n"
+        "9. Ask me to explain an important decision in my own words so you can check my understanding.\n"
+        "10. At the end, ask me to build or modify one small feature independently.\n\n"
+        "Important rules:\n"
+        "- Do not do the entire exercise for me unless I explicitly ask.\n"
+        "- Explain unfamiliar terminology before using it heavily.\n"
+        "- Prefer current, production-relevant practices over outdated shortcuts.\n"
+        "- Distinguish clearly between concepts, tool-specific behaviour, and optional alternatives.\n"
+        "- If a technical fact, API, syntax, version, or best practice may have changed, verify it against current official documentation before teaching it.\n"
+        "- Never invent command output, test results, benchmark numbers, cloud behaviour, or data results.\n"
+        "- If something cannot be executed in the current environment, say so and give me the exact command or verification step I should run.\n"
+        "- Keep me actively coding, querying, configuring, reasoning, or debugging throughout the session."
+        + practice_rule + known + "\n\n"
+        "The concepts I need to master are:\n" + concept_lines + "\n\n"
+        "Start by asking me one diagnostic question."
+    )
+
+
+def mentor_prompt_box(l: dict) -> str:
+    prompt = mentor_prompt_text(l)
+    pid = "mentor-prompt-" + slugify(l["id"])
+    return (f'<section class="mentor-prompt"><div class="mentor-head"><div><span class="eyebrow">AI study companion</span>'
+            f'<h2 id="ai-mentor-prompt">AI Mentor Prompt</h2></div>'
+            f'<button class="btn copy-prompt" type="button" data-copy-target="{esc(pid)}">Copy prompt</button></div>'
+            f'<p>Paste this into ChatGPT, Claude, Gemini, or another capable assistant to turn this tutorial into an interactive mentoring session.</p>'
+            f'<pre class="prompt-box"><code id="{esc(pid)}">{esc(prompt)}</code></pre></section>')
+
 # ------------------------------------------------------------------ glossary
 _gloss = yaml.safe_load((CONTENT / "glossary.yml").read_text(encoding="utf-8")) if (CONTENT / "glossary.yml").exists() else {}
 GLOSS_CATS = _gloss.get("categories", [])
@@ -219,9 +383,9 @@ def gloss_target(t):
         m = next((x for x in ph["modules"] if x["id"] == parts[1]), None)
         if m:
             written = bool(by_module[f"{ph['id']}/{m['id']}"])
-            return u_module(ph, m), f"{m['title']} (Phase {ph['num']}{'' if written else ', coming soon'})"
+            return u_module(ph, m), (f"{m['title']} (Phase {ph['num']})" if written else f"{m['title']} — planned for {milestone_label(ph, True)}")
         warnings.append(f"glossary: '{t['term']}' points at unknown module '{see}'")
-    return u_phase(ph), f"Phase {ph['num']}: {ph['short']}" + ("" if phase_lesson_count(ph) else " (coming soon)")
+    return u_phase(ph), (f"Phase {ph['num']}: {ph['short']}" if phase_lesson_count(ph) else f"Phase {ph['num']}: {ph['short']} — planned for {milestone_label(ph, True)}")
 
 
 def lesson_terms(l) -> list:
@@ -249,20 +413,37 @@ def youtube_box(meta: dict) -> str:
     why = esc(str(y.get("why_recommended") or ""))
     duration = esc(str(y.get("duration") or ""))
     level = esc(str(y.get("level") or ""))
+    language = esc(str(y.get("language") or ""))
+    reviewed = esc(str(y.get("reviewed") or ""))
     url = esc(str(y["url"]))
     vid = str(y.get("video_id") or "").strip()
-    meta_bits = " · ".join(x for x in [creator, duration, level] if x)
-    player = (f'<div class="video-frame"><iframe src="https://www.youtube-nocookie.com/embed/{esc(vid)}" '
-              f'title="{title}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" '
+    start_seconds = int(y.get("start_seconds") or 0)
+    meta_bits = " · ".join(x for x in [creator, duration, language, level] if x)
+    query = f"?start={start_seconds}" if start_seconds > 0 else ""
+    player = (f'<div class="video-frame"><iframe src="https://www.youtube-nocookie.com/embed/{esc(vid)}{query}" '
+              f'title="{title}" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" '
+              f'allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" '
               f'allowfullscreen></iframe></div>') if vid else ""
     why_html = f'<p>{why}</p>' if why else ""
     meta_html = f'<p class="video-meta">{meta_bits}</p>' if meta_bits else ""
+    timestamps = y.get("timestamps") or []
+    ts_html = ""
+    if timestamps:
+        rows = []
+        for t in timestamps:
+            label = esc(str(t.get("label") or "Recommended section"))
+            time = esc(str(t.get("time") or ""))
+            href = esc(str(t.get("url") or y["url"]))
+            rows.append(f'<li><a href="{href}">{time} — {label}</a></li>')
+        ts_html = '<div class="video-timestamps"><b>Recommended sections</b><ul>' + ''.join(rows) + '</ul></div>'
+    rev_html = f'<p class="video-reviewed">Video link reviewed: {reviewed}</p>' if reviewed else ""
     return (f'<section class="video-companion"><h2 id="video-companion">Video companion</h2>'
-            f'{player}<h3>{title}</h3>{why_html}{meta_html}<p><a href="{url}">Watch on YouTube ↗</a></p></section>')
+            f'{player}<h3>{title}</h3>{why_html}{meta_html}{ts_html}{rev_html}'
+            f'<p><a href="{url}">Watch on YouTube ↗</a></p></section>')
 
 
 # ------------------------------------------------------------------ quizzes
-QUIZ_RE = re.compile(r'<div class="quiz-q">(.*?)</div>', re.S)
+QUIZ_RE = re.compile(r'<div class="quiz-q"[^>]*>(.*?)</div>', re.S)
 LETTERS = "ABCDEFGH"
 
 
@@ -273,7 +454,7 @@ def mark_quizzes(body_html: str, where: str) -> tuple[str, int]:
     def fix(mo):
         nonlocal count
         inner = mo.group(1)
-        ans = re.search(r"<summary>[^<]*</summary>\s*<p><strong>\s*([A-H])\b", inner)
+        ans = re.search(r"<summary[^>]*>.*?</summary>.*?<strong>\s*([A-H])\b", inner, re.S)
         n_opts = len(re.findall(r"<li>", inner.split("<details", 1)[0]))
         if not ans or n_opts < 2 or LETTERS.index(ans.group(1)) >= n_opts:
             warnings.append(f"{where}: quiz question {count + 1} has no readable answer letter")
@@ -493,7 +674,7 @@ def build_home():
 <div class="grid cols-5">{tracks}</div>
 
 <div class="section-head"><h2>Written lessons</h2><p>Everything you can read today.</p></div>
-<ul class="lesson-list">{latest or '<li class="lesson-row planned">First lessons coming soon.</li>'}</ul>
+<ul class="lesson-list">{latest or '<li class="lesson-row planned">No written lessons are published in this section yet; see the roadmap projection.</li>'}</ul>
 """
     write("index.html", page(title=SITE["name"], depth=0, body=body, side=None, active="home", wide_content=True))
     search_index.append({"t": "Home", "p": SITE["name"], "u": "index.html", "k": "Page", "x": SITE["tagline"]})
@@ -507,7 +688,7 @@ def build_phase(ph):
     tiles = []
     for m in ph["modules"]:
         n = len(by_module[f"{ph['id']}/{m['id']}"])
-        status = f"{n} lesson{'s' if n != 1 else ''} written" if n else "Coming soon"
+        status = f"{n} lesson{'s' if n != 1 else ''} written" if n else f"Planned for {milestone_label(ph, True)}"
         tiles.append(f"""<a class="card module-tile" href="{r}{u_module(ph, m)}">
   <h3>{esc(m['title'])}{tag_html(m.get('tag'))}</h3>
   <p>{esc(', '.join(m['topics']))}</p>
@@ -557,10 +738,12 @@ def build_module(ph, m):
                     f'<span class="lesson-state">{esc(l["meta"].get("time", ""))}</span></li>')
     planned = [t for t in m["topics"] if t not in covered]
     for j, t in enumerate(planned, len(lessons) + 1):
+        projection = milestone_label(ph)
         rows.append(f'<li class="lesson-row planned"><span class="n">{j}</span><span>{esc(t)}'
-                    f'<span class="desc">Planned lesson</span></span><span class="lesson-state"><span class="tag soon">Coming soon</span></span></li>')
-        search_index.append({"t": t, "p": f"Planned · {m['title']} · Phase {ph['num']}", "u": u_module(ph, m),
-                             "k": "Planned", "x": ""})
+                    f'<span class="desc">Planned curriculum topic · {esc(projection)}</span></span>'
+                    f'<span class="lesson-state"><span class="tag planned-tag">{esc(milestone_label(ph, True))}</span></span></li>')
+        search_index.append({"t": t, "p": f"Planned for {milestone_label(ph, True)} · {m['title']} · Phase {ph['num']}", "u": u_module(ph, m),
+                             "k": "Planned", "x": projection})
     mods = ph["modules"]
     i = mods.index(m)
     pager = '<nav class="pager">'
@@ -603,6 +786,7 @@ def build_lesson(l):
     l["terms"] = terms
 
     # free resources from front matter
+    toc_tokens = list(toc_tokens) + [{"id": "ai-mentor-prompt", "name": "AI Mentor Prompt"}]
     if (meta.get("youtube") or {}).get("url"):
         toc_tokens = list(toc_tokens) + [{"id": "video-companion", "name": "Video companion"}]
 
@@ -657,6 +841,7 @@ def build_lesson(l):
 {pre_html}
 {files_box(r, meta.get('files') or [], l['id'])}
 {body_html}
+{mentor_prompt_box(l)}
 {youtube_box(meta)}
 {terms_box(r, terms)}
 {res_html}
@@ -753,7 +938,7 @@ body{{margin:0;min-height:100vh;display:grid;place-items:center;background:var(-
 h1{{margin:0 0 8px}} p{{color:var(--muted)}} a{{color:var(--accent);font-weight:600}}
 </style></head>
 <body><div class="box"><h1>Page not found</h1>
-<p>This page does not exist (yet). Lessons are added phase by phase, so it may be coming soon.</p>
+<p>This page does not exist. Check the curriculum page for the milestone/version in which planned material is scheduled to be written.</p>
 <p><a id="home" href="{esc(home) or 'index.html'}">Go to the home page →</a></p></div>
 <script>(function(){{var h={json.dumps(home)};if(!h){{var seg=location.pathname.split('/').filter(Boolean);
 h=(location.hostname.endsWith('github.io')&&seg.length)?'/'+seg[0]+'/':'/';}}
@@ -937,7 +1122,9 @@ def main():
     bad = check_links()
     pages = len(list(OUT.rglob("*.html")))
     modules = sum(len(ph["modules"]) for ph in PHASES)
+    renderer = "Python-Markdown" if _py_markdown is not None else "Pandoc offline fallback"
     print(f"Built {pages} pages: {len(PHASES)} phases, {modules} modules, {len(LESSONS)} lessons -> {OUT.relative_to(ROOT)}/")
+    print(f"Markdown renderer: {renderer}")
     for w in warnings:
         print("WARNING:", w)
     for n in notes:

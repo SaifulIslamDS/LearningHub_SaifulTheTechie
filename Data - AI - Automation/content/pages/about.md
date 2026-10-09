@@ -25,7 +25,7 @@ Concept → mental model → detailed explanation → code/data/config
 
 A small topic may be short. A major topic can be several thousand words with substantial code. **Common mistakes, exercises, quizzes, summaries and job-ready checks are optional**, not compulsory interruptions.
 
-Practice packages increasingly use a `starter/` → tutorial → `completed/` workflow so the written lesson and downloadable implementation stay synchronized.
+Practice packages increasingly use a `starter/` → tutorial → `completed/` workflow so the written lesson and downloadable implementation stay synchronized. Every written tutorial also receives a detailed **AI Mentor Prompt** for interactive study. Curated YouTube companions are added only when a relevant video has been reviewed; the written tutorial remains complete without the video.
 
 ## Quality rules
 
@@ -42,7 +42,7 @@ Practice packages increasingly use a `starter/` → tutorial → `completed/` wo
 4. Run `python build.py`. It rebuilds the `docs/` folder and reports any broken internal links.
 5. Open `docs/index.html` to check the result, then commit.
 
-A topic listed in `curriculum.yml` shows as **Coming soon** until a lesson file lists it under `topics`.
+A topic listed in `curriculum.yml` remains visible before it is written, but the site now shows the **projected roadmap milestone/version** instead of an ambiguous a generic future-status label label. Once a lesson file covers that exact topic under `topics`, the learner sees the finished tutorial link.
 
 ## Licence
 

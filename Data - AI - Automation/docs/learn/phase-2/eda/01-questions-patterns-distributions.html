@@ -6,7 +6,7 @@
 <title>EDA Part 1: Analytical Questions, Distributions and Patterns — Data, AI &amp; Automation Path</title>
 <meta name="description" content="Turn a vague request into analytical questions, profile a dataset, describe skewed distributions with the right statistics and charts, and find patterns over time and across groups.">
 <meta property="og:type" content="article">
-<meta property="og:site_name" content="Data, AI &amp; Automation Path">
+<meta property="og:site_name" content="Saiful The Techie">
 <meta property="og:title" content="EDA Part 1: Analytical Questions, Distributions and Patterns">
 <meta property="og:description" content="Turn a vague request into analytical questions, profile a dataset, describe skewed distributions with the right statistics and charts, and find patterns over time and across groups.">
 <meta property="og:locale" content="en_US">
@@ -19,13 +19,13 @@ var n=null;try{n=localStorage.getItem('daa-nav')}catch(e){}
 if(n==='open'&&window.matchMedia&&matchMedia('(min-width: 961px)').matches)document.documentElement.setAttribute('data-nav','open');
 document.documentElement.classList.add('no-anim')})();</script>
 <link rel="stylesheet" href="../../../assets/style.css">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233f7d6a'/%3E%3Ctext x='16' y='21' font-family='sans-serif' font-size='13' font-weight='700' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
+
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="topbar">
   <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Open curriculum menu" title="Curriculum menu (press M)" aria-controls="sidebar" aria-expanded="false"><span class="ico-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span class="ico-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></button>
-  <a class="brand" href="../../../index.html"><span class="brand-badge">AI</span><span class="brand-text"><span class="brand-name">Data, AI &amp; Automation Path</span><span class="brand-version">v0.8</span></span></a>
+  <a class="brand" href="../../../index.html"><span class="brand-text"><span class="brand-name">Saiful The Techie</span><span class="brand-version">Data, AI &amp; Automation Path · v0.9.1</span></span></a>
   <nav class="top-links" aria-label="Main">
     <a href="../../../index.html" class="">Home</a><a href="../../../curriculum.html" class="">Curriculum</a><a href="../../../practice-files.html" class="">Practice files</a><a href="../../../glossary.html" class="">Glossary</a><a href="../../../how-to-learn.html" class="">How to learn</a><a href="../../../about.html" class="">About</a>
   </nav>
@@ -41,7 +41,7 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="layout wide">
   <nav class="sidebar" id="sidebar" aria-label="Curriculum">
     <div class="side-title">Curriculum</div>
-    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="77"><i></i></div><span class="bar-label" data-progress-label></span></div>
+    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="85"><i></i></div><span class="bar-label" data-progress-label></span></div>
 <div class="nav-phase"><a href="../../../learn/phase-0/index.html"><span class="nav-num">0</span>Foundations</a>
 </div>
 <div class="nav-phase"><a href="../../../learn/phase-1/index.html"><span class="nav-num">1</span>Analytics &amp; BI</a>
@@ -96,83 +96,107 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="admonition note"><p class="admonition-title">Before you start</p><p><a href="../../../learn/phase-2/pandas/04-pivot-datetime.html">pandas Pivot &amp; Datetime: Analyse Data Over Time</a></p></div>
 <div class="files-box"><div class="files-head"><b>Practice files for this page</b><a href="../../../practice-files.html">All practice files →</a></div><ul><li><a href="../../../downloads/phase-2/data-science-scripts.zip" download>data-science-scripts.zip</a><span class="f-desc">All 21 Phase 2 lesson scripts (NumPy to research thinking), shared chart style, data folder and solutions · 230 KB</span></li><li><a href="../../../downloads/phase-2/orders_2025.csv" download>orders_2025.csv</a><span class="f-desc">4,246 clean orders for 2025 (synthetic, fixed seed): region, segment, channel, product, price, discount, status, delivery days, revenue · 472 KB</span></li></ul></div>
 <h2 id="what-is-it">What is it?</h2>
-<p><strong>EDA</strong> is a structured first look at data to understand it before reporting or modelling. It has three parts:</p>
+<p><strong>EDA</strong> is a structured first look at data to understand
+it before reporting or modelling. It has three parts:</p>
 <table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Part</th>
 <th>Question</th>
 <th>Typical tools</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td><strong>Analytical questions</strong></td>
 <td>What do we need to know, and can this data answer it?</td>
 <td>A short question list, a data profile</td>
 </tr>
-<tr>
+<tr class="even">
 <td><strong>Distributions</strong></td>
 <td>What values does one variable take, and how often?</td>
 <td><code>describe</code>, percentiles, histogram, box plot</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><strong>Patterns</strong></td>
 <td>How do values change over time or across groups?</td>
-<td><code>resample</code>, <code>groupby</code>, line and bar charts</td>
+<td><code>resample</code>, <code>groupby</code>, line and bar
+charts</td>
 </tr>
 </tbody>
 </table>
 <p>(Relationships between variables and anomalies are Part 2.)</p>
-<div class="admonition job">
-<p class="admonition-title">Why it matters at work</p>
-<p>Managers rarely ask precise questions; "how's sales doing?" is typical. Turning that into answerable questions, and spotting skew, seasonality and data issues early, is what separates an analyst from a report generator. Data science interviews often include a take-home EDA task.</p>
+<div class="admonition job" data-markdown="1">
+<p class="admonition-title">
+Why it matters at work
+</p>
+<p>Managers rarely ask precise questions; “how’s sales doing?” is
+typical. Turning that into answerable questions, and spotting skew,
+seasonality and data issues early, is what separates an analyst from a
+report generator. Data science interviews often include a take-home EDA
+task.</p>
 </div>
 <p>The script is <code>09_eda_patterns_distributions.py</code>.</p>
-<h2 id="step-1-from-a-vague-request-to-analytical-questions">Step 1: from a vague request to analytical questions</h2>
-<p>The sales director says: <em>"Give me a picture of 2025."</em> Rewrite it as questions that have a measurable answer:</p>
+<h2 id="step-1-from-a-vague-request-to-analytical-questions">Step 1:
+from a vague request to analytical questions</h2>
+<p>The sales director says: <em>“Give me a picture of 2025.”</em>
+Rewrite it as questions that have a measurable answer:</p>
 <table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Vague</th>
 <th>Analytical question</th>
 <th>Data needed</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>How did we do?</td>
-<td>What was net revenue per month, and how did it compare with the previous month?</td>
-<td><code>order_date</code>, <code>revenue</code>, <code>status</code></td>
+<td>What was net revenue per month, and how did it compare with the
+previous month?</td>
+<td><code>order_date</code>, <code>revenue</code>,
+<code>status</code></td>
 </tr>
-<tr>
+<tr class="even">
 <td>Who matters?</td>
-<td>What share of revenue comes from each segment and the top 10 customers?</td>
+<td>What share of revenue comes from each segment and the top 10
+customers?</td>
 <td><code>segment</code>, <code>customer_id</code></td>
 </tr>
-<tr>
-<td>What's a typical order?</td>
-<td>What's the median order value, and how big are the largest orders?</td>
+<tr class="odd">
+<td>What’s a typical order?</td>
+<td>What’s the median order value, and how big are the largest
+orders?</td>
 <td><code>revenue</code></td>
 </tr>
-<tr>
+<tr class="even">
 <td>Any problems?</td>
 <td>How often are deliveries late, and where and when?</td>
-<td><code>delivery_days</code>, <code>promised_days</code>, <code>region</code></td>
+<td><code>delivery_days</code>, <code>promised_days</code>,
+<code>region</code></td>
 </tr>
 </tbody>
 </table>
-<p>Write questions <strong>before</strong> charts, so you know when you're done.</p>
+<p>Write questions <strong>before</strong> charts, so you know when
+you’re done.</p>
 <h2 id="step-2-profile-the-data">Step 2: profile the data</h2>
-<div class="codehilite"><pre><span></span><code><span class="n">profile</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
-    <span class="s2">"dtype"</span><span class="p">:</span> <span class="n">orders</span><span class="o">.</span><span class="n">dtypes</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">),</span>
-    <span class="s2">"missing"</span><span class="p">:</span> <span class="n">orders</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">(),</span>
-    <span class="s2">"distinct"</span><span class="p">:</span> <span class="n">orders</span><span class="o">.</span><span class="n">nunique</span><span class="p">(),</span>
-<span class="p">})</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">profile</span><span class="o">.</span><span class="n">loc</span><span class="p">[[</span><span class="s2">"order_date"</span><span class="p">,</span> <span class="s2">"customer_id"</span><span class="p">,</span> <span class="s2">"region"</span><span class="p">,</span> <span class="s2">"segment"</span><span class="p">,</span> <span class="s2">"product"</span><span class="p">,</span> <span class="s2">"quantity"</span><span class="p">,</span> <span class="s2">"revenue"</span><span class="p">,</span> <span class="s2">"delivery_days"</span><span class="p">]])</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>                        dtype  missing  distinct
+<pre class="python"><code>profile = pd.DataFrame({
+    &quot;dtype&quot;: orders.dtypes.astype(str),
+    &quot;missing&quot;: orders.isna().sum(),
+    &quot;distinct&quot;: orders.nunique(),
+})
+print(profile.loc[[&quot;order_date&quot;, &quot;customer_id&quot;, &quot;region&quot;, &quot;segment&quot;, &quot;product&quot;, &quot;quantity&quot;, &quot;revenue&quot;, &quot;delivery_days&quot;]])</code></pre>
+<pre class="text"><code>                        dtype  missing  distinct
 order_date     datetime64[us]        0       340
 customer_id               str        0        60
 region                    str        0         5
@@ -180,17 +204,16 @@ segment                   str        0         4
 product                   str        0        12
 quantity                int64        0      2505
 revenue               float64        0      4169
-delivery_days         float64      374        17
-</code></pre></div>
-
-<p>340 order dates in a 365-day year (Fridays and holidays are missing), 60 ordering customers, and 374 missing delivery times we already explained in the Cleaning lesson.</p>
-<h2 id="step-3-the-distribution-of-order-revenue">Step 3: the distribution of order revenue</h2>
-<div class="codehilite"><pre><span></span><code><span class="n">rev</span> <span class="o">=</span> <span class="n">net</span><span class="p">[</span><span class="s2">"revenue"</span><span class="p">]</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">rev</span><span class="o">.</span><span class="n">describe</span><span class="p">(</span><span class="n">percentiles</span><span class="o">=</span><span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.99</span><span class="p">])</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">"skewness:"</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">rev</span><span class="o">.</span><span class="n">skew</span><span class="p">(),</span> <span class="mi">2</span><span class="p">))</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>count     3963.0
+delivery_days         float64      374        17</code></pre>
+<p>340 order dates in a 365-day year (Fridays and holidays are missing),
+60 ordering customers, and 374 missing delivery times we already
+explained in the Cleaning lesson.</p>
+<h2 id="step-3-the-distribution-of-order-revenue">Step 3: the
+distribution of order revenue</h2>
+<pre class="python"><code>rev = net[&quot;revenue&quot;]
+print(rev.describe(percentiles=[0.1, 0.5, 0.9, 0.99]).round(0))
+print(&quot;skewness:&quot;, round(rev.skew(), 2))</code></pre>
+<pre class="text"><code>count     3963.0
 mean      1382.0
 std       1469.0
 min         36.0
@@ -200,161 +223,265 @@ min         36.0
 99%       6015.0
 max      44128.0
 Name: revenue, dtype: float64
-skewness: 9.27
-</code></pre></div>
-
-<p><img alt="Two histograms of order revenue: on a normal scale almost all orders sit at the left with a long thin tail to 44,000; on a log scale the shape is a smooth hill centred around 1,000." src="../../../images/phase-2/eda_revenue_distribution.png" /></p>
+skewness: 9.27</code></pre>
+<figure>
+<img src="../../../images/phase-2/eda_revenue_distribution.png"
+alt="Two histograms of order revenue: on a normal scale almost all orders sit at the left with a long thin tail to 44,000; on a log scale the shape is a smooth hill centred around 1,000." />
+<figcaption aria-hidden="true">Two histograms of order revenue: on a
+normal scale almost all orders sit at the left with a long thin tail to
+44,000; on a log scale the shape is a smooth hill centred around
+1,000.</figcaption>
+</figure>
 <p>How to read it:</p>
 <ul>
-<li><strong>Right-skewed</strong> (skewness 9.27; 0 would be symmetric): many small orders, a few huge ones.</li>
-<li>The <strong>mean (1,382) is above the median (1,060)</strong> because the big orders pull it up. For "a typical order", report the <strong>median</strong>.</li>
-<li>The 99th percentile is 6,015 but the maximum is 44,128: a handful of bulk orders. They're real (see Cleaning), and they matter for revenue, but they would dominate any average.</li>
-<li>A <strong>log scale</strong> turns the squashed left chart into a readable shape. Money, quantities and web traffic are often skewed like this.</li>
+<li><strong>Right-skewed</strong> (skewness 9.27; 0 would be symmetric):
+many small orders, a few huge ones.</li>
+<li>The <strong>mean (1,382) is above the median (1,060)</strong>
+because the big orders pull it up. For “a typical order”, report the
+<strong>median</strong>.</li>
+<li>The 99th percentile is 6,015 but the maximum is 44,128: a handful of
+bulk orders. They’re real (see Cleaning), and they matter for revenue,
+but they would dominate any average.</li>
+<li>A <strong>log scale</strong> turns the squashed left chart into a
+readable shape. Money, quantities and web traffic are often skewed like
+this.</li>
 </ul>
-<h2 id="step-4-distributions-by-group">Step 4: distributions by group</h2>
-<div class="codehilite"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">net</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"segment"</span><span class="p">)[</span><span class="s2">"revenue"</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">()[[</span><span class="s2">"count"</span><span class="p">,</span> <span class="s2">"25%"</span><span class="p">,</span> <span class="s2">"50%"</span><span class="p">,</span> <span class="s2">"75%"</span><span class="p">,</span> <span class="s2">"max"</span><span class="p">]]</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>                  count    25%     50%     75%      max
+<h2 id="step-4-distributions-by-group">Step 4: distributions by
+group</h2>
+<pre class="python"><code>print(net.groupby(&quot;segment&quot;)[&quot;revenue&quot;].describe()[[&quot;count&quot;, &quot;25%&quot;, &quot;50%&quot;, &quot;75%&quot;, &quot;max&quot;]].round(0))</code></pre>
+<pre class="text"><code>                  count    25%     50%     75%      max
 segment
 Garment Factory  2594.0  750.0  1327.0  2048.0  44128.0
 Knitting Mill     643.0  579.0   977.0  1560.0  13927.0
 Retailer          256.0  150.0   247.0   415.0   4706.0
-Trader            470.0  342.0   602.0   991.0   4104.0
-</code></pre></div>
-
-<p><img alt="Horizontal box plots of order revenue by segment: garment factories have the widest and highest box (median about 1,300), then knitting mills, traders and retailers (median about 250)." src="../../../images/phase-2/eda_revenue_by_segment.png" /></p>
-<p>A <strong>box plot</strong> shows the median (thick line), the middle 50% of orders (the box, from the 25th to the 75th percentile) and the typical range (whiskers). A typical garment-factory order is about <strong>5× a typical retailer order</strong>.</p>
+Trader            470.0  342.0   602.0   991.0   4104.0</code></pre>
+<figure>
+<img src="../../../images/phase-2/eda_revenue_by_segment.png"
+alt="Horizontal box plots of order revenue by segment: garment factories have the widest and highest box (median about 1,300), then knitting mills, traders and retailers (median about 250)." />
+<figcaption aria-hidden="true">Horizontal box plots of order revenue by
+segment: garment factories have the widest and highest box (median about
+1,300), then knitting mills, traders and retailers (median about
+250).</figcaption>
+</figure>
+<p>A <strong>box plot</strong> shows the median (thick line), the middle
+50% of orders (the box, from the 25th to the 75th percentile) and the
+typical range (whiskers). A typical garment-factory order is about
+<strong>5× a typical retailer order</strong>.</p>
 <h2 id="step-5-patterns-over-time">Step 5: patterns over time</h2>
-<div class="codehilite"><pre><span></span><code><span class="n">weekly</span> <span class="o">=</span> <span class="n">net</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">"order_date"</span><span class="p">)[</span><span class="s2">"revenue"</span><span class="p">]</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s2">"W-SAT"</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="mi">1000</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">weekly</span><span class="o">.</span><span class="n">idxmin</span><span class="p">()</span><span class="o">.</span><span class="n">date</span><span class="p">(),</span> <span class="nb">round</span><span class="p">(</span><span class="n">weekly</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="mi">0</span><span class="p">),</span> <span class="s2">"|"</span><span class="p">,</span> <span class="n">weekly</span><span class="o">.</span><span class="n">idxmax</span><span class="p">()</span><span class="o">.</span><span class="n">date</span><span class="p">(),</span> <span class="nb">round</span><span class="p">(</span><span class="n">weekly</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="mi">0</span><span class="p">))</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>2025-04-05 13.0 | 2025-11-29 182.0
-</code></pre></div>
-
-<p><img alt="Weekly revenue line for 2025 with dashed lines at both Eid holidays: the week after Eid al-Fitr falls to about 13 thousand and the week of Eid al-Adha to about 28 thousand; revenue rises from July and peaks around 180 thousand at the end of November." src="../../../images/phase-2/eda_weekly_revenue.png" /></p>
+<pre class="python"><code>weekly = net.set_index(&quot;order_date&quot;)[&quot;revenue&quot;].resample(&quot;W-SAT&quot;).sum() / 1000
+print(weekly.idxmin().date(), round(weekly.min(), 0), &quot;|&quot;, weekly.idxmax().date(), round(weekly.max(), 0))</code></pre>
+<pre class="text"><code>2025-04-05 13.0 | 2025-11-29 182.0</code></pre>
+<figure>
+<img src="../../../images/phase-2/eda_weekly_revenue.png"
+alt="Weekly revenue line for 2025 with dashed lines at both Eid holidays: the week after Eid al-Fitr falls to about 13 thousand and the week of Eid al-Adha to about 28 thousand; revenue rises from July and peaks around 180 thousand at the end of November." />
+<figcaption aria-hidden="true">Weekly revenue line for 2025 with dashed
+lines at both Eid holidays: the week after Eid al-Fitr falls to about 13
+thousand and the week of Eid al-Adha to about 28 thousand; revenue rises
+from July and peaks around 180 thousand at the end of
+November.</figcaption>
+</figure>
 <ul>
-<li><code>"W-SAT"</code> makes weeks that end on Saturday. (The first and last weeks of the year are partial, so ignore their dips.)</li>
-<li><strong>Pattern 1, holidays:</strong> the weakest week (ending 5 April, 13 thousand) is the Eid al-Fitr week; Eid al-Adha in June shows the same drop.</li>
-<li><strong>Pattern 2, seasonality:</strong> revenue climbs from July and stays high from September to November (the export season), with the strongest week ending 29 November.</li>
+<li><code>"W-SAT"</code> makes weeks that end on Saturday. (The first
+and last weeks of the year are partial, so ignore their dips.)</li>
+<li><strong>Pattern 1, holidays:</strong> the weakest week (ending 5
+April, 13 thousand) is the Eid al-Fitr week; Eid al-Adha in June shows
+the same drop.</li>
+<li><strong>Pattern 2, seasonality:</strong> revenue climbs from July
+and stays high from September to November (the export season), with the
+strongest week ending 29 November.</li>
 <li>Weekly data shows holiday effects that monthly totals hide.</li>
 </ul>
-<h2 id="step-6-patterns-across-categories">Step 6: patterns across categories</h2>
-<div class="codehilite"><pre><span></span><code><span class="n">mix</span> <span class="o">=</span> <span class="n">net</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"category"</span><span class="p">)[</span><span class="s2">"revenue"</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">div</span><span class="p">(</span><span class="n">net</span><span class="p">[</span><span class="s2">"revenue"</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span><span class="o">.</span><span class="n">mul</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">mix</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>category
+<h2 id="step-6-patterns-across-categories">Step 6: patterns across
+categories</h2>
+<pre class="python"><code>mix = net.groupby(&quot;category&quot;)[&quot;revenue&quot;].sum().div(net[&quot;revenue&quot;].sum()).mul(100).round(1)
+print(mix.sort_values(ascending=False))</code></pre>
+<pre class="text"><code>category
 Fabric    43.1
 Yarn      41.0
 Trims     15.8
-Name: revenue, dtype: float64
-</code></pre></div>
-
-<p>Fabric and yarn bring 84% of revenue. Combined with the margin results (Trims: 35.5% margin), that's a classic trade-off worth raising: the smallest category is the most profitable.</p>
+Name: revenue, dtype: float64</code></pre>
+<p>Fabric and yarn bring 84% of revenue. Combined with the margin
+results (Trims: 35.5% margin), that’s a classic trade-off worth raising:
+the smallest category is the most profitable.</p>
 <h2 id="common-mistakes">Common mistakes</h2>
 <table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Mistake</th>
 <th>What happens</th>
 <th>Fix</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>Starting with charts, no questions</td>
 <td>Dozens of plots, no conclusions</td>
 <td>Write 3–5 questions first</td>
 </tr>
-<tr>
-<td>Reporting the mean of skewed data as "typical"</td>
+<tr class="even">
+<td>Reporting the mean of skewed data as “typical”</td>
 <td>Overstates the typical order</td>
 <td>Median + percentiles; mention skew</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>One histogram with default bins</td>
 <td>Hidden shape or fake gaps</td>
 <td>Try a few bin counts and a log scale</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Monthly totals only</td>
 <td>Holiday weeks and weekday effects disappear</td>
 <td>Look at weekly or daily data too</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Counting partial periods as real dips</td>
-<td>False "drops" at the start and end of the year</td>
+<td>False “drops” at the start and end of the year</td>
 <td>Flag or exclude incomplete weeks/months</td>
 </tr>
 </tbody>
 </table>
 <h2 id="try-it-yourself">Try it yourself</h2>
-<p><strong>Task:</strong> Describe the distribution of <strong>delivery days</strong> for delivered orders: counts per value, median, mean, and the share of deliveries taking more than 7 days. Is it skewed?</p>
+<p><strong>Task:</strong> Describe the distribution of <strong>delivery
+days</strong> for delivered orders: counts per value, median, mean, and
+the share of deliveries taking more than 7 days. Is it skewed?</p>
 <details>
-<summary>Show the solution</summary>
-<div class="codehilite"><pre><span></span><code><span class="n">dd</span> <span class="o">=</span> <span class="n">orders</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">orders</span><span class="p">[</span><span class="s2">"status"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"Delivered"</span><span class="p">,</span> <span class="s2">"delivery_days"</span><span class="p">]</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">dd</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span><span class="o">.</span><span class="n">to_dict</span><span class="p">())</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">"median:"</span><span class="p">,</span> <span class="n">dd</span><span class="o">.</span><span class="n">median</span><span class="p">(),</span> <span class="s2">"| mean:"</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">dd</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="mi">2</span><span class="p">),</span> <span class="s2">"| share over 7 days:"</span><span class="p">,</span> <span class="nb">round</span><span class="p">((</span><span class="n">dd</span> <span class="o">&gt;</span> <span class="mi">7</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="s2">"%"</span><span class="p">)</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>{1.0: 566, 2.0: 887, 3.0: 873, 4.0: 611, 5.0: 379, 6.0: 248, 7.0: 137, 8.0: 79, 9.0: 44, 10.0: 24, 11.0: 10, 12.0: 4, 13.0: 4, 14.0: 2, 15.0: 2, 16.0: 1, 17.0: 1}
-median: 3.0 | mean: 3.44 | share over 7 days: 4.4 %
-</code></pre></div>
-
-<p>Yes, right-skewed: most deliveries take 1–4 days, but a tail runs to 17 days, pulling the mean (3.44) above the median (3). The 4.4% taking more than a week are worth listing by region and month.</p>
+<summary>
+Show the solution
+</summary>
+<pre class="python"><code>dd = orders.loc[orders[&quot;status&quot;] == &quot;Delivered&quot;, &quot;delivery_days&quot;]
+print(dd.value_counts().sort_index().to_dict())
+print(&quot;median:&quot;, dd.median(), &quot;| mean:&quot;, round(dd.mean(), 2), &quot;| share over 7 days:&quot;, round((dd &gt; 7).mean() * 100, 1), &quot;%&quot;)</code></pre>
+<pre class="text"><code>{1.0: 566, 2.0: 887, 3.0: 873, 4.0: 611, 5.0: 379, 6.0: 248, 7.0: 137, 8.0: 79, 9.0: 44, 10.0: 24, 11.0: 10, 12.0: 4, 13.0: 4, 14.0: 2, 15.0: 2, 16.0: 1, 17.0: 1}
+median: 3.0 | mean: 3.44 | share over 7 days: 4.4 %</code></pre>
+Yes, right-skewed: most deliveries take 1–4 days, but a tail runs to 17
+days, pulling the mean (3.44) above the median (3). The 4.4% taking more
+than a week are worth listing by region and month.
 </details>
 <h2 id="quick-quiz">Quick quiz</h2>
 <div class="quiz-q" data-answer="1">
-<p>1. Order revenue has mean 1,382 and median 1,060. What does that suggest?</p>
-<ol>
+<p>1. Order revenue has mean 1,382 and median 1,060. What does that
+suggest?</p>
+<ol type="1">
 <li>The data is symmetric</li>
 <li>The data is right-skewed: a few large orders pull the mean up</li>
 <li>There are errors in the data</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B.</strong> Large values pull the mean towards them; the median isn't affected.</p>
+<summary>
+Show answer
+</summary>
+<strong>B.</strong> Large values pull the mean towards them; the median
+isn’t affected.
 </details>
 </div>
 <div class="quiz-q" data-answer="1">
 <p>2. What does the box in a box plot show?</p>
-<ol>
+<ol type="1">
 <li>The minimum to maximum</li>
 <li>The middle 50% of values (25th to 75th percentile)</li>
 <li>The mean ± one standard deviation</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B.</strong> The line inside is the median.</p>
+<summary>
+Show answer
+</summary>
+<strong>B.</strong> The line inside is the median.
 </details>
 </div>
 <div class="quiz-q" data-answer="1">
 <p>3. Why write analytical questions before making charts?</p>
-<ol>
+<ol type="1">
 <li>Charts are slow to make</li>
-<li>Questions define what to measure and when the analysis is finished</li>
+<li>Questions define what to measure and when the analysis is
+finished</li>
 <li>Managers prefer questions to charts</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B.</strong></p>
+<summary>
+Show answer
+</summary>
+<strong>B.</strong>
 </details>
 </div>
 <h2 id="summary">Summary</h2>
 <ul>
-<li>Start with <strong>analytical questions</strong>, then <strong>profile</strong> the data (types, missing, distinct).</li>
-<li>Describe distributions with <strong>percentiles</strong>, the median and skew; use histograms (try a log scale) and box plots by group.</li>
-<li>Look for <strong>patterns over time</strong> at more than one grain (weekly shows holidays; monthly shows seasons), and across categories.</li>
+<li>Start with <strong>analytical questions</strong>, then
+<strong>profile</strong> the data (types, missing, distinct).</li>
+<li>Describe distributions with <strong>percentiles</strong>, the median
+and skew; use histograms (try a log scale) and box plots by group.</li>
+<li>Look for <strong>patterns over time</strong> at more than one grain
+(weekly shows holidays; monthly shows seasons), and across
+categories.</li>
 <li>Write each finding as a sentence with a number.</li>
 </ul>
-<div class="admonition job">
-<p class="admonition-title">Job-ready check</p>
-<p><strong>Interview question:</strong> <em>"You're given a sales dataset and one hour. What do you do?"</em></p>
-<p><strong>Strong answer:</strong> "I clarify the business question and write three to five analytical questions. I profile the data (types, missing values, duplicates, date range) and reconcile one known total. Then I look at the key distributions, trends at weekly and monthly level, and the main group comparisons, and finish with a short written list of findings, caveats and next questions, rather than a stack of charts."</p>
-<p><strong>Mini project:</strong> Write a one-page EDA note for <code>orders_2025.csv</code> that answers the four analytical questions in Step 1, each with one number and at most one chart.</p>
+<div class="admonition job" data-markdown="1">
+<p class="admonition-title">
+Job-ready check
+</p>
+<p><strong>Interview question:</strong> <em>“You’re given a sales
+dataset and one hour. What do you do?”</em></p>
+<p><strong>Strong answer:</strong> “I clarify the business question and
+write three to five analytical questions. I profile the data (types,
+missing values, duplicates, date range) and reconcile one known total.
+Then I look at the key distributions, trends at weekly and monthly
+level, and the main group comparisons, and finish with a short written
+list of findings, caveats and next questions, rather than a stack of
+charts.”</p>
+<p><strong>Mini project:</strong> Write a one-page EDA note for
+<code>orders_2025.csv</code> that answers the four analytical questions
+in Step 1, each with one number and at most one chart.</p>
 </div>
+<section class="mentor-prompt"><div class="mentor-head"><div><span class="eyebrow">AI study companion</span><h2 id="ai-mentor-prompt">AI Mentor Prompt</h2></div><button class="btn copy-prompt" type="button" data-copy-target="mentor-prompt-phase-2-eda-01-questions-patterns-distributions">Copy prompt</button></div><p>Paste this into ChatGPT, Claude, Gemini, or another capable assistant to turn this tutorial into an interactive mentoring session.</p><pre class="prompt-box"><code id="mentor-prompt-phase-2-eda-01-questions-patterns-distributions">You are my hands-on Python, statistics and data-science mentor.
+
+I am currently studying:
+&quot;EDA Part 1: Analytical Questions, Distributions and Patterns&quot;
+
+My level:
+Intermediate
+
+Teach me this topic interactively rather than giving me a long lecture.
+
+Use this sequence:
+
+1. Check what I already understand with one short diagnostic question.
+2. Explain the concept in simple language and give me the mental model first.
+3. Give me one small task using code, SQL, configuration, data, or architecture as appropriate.
+4. Wait for my attempt before showing a complete solution.
+5. Review my work and explain both what is correct and what needs improvement.
+6. Help me debug errors step by step instead of immediately replacing my work.
+7. Increase the difficulty gradually and connect each new step to the previous one.
+8. Relate what I am learning to real professional data/AI engineering work.
+9. Ask me to explain an important decision in my own words so you can check my understanding.
+10. At the end, ask me to build or modify one small feature independently.
+
+Important rules:
+- Do not do the entire exercise for me unless I explicitly ask.
+- Explain unfamiliar terminology before using it heavily.
+- Prefer current, production-relevant practices over outdated shortcuts.
+- Distinguish clearly between concepts, tool-specific behaviour, and optional alternatives.
+- If a technical fact, API, syntax, version, or best practice may have changed, verify it against current official documentation before teaching it.
+- Never invent command output, test results, benchmark numbers, cloud behaviour, or data results.
+- If something cannot be executed in the current environment, say so and give me the exact command or verification step I should run.
+- Keep me actively coding, querying, configuring, reasoning, or debugging throughout the session.
+- When useful, work from the tutorial practice files (data-science-scripts.zip, orders_2025.csv) instead of inventing unrelated examples.
+
+The concepts I need to master are:
+- Analytical questions
+- Distributions
+- Patterns
+- eda
+- exploratory data analysis
+- analytical question
+- data profile
+- distribution
+
+Start by asking me one diagnostic question.</code></pre></section>
+
 <div class="terms-box"><div class="files-head"><b>Key terms in this lesson</b><a href="../../../glossary.html">Glossary →</a></div><div class="term-chips"><a class="term-chip" href="../../../glossary.html#exploratory-data-analysis" title="A first look at a dataset with summaries and charts to understand its shape, quality and patterns before modelling or reporting.">Exploratory data analysis</a><a class="term-chip" href="../../../glossary.html#normal-distribution" title="The symmetric bell-shaped distribution: about 68% of values within 1 standard deviation of the mean, 95% within 2. Money amounts are often log-normal (normal after taking logs).">Normal distribution</a><a class="term-chip" href="../../../glossary.html#skewness" title="How lopsided a distribution is. Right-skewed data has many small values and a long tail of large ones, so its mean is above its median.">Skewness</a></div></div>
 <h2 id="free-resources">Free resources to go deeper</h2><ul class="resources"><li><a href="https://jakevdp.github.io/PythonDataScienceHandbook/04.05-histograms-and-binnings.html">Python Data Science Handbook — Visualization with Matplotlib (histograms)</a><span class="r-meta">Jake VanderPlas (free online book) · Histograms, bins and density.</span></li><li><a href="https://seaborn.pydata.org/tutorial/distributions.html">Visualizing distributions of data</a><span class="r-meta">seaborn official docs · Histograms, KDE, ECDF and box plots, with when to use each.</span></li><li><a href="https://www.itl.nist.gov/div898/handbook/eda/eda.htm">Exploratory data analysis (NIST/SEMATECH e-Handbook)</a><span class="r-meta">NIST (US National Institute of Standards and Technology) · The classic reference on EDA thinking and techniques.</span></li></ul>
 <div class="complete-bar"><span>Finished reading and did the exercise?</span>
@@ -363,9 +490,9 @@ median: 3.0 | mean: 3.44 | share over 7 days: 4.4 %
 <p class="reviewed">Last reviewed: 2026-10-09</p>
 
   </div></main>
-  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#step-1-from-a-vague-request-to-analytical-questions">Step 1: from a vague request to analytical questions</a><a href="#step-2-profile-the-data">Step 2: profile the data</a><a href="#step-3-the-distribution-of-order-revenue">Step 3: the distribution of order revenue</a><a href="#step-4-distributions-by-group">Step 4: distributions by group</a><a href="#step-5-patterns-over-time">Step 5: patterns over time</a><a href="#step-6-patterns-across-categories">Step 6: patterns across categories</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#free-resources">Free resources</a></aside>
+  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#step-1-from-a-vague-request-to-analytical-questions">Step 1: from a vague request to analytical questions</a><a href="#step-2-profile-the-data">Step 2: profile the data</a><a href="#step-3-the-distribution-of-order-revenue">Step 3: the distribution of order revenue</a><a href="#step-4-distributions-by-group">Step 4: distributions by group</a><a href="#step-5-patterns-over-time">Step 5: patterns over time</a><a href="#step-6-patterns-across-categories">Step 6: patterns across categories</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#ai-mentor-prompt">AI Mentor Prompt</a><a href="#free-resources">Free resources</a></aside>
 </div>
-<footer class="site">Data, AI &amp; Automation Path v0.8 · Applied AI, Data &amp; Automation Lab · Updated October 2026<br>
+<footer class="site"><b>Saiful The Techie</b> · Data, AI &amp; Automation Path v0.9.1 · Updated October 2026<br>
 Lesson text: <a href="../../../license.html">CC BY-NC-SA 4.0</a> · Code: <a href="../../../license.html#code-mit-license">MIT</a> · Free external resources belong to their respective owners.</footer>
 <script src="../../../search-index.js"></script>
 <script src="../../../assets/app.js"></script>

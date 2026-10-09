@@ -6,7 +6,7 @@
 <title>Power BI Row-Level Security: Each Manager Sees Only Their Region — Data, AI &amp; Automation Path</title>
 <meta name="description" content="Restrict which rows each user can see with static and dynamic RLS roles, test them in Desktop, and assign members in the service.">
 <meta property="og:type" content="article">
-<meta property="og:site_name" content="Data, AI &amp; Automation Path">
+<meta property="og:site_name" content="Saiful The Techie">
 <meta property="og:title" content="Power BI Row-Level Security: Each Manager Sees Only Their Region">
 <meta property="og:description" content="Restrict which rows each user can see with static and dynamic RLS roles, test them in Desktop, and assign members in the service.">
 <meta property="og:locale" content="en_US">
@@ -19,13 +19,13 @@ var n=null;try{n=localStorage.getItem('daa-nav')}catch(e){}
 if(n==='open'&&window.matchMedia&&matchMedia('(min-width: 961px)').matches)document.documentElement.setAttribute('data-nav','open');
 document.documentElement.classList.add('no-anim')})();</script>
 <link rel="stylesheet" href="../../../assets/style.css">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233f7d6a'/%3E%3Ctext x='16' y='21' font-family='sans-serif' font-size='13' font-weight='700' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
+
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="topbar">
   <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Open curriculum menu" title="Curriculum menu (press M)" aria-controls="sidebar" aria-expanded="false"><span class="ico-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span class="ico-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></button>
-  <a class="brand" href="../../../index.html"><span class="brand-badge">AI</span><span class="brand-text"><span class="brand-name">Data, AI &amp; Automation Path</span><span class="brand-version">v0.8</span></span></a>
+  <a class="brand" href="../../../index.html"><span class="brand-text"><span class="brand-name">Saiful The Techie</span><span class="brand-version">Data, AI &amp; Automation Path · v0.9.1</span></span></a>
   <nav class="top-links" aria-label="Main">
     <a href="../../../index.html" class="">Home</a><a href="../../../curriculum.html" class="">Curriculum</a><a href="../../../practice-files.html" class="">Practice files</a><a href="../../../glossary.html" class="">Glossary</a><a href="../../../how-to-learn.html" class="">How to learn</a><a href="../../../about.html" class="">About</a>
   </nav>
@@ -41,7 +41,7 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="layout wide">
   <nav class="sidebar" id="sidebar" aria-label="Curriculum">
     <div class="side-title">Curriculum</div>
-    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="77"><i></i></div><span class="bar-label" data-progress-label></span></div>
+    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="85"><i></i></div><span class="bar-label" data-progress-label></span></div>
 <div class="nav-phase"><a href="../../../learn/phase-0/index.html"><span class="nav-num">0</span>Foundations</a>
 </div>
 <div class="nav-phase current open"><a href="../../../learn/phase-1/index.html"><span class="nav-num">1</span>Analytics &amp; BI</a>
@@ -98,184 +98,314 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="admonition note"><p class="admonition-title">Before you start</p><p><a href="../../../learn/phase-1/power-pivot-dax/01-relationships.html">Data Model Relationships: Build a Star Schema</a></p></div>
 <div class="files-box"><div class="files-head"><b>Practice files for this page</b><a href="../../../practice-files.html">All practice files →</a></div><ul><li><a href="../../../downloads/sales_model.xlsx" download>sales_model.xlsx</a><span class="f-desc">Five Excel Tables (Orders, Customers, Products, Regions, Targets) for the data model · 12 KB</span></li><li><a href="../../../downloads/regions.csv" download>regions.csv</a><span class="f-desc">4 regions with division and manager e-mail (for row-level security) · 249 B</span></li></ul></div>
 <h2 id="what-is-it">What is it?</h2>
-<p><strong>Row-level security (RLS)</strong> filters the data <strong>inside the model</strong> according to who is looking. With one report and one model, the Dhaka manager sees only Dhaka's orders and targets, while the Head of Sales sees everything.</p>
+<p><strong>Row-level security (RLS)</strong> filters the data
+<strong>inside the model</strong> according to who is looking. With one
+report and one model, the Dhaka manager sees only Dhaka’s orders and
+targets, while the Head of Sales sees everything.</p>
 <ul>
-<li><strong>Static RLS:</strong> one role per group, e.g. role <em>Dhaka</em> with the filter <code>[region] = "Dhaka"</code>.</li>
-<li><strong>Dynamic RLS:</strong> one role for everyone. The filter compares a table column with the signed-in user: <code>[manager_email] = USERPRINCIPALNAME()</code>.</li>
+<li><strong>Static RLS:</strong> one role per group, e.g. role
+<em>Dhaka</em> with the filter <code>[region] = "Dhaka"</code>.</li>
+<li><strong>Dynamic RLS:</strong> one role for everyone. The filter
+compares a table column with the signed-in user:
+<code>[manager_email] = USERPRINCIPALNAME()</code>.</li>
 </ul>
-<div class="admonition job">
-<p class="admonition-title">Why it matters at work</p>
-<p>Without RLS, companies copy the same report once per region, which is a maintenance nightmare. Data security is also a compliance requirement: salaries, customer data and regional figures must not leak. RLS appears in almost every enterprise Power BI project and on the PL-300 exam.</p>
+<div class="admonition job" data-markdown="1">
+<p class="admonition-title">
+Why it matters at work
+</p>
+<p>Without RLS, companies copy the same report once per region, which is
+a maintenance nightmare. Data security is also a compliance requirement:
+salaries, customer data and regional figures must not leak. RLS appears
+in almost every enterprise Power BI project and on the PL-300 exam.</p>
 </div>
 <h2 id="example-1-a-static-role">Example 1: a static role</h2>
-<ol>
-<li>In Power BI Desktop: <strong>Modeling → Manage roles → New</strong>. Name it <strong>Dhaka</strong>.</li>
-<li>Select the table <strong>Regions</strong>. Add the filter <code>[region] = "Dhaka"</code> (or use <strong>Switch to DAX editor</strong>).</li>
+<ol type="1">
+<li>In Power BI Desktop: <strong>Modeling → Manage roles → New</strong>.
+Name it <strong>Dhaka</strong>.</li>
+<li>Select the table <strong>Regions</strong>. Add the filter
+<code>[region] = "Dhaka"</code> (or use <strong>Switch to DAX
+editor</strong>).</li>
 <li><strong>Save</strong>.</li>
 </ol>
-<div class="codehilite"><pre><span></span><code><span class="na">[region]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"Dhaka"</span>
-</code></pre></div>
-
-<p>Because Regions filters <strong>both</strong> Orders and Targets (from the relationships lesson), one rule on the <strong>dimension</strong> secures both facts.</p>
-<p><strong>Test it:</strong> <strong>Modeling → View as</strong> → tick <strong>Dhaka</strong> → <strong>OK</strong>. The overview now shows:</p>
+<pre class="dax"><code>[region] = &quot;Dhaka&quot;</code></pre>
+<p>Because Regions filters <strong>both</strong> Orders and Targets
+(from the relationships lesson), one rule on the
+<strong>dimension</strong> secures both facts.</p>
+<p><strong>Test it:</strong> <strong>Modeling → View as</strong> → tick
+<strong>Dhaka</strong> → <strong>OK</strong>. The overview now
+shows:</p>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>Measure</th>
 <th>Everyone (no role)</th>
 <th>As role <em>Dhaka</em></th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>Net Revenue</td>
 <td>9,075</td>
 <td>3,170</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Target</td>
 <td>9,600</td>
 <td>3,600</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Achievement %</td>
 <td>94.5%</td>
 <td>88.1%</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Orders Count</td>
 <td>12</td>
 <td>5</td>
 </tr>
 </tbody>
 </table>
-<p>A banner shows "Now viewing as: Dhaka". Click <strong>Stop viewing</strong> to return.</p>
-<div class="admonition tip">
-<p class="admonition-title">Filter the dimension, not the fact</p>
-<p>Putting the rule on <code>Regions</code> (4 rows) instead of <code>Orders</code> is simpler, faster, and protects every fact table related to Regions. If you filtered only Orders, Targets would still show all regions.</p>
+<p>A banner shows “Now viewing as: Dhaka”. Click <strong>Stop
+viewing</strong> to return.</p>
+<div class="admonition tip" data-markdown="1">
+<p class="admonition-title">
+Filter the dimension, not the fact
+</p>
+<p>Putting the rule on <code>Regions</code> (4 rows) instead of
+<code>Orders</code> is simpler, faster, and protects every fact table
+related to Regions. If you filtered only Orders, Targets would still
+show all regions.</p>
 </div>
-<h2 id="example-2-dynamic-rls-with-the-users-email">Example 2: dynamic RLS with the user's email</h2>
-<p>The <strong>Regions</strong> table has a <code>manager_email</code> column (e.g. <code>dhaka.manager@example.com</code>). Create <strong>one</strong> role, <strong>Regional managers</strong>, on Regions:</p>
-<div class="codehilite"><pre><span></span><code><span class="na">[manager_email]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">USERPRINCIPALNAME</span><span class="w"> </span><span class="p">()</span>
-</code></pre></div>
-
-<p><code>USERPRINCIPALNAME()</code> returns the sign-in name (UPN) of the person viewing the report. Each manager automatically sees only the rows where their email matches. To add a new region, add a row to the Regions table, with no new role.</p>
-<p><strong>Test it:</strong> <strong>Modeling → View as</strong> → tick <strong>Regional managers</strong> and <strong>Other user</strong>, enter <code>narayanganj.manager@example.com</code> → <strong>OK</strong>. You'll see Net Revenue <strong>1,230</strong>, Target <strong>1,500</strong>, Achievement <strong>82.0%</strong>.</p>
-<div class="admonition note">
-<p class="admonition-title">UPN vs email</p>
-<p>The value returned is the user's <strong>sign-in name (UPN)</strong>. It usually looks like an email, but isn't always the same as their email address. Ask IT for the UPN list when you build the mapping table.</p>
+<h2 id="example-2-dynamic-rls-with-the-users-email">Example 2: dynamic
+RLS with the user’s email</h2>
+<p>The <strong>Regions</strong> table has a <code>manager_email</code>
+column (e.g. <code>dhaka.manager@example.com</code>). Create
+<strong>one</strong> role, <strong>Regional managers</strong>, on
+Regions:</p>
+<pre class="dax"><code>[manager_email] = USERPRINCIPALNAME ()</code></pre>
+<p><code>USERPRINCIPALNAME()</code> returns the sign-in name (UPN) of
+the person viewing the report. Each manager automatically sees only the
+rows where their email matches. To add a new region, add a row to the
+Regions table, with no new role.</p>
+<p><strong>Test it:</strong> <strong>Modeling → View as</strong> → tick
+<strong>Regional managers</strong> and <strong>Other user</strong>,
+enter <code>narayanganj.manager@example.com</code> →
+<strong>OK</strong>. You’ll see Net Revenue <strong>1,230</strong>,
+Target <strong>1,500</strong>, Achievement <strong>82.0%</strong>.</p>
+<div class="admonition note" data-markdown="1">
+<p class="admonition-title">
+UPN vs email
+</p>
+<p>The value returned is the user’s <strong>sign-in name (UPN)</strong>.
+It usually looks like an email, but isn’t always the same as their email
+address. Ask IT for the UPN list when you build the mapping table.</p>
 </div>
-<h2 id="example-3-assign-people-in-the-power-bi-service">Example 3: assign people in the Power BI service</h2>
-<p>You <strong>can't</strong> assign users to roles in Desktop. After publishing (next lesson):</p>
-<ol>
-<li>Open the workspace → the <strong>semantic model</strong> → <strong>… (More options) → Security</strong>.</li>
-<li>Select a role → add people or security groups → <strong>Save</strong>.</li>
+<h2 id="example-3-assign-people-in-the-power-bi-service">Example 3:
+assign people in the Power BI service</h2>
+<p>You <strong>can’t</strong> assign users to roles in Desktop. After
+publishing (next lesson):</p>
+<ol type="1">
+<li>Open the workspace → the <strong>semantic model</strong> → <strong>…
+(More options) → Security</strong>.</li>
+<li>Select a role → add people or security groups →
+<strong>Save</strong>.</li>
 <li>Use <strong>… → Test as role</strong> to check.</li>
 </ol>
-<div class="admonition warning">
-<p class="admonition-title">RLS applies to Viewers only</p>
-<p>RLS restricts users with the workspace <strong>Viewer</strong> role, and people you share the report or app with. Workspace <strong>Admins, Members and Contributors see all the data</strong>, whatever their role. Give report consumers Viewer access (or share an app), never Member.</p>
+<div class="admonition warning" data-markdown="1">
+<p class="admonition-title">
+RLS applies to Viewers only
+</p>
+<p>RLS restricts users with the workspace <strong>Viewer</strong> role,
+and people you share the report or app with. Workspace <strong>Admins,
+Members and Contributors see all the data</strong>, whatever their role.
+Give report consumers Viewer access (or share an app), never Member.</p>
 </div>
 <h2 id="common-mistakes">Common mistakes</h2>
 <table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Mistake</th>
 <th>What happens</th>
 <th>Fix</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>Testing only as yourself (Admin)</td>
-<td>"RLS doesn't work": admins see everything</td>
-<td>Test with <strong>View as</strong> / <strong>Test as role</strong></td>
+<td>“RLS doesn’t work”: admins see everything</td>
+<td>Test with <strong>View as</strong> / <strong>Test as
+role</strong></td>
 </tr>
-<tr>
+<tr class="even">
 <td>Giving managers the Member role</td>
 <td>They bypass RLS</td>
 <td>Viewer role, or share via an app</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Rule on the fact table only</td>
-<td>Other facts (Targets) aren't restricted</td>
+<td>Other facts (Targets) aren’t restricted</td>
 <td>Filter the shared dimension</td>
 </tr>
-<tr>
-<td>UPN in the mapping table doesn't match sign-in names</td>
+<tr class="even">
+<td>UPN in the mapping table doesn’t match sign-in names</td>
 <td>Users see nothing</td>
 <td>Use the UPN values IT provides</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Treating RLS as the only control</td>
 <td>Hidden pages or columns can still expose data elsewhere</td>
-<td>Combine with workspace roles, and design what's in the model</td>
+<td>Combine with workspace roles, and design what’s in the model</td>
 </tr>
 </tbody>
 </table>
 <h2 id="try-it-yourself">Try it yourself</h2>
-<p><strong>Task:</strong> Create a static role <strong>Chattogram Division</strong> that shows all regions in that division (use the <code>division</code> column). Test it with View as. What Net Revenue and Achievement % do you see?</p>
+<p><strong>Task:</strong> Create a static role <strong>Chattogram
+Division</strong> that shows all regions in that division (use the
+<code>division</code> column). Test it with View as. What Net Revenue
+and Achievement % do you see?</p>
 <details>
-<summary>Show a hint</summary>
-<p>Filter on Regions: <code>[division] = "Chattogram Division"</code>.</p>
+<summary>
+Show a hint
+</summary>
+Filter on Regions: <code>[division] = "Chattogram Division"</code>.
 </details>
 <details>
-<summary>Show the solution</summary>
-<div class="codehilite"><pre><span></span><code><span class="na">[division]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"Chattogram Division"</span>
-</code></pre></div>
-
-<p>Only <strong>Chattogram</strong> is in that division, so the role shows Net Revenue <strong>2,155</strong>, Target <strong>2,100</strong> and Achievement <strong>102.6%</strong>. A <strong>Dhaka Division</strong> role (Dhaka, Gazipur, Narayanganj) would show <strong>6,920</strong> vs <strong>7,500</strong> (92.3%).</p>
+<summary>
+Show the solution
+</summary>
+<pre class="dax"><code>[division] = &quot;Chattogram Division&quot;</code></pre>
+Only <strong>Chattogram</strong> is in that division, so the role shows
+Net Revenue <strong>2,155</strong>, Target <strong>2,100</strong> and
+Achievement <strong>102.6%</strong>. A <strong>Dhaka Division</strong>
+role (Dhaka, Gazipur, Narayanganj) would show <strong>6,920</strong> vs
+<strong>7,500</strong> (92.3%).
 </details>
 <h2 id="quick-quiz">Quick quiz</h2>
 <div class="quiz-q" data-answer="1">
 <p>1. Where do you add people to an RLS role?</p>
-<ol>
+<ol type="1">
 <li>Power BI Desktop → Manage roles</li>
 <li>Power BI service → semantic model → Security</li>
 <li>In the DAX filter</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B.</strong> Roles are defined in Desktop, and members are assigned in the service.</p>
+<summary>
+Show answer
+</summary>
+<strong>B.</strong> Roles are defined in Desktop, and members are
+assigned in the service.
 </details>
 </div>
 <div class="quiz-q" data-answer="2">
 <p>2. Which workspace role is restricted by RLS?</p>
-<ol>
+<ol type="1">
 <li>Admin</li>
 <li>Member</li>
 <li>Viewer</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>C — Viewer.</strong> Admins, Members and Contributors see all data.</p>
+<summary>
+Show answer
+</summary>
+<strong>C — Viewer.</strong> Admins, Members and Contributors see all
+data.
 </details>
 </div>
 <div class="quiz-q" data-answer="0">
-<p>3. What does <code>[manager_email] = USERPRINCIPALNAME()</code> achieve?</p>
-<ol>
+<p>3. What does <code>[manager_email] = USERPRINCIPALNAME()</code>
+achieve?</p>
+<ol type="1">
 <li>Each viewer sees only rows matching their sign-in name</li>
 <li>It sends emails to managers</li>
 <li>It hides the email column</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>A.</strong> That's dynamic RLS: one role, filtered per user.</p>
+<summary>
+Show answer
+</summary>
+<strong>A.</strong> That’s dynamic RLS: one role, filtered per user.
 </details>
 </div>
 <h2 id="summary">Summary</h2>
 <ul>
-<li><strong>RLS</strong> filters model rows per user: static roles (fixed values) or dynamic (<code>USERPRINCIPALNAME()</code>).</li>
-<li>Put the rule on a <strong>dimension</strong> so it flows to every related fact.</li>
-<li>Define and test roles in Desktop (<strong>Manage roles</strong>, <strong>View as</strong>), and assign members in the service (<strong>Security</strong>).</li>
-<li>RLS applies to <strong>Viewers</strong> and shared or app users, not to Admins, Members or Contributors.</li>
+<li><strong>RLS</strong> filters model rows per user: static roles
+(fixed values) or dynamic (<code>USERPRINCIPALNAME()</code>).</li>
+<li>Put the rule on a <strong>dimension</strong> so it flows to every
+related fact.</li>
+<li>Define and test roles in Desktop (<strong>Manage roles</strong>,
+<strong>View as</strong>), and assign members in the service
+(<strong>Security</strong>).</li>
+<li>RLS applies to <strong>Viewers</strong> and shared or app users, not
+to Admins, Members or Contributors.</li>
 </ul>
-<div class="admonition job">
-<p class="admonition-title">Job-ready check</p>
-<p><strong>Interview question:</strong> <em>"How would you let 20 regional managers use one report while seeing only their own region?"</em></p>
-<p><strong>Strong answer:</strong> "Dynamic RLS: a region dimension with each manager's UPN, and one role filtering <code>[manager_upn] = USERPRINCIPALNAME()</code>. The filter flows from the dimension to sales and targets. I'd test with View as, give managers Viewer access or an app, and assign the role to a security group so access is managed in one place."</p>
-<p><strong>Mini project:</strong> Add a static role and a dynamic role to your model. Document both in your README, with a screenshot of View as for one manager.</p>
+<div class="admonition job" data-markdown="1">
+<p class="admonition-title">
+Job-ready check
+</p>
+<p><strong>Interview question:</strong> <em>“How would you let 20
+regional managers use one report while seeing only their own
+region?”</em></p>
+<p><strong>Strong answer:</strong> “Dynamic RLS: a region dimension with
+each manager’s UPN, and one role filtering
+<code>[manager_upn] = USERPRINCIPALNAME()</code>. The filter flows from
+the dimension to sales and targets. I’d test with View as, give managers
+Viewer access or an app, and assign the role to a security group so
+access is managed in one place.”</p>
+<p><strong>Mini project:</strong> Add a static role and a dynamic role
+to your model. Document both in your README, with a screenshot of View
+as for one manager.</p>
 </div>
+<section class="mentor-prompt"><div class="mentor-head"><div><span class="eyebrow">AI study companion</span><h2 id="ai-mentor-prompt">AI Mentor Prompt</h2></div><button class="btn copy-prompt" type="button" data-copy-target="mentor-prompt-phase-1-power-bi-03-row-level-security">Copy prompt</button></div><p>Paste this into ChatGPT, Claude, Gemini, or another capable assistant to turn this tutorial into an interactive mentoring session.</p><pre class="prompt-box"><code id="mentor-prompt-phase-1-power-bi-03-row-level-security">You are my hands-on data-analytics and business-intelligence mentor.
+
+I am currently studying:
+&quot;Power BI Row-Level Security: Each Manager Sees Only Their Region&quot;
+
+My level:
+Intermediate
+
+Teach me this topic interactively rather than giving me a long lecture.
+
+Use this sequence:
+
+1. Check what I already understand with one short diagnostic question.
+2. Explain the concept in simple language and give me the mental model first.
+3. Give me one small task using code, SQL, configuration, data, or architecture as appropriate.
+4. Wait for my attempt before showing a complete solution.
+5. Review my work and explain both what is correct and what needs improvement.
+6. Help me debug errors step by step instead of immediately replacing my work.
+7. Increase the difficulty gradually and connect each new step to the previous one.
+8. Relate what I am learning to real professional data/AI engineering work.
+9. Ask me to explain an important decision in my own words so you can check my understanding.
+10. At the end, ask me to build or modify one small feature independently.
+
+Important rules:
+- Do not do the entire exercise for me unless I explicitly ask.
+- Explain unfamiliar terminology before using it heavily.
+- Prefer current, production-relevant practices over outdated shortcuts.
+- Distinguish clearly between concepts, tool-specific behaviour, and optional alternatives.
+- If a technical fact, API, syntax, version, or best practice may have changed, verify it against current official documentation before teaching it.
+- Never invent command output, test results, benchmark numbers, cloud behaviour, or data results.
+- If something cannot be executed in the current environment, say so and give me the exact command or verification step I should run.
+- Keep me actively coding, querying, configuring, reasoning, or debugging throughout the session.
+- When useful, work from the tutorial practice files (sales_model.xlsx, regions.csv) instead of inventing unrelated examples.
+
+The concepts I need to master are:
+- Row-level security
+- rls
+- roles
+- manage roles
+- view as
+- test as role
+- userprincipalname
+- dynamic rls
+
+Start by asking me one diagnostic question.</code></pre></section>
+
 <div class="terms-box"><div class="files-head"><b>Key terms in this lesson</b><a href="../../../glossary.html">Glossary →</a></div><div class="term-chips"><a class="term-chip" href="../../../glossary.html#row-level-security" title="Rules in a model that limit which rows each user can see, such as each regional manager seeing only their region.">Row-level security</a></div></div>
 <h2 id="free-resources">Free resources to go deeper</h2><ul class="resources"><li><a href="https://learn.microsoft.com/en-us/fabric/security/service-admin-row-level-security">Row-level security (RLS) with Power BI</a><span class="r-meta">Microsoft Learn · Defining roles, assigning members and testing.</span></li><li><a href="https://learn.microsoft.com/en-us/power-bi/guidance/rls-guidance">Row-level security (RLS) guidance in Power BI Desktop</a><span class="r-meta">Microsoft Learn · Design advice and common pitfalls.</span></li><li><a href="https://learn.microsoft.com/en-us/power-bi/collaborate-share/service-roles-new-workspaces">Roles in workspaces in Power BI</a><span class="r-meta">Microsoft Learn · Admin, Member, Contributor and Viewer: who RLS applies to.</span></li></ul>
 <div class="complete-bar"><span>Finished reading and did the exercise?</span>
@@ -284,9 +414,9 @@ document.documentElement.classList.add('no-anim')})();</script>
 <p class="reviewed">Last reviewed: 2026-10-09</p>
 
   </div></main>
-  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#example-1-a-static-role">Example 1: a static role</a><a href="#example-2-dynamic-rls-with-the-users-email">Example 2: dynamic RLS with the user&#x27;s email</a><a href="#example-3-assign-people-in-the-power-bi-service">Example 3: assign people in the Power BI service</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#free-resources">Free resources</a></aside>
+  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#example-1-a-static-role">Example 1: a static role</a><a href="#example-2-dynamic-rls-with-the-users-email">Example 2: dynamic RLS with the user’s email</a><a href="#example-3-assign-people-in-the-power-bi-service">Example 3: assign people in the Power BI service</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#ai-mentor-prompt">AI Mentor Prompt</a><a href="#free-resources">Free resources</a></aside>
 </div>
-<footer class="site">Data, AI &amp; Automation Path v0.8 · Applied AI, Data &amp; Automation Lab · Updated October 2026<br>
+<footer class="site"><b>Saiful The Techie</b> · Data, AI &amp; Automation Path v0.9.1 · Updated October 2026<br>
 Lesson text: <a href="../../../license.html">CC BY-NC-SA 4.0</a> · Code: <a href="../../../license.html#code-mit-license">MIT</a> · Free external resources belong to their respective owners.</footer>
 <script src="../../../search-index.js"></script>
 <script src="../../../assets/app.js"></script>

@@ -6,7 +6,7 @@
 <title>DuckDB &amp; Larger Local Data: SQL on Files, Parquet and Millions of Rows — Data, AI &amp; Automation Path</title>
 <meta name="description" content="Query CSV, Parquet and pandas DataFrames with SQL using DuckDB, then handle 2 million rows on a laptop by choosing the right file format, reading only what you need, and comparing pandas, Polars and DuckDB.">
 <meta property="og:type" content="article">
-<meta property="og:site_name" content="Data, AI &amp; Automation Path">
+<meta property="og:site_name" content="Saiful The Techie">
 <meta property="og:title" content="DuckDB &amp; Larger Local Data: SQL on Files, Parquet and Millions of Rows">
 <meta property="og:description" content="Query CSV, Parquet and pandas DataFrames with SQL using DuckDB, then handle 2 million rows on a laptop by choosing the right file format, reading only what you need, and comparing pandas, Polars and DuckDB.">
 <meta property="og:locale" content="en_US">
@@ -19,13 +19,13 @@ var n=null;try{n=localStorage.getItem('daa-nav')}catch(e){}
 if(n==='open'&&window.matchMedia&&matchMedia('(min-width: 961px)').matches)document.documentElement.setAttribute('data-nav','open');
 document.documentElement.classList.add('no-anim')})();</script>
 <link rel="stylesheet" href="../../../assets/style.css">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233f7d6a'/%3E%3Ctext x='16' y='21' font-family='sans-serif' font-size='13' font-weight='700' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
+
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="topbar">
   <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Open curriculum menu" title="Curriculum menu (press M)" aria-controls="sidebar" aria-expanded="false"><span class="ico-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span class="ico-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></button>
-  <a class="brand" href="../../../index.html"><span class="brand-badge">AI</span><span class="brand-text"><span class="brand-name">Data, AI &amp; Automation Path</span><span class="brand-version">v0.8</span></span></a>
+  <a class="brand" href="../../../index.html"><span class="brand-text"><span class="brand-name">Saiful The Techie</span><span class="brand-version">Data, AI &amp; Automation Path · v0.9.1</span></span></a>
   <nav class="top-links" aria-label="Main">
     <a href="../../../index.html" class="">Home</a><a href="../../../curriculum.html" class="">Curriculum</a><a href="../../../practice-files.html" class="">Practice files</a><a href="../../../glossary.html" class="">Glossary</a><a href="../../../how-to-learn.html" class="">How to learn</a><a href="../../../about.html" class="">About</a>
   </nav>
@@ -41,7 +41,7 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="layout wide">
   <nav class="sidebar" id="sidebar" aria-label="Curriculum">
     <div class="side-title">Curriculum</div>
-    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="77"><i></i></div><span class="bar-label" data-progress-label></span></div>
+    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="85"><i></i></div><span class="bar-label" data-progress-label></span></div>
 <div class="nav-phase"><a href="../../../learn/phase-0/index.html"><span class="nav-num">0</span>Foundations</a>
 </div>
 <div class="nav-phase"><a href="../../../learn/phase-1/index.html"><span class="nav-num">1</span>Analytics &amp; BI</a>
@@ -97,29 +97,43 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="files-box"><div class="files-head"><b>Practice files for this page</b><a href="../../../practice-files.html">All practice files →</a></div><ul><li><a href="../../../downloads/phase-2/data-science-scripts.zip" download>data-science-scripts.zip</a><span class="f-desc">All 21 Phase 2 lesson scripts (NumPy to research thinking), shared chart style, data folder and solutions · 230 KB</span></li><li><a href="../../../downloads/phase-2/orders_2025.csv" download>orders_2025.csv</a><span class="f-desc">4,246 clean orders for 2025 (synthetic, fixed seed): region, segment, channel, product, price, discount, status, delivery days, revenue · 472 KB</span></li><li><a href="../../../downloads/phase-2/customers_2025.csv" download>customers_2025.csv</a><span class="f-desc">63 customers: segment, region, sign-up date, credit terms · 3 KB</span></li></ul></div>
 <h2 id="what-is-it">What is it?</h2>
 <ul>
-<li><strong>DuckDB</strong> is an analytical SQL database that runs <strong>inside your Python process</strong>: <code>pip install duckdb</code> and you have it. No server, no accounts. It can query CSV and Parquet files and pandas/Polars DataFrames directly.</li>
-<li><strong>Parquet</strong> is a <strong>columnar</strong> file format: compressed, typed, and fast to read one column at a time. CSV is plain text, row by row.</li>
-<li><strong>Working with larger local data</strong> means getting answers from millions of rows on a laptop by reading less, using better formats and choosing the right engine.</li>
+<li><strong>DuckDB</strong> is an analytical SQL database that runs
+<strong>inside your Python process</strong>:
+<code>pip install duckdb</code> and you have it. No server, no accounts.
+It can query CSV and Parquet files and pandas/Polars DataFrames
+directly.</li>
+<li><strong>Parquet</strong> is a <strong>columnar</strong> file format:
+compressed, typed, and fast to read one column at a time. CSV is plain
+text, row by row.</li>
+<li><strong>Working with larger local data</strong> means getting
+answers from millions of rows on a laptop by reading less, using better
+formats and choosing the right engine.</li>
 </ul>
-<div class="admonition job">
-<p class="admonition-title">Why it matters at work</p>
-<p>Many analyses are "too big for Excel, too small to justify a cloud warehouse". DuckDB and Parquet fill that gap and are now common in data teams for local analysis, testing pipelines and even small production jobs. Your SQL from Phase 1 transfers directly.</p>
+<div class="admonition job" data-markdown="1">
+<p class="admonition-title">
+Why it matters at work
+</p>
+<p>Many analyses are “too big for Excel, too small to justify a cloud
+warehouse”. DuckDB and Parquet fill that gap and are now common in data
+teams for local analysis, testing pipelines and even small production
+jobs. Your SQL from Phase 1 transfers directly.</p>
 </div>
-<p>The script is <code>08_duckdb_larger_data.py</code>. Run <code>make_big_data.py</code> first: it creates a 2-million-row synthetic file in <code>data/</code> (as CSV and Parquet).</p>
-<h2 id="example-1-sql-directly-on-a-csv-file">Example 1: SQL directly on a CSV file</h2>
-<div class="codehilite"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">duckdb</span>
+<p>The script is <code>08_duckdb_larger_data.py</code>. Run
+<code>make_big_data.py</code> first: it creates a 2-million-row
+synthetic file in <code>data/</code> (as CSV and Parquet).</p>
+<h2 id="example-1-sql-directly-on-a-csv-file">Example 1: SQL directly on
+a CSV file</h2>
+<pre class="python"><code>import duckdb
 
-<span class="nb">print</span><span class="p">(</span><span class="n">duckdb</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">duckdb</span><span class="o">.</span><span class="n">sql</span><span class="p">(</span><span class="s2">"""</span>
-<span class="s2">    SELECT region, COUNT(*) AS orders, ROUND(SUM(revenue), 0) AS revenue</span>
-<span class="s2">    FROM 'data/orders_2025.csv'</span>
-<span class="s2">    WHERE status &lt;&gt; 'Cancelled'</span>
-<span class="s2">    GROUP BY region</span>
-<span class="s2">    ORDER BY revenue DESC</span>
-<span class="s2">"""</span><span class="p">))</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>1.5.6
+print(duckdb.__version__)
+print(duckdb.sql(&quot;&quot;&quot;
+    SELECT region, COUNT(*) AS orders, ROUND(SUM(revenue), 0) AS revenue
+    FROM &#39;data/orders_2025.csv&#39;
+    WHERE status &lt;&gt; &#39;Cancelled&#39;
+    GROUP BY region
+    ORDER BY revenue DESC
+&quot;&quot;&quot;))</code></pre>
+<pre class="text"><code>1.5.6
 ┌─────────────┬────────┬───────────┐
 │   region    │ orders │  revenue  │
 │   varchar   │ int64  │  double   │
@@ -129,51 +143,48 @@ document.documentElement.classList.add('no-anim')})();</script>
 │ Narayanganj │    447 │  583516.0 │
 │ Gazipur     │    469 │  571973.0 │
 │ Khulna      │    313 │  429968.0 │
-└─────────────┴────────┴───────────┘
-</code></pre></div>
+└─────────────┴────────┴───────────┘</code></pre>
+<p>A file path in quotes works as a table name. Same numbers as pandas
+and Polars.</p>
+<h2 id="example-2-sql-on-a-pandas-dataframe">Example 2: SQL on a pandas
+DataFrame</h2>
+<pre class="python"><code>import pandas as pd
 
-<p>A file path in quotes works as a table name. Same numbers as pandas and Polars.</p>
-<h2 id="example-2-sql-on-a-pandas-dataframe">Example 2: SQL on a pandas DataFrame</h2>
-<div class="codehilite"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
-
-<span class="n">customers</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">"data/customers_2025.csv"</span><span class="p">)</span>
-<span class="n">top</span> <span class="o">=</span> <span class="n">duckdb</span><span class="o">.</span><span class="n">sql</span><span class="p">(</span><span class="s2">"""</span>
-<span class="s2">    SELECT c.customer_name, c.credit_days, ROUND(SUM(o.revenue), 0) AS revenue</span>
-<span class="s2">    FROM 'data/orders_2025.csv' AS o</span>
-<span class="s2">    JOIN customers AS c USING (customer_id)</span>
-<span class="s2">    WHERE o.status &lt;&gt; 'Cancelled'</span>
-<span class="s2">    GROUP BY ALL</span>
-<span class="s2">    ORDER BY revenue DESC</span>
-<span class="s2">    LIMIT 3</span>
-<span class="s2">"""</span><span class="p">)</span><span class="o">.</span><span class="n">df</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">top</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">top</span><span class="p">)</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>DataFrame
+customers = pd.read_csv(&quot;data/customers_2025.csv&quot;)
+top = duckdb.sql(&quot;&quot;&quot;
+    SELECT c.customer_name, c.credit_days, ROUND(SUM(o.revenue), 0) AS revenue
+    FROM &#39;data/orders_2025.csv&#39; AS o
+    JOIN customers AS c USING (customer_id)
+    WHERE o.status &lt;&gt; &#39;Cancelled&#39;
+    GROUP BY ALL
+    ORDER BY revenue DESC
+    LIMIT 3
+&quot;&quot;&quot;).df()
+print(type(top).__name__)
+print(top)</code></pre>
+<pre class="text"><code>DataFrame
     customer_name  credit_days   revenue
 0   Ocean Apparel           15  295414.0
 1  Prime Garments           60  255781.0
-2  Silver Fashion            0  225647.0
-</code></pre></div>
-
+2  Silver Fashion            0  225647.0</code></pre>
 <ul>
-<li>DuckDB finds the Python variable <code>customers</code> by name and joins it to the CSV.</li>
-<li><code>GROUP BY ALL</code> groups by every non-aggregated column (a DuckDB convenience).</li>
-<li><code>.df()</code> returns pandas; <code>.pl()</code> returns Polars; <code>.fetchall()</code> returns Python tuples.</li>
+<li>DuckDB finds the Python variable <code>customers</code> by name and
+joins it to the CSV.</li>
+<li><code>GROUP BY ALL</code> groups by every non-aggregated column (a
+DuckDB convenience).</li>
+<li><code>.df()</code> returns pandas; <code>.pl()</code> returns
+Polars; <code>.fetchall()</code> returns Python tuples.</li>
 </ul>
 <h2 id="example-3-window-functions">Example 3: window functions</h2>
-<div class="codehilite"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">duckdb</span><span class="o">.</span><span class="n">sql</span><span class="p">(</span><span class="s2">"""</span>
-<span class="s2">    SELECT month(order_date) AS m,</span>
-<span class="s2">           ROUND(SUM(revenue), 0) AS revenue,</span>
-<span class="s2">           ROUND(SUM(SUM(revenue)) OVER (ORDER BY month(order_date)), 0) AS running_total</span>
-<span class="s2">    FROM 'data/orders_2025.csv'</span>
-<span class="s2">    WHERE status &lt;&gt; 'Cancelled'</span>
-<span class="s2">    GROUP BY m ORDER BY m LIMIT 4</span>
-<span class="s2">"""</span><span class="p">))</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>┌───────┬──────────┬───────────────┐
+<pre class="python"><code>print(duckdb.sql(&quot;&quot;&quot;
+    SELECT month(order_date) AS m,
+           ROUND(SUM(revenue), 0) AS revenue,
+           ROUND(SUM(SUM(revenue)) OVER (ORDER BY month(order_date)), 0) AS running_total
+    FROM &#39;data/orders_2025.csv&#39;
+    WHERE status &lt;&gt; &#39;Cancelled&#39;
+    GROUP BY m ORDER BY m LIMIT 4
+&quot;&quot;&quot;))</code></pre>
+<pre class="text"><code>┌───────┬──────────┬───────────────┐
 │   m   │ revenue  │ running_total │
 │ int64 │  double  │    double     │
 ├───────┼──────────┼───────────────┤
@@ -181,41 +192,42 @@ document.documentElement.classList.add('no-anim')})();</script>
 │     2 │ 335736.0 │      665928.0 │
 │     3 │ 324249.0 │      990177.0 │
 │     4 │ 336682.0 │     1326859.0 │
-└───────┴──────────┴───────────────┘
-</code></pre></div>
-
-<p>A year-to-date running total in one query. (Window functions are covered fully in Phase 3's Advanced SQL.)</p>
-<h2 id="example-4-larger-data-the-file-format-matters">Example 4: larger data — the file format matters</h2>
+└───────┴──────────┴───────────────┘</code></pre>
+<p>A year-to-date running total in one query. (Window functions are
+covered fully in Phase 3’s Advanced SQL.)</p>
+<h2 id="example-4-larger-data-the-file-format-matters">Example 4: larger
+data — the file format matters</h2>
 <p>The 2-million-row file:</p>
-<div class="codehilite"><pre><span></span><code>data/orders_big.csv 131 MB
-data/orders_big.parquet 22 MB
-</code></pre></div>
-
-<p>Same data, <strong>6× smaller</strong> as Parquet: it's compressed column by column and stores types (no re-parsing text).</p>
-<div class="codehilite"><pre><span></span><code><span class="n">big</span> <span class="o">=</span> <span class="n">timed</span><span class="p">(</span><span class="s2">"pandas read_csv (all columns)"</span><span class="p">,</span> <span class="k">lambda</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">"data/orders_big.csv"</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"pandas memory: </span><span class="si">{</span><span class="n">big</span><span class="o">.</span><span class="n">memory_usage</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">1e6</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2"> MB, rows: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">big</span><span class="p">)</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-<span class="n">timed</span><span class="p">(</span><span class="s2">"pandas read_parquet (2 columns)"</span><span class="p">,</span> <span class="k">lambda</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_parquet</span><span class="p">(</span><span class="s2">"data/orders_big.parquet"</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"region"</span><span class="p">,</span> <span class="s2">"quantity"</span><span class="p">]))</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>pandas read_csv (all columns)       1.83 s
+<pre class="text"><code>data/orders_big.csv 131 MB
+data/orders_big.parquet 22 MB</code></pre>
+<p>Same data, <strong>6× smaller</strong> as Parquet: it’s compressed
+column by column and stores types (no re-parsing text).</p>
+<pre class="python"><code>big = timed(&quot;pandas read_csv (all columns)&quot;, lambda: pd.read_csv(&quot;data/orders_big.csv&quot;))
+print(f&quot;pandas memory: {big.memory_usage(deep=True).sum() / 1e6:.0f} MB, rows: {len(big):,}&quot;)
+timed(&quot;pandas read_parquet (2 columns)&quot;, lambda: pd.read_parquet(&quot;data/orders_big.parquet&quot;, columns=[&quot;region&quot;, &quot;quantity&quot;]))</code></pre>
+<pre class="text"><code>pandas read_csv (all columns)       1.83 s
 pandas memory: 215 MB, rows: 2,000,000
-pandas read_parquet (2 columns)     0.06 s
-</code></pre></div>
-
-<p>(<code>timed</code> is a small helper in the script that prints how long a step took. Timings are from one run on our build machine; yours will differ, but the ratios hold.) Reading <strong>only the columns you need</strong> from Parquet is about 30× faster than reading the whole CSV.</p>
-<h2 id="example-5-one-question-three-engines-2-million-rows">Example 5: one question, three engines, 2 million rows</h2>
-<p><em>"Net 2025 revenue and orders by region"</em>:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">QUERY</span> <span class="o">=</span> <span class="s2">"""</span>
-<span class="s2">    SELECT region, COUNT(*) AS orders, ROUND(SUM(quantity * unit_price), 0) AS revenue</span>
-<span class="s2">    FROM 'data/orders_big.parquet'</span>
-<span class="s2">    WHERE status &lt;&gt; 'Cancelled' AND year(order_date) = 2025</span>
-<span class="s2">    GROUP BY region ORDER BY revenue DESC</span>
-<span class="s2">"""</span>
-<span class="n">res_duck</span> <span class="o">=</span> <span class="n">timed</span><span class="p">(</span><span class="s2">"DuckDB SQL on Parquet"</span><span class="p">,</span> <span class="k">lambda</span><span class="p">:</span> <span class="n">duckdb</span><span class="o">.</span><span class="n">sql</span><span class="p">(</span><span class="n">QUERY</span><span class="p">)</span><span class="o">.</span><span class="n">df</span><span class="p">())</span>
-</code></pre></div>
-
-<p>The Polars version uses <code>scan_parquet(...).filter(...).group_by(...).agg(...).collect()</code>, and the pandas version reads 5 columns, filters, then groups (both are in the script).</p>
-<div class="codehilite"><pre><span></span><code>DuckDB SQL on Parquet               0.03 s
+pandas read_parquet (2 columns)     0.06 s</code></pre>
+<p>(<code>timed</code> is a small helper in the script that prints how
+long a step took. Timings are from one run on our build machine; yours
+will differ, but the ratios hold.) Reading <strong>only the columns you
+need</strong> from Parquet is about 30× faster than reading the whole
+CSV.</p>
+<h2 id="example-5-one-question-three-engines-2-million-rows">Example 5:
+one question, three engines, 2 million rows</h2>
+<p><em>“Net 2025 revenue and orders by region”</em>:</p>
+<pre class="python"><code>QUERY = &quot;&quot;&quot;
+    SELECT region, COUNT(*) AS orders, ROUND(SUM(quantity * unit_price), 0) AS revenue
+    FROM &#39;data/orders_big.parquet&#39;
+    WHERE status &lt;&gt; &#39;Cancelled&#39; AND year(order_date) = 2025
+    GROUP BY region ORDER BY revenue DESC
+&quot;&quot;&quot;
+res_duck = timed(&quot;DuckDB SQL on Parquet&quot;, lambda: duckdb.sql(QUERY).df())</code></pre>
+<p>The Polars version uses
+<code>scan_parquet(...).filter(...).group_by(...).agg(...).collect()</code>,
+and the pandas version reads 5 columns, filters, then groups (both are
+in the script).</p>
+<pre class="text"><code>DuckDB SQL on Parquet               0.03 s
 Polars lazy scan_parquet            0.04 s
 pandas read_parquet + groupby       0.26 s
         region  orders     revenue
@@ -224,76 +236,93 @@ pandas read_parquet + groupby       0.26 s
 2      Gazipur   75390  58494988.0
 3  Narayanganj   52444  40485666.0
 4       Khulna   37357  29121935.0
-True True
-</code></pre></div>
-
-<p>All three agree (<code>True True</code>). DuckDB and Polars are several times faster because they <strong>push the filter and column choice into the file scan</strong> and use all CPU cores; pandas loads the columns first and filters afterwards.</p>
-<h2 id="a-practical-playbook-for-too-slow-data">A practical playbook for "too slow" data</h2>
+True True</code></pre>
+<p>All three agree (<code>True True</code>). DuckDB and Polars are
+several times faster because they <strong>push the filter and column
+choice into the file scan</strong> and use all CPU cores; pandas loads
+the columns first and filters afterwards.</p>
+<h2 id="a-practical-playbook-for-too-slow-data">A practical playbook for
+“too slow” data</h2>
 <table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Step</th>
 <th>Why</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>1. Store data as <strong>Parquet</strong>, not CSV</td>
 <td>Smaller, typed, column-selective</td>
 </tr>
-<tr>
+<tr class="even">
 <td>2. Read <strong>only the columns</strong> you need</td>
 <td>Less memory, faster</td>
 </tr>
-<tr>
-<td>3. <strong>Filter early</strong>, ideally in the scan (DuckDB, Polars lazy)</td>
+<tr class="odd">
+<td>3. <strong>Filter early</strong>, ideally in the scan (DuckDB,
+Polars lazy)</td>
 <td>Rows never enter memory</td>
 </tr>
-<tr>
-<td>4. Use efficient types (<code>category</code> for repeated text, smaller ints)</td>
+<tr class="even">
+<td>4. Use efficient types (<code>category</code> for repeated text,
+smaller ints)</td>
 <td>pandas memory drops a lot</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>5. Aggregate in DuckDB/Polars, hand the small result to pandas</td>
-<td>Use each tool for what it's best at</td>
+<td>Use each tool for what it’s best at</td>
 </tr>
-<tr>
-<td>6. Still too big? Partition files (by year/month) or move to a warehouse (Phase 3)</td>
+<tr class="even">
+<td>6. Still too big? Partition files (by year/month) or move to a
+warehouse (Phase 3)</td>
 <td>Scale beyond one machine</td>
 </tr>
 </tbody>
 </table>
 <h2 id="common-mistakes">Common mistakes</h2>
 <table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Mistake</th>
 <th>What happens</th>
 <th>Fix</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td>Loading a huge CSV "just to look"</td>
+<tr class="odd">
+<td>Loading a huge CSV “just to look”</td>
 <td>Memory errors, long waits</td>
-<td><code>duckdb.sql("SELECT * FROM 'f.csv' LIMIT 10")</code> or <code>scan_csv(...).head().collect()</code></td>
+<td><code>duckdb.sql("SELECT * FROM 'f.csv' LIMIT 10")</code> or
+<code>scan_csv(...).head().collect()</code></td>
 </tr>
-<tr>
+<tr class="even">
 <td>Keeping big data as CSV</td>
 <td>Re-parsing text on every run</td>
 <td>Convert once to Parquet</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Comparing tools on one tiny run</td>
 <td>Misleading benchmarks</td>
-<td>Several runs, realistic data, same question, check results match</td>
+<td>Several runs, realistic data, same question, check results
+match</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Treating DuckDB as a shared server database</td>
 <td>Concurrency surprises</td>
-<td>It's for local/embedded analytics; use PostgreSQL etc. for many writers</td>
+<td>It’s for local/embedded analytics; use PostgreSQL etc. for many
+writers</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Forgetting <code>.df()</code></td>
 <td>You get a DuckDB relation, not a DataFrame</td>
 <td><code>.df()</code> / <code>.pl()</code> at the end</td>
@@ -301,26 +330,33 @@ True True
 </tbody>
 </table>
 <h2 id="try-it-yourself">Try it yourself</h2>
-<p><strong>Task:</strong> With DuckDB, write a summary of <strong>delivered units per year and product</strong> from <code>orders_big.parquet</code> to a new Parquet file, <code>data/units_by_year.parquet</code>. Read it with Polars and show Zippers by year.</p>
+<p><strong>Task:</strong> With DuckDB, write a summary of
+<strong>delivered units per year and product</strong> from
+<code>orders_big.parquet</code> to a new Parquet file,
+<code>data/units_by_year.parquet</code>. Read it with Polars and show
+Zippers by year.</p>
 <details>
-<summary>Show a hint</summary>
-<p><code>COPY (SELECT …) TO 'file.parquet' (FORMAT parquet)</code> writes any query result to a file.</p>
+<summary>
+Show a hint
+</summary>
+<code>COPY (SELECT …) TO 'file.parquet' (FORMAT parquet)</code> writes
+any query result to a file.
 </details>
 <details>
-<summary>Show the solution</summary>
-<div class="codehilite"><pre><span></span><code><span class="n">duckdb</span><span class="o">.</span><span class="n">sql</span><span class="p">(</span><span class="s2">"""</span>
-<span class="s2">    COPY (</span>
-<span class="s2">        SELECT year(order_date) AS year, product, SUM(quantity)::BIGINT AS units</span>
-<span class="s2">        FROM 'data/orders_big.parquet' WHERE status = 'Delivered'</span>
-<span class="s2">        GROUP BY ALL</span>
-<span class="s2">    ) TO 'data/units_by_year.parquet' (FORMAT parquet)</span>
-<span class="s2">"""</span><span class="p">)</span>
-<span class="n">summary</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">read_parquet</span><span class="p">(</span><span class="s2">"data/units_by_year.parquet"</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">summary</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">summary</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">"product"</span><span class="p">)</span> <span class="o">==</span> <span class="s2">"Zippers"</span><span class="p">)</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="s2">"year"</span><span class="p">))</span>
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>(60, 3)
+<summary>
+Show the solution
+</summary>
+<pre class="python"><code>duckdb.sql(&quot;&quot;&quot;
+    COPY (
+        SELECT year(order_date) AS year, product, SUM(quantity)::BIGINT AS units
+        FROM &#39;data/orders_big.parquet&#39; WHERE status = &#39;Delivered&#39;
+        GROUP BY ALL
+    ) TO &#39;data/units_by_year.parquet&#39; (FORMAT parquet)
+&quot;&quot;&quot;)
+summary = pl.read_parquet(&quot;data/units_by_year.parquet&quot;)
+print(summary.shape)
+print(summary.filter(pl.col(&quot;product&quot;) == &quot;Zippers&quot;).sort(&quot;year&quot;))</code></pre>
+<pre class="text"><code>(60, 3)
 shape: (5, 3)
 ┌──────┬─────────┬──────────┐
 │ year ┆ product ┆ units    │
@@ -332,61 +368,133 @@ shape: (5, 3)
 │ 2023 ┆ Zippers ┆ 11108952 │
 │ 2024 ┆ Zippers ┆ 10968963 │
 │ 2025 ┆ Zippers ┆ 10927947 │
-└──────┴─────────┴──────────┘
-</code></pre></div>
-
-<p>5 years × 12 products = 60 rows. <code>::BIGINT</code> keeps the total a whole number (without it, the sum comes back as a float). A 2-million-row file became a 60-row file that any tool, including Excel or Power BI, can use.</p>
+└──────┴─────────┴──────────┘</code></pre>
+5 years × 12 products = 60 rows. <code>::BIGINT</code> keeps the total a
+whole number (without it, the sum comes back as a float). A
+2-million-row file became a 60-row file that any tool, including Excel
+or Power BI, can use.
 </details>
 <h2 id="quick-quiz">Quick quiz</h2>
 <div class="quiz-q" data-answer="1">
-<p>1. What does "in-process" mean for DuckDB?</p>
-<ol>
+<p>1. What does “in-process” mean for DuckDB?</p>
+<ol type="1">
 <li>It needs a separate database server</li>
-<li>It runs inside your Python program, with nothing else to install or start</li>
+<li>It runs inside your Python program, with nothing else to install or
+start</li>
 <li>It only works in the cloud</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B.</strong></p>
+<summary>
+Show answer
+</summary>
+<strong>B.</strong>
 </details>
 </div>
 <div class="quiz-q" data-answer="1">
 <p>2. Why is Parquet usually faster than CSV for analysis?</p>
-<ol>
-<li>It's a text format</li>
-<li>It's columnar, compressed and typed, so tools read only the needed columns without parsing text</li>
+<ol type="1">
+<li>It’s a text format</li>
+<li>It’s columnar, compressed and typed, so tools read only the needed
+columns without parsing text</li>
 <li>It stores fewer rows</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B.</strong></p>
+<summary>
+Show answer
+</summary>
+<strong>B.</strong>
 </details>
 </div>
 <div class="quiz-q" data-answer="1">
-<p>3. Your pandas script runs out of memory on a 5 GB CSV. What's the best first step?</p>
-<ol>
+<p>3. Your pandas script runs out of memory on a 5 GB CSV. What’s the
+best first step?</p>
+<ol type="1">
 <li>Buy more RAM</li>
-<li>Read only needed columns, ideally from Parquet, and filter/aggregate with DuckDB or Polars</li>
+<li>Read only needed columns, ideally from Parquet, and filter/aggregate
+with DuckDB or Polars</li>
 <li>Split the CSV by hand in Excel</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B.</strong></p>
+<summary>
+Show answer
+</summary>
+<strong>B.</strong>
 </details>
 </div>
 <h2 id="summary">Summary</h2>
 <ul>
-<li>DuckDB = SQL inside Python: query CSV, Parquet and DataFrames directly; return results with <code>.df()</code> or <code>.pl()</code>.</li>
-<li>Parquet is smaller and much faster than CSV; read only the columns you need.</li>
-<li>For millions of rows, push filters and column selection into the scan (DuckDB, Polars lazy), then hand small results to pandas.</li>
+<li>DuckDB = SQL inside Python: query CSV, Parquet and DataFrames
+directly; return results with <code>.df()</code> or
+<code>.pl()</code>.</li>
+<li>Parquet is smaller and much faster than CSV; read only the columns
+you need.</li>
+<li>For millions of rows, push filters and column selection into the
+scan (DuckDB, Polars lazy), then hand small results to pandas.</li>
 <li>Always check that different tools give the same answer.</li>
 </ul>
-<div class="admonition job">
-<p class="admonition-title">Job-ready check</p>
-<p><strong>Interview question:</strong> <em>"You have 50 million rows of sales history on your laptop. How do you analyse it?"</em></p>
-<p><strong>Strong answer:</strong> "I'd convert it to Parquet once, partitioned by year if it's very large, then query it with DuckDB or Polars lazy so only the needed columns and filtered rows are read. I aggregate there and bring the small result into pandas for charts or modelling. If it keeps growing or several people need it, it belongs in a warehouse."</p>
-<p><strong>Mini project:</strong> Run <code>make_big_data.py</code> with 5,000,000 rows. Time the region summary in DuckDB, Polars and pandas, three runs each, and write a short table of median timings and file sizes with your machine's specs.</p>
+<div class="admonition job" data-markdown="1">
+<p class="admonition-title">
+Job-ready check
+</p>
+<p><strong>Interview question:</strong> <em>“You have 50 million rows of
+sales history on your laptop. How do you analyse it?”</em></p>
+<p><strong>Strong answer:</strong> “I’d convert it to Parquet once,
+partitioned by year if it’s very large, then query it with DuckDB or
+Polars lazy so only the needed columns and filtered rows are read. I
+aggregate there and bring the small result into pandas for charts or
+modelling. If it keeps growing or several people need it, it belongs in
+a warehouse.”</p>
+<p><strong>Mini project:</strong> Run <code>make_big_data.py</code> with
+5,000,000 rows. Time the region summary in DuckDB, Polars and pandas,
+three runs each, and write a short table of median timings and file
+sizes with your machine’s specs.</p>
 </div>
+<section class="mentor-prompt"><div class="mentor-head"><div><span class="eyebrow">AI study companion</span><h2 id="ai-mentor-prompt">AI Mentor Prompt</h2></div><button class="btn copy-prompt" type="button" data-copy-target="mentor-prompt-phase-2-polars-duckdb-02-duckdb-larger-data">Copy prompt</button></div><p>Paste this into ChatGPT, Claude, Gemini, or another capable assistant to turn this tutorial into an interactive mentoring session.</p><pre class="prompt-box"><code id="mentor-prompt-phase-2-polars-duckdb-02-duckdb-larger-data">You are my hands-on Python, statistics and data-science mentor.
+
+I am currently studying:
+&quot;DuckDB &amp; Larger Local Data: SQL on Files, Parquet and Millions of Rows&quot;
+
+My level:
+Intermediate
+
+Teach me this topic interactively rather than giving me a long lecture.
+
+Use this sequence:
+
+1. Check what I already understand with one short diagnostic question.
+2. Explain the concept in simple language and give me the mental model first.
+3. Give me one small task using code, SQL, configuration, data, or architecture as appropriate.
+4. Wait for my attempt before showing a complete solution.
+5. Review my work and explain both what is correct and what needs improvement.
+6. Help me debug errors step by step instead of immediately replacing my work.
+7. Increase the difficulty gradually and connect each new step to the previous one.
+8. Relate what I am learning to real professional data/AI engineering work.
+9. Ask me to explain an important decision in my own words so you can check my understanding.
+10. At the end, ask me to build or modify one small feature independently.
+
+Important rules:
+- Do not do the entire exercise for me unless I explicitly ask.
+- Explain unfamiliar terminology before using it heavily.
+- Prefer current, production-relevant practices over outdated shortcuts.
+- Distinguish clearly between concepts, tool-specific behaviour, and optional alternatives.
+- If a technical fact, API, syntax, version, or best practice may have changed, verify it against current official documentation before teaching it.
+- Never invent command output, test results, benchmark numbers, cloud behaviour, or data results.
+- If something cannot be executed in the current environment, say so and give me the exact command or verification step I should run.
+- Keep me actively coding, querying, configuring, reasoning, or debugging throughout the session.
+- When useful, work from the tutorial practice files (data-science-scripts.zip, orders_2025.csv, customers_2025.csv) instead of inventing unrelated examples.
+
+The concepts I need to master are:
+- DuckDB in-process SQL
+- Working with larger local data
+- duckdb
+- in-process sql
+- olap
+- sql on csv
+- sql on parquet
+- parquet
+
+Start by asking me one diagnostic question.</code></pre></section>
+
 <div class="terms-box"><div class="files-head"><b>Key terms in this lesson</b><a href="../../../glossary.html">Glossary →</a></div><div class="term-chips"><a class="term-chip" href="../../../glossary.html#duckdb" title="A free, in-process analytical database: run SQL directly on CSV and Parquet files from Python, with no server to install.">DuckDB</a><a class="term-chip" href="../../../glossary.html#oltp" title="OLTP systems run the business (many small reads and writes, normalised tables). OLAP systems analyse it (large scans and aggregations, dimensional models).">OLTP</a><a class="term-chip" href="../../../glossary.html#parquet" title="A compressed, column-based file format for analytics. Smaller and much faster to query than CSV, and it keeps column types.">Parquet</a><a class="term-chip" href="../../../glossary.html#window-function" title="A calculation across related rows that keeps every row, such as ranking or running totals, written with OVER (...).">Window function</a></div></div>
 <h2 id="free-resources">Free resources to go deeper</h2><ul class="resources"><li><a href="https://duckdb.org/docs/stable/clients/python/overview">DuckDB Python API — overview</a><span class="r-meta">DuckDB official docs · duckdb.sql, querying DataFrames and files, converting results.</span></li><li><a href="https://duckdb.org/docs/stable/data/parquet/overview">Reading and writing Parquet files</a><span class="r-meta">DuckDB official docs · Querying Parquet directly and COPY ... TO for exporting.</span></li><li><a href="https://pandas.pydata.org/docs/user_guide/scale.html">Scaling to large datasets</a><span class="r-meta">pandas official docs · Load fewer columns, use efficient types, use Parquet, chunk.</span></li></ul>
 <div class="complete-bar"><span>Finished reading and did the exercise?</span>
@@ -395,9 +503,9 @@ shape: (5, 3)
 <p class="reviewed">Last reviewed: 2026-10-09</p>
 
   </div></main>
-  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#example-1-sql-directly-on-a-csv-file">Example 1: SQL directly on a CSV file</a><a href="#example-2-sql-on-a-pandas-dataframe">Example 2: SQL on a pandas DataFrame</a><a href="#example-3-window-functions">Example 3: window functions</a><a href="#example-4-larger-data-the-file-format-matters">Example 4: larger data — the file format matters</a><a href="#example-5-one-question-three-engines-2-million-rows">Example 5: one question, three engines, 2 million rows</a><a href="#a-practical-playbook-for-too-slow-data">A practical playbook for &quot;too slow&quot; data</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#free-resources">Free resources</a></aside>
+  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#example-1-sql-directly-on-a-csv-file">Example 1: SQL directly on a CSV file</a><a href="#example-2-sql-on-a-pandas-dataframe">Example 2: SQL on a pandas DataFrame</a><a href="#example-3-window-functions">Example 3: window functions</a><a href="#example-4-larger-data-the-file-format-matters">Example 4: larger data — the file format matters</a><a href="#example-5-one-question-three-engines-2-million-rows">Example 5: one question, three engines, 2 million rows</a><a href="#a-practical-playbook-for-too-slow-data">A practical playbook for “too slow” data</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#ai-mentor-prompt">AI Mentor Prompt</a><a href="#free-resources">Free resources</a></aside>
 </div>
-<footer class="site">Data, AI &amp; Automation Path v0.8 · Applied AI, Data &amp; Automation Lab · Updated October 2026<br>
+<footer class="site"><b>Saiful The Techie</b> · Data, AI &amp; Automation Path v0.9.1 · Updated October 2026<br>
 Lesson text: <a href="../../../license.html">CC BY-NC-SA 4.0</a> · Code: <a href="../../../license.html#code-mit-license">MIT</a> · Free external resources belong to their respective owners.</footer>
 <script src="../../../search-index.js"></script>
 <script src="../../../assets/app.js"></script>

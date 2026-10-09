@@ -6,7 +6,7 @@
 <title>Power Pivot &amp; DAX — Data, AI &amp; Automation Path</title>
 <meta name="description" content="Power Pivot &amp; DAX: Relationships, Measures, CALCULATE, KPI logic, Filter context">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="Data, AI &amp; Automation Path">
+<meta property="og:site_name" content="Saiful The Techie">
 <meta property="og:title" content="Power Pivot &amp; DAX">
 <meta property="og:description" content="Power Pivot &amp; DAX: Relationships, Measures, CALCULATE, KPI logic, Filter context">
 <meta property="og:locale" content="en_US">
@@ -19,13 +19,13 @@ var n=null;try{n=localStorage.getItem('daa-nav')}catch(e){}
 if(n==='open'&&window.matchMedia&&matchMedia('(min-width: 961px)').matches)document.documentElement.setAttribute('data-nav','open');
 document.documentElement.classList.add('no-anim')})();</script>
 <link rel="stylesheet" href="../../../assets/style.css">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233f7d6a'/%3E%3Ctext x='16' y='21' font-family='sans-serif' font-size='13' font-weight='700' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
+
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="topbar">
   <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Open curriculum menu" title="Curriculum menu (press M)" aria-controls="sidebar" aria-expanded="false"><span class="ico-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span class="ico-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></button>
-  <a class="brand" href="../../../index.html"><span class="brand-badge">AI</span><span class="brand-text"><span class="brand-name">Data, AI &amp; Automation Path</span><span class="brand-version">v0.8</span></span></a>
+  <a class="brand" href="../../../index.html"><span class="brand-text"><span class="brand-name">Saiful The Techie</span><span class="brand-version">Data, AI &amp; Automation Path · v0.9.1</span></span></a>
   <nav class="top-links" aria-label="Main">
     <a href="../../../index.html" class="">Home</a><a href="../../../curriculum.html" class="">Curriculum</a><a href="../../../practice-files.html" class="">Practice files</a><a href="../../../glossary.html" class="">Glossary</a><a href="../../../how-to-learn.html" class="">How to learn</a><a href="../../../about.html" class="">About</a>
   </nav>
@@ -41,7 +41,7 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="layout">
   <nav class="sidebar" id="sidebar" aria-label="Curriculum">
     <div class="side-title">Curriculum</div>
-    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="77"><i></i></div><span class="bar-label" data-progress-label></span></div>
+    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="85"><i></i></div><span class="bar-label" data-progress-label></span></div>
 <div class="nav-phase"><a href="../../../learn/phase-0/index.html"><span class="nav-num">0</span>Foundations</a>
 </div>
 <div class="nav-phase current open"><a href="../../../learn/phase-1/index.html"><span class="nav-num">1</span>Analytics &amp; BI</a>
@@ -91,31 +91,56 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="side-extra"><a href="../../../index.html">Home</a><a href="../../../curriculum.html">Full curriculum map</a><a href="../../../practice-files.html">Practice files</a><a href="../../../glossary.html">Glossary</a><a href="../../../how-to-learn.html">How to learn here</a><a href="../../../about.html">About &amp; contributing</a></div></nav>
   <main class="main" id="main"><div class="content">
 <nav class="crumbs" aria-label="Breadcrumb"><a href="../../../index.html">Home</a><span class="sep">/</span><a href="../../../learn/phase-1/index.html">Phase 1</a><span class="sep">/</span><span>Power Pivot &amp; DAX</span></nav>
+<span class="eyebrow">Phase 1 · Analytics &amp; BI</span>
 <h1>Power Pivot &amp; DAX</h1>
-<p class="lead">Part of Phase 1 — Data Analytics &amp; Business Intelligence. Topics: Relationships, Measures, CALCULATE, KPI logic, Filter context.</p>
-<p>A <strong>data model</strong> connects several tables, such as orders, customers, products, regions, dates and targets, so one report can slice by all of them. <strong>DAX</strong> is the formula language for that model. These are the same skills in Excel's <strong>Power Pivot</strong> and in <strong>Power BI</strong>, and they are the core of the PL-300 exam.</p>
-<div class="admonition tip">
-<p class="admonition-title">Which tool should I practise in?</p>
+<p class="lead">Turn raw business data into decisions and executive reporting.</p>
+<p>A <strong>data model</strong> connects several tables, such as
+orders, customers, products, regions, dates and targets, so one report
+can slice by all of them. <strong>DAX</strong> is the formula language
+for that model. These are the same skills in Excel’s <strong>Power
+Pivot</strong> and in <strong>Power BI</strong>, and they are the core
+of the PL-300 exam.</p>
+<div class="admonition tip" data-markdown="1">
+<p class="admonition-title">
+Which tool should I practise in?
+</p>
 <ul>
-<li><strong>Power BI Desktop</strong> (free, Windows only) is recommended. Everything in these lessons works there, and it's the tool most job descriptions ask for.</li>
-<li><strong>Excel Power Pivot</strong> (Excel for Windows with Microsoft 365 or the Professional editions; not available in Excel for Mac) uses the same DAX. Differences are noted in each lesson.</li>
-<li>On a Mac, use Power BI through a Windows virtual machine or a cloud PC.</li>
+<li><strong>Power BI Desktop</strong> (free, Windows only) is
+recommended. Everything in these lessons works there, and it’s the tool
+most job descriptions ask for.</li>
+<li><strong>Excel Power Pivot</strong> (Excel for Windows with Microsoft
+365 or the Professional editions; not available in Excel for Mac) uses
+the same DAX. Differences are noted in each lesson.</li>
+<li>On a Mac, use Power BI through a Windows virtual machine or a cloud
+PC.</li>
 </ul>
 </div>
-<div class="admonition note">
-<p class="admonition-title">Practice file</p>
-<p><a href="../../../downloads/sales_model.xlsx">sales_model.xlsx</a> contains five ready-made Excel Tables: <strong>Orders</strong> (12 rows), <strong>Customers</strong> (6), <strong>Products</strong> (6), <strong>Regions</strong> (4) and <strong>Targets</strong> (12 rows: region × month). These are the clean results of the Power Query lessons.</p>
+<div class="admonition note" data-markdown="1">
+<p class="admonition-title">
+Practice file
+</p>
+<p><a href="../../../downloads/sales_model.xlsx">sales_model.xlsx</a>
+contains five ready-made Excel Tables: <strong>Orders</strong> (12
+rows), <strong>Customers</strong> (6), <strong>Products</strong> (6),
+<strong>Regions</strong> (4) and <strong>Targets</strong> (12 rows:
+region × month). These are the clean results of the Power Query
+lessons.</p>
 </div>
-<p><strong>By the end of this module you can:</strong> build a star-schema model with a date table, write measures for revenue, orders, average order value and target achievement, and use CALCULATE to control filters, for example to get shares of total or month-on-month growth.</p>
+<p><strong>By the end of this module you can:</strong> build a
+star-schema model with a date table, write measures for revenue, orders,
+average order value and target achievement, and use CALCULATE to control
+filters, for example to get shares of total or month-on-month
+growth.</p>
+<div class="module-topics"><b>Curriculum coverage</b><div class="term-chips"><span class="term-chip">Relationships</span><span class="term-chip">Measures</span><span class="term-chip">CALCULATE</span><span class="term-chip">KPI logic</span><span class="term-chip">Filter context</span></div></div>
 <div class="files-box"><div class="files-head"><b>Practice files for this page</b><a href="../../../practice-files.html">All practice files →</a></div><ul><li><a href="../../../downloads/sales_model.xlsx" download>sales_model.xlsx</a><span class="f-desc">Five Excel Tables (Orders, Customers, Products, Regions, Targets) for the data model · 12 KB</span></li><li><a href="../../../downloads/regions.csv" download>regions.csv</a><span class="f-desc">4 regions with division and manager e-mail (for row-level security) · 249 B</span></li><li><a href="../../../downloads/known_answers.csv" download>known_answers.csv</a><span class="f-desc">24 key numbers every tool should reproduce, for checking your work (and AI output) · 1 KB</span></li></ul></div>
-<div class="section-head"><h2>Lessons</h2><p>3 written · 0 planned</p></div>
+<div class="section-head"><h2>Tutorials</h2><p>3 ready · 0 planned</p></div>
 <ul class="lesson-list"><li class="lesson-row" data-lesson="phase-1/power-pivot-dax/01-relationships"><span class="n">1</span><span><a href="../../../learn/phase-1/power-pivot-dax/01-relationships.html">Data Model Relationships: Build a Star Schema</a><span class="desc">Load fact and dimension tables, connect them with one-to-many relationships, and add a date table, so every visual filters correctly.</span></span><span class="lesson-state">40 min</span></li><li class="lesson-row" data-lesson="phase-1/power-pivot-dax/02-measures-kpi"><span class="n">2</span><span><a href="../../../learn/phase-1/power-pivot-dax/02-measures-kpi.html">DAX Measures &amp; KPI Logic: Revenue, AOV and Target Achievement</a><span class="desc">Write reusable measures with SUM, COUNTROWS and DIVIDE, then build KPIs such as average order value, target achievement and status labels.</span></span><span class="lesson-state">45 min</span></li><li class="lesson-row" data-lesson="phase-1/power-pivot-dax/03-calculate-filter-context"><span class="n">3</span><span><a href="../../../learn/phase-1/power-pivot-dax/03-calculate-filter-context.html">DAX CALCULATE &amp; Filter Context: Control What Each Number Includes</a><span class="desc">Understand the filters behind every number, then use CALCULATE to add, replace or remove them — for status splits, shares of total and month-on-month growth.</span></span><span class="lesson-state">50 min</span></li></ul>
 <nav class="pager"><a class="prev" href="../../../learn/phase-1/power-query/index.html"><small>← Previous module</small>Power Query</a><a class="next" href="../../../learn/phase-1/analytical-sql/index.html"><small>Next module →</small>Analytical SQL</a></nav>
 
   </div></main>
   
 </div>
-<footer class="site">Data, AI &amp; Automation Path v0.8 · Applied AI, Data &amp; Automation Lab · Updated October 2026<br>
+<footer class="site"><b>Saiful The Techie</b> · Data, AI &amp; Automation Path v0.9.1 · Updated October 2026<br>
 Lesson text: <a href="../../../license.html">CC BY-NC-SA 4.0</a> · Code: <a href="../../../license.html#code-mit-license">MIT</a> · Free external resources belong to their respective owners.</footer>
 <script src="../../../search-index.js"></script>
 <script src="../../../assets/app.js"></script>

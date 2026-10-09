@@ -6,7 +6,7 @@
 <title>grep, sort &amp; Pipes, then cron: Answer Questions and Automate Jobs — Data, AI &amp; Automation Path</title>
 <meta name="description" content="Search logs and CSVs with grep, chain commands with pipes to count and rank, redirect output to files, and schedule a script to run every day with cron.">
 <meta property="og:type" content="article">
-<meta property="og:site_name" content="Data, AI &amp; Automation Path">
+<meta property="og:site_name" content="Saiful The Techie">
 <meta property="og:title" content="grep, sort &amp; Pipes, then cron: Answer Questions and Automate Jobs">
 <meta property="og:description" content="Search logs and CSVs with grep, chain commands with pipes to count and rank, redirect output to files, and schedule a script to run every day with cron.">
 <meta property="og:locale" content="en_US">
@@ -19,13 +19,13 @@ var n=null;try{n=localStorage.getItem('daa-nav')}catch(e){}
 if(n==='open'&&window.matchMedia&&matchMedia('(min-width: 961px)').matches)document.documentElement.setAttribute('data-nav','open');
 document.documentElement.classList.add('no-anim')})();</script>
 <link rel="stylesheet" href="../../../assets/style.css">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233f7d6a'/%3E%3Ctext x='16' y='21' font-family='sans-serif' font-size='13' font-weight='700' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
+
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="topbar">
   <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Open curriculum menu" title="Curriculum menu (press M)" aria-controls="sidebar" aria-expanded="false"><span class="ico-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span class="ico-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></button>
-  <a class="brand" href="../../../index.html"><span class="brand-badge">AI</span><span class="brand-text"><span class="brand-name">Data, AI &amp; Automation Path</span><span class="brand-version">v0.8</span></span></a>
+  <a class="brand" href="../../../index.html"><span class="brand-text"><span class="brand-name">Saiful The Techie</span><span class="brand-version">Data, AI &amp; Automation Path · v0.9.1</span></span></a>
   <nav class="top-links" aria-label="Main">
     <a href="../../../index.html" class="">Home</a><a href="../../../curriculum.html" class="">Curriculum</a><a href="../../../practice-files.html" class="">Practice files</a><a href="../../../glossary.html" class="">Glossary</a><a href="../../../how-to-learn.html" class="">How to learn</a><a href="../../../about.html" class="">About</a>
   </nav>
@@ -41,7 +41,7 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="layout wide">
   <nav class="sidebar" id="sidebar" aria-label="Curriculum">
     <div class="side-title">Curriculum</div>
-    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="77"><i></i></div><span class="bar-label" data-progress-label></span></div>
+    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="85"><i></i></div><span class="bar-label" data-progress-label></span></div>
 <div class="nav-phase current open"><a href="../../../learn/phase-0/index.html"><span class="nav-num">0</span>Foundations</a>
 <ul class="nav-modules">
 <li><a class="" href="../../../learn/phase-0/dev-environment/index.html">Development Environment</a>
@@ -88,280 +88,304 @@ document.documentElement.classList.add('no-anim')})();</script>
 <p class="lead">Search logs and CSVs with grep, chain commands with pipes to count and rank, redirect output to files, and schedule a script to run every day with cron.</p>
 <div class="meta"><span class="pill">Phase <b>0</b> · Foundations</span><span class="pill">Level <b>Beginner</b></span><span class="pill">Time <b>50 min</b></span></div>
 <div class="admonition note"><p class="admonition-title">Before you start</p><p><a href="../../../learn/phase-0/linux/01-filesystem-terminal.html">Linux Filesystem &amp; Terminal Workflow: Move Around Like an Engineer</a></p></div>
-<div class="files-box"><div class="files-head"><b>Practice files for this page</b><a href="../../../practice-files.html">All practice files →</a></div><ul><li><a href="../../../downloads/phase-0/linux-practice.zip" download>linux-practice.zip</a><span class="f-desc">Practice folder for the Linux lessons: data, a cleaner log file, a cron script · 4 KB</span></li></ul></div>
+<div class="files-box"><div class="files-head"><b>Practice files for this page</b><a href="../../../practice-files.html">All practice files →</a></div><ul><li><a href="../../../downloads/phase-0/linux-practice.zip" download>linux-practice.zip</a><span class="f-desc">Practice folder for the Linux lessons: data, a cleaner log file, a cron script · 3 KB</span></li></ul></div>
 <h2 id="what-is-it">What is it?</h2>
 <ul>
-<li><strong><code>grep</code></strong> finds lines that contain a pattern.</li>
-<li>A <strong>pipe <code>|</code></strong> sends one command's output into the next command. Small tools chain into a data pipeline: <code>cut</code> → <code>sort</code> → <code>uniq -c</code> → <code>sort -rn</code>.</li>
-<li><strong>Redirection</strong> saves output: <code>&gt;</code> overwrites a file, <code>&gt;&gt;</code> appends, <code>2&gt;</code> captures error messages.</li>
-<li><strong>cron</strong> runs commands on a schedule (every day at 06:00, every Monday…).</li>
+<li><strong><code>grep</code></strong> finds lines that contain a
+pattern.</li>
+<li>A <strong>pipe <code>|</code></strong> sends one command’s output
+into the next command. Small tools chain into a data pipeline:
+<code>cut</code> → <code>sort</code> → <code>uniq -c</code> →
+<code>sort -rn</code>.</li>
+<li><strong>Redirection</strong> saves output: <code>&gt;</code>
+overwrites a file, <code>&gt;&gt;</code> appends, <code>2&gt;</code>
+captures error messages.</li>
+<li><strong>cron</strong> runs commands on a schedule (every day at
+06:00, every Monday…).</li>
 </ul>
-<div class="admonition job">
-<p class="admonition-title">Why it matters at work</p>
-<p>"Why did last night's job fail?" is answered by grepping logs. Quick counts with pipes let you sanity-check a file in seconds, before opening Python. And many data jobs still run on cron, or on schedulers (Airflow, GitHub Actions) that use <strong>the same cron syntax</strong>.</p>
+<div class="admonition job" data-markdown="1">
+<p class="admonition-title">
+Why it matters at work
+</p>
+<p>“Why did last night’s job fail?” is answered by grepping logs. Quick
+counts with pipes let you sanity-check a file in seconds, before opening
+Python. And many data jobs still run on cron, or on schedulers (Airflow,
+GitHub Actions) that use <strong>the same cron syntax</strong>.</p>
 </div>
-<p>All examples run in <code>~/practice</code> from <a href="../../../downloads/phase-0/linux-practice.zip">linux-practice.zip</a>.</p>
+<p>All examples run in <code>~/practice</code> from <a
+href="../../../downloads/phase-0/linux-practice.zip">linux-practice.zip</a>.</p>
 <h2 id="example-1-grep-a-log">Example 1: grep a log</h2>
-<p>The log <code>logs/cleaner-2026-03.log</code> has 10 days of CSV-cleaner runs.</p>
-<div class="codehilite"><pre><span></span><code>grep<span class="w"> </span>ERROR<span class="w"> </span>logs/cleaner-2026-03.log
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>2026-03-03 06:00:00,951 ERROR csv_cleaner: Input file not found: data/orders_raw.csv
+<p>The log <code>logs/cleaner-2026-03.log</code> has 10 days of
+CSV-cleaner runs.</p>
+<pre class="bash"><code>grep ERROR logs/cleaner-2026-03.log</code></pre>
+<pre class="text"><code>2026-03-03 06:00:00,951 ERROR csv_cleaner: Input file not found: data/orders_raw.csv
 2026-03-06 06:00:00,977 ERROR csv_cleaner: Missing required columns: Status
-2026-03-09 06:00:00,932 ERROR csv_cleaner: Input file not found: data/orders_raw.csv
-</code></pre></div>
-
+2026-03-09 06:00:00,932 ERROR csv_cleaner: Input file not found: data/orders_raw.csv</code></pre>
 <table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Option</th>
 <th>Does</th>
 <th>Example → result</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td><code>-c</code></td>
 <td>Count matching lines</td>
-<td><code>grep -c ERROR logs/cleaner-2026-03.log</code> → <code>3</code></td>
+<td><code>grep -c ERROR logs/cleaner-2026-03.log</code> →
+<code>3</code></td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>-i</code></td>
 <td>Ignore case</td>
-<td><code>grep -ci warning logs/cleaner-2026-03.log</code> → <code>3</code></td>
+<td><code>grep -ci warning logs/cleaner-2026-03.log</code> →
+<code>3</code></td>
 </tr>
-<tr>
+<tr class="odd">
 <td><code>-v</code></td>
-<td>Lines that <strong>don't</strong> match</td>
+<td>Lines that <strong>don’t</strong> match</td>
 <td><code>grep -v INFO logs/cleaner-2026-03.log</code></td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>-h</code></td>
 <td>Hide file names (several files)</td>
 <td><code>grep -h Dhaka data/monthly/*.csv</code></td>
 </tr>
-<tr>
+<tr class="odd">
 <td><code>-E</code></td>
 <td>Several patterns</td>
 <td><code>grep -E 'ERROR|WARNING' …</code></td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>-r</code></td>
 <td>Search all files in folders</td>
 <td><code>grep -r "TODO" src/</code></td>
 </tr>
 </tbody>
 </table>
-<h2 id="example-2-pipes-count-and-rank">Example 2: pipes — count and rank</h2>
-<p><strong>How many orders per status?</strong> Take column 9, drop the header, sort, count:</p>
-<div class="codehilite"><pre><span></span><code>cut<span class="w"> </span>-d,<span class="w"> </span>-f9<span class="w"> </span>data/orders.csv<span class="w"> </span><span class="p">|</span><span class="w"> </span>tail<span class="w"> </span>-n<span class="w"> </span>+2<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq<span class="w"> </span>-c
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>      1 Cancelled
+<h2 id="example-2-pipes-count-and-rank">Example 2: pipes — count and
+rank</h2>
+<p><strong>How many orders per status?</strong> Take column 9, drop the
+header, sort, count:</p>
+<pre class="bash"><code>cut -d, -f9 data/orders.csv | tail -n +2 | sort | uniq -c</code></pre>
+<pre class="text"><code>      1 Cancelled
       8 Delivered
       1 Pending
-      2 Shipped
-</code></pre></div>
-
-<p><strong>Which region has the most orders?</strong> Add <code>sort -rn</code> (numeric, largest first):</p>
-<div class="codehilite"><pre><span></span><code>cut<span class="w"> </span>-d,<span class="w"> </span>-f4<span class="w"> </span>data/orders.csv<span class="w"> </span><span class="p">|</span><span class="w"> </span>tail<span class="w"> </span>-n<span class="w"> </span>+2<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq<span class="w"> </span>-c<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-rn
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>      5 Dhaka
+      2 Shipped</code></pre>
+<p><strong>Which region has the most orders?</strong> Add
+<code>sort -rn</code> (numeric, largest first):</p>
+<pre class="bash"><code>cut -d, -f4 data/orders.csv | tail -n +2 | sort | uniq -c | sort -rn</code></pre>
+<pre class="text"><code>      5 Dhaka
       3 Chattogram
       2 Narayanganj
-      2 Gazipur
-</code></pre></div>
-
+      2 Gazipur</code></pre>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>Piece</th>
 <th>Job</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td><code>cut -d, -f4</code></td>
 <td>Column 4, using comma as the delimiter</td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>tail -n +2</code></td>
 <td>Start from line 2 (skip the header)</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><code>sort</code></td>
 <td>Group identical values together (<code>uniq</code> needs this)</td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>uniq -c</code></td>
 <td>Count each group</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><code>sort -rn</code></td>
 <td>Rank by count, descending</td>
 </tr>
 </tbody>
 </table>
-<p>The same numbers you got with <code>GROUP BY</code> in SQL and a PivotTable in Excel.</p>
-<div class="admonition warning">
-<p class="admonition-title">Know the limits</p>
-<p><code>cut -d,</code> breaks on quoted CSV fields that contain commas (<code>"Dhaka, North"</code>). For quick checks it's great; for real processing, use Python or SQL.</p>
+<p>The same numbers you got with <code>GROUP BY</code> in SQL and a
+PivotTable in Excel.</p>
+<div class="admonition warning" data-markdown="1">
+<p class="admonition-title">
+Know the limits
+</p>
+<p><code>cut -d,</code> breaks on quoted CSV fields that contain commas
+(<code>"Dhaka, North"</code>). For quick checks it’s great; for real
+processing, use Python or SQL.</p>
 </div>
 <p><strong>Which error types happened?</strong></p>
-<div class="codehilite"><pre><span></span><code>grep<span class="w"> </span>ERROR<span class="w"> </span>logs/cleaner-2026-03.log<span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-d:<span class="w"> </span>-f4<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq<span class="w"> </span>-c
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>      2  Input file not found
-      1  Missing required columns
-</code></pre></div>
-
+<pre class="bash"><code>grep ERROR logs/cleaner-2026-03.log | cut -d: -f4 | sort | uniq -c</code></pre>
+<pre class="text"><code>      2  Input file not found
+      1  Missing required columns</code></pre>
 <p><strong>Which days had problems?</strong></p>
-<div class="codehilite"><pre><span></span><code>grep<span class="w"> </span>-E<span class="w"> </span><span class="s1">'ERROR|WARNING'</span><span class="w"> </span>logs/cleaner-2026-03.log<span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-c1-10<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-u
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>2026-03-03
+<pre class="bash"><code>grep -E &#39;ERROR|WARNING&#39; logs/cleaner-2026-03.log | cut -c1-10 | sort -u</code></pre>
+<pre class="text"><code>2026-03-03
 2026-03-04
 2026-03-06
 2026-03-07
-2026-03-09
-</code></pre></div>
+2026-03-09</code></pre>
+<h2 id="example-3-redirect-output-to-files">Example 3: redirect output
+to files</h2>
+<pre class="bash"><code>grep ERROR logs/cleaner-2026-03.log &gt; reports/errors.txt      # create/overwrite
+grep WARNING logs/cleaner-2026-03.log &gt;&gt; reports/errors.txt   # append
+wc -l reports/errors.txt</code></pre>
+<pre class="text"><code>6 reports/errors.txt</code></pre>
+<p>Programs write normal output to <strong>stdout</strong> and errors to
+<strong>stderr</strong>. Redirect them separately:</p>
+<pre class="bash"><code>ls missing.csv 2&gt; reports/err.txt
+cat reports/err.txt</code></pre>
+<pre class="text"><code>ls: cannot access &#39;missing.csv&#39;: No such file or directory</code></pre>
+<p><code>command &gt; out.log 2&gt;&amp;1</code> sends
+<strong>both</strong> into one file, which is exactly what scheduled
+jobs do.</p>
+<h2 id="part-4-a-shell-script-for-a-scheduled-job">Part 4: a shell
+script for a scheduled job</h2>
+<p><code>scripts/daily_clean.sh</code> runs the CSV cleaner (the Phase 0
+project) and logs the result:</p>
+<pre class="bash"><code>#!/usr/bin/env bash
+# Run the CSV cleaner every day and keep a log. Used in the cron lesson.
+set -euo pipefail                      # stop on errors, unset variables and failed pipes
 
-<h2 id="example-3-redirect-output-to-files">Example 3: redirect output to files</h2>
-<div class="codehilite"><pre><span></span><code>grep<span class="w"> </span>ERROR<span class="w"> </span>logs/cleaner-2026-03.log<span class="w"> </span>&gt;<span class="w"> </span>reports/errors.txt<span class="w">      </span><span class="c1"># create/overwrite</span>
-grep<span class="w"> </span>WARNING<span class="w"> </span>logs/cleaner-2026-03.log<span class="w"> </span>&gt;&gt;<span class="w"> </span>reports/errors.txt<span class="w">   </span><span class="c1"># append</span>
-wc<span class="w"> </span>-l<span class="w"> </span>reports/errors.txt
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>6 reports/errors.txt
-</code></pre></div>
-
-<p>Programs write normal output to <strong>stdout</strong> and errors to <strong>stderr</strong>. Redirect them separately:</p>
-<div class="codehilite"><pre><span></span><code>ls<span class="w"> </span>missing.csv<span class="w"> </span><span class="m">2</span>&gt;<span class="w"> </span>reports/err.txt
-cat<span class="w"> </span>reports/err.txt
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>ls: cannot access 'missing.csv': No such file or directory
-</code></pre></div>
-
-<p><code>command &gt; out.log 2&gt;&amp;1</code> sends <strong>both</strong> into one file, which is exactly what scheduled jobs do.</p>
-<h2 id="part-4-a-shell-script-for-a-scheduled-job">Part 4: a shell script for a scheduled job</h2>
-<p><code>scripts/daily_clean.sh</code> runs the CSV cleaner (the Phase 0 project) and logs the result:</p>
-<div class="codehilite"><pre><span></span><code><span class="ch">#!/usr/bin/env bash</span>
-<span class="c1"># Run the CSV cleaner every day and keep a log. Used in the cron lesson.</span>
-<span class="nb">set</span><span class="w"> </span>-euo<span class="w"> </span>pipefail<span class="w">                      </span><span class="c1"># stop on errors, unset variables and failed pipes</span>
-
-<span class="nb">cd</span><span class="w"> </span><span class="s2">"</span><span class="nv">$HOME</span><span class="s2">/practice"</span><span class="w">                    </span><span class="c1"># always start from a known folder</span>
-<span class="nb">echo</span><span class="w"> </span><span class="s2">"</span><span class="k">$(</span>date<span class="w"> </span><span class="s1">'+%F %T'</span><span class="k">)</span><span class="s2"> starting daily clean"</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>logs/cron.log
-uv<span class="w"> </span>run<span class="w"> </span>--project<span class="w"> </span><span class="s2">"</span><span class="nv">$HOME</span><span class="s2">/csv-cleaner"</span><span class="w"> </span>csv-clean<span class="w"> </span>data/orders_raw.csv<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>-c<span class="w"> </span><span class="s2">"</span><span class="nv">$HOME</span><span class="s2">/csv-cleaner/config.toml"</span><span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>-o<span class="w"> </span><span class="s2">"reports/orders_</span><span class="k">$(</span>date<span class="w"> </span>+%F<span class="k">)</span><span class="s2">.csv"</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>logs/cron.log<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span>
-</code></pre></div>
-
+cd &quot;$HOME/practice&quot;                    # always start from a known folder
+echo &quot;$(date &#39;+%F %T&#39;) starting daily clean&quot; &gt;&gt; logs/cron.log
+uv run --project &quot;$HOME/csv-cleaner&quot; csv-clean data/orders_raw.csv \
+    -c &quot;$HOME/csv-cleaner/config.toml&quot; \
+    -o &quot;reports/orders_$(date +%F).csv&quot; &gt;&gt; logs/cron.log 2&gt;&amp;1</code></pre>
 <table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Line</th>
 <th>Why</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td><code>#!/usr/bin/env bash</code></td>
-<td>"Run me with bash"</td>
+<td>“Run me with bash”</td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>set -euo pipefail</code></td>
 <td>Fail fast instead of carrying on after an error</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><code>cd "$HOME/practice"</code></td>
-<td>cron starts in your home folder, so never rely on relative paths</td>
+<td>cron starts in your home folder, so never rely on relative
+paths</td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>$(date +%F)</code></td>
-<td>Today's date (<code>2026-10-09</code>) in the file name</td>
+<td>Today’s date (<code>2026-10-09</code>) in the file name</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><code>&gt;&gt; logs/cron.log 2&gt;&amp;1</code></td>
-<td>Keep every run's output and errors for later grepping</td>
+<td>Keep every run’s output and errors for later grepping</td>
 </tr>
 </tbody>
 </table>
-<p>Make it executable and test it by hand <strong>before</strong> scheduling: <code>chmod +x scripts/daily_clean.sh &amp;&amp; ./scripts/daily_clean.sh</code>.</p>
+<p>Make it executable and test it by hand <strong>before</strong>
+scheduling:
+<code>chmod +x scripts/daily_clean.sh &amp;&amp; ./scripts/daily_clean.sh</code>.</p>
 <h2 id="part-5-cron-concepts">Part 5: cron concepts</h2>
-<p>Edit your schedule with <code>crontab -e</code>, and list it with <code>crontab -l</code>. Each line is <strong>5 time fields + a command</strong>:</p>
-<div class="codehilite"><pre><span></span><code>┌──────── minute (0–59)
+<p>Edit your schedule with <code>crontab -e</code>, and list it with
+<code>crontab -l</code>. Each line is <strong>5 time fields + a
+command</strong>:</p>
+<pre class="text"><code>┌──────── minute (0–59)
 │ ┌────── hour (0–23)
 │ │ ┌──── day of month (1–31)
 │ │ │ ┌── month (1–12)
 │ │ │ │ ┌ day of week (0–6, Sunday = 0)
 │ │ │ │ │
-0 6 * * * $HOME/practice/scripts/daily_clean.sh
-</code></pre></div>
-
+0 6 * * * $HOME/practice/scripts/daily_clean.sh</code></pre>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>Schedule</th>
 <th>Meaning</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td><code>0 6 * * *</code></td>
 <td>Every day at 06:00</td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>30 7 * * 1-5</code></td>
 <td>Weekdays at 07:30</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><code>0 */4 * * *</code></td>
 <td>Every 4 hours, on the hour</td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>0 9 1 * *</code></td>
 <td>09:00 on the 1st of every month</td>
 </tr>
 </tbody>
 </table>
-<p>Check any schedule at <a href="https://crontab.guru">crontab.guru</a>.</p>
-<div class="admonition tip">
-<p class="admonition-title">cron isn't your terminal</p>
-<p>cron runs with a <strong>minimal environment</strong>: a short <code>PATH</code>, no aliases, your home as the folder, and a server time zone that may be UTC. Use full paths, log everything, and test by hand. On WSL, cron only runs while WSL is running. GitHub Actions and Airflow use this same 5-field syntax.</p>
+<p>Check any schedule at <a
+href="https://crontab.guru">crontab.guru</a>.</p>
+<div class="admonition tip" data-markdown="1">
+<p class="admonition-title">
+cron isn't your terminal
+</p>
+<p>cron runs with a <strong>minimal environment</strong>: a short
+<code>PATH</code>, no aliases, your home as the folder, and a server
+time zone that may be UTC. Use full paths, log everything, and test by
+hand. On WSL, cron only runs while WSL is running. GitHub Actions and
+Airflow use this same 5-field syntax.</p>
 </div>
 <h2 id="common-mistakes">Common mistakes</h2>
 <table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Mistake</th>
 <th>What happens</th>
 <th>Fix</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td><code>uniq -c</code> without <code>sort</code> first</td>
 <td>Counts split across groups</td>
 <td>Always <code>sort | uniq -c</code></td>
 </tr>
-<tr>
+<tr class="even">
 <td>Forgetting to skip the header</td>
-<td>"status" counted as a value</td>
+<td>“status” counted as a value</td>
 <td><code>tail -n +2</code></td>
 </tr>
-<tr>
+<tr class="odd">
 <td><code>&gt;</code> when you meant <code>&gt;&gt;</code></td>
-<td>Yesterday's log is overwritten</td>
+<td>Yesterday’s log is overwritten</td>
 <td><code>&gt;&gt;</code> for logs</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Relative paths in cron jobs</td>
-<td>"No such file" at 06:00</td>
+<td>“No such file” at 06:00</td>
 <td><code>cd</code> to a known folder, or use absolute paths</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>No logging in scheduled jobs</td>
 <td>Silent failures</td>
 <td><code>&gt;&gt; job.log 2&gt;&amp;1</code>, then grep it</td>
@@ -369,72 +393,148 @@ uv<span class="w"> </span>run<span class="w"> </span>--project<span class="w"> <
 </tbody>
 </table>
 <h2 id="try-it-yourself">Try it yourself</h2>
-<p><strong>Task:</strong> Using only the log file and pipes, find the <strong>total number of rows written</strong> across all runs in March.</p>
+<p><strong>Task:</strong> Using only the log file and pipes, find the
+<strong>total number of rows written</strong> across all runs in
+March.</p>
 <details>
-<summary>Show a hint</summary>
-<p><code>grep -o 'written: [0-9]*'</code> prints only the matching part. Then keep the number, and add them up with <code>paste -sd+ | bc</code>.</p>
+<summary>
+Show a hint
+</summary>
+<code>grep -o 'written: [0-9]*'</code> prints only the matching part.
+Then keep the number, and add them up with <code>paste -sd+ | bc</code>.
 </details>
 <details>
-<summary>Show the solution</summary>
-<div class="codehilite"><pre><span></span><code>grep<span class="w"> </span>-o<span class="w"> </span><span class="s1">'written: [0-9]*'</span><span class="w"> </span>logs/cleaner-2026-03.log<span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-d<span class="s1">' '</span><span class="w"> </span>-f2<span class="w"> </span><span class="p">|</span><span class="w"> </span>paste<span class="w"> </span>-sd+<span class="w"> </span><span class="p">|</span><span class="w"> </span>bc
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>103
-</code></pre></div>
-
-<p>Seven successful runs: 12 + 13 + 14 + 15 + 15 + 17 + 17 = 103. (The three ERROR days wrote nothing.)</p>
+<summary>
+Show the solution
+</summary>
+<pre class="bash"><code>grep -o &#39;written: [0-9]*&#39; logs/cleaner-2026-03.log | cut -d&#39; &#39; -f2 | paste -sd+ | bc</code></pre>
+<pre class="text"><code>103</code></pre>
+Seven successful runs: 12 + 13 + 14 + 15 + 15 + 17 + 17 = 103. (The
+three ERROR days wrote nothing.)
 </details>
 <h2 id="quick-quiz">Quick quiz</h2>
 <div class="quiz-q" data-answer="1">
 <p>1. What does <code>|</code> do?</p>
-<ol>
+<ol type="1">
 <li>Saves output to a file</li>
-<li>Sends one command's output into the next command</li>
+<li>Sends one command’s output into the next command</li>
 <li>Runs two commands at the same time, unrelated</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B.</strong></p>
+<summary>
+Show answer
+</summary>
+<strong>B.</strong>
 </details>
 </div>
 <div class="quiz-q" data-answer="1">
 <p>2. When does <code>0 6 * * 1-5</code> run?</p>
-<ol>
+<ol type="1">
 <li>Every day at 06:00</li>
 <li>At 06:00, Monday to Friday</li>
 <li>On the 6th of each month</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B.</strong></p>
+<summary>
+Show answer
+</summary>
+<strong>B.</strong>
 </details>
 </div>
 <div class="quiz-q" data-answer="1">
-<p>3. Which keeps the old contents of <code>job.log</code> and adds new output?</p>
-<ol>
+<p>3. Which keeps the old contents of <code>job.log</code> and adds new
+output?</p>
+<ol type="1">
 <li><code>&gt; job.log</code></li>
 <li><code>&gt;&gt; job.log</code></li>
 <li><code>2&gt; job.log</code></li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B.</strong></p>
+<summary>
+Show answer
+</summary>
+<strong>B.</strong>
 </details>
 </div>
 <h2 id="summary">Summary</h2>
 <ul>
-<li><code>grep</code> (with <code>-c</code>, <code>-i</code>, <code>-v</code>, <code>-E</code>) finds lines in logs and data.</li>
-<li>Pipes chain small tools: <code>cut | tail -n +2 | sort | uniq -c | sort -rn</code> = a quick GROUP BY.</li>
-<li><code>&gt;</code> overwrites, <code>&gt;&gt;</code> appends, <code>2&gt;</code> captures errors, <code>2&gt;&amp;1</code> merges both.</li>
-<li>Scheduled scripts use <code>set -euo pipefail</code>, full paths and logging.</li>
-<li>cron: 5 fields + command. Check it at crontab.guru, and test by hand first.</li>
+<li><code>grep</code> (with <code>-c</code>, <code>-i</code>,
+<code>-v</code>, <code>-E</code>) finds lines in logs and data.</li>
+<li>Pipes chain small tools:
+<code>cut | tail -n +2 | sort | uniq -c | sort -rn</code> = a quick
+GROUP BY.</li>
+<li><code>&gt;</code> overwrites, <code>&gt;&gt;</code> appends,
+<code>2&gt;</code> captures errors, <code>2&gt;&amp;1</code> merges
+both.</li>
+<li>Scheduled scripts use <code>set -euo pipefail</code>, full paths and
+logging.</li>
+<li>cron: 5 fields + command. Check it at crontab.guru, and test by hand
+first.</li>
 </ul>
-<div class="admonition job">
-<p class="admonition-title">Job-ready check</p>
-<p><strong>Interview question:</strong> <em>"A nightly job failed. How do you find out what happened?"</em></p>
-<p><strong>Strong answer:</strong> "I check the job's log: <code>grep -E 'ERROR|WARNING'</code> for the failing night, then look at the lines around it with <code>grep -C 3</code>. I count how often it happens with <code>grep -c</code> across days to see if it's new or recurring, fix the cause, and make sure the job logs enough context next time."</p>
-<p><strong>Mini project:</strong> Write <code>scripts/error_report.sh</code> that writes today's date, the number of ERROR lines, and the error types (with counts) to <code>reports/error_report.txt</code>. Schedule it in cron for 07:00 on weekdays, and paste the crontab line into your notes.</p>
+<div class="admonition job" data-markdown="1">
+<p class="admonition-title">
+Job-ready check
+</p>
+<p><strong>Interview question:</strong> <em>“A nightly job failed. How
+do you find out what happened?”</em></p>
+<p><strong>Strong answer:</strong> “I check the job’s log:
+<code>grep -E 'ERROR|WARNING'</code> for the failing night, then look at
+the lines around it with <code>grep -C 3</code>. I count how often it
+happens with <code>grep -c</code> across days to see if it’s new or
+recurring, fix the cause, and make sure the job logs enough context next
+time.”</p>
+<p><strong>Mini project:</strong> Write
+<code>scripts/error_report.sh</code> that writes today’s date, the
+number of ERROR lines, and the error types (with counts) to
+<code>reports/error_report.txt</code>. Schedule it in cron for 07:00 on
+weekdays, and paste the crontab line into your notes.</p>
 </div>
+<section class="mentor-prompt"><div class="mentor-head"><div><span class="eyebrow">AI study companion</span><h2 id="ai-mentor-prompt">AI Mentor Prompt</h2></div><button class="btn copy-prompt" type="button" data-copy-target="mentor-prompt-phase-0-linux-02-grep-pipes-cron">Copy prompt</button></div><p>Paste this into ChatGPT, Claude, Gemini, or another capable assistant to turn this tutorial into an interactive mentoring session.</p><pre class="prompt-box"><code id="mentor-prompt-phase-0-linux-02-grep-pipes-cron">You are my hands-on software-engineering mentor.
+
+I am currently studying:
+&quot;grep, sort &amp; Pipes, then cron: Answer Questions and Automate Jobs&quot;
+
+My level:
+Beginner
+
+Teach me this topic interactively rather than giving me a long lecture.
+
+Use this sequence:
+
+1. Check what I already understand with one short diagnostic question.
+2. Explain the concept in simple language and give me the mental model first.
+3. Give me one small task using code, SQL, configuration, data, or architecture as appropriate.
+4. Wait for my attempt before showing a complete solution.
+5. Review my work and explain both what is correct and what needs improvement.
+6. Help me debug errors step by step instead of immediately replacing my work.
+7. Increase the difficulty gradually and connect each new step to the previous one.
+8. Relate what I am learning to real professional data/AI engineering work.
+9. Ask me to explain an important decision in my own words so you can check my understanding.
+10. At the end, ask me to build or modify one small feature independently.
+
+Important rules:
+- Do not do the entire exercise for me unless I explicitly ask.
+- Explain unfamiliar terminology before using it heavily.
+- Prefer current, production-relevant practices over outdated shortcuts.
+- Distinguish clearly between concepts, tool-specific behaviour, and optional alternatives.
+- If a technical fact, API, syntax, version, or best practice may have changed, verify it against current official documentation before teaching it.
+- Never invent command output, test results, benchmark numbers, cloud behaviour, or data results.
+- If something cannot be executed in the current environment, say so and give me the exact command or verification step I should run.
+- Keep me actively coding, querying, configuring, reasoning, or debugging throughout the session.
+- When useful, work from the tutorial practice files (linux-practice.zip) instead of inventing unrelated examples.
+
+The concepts I need to master are:
+- grep, sort &amp; pipes
+- cron concepts
+- grep
+- pipe
+- |
+- sort
+- uniq
+- uniq -c
+
+Start by asking me one diagnostic question.</code></pre></section>
+
 <div class="terms-box"><div class="files-head"><b>Key terms in this lesson</b><a href="../../../glossary.html">Glossary →</a></div><div class="term-chips"><a class="term-chip" href="../../../glossary.html#cron" title="A scheduler that runs commands at set times using five time fields, such as 0 6 * * 1-5 for 06:00 on weekdays.">cron</a><a class="term-chip" href="../../../glossary.html#pipe" title="The | symbol, which sends one command&#x27;s output into the next, so small tools combine into a pipeline (cut | sort | uniq -c).">Pipe</a></div></div>
 <h2 id="free-resources">Free resources to go deeper</h2><ul class="resources"><li><a href="https://missing.csail.mit.edu/2026/course-shell/">The Shell — pipes and redirection (Missing Semester)</a><span class="r-meta">MIT — The Missing Semester of Your CS Education · Pipes, redirection and shell scripting basics.</span></li><li><a href="https://crontab.guru">crontab.guru</a><span class="r-meta">crontab.guru · Type a cron schedule and read it back in plain English.</span></li><li><a href="https://ubuntu.com/tutorials/command-line-for-beginners">The Linux command line for beginners</a><span class="r-meta">Ubuntu (Canonical) · Includes pipes and redirection.</span></li></ul>
 <div class="complete-bar"><span>Finished reading and did the exercise?</span>
@@ -443,9 +543,9 @@ uv<span class="w"> </span>run<span class="w"> </span>--project<span class="w"> <
 <p class="reviewed">Last reviewed: 2026-10-09</p>
 
   </div></main>
-  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#example-1-grep-a-log">Example 1: grep a log</a><a href="#example-2-pipes-count-and-rank">Example 2: pipes — count and rank</a><a href="#example-3-redirect-output-to-files">Example 3: redirect output to files</a><a href="#part-4-a-shell-script-for-a-scheduled-job">Part 4: a shell script for a scheduled job</a><a href="#part-5-cron-concepts">Part 5: cron concepts</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#free-resources">Free resources</a></aside>
+  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#example-1-grep-a-log">Example 1: grep a log</a><a href="#example-2-pipes-count-and-rank">Example 2: pipes — count and rank</a><a href="#example-3-redirect-output-to-files">Example 3: redirect output to files</a><a href="#part-4-a-shell-script-for-a-scheduled-job">Part 4: a shell script for a scheduled job</a><a href="#part-5-cron-concepts">Part 5: cron concepts</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#ai-mentor-prompt">AI Mentor Prompt</a><a href="#free-resources">Free resources</a></aside>
 </div>
-<footer class="site">Data, AI &amp; Automation Path v0.8 · Applied AI, Data &amp; Automation Lab · Updated October 2026<br>
+<footer class="site"><b>Saiful The Techie</b> · Data, AI &amp; Automation Path v0.9.1 · Updated October 2026<br>
 Lesson text: <a href="../../../license.html">CC BY-NC-SA 4.0</a> · Code: <a href="../../../license.html#code-mit-license">MIT</a> · Free external resources belong to their respective owners.</footer>
 <script src="../../../search-index.js"></script>
 <script src="../../../assets/app.js"></script>

@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+.venv/
+.DS_Store
+Thumbs.db
+*.db
+*.sqlite
+# large files generated locally by examples/phase-2/make_big_data.py and the DuckDB lesson
+examples/phase-2/data/orders_big.*
+examples/phase-2/data/units_by_year.parquet
+examples/phase-2/results/

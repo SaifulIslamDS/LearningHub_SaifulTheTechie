@@ -6,7 +6,7 @@
 <title>Phase 0 Gate Project: CSV Data Cleaning CLI — Data, AI &amp; Automation Path</title>
 <meta name="description" content="Build a command-line tool that cleans messy CSV exports with configurable rules, logging, error handling, tests and CI — your first engineering-grade portfolio project.">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="Data, AI &amp; Automation Path">
+<meta property="og:site_name" content="Saiful The Techie">
 <meta property="og:title" content="Phase 0 Gate Project: CSV Data Cleaning CLI">
 <meta property="og:description" content="Build a command-line tool that cleans messy CSV exports with configurable rules, logging, error handling, tests and CI — your first engineering-grade portfolio project.">
 <meta property="og:locale" content="en_US">
@@ -19,13 +19,13 @@ var n=null;try{n=localStorage.getItem('daa-nav')}catch(e){}
 if(n==='open'&&window.matchMedia&&matchMedia('(min-width: 961px)').matches)document.documentElement.setAttribute('data-nav','open');
 document.documentElement.classList.add('no-anim')})();</script>
 <link rel="stylesheet" href="../../assets/style.css">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233f7d6a'/%3E%3Ctext x='16' y='21' font-family='sans-serif' font-size='13' font-weight='700' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
+
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="topbar">
   <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Open curriculum menu" title="Curriculum menu (press M)" aria-controls="sidebar" aria-expanded="false"><span class="ico-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span class="ico-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></button>
-  <a class="brand" href="../../index.html"><span class="brand-badge">AI</span><span class="brand-text"><span class="brand-name">Data, AI &amp; Automation Path</span><span class="brand-version">v0.8</span></span></a>
+  <a class="brand" href="../../index.html"><span class="brand-text"><span class="brand-name">Saiful The Techie</span><span class="brand-version">Data, AI &amp; Automation Path · v0.9.1</span></span></a>
   <nav class="top-links" aria-label="Main">
     <a href="../../index.html" class="">Home</a><a href="../../curriculum.html" class="">Curriculum</a><a href="../../practice-files.html" class="">Practice files</a><a href="../../glossary.html" class="">Glossary</a><a href="../../how-to-learn.html" class="">How to learn</a><a href="../../about.html" class="">About</a>
   </nav>
@@ -41,7 +41,7 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="layout wide">
   <nav class="sidebar" id="sidebar" aria-label="Curriculum">
     <div class="side-title">Curriculum</div>
-    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="77"><i></i></div><span class="bar-label" data-progress-label></span></div>
+    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="85"><i></i></div><span class="bar-label" data-progress-label></span></div>
 <div class="nav-phase current open"><a href="../../learn/phase-0/index.html"><span class="nav-num">0</span>Foundations</a>
 <ul class="nav-modules">
 <li><a class="" href="../../learn/phase-0/dev-environment/index.html">Development Environment</a>
@@ -86,224 +86,291 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="meta"><span class="pill">Phase <b>0</b> · Foundations</span><span class="pill">Effort <b>10–20 hours (estimate)</b></span><span class="pill">Level <b>Beginner</b></span></div>
 <div class="files-box"><div class="files-head"><b>Practice files for this page</b><a href="../../practice-files.html">All practice files →</a></div><ul><li><a href="../../downloads/phase-0/csv-cleaner-starter.zip" download>csv-cleaner-starter.zip</a><span class="f-desc">Phase 0 Gate project starter: CLI, config and tests ready, cleaning functions to write · 14 KB</span></li><li><a href="../../downloads/phase-0/csv-cleaner-solution.zip" download>csv-cleaner-solution.zip</a><span class="f-desc">Phase 0 Gate project reference solution (17 passing tests, CI workflow) · 14 KB</span></li><li><a href="../../downloads/orders_raw.csv" download>orders_raw.csv</a><span class="f-desc">Messy export of the 12 orders (14 rows) to clean · 1 KB</span></li><li><a href="../../downloads/orders.csv" download>orders.csv</a><span class="f-desc">The 12 clean practice orders as CSV · 963 B</span></li><li><a href="../../downloads/known_answers.csv" download>known_answers.csv</a><span class="f-desc">24 key numbers every tool should reproduce, for checking your work (and AI output) · 1 KB</span></li></ul></div>
 <h2 id="the-brief">The brief</h2>
-<p>Every month, the operations team exports orders from the ERP system. The file is messy: blank rows, extra spaces, <code>DHAKA</code> vs <code>Dhaka</code>, quantities like <code>"5,000"</code>, day-first dates, and duplicated lines. Someone fixes it by hand in Excel, differently each time.</p>
+<p>Every month, the operations team exports orders from the ERP system.
+The file is messy: blank rows, extra spaces, <code>DHAKA</code> vs
+<code>Dhaka</code>, quantities like <code>"5,000"</code>, day-first
+dates, and duplicated lines. Someone fixes it by hand in Excel,
+differently each time.</p>
 <blockquote>
-<p><em>"Give us a tool that cleans the export the same way every time, tells us what it changed, and fails loudly when something is wrong."</em></p>
+<p><em>“Give us a tool that cleans the export the same way every time,
+tells us what it changed, and fails loudly when something is
+wrong.”</em></p>
 </blockquote>
-<p>Build <strong><code>csv-clean</code></strong>, a Python command-line tool. It's the <strong>gate</strong> for Phase 0: if you can build, test and ship this, you have the engineering foundations the later phases rely on.</p>
-<div class="codehilite"><pre><span></span><code>orders_raw.csv (14 rows: blanks, spaces, CAPITALS, "5,000", dd/mm dates, duplicates)
+<p>Build <strong><code>csv-clean</code></strong>, a Python command-line
+tool. It’s the <strong>gate</strong> for Phase 0: if you can build, test
+and ship this, you have the engineering foundations the later phases
+rely on.</p>
+<pre class="text"><code>orders_raw.csv (14 rows: blanks, spaces, CAPITALS, &quot;5,000&quot;, dd/mm dates, duplicates)
         │  uv run csv-clean data/orders_raw.csv
         ▼
-orders_raw_clean.csv (12 tidy rows, ISO dates, numbers, snake_case columns)
-</code></pre></div>
-
-<h2 id="what-youll-prove">What you'll prove</h2>
+orders_raw_clean.csv (12 tidy rows, ISO dates, numbers, snake_case columns)</code></pre>
+<h2 id="what-youll-prove">What you’ll prove</h2>
 <table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Skill (Phase 0 module)</th>
 <th>Evidence in your project</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>Dev environment</td>
-<td><code>pyproject.toml</code>, <code>uv.lock</code>, <code>.python-version</code>; installs with <code>uv sync</code></td>
+<td><code>pyproject.toml</code>, <code>uv.lock</code>,
+<code>.python-version</code>; installs with <code>uv sync</code></td>
 </tr>
-<tr>
+<tr class="even">
 <td>Git &amp; GitHub</td>
-<td>A public repo with small commits, at least one merged PR, and a clear README</td>
+<td>A public repo with small commits, at least one merged PR, and a
+clear README</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Linux &amp; terminal</td>
-<td>A shell script and a cron line that run the tool daily and keep a log</td>
+<td>A shell script and a cron line that run the tool daily and keep a
+log</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Programming</td>
-<td>Functions, a dataclass config, file handling, specific exceptions, type hints</td>
+<td>Functions, a dataclass config, file handling, specific exceptions,
+type hints</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Testing &amp; CI</td>
-<td>pytest unit and end-to-end tests, ruff clean, a green GitHub Actions badge</td>
+<td>pytest unit and end-to-end tests, ruff clean, a green GitHub Actions
+badge</td>
 </tr>
-<tr>
+<tr class="even">
 <td>AI-assisted development</td>
-<td>An <code>AGENTS.md</code>, and a short log of AI suggestions you reviewed and tested</td>
+<td>An <code>AGENTS.md</code>, and a short log of AI suggestions you
+reviewed and tested</td>
 </tr>
 </tbody>
 </table>
 <h2 id="two-ways-to-start">Two ways to start</h2>
 <table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Option</th>
 <th>Start from</th>
 <th>Good for</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td><strong>A — Guided (recommended)</strong></td>
-<td><a href="../../downloads/phase-0/csv-cleaner-starter.zip">csv-cleaner-starter.zip</a>: CLI, config loader, config file and <strong>17 tests</strong> are ready. You implement 7 functions in <code>cleaner.py</code></td>
+<td><a
+href="../../downloads/phase-0/csv-cleaner-starter.zip">csv-cleaner-starter.zip</a>:
+CLI, config loader, config file and <strong>17 tests</strong> are ready.
+You implement 7 functions in <code>cleaner.py</code></td>
 <td>A first project; learn test-driven development</td>
 </tr>
-<tr>
+<tr class="even">
 <td><strong>B — From scratch</strong></td>
 <td><code>uv init csv-cleaner</code>, and this page</td>
-<td>A stronger portfolio story, if you're already comfortable</td>
+<td>A stronger portfolio story, if you’re already comfortable</td>
 </tr>
 </tbody>
 </table>
-<p>The reference solution is in <a href="../../downloads/phase-0/csv-cleaner-solution.zip">csv-cleaner-solution.zip</a>. Open it only after a real attempt, or to compare designs at the end.</p>
+<p>The reference solution is in <a
+href="../../downloads/phase-0/csv-cleaner-solution.zip">csv-cleaner-solution.zip</a>.
+Open it only after a real attempt, or to compare designs at the end.</p>
 <h3 id="option-a-in-5-commands">Option A in 5 commands</h3>
-<div class="codehilite"><pre><span></span><code>unzip<span class="w"> </span>csv-cleaner-starter.zip<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>csv-cleaner
-uv<span class="w"> </span>sync<span class="w"> </span>--dev
-uv<span class="w"> </span>run<span class="w"> </span>pytest<span class="w">                 </span><span class="c1"># 13 failed, 4 passed: your to-do list</span>
-<span class="c1"># implement src/csv_cleaner/cleaner.py one function at a time, re-running pytest</span>
-uv<span class="w"> </span>run<span class="w"> </span>csv-clean<span class="w"> </span>data/orders_raw.csv
-</code></pre></div>
-
+<pre class="bash"><code>unzip csv-cleaner-starter.zip &amp;&amp; cd csv-cleaner
+uv sync --dev
+uv run pytest                 # 13 failed, 4 passed: your to-do list
+# implement src/csv_cleaner/cleaner.py one function at a time, re-running pytest
+uv run csv-clean data/orders_raw.csv</code></pre>
 <table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Function</th>
 <th>Rule it implements</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td><code>check_columns</code></td>
-<td>Raise an error listing <strong>all</strong> missing required columns</td>
+<td>Raise an error listing <strong>all</strong> missing required
+columns</td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>is_blank</code></td>
 <td>A row where every cell is empty or spaces</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><code>to_int</code></td>
-<td><code>"5,000"</code> → <code>5000</code>; text like <code>"lots"</code> raises <code>ValueError</code></td>
+<td><code>"5,000"</code> → <code>5000</code>; text like
+<code>"lots"</code> raises <code>ValueError</code></td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>to_decimal</code></td>
 <td><code>"3.50"</code> → <code>3.5</code></td>
 </tr>
-<tr>
+<tr class="odd">
 <td><code>to_iso_date</code></td>
-<td><code>"05/01/2026"</code> with <code>%d/%m/%Y</code> → <code>"2026-01-05"</code></td>
+<td><code>"05/01/2026"</code> with <code>%d/%m/%Y</code> →
+<code>"2026-01-05"</code></td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>clean_row</code></td>
-<td>Apply trim, title case, numbers, date and renames from the config</td>
+<td>Apply trim, title case, numbers, date and renames from the
+config</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><code>clean_rows</code></td>
-<td>Remove blanks, clean each row, reject bad rows (with line numbers), drop duplicates, return a report</td>
+<td>Remove blanks, clean each row, reject bad rows (with line numbers),
+drop duplicates, return a report</td>
 </tr>
 </tbody>
 </table>
 <h2 id="requirements">Requirements</h2>
-<h3 id="1-behaviour">1. Behaviour</h3>
-<ul>
-<li>[ ] <code>csv-clean INPUT [-o OUTPUT] [-c CONFIG] [-v] [--log-file FILE]</code>.</li>
-<li>[ ] Trim spaces, title-case Region and Status, convert <code>"5,000"</code> → <code>5000</code>, convert day-first dates to ISO <code>YYYY-MM-DD</code>, rename columns to snake_case.</li>
-<li>[ ] Remove blank rows and exact duplicates (<strong>after</strong> cleaning, so <code>Dhaka</code> and <code>Dhaka</code> match).</li>
-<li>[ ] Bad rows are <strong>rejected, logged with their line number, and counted</strong>, never silently dropped and never crashing the run.</li>
+<h3 id="behaviour">1. Behaviour</h3>
+<ul class="task-list">
+<li><label><input
+type="checkbox" /><code>csv-clean INPUT [-o OUTPUT] [-c CONFIG] [-v] [--log-file FILE]</code>.</label></li>
+<li><label><input type="checkbox" />Trim spaces, title-case Region and
+Status, convert <code>"5,000"</code> → <code>5000</code>, convert
+day-first dates to ISO <code>YYYY-MM-DD</code>, rename columns to
+snake_case.</label></li>
+<li><label><input type="checkbox" />Remove blank rows and exact
+duplicates (<strong>after</strong> cleaning, so <code>Dhaka</code> and
+<code>Dhaka</code> match).</label></li>
+<li><label><input type="checkbox" />Bad rows are <strong>rejected,
+logged with their line number, and counted</strong>, never silently
+dropped and never crashing the run.</label></li>
 </ul>
-<h3 id="2-configuration">2. Configuration</h3>
-<ul>
-<li>[ ] All rules (columns, formats, renames) live in <code>config.toml</code>, read with <code>tomllib</code>, so no column names are hard-coded in the code.</li>
-<li>[ ] A broken or missing config file gives a clear error message.</li>
+<h3 id="configuration">2. Configuration</h3>
+<ul class="task-list">
+<li><label><input type="checkbox" />All rules (columns, formats,
+renames) live in <code>config.toml</code>, read with
+<code>tomllib</code>, so no column names are hard-coded in the
+code.</label></li>
+<li><label><input type="checkbox" />A broken or missing config file
+gives a clear error message.</label></li>
 </ul>
-<h3 id="3-logging-exit-codes">3. Logging &amp; exit codes</h3>
-<ul>
-<li>[ ] A one-line summary: <code>Rows read | blank removed | duplicates removed | rejected | written</code>.</li>
-<li>[ ] Messages go to stderr (and optionally a log file); <code>-v</code> shows debug detail.</li>
-<li>[ ] Exit codes a scheduler can act on:</li>
+<h3 id="logging-exit-codes">3. Logging &amp; exit codes</h3>
+<ul class="task-list">
+<li><label><input type="checkbox" />A one-line summary:
+<code>Rows read | blank removed | duplicates removed | rejected | written</code>.</label></li>
+<li><label><input type="checkbox" />Messages go to stderr (and
+optionally a log file); <code>-v</code> shows debug detail.</label></li>
+<li><label><input type="checkbox" />Exit codes a scheduler can act
+on:</label></li>
 </ul>
 <table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Code</th>
 <th>Meaning</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td><code>0</code></td>
 <td>Success</td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>2</code></td>
-<td>Can't run: input file or config missing/invalid, required columns missing</td>
+<td>Can’t run: input file or config missing/invalid, required columns
+missing</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><code>3</code></td>
 <td>Finished, but some rows were rejected: check the log</td>
 </tr>
 </tbody>
 </table>
-<h3 id="4-tests-quality">4. Tests &amp; quality</h3>
-<ul>
-<li>[ ] Unit tests for every cleaning rule, including boundaries and bad input.</li>
-<li>[ ] An end-to-end test comparing the output with <code>tests/expected_orders.csv</code>.</li>
-<li>[ ] <code>uv run ruff check .</code> and <code>uv run ruff format --check .</code> pass.</li>
-<li>[ ] GitHub Actions runs lint, format check and tests on every push and PR.</li>
+<h3 id="tests-quality">4. Tests &amp; quality</h3>
+<ul class="task-list">
+<li><label><input type="checkbox" />Unit tests for every cleaning rule,
+including boundaries and bad input.</label></li>
+<li><label><input type="checkbox" />An end-to-end test comparing the
+output with <code>tests/expected_orders.csv</code>.</label></li>
+<li><label><input type="checkbox" /><code>uv run ruff check .</code> and
+<code>uv run ruff format --check .</code> pass.</label></li>
+<li><label><input type="checkbox" />GitHub Actions runs lint, format
+check and tests on every push and PR.</label></li>
 </ul>
-<h3 id="5-operations-documentation">5. Operations &amp; documentation</h3>
-<ul>
-<li>[ ] <code>scripts/daily_clean.sh</code> with <code>set -euo pipefail</code>, plus the crontab line in the README.</li>
-<li>[ ] README: purpose, quick start, example output, options, exit codes, how it works, what you'd do next.</li>
-<li>[ ] <code>AGENTS.md</code> with setup commands, rules and the known answer.</li>
+<h3 id="operations-documentation">5. Operations &amp; documentation</h3>
+<ul class="task-list">
+<li><label><input type="checkbox" /><code>scripts/daily_clean.sh</code>
+with <code>set -euo pipefail</code>, plus the crontab line in the
+README.</label></li>
+<li><label><input type="checkbox" />README: purpose, quick start,
+example output, options, exit codes, how it works, what you’d do
+next.</label></li>
+<li><label><input type="checkbox" /><code>AGENTS.md</code> with setup
+commands, rules and the known answer.</label></li>
 </ul>
 <h2 id="known-answers">Known answers</h2>
-<p>Your tool must produce these results with the practice file. If it doesn't, find out why before you continue.</p>
+<p>Your tool must produce these results with the practice file. If it
+doesn’t, find out why before you continue.</p>
 <table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Check</th>
 <th>Expected</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td><code>uv run pytest</code> (solution)</td>
 <td><strong>17 passed</strong></td>
 </tr>
-<tr>
+<tr class="even">
 <td>Summary line</td>
 <td><code>Rows read: 14 | blank removed: 1 | duplicates removed: 1 | rejected: 0 | written: 12</code></td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Output</td>
-<td>Identical to <code>tests/expected_orders.csv</code>, same 12 orders as <code>orders.csv</code></td>
+<td>Identical to <code>tests/expected_orders.csv</code>, same 12 orders
+as <code>orders.csv</code></td>
 </tr>
-<tr>
+<tr class="even">
 <td>Net revenue of the output (excluding Cancelled)</td>
 <td><strong>9,075</strong></td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Missing input file</td>
-<td><code>ERROR … Input file not found: nope.csv</code>, exit code <strong>2</strong></td>
+<td><code>ERROR … Input file not found: nope.csv</code>, exit code
+<strong>2</strong></td>
 </tr>
-<tr>
+<tr class="even">
 <td>One quantity changed to <code>lots</code></td>
-<td><code>WARNING … Line 10 rejected: invalid literal for int() with base 10: 'lots'</code>, 11 written, exit code <strong>3</strong></td>
+<td><code>WARNING … Line 10 rejected: invalid literal for int() with base 10: 'lots'</code>,
+11 written, exit code <strong>3</strong></td>
 </tr>
 </tbody>
 </table>
 <p>Reference run (solution):</p>
-<div class="codehilite"><pre><span></span><code>INFO csv_cleaner: Rows read: 14 | blank removed: 1 | duplicates removed: 1 | rejected: 0 | written: 12
-INFO csv_cleaner: Clean file: data/orders_raw_clean.csv
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>order_id,order_date,customer,region,category,product,quantity,unit_price,status
+<pre class="text"><code>INFO csv_cleaner: Rows read: 14 | blank removed: 1 | duplicates removed: 1 | rejected: 0 | written: 12
+INFO csv_cleaner: Clean file: data/orders_raw_clean.csv</code></pre>
+<pre class="text"><code>order_id,order_date,customer,region,category,product,quantity,unit_price,status
 1,2026-01-05,Rahim Traders,Dhaka,Fabric,Cotton Twill,120,3.50,Delivered
 2,2026-01-08,Karim Garments,Chattogram,Trims,Metal Buttons,5000,0.04,Delivered
-3,2026-01-12,Nova Apparel,Dhaka,Fabric,Denim 12oz,300,5.20,Delivered
-</code></pre></div>
-
+3,2026-01-12,Nova Apparel,Dhaka,Fabric,Denim 12oz,300,5.20,Delivered</code></pre>
 <h2 id="repository-structure">Repository structure</h2>
-<div class="codehilite"><pre><span></span><code>csv-cleaner/
+<pre class="text"><code>csv-cleaner/
 ├── .github/workflows/ci.yml
 ├── .gitignore
 ├── .python-version
@@ -324,69 +391,83 @@ INFO csv_cleaner: Clean file: data/orders_raw_clean.csv
 │   ├── test_cleaner.py
 │   ├── test_cli.py
 │   └── test_config.py
-└── uv.lock
-</code></pre></div>
-
+└── uv.lock</code></pre>
 <h2 id="stretch-goals">Stretch goals</h2>
 <ul>
-<li>Process every CSV in a <strong>folder</strong> (like the Power Query folder lesson), with one summary per file.</li>
-<li>Write rejected rows to <code>rejected.csv</code> with a <code>reason</code> column.</li>
+<li>Process every CSV in a <strong>folder</strong> (like the Power Query
+folder lesson), with one summary per file.</li>
+<li>Write rejected rows to <code>rejected.csv</code> with a
+<code>reason</code> column.</li>
 <li>Add a <code>--dry-run</code> flag that reports without writing.</li>
 <li>Publish a release tag (<code>v1.0.0</code>) and a CHANGELOG.</li>
 </ul>
 <h2 id="self-assessment-rubric">Self-assessment rubric</h2>
 <table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Area</th>
 <th>Meets the bar</th>
 <th>Excellent</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>Correctness</td>
 <td>Known answers match</td>
-<td>Edge cases tested (blank, duplicates after cleaning, bad dates, missing columns)</td>
+<td>Edge cases tested (blank, duplicates after cleaning, bad dates,
+missing columns)</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Code quality</td>
 <td>Functions, type hints, ruff clean</td>
 <td>Small pure functions, config-driven, clear names and docstrings</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Error handling</td>
 <td>No crashes on bad rows</td>
 <td>Specific exceptions, line numbers, meaningful exit codes</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Testing &amp; CI</td>
 <td>Tests pass locally</td>
 <td>Unit + end-to-end tests, green CI badge, branch protection</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Git &amp; docs</td>
 <td>README with quick start</td>
 <td>Small commits, PR history, README tells the story in 60 seconds</td>
 </tr>
-<tr>
+<tr class="even">
 <td>AI use</td>
 <td>—</td>
 <td>AGENTS.md, plus an AI log showing what you verified and fixed</td>
 </tr>
 </tbody>
 </table>
-<p><strong>Done when:</strong> every requirement is checked, the known answers match, CI is green, and someone else can install and run your tool from the README alone.</p>
-<div class="admonition tip">
-<p class="admonition-title">Interview story</p>
-<p>"I built a config-driven CSV cleaning CLI in Python with uv. It logs a summary and returns exit codes a scheduler can act on, rejects bad rows with line numbers instead of failing silently, and has 17 tests running in GitHub Actions. I used an AI assistant for parts of it, with an AGENTS.md and known-answer tests to verify every suggestion."</p>
+<p><strong>Done when:</strong> every requirement is checked, the known
+answers match, CI is green, and someone else can install and run your
+tool from the README alone.</p>
+<div class="admonition tip" data-markdown="1">
+<p class="admonition-title">
+Interview story
+</p>
+<p>“I built a config-driven CSV cleaning CLI in Python with uv. It logs
+a summary and returns exit codes a scheduler can act on, rejects bad
+rows with line numbers instead of failing silently, and has 17 tests
+running in GitHub Actions. I used an AI assistant for parts of it, with
+an AGENTS.md and known-answer tests to verify every suggestion.”</p>
 </div>
 <nav class="pager"><a class="prev" href="../../learn/phase-0/index.html"><small>← Back to phase</small>Phase 0 — Foundations</a></nav>
 <p class="reviewed">Last reviewed: 2026-10-09</p>
   </div></main>
-  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#the-brief">The brief</a><a href="#what-youll-prove">What you&#x27;ll prove</a><a href="#two-ways-to-start">Two ways to start</a><a href="#requirements">Requirements</a><a href="#known-answers">Known answers</a><a href="#repository-structure">Repository structure</a><a href="#stretch-goals">Stretch goals</a><a href="#self-assessment-rubric">Self-assessment rubric</a></aside>
+  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#the-brief">The brief</a><a href="#what-youll-prove">What you’ll prove</a><a href="#two-ways-to-start">Two ways to start</a><a href="#option-a-in-5-commands">Option A in 5 commands</a><a href="#requirements">Requirements</a><a href="#behaviour">1. Behaviour</a><a href="#configuration">2. Configuration</a><a href="#logging-exit-codes">3. Logging &amp; exit codes</a><a href="#tests-quality">4. Tests &amp; quality</a><a href="#operations-documentation">5. Operations &amp; documentation</a><a href="#known-answers">Known answers</a><a href="#repository-structure">Repository structure</a><a href="#stretch-goals">Stretch goals</a><a href="#self-assessment-rubric">Self-assessment rubric</a></aside>
 </div>
-<footer class="site">Data, AI &amp; Automation Path v0.8 · Applied AI, Data &amp; Automation Lab · Updated October 2026<br>
+<footer class="site"><b>Saiful The Techie</b> · Data, AI &amp; Automation Path v0.9.1 · Updated October 2026<br>
 Lesson text: <a href="../../license.html">CC BY-NC-SA 4.0</a> · Code: <a href="../../license.html#code-mit-license">MIT</a> · Free external resources belong to their respective owners.</footer>
 <script src="../../search-index.js"></script>
 <script src="../../assets/app.js"></script>

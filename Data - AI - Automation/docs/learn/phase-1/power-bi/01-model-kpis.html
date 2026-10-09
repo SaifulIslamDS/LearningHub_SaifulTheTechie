@@ -6,7 +6,7 @@
 <title>Power BI Report Basics: Model Hygiene and a KPI Page — Data, AI &amp; Automation Path</title>
 <meta name="description" content="Tidy the model so it&#x27;s easy to use, then build a one-page sales overview with KPI cards, a target matrix, a monthly chart and slicers.">
 <meta property="og:type" content="article">
-<meta property="og:site_name" content="Data, AI &amp; Automation Path">
+<meta property="og:site_name" content="Saiful The Techie">
 <meta property="og:title" content="Power BI Report Basics: Model Hygiene and a KPI Page">
 <meta property="og:description" content="Tidy the model so it&#x27;s easy to use, then build a one-page sales overview with KPI cards, a target matrix, a monthly chart and slicers.">
 <meta property="og:locale" content="en_US">
@@ -19,13 +19,13 @@ var n=null;try{n=localStorage.getItem('daa-nav')}catch(e){}
 if(n==='open'&&window.matchMedia&&matchMedia('(min-width: 961px)').matches)document.documentElement.setAttribute('data-nav','open');
 document.documentElement.classList.add('no-anim')})();</script>
 <link rel="stylesheet" href="../../../assets/style.css">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233f7d6a'/%3E%3Ctext x='16' y='21' font-family='sans-serif' font-size='13' font-weight='700' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
+
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="topbar">
   <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Open curriculum menu" title="Curriculum menu (press M)" aria-controls="sidebar" aria-expanded="false"><span class="ico-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span class="ico-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></button>
-  <a class="brand" href="../../../index.html"><span class="brand-badge">AI</span><span class="brand-text"><span class="brand-name">Data, AI &amp; Automation Path</span><span class="brand-version">v0.8</span></span></a>
+  <a class="brand" href="../../../index.html"><span class="brand-text"><span class="brand-name">Saiful The Techie</span><span class="brand-version">Data, AI &amp; Automation Path · v0.9.1</span></span></a>
   <nav class="top-links" aria-label="Main">
     <a href="../../../index.html" class="">Home</a><a href="../../../curriculum.html" class="">Curriculum</a><a href="../../../practice-files.html" class="">Practice files</a><a href="../../../glossary.html" class="">Glossary</a><a href="../../../how-to-learn.html" class="">How to learn</a><a href="../../../about.html" class="">About</a>
   </nav>
@@ -41,7 +41,7 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="layout wide">
   <nav class="sidebar" id="sidebar" aria-label="Curriculum">
     <div class="side-title">Curriculum</div>
-    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="77"><i></i></div><span class="bar-label" data-progress-label></span></div>
+    <div class="side-progress"><div class="bar" data-progress-scope="all" data-total="85"><i></i></div><span class="bar-label" data-progress-label></span></div>
 <div class="nav-phase"><a href="../../../learn/phase-0/index.html"><span class="nav-num">0</span>Foundations</a>
 </div>
 <div class="nav-phase current open"><a href="../../../learn/phase-1/index.html"><span class="nav-num">1</span>Analytics &amp; BI</a>
@@ -99,63 +99,92 @@ document.documentElement.classList.add('no-anim')})();</script>
 <div class="files-box"><div class="files-head"><b>Practice files for this page</b><a href="../../../practice-files.html">All practice files →</a></div><ul><li><a href="../../../downloads/sales_model.xlsx" download>sales_model.xlsx</a><span class="f-desc">Five Excel Tables (Orders, Customers, Products, Regions, Targets) for the data model · 12 KB</span></li></ul></div>
 <h2 id="what-is-it">What is it?</h2>
 <p>A Power BI report has two layers:</p>
-<ol>
-<li><strong>The model:</strong> tables, relationships and measures (built in the DAX module). <strong>Data modelling</strong> here also means making it <em>easy to use</em>: clear names, hidden technical columns, formats and sort orders.</li>
-<li><strong>The report pages:</strong> visuals that show the <strong>KPIs</strong>, the few numbers that tell a manager whether the business is on track.</li>
+<ol type="1">
+<li><strong>The model:</strong> tables, relationships and measures
+(built in the DAX module). <strong>Data modelling</strong> here also
+means making it <em>easy to use</em>: clear names, hidden technical
+columns, formats and sort orders.</li>
+<li><strong>The report pages:</strong> visuals that show the
+<strong>KPIs</strong>, the few numbers that tell a manager whether the
+business is on track.</li>
 </ol>
-<div class="admonition job">
-<p class="admonition-title">Why it matters at work</p>
-<p>Managers judge a dashboard in a few seconds: <em>Are we on target? Where is the problem?</em> A clean model with clear KPIs answers that, and also makes the report easy for the next analyst to maintain. "Build a sales dashboard" is the classic Power BI take-home assignment.</p>
+<div class="admonition job" data-markdown="1">
+<p class="admonition-title">
+Why it matters at work
+</p>
+<p>Managers judge a dashboard in a few seconds: <em>Are we on target?
+Where is the problem?</em> A clean model with clear KPIs answers that,
+and also makes the report easy for the next analyst to maintain. “Build
+a sales dashboard” is the classic Power BI take-home assignment.</p>
 </div>
-<h2 id="part-1-model-hygiene-10-minutes-that-save-hours">Part 1: model hygiene (10 minutes that save hours)</h2>
+<h2 id="part-1-model-hygiene-10-minutes-that-save-hours">Part 1: model
+hygiene (10 minutes that save hours)</h2>
 <p>In <strong>Model view</strong>:</p>
 <table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Task</th>
 <th>How</th>
 <th>Why</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>Hide key and duplicate columns in facts</td>
-<td>Right-click → <strong>Hide in report view</strong> (<code>Orders[customer]</code>, <code>Orders[region]</code>, <code>Orders[product]</code>, <code>Targets[month]</code> …)</td>
+<td>Right-click → <strong>Hide in report view</strong>
+(<code>Orders[customer]</code>, <code>Orders[region]</code>,
+<code>Orders[product]</code>, <code>Targets[month]</code> …)</td>
 <td>Users pick dimension columns, so filters work across facts</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Hide <code>Orders[value]</code></td>
-<td>It's covered by explicit measures</td>
-<td>Stops implicit "Sum of value"</td>
+<td>It’s covered by explicit measures</td>
+<td>Stops implicit “Sum of value”</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Format every measure</td>
 <td>Select measure → <strong>Measure tools → Format</strong></td>
 <td>Whole number for money, % with 1 decimal for ratios</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Group measures in <strong>display folders</strong></td>
-<td>Properties pane → <em>Display folder</em>: <code>Sales</code>, <code>Targets</code></td>
+<td>Properties pane → <em>Display folder</em>: <code>Sales</code>,
+<code>Targets</code></td>
 <td>Easy to find as the model grows</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Sort month names</td>
-<td><code>Date[Month]</code> → <strong>Sort by column → Month Number</strong></td>
+<td><code>Date[Month]</code> → <strong>Sort by column → Month
+Number</strong></td>
 <td>Jan, Feb, Mar, not alphabetical</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Add descriptions</td>
-<td>Properties → <em>Description</em> (e.g. "Net Revenue = all orders except Cancelled")</td>
+<td>Properties → <em>Description</em> (e.g. “Net Revenue = all orders
+except Cancelled”)</td>
 <td>Shows as a tooltip, and documents the KPI</td>
 </tr>
 </tbody>
 </table>
-<h2 id="part-2-build-the-sales-overview-page">Part 2: build the Sales Overview page</h2>
-<p><strong>1. KPI cards (top row).</strong> Add four <strong>Card</strong> visuals: <code>Net Revenue</code> <strong>9,075</strong> · <code>Target</code> <strong>9,600</strong> · <code>Achievement %</code> <strong>94.5%</strong> · <code>Avg Order Value</code> <strong>825</strong>.</p>
-<p><strong>2. Target matrix (middle left).</strong> <strong>Matrix</strong> with <code>Regions[region]</code> on rows and <code>Net Revenue</code>, <code>Target</code>, <code>Achievement %</code> and <code>Gap to Target</code> as values:</p>
+<h2 id="part-2-build-the-sales-overview-page">Part 2: build the Sales
+Overview page</h2>
+<p><strong>1. KPI cards (top row).</strong> Add four
+<strong>Card</strong> visuals: <code>Net Revenue</code>
+<strong>9,075</strong> · <code>Target</code> <strong>9,600</strong> ·
+<code>Achievement %</code> <strong>94.5%</strong> ·
+<code>Avg Order Value</code> <strong>825</strong>.</p>
+<p><strong>2. Target matrix (middle left).</strong>
+<strong>Matrix</strong> with <code>Regions[region]</code> on rows and
+<code>Net Revenue</code>, <code>Target</code>,
+<code>Achievement %</code> and <code>Gap to Target</code> as values:</p>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>region</th>
 <th>Net Revenue</th>
 <th>Target</th>
@@ -164,35 +193,35 @@ document.documentElement.classList.add('no-anim')})();</script>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>Chattogram</td>
 <td>2,155</td>
 <td>2,100</td>
 <td>102.6%</td>
 <td>55</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Dhaka</td>
 <td>3,170</td>
 <td>3,600</td>
 <td>88.1%</td>
 <td>−430</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Gazipur</td>
 <td>2,520</td>
 <td>2,400</td>
 <td>105.0%</td>
 <td>120</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Narayanganj</td>
 <td>1,230</td>
 <td>1,500</td>
 <td>82.0%</td>
 <td>−270</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><strong>Total</strong></td>
 <td><strong>9,075</strong></td>
 <td><strong>9,600</strong></td>
@@ -201,51 +230,79 @@ document.documentElement.classList.add('no-anim')})();</script>
 </tr>
 </tbody>
 </table>
-<p>Then add <strong>conditional formatting</strong> to <em>Achievement %</em>: Format pane → <strong>Cell elements → Font color → Rules</strong>: ≥ 1 → green, &lt; 1 → red. Dhaka and Narayanganj turn red.</p>
-<p><strong>3. Monthly chart (middle right).</strong> <strong>Clustered column chart</strong>: X-axis <code>Date[Month]</code>, Y-axis <code>Net Revenue</code> and <code>Target</code>. Jan 3,440 vs 2,800 · Feb 3,940 vs 3,200 · Mar 1,695 vs 3,600. March stands out immediately.</p>
-<p><strong>4. Slicers (top or left).</strong> Add slicers for <code>Products[category]</code> and <code>Customers[segment]</code>. Click <strong>Fabric</strong>: the cards change to Net Revenue <strong>4,745</strong>.</p>
-<div class="admonition warning">
-<p class="admonition-title">Watch what slicers do to targets</p>
-<p>Targets exist only by <strong>region and month</strong>. They are not related to products or customers. When you slice by category, <code>Target</code> stays at 9,600 and Achievement % becomes meaningless (4,745 ÷ 9,600). Either hide the target visuals when a category is selected, or add a note: <em>"Targets are set by region and month only."</em> Knowing the <strong>grain</strong> of each fact table is part of KPI design.</p>
+<p>Then add <strong>conditional formatting</strong> to <em>Achievement
+%</em>: Format pane → <strong>Cell elements → Font color →
+Rules</strong>: ≥ 1 → green, &lt; 1 → red. Dhaka and Narayanganj turn
+red.</p>
+<p><strong>3. Monthly chart (middle right).</strong> <strong>Clustered
+column chart</strong>: X-axis <code>Date[Month]</code>, Y-axis
+<code>Net Revenue</code> and <code>Target</code>. Jan 3,440 vs 2,800 ·
+Feb 3,940 vs 3,200 · Mar 1,695 vs 3,600. March stands out
+immediately.</p>
+<p><strong>4. Slicers (top or left).</strong> Add slicers for
+<code>Products[category]</code> and <code>Customers[segment]</code>.
+Click <strong>Fabric</strong>: the cards change to Net Revenue
+<strong>4,745</strong>.</p>
+<div class="admonition warning" data-markdown="1">
+<p class="admonition-title">
+Watch what slicers do to targets
+</p>
+<p>Targets exist only by <strong>region and month</strong>. They are not
+related to products or customers. When you slice by category,
+<code>Target</code> stays at 9,600 and Achievement % becomes meaningless
+(4,745 ÷ 9,600). Either hide the target visuals when a category is
+selected, or add a note: <em>“Targets are set by region and month
+only.”</em> Knowing the <strong>grain</strong> of each fact table is
+part of KPI design.</p>
 </div>
-<h2 id="layout-rules-that-make-kpis-readable">Layout rules that make KPIs readable</h2>
+<h2 id="layout-rules-that-make-kpis-readable">Layout rules that make
+KPIs readable</h2>
 <ul>
-<li><strong>Top-left first:</strong> the most important numbers go where the eye starts.</li>
-<li><strong>One page, one question:</strong> this page answers <em>"Are we on target, and where aren't we?"</em></li>
-<li><strong>Few colours:</strong> use one neutral colour, and red or green only for status.</li>
-<li><strong>Titles that say something:</strong> "March is 53% below target", not "Net Revenue by Month".</li>
+<li><strong>Top-left first:</strong> the most important numbers go where
+the eye starts.</li>
+<li><strong>One page, one question:</strong> this page answers <em>“Are
+we on target, and where aren’t we?”</em></li>
+<li><strong>Few colours:</strong> use one neutral colour, and red or
+green only for status.</li>
+<li><strong>Titles that say something:</strong> “March is 53% below
+target”, not “Net Revenue by Month”.</li>
 </ul>
 <h2 id="common-mistakes">Common mistakes</h2>
 <table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Mistake</th>
 <th>What happens</th>
 <th>Fix</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>Building visuals on fact-table columns</td>
-<td>Targets don't filter, comparisons break</td>
+<td>Targets don’t filter, comparisons break</td>
 <td>Use dimension columns, and hide the fact keys</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Raw numbers like 0.9453125</td>
 <td>Hard to read</td>
 <td>Set formats on the measures</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Ten visuals on one page</td>
 <td>Nobody finds the message</td>
 <td>4–6 visuals that answer one question</td>
 </tr>
-<tr>
+<tr class="even">
 <td>A category slicer next to target KPIs</td>
 <td>Meaningless achievement %</td>
 <td>Explain the grain, or keep target pages separate</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Months in alphabetical order (Feb, Jan, Mar)</td>
 <td>A confusing chart</td>
 <td>Sort Month by Month Number</td>
@@ -253,65 +310,146 @@ document.documentElement.classList.add('no-anim')})();</script>
 </tbody>
 </table>
 <h2 id="try-it-yourself">Try it yourself</h2>
-<p><strong>Task:</strong> Add a <strong>Customers[segment]</strong> slicer and select <strong>Garment Factory</strong>. What does the Net Revenue card show, and why does the Target card <em>not</em> change?</p>
+<p><strong>Task:</strong> Add a <strong>Customers[segment]</strong>
+slicer and select <strong>Garment Factory</strong>. What does the Net
+Revenue card show, and why does the Target card <em>not</em> change?</p>
 <details>
-<summary>Show a hint</summary>
-<p>Think about which tables the Customers dimension is related to.</p>
+<summary>
+Show a hint
+</summary>
+Think about which tables the Customers dimension is related to.
 </details>
 <details>
-<summary>Show the solution</summary>
-<p>Net Revenue shows <strong>5,265</strong>. The Target card stays at <strong>9,600</strong>, because Customers is related only to Orders, not to Targets, so the segment filter never reaches the targets. That's correct model behaviour. The report design must make the grain clear, for example with a note under the target visuals.</p>
+<summary>
+Show the solution
+</summary>
+Net Revenue shows <strong>5,265</strong>. The Target card stays at
+<strong>9,600</strong>, because Customers is related only to Orders, not
+to Targets, so the segment filter never reaches the targets. That’s
+correct model behaviour. The report design must make the grain clear,
+for example with a note under the target visuals.
 </details>
 <h2 id="quick-quiz">Quick quiz</h2>
 <div class="quiz-q" data-answer="1">
 <p>1. Why hide <code>Orders[region]</code> in report view?</p>
-<ol>
+<ol type="1">
 <li>To save memory</li>
-<li>So users pick <code>Regions[region]</code>, which filters both Orders and Targets</li>
+<li>So users pick <code>Regions[region]</code>, which filters both
+Orders and Targets</li>
 <li>Hidden columns are faster</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B.</strong> Hiding fact keys guides users to the shared dimension columns.</p>
+<summary>
+Show answer
+</summary>
+<strong>B.</strong> Hiding fact keys guides users to the shared
+dimension columns.
 </details>
 </div>
 <div class="quiz-q" data-answer="1">
-<p>2. Where should the most important KPI usually go on a report page?</p>
-<ol>
+<p>2. Where should the most important KPI usually go on a report
+page?</p>
+<ol type="1">
 <li>Bottom right</li>
 <li>Top left</li>
 <li>In a tooltip</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B — top left.</strong> That's where readers look first.</p>
+<summary>
+Show answer
+</summary>
+<strong>B — top left.</strong> That’s where readers look first.
 </details>
 </div>
 <div class="quiz-q" data-answer="1">
-<p>3. Months appear as Feb, Jan, Mar. How do you fix this?</p>
-<ol>
+<p>3. Months appear as Feb, Jan, Mar. How do you fix this?</p>
+<ol type="1">
 <li>Rename them 1-Jan, 2-Feb…</li>
 <li>Sort the Month column by Month Number</li>
 <li>Use a different chart</li>
 </ol>
 <details>
-<summary>Show answer</summary>
-<p><strong>B.</strong> "Sort by column" keeps the readable labels and fixes the order.</p>
+<summary>
+Show answer
+</summary>
+<strong>B.</strong> “Sort by column” keeps the readable labels and fixes
+the order.
 </details>
 </div>
 <h2 id="summary">Summary</h2>
 <ul>
-<li><strong>Model hygiene:</strong> hide fact keys and raw columns, format measures, use display folders and descriptions, and sort months properly.</li>
-<li><strong>KPI page:</strong> cards for headline numbers, a target matrix with status colours, a monthly chart and a few slicers.</li>
-<li>Know each fact's <strong>grain</strong>: targets by region and month don't respond to product or customer slicers.</li>
+<li><strong>Model hygiene:</strong> hide fact keys and raw columns,
+format measures, use display folders and descriptions, and sort months
+properly.</li>
+<li><strong>KPI page:</strong> cards for headline numbers, a target
+matrix with status colours, a monthly chart and a few slicers.</li>
+<li>Know each fact’s <strong>grain</strong>: targets by region and month
+don’t respond to product or customer slicers.</li>
 <li>Use clear, message-driven titles and few colours.</li>
 </ul>
-<div class="admonition job">
-<p class="admonition-title">Job-ready check</p>
-<p><strong>Interview question:</strong> <em>"Walk me through how you'd build a sales-vs-target dashboard."</em></p>
-<p><strong>Strong answer:</strong> "First the model: a star schema with Orders and Targets facts, shared Region and Date dimensions, explicit measures for net revenue, target and achievement, formatted and documented. Then one overview page: KPI cards top left, a region matrix with conditional formatting, revenue vs target by month, and slicers that respect the target grain. I'd check the totals against the source before sharing."</p>
-<p><strong>Mini project:</strong> Build the <strong>Sales Overview</strong> page and take a screenshot. In your README, write 3 sentences: on target? where not? what next?</p>
+<div class="admonition job" data-markdown="1">
+<p class="admonition-title">
+Job-ready check
+</p>
+<p><strong>Interview question:</strong> <em>“Walk me through how you’d
+build a sales-vs-target dashboard.”</em></p>
+<p><strong>Strong answer:</strong> “First the model: a star schema with
+Orders and Targets facts, shared Region and Date dimensions, explicit
+measures for net revenue, target and achievement, formatted and
+documented. Then one overview page: KPI cards top left, a region matrix
+with conditional formatting, revenue vs target by month, and slicers
+that respect the target grain. I’d check the totals against the source
+before sharing.”</p>
+<p><strong>Mini project:</strong> Build the <strong>Sales
+Overview</strong> page and take a screenshot. In your README, write 3
+sentences: on target? where not? what next?</p>
 </div>
+<section class="mentor-prompt"><div class="mentor-head"><div><span class="eyebrow">AI study companion</span><h2 id="ai-mentor-prompt">AI Mentor Prompt</h2></div><button class="btn copy-prompt" type="button" data-copy-target="mentor-prompt-phase-1-power-bi-01-model-kpis">Copy prompt</button></div><p>Paste this into ChatGPT, Claude, Gemini, or another capable assistant to turn this tutorial into an interactive mentoring session.</p><pre class="prompt-box"><code id="mentor-prompt-phase-1-power-bi-01-model-kpis">You are my hands-on data-analytics and business-intelligence mentor.
+
+I am currently studying:
+&quot;Power BI Report Basics: Model Hygiene and a KPI Page&quot;
+
+My level:
+Beginner
+
+Teach me this topic interactively rather than giving me a long lecture.
+
+Use this sequence:
+
+1. Check what I already understand with one short diagnostic question.
+2. Explain the concept in simple language and give me the mental model first.
+3. Give me one small task using code, SQL, configuration, data, or architecture as appropriate.
+4. Wait for my attempt before showing a complete solution.
+5. Review my work and explain both what is correct and what needs improvement.
+6. Help me debug errors step by step instead of immediately replacing my work.
+7. Increase the difficulty gradually and connect each new step to the previous one.
+8. Relate what I am learning to real professional data/AI engineering work.
+9. Ask me to explain an important decision in my own words so you can check my understanding.
+10. At the end, ask me to build or modify one small feature independently.
+
+Important rules:
+- Do not do the entire exercise for me unless I explicitly ask.
+- Explain unfamiliar terminology before using it heavily.
+- Prefer current, production-relevant practices over outdated shortcuts.
+- Distinguish clearly between concepts, tool-specific behaviour, and optional alternatives.
+- If a technical fact, API, syntax, version, or best practice may have changed, verify it against current official documentation before teaching it.
+- Never invent command output, test results, benchmark numbers, cloud behaviour, or data results.
+- If something cannot be executed in the current environment, say so and give me the exact command or verification step I should run.
+- Keep me actively coding, querying, configuring, reasoning, or debugging throughout the session.
+- When useful, work from the tutorial practice files (sales_model.xlsx) instead of inventing unrelated examples.
+
+The concepts I need to master are:
+- Data modeling
+- KPIs
+- power bi desktop
+- report view
+- model view
+- card
+- kpi visual
+- matrix
+
+Start by asking me one diagnostic question.</code></pre></section>
+
 <div class="terms-box"><div class="files-head"><b>Key terms in this lesson</b><a href="../../../glossary.html">Glossary →</a></div><div class="term-chips"><a class="term-chip" href="../../../glossary.html#conditional-formatting" title="Rules that change a cell&#x27;s colour or icon based on its value, such as red for below target.">Conditional formatting</a><a class="term-chip" href="../../../glossary.html#slicer" title="A button panel that filters PivotTables or Power BI visuals with a click. A timeline is a slicer for dates.">Slicer</a></div></div>
 <h2 id="free-resources">Free resources to go deeper</h2><ul class="resources"><li><a href="https://learn.microsoft.com/en-us/power-bi/fundamentals/desktop-get-the-desktop">Download Power BI Desktop</a><span class="r-meta">Microsoft Learn · System requirements and install options.</span></li><li><a href="https://learn.microsoft.com/en-us/power-bi/guidance/star-schema">Understand star schema and the importance for Power BI</a><span class="r-meta">Microsoft Learn · Model design guidance that this lesson applies.</span></li><li><a href="https://learn.microsoft.com/en-us/training/paths/data-analytics-microsoft/">Get started with Microsoft data analytics</a><span class="r-meta">Microsoft Learn (free training path) · The first path of the PL-300 learning journey.</span></li></ul>
 <div class="complete-bar"><span>Finished reading and did the exercise?</span>
@@ -320,9 +458,9 @@ document.documentElement.classList.add('no-anim')})();</script>
 <p class="reviewed">Last reviewed: 2026-10-09</p>
 
   </div></main>
-  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#part-1-model-hygiene-10-minutes-that-save-hours">Part 1: model hygiene (10 minutes that save hours)</a><a href="#part-2-build-the-sales-overview-page">Part 2: build the Sales Overview page</a><a href="#layout-rules-that-make-kpis-readable">Layout rules that make KPIs readable</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#free-resources">Free resources</a></aside>
+  <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#what-is-it">What is it?</a><a href="#part-1-model-hygiene-10-minutes-that-save-hours">Part 1: model hygiene (10 minutes that save hours)</a><a href="#part-2-build-the-sales-overview-page">Part 2: build the Sales Overview page</a><a href="#layout-rules-that-make-kpis-readable">Layout rules that make KPIs readable</a><a href="#common-mistakes">Common mistakes</a><a href="#try-it-yourself">Try it yourself</a><a href="#quick-quiz">Quick quiz</a><a href="#summary">Summary</a><a href="#ai-mentor-prompt">AI Mentor Prompt</a><a href="#free-resources">Free resources</a></aside>
 </div>
-<footer class="site">Data, AI &amp; Automation Path v0.8 · Applied AI, Data &amp; Automation Lab · Updated October 2026<br>
+<footer class="site"><b>Saiful The Techie</b> · Data, AI &amp; Automation Path v0.9.1 · Updated October 2026<br>
 Lesson text: <a href="../../../license.html">CC BY-NC-SA 4.0</a> · Code: <a href="../../../license.html#code-mit-license">MIT</a> · Free external resources belong to their respective owners.</footer>
 <script src="../../../search-index.js"></script>
 <script src="../../../assets/app.js"></script>
